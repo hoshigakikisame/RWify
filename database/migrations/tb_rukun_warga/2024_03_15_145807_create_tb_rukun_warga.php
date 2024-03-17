@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 
             // Foreign key
-            $table->string('nik_ketua_rukun_warga', 16);
+            $table->string('nik_ketua_rukun_warga', 16)->nullable();
             $table->foreign('nik_ketua_rukun_warga')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
         });
     }

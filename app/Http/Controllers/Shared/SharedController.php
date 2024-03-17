@@ -9,8 +9,8 @@ class SharedController extends Controller
     /**
      * Mark the authenticated user's email address as verified.
      */
-    public function landing()
+    public function index()
     {
-        return view('landing');
+        return view('shared/index');
     }
 }

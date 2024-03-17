@@ -21,7 +21,7 @@ return new class extends Migration
             // Foreign key
             $table->foreignId('id_rukun_warga')->references('id_rukun_warga')->on('tb_rukun_warga')->onUpdate('cascade')->onDelete('cascade');
             // $table->foreignId('nik_ketua_rukun_tetangga')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('nik_ketua_rukun_tetangga', 16);
+            $table->string('nik_ketua_rukun_tetangga', 16)->nullable();
             $table->foreign('nik_ketua_rukun_tetangga')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
         });
     }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nama_belakang');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
-            $table->enum('agama', ['Islam', 'Kristen', 'Katholik', 'Hindu', 'Budha', 'Konghucu'])->nullable();
+            $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu'])->nullable();
             $table->enum('status_perkawinan', ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']);
             $table->string('pekerjaan')->nullable();
             $table->enum('role', ['Ketua Rukun Warga', 'Ketua Rukun Tetangga', 'warga', 'Petugas Keamanan'])->default('warga');
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 
             // Foreign key
-            // $table->foreign('id_rukun_tetangga')->references('id_rukun_tetangga')->on('tb_rukun_tetangga')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreignId('id_rukun_tetangga')->references('id_rukun_tetangga')->on('tb_rukun_tetangga')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

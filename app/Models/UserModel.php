@@ -10,17 +10,33 @@ class UserModel extends Authenticatable
 {
     use HasFactory, Notifiable;
     protected $table = 'tb_user';
+    protected $primaryKey = 'nik';
+    const CREATED_AT = 'dibuat_pada';
+    const UPDATED_AT = 'diperbarui_pada';
 
     protected $fillable = [
         'nik',
-        'nama',
+        'nkk',
         'email',
         'password',
+        'nama_depan',
+        'nama_belakang',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'agama',
+        'status_perkawinan',
+        'pekerjaan',
         'role',
+        'jenis_kelamin',
         'status',
-        'created_at',
-        'updated_at'
+        'dibuat_pada',
+        'diperbarui_pada'
     ];
+
+    // relationships
+    public function rukunTetangga() {
+        return $this->belongsTo(RukunTetanggaModel::class, 'id_rukun_warga');
+    }
 
     // GETTERS
     public function getNik(): string {
