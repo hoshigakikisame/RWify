@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "Poppins";
+        src: url(/fonts/Poppins/Poppins.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url(/fonts/Inter/Inter.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: "Poppins";
+        src: url(/fonts/Montserrat/Montserrat.woff2) format("woff2");
+    }
+}
