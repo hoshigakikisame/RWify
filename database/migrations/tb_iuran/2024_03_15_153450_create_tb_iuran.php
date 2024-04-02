@@ -15,9 +15,13 @@ return new class extends Migration
             $table->id('id_iuran');
             $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
             $table->unsignedSmallInteger('tahun');
-            $table->unsignedMediumInteger('jumlah_iuran');
+            // $table->unsignedMediumInteger('jumlah_iuran');
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
+
+            // Foreign key
+            $table->unsignedBigInteger('id_pembayaran_iuran');
+            $table->foreign('id_pembayaran_iuran')->references('id_pembayaran_iuran')->on('tb_pembayaran_iuran')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

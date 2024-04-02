@@ -30,8 +30,10 @@ class UserModelFactory extends Factory
             'agama' => $this->faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu']),
             'status_perkawinan' => $this->faker->randomElement(['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']),
             'pekerjaan' => $this->faker->randomElement(['PNS', 'TNI', 'Polri', 'Pegawai Swasta', 'Wiraswasta', 'Petani', 'Nelayan', 'Buruh', 'Pedagang', 'Pensiunan', 'Tidak Bekerja']),
+            'tipe_warga' => $this->faker->randomElement(['Domisili Lokal', 'Non Domisili Lokal', 'Bukan Warga']),
             'role' => 'Warga',
-            'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan'])
+            'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
+            'golongan_darah' => $this->faker->randomElement(['A', 'B', 'AB', 'O']),
         ];
     }
 }

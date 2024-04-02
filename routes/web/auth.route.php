@@ -8,7 +8,8 @@ Route::group([
     'prefix' => 'auth',
     'as' => 'auth.',
 ], function() {
-    Route::get('login', [AuthController::class, 'loginForm'])
-        ->name('loginForm');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::get('signin', [AuthController::class, 'signinForm'])
+        ->name('signinForm');
+    Route::post('signin', [AuthController::class, 'signIn'])->name('signin');
+    Route::post('forgot-password', [AuthController::class, 'forgotPassword'])->name('signin');
 });

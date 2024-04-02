@@ -11,25 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_user', function (Blueprint $table) {
-            $table->string('nik', 16)->primary();
-            $table->string('nkk', 16);
-            $table->string('email')->unique();
-            $table->string('password', 72);
-            $table->string('nama_depan');
-            $table->string('nama_belakang');
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-            $table->enum('agama', ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Konghucu'])->nullable();
-            $table->enum('status_perkawinan', ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']);
-            $table->string('pekerjaan')->nullable();
-            $table->enum('role', ['Ketua Rukun Warga', 'Ketua Rukun Tetangga', 'warga', 'Petugas Keamanan'])->default('warga');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->timestamp('dibuat_pada')->useCurrent();
-            $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
+        Schema::create("tb_user", function (Blueprint $table) {
+            $table->string("nik", 16)->primary();
+            $table->string("nkk", 16);
+            $table->string("email")->unique();
+            $table->string("password", 72);
+            $table->string("nama_depan");
+            $table->string("nama_belakang");
+            $table->string("tempat_lahir");
+            $table->date("tanggal_lahir");
+            $table->enum("agama", ["Islam", "Kristen", "Katolik", "Hindu", "Budha", "Konghucu"])->nullable();
+            $table->enum("status_perkawinan", ["Belum Kawin", "Kawin", "Cerai Hidup", "Cerai Mati"]);
+            $table->string("pekerjaan")->nullable();
+            $table->enum("tipe_warga", ["Domisili Lokal", "Non Domisili Lokal", "Bukan Warga"])->default("Domisili Lokal");
+            $table->enum("role", ["Ketua Rukun Warga", "Ketua Rukun Tetangga", "Warga", "Petugas Keamanan"])->default("Warga");
+            $table->enum("jenis_kelamin", ["Laki-laki", "Perempuan"]);
+            $table->enum("golongan_darah", ["A", "B", "AB", "O"])->nullable();
+            $table->timestamp("dibuat_pada")->useCurrent();
+            $table->timestamp("diperbarui_pada")->useCurrentOnUpdate()->nullable();
 
             // Foreign key
-            // $table->foreignId('id_rukun_tetangga')->references('id_rukun_tetangga')->on('tb_rukun_tetangga')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreignId("id_rukun_tetangga")->references("id_rukun_tetangga")->on("tb_rukun_tetangga")->onUpdate("cascade")->onDelete("cascade");
         });
     }
 
