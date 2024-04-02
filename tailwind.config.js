@@ -16,6 +16,12 @@ export default {
                 Montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
                 Inter: ["Inter", ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                darkGreen: "#0C3B2E",
+                darkBlue: "#222831",
+                darkLightGrey: "#393E46",
+                alum: "#A6A6A6",
+            },
         },
     },
 
