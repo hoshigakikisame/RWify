@@ -10,12 +10,14 @@
 
     @vite('resources/css/app.css')
     @vite('resources/css/fonts.css')
-
     @vite('resources/js/app.js')
+    
+    @stack('style')
 </head>
 
 <body class="position-relative">
     <div>
+        @include('components.flash-message')
         @yield('content')
         @stack('modals')
         @stack('scripts')

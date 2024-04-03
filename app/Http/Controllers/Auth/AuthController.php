@@ -11,7 +11,7 @@ class AuthController extends Controller
     /**
      * Mark the authenticated user's email address as verified.
      */
-    public function signInForm()
+    public function signInPage()
     {
         return view('auth.signin');
     }
@@ -36,18 +36,23 @@ class AuthController extends Controller
 
         switch($user->getRole()) {
             case "Ketua Rukun Warga":
-                return "Ketua RW";
+                return redirect()->route('rw.dashboard');
             case "Ketua Rukun Tetangga":
                 return "Ketua RT";
             case "Warga":
                 return "Warga";
         }
 
-        return redirect()->route("auth.signin");
+        return redirect()->route("auth.signIn");
     }
 
     public function forgotPassword()
     {
         return "Forgot password";
     }
+
+    public function signOut() {
+        Auth::logout();
+        return redirect()->route('auth.signInPage');
+    }  
 }

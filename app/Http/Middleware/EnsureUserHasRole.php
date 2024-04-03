@@ -5,6 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+
+// app imports
 use App\Models\UserModel;
  
 class EnsureUserHasRole
@@ -19,9 +22,9 @@ class EnsureUserHasRole
         /**
          * @var UserModel $currentUser
          */
-        $currentUser = $request->user();
+        $currentUser = Auth::user();
 
-        if (!$currentUser->getRole() != $role) {
+        if ($currentUser->getRole() != $role) {
             return abort(403, 'Access Denied');
         }
  

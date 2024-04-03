@@ -27,6 +27,7 @@ return new class extends Migration
             $table->enum("role", ["Ketua Rukun Warga", "Ketua Rukun Tetangga", "Warga", "Petugas Keamanan"])->default("Warga");
             $table->enum("jenis_kelamin", ["Laki-laki", "Perempuan"]);
             $table->enum("golongan_darah", ["A", "B", "AB", "O"])->nullable();
+            $table->string("alamat");
             $table->timestamp("dibuat_pada")->useCurrent();
             $table->timestamp("diperbarui_pada")->useCurrentOnUpdate()->nullable();
 
