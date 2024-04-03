@@ -33,13 +33,14 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                     <div class="line h-[1px] grow bg-alum"></div>
                 </div>
                 <!-- Sign In with Forms -->
-                <form action="{{ route('auth.signin') }}" method="post" class="mb-2">
+                <form action="{{ route('auth.signIn') }}" method="post" class="mb-2">
+                    @csrf
                     <div class="mb-3">
                         <label for="email" class="font-Inter text-xs text-darkBlue font-normal opacity-70 ">Email</label>
                         <input type=" email" name="email" id="email" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200" placeholder="Email">
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="font-Inter text-xs text-darkBlue font-normal opacity-70"">Password</label>
+                        <label for="password" class="font-Inter text-xs text-darkBlue font-normal opacity-70">Password</label>
                         <input type=" password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200" placeholder="Password">
                     </div>
                     <p class="font-Inter text-xs">Lupa Password Anda? <a href="" class="text-darkGreen">Klik Disini</a></p>

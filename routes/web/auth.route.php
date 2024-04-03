@@ -10,6 +10,6 @@ Route::group([
 ], function() {
     Route::get('signin', [AuthController::class, 'signinForm'])
         ->name('signinForm');
-    Route::post('signin', [AuthController::class, 'signIn'])->name('signin');
-    Route::post('forgot-password', [AuthController::class, 'forgotPassword'])->name('signin');
+    Route::post('signin', [AuthController::class, 'signIn'])->name('signIn');
+    Route::post('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
 });
