@@ -7,3 +7,4 @@ Route::get('', [SharedController::class, 'index'])
     ->name('index');
 
 require __DIR__.'/auth.route.php';
+require __DIR__.'/rw.route.php';
