@@ -8,6 +8,7 @@ use App\Http\Controllers\RW\RWController;
 Route::group([
     'prefix' => 'rw',
     'as' => 'rw.',
+    'middleware' => ['auth', 'hasRole:ketua_rukun_warga']
 ], function() {
     Route::get('dashboard', [RWController::class, 'dashboard'])->name('dashboard');
 });

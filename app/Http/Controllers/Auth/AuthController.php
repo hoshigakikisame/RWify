@@ -43,7 +43,7 @@ class AuthController extends Controller
                 return "Warga";
         }
 
-        return redirect()->route("auth.login");
+        return redirect()->route("auth.signin");
     }
 
     public function forgotPassword()
