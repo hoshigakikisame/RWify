@@ -28,9 +28,9 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                 </a>
                 <!-- Devider  -->
                 <div class="devide flex justify-between items-center gap-2 sm:gap-7 w-full order-2 lg:order-none mb-2">
-                    <div class="line h-[1px] bg-alum grow "></div>
+                    <div class="line h-[0.15vh] bg-alum grow "></div>
                     <p class="text-[9px] sm:text-xs shrink">Atau Melanjutkan Menggunakan</p>
-                    <div class="line h-[1px] grow bg-alum"></div>
+                    <div class="line h-[0.15vh] grow bg-alum"></div>
                 </div>
                 <!-- Sign In with Forms -->
                 <form action="{{ route('auth.signIn') }}" method="post" class="mb-2">
