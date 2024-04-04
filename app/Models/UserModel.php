@@ -91,6 +91,18 @@ class UserModel extends Authenticatable
         return $this->jenis_kelamin;
     }
 
+    public function getIdRukunTetangga(): string {
+        return $this->id_rukun_tetangga;
+    }
+
+    public function getGolonganDarah(): string {
+        return $this->golongan_darah;
+    }
+
+    public function getAlamat(): string {
+        return $this->alamat;
+    }
+
     public function getDibuatPada(): string {
         return $this->dibuat_pada;
     }

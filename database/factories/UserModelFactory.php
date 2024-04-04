@@ -34,6 +34,7 @@ class UserModelFactory extends Factory
             'role' => 'Warga',
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'golongan_darah' => $this->faker->randomElement(['A', 'B', 'AB', 'O']),
+            'alamat' => $this->faker->address(),
         ];
     }
 }
