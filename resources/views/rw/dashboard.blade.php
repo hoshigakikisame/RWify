@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 @section('content')
-<section class="px-20 py-10">
+<section class="">
     <div class="greeting mb-5">
         <h6>Hi Thoriq Fathurrozi,</h6>
         <h1 class="font-extrabold text-4xl">Selamat Datang di RWify</h1>

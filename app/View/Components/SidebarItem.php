@@ -6,14 +6,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SideBar extends Component
+class SidebarItem extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+
+    public $href, $title;
+    public function __construct($href, $title)
     {
-        //
+        $this->href = $href;
+        $this->title = $title;
     }
 
     /**
@@ -21,6 +24,6 @@ class SideBar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.side-bar');
+        return view('components.sidebar-item');
     }
 }

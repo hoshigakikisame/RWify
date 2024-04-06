@@ -41,7 +41,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                     </div>
                     <div class="mb-3">
                         <label for="password" class="font-Inter text-xs text-darkBlue font-normal opacity-70">Password</label>
-                        <input type=" password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200" placeholder="Password">
+                        <input type="password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200" placeholder="Password">
                     </div>
                     <p class="font-Inter text-xs">Lupa Password Anda? <a href="" class="text-darkGreen">Klik Disini</a></p>
                     <div class="submit-btn" style="margin-top: 20px;">
