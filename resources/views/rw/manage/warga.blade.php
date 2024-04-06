@@ -68,11 +68,11 @@
         </div>
     </div>
 
-    <div class="flex flex-col mt-6">
-        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-0">
-            <div class="inline-block min-w-full py-2 align-middle ">
+    <div class="flex flex-col mt-6 ">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                    <table class="min-w-full table-auto divide-y divide-gray-200 dark:divide-gray-700 px-2">
+                    <table class="min-w-full w-full table-auto divide-y divide-gray-200 dark:divide-gray-700 px-2">
                         <thead class="bg-gray-50 dark:bg-gray-800">
                             <tr>
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -171,7 +171,7 @@
                 </span>
             </a>
 
-            <a href="#" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
+            <a href="#" class=" flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 ">
                 <span>
                     Next
                 </span>
@@ -196,19 +196,19 @@
             </h1>
         </div>
         <div class="body">
-            <form action="" class="w-full">
-                <section class="data-diri flex gap-2 mb-2 border-solid border-b px-10 py-3">
-                    <div class="form-wrap-header w-20">
+            <form action="" class="w-full ">
+                <section class="data-diri flex gap-2 mb-2 border-solid border-b py-3 justify-between ">
+                    <div class="form-wrap-header w-28">
                         <h1 class="text-md">Data Diri</h1>
                     </div>
-                    <div class="form-fields">
+                    <div class="form-fields grow">
                         <x-inputform title="NKK" key="nkk" type="text" />
                         <x-inputform title="NIK" key="nik" type="text" />
-                        <div class="name flex gap-4">
+                        <div class="name flex gap-4 justify-between">
                             <x-inputform title="Nama Depan" key="firstname" type="text" />
                             <x-inputform title="Nama Belakang" key="lastname" type="text" />
                         </div>
-                        <div class="birthdate flex gap-4">
+                        <div class="birthdate flex gap-4 ">
                             <x-inputform title="Tempat Lahir" key="tempat_lahir" type="text" />
                             <x-inputform title="Tanggal Lahir" key="tanggal_lahir" type="date" />
                         </div>
@@ -222,11 +222,11 @@
                         </div>
                     </div>
                 </section>
-                <section class="status flex gap-2 border-solid border-b px-10 py-3">
-                    <div class="form-wrap-header w-20">
+                <section class="status flex gap-2 border-solid border-b py-3 justify-between ">
+                    <div class="form-wrap-header w-28">
                         <h1>Status</h1>
                     </div>
-                    <div class="form-fields">
+                    <div class="form-fields grow">
                         @php
                         $agama=["Islam"=>"islam"];
                         $statusPerkawinan = ["Sudah Kawin"=>"sudah kawin","Belum Kawin"=>"belum Kawin"];
