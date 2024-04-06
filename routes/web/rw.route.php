@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RW\RWController;
 use App\Http\Controllers\RW\Manage\ManageWargaController;
+use App\Http\Controllers\RW\Manage\ManagePengumumanController;
 
 // rw routes
 Route::group([
@@ -18,10 +19,29 @@ Route::group([
         'prefix' => 'manage',
         'as' => 'manage.'
     ], function() {
-        Route::get('warga', [ManageWargaController::class, 'manageWargaPage'])->name('warga');
-        Route::post('warga/new', [ManageWargaController::class, 'addNewWarga'])->name('warga.new');
-        Route::post('warga/update', [ManageWargaController::class, 'updateWarga'])->name('warga.update');
-        Route::post('warga/delete', [ManageWargaController::class, 'deleteWarga'])->name('warga.delete');
+
+        // rw manage warga routes
+        Route::group([
+            'prefix' => 'warga',
+            'as' => 'warga.'
+        ], function() {
+            Route::get('/', [ManageWargaController::class, 'manageWargaPage'])->name('warga');
+            Route::post('new', [ManageWargaController::class, 'addNewWarga'])->name('new');
+            Route::post('update', [ManageWargaController::class, 'updateWarga'])->name('update');
+            Route::post('delete', [ManageWargaController::class, 'deleteWarga'])->name('delete');
+        });
+
+        // rw manage pengumuman routes
+        Route::group([
+            'prefix' => 'pengumuman',
+            'as' => 'pengumuman.'
+        ], function() {
+            Route::get('/', [ManagePengumumanController::class, 'managePengumumanPage'])->name('pengumuman');
+            Route::post('new', [ManagePengumumanController::class, 'addNewPengumuman'])->name('new');
+            Route::post('update', [ManagePengumumanController::class, 'updatePengumuman'])->name('update');
+            Route::post('delete', [ManagePengumumanController::class, 'deletePengumuman'])->name('delete');
+        });
+
     });
 });
 
