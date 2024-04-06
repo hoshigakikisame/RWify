@@ -12,7 +12,7 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="relataive">
+<body class="relative">
     <main class="flex gap-2">
         @php
         $footerMenu=['Profile','Log Out']
@@ -25,7 +25,7 @@
                     <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
                 </svg>
             </x-sidebaritem>
-            <x-sidebaritem href="{{route('rw.manage.warga')}}" title="Pendataan">
+            <x-sidebaritem href="{{route('rw.manage.warga.warga')}}" title="Pendataan">
                 <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="lg:w-5 w-6">
                     <path d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
                 </svg>
@@ -57,7 +57,7 @@
                 </svg>
             </x-sidebaritem>
         </x-sidebarwrap>
-        <div class="px-auto mx-auto py-10">
+        <div class="px-auto mx-auto pt-10">
             @yield('content')
         </div>
         @stack('modals')
