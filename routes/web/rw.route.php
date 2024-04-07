@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RW\RWController;
 use App\Http\Controllers\RW\Manage\ManageWargaController;
 use App\Http\Controllers\RW\Manage\ManagePengumumanController;
+use App\Http\Controllers\RW\Manage\ManageUmkmController;
 
 // rw routes
 Route::group([
@@ -40,6 +41,17 @@ Route::group([
             Route::post('new', [ManagePengumumanController::class, 'addNewPengumuman'])->name('new');
             Route::post('update', [ManagePengumumanController::class, 'updatePengumuman'])->name('update');
             Route::post('delete', [ManagePengumumanController::class, 'deletePengumuman'])->name('delete');
+        });
+
+        // rw manage umkm routes
+        Route::group([
+            'prefix' => 'umkm',
+            'as' => 'umkm.'
+        ], function() {
+            Route::get('', [ManageUmkmController::class, 'manageUmkmPage'])->name('umkm');
+            Route::post('new', [ManageUmkmController::class, 'addNewUmkm'])->name('new');
+            Route::post('update', [ManageUmkmController::class, 'updateUmkm'])->name('update');
+            Route::post('delete', [ManageUmkmController::class, 'deleteUmkm'])->name('delete');
         });
 
     });
