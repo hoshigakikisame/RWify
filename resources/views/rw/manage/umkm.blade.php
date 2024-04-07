@@ -1,10 +1,11 @@
 {{-- extend to layouts/app --}}
-@extends('layouts.app')
+@extends('layouts.sidebar')
 
 @push('style')
 <style>
     table, th, td {
-        border: 1px solid black;
+        border: 1px solid white;
+        color: white;
     }
 </style>
 @endpush
@@ -18,7 +19,7 @@
             </div>
         </div>
         <div class="row">
-            <table style="border: 1px solid black;">
+            <table>
                 <thead>
                     <tr>
                         <th>ID UMKM</th>

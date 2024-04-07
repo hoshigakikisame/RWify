@@ -4,7 +4,7 @@ namespace App\Http\Controllers\RW\Manage;
 
 use App\Http\Controllers\Controller;
 use App\Models\UmkmModel;
-use Illuminate\Http\Request;
+use App\Decorators\SearchableDecorator;
 
 class ManageUmkmController extends Controller
 {
@@ -13,7 +13,9 @@ class ManageUmkmController extends Controller
      */
     public function manageUmkmPage()
     {
-        $umkmInstances = UmkmModel::all();
+        $reqQuery = request()->q;
+
+        $umkmInstances = (new SearchableDecorator(UmkmModel::class))->search($reqQuery);
         
         $data = [
             "umkmInstances" => $umkmInstances
@@ -78,14 +80,14 @@ class ManageUmkmController extends Controller
         if(!$umkm){
             session()->flash('alert-danger', 'Update Failed.');
         } else {
-            $umkm->nama = request()->nama;
-            $umkm->path_gambar = request()->path_gambar;
-            $umkm->nama_pemilik = request()->nama_pemilik;
-            $umkm->alamat = request()->alamat;
-            $umkm->map_url = request()->map_url;
-            $umkm->telepon = request()->telepon;
-            $umkm->instagram_url = request()->instagram_url;
-            $umkm->deskripsi = request()->deskripsi;
+            $umkm->setNama(request()->nama);
+            $umkm->setPathGambar(request()->path_gambar);
+            $umkm->setNamaPemilik(request()->nama_pemilik);
+            $umkm->setAlamat(request()->alamat);
+            $umkm->setMapUrl(request()->map_url);
+            $umkm->setTelepon(request()->telepon);
+            $umkm->setInstagramUrl(request()->instagram_url);
+            $umkm->setDeskripsi(request()->deskripsi);
             $umkm->save();
 
             session()->flash('alert-success', 'Update Success.');   

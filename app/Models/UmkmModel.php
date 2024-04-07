@@ -27,6 +27,15 @@ class UmkmModel extends Model
         'diperbarui_pada'
     ];
 
+    public static $searchable = [
+        'nama',
+        'nama_pemilik',
+        'alamat',
+        'telepon',
+        'instagram_url',
+        'deskripsi'
+    ];
+
     // relationships
 
     // GETTERS
