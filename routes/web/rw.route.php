@@ -25,7 +25,7 @@ Route::group([
             'prefix' => 'warga',
             'as' => 'warga.'
         ], function() {
-            Route::get('/', [ManageWargaController::class, 'manageWargaPage'])->name('warga');
+            Route::get('', [ManageWargaController::class, 'manageWargaPage'])->name('warga');
             Route::post('new', [ManageWargaController::class, 'addNewWarga'])->name('new');
             Route::post('update', [ManageWargaController::class, 'updateWarga'])->name('update');
             Route::post('delete', [ManageWargaController::class, 'deleteWarga'])->name('delete');
@@ -36,7 +36,7 @@ Route::group([
             'prefix' => 'pengumuman',
             'as' => 'pengumuman.'
         ], function() {
-            Route::get('/', [ManagePengumumanController::class, 'managePengumumanPage'])->name('pengumuman');
+            Route::get('', [ManagePengumumanController::class, 'managePengumumanPage'])->name('pengumuman');
             Route::post('new', [ManagePengumumanController::class, 'addNewPengumuman'])->name('new');
             Route::post('update', [ManagePengumumanController::class, 'updatePengumuman'])->name('update');
             Route::post('delete', [ManagePengumumanController::class, 'deletePengumuman'])->name('delete');

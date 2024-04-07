@@ -31,25 +31,26 @@ class ManageWargaController extends Controller
 
     public function addNewWarga()
     {
-        request()->validate([
-            'nik' => 'required',
-            'nkk' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'agama' => 'required',
-            'status_perkawinan' => 'required',
-            'pekerjaan' => 'required',
-            'tipe_warga' => 'required',
-            'role' => 'required',
-            'jenis_kelamin' => 'required',
-            'golongan_darah' => 'required',
-            'alamat' => 'required',
-            'id_rukun_tetangga' => 'required',
-        ]);
+        // dd(request()->alamat);
+        // request()->validate([
+        //     'nik' => 'required',
+        //     'nkk' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        //     'nama_depan' => 'required',
+        //     'nama_belakang' => 'required',
+        //     'tempat_lahir' => 'required',
+        //     'tanggal_lahir' => 'required',
+        //     'agama' => '',
+        //     'status_perkawinan' => 'required',
+        //     'pekerjaan' => '',
+        //     'tipe_warga' => 'required',
+        //     'role' => 'required',
+        //     'jenis_kelamin' => 'required',
+        //     'golongan_darah' => 'required',
+        //     'alamat' => 'required',
+        //     'id_rukun_tetangga' => 'required',
+        // ]);
         
         $data = [
             'nik' => request()->nik,
@@ -59,6 +60,7 @@ class ManageWargaController extends Controller
             'nama_depan' => request()->nama_depan,
             'nama_belakang' => request()->nama_belakang,
             'tempat_lahir' => request()->tempat_lahir,
+            'tanggal_lahir' => request()->tanggal_lahir,
             'agama' => request()->agama,
             'status_perkawinan' => request()->status_perkawinan,
             'pekerjaan' => request()->pekerjaan,
@@ -78,7 +80,7 @@ class ManageWargaController extends Controller
             session()->flash('alert-success', 'Berhasil menambahkan warga baru.');
         }
 
-        return redirect()->route('rw.manage.warga');
+        return redirect()->route('rw.manage.warga.warga');
     }
 
     // update warga with validation

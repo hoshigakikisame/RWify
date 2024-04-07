@@ -26,12 +26,78 @@ class UserModel extends Authenticatable
         'agama',
         'status_perkawinan',
         'pekerjaan',
+        'tipe_warga',
         'role',
         'jenis_kelamin',
-        'status',
+        'golongan_darah',
+        'alamat',
+        'id_rukun_tetangga' =>
         'dibuat_pada',
-        'diperbarui_pada'
+        'diperbarui_pada',
     ];
+
+    // options statics
+    public static function getGolonganDarahOption() {
+        return [
+            'A' => 'A',
+            'B' => 'B',
+            'AB' => 'AB',
+            'O' => 'O',
+        ];
+    }
+
+    public static function getKelaminOption() {
+        return [
+            'Laki-laki' => 'Laki-laki',
+            'Perempuan' => 'Perempuan',
+        ];
+    }
+
+    public static function getAgamaOption() {
+        return [
+            'Islam' => 'Islam',
+            'Kristen' => 'Kristen',
+            'Katolik' => 'Katolik',
+            'Hindu' => 'Hindu',
+            'Budha' => 'Budha',
+            'Konghucu' => 'Konghucu',
+        ];
+    }
+
+    public static function getStatusPerkawinanOption() {
+        return [
+            'Belum Kawin' => 'Belum Kawin',
+            'Kawin' => 'Kawin',
+            'Cerai Hidup' => 'Cerai Hidup',
+            'Cerai Mati' => 'Cerai Mati',
+        ];
+    }
+
+    public static function getRoleOption() {
+        return [
+            'Ketua Rukun Warga' => 'Ketua Rukun Warga',
+            'Ketua Rukun Tetangga' => 'Ketua Rukun Tetangga',
+            'Warga' => 'Warga',
+            'Petugas Keamanan' => 'Petugas Keamanan',
+        ];
+    }
+
+    public static function getTipeWargaOption() {
+        return [
+            'Domisili Lokal' => 'Domisili Lokal',
+            'Non Domisili Lokal' => 'Non Domisili Lokal',
+            'Bukan Warga' => 'Bukan Warga',
+        ];
+    }
+
+    public static function getRukunTetanggaOption() {
+        $rukunTetanggaInstances = RukunTetanggaModel::all();
+        $options = [];
+        foreach($rukunTetanggaInstances as $rt) {
+            $options[$rt->getNomorRukunTetangga()] = $rt->getIdRukunTetangga();
+        }
+        return $options;
+    }
 
     // relationships
     public function rukunTetangga() {
@@ -163,6 +229,10 @@ class UserModel extends Authenticatable
 
     public function setJenisKelamin(string $jenisKelamin): void {
         $this->jenis_kelamin = $jenisKelamin;
+    }
+
+    public function setAlamat(string $alamat): void {
+        $this->alamat = $alamat;
     }
 
     public function setDibuatPada(string $dibuatPada): void {
