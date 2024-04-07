@@ -23,14 +23,12 @@ class ManageWargaController extends Controller
             "users" => $users
         ];
 
-        // add test flash message
-        session()->flash('alert-info', 'This is a test flash message.');
-
         return view('rw.manage.warga', $data);
     }
 
     public function addNewWarga()
     {
+        dd(request()->alamat);
         request()->validate([
             'nik' => 'required',
             'nkk' => 'required',
@@ -40,9 +38,9 @@ class ManageWargaController extends Controller
             'nama_belakang' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
-            'agama' => 'required',
+            'agama' => '',
             'status_perkawinan' => 'required',
-            'pekerjaan' => 'required',
+            'pekerjaan' => '',
             'tipe_warga' => 'required',
             'role' => 'required',
             'jenis_kelamin' => 'required',
@@ -59,6 +57,7 @@ class ManageWargaController extends Controller
             'nama_depan' => request()->nama_depan,
             'nama_belakang' => request()->nama_belakang,
             'tempat_lahir' => request()->tempat_lahir,
+            'tanggal_lahir' => request()->tanggal_lahir,
             'agama' => request()->agama,
             'status_perkawinan' => request()->status_perkawinan,
             'pekerjaan' => request()->pekerjaan,
@@ -78,7 +77,7 @@ class ManageWargaController extends Controller
             session()->flash('alert-success', 'Berhasil menambahkan warga baru.');
         }
 
-        return redirect()->route('rw.manage.warga');
+        return redirect()->route('rw.manage.warga.warga');
     }
 
     // update warga with validation
@@ -132,9 +131,16 @@ class ManageWargaController extends Controller
         return redirect()->route('rw.manage.warga');
     }
 
-    public function deleteWarga($id)
+    public function deleteWarga()
     {
-        $user = UserModel::find($id);
+
+        request()->validate([
+            'nik' => 'required',
+        ]);
+
+        $nik = request()->nik;
+
+        $user = UserModel::find($nik);
 
         if(!$user) {
             session()->flash('alert-danger', 'Gagal menghapus warga.');
@@ -143,6 +149,6 @@ class ManageWargaController extends Controller
             session()->flash('alert-success', 'Berhasil menghapus warga.');
         }
 
-        return redirect()->route('rw.manage.warga');
+        return redirect()->route('rw.manage.warga.warga');
     }
 }
