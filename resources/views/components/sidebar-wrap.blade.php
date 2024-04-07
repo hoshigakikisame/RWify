@@ -20,16 +20,16 @@
                 </div>
                 <div class="nestedMenu relative flex" tabindex="0">
                     <button class="px-3 hidden lg:block" id="moreButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve" class="h-4 w-4 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve" class="h-4 w-4 dark:fill-gray-200">
                             <circle cx="42.667" cy="256" r="42.667" />
                             <circle cx="256" cy="256" r="42.667" />
                             <circle cx="469.333" cy="256" r="42.667" />
                         </svg>
                     </button>
-                    <div id="moreMenu" class="absolute -right-30 bottom-0 bg-gray-50 dark:bg-gray-800 rounded-lg py-0.5 px-2 shadow-md border z-20">
+                    <div id="moreMenu" class="absolute -right-30 bottom-0 bg-gray-50 dark:bg-gray-900 rounded-lg py-0.5 px-2 shadow-md border z-20">
                         <div class="py-2 px-1 flex flex-col w-full">
                             @foreach($footerMenu as $item => $link)
-                            <a class="px-4 py-1 rounded-md hover:bg-white text-gray-800 dark:text-gray-200 text-nowrap" href="{{$link}}">{{$item}}</a>
+                            <a class="px-4 py-1 rounded-md hover:bg-white dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 text-nowrap" href="{{$link}}">{{$item}}</a>
                             @endforeach
                         </div>
                     </div>
