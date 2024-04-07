@@ -2,14 +2,12 @@
 
 namespace App\Decorators;
 
-use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Pagination\LengthAwarePaginator;
 
 use App\Decorators\Decorator;
 
 class SearchableDecorator extends Decorator
 {
-    public $model;
     public $searchable;
     public $paginate = 10;
 
