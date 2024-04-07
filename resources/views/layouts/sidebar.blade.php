@@ -57,7 +57,7 @@
                 </svg>
             </x-sidebaritem>
         </x-sidebarwrap>
-        <div class="px-auto mx-auto pt-10">
+        <div class="px-auto mx-auto pt-10 overflow-hidden">
             @include('components.flash-message')
             <div class="px-auto mx-auto pt-5 overflow-hidden">
                 @yield('content')
