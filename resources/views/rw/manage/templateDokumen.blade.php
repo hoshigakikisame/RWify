@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <table class="table-auto ">
-            <thead class="border-b bg-gray-200">
+            <thead class="border-b bg-gray-200 dark:bg-gray-800">
                 <tr>
                     <th>ID Template Dokumen</th>
                     <th>Nama Template</th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 @foreach ($templateDokumenInstances as $templateDokumen)
-                <tr>
+                <tr class="border-b">
                     <td>
                         {{ $templateDokumen->getIdTemplateDokumen() }}
                     </td>

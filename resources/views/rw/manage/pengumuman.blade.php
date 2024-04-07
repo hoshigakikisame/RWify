@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <table class="table-auto">
-            <thead class="bg-gray-200 border-b">
+            <thead class="bg-gray-200  dark:bg-gray-800 border-b">
                 <tr>
                     <th>ID Pengumuman</th>
                     <th>Judul</th>
