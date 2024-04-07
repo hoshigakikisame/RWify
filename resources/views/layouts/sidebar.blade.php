@@ -12,7 +12,7 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="relative">
+<body class="relative dark:bg-gray-800">
     <main class="flex gap-2">
         @php
         $footerMenu=['Profile'=> '/','Log Out'=>'/']
@@ -40,7 +40,7 @@
                     <path d="M18 12c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6m1 9c0 .55-.45 1-1 1s-1-.45-1-1v-2c0-.55.45-1 1-1s1 .45 1 1zm-1-4c-.83 0-1.5-.67-1.5-1.5S17.17 14 18 14s1.5.67 1.5 1.5S18.83 17 18 17m-6.92 5H5c-2.76 0-5-2.24-5-5V5c0-2.76 2.24-5 5-5h5v5c0 1.65 1.35 3 3 3h5v2c-4.41 0-8 3.59-8 8 0 1.46.4 2.82 1.08 4M12 5V.15c.46.15.88.39 1.23.73l3.9 3.94c.33.33.56.73.7 1.17H13c-.55 0-1-.45-1-1Z" />
                 </svg>
             </x-sidebaritem>
-            <x-sidebaritem href="{{route('rw.dashboard')}}" title="Pengumuman">
+            <x-sidebaritem href="{{route('rw.manage.pengumuman.pengumuman')}}" title="Pengumuman">
                 <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="lg:w-5 w-6">
                     <path d="M22 11.95V18a1 1 0 0 1-1.985.165C19.626 15.832 16.395 15 13.501 15h-4.5V4h4.5c2.894 0 6.125-.831 6.514-3.165A1 1 0 0 1 22.001 1v6.05a2.5 2.5 0 0 1 0 4.9ZM7 15V4H5.5C2.467 4 0 6.467 0 9.5S2.467 15 5.5 15zm1.523 2H5.5a7.5 7.5 0 0 1-2.505-.431l2.171 5.792a2.48 2.48 0 0 0 1.289 1.405 2.48 2.48 0 0 0 1.905.082 2.48 2.48 0 0 0 1.405-1.289c.281-.604.31-1.28.082-1.904l-1.325-3.656Z" />
                 </svg>
@@ -57,7 +57,7 @@
                 </svg>
             </x-sidebaritem>
         </x-sidebarwrap>
-        <div class="px-auto mx-auto pt-2 overflow-hidden">
+        <div class="px-auto mx-auto pt-2 overflow-hidden ">
             @include('components.flash-message')
             <div class="pt-5">
                 @yield('content')
@@ -100,6 +100,7 @@
         })
 
 
+        // hover for mobile views
         $('.nav-item a').on('mouseover', (e) => {
             console.log($(window).width())
             if ($(window).width() < 1024) {
