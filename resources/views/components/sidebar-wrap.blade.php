@@ -2,7 +2,7 @@
 <aside class="min-h-screen relative">
     <nav class="h-full flex flex-col shadow-xl px-4 py-6 w-fit">
         <div class="sidebar-header">
-            <h1 class="text-center text-3xl hidden lg:block dark:text-gray-200">RWFIY</h1>
+            <h1 class="text-center text-3xl hidden lg:block dark:text-gray-200">{{ config('app.name') }}</h1>
             <img src="" alt="">
         </div>
         <ul class="h-full grow py-5 w-full flex flex-col gap-1 fill-gray-500 dark:fill-gray-200 mx-auto">

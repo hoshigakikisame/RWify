@@ -15,34 +15,54 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Manage Data Pengumuman</h1>
+                <h1 class="text-center">Manage Data UMKM</h1>
             </div>
         </div>
         <div class="row">
             <table>
                 <thead>
                     <tr>
-                        <th>ID Pengumuman</th>
-                        <th>Judul</th>
+                        <th>ID UMKM</th>
+                        <th>Nama</th>
                         <th>Path Gambar</th>
-                        <th>Konten</th>
+                        <th>Nama Pemilik</th>
+                        <th>Alamat</th>
+                        <th>Map URL</th>
+                        <th>Telepon</th>
+                        <th>Instagram URL</th>
+                        <th>Deskripsi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($pengumumanInstances as $pengumuman)
+                @foreach ($umkmInstances as $umkm)
                     <tr>
                         <td>
-                            {{ $pengumuman->getIdPengumuman() }}
+                            {{ $umkm->getIdUmkm() }}
                         </td>
                         <td>
-                            {{ $pengumuman->getJudul() }}
+                            {{ $umkm->getNama() }}
                         </td>
                         <td>
-                            {{ $pengumuman->getPathGambar() }}
+                            {{ $umkm->getPathGambar() }}
                         </td>
                         <td>
-                            {{ substr(strip_tags($pengumuman->getKonten()), 50) . '...' }}
+                            {{ $umkm->getNamaPemilik() }}
+                        </td>
+                        <td>
+                            {{ $umkm->getAlamat() }}
+                        </td>
+                        <td>
+                            {{ $umkm->getMapUrl() }}
+                        </td>
+                        <td>
+                            {{ $umkm->getTelepon() }}
+                        </td>
+                        <td>
+                            {{ $umkm->getInstagramUrl() }}
+                        </td>
+                        <td>
+                            {{ $umkm->getDeskripsi() }}
                         </td>
                         <td>
                             <div class="d-flex" id="action_wrapper">

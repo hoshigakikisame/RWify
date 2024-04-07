@@ -30,7 +30,6 @@ class ManageWargaController extends Controller
 
     public function addNewWarga()
     {
-        dd(request()->alamat);
         request()->validate([
             'nik' => 'required',
             'nkk' => 'required',
@@ -109,21 +108,22 @@ class ManageWargaController extends Controller
         if(!$user) {
             session()->flash('alert-danger', 'Gagal mengupdate warga.');
         } else {
-            $user->nik = request()->nik;
-            $user->nkk = request()->nkk;
-            $user->email = request()->email;
-            $user->nama_depan = request()->nama_depan;
-            $user->nama_belakang = request()->nama_belakang;
-            $user->tempat_lahir = request()->tempat_lahir;
-            $user->agama = request()->agama;
-            $user->status_perkawinan = request()->status_perkawinan;
-            $user->pekerjaan = request()->pekerjaan;
-            $user->tipe_warga = request()->tipe_warga;
-            $user->role = request()->role;
-            $user->jenis_kelamin = request()->jenis_kelamin;
-            $user->golongan_darah = request()->golongan_darah;
-            $user->alamat = request()->alamat;
-            $user->id_rukun_tetangga = request()->id_rukun_tetangga;
+            $user->setNik(request()->nik);
+            $user->setNkk(request()->nkk);
+            $user->setEmail(request()->email);
+            $user->setNamaDepan(request()->nama_depan);
+            $user->setNamaBelakang(request()->nama_belakang);
+            $user->setTempatLahir(request()->tempat_lahir);
+            $user->setTanggalLahir(request()->tanggal_lahir);
+            $user->setAgama(request()->agama);
+            $user->setStatusPerkawinan(request()->status_perkawinan);
+            $user->setPekerjaan(request()->pekerjaan);
+            $user->setTipeWarga(request()->tipe_warga);
+            $user->setRole(request()->role);
+            $user->setJenisKelamin(request()->jenis_kelamin);
+            $user->setGolonganDarah(request()->golongan_darah);
+            $user->setAlamat(request()->alamat);
+            $user->setIdRukunTetangga(request()->id_rukun_tetangga);
 
             $user->save();
 

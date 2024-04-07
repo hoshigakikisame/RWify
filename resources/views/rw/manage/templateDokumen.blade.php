@@ -15,34 +15,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Manage Data Pengumuman</h1>
+                <h1 class="text-center">Manage Data Template Dokumen</h1>
             </div>
         </div>
         <div class="row">
             <table>
                 <thead>
                     <tr>
-                        <th>ID Pengumuman</th>
-                        <th>Judul</th>
-                        <th>Path Gambar</th>
-                        <th>Konten</th>
+                        <th>ID Template Dokumen</th>
+                        <th>Nama Template</th>
+                        <th>Path Template</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($pengumumanInstances as $pengumuman)
+                @foreach ($templateDokumenInstances as $templateDokumen)
                     <tr>
                         <td>
-                            {{ $pengumuman->getIdPengumuman() }}
+                            {{ $templateDokumen->getIdTemplateDokumen() }}
                         </td>
                         <td>
-                            {{ $pengumuman->getJudul() }}
+                            {{ $templateDokumen->getNamaTemplate() }}
                         </td>
                         <td>
-                            {{ $pengumuman->getPathGambar() }}
-                        </td>
-                        <td>
-                            {{ substr(strip_tags($pengumuman->getKonten()), 50) . '...' }}
+                            {{ $templateDokumen->getPathTemplate() }}
                         </td>
                         <td>
                             <div class="d-flex" id="action_wrapper">
