@@ -12,7 +12,7 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="relative dark:bg-gray-800">
+<body class="relative dark:bg-gray-900">
     <main class="flex gap-2">
         @php
         $footerMenu=['Profile'=> '/','Log Out'=>'/']
