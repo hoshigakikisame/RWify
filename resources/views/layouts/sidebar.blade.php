@@ -15,7 +15,7 @@
 <body class="relative">
     <main class="flex gap-2">
         @php
-        $footerMenu=['Profile','Log Out']
+        $footerMenu=['Profile'=> '/','Log Out'=>'/']
         @endphp
         <x-sidebarwrap email="thoriqfathurrozi@gmail.com" role="Programer" :footerMenu="$footerMenu">
             <x-sidebaritem href="{{route('rw.dashboard')}}" title="Dashboard">
@@ -57,7 +57,7 @@
                 </svg>
             </x-sidebaritem>
         </x-sidebarwrap>
-        <div class="px-auto mx-auto pt-10">
+        <div class="px-auto mx-auto pt-5 overflow-hidden">
             @yield('content')
         </div>
         @stack('modals')

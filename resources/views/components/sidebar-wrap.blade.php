@@ -28,8 +28,8 @@
                     </button>
                     <div id="moreMenu" class="absolute -right-30 bottom-0 bg-gray-50 rounded-lg py-0.5 px-2 shadow-md border z-20">
                         <div class="py-2 px-1 flex flex-col w-full">
-                            @foreach($footerMenu as $item)
-                            <a class="px-4 py-1 rounded-md hover:bg-white text-gray-800 text-nowrap" href="">{{$item}}</a>
+                            @foreach($footerMenu as $item => $link)
+                            <a class="px-4 py-1 rounded-md hover:bg-white text-gray-800 text-nowrap" href="{{$link}}">{{$item}}</a>
                             @endforeach
                         </div>
                     </div>
