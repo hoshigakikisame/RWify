@@ -57,12 +57,13 @@
                 </svg>
             </x-sidebaritem>
         </x-sidebarwrap>
-        <div class="px-auto mx-auto pt-10 overflow-hidden">
+        <div class="px-auto mx-auto pt-2 overflow-hidden">
             @include('components.flash-message')
-            <div class="px-auto mx-auto pt-5 overflow-hidden">
+            <div class="pt-5">
                 @yield('content')
             </div>
             @stack('modals')
+        </div>
     </main>
     @stack('scripts')
     <script type="module">
