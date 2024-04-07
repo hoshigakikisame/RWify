@@ -20,6 +20,12 @@ class RukunTetanggaModel extends Model
         'nik_ketua_rukun_tetangga'
     ];
 
+    protected $searchable = [
+        'nomor_rukun_tetangga',
+        'alamat',
+        'nik_ketua_rukun_tetangga'
+    ];
+
     // relationships
     public function ketuaRukunTetangga() {
         return $this->hasOne(UserModel::class, 'nik', 'nik_ketua_rukun_tetangga');

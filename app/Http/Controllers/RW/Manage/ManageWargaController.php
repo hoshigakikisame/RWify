@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Hash;
 
 // App
 use App\Http\Controllers\Controller;
+use App\Decorators\SearchableDecorator;
 use App\Models\UserModel;
-
 
 class ManageWargaController extends Controller
 {
@@ -17,8 +17,10 @@ class ManageWargaController extends Controller
      */
     public function manageWargaPage()
     {
-        $users = UserModel::all();
-        
+        $reqQuery = request()->q;
+
+        $users = (new SearchableDecorator(UserModel::class))->search($reqQuery);
+
         $data = [
             "users" => $users
         ];

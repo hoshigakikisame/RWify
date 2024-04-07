@@ -23,6 +23,11 @@ class PengumumanModel extends Authenticatable
         'diperbarui_pada'
     ];
 
+    public static $searchable = [
+        'judul',
+        'konten'
+    ];
+
     // relationships
 
     // GETTERS

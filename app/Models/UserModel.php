@@ -36,6 +36,22 @@ class UserModel extends Authenticatable
         'diperbarui_pada',
     ];
 
+    public static $searchable = [
+        'nik',
+        'nkk',
+        'email',
+        'nama_depan',
+        'nama_belakang',
+        'tempat_lahir',
+        'agama',
+        'status_perkawinan',
+        'pekerjaan',
+        'tipe_warga',
+        'role',
+        'jenis_kelamin',
+        'golongan_darah'
+    ];
+
     // options statics
     public static function getGolonganDarahOption() {
         return [

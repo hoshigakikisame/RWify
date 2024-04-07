@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 
 // App
 use App\Http\Controllers\Controller;
+use App\Decorators\SearchableDecorator;
 use App\Models\PengumumanModel;
 use App\Models\UserModel;
 
@@ -18,7 +19,11 @@ class ManagePengumumanController extends Controller
      */
     public function managePengumumanPage()
     {
-        $pengumumanInstances = PengumumanModel::all();
+
+        $reqQuery = request()->q;
+
+        $pengumumanInstances = (new SearchableDecorator(PengumumanModel::class))->search($reqQuery);
+        
         
         $data = [
             "pengumumanInstances" => $pengumumanInstances
