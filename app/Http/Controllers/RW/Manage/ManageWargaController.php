@@ -23,34 +23,31 @@ class ManageWargaController extends Controller
             "users" => $users
         ];
 
-        // add test flash message
-        session()->flash('alert-info', 'This is a test flash message.');
-
         return view('rw.manage.warga', $data);
     }
 
     public function addNewWarga()
     {
-        // dd(request()->alamat);
-        // request()->validate([
-        //     'nik' => 'required',
-        //     'nkk' => 'required',
-        //     'email' => 'required',
-        //     'password' => 'required',
-        //     'nama_depan' => 'required',
-        //     'nama_belakang' => 'required',
-        //     'tempat_lahir' => 'required',
-        //     'tanggal_lahir' => 'required',
-        //     'agama' => '',
-        //     'status_perkawinan' => 'required',
-        //     'pekerjaan' => '',
-        //     'tipe_warga' => 'required',
-        //     'role' => 'required',
-        //     'jenis_kelamin' => 'required',
-        //     'golongan_darah' => 'required',
-        //     'alamat' => 'required',
-        //     'id_rukun_tetangga' => 'required',
-        // ]);
+        dd(request()->alamat);
+        request()->validate([
+            'nik' => 'required',
+            'nkk' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'nama_depan' => 'required',
+            'nama_belakang' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'agama' => '',
+            'status_perkawinan' => 'required',
+            'pekerjaan' => '',
+            'tipe_warga' => 'required',
+            'role' => 'required',
+            'jenis_kelamin' => 'required',
+            'golongan_darah' => 'required',
+            'alamat' => 'required',
+            'id_rukun_tetangga' => 'required',
+        ]);
         
         $data = [
             'nik' => request()->nik,
@@ -134,9 +131,16 @@ class ManageWargaController extends Controller
         return redirect()->route('rw.manage.warga');
     }
 
-    public function deleteWarga($id)
+    public function deleteWarga()
     {
-        $user = UserModel::find($id);
+
+        request()->validate([
+            'nik' => 'required',
+        ]);
+
+        $nik = request()->nik;
+
+        $user = UserModel::find($nik);
 
         if(!$user) {
             session()->flash('alert-danger', 'Gagal menghapus warga.');
@@ -145,6 +149,6 @@ class ManageWargaController extends Controller
             session()->flash('alert-success', 'Berhasil menghapus warga.');
         }
 
-        return redirect()->route('rw.manage.warga');
+        return redirect()->route('rw.manage.warga.warga');
     }
 }

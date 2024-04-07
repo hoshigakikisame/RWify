@@ -176,21 +176,23 @@
                                                     </svg>
                                                 </span>
                                             </button>
-                                            <button
-                                                class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
-                                                type="button">
-                                                <span
-                                                    class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
-                                                        class="h-4 w-4 fill-red-500" viewBox="0 0 24 24"
-                                                        fill="currentColor" version="1.1">
-                                                        <path
-                                                            d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
-                                                        </path>
-                                                    </svg>
-                                                    </svg>
-                                                </span>
-                                            </button>
+                                            <form action="{{ route('rw.manage.warga.delete') }}" method="POST" class="w-full ">
+                                                @csrf
+                                                <button type="submit" name="nik" value="{{ $user->getNik() }}"
+                                                    class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
+                                                    <span
+                                                        class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                                                            class="h-4 w-4 fill-red-500" viewBox="0 0 24 24"
+                                                            fill="currentColor" version="1.1">
+                                                            <path
+                                                                d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
+                                                            </path>
+                                                        </svg>
+                                                        </svg>
+                                                    </span>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

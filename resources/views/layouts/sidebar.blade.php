@@ -58,6 +58,7 @@
             </x-sidebaritem>
         </x-sidebarwrap>
         <div class="px-auto mx-auto pt-10">
+            @include('components.flash-message')
             @yield('content')
         </div>
         @stack('modals')

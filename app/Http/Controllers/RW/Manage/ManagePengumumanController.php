@@ -24,9 +24,6 @@ class ManagePengumumanController extends Controller
             "pengumumanInstances" => $pengumumanInstances
         ];
 
-        // add test flash message
-        session()->flash('alert-info', 'This is a test flash message.');
-
         return view('rw.manage.pengumuman', $data);
     }
 
