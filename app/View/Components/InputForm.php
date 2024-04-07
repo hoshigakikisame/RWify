@@ -11,13 +11,14 @@ class InputForm extends Component
     /**
      * Create a new component instance.
      */
-    public $title, $key, $type;
+    public $title, $key, $type, $validation;
 
-    public function __construct(string $title, string $key, string $type)
+    public function __construct(string $title, string $key, string $type, string $validation)
     {
         $this->title = $title;
         $this->key = $key;
         $this->type = $type;
+        $this->validation =  $validation;
     }
 
     /**

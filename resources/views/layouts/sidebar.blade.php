@@ -12,7 +12,7 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="relative dark:bg-gray-900">
+<body class="relative bg-white dark:bg-gray-900">
     <main class="flex gap-2">
         @php
         $footerMenu=['Profile'=> '/','Log Out'=>'/']
@@ -26,7 +26,7 @@
                 </svg>
             </x-sidebaritem>
             <x-sidebaritem href="{{route('rw.manage.warga.warga')}}" title="Pendataan">
-                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="lg:w-5 w-6">
+                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="lg:w-5 w-6 fill-inherit">
                     <path d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
                 </svg>
             </x-sidebaritem>
@@ -67,6 +67,7 @@
     </main>
     @stack('scripts')
     <script type="module">
+        //dropdown selector
         const footerMenuButton = document.querySelectorAll('#moreButton');
         const footerMenu = document.getElementById('moreMenu');
         let isFooterMenuOpen = !false; // Set to true to open the dropdown by default, false to close it by default
@@ -102,21 +103,71 @@
 
         // hover for mobile views
         $('.nav-item a').on('mouseover', (e) => {
-            console.log($(window).width())
             if ($(window).width() < 1024) {
                 $(e.currentTarget).children('span').removeClass('hidden')
-            } else {
-
             }
         })
 
         $('.nav-item a').on('mouseleave', (e) => {
             if ($(window).width() < 1024) {
                 $(e.currentTarget).children('span').addClass('hidden')
-            } else {
-
             }
         })
+
+        // handle dark mode
+        // get icon 
+        const sunIcon = document.getElementById('sun')
+        const moonIcon = document.getElementById('moon')
+
+        // get vars
+        const userTheme = localStorage.getItem('theme')
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+
+        // toogle Icon active
+        function iconToogle(stype) {
+            sunIcon.classList.toggle(stype)
+            moonIcon.classList.toggle(stype)
+        }
+
+        // initial theme check
+        function checkTheme(stype) {
+            if (userTheme === 'dark' || (!userTheme && systemTheme)) {
+                document.documentElement.classList.add('dark')
+                moonIcon.classList.add(stype)
+            } else {
+                sunIcon.classList.add(stype)
+            }
+        }
+
+        function switchTheme(stype) {
+            if (document.documentElement.classList.contains("dark")) {
+                document.documentElement.classList.remove('dark')
+                localStorage.setItem('theme', 'light')
+                iconToogle(stype)
+            } else {
+                document.documentElement.classList.add('dark')
+                localStorage.setItem('theme', 'dark')
+                iconToogle(stype)
+            }
+        }
+
+        if (window.innerWidth < 768) {
+            checkTheme('hidden')
+            moonIcon.addEventListener('click', () => {
+                switchTheme('hidden');
+            })
+            sunIcon.addEventListener('click', () => {
+                switchTheme('hidden');
+            })
+        } else {
+            checkTheme('fill-blue-500')
+            moonIcon.addEventListener('click', () => {
+                switchTheme('fill-blue-500');
+            })
+            sunIcon.addEventListener('click', () => {
+                switchTheme('fill-blue-500');
+            })
+        }
     </script>
 </body>
 
