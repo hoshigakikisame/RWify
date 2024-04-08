@@ -18,7 +18,7 @@ class InputForm extends Component
         $this->title = $title;
         $this->key = $key;
         $this->type = $type;
-        $this->validation =  $validation;
+        $this->validation = $validation;
     }
 
     /**

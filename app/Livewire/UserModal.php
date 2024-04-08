@@ -6,10 +6,17 @@ use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use LivewireUI\Modal\ModalComponent;
 
+
 class UserModal extends ModalComponent
 {
     public Forms\UserForm $form;
 
+    public function save(): void
+    {
+        $this->form->save();
+        $this->closeModal();
+        $this->dispatch('refresh-list');
+    }
 
     public function render(): View
     {

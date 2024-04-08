@@ -12,12 +12,13 @@ class SelectInputForm extends Component
      * Create a new component instance.
      */
 
-    public $title, $options, $key;
-    public function __construct(string $title, $options, string $key)
+    public $title, $options, $key, $validation;
+    public function __construct(string $title, $options, string $key, string $validation = "")
     {
         $this->title = $title;
         $this->options = $options;
         $this->key = $key;
+        $this->validation = $validation;
     }
 
     /**

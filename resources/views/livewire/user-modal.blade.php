@@ -5,8 +5,9 @@
         </h1>
     </div>
     <div class="body">
-        <form action="{{ route('rw.manage.warga.new') }}" method="POST" class="w-full ">
-            @csrf
+        <!-- <form action="{{ route('rw.manage.warga.new') }}" method="POST" class="w-full "> -->
+            <form wire:submit="save">
+            <!-- @csrf -->
             <section class="data-diri flex gap-2 mb-2 border-solid border-b py-3 justify-between ">
                 <div class="form-wrap-header w-28">
                     <h1 class="text-md dark:text-gray-200">Data Diri</h1>
@@ -52,12 +53,12 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                     <x-inputform title="Pekerjaan" key="pekerjaan" name="pekerjaan" type="text" validation="" />
                     <x-selectinputform title="Peran" key="role" name="role" :options="$role" validation="required" />
                     <x-selectinputform title="Tipe" key="tipe_warga" name="tipe_warga" :options="$tipeWarga" validation="required" />
-                    <x-selectinputform title="RT" key="rukun_tetangga" name="rukun_tetangga" :options="$rukunTetangga" validation="required" />
+                    <x-selectinputform title="RT" key="id_rukun_tetangga" name="id_rukun_tetangga" :options="$rukunTetangga" validation="required" />
                 </div>
             </section>
             <section class="actionButton w-full flex gap-2 justify-end py-3 px-1">
-                <button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">Save</button>
-                <button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-gray-200 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-gray-600 dark:hover:bg-gray-500 dark:bg-gray-600" onclick="$('#addPopup').remove()">Close</button>
+                <button type="submit" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">Save</button>
+                <button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-gray-200 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-gray-600 dark:hover:bg-gray-500 dark:bg-gray-600">Close</button>
             </section>
         </form>
     </div>

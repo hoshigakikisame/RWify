@@ -7,23 +7,20 @@ use App\Decorators\SearchableDecorator;
 use App\Models\UserModel;
 use Livewire\WithPagination;
 use Illuminate\Contracts\View\View;
+use Livewire\Attributes\On;
 
 class UsersTable extends Component
 {
     use WithPagination;
-
+    #[On('refresh-list')]
+    public function refresh()
+    {
+    }
     public function render(): View
     {
 
-        $reqQuery = request()->q;
-
-        $users = (new SearchableDecorator(UserModel::class))->search($reqQuery);
-
-        $data = [
-            "users" => $users
-        ];
         return view('livewire.users-table', [
-            'users' => UserModel::paginate(2),
+            'users' => UserModel::paginate(4),
         ]);
     }
 }
