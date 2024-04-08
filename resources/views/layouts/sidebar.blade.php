@@ -17,7 +17,7 @@
 <body class="relative bg-white dark:bg-gray-900">
     <main class="flex gap-2">
         @php
-        $footerMenu=['Profile'=> '/','Log Out'=>'/']
+$footerMenu = ['Profile' => '/', 'Log Out' => '/']
         @endphp
         <x-sidebarwrap email="thoriqfathurrozi@gmail.com" role="Programer" :footerMenu="$footerMenu">
             <x-sidebaritem href="{{route('rw.dashboard')}}" title="Dashboard">
@@ -64,10 +64,11 @@
                 </svg>
             </x-sidebaritem>
         </x-sidebarwrap>
-        <div class="px-auto mx-auto overflow-hidden">
+        <div class=" overflow-hidden">
             @include('components.flash-message')
-            <div class="overflow-auto h-screen pt-5">
+            <div class="h-screen pt-5 overflow-scroll no-scrollbar ">
                 @yield('content')
+                @livewire('wire-elements-modal')
             </div>
             @stack('modals')
         </div>
