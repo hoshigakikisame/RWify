@@ -15,10 +15,17 @@ class UsersTable extends Component
     public $perPage = 5;
     public $search = "";
 
+    public $select = "";
+
     use WithPagination;
     #[On('refresh-list')]
     public function refresh()
     {
+    }
+
+    public function selection($select)
+    {
+        $this->select = $select;
     }
 
     public function delete($nik): void
@@ -30,7 +37,11 @@ class UsersTable extends Component
     {
 
         return view('livewire.users-table', [
-            'users' => UserModel::search($this->search)->paginate($this->perPage),
+            'users' => UserModel::search($this->search)
+                ->when($this->select !== '', function ($query) {
+                    $query->where('role', $this->select);
+                })
+                ->paginate($this->perPage),
         ]);
     }
 }
