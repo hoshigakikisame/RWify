@@ -10,6 +10,7 @@
 
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @livewireStyles
 
     @stack('style')
 </head>
@@ -177,6 +178,7 @@ $footerMenu = ['Profile' => '/', 'Log Out' => '/']
             })
         }
     </script>
+    @livewireScripts
 </body>
 
 </html>

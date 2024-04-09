@@ -1,12 +1,12 @@
-<div class="popUp bg-white mx-auto rounded-lg px-10 py-5 overflow-y-auto no-scrollbar w-full dark:bg-gray-900">
+<div class="popUp bg-white mx-auto rounded-lg px-10 py-5 overflow-y-auto no-scrollbar dark:bg-gray-900 w-full">
     <div class="header border-b">
         <h1 class="text-xl mb-3 dark:text-gray-200">
-            Add Data Warga
+            {{$title}}
         </h1>
     </div>
     <div class="body">
         <!-- <form action="{{ route('rw.manage.warga.new') }}" method="POST" class="w-full "> -->
-            <form wire:submit="save">
+            <form>
             <!-- @csrf -->
             <section class="data-diri flex gap-2 mb-2 border-solid border-b py-3 justify-between ">
                 <div class="form-wrap-header w-28">
@@ -57,8 +57,8 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                 </div>
             </section>
             <section class="actionButton w-full flex gap-2 justify-end py-3 px-1">
-                <button type="submit" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">Save</button>
-                <button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-gray-200 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-gray-600 dark:hover:bg-gray-500 dark:bg-gray-600">Close</button>
+                <button type="submit" wire:click.prevent="save" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600">Create</button>
+                <button wire:click="$dispatch('closeModal')"  class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-gray-200 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-gray-600 dark:hover:bg-gray-500 dark:bg-gray-600">Close</button>
             </section>
         </form>
     </div>

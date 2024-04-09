@@ -128,6 +128,19 @@ class UserModel extends Authenticatable
         return $this->belongsTo(RukunTetanggaModel::class, 'id_rukun_warga');
     }
 
+
+    // search
+    public function scopeSearch($query, $search)
+    {
+        $query->where('nama_depan', 'LIKE', "%{$search}%")
+            ->orWhere('nama_belakang', 'like', "%{$search}%")
+            ->orWhere('nkk', 'like', "%{$search}%")
+            ->orWhere('nik', 'like', "%{$search}%")
+            ->orWhere('tempat_lahir', 'like', "%{$search}%")
+            ->orWhere('tanggal_lahir', 'like', "%{$search}%")
+            ->orWhere('alamat', 'like', "%{$search}%");
+    }
+
     // GETTERS
     public function getNik(): string
     {

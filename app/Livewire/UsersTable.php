@@ -11,16 +11,26 @@ use Livewire\Attributes\On;
 
 class UsersTable extends Component
 {
+    public Forms\UserForm $form;
+    public $perPage = 5;
+    public $search = "";
+
     use WithPagination;
     #[On('refresh-list')]
     public function refresh()
     {
     }
+
+    public function delete($nik): void
+    {
+        $this->form->delete($nik);
+        $this->dispatch('refresh-list');
+    }
     public function render(): View
     {
 
         return view('livewire.users-table', [
-            'users' => UserModel::paginate(4),
+            'users' => UserModel::search($this->search)->paginate($this->perPage),
         ]);
     }
 }

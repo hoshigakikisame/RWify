@@ -11,6 +11,8 @@ class UserModal extends ModalComponent
 {
     public Forms\UserForm $form;
 
+    public $title = "Add Data Warga";
+
     public function save(): void
     {
         $this->form->save();
@@ -18,8 +20,14 @@ class UserModal extends ModalComponent
         $this->dispatch('refresh-list');
     }
 
+
     public function render(): View
     {
         return view('livewire.user-modal');
+    }
+
+    public static function modalMaxWidth(): string
+    {
+        return '7xl';
     }
 }

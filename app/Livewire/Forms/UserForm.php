@@ -29,28 +29,6 @@ class UserForm extends Form
     public string $id_rukun_tetangga = "";
     public string $tipe_warga = "";
 
-    public function rules(): array
-    {
-        return [
-            'nik' => ['required'],
-            'nkk' => ['required'],
-            'email' => ['required'],
-            'password' => ['required'],
-            'nama_depan' => ['required'],
-            'nama_belakang' => ['required'],
-            'tempat_lahir' => ['required'],
-            'tanggal_lahir' => ['required'],
-            'agama' => [''],
-            'status_perkawinan' => ['required'],
-            'pekerjaan' => [''],
-            'tipe_warga' => ['required'],
-            'role' => ['required'],
-            'jenis_kelamin' => ['required'],
-            'golongan_darah' => ['required'],
-            'alamat' => ['required'],
-            'id_rukun_tetangga' => ['required'],
-        ];
-    }
 
     public function save(): void
     {
@@ -73,8 +51,46 @@ class UserForm extends Form
             'alamat',
             'id_rukun_tetangga',
         ];
-        $this->validate();
-        UserModel::create($this->only($data));
+        $this->validate([
+            'nik' => ['required'],
+            'nkk' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+            'nama_depan' => ['required'],
+            'nama_belakang' => ['required'],
+            'tempat_lahir' => ['required'],
+            'tanggal_lahir' => ['required'],
+            'agama' => [''],
+            'status_perkawinan' => ['required'],
+            'pekerjaan' => [''],
+            'tipe_warga' => ['required'],
+            'role' => ['required'],
+            'jenis_kelamin' => ['required'],
+            'golongan_darah' => ['required'],
+            'alamat' => ['required'],
+            'id_rukun_tetangga' => ['required'],
+        ]);
+
+        $newUser = UserModel::create($this->only($data));
+
+        if (!$newUser) {
+            session()->flash('alert-danger', 'Gagal menambahkan warga baru.');
+        } else {
+            session()->flash('alert-success', 'Berhasil menambahkan warga baru.');
+        }
+        $this->reset();
+    }
+
+    public function delete($nik): void
+    {
+
+        $user = UserModel::find($nik);
+        if (!$user) {
+            session()->flash('alert-danger', 'Gagal menghapus warga.');
+        } else {
+            $user->delete();
+            session()->flash('alert-success', 'Berhasil menghapus warga.');
+        }
         $this->reset();
     }
 
