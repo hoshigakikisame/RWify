@@ -2,7 +2,7 @@
 @section('content')
 <section class="">
     <div class="greeting mb-5">
-        <h6>Hi Thoriq Fathurrozi,</h6>
+        <h6>Hi {{auth()->user()->nama_depan}},</h6>
         <h1 class="font-extrabold text-4xl">Selamat Datang di RWify</h1>
     </div>
     <div class="working flex gap-4">

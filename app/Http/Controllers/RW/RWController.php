@@ -18,7 +18,7 @@ class RWController extends Controller
         $users = (new SearchableDecorator(UserModel::class))->search($reqQuery);
 
         $data = [
-            "users" => $users
+            "users" => $users,
         ];
         return view('rw.dashboard', $data);
     }
