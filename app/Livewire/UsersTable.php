@@ -16,11 +16,23 @@ class UsersTable extends Component
     public $search = "";
 
     public $select = "";
+    public $orderBy = "dibuat_pada";
+    public $orderDir = "DESC";
 
     use WithPagination;
     #[On('refresh-list')]
     public function refresh()
     {
+    }
+
+    public function setOrderBy($orderBy)
+    {
+        if ($this->orderBy === $orderBy) {
+            $this->orderDir = ($this->orderDir == 'ASC') ? 'DESC' : 'ASC';
+            return;
+        }
+        $this->orderBy = $orderBy;
+        $this->orderDir = "DESC";
     }
 
     public function selection($select)
@@ -40,7 +52,7 @@ class UsersTable extends Component
             'users' => UserModel::search($this->search)
                 ->when($this->select !== '', function ($query) {
                     $query->where('role', $this->select);
-                })
+                })->orderBy($this->orderBy, $this->orderDir)
                 ->paginate($this->perPage),
         ]);
     }
