@@ -20,15 +20,15 @@
         @php
 $footerMenu = ['Profile' => '/', 'Log Out' => '/']
         @endphp
-        <x-sidebarwrap email="thoriqfathurrozi@gmail.com" role="Programer" :footerMenu="$footerMenu">
-            <x-sidebaritem href="{{route('rw.dashboard')}}" title="Dashboard">
+        <x-sidebarwrap email="{{$user->email}}" role="{{$user->role}}" :footerMenu="$footerMenu">
+            <x-sidebaritem href="{{route('rw.dashboard')}}" title="Dashboard" :active="Route::has('dashboard')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve" class="lg:w-5 w-6 fill-inherit">
                     <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
                     <path d="M362.667 383.841v128H448c35.346 0 64-28.654 64-64V253.26a42.67 42.67 0 0 0-12.011-29.696l-181.29-195.99c-31.988-34.61-85.976-36.735-120.586-4.747a85 85 0 0 0-4.747 4.747L12.395 223.5A42.67 42.67 0 0 0 0 253.58v194.261c0 35.346 28.654 64 64 64h85.333v-128c.399-58.172 47.366-105.676 104.073-107.044 58.604-1.414 108.814 46.899 109.261 107.044" />
                     <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
                 </svg>
             </x-sidebaritem>
-            <x-sidebaritem href="{{route('rw.manage.warga.warga')}}" title="Pendataan">
+            <x-sidebaritem href="{{route('rw.manage.warga.warga')}}" title="Pendataan" :active="Route::has('rw.manage.warga.warga')">
                 <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="lg:w-5 w-6 fill-inherit">
                     <path d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
                 </svg>
@@ -178,6 +178,18 @@ $footerMenu = ['Profile' => '/', 'Log Out' => '/']
                 switchTheme('fill-blue-500');
             })
         }
+
+        //handle hover truncate
+        $('.overflow-data').on('mouseover',(e)=>{
+            $(e.currentTarget).removeClass('truncate')
+            $(e.currentTarget).addClass('absolute -top-1 text-xs rounded-lg border dark:border-gray-200 z-10 p-2')
+        })
+
+        $('.overflow-data').on('mouseleave',(e)=>{
+            $(e.currentTarget).addClass('truncate')
+            $(e.currentTarget).removeClass('absolute -top-1 text-xs rounded-lg border dark:border-gray-200 z-10 p-2')
+
+        })
     </script>
     
 </body>

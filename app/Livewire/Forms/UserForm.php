@@ -34,7 +34,7 @@ class UserForm extends Form
 
     public function save(): void
     {
-        $data1 = [
+        $data = [
             'nik',
             'nkk',
             'email',
@@ -53,8 +53,8 @@ class UserForm extends Form
             'alamat',
             'id_rukun_tetangga',
         ];
-        $data = $this->validate([
-            'nik' => 'required|min:5',
+        $required = $this->validate([
+            'nik' => 'required',
             'nkk' => ['required'],
             'email' => ['required'],
             'password' => ['required'],
