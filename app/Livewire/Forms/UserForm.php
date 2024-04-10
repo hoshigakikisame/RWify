@@ -8,6 +8,7 @@ use Livewire\Form;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserModel;
 
+use function Laravel\Prompts\password;
 
 class UserForm extends Form
 {
@@ -26,9 +27,10 @@ class UserForm extends Form
     public string $status_perkawinan = "";
     public string $pekerjaan = "";
     public string $role = "";
-    public string $id_rukun_tetangga = "";
+    public ?string $id_rukun_tetangga = "";
     public string $tipe_warga = "";
 
+    public ?UserModel $user = null;
 
     public function save(): void
     {
@@ -70,15 +72,45 @@ class UserForm extends Form
             'alamat' => ['required'],
             'id_rukun_tetangga' => ['required'],
         ]);
-
-        $newUser = UserModel::create($this->only($data));
-
-        if (!$newUser) {
-            session()->flash('alert-danger', 'Gagal menambahkan warga baru.');
+        if (!$this->user) {
+            $this->password = Hash::make($this->password);
+            $newUser = UserModel::create($this->only($data));
+            if (!$newUser) {
+                session()->flash('alert-danger', 'Gagal menambahkan warga baru.');
+            } else {
+                session()->flash('alert-success', 'Berhasil menambahkan warga baru.');
+            }
         } else {
-            session()->flash('alert-success', 'Berhasil menambahkan warga baru.');
+            if ($this->password != $this->user->password) {
+                $this->password = Hash::make($this->password);
+            }
+            $this->user->update($this->only($data));
         }
+
+
         $this->reset();
+    }
+
+    public function update(?UserModel $user = null): void
+    {
+        $this->user = $user;
+        $this->nik = $user->nik;
+        $this->nkk = $user->nkk;
+        $this->email = $user->email;
+        $this->password = $user->password;
+        $this->nama_depan = $user->nama_depan;
+        $this->nama_belakang = $user->nama_belakang;
+        $this->tempat_lahir = $user->tempat_lahir;
+        $this->tanggal_lahir = $user->tanggal_lahir;
+        $this->agama = $user->agama;
+        $this->jenis_kelamin = $user->jenis_kelamin;
+        $this->golongan_darah = $user->golongan_darah;
+        $this->alamat = $user->alamat;
+        $this->status_perkawinan = $user->status_perkawinan;
+        $this->pekerjaan = $user->pekerjaan;
+        $this->role = $user->role;
+        $this->tipe_warga = $user->tipe_warga;
+        $this->id_rukun_tetangga = $user->id_rukun_tetangga;
     }
 
     public function delete($nik): void
