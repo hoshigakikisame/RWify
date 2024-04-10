@@ -34,7 +34,7 @@ class UserForm extends Form
 
     public function save(): void
     {
-        $data = [
+        $data1 = [
             'nik',
             'nkk',
             'email',
@@ -53,8 +53,8 @@ class UserForm extends Form
             'alamat',
             'id_rukun_tetangga',
         ];
-        $this->validate([
-            'nik' => ['required'],
+        $data = $this->validate([
+            'nik' => 'required|min:5',
             'nkk' => ['required'],
             'email' => ['required'],
             'password' => ['required'],
@@ -124,6 +124,14 @@ class UserForm extends Form
             session()->flash('alert-success', 'Berhasil menghapus warga.');
         }
         $this->reset();
+    }
+
+    public function validationAttributes(): array
+    {
+        return [
+            'nik' => 'nik',
+            'nkk' => 'nkk',
+        ];
     }
 
 }

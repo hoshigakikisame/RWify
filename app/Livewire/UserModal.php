@@ -14,12 +14,14 @@ class UserModal extends ModalComponent
     public Forms\UserForm $form;
 
     public $title = "Add Data Warga";
+    public $button = "Create";
 
 
     public function mount(UserModel $user = null): void
     {
         if ($user && $user->exists) {
             $this->title = "Update Data Warga";
+            $this->button = "Update";
             $this->form->update($user);
         }
     }

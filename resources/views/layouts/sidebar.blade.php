@@ -74,6 +74,7 @@ $footerMenu = ['Profile' => '/', 'Log Out' => '/']
             @stack('modals')
         </div>
     </main>
+    @livewireScripts
     @stack('scripts')
     <script type="module">
         //dropdown selector
@@ -178,7 +179,7 @@ $footerMenu = ['Profile' => '/', 'Log Out' => '/']
             })
         }
     </script>
-    @livewireScripts
+    
 </body>
 
 </html>
