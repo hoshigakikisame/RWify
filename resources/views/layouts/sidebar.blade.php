@@ -149,6 +149,7 @@
             }
         }
 
+        // switch theme
         function switchTheme(stype) {
             if (document.documentElement.classList.contains("dark")) {
                 document.documentElement.classList.remove('dark')
@@ -161,6 +162,7 @@
             }
         }
 
+        // check if user prefers dark mode in responsive device
         if (window.innerWidth < 768) {
             checkTheme('hidden')
             moonIcon.addEventListener('click', () => {
@@ -179,7 +181,8 @@
             })
         }
 
-        //handle hover truncate
+
+        //handle hover truncate for profile
         $('.overflow-data').on('mouseover', (e) => {
             $(e.currentTarget).removeClass('truncate')
             $(e.currentTarget).addClass('absolute -top-1 text-xs rounded-lg border dark:border-gray-200 z-10 p-2')
