@@ -17,7 +17,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
     </div>
     <div class="form-login overflow-hidden">
         <div class="h-screen overflow-scroll no-scrollbar ">
-            <div class="container-fluid flex flex-col items-center text-darkLightGrey gap-5 lg:gap-2 xl:mt-32">
+            <div class="container-fluid flex flex-col items-center text-darkLightGrey gap-5 lg:gap-2 lg:mt-12 xl:mt-32">
                 <div class="signIn-header text-center lg:w-2/3 2xl:w-1/2 md:px-10 flex flex-col gap-2">
                     <h1 class=" text-5xl my-4 font-Inter font-bold dark:text-gray-100">Sign In</h1>
                     <p class="font-light font-Inter px-16 lg:p-2 dark:text-gray-200">Silahkan Sign In Untuk Pengalaman Terhubung yang Lebih Baik</p>
@@ -40,11 +40,11 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="font-Inter text-xs text-darkBlue font-normal opacity-70 dark:text-white">Email</label>
-                            <input type=" email" name="email" id="email" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200 dark:bg-gray-900" placeholder="Email">
+                            <input type=" email" name="email" id="email" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200 dark:bg-gray-900 dark:text-gray-100" placeholder="Email">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="font-Inter text-xs text-darkBlue font-normal opacity-70 dark:text-white">Password</label>
-                            <input type="password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200 dark:bg-gray-900" placeholder="Password">
+                            <input type="password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200 dark:bg-gray-900 dark:text-gray-100" placeholder="Password">
                         </div>
                         <p class="font-Inter text-xs dark:text-gray-400">Lupa Password Anda? <a href="" class="text-darkGreen dark:text-green-600">Klik Disini</a></p>
                         <div class="submit-btn" style="margin-top: 20px;">
@@ -83,17 +83,23 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 
 @push('scripts')
 <script>
-    const apiKey = "vBq0Ro-C7xFRg_Fz3X6j_iYqw3eDsQag0jpWYmBI95o"
-    const keywoard = "malang"
-    async function getMalangImage() {
-        const response = await fetch(`https://api.unsplash.com/photos/random?query=${keywoard}&client_id=${apiKey}`)
+    const unsplashUrl = "https://api.unsplash.com/photos/random?query=malang"
+    const pexelsUrl = "https://api.pexels.com/v1/search?query=malang"
+    const apiKeyUnsplash = "Client-ID vBq0Ro-C7xFRg_Fz3X6j_iYqw3eDsQag0jpWYmBI95o"
+    const apiKeyPexels = " UaEae7XJhvIEK5BUTRVuRVGbGUuQkPHtIzNTgt3tWzfCFcneAdBaGUK5"
+    async function getMalangImage(url, token) {
+        let headers = new Headers();
+        headers.append("Authorization", `${token}`);
+        const response = await fetch(`${url}`, {
+            headers: headers
+        });
         const data = await response.json();
         return data.urls.regular;
     }
 
     const malangImage = async () => {
         try {
-            const imgUrl = await getMalangImage();
+            const imgUrl = await getMalangImage(unsplashUrl, apiKeyUnsplash);
             setImageUrl(imgUrl)
         } catch (e) {
             console.error(e)
@@ -105,7 +111,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
         image.style.backgroundImage = `url(${imgUrl})`;
     }
 
-    const interval = 3_600_000;
+    const interval = 72_000;
     setInterval(() => {
         $('#sign-image').fadeOut('slow', async () => {
             await malangImage();
