@@ -3,10 +3,11 @@
 
 {{-- content --}}
 @section('content')
+@include('shared.navbar')
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">Landing Page</h1>
+            <h1 class="text-center dark:text-white">Landing Page</h1>
         </div>
     </div>
 </div>
