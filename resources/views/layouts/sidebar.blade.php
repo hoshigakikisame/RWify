@@ -67,7 +67,7 @@
         </x-sidebarwrap>
         <div class=" overflow-hidden w-full">
             @include('components.flash-message')
-            <div class="h-screen pt-5 overflow-scroll no-scrollbar w-full">
+            <div class="h-screen pt-5 overflow-scroll no-scrollbar w-full ">
                 @yield('content')
                 @livewire('wire-elements-modal')
             </div>

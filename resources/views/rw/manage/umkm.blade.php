@@ -15,10 +15,10 @@
             <h1 class="text-center">Manage Data UMKM</h1>
         </div>
     </div>
-    <div class="row overflow-hidden">
+    <div class="row">
         <div class="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-h-full">
-                <div class="overflow-auto">
+            <div class="inline-block min-h-full overflow-hidden">
+                <div class="overflow-x-scroll">
                     <table class="table-auto ">
                         <thead class="bg-gray-200  dark:bg-gray-800 border-b">
                             <tr>
