@@ -1,5 +1,5 @@
-<div class="nav-container px-5 lg:px-10 py-5">
-    <nav class="flex justify-between ">
+<div class="nav-container px-5 lg:px-10 py-5 dark:bg-gray-800">
+    <nav class="flex justify-between items-center">
         <div class="navbar-brand flex dark:text-gray-200">
             <img src="" alt="logo">
             <h1 class="text-2xl ">RWify</h1>
@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div class="navbar-action flex gap-3">
-            <a class="login-button  bg-green-900 text-gray-100 dark:text-gray-200 dark:bg-green-700 px-4 py-1 border border-gray-200 border-opacity-10 rounded-lg " href="{{route('auth.signIn')}}">Sign In</a>
+            <a class="login-button bg-green-900 text-gray-100 dark:text-gray-200 dark:bg-green-700 px-4 py-1 border border-gray-200 border-opacity-10 rounded-lg " href="{{route('auth.signIn')}}">Sign In</a>
             <div class=" flex justify-center" id="darkModeButton">
                 <label for="themeSwitcherOne" class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center bg-white dark:bg-gray-900 p-1 dark:text-gray-200 border rounded-full gap-1">
                     <span id="sun" class="light text-primary bg-gray dark:bg-gray-800 bg-gray-300 flex items-center space-x-[2px] rounded-full py-2 p-2 text-sm font-medium dark:fill-slate-200">

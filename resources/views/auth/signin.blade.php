@@ -10,16 +10,18 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 @endphp
 <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-screen">
     <div class="relative">
-        <div id="sign-image" class="absolute Sign-Image flex top-0 bottom-0 right-0 left-0  items-center bg-cover backdrop-brightness-50 " style="background-image: url('{{$image}}')">
-            <h1 class="font-bold font-Poppins text-xl lg:text-6xl 3xl:text-8xl text-white ms-28 lg:block hidden max-w-xl">BUAT RW MENJADI LEBIH EFISIEN DENGAN RWIFY</h1>
-            <img src="{{$signInElement}}" class="lg:hidden absolute -bottom-1 bg-transparent w-full z-10" alt="data">
+        <div id="sign-image" class="absolute Sign-Image top-0 bottom-0 right-0 left-0 bg-cover " style="background-image: url('{{$image}}')">
+            <div class="text-wrap backdrop-brightness-75 dark:backdrop-brightness-90 w-full h-full flex items-center">
+                <h1 class="font-bold font-Poppins text-xl lg:text-6xl 3xl:text-8xl text-white px-7 mx-auto xl:ms-28 lg:block hidden max-w-xl">BUAT RW MENJADI LEBIH EFISIEN DENGAN RWIFY</h1>
+                <img src="{{$signInElement}}" class="lg:hidden absolute -bottom-1 bg-transparent w-full z-10" alt="data">
+            </div>
         </div>
     </div>
-    <div class="form-login overflow-hidden">
+    <div class="form-login lg:overflow-hidden">
         <div class="h-screen overflow-scroll no-scrollbar ">
             <div class="container-fluid flex flex-col items-center text-darkLightGrey gap-5 lg:gap-2 lg:mt-12 xl:mt-32">
-                <div class="signIn-header text-center lg:w-2/3 2xl:w-1/2 md:px-10 flex flex-col gap-2">
-                    <h1 class=" text-5xl my-4 font-Inter font-bold dark:text-gray-100">Sign In</h1>
+                <div class="signIn-header text-center lg:w-2/3 2xl:w-1/2 md:px-10 flex flex-col gap-2 mb-4">
+                    <h1 class=" text-5xl my-1 font-Inter font-bold dark:text-gray-100">Sign In</h1>
                     <p class="font-light font-Inter px-16 lg:p-2 dark:text-gray-200">Silahkan Sign In Untuk Pengalaman Terhubung yang Lebih Baik</p>
                 </div>
                 @csrf
