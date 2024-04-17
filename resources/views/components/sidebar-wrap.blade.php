@@ -15,9 +15,9 @@
                     <button id="moreButton">
                         <img class="h-10 max-w-10 rounded-full" src="{{Vite::asset('resources/assets/images/frrxy.png')}}" alt="Thoriq Fathurrozi">
                     </button>
-                    <div class="body lg:min-w-10 hidden lg:block w-20">
-                        <h5 class="text-sm lg:text-md dark:text-gray-200 ">{{$role}}</h5>
-                        <p class="text-xs dark:text-gray-200 text-ellipsis overflow-hidden ...">{{$email}}</p>
+                    <div class="body lg:min-w-10 hidden lg:block w-20 relative">
+                        <h5 class="overflow-data text-sm lg:text-md dark:text-gray-200  dark:bg-gray-900 bg-white text-nowrap truncate ...">{{$role}}</h5>
+                        <p class="overflow-data dark:bg-gray-900 bg-white cursor-pointer sm:text-xs dark:text-gray-200 truncate ... ">{{$email}}</p>
                     </div>
                     <div class="nestedMenu relative flex" tabindex="0">
                         <button class="px-3 hidden lg:block" id="moreButton">

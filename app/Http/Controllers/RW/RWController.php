@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\RW;
 
 use App\Http\Controllers\Controller;
+use App\Decorators\SearchableDecorator;
+use App\Models\UserModel;
 
 class RWController extends Controller
 {
@@ -11,6 +13,13 @@ class RWController extends Controller
      */
     public function dashboard()
     {
-        return view('rw.dashboard');
+        $reqQuery = request()->q;
+
+        $users = (new SearchableDecorator(UserModel::class))->search($reqQuery);
+
+        $data = [
+            "users" => $users,
+        ];
+        return view('rw.dashboard', $data);
     }
 }

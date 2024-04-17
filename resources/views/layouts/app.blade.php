@@ -9,14 +9,12 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite('resources/css/app.css')
-    @vite('resources/css/fonts.css')
     @vite('resources/js/app.js')
-    
     @stack('style')
 </head>
 
-<body class="position-relative">
-    <div>
+<body class="relative dark:bg-gray-900">
+    <div class="">
         @include('components.flash-message')
         @yield('content')
         @stack('modals')

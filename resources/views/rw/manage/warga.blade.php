@@ -4,8 +4,8 @@
 
 {{-- content --}}
 @section('content')
-
-<section class="container px-2 mx-auto relative">
+<livewire:users-table />
+<!-- <section class="container px-2 mx-auto relative">
     <div class="sm:flex sm:items-center sm:justify-between">
         <div>
             <div class="flex items-center gap-x-3">
@@ -195,7 +195,7 @@
             </a>
         </div>
     </div>
-</section>
+</section> -->
 @endsection
 
 @push('scripts')
@@ -230,8 +230,8 @@
                         </div>
                         <div class="jenis-kelamin-dan-golongan-darah flex gap-4">
                             @php
-                                $genderOptions = \App\Models\UserModel::getKelaminOption();
-                                $golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
+$genderOptions = \App\Models\UserModel::getKelaminOption();
+$golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
                             @endphp
                             <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" name="jenis_kelamin" :options="$genderOptions" validation="required"/>
                             <x-selectinputform title="Golongan Darah" key="golongan_darah" name="golongan_darah" :options="$golonganDarah" validation="required"/>
@@ -245,11 +245,11 @@
                     </div>
                     <div class="form-fields grow">
                         @php
-                            $agama = \App\Models\UserModel::getAgamaOption();
-                            $statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
-                            $role = \App\Models\UserModel::getRoleOption();
-                            $tipeWarga = \App\Models\UserModel::getTipeWargaOption();
-                            $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
+$agama = \App\Models\UserModel::getAgamaOption();
+$statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
+$role = \App\Models\UserModel::getRoleOption();
+$tipeWarga = \App\Models\UserModel::getTipeWargaOption();
+$rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         @endphp
                         <x-selectinputform title="Agama" key="agama" name="agama" :options="$agama" validation=""/>
                         <x-selectinputform title="Status Perkawinan" key="status_perkawinan" name="status_perkawinan" :options="$statusPerkawinan" validation="required"/>
@@ -269,22 +269,22 @@
 </section>
     `
 
-    const addButton = document.querySelector("#addButton")
+    // const addButton = document.querySelector("#addButton")
 
-    document.addEventListener('click', (event) => {
-        if (document.querySelector(".popUp") != null) {
-            if (!addButton.contains(event.target) && !document.querySelector(".popUp").contains(event.target)) {
-                $("#addPopup").remove();
-            }
-        }
-    })
+    // document.addEventListener('click', (event) => {
+    //     if (document.querySelector(".popUp") != null) {
+    //         if (!addButton.contains(event.target) && !document.querySelector(".popUp").contains(event.target)) {
+    //             $("#addPopup").remove();
+    //         }
+    //     }
+    // })
 
 
-    $('#addButton').on('click', (e) => {
-        $(addModalElemen).insertAfter(
-            $(e.currentTarget).parents('section'))
+    // $('#addButton').on('click', (e) => {
+    //     $(addModalElemen).insertAfter(
+    //         $(e.currentTarget).parents('section'))
 
-    })
+    // })
 </script>
 <script>
     function updatePopup() {
