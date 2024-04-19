@@ -8,9 +8,9 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
 @endphp
 @include('shared.includes.navbar')
 <div class="">
-    <section class="">
+    <section class="mb-10">
         <!-- Slider main container -->
-        <swiper-container class="mySwiper w-full h-[500px] lg:h-[650px]" pagination-clickable="true" slides-per-view="1" speed="500" loop="true" pagination="true" mousewheel="true" init="false">
+        <swiper-container id="swiper-container-hero" class="mySwiper w-full h-[500px] lg:h-[650px]" pagination-clickable="true" slides-per-view="1" speed="500" loop="true" pagination="true" init="false">
             <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{$image}}');">
                 <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
                     <div class="text-wrap w-3/4 xl:max-w-4xl">
@@ -23,20 +23,144 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
             <swiper-slide class="dark:bg-white bg-gray-100">Slide 3</swiper-slide>
         </swiper-container>
     </section>
-    <section class="px-8 lg:px-16 my-10">
-        <div class="header-section mx-6">
-            <h1 class="text-2xl font-Poppins font-semibold">Berita dan Informasi</h1>
+    <section class="px-8 lg:px-16 mb-28">
+        <div class="header-section mx-6 mb-9">
+            <h1 class="text-4xl font-Poppins font-semibold">Berita dan Informasi</h1>
             <h5 class="font-Inter font-normal">Lihat berita dan pengumuman yang terbaru</h5>
         </div>
-        <div class="body-section h-screen">
+        <div class="body-section">
+            <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                <swiper-slide>
+                    <x-carditem></x-carditem>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditem></x-carditem>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditem></x-carditem>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditem></x-carditem>
+                </swiper-slide>
+            </swiper-container>
+        </div>
+    </section>
+    <section class="px-8 lg:px-16 mt-10 mb-28">
+        <div class="header-section text-center mb-12">
+            <h1 class="text-4xl font-Poppins font-semibold">Layanan Kami</h1>
+            <h5 class="font-Inter ">Layanan Pada Website yang Perlu Anda Ketahui</h5>
+        </div>
+        <div class="body-section">
+            <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                <swiper-slide>
+                    <x-carditememblem></x-carditememblem>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditememblem></x-carditememblem>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditememblem></x-carditememblem>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditememblem></x-carditememblem>
+                </swiper-slide>
+            </swiper-container>
 
         </div>
     </section>
+
+    <section class=" px-8 lg:px-16 mb-56">
+        <div class="header-section mb-11 ms-10">
+            <h1 class="text-4xl font-Poppins font-semibold">Apa Kata Mereka?</h1>
+        </div>
+        <div class="body-section ">
+            <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                <swiper-slide>
+                    <x-carditemmessage></x-carditemmessage>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditemmessage></x-carditemmessage>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditemmessage></x-carditemmessage>
+
+                </swiper-slide>
+                <swiper-slide>
+                    <x-carditemmessage></x-carditemmessage>
+                </swiper-slide>
+            </swiper-container>
+        </div>
+    </section>
+    <footer class="bg-darkGreen relative">
+        @php
+        $image = Vite::asset('resources/assets/elements/waveLanding.svg');
+        @endphp
+        <div class="footer-devided">
+            <img src="{{$image}}" alt="WaveBackground" class="absolute -top-32">
+        </div>
+        <div class="footer-container-body pt-10 px-20 pb-5">
+            <div class="footer-body mb-10 text-gray-200 font-Inter font-light">
+                <div class="flex gap-16 text-sm">
+                    <div class="shrink grow-0 text-wrap">
+                        <h4 class="font-Poppins font-semibold text-xl">Lokasi</h4>
+                        <p class="">Perumahan Landungsari Asri, Jl. Tirto Utomo, Desa Landungsari, Kecamatan Dau, Kabupaten Malang</p>
+                    </div>
+                    <div class="grow text-nowrap">
+                        <h4 class="font-Poppins font-semibold text-xl">Featured Link</h4>
+                        <ul>
+                            <li>Desa Landungsari</li>
+                            <li>Kecamatan Dau</li>
+                            <li>Kabupaten Malang</li>
+                            <li>Dispendukcapil Kab. Malang</li>
+                            <li>Humas POLRI Malang</li>
+                        </ul>
+                    </div>
+                    <div class="grow text-nowrap">
+                        <h4 class="font-Poppins font-semibold text-xl">Layanan</h4>
+                        <ul>
+                            <li>Pembayaran Iuran</li>
+                            <li>Template Dokumen</li>
+                            <li>Permintaan Dokumen</li>
+                            <li>Pengaduan Warga</li>
+                            <li>Verifikasi Warga</li>
+                        </ul>
+                    </div>
+                    <div class="grow text-nowrap">
+                        <h4 class="font-Poppins font-semibold text-xl">Informasi</h4>
+                        <ul>
+                            <li>Berita dan Informasi</li>
+                            <li>UMKM</li>
+                        </ul>
+                    </div>
+                    <div class="grow text-nowrap">
+                        <h4 class="font-Poppins font-semibold text-xl">Hubungi Kami</h4>
+                        <p>Desa Landungsari, Kode Pos 651515</p>
+                        <ul>
+                            <li class="flex">
+                                <img src="" alt="whatshapp">
+                                <a href="https://wa.me/6285259478161" class="text-white">+62 852 5947 8161</a>
+                            </li>
+                            <li>
+                                <a href="">rwsatulds@gmail.com</a>
+                            </li>
+                            <li>
+                                <a href="">RW 01 Landungsari</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="devide h-[1px] bg-white mb-5"></div>
+            <div class="footer-copyright ">
+                <p class="text-center text-white">© 2024 RWify. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 </div>
 @endsection
 @push('scripts')
 <script type="module">
-    const swiperEl = document.querySelector('swiper-container')
+    const swiperEl = document.querySelector('#swiper-container-hero')
 
     const params = {
         injectStyles: [`
