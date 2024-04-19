@@ -7,7 +7,7 @@
 $image = Vite::asset('resources/assets/images/handTogether.jpg');
 @endphp
 @include('shared.includes.navbar')
-<div class="">
+<div class="dark:text-gray-200 dark:fill-gray-200">
     <section class="mb-10">
         <!-- Slider main container -->
         <swiper-container id="swiper-container-hero" class="mySwiper w-full h-[500px] lg:h-[650px]" pagination-clickable="true" slides-per-view="1" speed="500" loop="true" pagination="true" init="false">
@@ -23,10 +23,10 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
             <swiper-slide class="dark:bg-white bg-gray-100">Slide 3</swiper-slide>
         </swiper-container>
     </section>
-    <section class="px-8 lg:px-16 mb-28">
+    <section class="px-8 lg:px-16 mb-28 ">
         <div class="header-section mx-6 mb-9">
             <h1 class="text-4xl font-Poppins font-semibold">Berita dan Informasi</h1>
-            <h5 class="font-Inter font-normal">Lihat berita dan pengumuman yang terbaru</h5>
+            <h5 class="font-Inter font-normal dark:text-gray-500">Lihat berita dan pengumuman yang terbaru</h5>
         </div>
         <div class="body-section">
             <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
@@ -47,8 +47,8 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
     </section>
     <section class="px-8 lg:px-16 mt-10 mb-28">
         <div class="header-section text-center mb-12">
-            <h1 class="text-4xl font-Poppins font-semibold">Layanan Kami</h1>
-            <h5 class="font-Inter ">Layanan Pada Website yang Perlu Anda Ketahui</h5>
+            <h1 class="text-4xl font-Poppins font-semibold mb-3">Layanan Kami</h1>
+            <h5 class="font-Inter dark:text-gray-500">Layanan Pada Website yang Perlu Anda Ketahui</h5>
         </div>
         <div class="body-section">
             <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
@@ -98,16 +98,16 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
         <div class="footer-devided">
             <img src="{{$image}}" alt="WaveBackground" class="absolute -top-32">
         </div>
-        <div class="footer-container-body pt-10 px-20 pb-5">
-            <div class="footer-body mb-10 text-gray-200 font-Inter font-light">
-                <div class="flex gap-16 text-sm">
-                    <div class="shrink grow-0 text-wrap">
-                        <h4 class="font-Poppins font-semibold text-xl">Lokasi</h4>
+        <div class="footer-container-body pt-10 px-20 pb-5 text-gray-400 ">
+            <div class="footer-body mb-10  font-Inter font-light">
+                <div class="flex gap-16 text-sm px-2">
+                    <div class="shrink grow-0 text-wrap ">
+                        <h4 class="font-Poppins font-semibold text-xl text-gray-200 mb-2">Lokasi</h4>
                         <p class="">Perumahan Landungsari Asri, Jl. Tirto Utomo, Desa Landungsari, Kecamatan Dau, Kabupaten Malang</p>
                     </div>
                     <div class="grow text-nowrap">
-                        <h4 class="font-Poppins font-semibold text-xl">Featured Link</h4>
-                        <ul>
+                        <h4 class="font-Poppins font-semibold text-xl text-gray-200 mb-2">Featured Link</h4>
+                        <ul class="flex flex-col gap-1">
                             <li>Desa Landungsari</li>
                             <li>Kecamatan Dau</li>
                             <li>Kabupaten Malang</li>
@@ -116,8 +116,8 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
                         </ul>
                     </div>
                     <div class="grow text-nowrap">
-                        <h4 class="font-Poppins font-semibold text-xl">Layanan</h4>
-                        <ul>
+                        <h4 class="font-Poppins font-semibold text-xl text-gray-200 mb-2">Layanan</h4>
+                        <ul class="flex flex-col gap-1">
                             <li>Pembayaran Iuran</li>
                             <li>Template Dokumen</li>
                             <li>Permintaan Dokumen</li>
@@ -125,20 +125,20 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
                             <li>Verifikasi Warga</li>
                         </ul>
                     </div>
-                    <div class="grow text-nowrap">
-                        <h4 class="font-Poppins font-semibold text-xl">Informasi</h4>
-                        <ul>
+                    <div class="grow text-nowrap ">
+                        <h4 class="font-Poppins font-semibold text-xl text-gray-200 mb-2">Informasi</h4>
+                        <ul class="flex flex-col gap-1">
                             <li>Berita dan Informasi</li>
                             <li>UMKM</li>
                         </ul>
                     </div>
                     <div class="grow text-nowrap">
-                        <h4 class="font-Poppins font-semibold text-xl">Hubungi Kami</h4>
+                        <h4 class="font-Poppins font-semibold text-xl text-gray-200 mb-2">Hubungi Kami</h4>
                         <p>Desa Landungsari, Kode Pos 651515</p>
-                        <ul>
+                        <ul class="flex flex-col gap-1">
                             <li class="flex">
                                 <img src="" alt="whatshapp">
-                                <a href="https://wa.me/6285259478161" class="text-white">+62 852 5947 8161</a>
+                                <a href="https://wa.me/6285259478161" class="">+62 852 5947 8161</a>
                             </li>
                             <li>
                                 <a href="">rwsatulds@gmail.com</a>
@@ -152,7 +152,7 @@ $image = Vite::asset('resources/assets/images/handTogether.jpg');
             </div>
             <div class="devide h-[1px] bg-white mb-5"></div>
             <div class="footer-copyright ">
-                <p class="text-center text-white">© 2024 RWify. All Rights Reserved.</p>
+                <p class="text-center text-xs text-gray-200">© 2024 RWify. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
