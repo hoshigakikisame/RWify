@@ -9,8 +9,6 @@ use App\Decorators\Decorator;
 class SearchableDecorator extends Decorator
 {
     public $searchable;
-    public $paginate = 10;
-
     public function __construct($model)
     {
         parent::__construct($model);
@@ -24,13 +22,13 @@ class SearchableDecorator extends Decorator
      * @param string $query
      * @return LengthAwarePaginator
      */
-    public function search($query)
+    public function search($query, $paginate = 10)
     {
         return $this->model::where(function ($queryBuilder) use ($query) {
             foreach ($this->searchable as $field) {
                 $queryBuilder->orWhere($field, 'like', "%$query%");
             }
-        })->paginate($this->paginate);
+        })->paginate($paginate);
     }
 
 }
