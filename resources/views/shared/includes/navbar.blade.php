@@ -4,10 +4,28 @@
             <img src="" alt="logo">
             <h1 class="text-2xl ">RWify</h1>
         </div>
-        <div class="navbar-body">
+        <div class="navbar-body z-30">
             <ul class="link-container dark:text-gray-400 flex gap-2">
                 <li class="link-item px-2 py-1">Beranda</li>
-                <li class="link-item px-2 py-1">Layanan</li>
+                <li class="link-item px-2 py-1 relative">
+                    <button id="dropdown-button" class="inline-flex justify-center w-full px-4 text-gray-700 bg-white">
+                        <span class="">Layanan</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div id="dropdown-menu" class="hidden absolute left-1 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1">
+                        @php
+                        $layanan =[['title'=> 'Permintaan Dokumen', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''
+                        ],['title'=> 'Pengaduan', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''
+                        ],['title'=> 'Pembayaran Iuran', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''],['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''],['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => '']];
+                        @endphp
+                        <!-- Dropdown content goes here -->
+                        @foreach($layanan as $item)
+                        <x-dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
+                        @endforeach
+                    </div>
+                </li>
                 <li class="link-item px-2 py-1">Informasi</li>
                 <li class="link-item px-2 py-1">Hubungi Kami</li>
             </ul>
@@ -41,6 +59,35 @@
 
 @push('scripts')
 <script type="module">
+    // dropdown
+    const dropdownButton = document.getElementById('dropdown-button');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    let isOpen = true;
+
+    function toggleDropdown() {
+        isOpen = !isOpen;
+        dropdownMenu.classList.toggle('hidden', !isOpen);
+    }
+
+    // Set initial state
+    toggleDropdown();
+
+    dropdownButton.addEventListener('click', () => {
+        toggleDropdown();
+    });
+
+
+    // Close the dropdown when clicking outside of it
+    document.addEventListener('click', (event) => {
+        if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.add('hidden');
+            isOpen = false;
+        }
+
+    })
+
+
+
     // handle dark mode
     // get icon 
     const sunIcon = document.getElementById('sun')

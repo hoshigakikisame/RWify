@@ -48,10 +48,15 @@ class UsersTable extends Component
     public function render(): View
     {
 
-        $users = (new SearchableDecorator(UserModel::class))->search($this->search, $this->perPage);
+        $users = (new SearchableDecorator(UserModel::class))->search($this->search);
+
 
         return view('livewire.users-table', [
-            'users' => $users
+            'users' => UserModel::search($this->search)
+                ->when($this->select !== '', function ($query) {
+                    $query->where('role', $this->select);
+                })->orderBy($this->orderBy, $this->orderDir)
+                ->paginate($this->perPage),
         ]);
     }
 }

@@ -1,0 +1,15 @@
+# Ignore artifacts:
+**/app
+**/bootstrap
+**/config
+**/database
+**/public
+**/routes
+**/storage
+**/vendor
+**/tests
+**/resources/assets
+**/resources/js
+**/resources/css
+**/.*
+**/*
