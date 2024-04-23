@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -18,7 +19,7 @@ class AuthController extends Controller
 
     public function signIn()
     {
-        // get username and password
+        // get email and password
         $email = request()->input("email");
         $password = request()->input("password");
 
@@ -44,6 +45,16 @@ class AuthController extends Controller
         }
 
         return redirect()->route("auth.signIn");
+    }
+
+    public function googleSignInInitial()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleSignInReceiver()
+    {
+        return "test";
     }
 
     public function forgotPassword()

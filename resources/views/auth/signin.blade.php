@@ -27,7 +27,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                 @csrf
                 <div class="signIn-body pt-2 md:px-24 w-full p-8 pb-0 2xl:w-2/3 lg:p-9 2xl:p-5 flex flex-col gap-3">
                     <!-- Image Sign -->
-                    <a class="sso sm:w-full border sm:rounded-md text-center sm:p-2 cursor-pointer flex justify-center gap-3 items-center order-last lg:order-none mb-6 hover:bg-gray-100 transition-all focus:opacity-[0.85] w-fit p-4 rounded-full mx-auto sm:mx-0" href="">
+                    <a class="sso sm:w-full border sm:rounded-md text-center sm:p-2 cursor-pointer flex justify-center gap-3 items-center order-last lg:order-none mb-6 hover:bg-gray-100 transition-all focus:opacity-[0.85] w-fit p-4 rounded-full mx-auto sm:mx-0" href="{{route('auth.google.index')}}">
                         <img src="{{$googleIcon}}" alt="Google">
                         <h1 class="hidden lg:block dark:text-gray-200">Log In dengan Google</h1>
                     </a>
