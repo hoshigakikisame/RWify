@@ -1,4 +1,4 @@
-<section id="addPopup" class="bg-gray-500 bg-opacity-60 w-full min-h-screen absolute top-0 left-0 flex py-4 h-screen overflow-hidden">
+<section id="addPopup" @click="modalOpen = false" x-show="modalOpen" class="bg-gray-500 bg-opacity-60 w-full min-h-screen absolute top-0 left-0 flex py-4 h-screen overflow-hidden">
     <div class="popUp bg-white mx-auto rounded-lg px-10 py-5 overflow-y-auto no-scrollbar dark:bg-gray-900">
         <div class="header border-b">
             <h1 class="text-xl mb-3 dark:text-gray-200">
@@ -13,27 +13,27 @@
                         <h1 class="text-md dark:text-gray-200">Data Diri</h1>
                     </div>
                     <div class="form-fields grow">
-                        <x-inputform title="NKK" key="nkk" name="nkk" type="number" validation="required"/>
-                        <x-inputform title="NIK" key="nik" name="nik" type="number" validation="required"/>
-                        <x-inputform title="Email" key="email" name="email" type="email" validation="required"/>
-                        <x-inputform title="Password" key="password" name="password" type="password" validation="required"/>
+                        <x-inputform title="NKK" key="nkk" name="nkk" type="number" validation="required" />
+                        <x-inputform title="NIK" key="nik" name="nik" type="number" validation="required" />
+                        <x-inputform title="Email" key="email" name="email" type="email" validation="required" />
+                        <x-inputform title="Password" key="password" name="password" type="password" validation="required" />
                         <div class="name flex gap-4 justify-between">
-                            <x-inputform title="Nama Depan" key="nama_depan" name="nama_depan" type="text" validation="required"/>
-                            <x-inputform title="Nama Belakang" key="nama_belakang" name="nama_belakang" type="text" validation="required"/>
+                            <x-inputform title="Nama Depan" key="nama_depan" name="nama_depan" type="text" validation="required" />
+                            <x-inputform title="Nama Belakang" key="nama_belakang" name="nama_belakang" type="text" validation="required" />
                         </div>
                         <div class="birthdate flex gap-4 ">
-                            <x-inputform title="Tempat Lahir" key="tempat_lahir" name="tempat_lahir" type="text" validation="required"/>
-                            <x-inputform title="Tanggal Lahir" key="tanggal_lahir" name="tanggal_lahir" type="date" validation="required"/>
+                            <x-inputform title="Tempat Lahir" key="tempat_lahir" name="tempat_lahir" type="text" validation="required" />
+                            <x-inputform title="Tanggal Lahir" key="tanggal_lahir" name="tanggal_lahir" type="date" validation="required" />
                         </div>
                         <div class="jenis-kelamin-dan-golongan-darah flex gap-4">
                             @php
-$genderOptions = \App\Models\UserModel::getKelaminOption();
-$golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
+                            $genderOptions = \App\Models\UserModel::getKelaminOption();
+                            $golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
                             @endphp
-                            <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" name="jenis_kelamin" :options="$genderOptions" validation="required"/>
-                            <x-selectinputform title="Golongan Darah" key="golongan_darah" name="golongan_darah" :options="$golonganDarah" validation="required"/>
+                            <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" name="jenis_kelamin" :options="$genderOptions" validation="required" />
+                            <x-selectinputform title="Golongan Darah" key="golongan_darah" name="golongan_darah" :options="$golonganDarah" validation="required" />
                         </div>
-                        <x-text-area title="Alamat" key="alamat" name="alamat" validation="required"/>
+                        <x-text-area title="Alamat" key="alamat" name="alamat" validation="required" />
                     </div>
                 </section>
                 <section class="status flex gap-2 border-solid border-b py-3 justify-between ">
@@ -42,18 +42,18 @@ $golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
                     </div>
                     <div class="form-fields grow">
                         @php
-$agama = \App\Models\UserModel::getAgamaOption();
-$statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
-$role = \App\Models\UserModel::getRoleOption();
-$tipeWarga = \App\Models\UserModel::getTipeWargaOption();
-$rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
+                        $agama = \App\Models\UserModel::getAgamaOption();
+                        $statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
+                        $role = \App\Models\UserModel::getRoleOption();
+                        $tipeWarga = \App\Models\UserModel::getTipeWargaOption();
+                        $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         @endphp
-                        <x-selectinputform title="Agama" key="agama" name="agama" :options="$agama" validation=""/>
-                        <x-selectinputform title="Status Perkawinan" key="status_perkawinan" name="status_perkawinan" :options="$statusPerkawinan" validation="required"/>
-                        <x-inputform title="Pekerjaan" key="pekerjaan" name="pekerjaan" type="text" validation=""/>
-                        <x-selectinputform title="Peran" key="role" name="role" :options="$role" validation="required"/>
-                        <x-selectinputform title="Tipe" key="tipe_warga" name="tipe_warga" :options="$tipeWarga" validation="required"/>
-                        <x-selectinputform title="RT" key="rukun_tetangga" name="rukun_tetangga" :options="$rukunTetangga" validation="required"/>
+                        <x-selectinputform title="Agama" key="agama" name="agama" :options="$agama" validation="" />
+                        <x-selectinputform title="Status Perkawinan" key="status_perkawinan" name="status_perkawinan" :options="$statusPerkawinan" validation="required" />
+                        <x-inputform title="Pekerjaan" key="pekerjaan" name="pekerjaan" type="text" validation="" />
+                        <x-selectinputform title="Peran" key="role" name="role" :options="$role" validation="required" />
+                        <x-selectinputform title="Tipe" key="tipe_warga" name="tipe_warga" :options="$tipeWarga" validation="required" />
+                        <x-selectinputform title="RT" key="rukun_tetangga" name="rukun_tetangga" :options="$rukunTetangga" validation="required" />
                     </div>
                 </section>
                 <section class="actionButton w-full flex gap-2 justify-end py-3 px-1">
