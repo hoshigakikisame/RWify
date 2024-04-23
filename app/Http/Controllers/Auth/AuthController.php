@@ -19,14 +19,15 @@ class AuthController extends Controller
 
     public function signIn()
     {
-        // get email and password
+        // get username and password
         $email = request()->input("email");
         $password = request()->input("password");
 
         $authenticated = Auth::attempt(["email" => $email, "password" => $password]);
 
         if (!$authenticated) {
-            return redirect()->back()->with("error", "Invalid username or password");
+            session()->flash("danger", "Invalid email or password");
+            return redirect()->route("auth.signInPage");
         }
 
         // get user by email
