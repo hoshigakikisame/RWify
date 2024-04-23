@@ -49,9 +49,9 @@ class ManagePengumumanController extends Controller
         $newUser = UserModel::create($data);
 
         if(!$newUser) {
-            session()->flash('alert-danger', 'Insert Failed.');
+            session()->flash('danger', 'Insert Failed.');
         } else {
-            session()->flash('alert-success', 'Insert Success.');
+            session()->flash('success', 'Insert Success.');
         }
 
         return redirect()->route('rw.manage.pengumuman');
@@ -71,14 +71,14 @@ class ManagePengumumanController extends Controller
         $pengumuman = PengumumanModel::find($idPengumuman);
 
         if(!$pengumuman) {
-            session()->flash('alert-danger', 'Update Failed.');
+            session()->flash('danger', 'Update Failed.');
         } else {
             $pengumuman->judul = request()->judul;
             $pengumuman->path_gambar = request()->path_gambar;
             $pengumuman->konten = request()->konten;
             $pengumuman->save();
 
-            session()->flash('alert-success', 'Update Success.');
+            session()->flash('success', 'Update Success.');
         }
 
         return redirect()->route('rw.manage.pengumuman');
@@ -96,10 +96,10 @@ class ManagePengumumanController extends Controller
         $pengumuman = PengumumanModel::find($idPengumuman);
 
         if(!$pengumuman) {
-            session()->flash('alert-danger', 'Delete Failed');
+            session()->flash('danger', 'Delete Failed');
         } else {
             $pengumuman->delete();
-            session()->flash('alert-success', 'Delete Success.');
+            session()->flash('success', 'Delete Success.');
         }
 
         return redirect()->route('rw.manage.pengumuman');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth\OAuth;
+
 // Illuminate
 use Illuminate\Support\Facades\Auth;
 // Laravel
@@ -20,18 +21,14 @@ class GoogleOAuthController extends Controller
 
     public function callback()
     {
-        if (request()->has("error")) {
-            return redirect()->back()->with("error", "Failed to login with Google");
-        }
-
         $socialiteUser = Socialite::driver('google')->user();
-        $user = UserModel::where("email", $socialiteUser->getEmail())->first();
+        $userInstance = UserModel::where("email", $socialiteUser->getEmail())->first();
 
-        Auth::login($user, false);
+        if ($userInstance == null) return $this->failedAuthHandler();
 
-        if (!Auth::user()) {
-            return redirect()->back()->with("error", "Failed to login with Google");
-        }
+        Auth::login($userInstance, false);
+
+        if (!Auth::user()) return $this->failedAuthHandler();
 
         // get user by email
         /**
@@ -39,7 +36,7 @@ class GoogleOAuthController extends Controller
          */
         $user = Auth::user();
 
-        switch($user->getRole()) {
+        switch ($user->getRole()) {
             case "Ketua Rukun Warga":
                 return redirect()->route('rw.dashboard');
             case "Ketua Rukun Tetangga":
@@ -48,6 +45,13 @@ class GoogleOAuthController extends Controller
                 return "Warga";
         }
 
+        return redirect()->route("auth.signIn");
+    }
+
+    // utility
+    private function failedAuthHandler()
+    {
+        session()->flash('danger', 'Failed to login with Google');
         return redirect()->route("auth.signIn");
     }
 }

@@ -45,9 +45,9 @@ class ManageTemplateDokumenController extends Controller
         $newTemplate = TemplateDokumenModel::create($data);
 
         if (!$newTemplate) {
-            session()->flash('alert-danger', 'Insert Failed.');
+            session()->flash('danger', 'Insert Failed.');
         } else {
-            session()->flash('alert-success', 'Insert Success.');
+            session()->flash('success', 'Insert Success.');
         }
 
         return redirect()->route('rw.manage.templateDokumen');
@@ -66,13 +66,13 @@ class ManageTemplateDokumenController extends Controller
         $templateDokumen = TemplateDokumenModel::find($idTemplateDokumen);
 
         if (!$templateDokumen) {
-            session()->flash('alert-danger', 'Update Failed.');
+            session()->flash('danger', 'Update Failed.');
         } else {
             $templateDokumen->setNamaTemplate(request()->nama_template);
             $templateDokumen->setPathTemplate(request()->path_template);
             $templateDokumen->save();
 
-            session()->flash('alert-success', 'Update Success.');
+            session()->flash('success', 'Update Success.');
         }
 
         return redirect()->route('rw.manage.templateDokumen');
@@ -90,10 +90,10 @@ class ManageTemplateDokumenController extends Controller
         $templateDokumen = TemplateDokumenModel::find($idTemplateDokumen);
 
         if (!$templateDokumen) {
-            session()->flash('alert-danger', 'Delete Failed');
+            session()->flash('danger', 'Delete Failed');
         } else {
             $templateDokumen->delete();
-            session()->flash('alert-success', 'Delete Success.');
+            session()->flash('success', 'Delete Success.');
         }
 
         return redirect()->route('rw.manage.templateDokumen');

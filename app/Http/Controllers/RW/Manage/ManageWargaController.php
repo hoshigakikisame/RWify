@@ -73,9 +73,9 @@ class ManageWargaController extends Controller
         $newUser = UserModel::create($data);
 
         if(!$newUser) {
-            session()->flash('alert-danger', 'Gagal menambahkan warga baru.');
+            session()->flash('danger', 'Gagal menambahkan warga baru.');
         } else {
-            session()->flash('alert-success', 'Berhasil menambahkan warga baru.');
+            session()->flash('success', 'Berhasil menambahkan warga baru.');
         }
 
         return redirect()->route('rw.manage.warga.warga');
@@ -106,7 +106,7 @@ class ManageWargaController extends Controller
         $user = UserModel::find($nik);
 
         if(!$user) {
-            session()->flash('alert-danger', 'Gagal mengupdate warga.');
+            session()->flash('danger', 'Gagal mengupdate warga.');
         } else {
             $user->setNik(request()->nik);
             $user->setNkk(request()->nkk);
@@ -127,7 +127,7 @@ class ManageWargaController extends Controller
 
             $user->save();
 
-            session()->flash('alert-success', 'Berhasil mengupdate warga.');
+            session()->flash('success', 'Berhasil mengupdate warga.');
         }
 
         return redirect()->route('rw.manage.warga');
@@ -145,10 +145,10 @@ class ManageWargaController extends Controller
         $user = UserModel::find($nik);
 
         if(!$user) {
-            session()->flash('alert-danger', 'Gagal menghapus warga.');
+            session()->flash('danger', 'Gagal menghapus warga.');
         } else {
             $user->delete();
-            session()->flash('alert-success', 'Berhasil menghapus warga.');
+            session()->flash('success', 'Berhasil menghapus warga.');
         }
 
         return redirect()->route('rw.manage.warga.warga');
