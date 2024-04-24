@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
+
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
 
 class AuthController extends Controller
 {
@@ -58,9 +62,59 @@ class AuthController extends Controller
         return "test";
     }
 
+    public function forgotPasswordPage()
+    {
+        return view('auth.forgotPassword');
+    }
+
     public function forgotPassword()
     {
-        return "Forgot password";
+        request()->validate([
+            'email' => 'required|email'
+        ]);
+
+        $status = Password::sendResetLink(
+            request()->only('email')
+        );
+
+        return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+    }
+
+    public function resetPasswordPage(string $token)
+    {
+        return view('auth.resetPassword', compact('token'));
+    }
+
+    public function resetPassword()
+    {
+        request()->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required'
+        ]);
+
+        $status = Password::reset(
+            request()->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ]);
+                
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        if ($status != Password::PASSWORD_RESET) {
+            session()->flash('danger', __($status));
+            return back()->withInput(request()->only('email'));
+        }
+
+        return redirect()->route('auth.signInPage')->with('status', __($status));
     }
 
     public function signOut() {

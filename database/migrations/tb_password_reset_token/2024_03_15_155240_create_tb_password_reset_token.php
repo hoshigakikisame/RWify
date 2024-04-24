@@ -24,6 +24,11 @@ return new class extends Migration
         //     $table->string('nik', 16);
         //     $table->foreign('nik')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
         // });
+        Schema::create('tb_password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
+        });
     }
 
     /**
