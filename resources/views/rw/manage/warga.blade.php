@@ -383,7 +383,24 @@
 @endsection
 
 @push('scripts')
-{{-- <script type="module">
+<script>
+    const wargaUrl = "{{ route('rw.manage.warga.warga') }}";
+    const createURL = "{{ route('rw.manage.warga.new') }}";
+    const updateURL = "{{ route('rw.manage.warga.update') }}";
+    const deleteURL = "{{ route('rw.manage.warga.delete') }}";
+
+    function wargaForm(url) {
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+
+            }
+        })
+    }
+</script>
+
+
+<script type="module">
     const addModalElemen = /*html*/ `
     <section id="addPopup" class="bg-gray-500 bg-opacity-60 w-full min-h-screen absolute top-0 left-0 flex py-4 h-screen overflow-hidden">
     <div class="popUp bg-white mx-auto rounded-lg px-10 py-5 overflow-y-auto no-scrollbar dark:bg-gray-900">
@@ -451,25 +468,25 @@
 </div>
 </div>
 </section>
-` --}}
+`
 
-<!-- // const addButton = document.querySelector("#addButton")
+    const addButton = document.querySelector("#addButton")
 
-    // document.addEventListener('click', (event) => {
-    //     if (document.querySelector(".popUp") != null) {
-    //         if (!addButton.contains(event.target) && !document.querySelector(".popUp").contains(event.target)) {
-    //             $("#addPopup").remove();
-    //         }
-    //     }
-    // })
+    document.addEventListener('click', (event) => {
+        if (document.querySelector(".popUp") != null) {
+            if (!addButton.contains(event.target) && !document.querySelector(".popUp").contains(event.target)) {
+                $("#addPopup").remove();
+            }
+        }
+    })
 
 
-    // $('#addButton').on('click', (e) => {
-    //     $(addModalElemen).insertAfter(
-    //         $(e.currentTarget).parents('section'))
+    $('#addButton').on('click', (e) => {
+        $(addModalElemen).insertAfter(
+            $(e.currentTarget).parents('section'))
 
-    // }) -->
-<!-- </script> -->
+    })
+</script>
 <script>
     function updatePopup() {
         const updateModalElement = /*html*/ `

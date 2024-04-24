@@ -1,3 +1,9 @@
+@php
+$layanan =[['title'=> 'Permintaan Dokumen', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''
+],['title'=> 'Pengaduan', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''
+],['title'=> 'Pembayaran Iuran', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => '']];
+$informasi =[['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''],['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => '']]
+@endphp
 <div class="nav-container px-5 lg:px-10 py-5 dark:bg-gray-800">
     <nav class="flex justify-between items-center">
         <div class="navbar-brand flex dark:text-gray-200">
@@ -6,27 +12,37 @@
         </div>
         <div class="navbar-body z-30">
             <ul class="link-container dark:text-gray-400 flex gap-2">
-                <li class="link-item px-2 py-1">Beranda</li>
+                <li class="link-item px-2 py-1 hover:text-gray-100 transition-all ">Beranda</li>
                 <li class="link-item px-2 py-1 relative">
-                    <button id="dropdown-button" class="inline-flex justify-center w-full px-4 text-gray-700 bg-white">
+                    <button id="dropdown-button" class="inline-flex justify-center w-full hover:text-gray-100">
                         <span class="">Layanan</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div id="dropdown-menu" class="hidden absolute left-1 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1">
-                        @php
-                        $layanan =[['title'=> 'Permintaan Dokumen', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''
-                        ],['title'=> 'Pengaduan', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''
-                        ],['title'=> 'Pembayaran Iuran', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''],['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => ''],['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => '']];
-                        @endphp
+                    <div id="dropdown-menu" class="hidden absolute left-1 mt-2 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 p-1 space-y-1">
+
                         <!-- Dropdown content goes here -->
                         @foreach($layanan as $item)
                         <x-dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
                         @endforeach
                     </div>
                 </li>
-                <li class="link-item px-2 py-1">Informasi</li>
+                <li class="link-item px-2 py-1 relative" x-data="{ isOpen: false }">
+                    <button class="inline-flex justify-center w-full hover:text-gray-100" x-on:click="isOpen = !isOpen" @keydown.escape="isOpen = false">
+                        <span class="">Informasi</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <div class=" absolute left-1 mt-2 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 p-1 space-y-1" x-cloak x-show="isOpen" @click.away="isOpen = false">
+
+                        <!-- Dropdown content goes here -->
+                        @foreach($informasi as $item)
+                        <x-dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
+                        @endforeach
+                    </div>
+                </li>
                 <li class="link-item px-2 py-1">Hubungi Kami</li>
             </ul>
         </div>

@@ -1,4 +1,4 @@
-<a href="{{$href}}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md">
+<a href="{{$href}}" class="block px-4 py-2 text-inherit cursor-pointer rounded-md">
     <div class="wrap flex gap-2">
         <img src="{{$icon}}" alt="svg element">
         <div class="text">
