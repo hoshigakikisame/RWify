@@ -27,6 +27,10 @@ class MigrateInOrder extends Command
     public function handle()
     {
         $migrations = [
+            // laravel default migrations
+            '0001_01_01_000001_create_cache_table.php',
+
+            // custom migrations
             'tb_user/2024_03_15_151817_create_tb_user.php',
             'tb_rukun_warga/2024_03_15_145807_create_tb_rukun_warga.php',
             'tb_rukun_tetangga/2024_03_15_151505_create_tb_rukun_tetangga.php',

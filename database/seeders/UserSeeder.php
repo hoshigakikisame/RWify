@@ -28,8 +28,9 @@ class UserSeeder extends Seeder
         )->count(3)->create()->all();
         $ketuaRukunWargaInstance = UserModel::factory()->state(
             [   
-                'email' => 'rwify.rw@gmail.com',
-                'role' => 'Ketua Rukun Warga'
+                'email' => 'niaoktav119@gmail.com',
+                'role' => 'Ketua Rukun Warga',
+                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
             ]
         )->create()->first();
 

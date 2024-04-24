@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_pemulihan_akun', function (Blueprint $table) {
-            $table->id('id_pemulihan_akun');
-            $table->string('token', 32);
-            $table->datetime('valid_hingga');
-            $table->timestamp('dibuat_pada')->useCurrent();
-            $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
+        // commented for now
+        // Schema::create('tb_verifikasi_akun', function (Blueprint $table) {
+        //     $table->id('id_verifikasi_akun');
+        //     $table->string('token', 32);
+        //     $table->datetime('valid_hingga');
+        //     $table->timestamp('dibuat_pada')->useCurrent();
+        //     $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 
-            // Foreign keys
-            // $table->foreignId('nik')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('nik', 16);
-            $table->foreign('nik')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
-        });
+        //     // Foreign keys
+        //     // $table->foreignId('nik')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
+        //     $table->string('nik', 16);
+        //     $table->foreign('nik')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
+        // });
     }
 
     /**

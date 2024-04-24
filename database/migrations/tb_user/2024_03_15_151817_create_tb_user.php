@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string("alamat");
             $table->timestamp("dibuat_pada")->useCurrent();
             $table->timestamp("diperbarui_pada")->useCurrentOnUpdate()->nullable();
+            $table->timestamp("email_verified_at")->default(null)->nullable();
 
             // Foreign key
             // $table->foreignId("id_rukun_tetangga")->references("id_rukun_tetangga")->on("tb_rukun_tetangga")->onUpdate("cascade")->onDelete("cascade");
