@@ -51,9 +51,9 @@ class ManageUmkmController extends Controller
         $newUMKM = UmkmModel::create($data);
 
         if(!$newUMKM) {
-            session()->flash('alert-danger', 'Insert Failed.');
+            session()->flash('danger', 'Insert Failed.');
         } else {
-            session()->flash('alert-success', 'Insert Success.');
+            session()->flash('success', 'Insert Success.');
         }
 
         return redirect()->route('rw.manage.umkm');
@@ -78,7 +78,7 @@ class ManageUmkmController extends Controller
         $umkm = UmkmModel::find($idUmkm);
 
         if(!$umkm){
-            session()->flash('alert-danger', 'Update Failed.');
+            session()->flash('danger', 'Update Failed.');
         } else {
             $umkm->setNama(request()->nama);
             $umkm->setPathGambar(request()->path_gambar);
@@ -90,7 +90,7 @@ class ManageUmkmController extends Controller
             $umkm->setDeskripsi(request()->deskripsi);
             $umkm->save();
 
-            session()->flash('alert-success', 'Update Success.');   
+            session()->flash('success', 'Update Success.');   
         }
 
         return redirect()->route('rw.manage.umkm');
@@ -106,10 +106,10 @@ class ManageUmkmController extends Controller
         $umkm = UmkmModel::find($idUmkm);
 
         if(!$umkm) {
-            session()->flash('alert-danger', 'Delete Failed.');
+            session()->flash('danger', 'Delete Failed.');
         } else {
             $umkm->delete();
-            session()->flash('alert-success', 'Delete Success.');
+            session()->flash('success', 'Delete Success.');
         }
 
         return redirect()->route('rw.manage.umkm');

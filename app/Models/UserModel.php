@@ -31,8 +31,8 @@ class UserModel extends Authenticatable
         'jenis_kelamin',
         'golongan_darah',
         'alamat',
-        'id_rukun_tetangga' =>
-            'dibuat_pada',
+        'id_rukun_tetangga',
+        'dibuat_pada',
         'diperbarui_pada',
     ];
 

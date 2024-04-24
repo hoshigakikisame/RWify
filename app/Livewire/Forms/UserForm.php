@@ -76,9 +76,9 @@ class UserForm extends Form
             $this->password = Hash::make($this->password);
             $newUser = UserModel::create($this->only($data));
             if (!$newUser) {
-                session()->flash('alert-danger', 'Gagal menambahkan warga baru.');
+                session()->flash('danger', 'Gagal menambahkan warga baru.');
             } else {
-                session()->flash('alert-success', 'Berhasil menambahkan warga baru.');
+                session()->flash('success', 'Berhasil menambahkan warga baru.');
             }
         } else {
             if ($this->password != $this->user->password) {
@@ -118,10 +118,10 @@ class UserForm extends Form
 
         $user = UserModel::find($nik);
         if (!$user) {
-            session()->flash('alert-danger', 'Gagal menghapus warga.');
+            session()->flash('danger', 'Gagal menghapus warga.');
         } else {
             $user->delete();
-            session()->flash('alert-success', 'Berhasil menghapus warga.');
+            session()->flash('success', 'Berhasil menghapus warga.');
         }
         $this->reset();
     }
