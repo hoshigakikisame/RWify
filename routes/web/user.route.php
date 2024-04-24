@@ -20,6 +20,7 @@ Route::group(
             function () {
                 Route::get('', [UserController::class, 'profile'])->name('index');
                 Route::post('update', [UserController::class, 'updateProfile'])->name('update');
+                Route::post('update-password', [UserController::class, 'updatePassword'])->name('updatePassword');
             }
         );
 

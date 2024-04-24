@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+// Illuminate
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,6 +50,36 @@ class UserController extends Controller
             $user->save();
 
             session()->flash('success', 'Update Success.');
+        }
+
+        return redirect()->route('user.profile.index');
+    }
+
+    public function updatePassword()
+    {
+        request()->validate([
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'new_password_confirmation' => 'required',
+        ]);
+
+        /** @var UserModel $user */
+        $user = Auth::user();
+
+        if(!$user) {
+            session()->flash('danger', 'Update Failed.');
+        } else {
+            if (request()->new_password != request()->new_password_confirmation) {
+                session()->flash('danger', 'Update Failed - Passwords do not match.');
+            } else if (!password_verify(request()->current_password, $user->getPassword())) {
+                session()->flash('danger', 'Update Failed - Current password is incorrect.');
+            } else {
+                $newPassword = Hash::make(request()->new_password);
+                $user->setPassword($newPassword);
+                $user->save();
+
+                session()->flash('success', 'Update Success.');
+            }
         }
 
         return redirect()->route('user.profile.index');

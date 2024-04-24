@@ -18,7 +18,7 @@
 <body class="relative bg-white dark:bg-gray-900">
     <main class="flex gap-2">
         @php
-        $footerMenu = ['Profile' => '/', 'Sign Out' => route('auth.signOut')];
+        $footerMenu = ['Profile' => route('user.profile.index'), 'Sign Out' => route('auth.signOut')];
         @endphp
         <x-sidebarwrap email="{{auth()->user()->email}}" role="{{auth()->user()->role}}" :footerMenu="$footerMenu">
             <x-sidebaritem href="{{route('rw.dashboard')}}" title="Dashboard" :active="request()->routeIs(['rw.dashboard'])">
