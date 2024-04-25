@@ -39,12 +39,20 @@ class UserSeeder extends Seeder
         $rukunWargaInstance->save();
 
         // attach ketua rukun tetangga to rukun tetangga
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < count($rukunTetanggaInstances); $i++) {
             $ketuaRukunTetanggaInstance = UserModel::factory()->state(
                 ['role' => 'Ketua Rukun Tetangga']
             )->create()->first();
             $rukunTetanggaInstances[$i]->setNikKetuaRukunTetangga($ketuaRukunTetanggaInstance->getNik());
             $rukunTetanggaInstances[$i]->save();
+        }
+
+        // warga
+        $wargaInstances = UserModel::factory()->count(30)->create();
+        // attach warga to rukun tetangga
+        for ($i = 0; $i < count($wargaInstances); $i++) {
+            $wargaInstances[$i]->setRukunTetangga($rukunTetanggaInstances[$i % 3]);
+            $wargaInstances[$i]->save();
         }
     }
 }
