@@ -13,10 +13,10 @@ import { register } from "swiper/element/bundle";
 window.$ = jQuery;
 
 // inject Alpine
-// window.Alpine = Alpine
+window.Alpine = Alpine
 
 //start alpine
-// Alpine.start()
+Alpine.start()
 
 // register Swiper custom elements
 register();

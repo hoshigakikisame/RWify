@@ -4,6 +4,16 @@
 
 {{-- content --}}
 @section('content')
+@php
+$genderOptions = \App\Models\UserModel::getKelaminOption();
+$agama = \App\Models\UserModel::getAgamaOption();
+$statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
+$golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
+$tipeWarga = \App\Models\UserModel::getTipeWargaOption();
+$role = \App\Models\UserModel::getRoleOption();
+$rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
+
+@endphp
 <section class="container px-2 mx-auto relative" x-data="{modalOpen: false}">
     <div class=" sm:flex sm:items-center sm:justify-between ">
 
@@ -57,107 +67,45 @@
                             Add user warga ke dalam sistem
                         </p>
 
-                        <form class="mt-5" id="addModalForm">
-                            <div>
-                                <label for="username" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Username Warga</label>
-                                <input id="username" placeholder="Thoriq Fathurrozi" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
 
-                            <div class="mt-4">
-                                <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Email Warga</label>
-                                <input id="email" placeholder="thoriqfathurrozi@example.app" type="email" name="email" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
-
-                            <div class="mt-4">
-                                <label for="password" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Password Warga</label>
-                                <input id="password" placeholder="thoriqfathurrozi@example.app" type="password" name="password" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
 
 
-                            <div class="mt-4">
-                                <label for="nik" class="block text-sm text-gray-700 capitalize dark:text-gray-200">NIK Warga</label>
-                                <input id="nik" placeholder="3557893977977838" type="number" name="nik" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
-
-                            <div class="mt-4">
-                                <label for="nkk" class="block text-sm text-gray-700 capitalize dark:text-gray-200">NKK Warga</label>
-                                <input id="nkk" placeholder="4839289337494479" type="number" name="nkk" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
-
-                            <div class="grid grid-cols-4 gap-4 mt-4">
-                                <div class="col-span-2">
-                                    <label for="namaDepan" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Depan Warga</label>
-                                    <input id="namaDepan" placeholder="Thoriq" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
-                                <div class="col-span-2">
-                                    <label for="namaBelakang" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Belakang Warga</label>
-                                    <input id="namaBelakang" placeholder="Fathurrozi" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
+                        <form class="mt-5" id="addModalForm" method="POST" action="{{route('rw.manage.warga.new')}}">
+                            @csrf
+                            <x-inputform title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" />
+                            <x-inputform title="Password Warga" key="password" type="password" placeholder="Use strong password" />
+                            <x-inputform title="NIK Warga" key="nik" type="number" placeholder="1234567892322" />
+                            <x-inputform title="NKK Warga" key="nkk" type="number" placeholder="1234567892322" />
+                            <div class="grid grid-cols-4 gap-4 ">
+                                <x-inputform title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" />
+                                <x-inputform title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" />
                             </div>
                             <div class="grid grid-cols-4 gap-4 mt-4">
-                                <div class="col-span-2">
-                                    <label for="tempatLahir" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Tempat Lahir Warga</label>
-                                    <input id="tempatLahir" placeholder="Banyuwangi" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
-                                <div class="col-span-2">
-                                    <label for="tanggalLahir" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Tanggal Lahir Warga</label>
-                                    <input id="tanggalLahir" type="date" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
+                                <x-inputform title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" />
+                                <x-inputform title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" />
                             </div>
 
                             <div class="mt-4">
                                 <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
                             </div>
-                            <div class="mt-2">
-                                <label for="agama" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Jenis Kelamin Warga</label>
-                                <select name="agama" id="agama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                    <option value="">Pilih Jenis Kelamin</option>
-                                    <option value="Laki-Laki">Laki-Laki</option>
-                                </select>
-                            </div>
-                            <div class="mt-4">
-                                <label for="agama" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Agama Warga</label>
-                                <select name="agama" id="agama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                    <option value="">Pilih Agama</option>
-                                    <option value="Islam">Islam</option>
-                                </select>
-                            </div>
-                            <div class="mt-4">
-                                <label for="status_perkawinan" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Status Perkawinan Warga</label>
-                                <select name="status_perkawinan" id="status_perkawinan" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                    <option value="">Pilih Status Perkawinan</option>
-                                    <option value="Kawin">Kawin</option>
-                                </select>
-                            </div>
-                            <div class="mt-4">
-                                <label for="golongan_darah" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Golongan Darah Warga</label>
-                                <select name="golongan_darah" id="golongan_darah" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                    <option value="">Pilih Golongan Darah</option>
-                                    <option value="A">A</option>
-                                </select>
-                            </div>
-
-                            <div class="mt-4">
-                                <label for="pekerjaan" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Pekerjaan Warga</label>
-                                <input id="pekerjaan" placeholder="Mahasiswa" type="text" name="pekerjaan" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
-                            <div class="mt-4">
-                                <label for="tipe_warga" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Tipe Warga</label>
-                                <select name="tipe_warga" id="tipe_warga" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                    <option value="">Pilih Tipe Warga</option>
-                                    <option value="Non Domisili">Non Domisili</option>
-                                </select>
-                            </div>
-                            <div class="mt-4">
-                                <label for="role" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Role Warga</label>
-                                <select name="role" id="role" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                    <option value="">Pilih Role Warga</option>
-                                    <option value="Ketua RT">Ketua Rukun Tetangga</option>
-                                </select>
-                            </div>
+                            <x-textareainputform title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" />
+                            <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" />
+                            <x-inputform title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" />
 
 
-                            <div class="flex justify-end mt-6">
+
+                            <x-selectinputform title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" />
+                            <x-selectinputform title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" />
+                            <x-selectinputform title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
+                            <x-selectinputform title="Tipe Warga" key="tipe_warga" :options="$tipeWarga" placeholder="Pilih Tipe Warga" />
+                            <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" />
+                            <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" />
+
+                            <div class="flex justify-between mt-6">
+                                <p class="text-xs text-gray-200">Note: Pastikan semua sudah terisi dengan benar</p>
                                 <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     Tambah Warga
                                 </button>
@@ -316,26 +264,41 @@
 </section>
 
 <script type="module">
+    modalElemen = /*html*/ `
+    
+    `
+
+    function addModal() {
+
+    }
+
     $('#addModal').ready(function() {
-        $('#addModalForm').on('click', function(e) {
+        $('#addModalForm').on('submit', function(e) {
             e.preventDefault();
-            console.log($('#addModalForm').serialize());
 
             $.ajax({
-                url: "{{route('rw.dashboard')}}",
+                url: "{{route('rw.manage.warga.new')}}",
+                type: "POST",
+                data: $('#addModalForm').serialize(),
+                success: function(res) {
+                    alert('Data Berhasil Ditambahkan');
+                }
+            })
+
+            $.ajax({
+                url: document.location,
                 type: "GET",
                 success: function(response) {
                     let parser = new DOMParser();
                     let doc = parser.parseFromString(response, 'text/html');
-                    // console.log(doc.body.innerHTML);
-                    document.head.innerHTML = doc.head.innerHTML;
-                    // document.body.outerHTML = doc.body.outerHTML;
                     $('body').html(doc.body.innerHTML)
                 }
             })
         })
     })
+
+    $('$editModal').ready(function() {
+
+    })
 </script>
-
-
 @endsection
