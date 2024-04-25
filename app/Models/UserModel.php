@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class UserModel extends Authenticatable
+use App\Models\RukunTetanggaModel;
+
+class UserModel extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
     protected $table = 'tb_user';
@@ -197,6 +200,11 @@ class UserModel extends Authenticatable
         return $this->pekerjaan;
     }
 
+    public function getTipeWarga(): string
+    {
+        return $this->tipe_warga;
+    }
+
     public function getRole(): string
     {
         return $this->role;
@@ -230,6 +238,16 @@ class UserModel extends Authenticatable
     public function getDiperbaruiPada(): string
     {
         return $this->diperbarui_pada;
+    }
+
+    public function getRukunTetangga(): RukunTetanggaModel
+    {
+        return RukunTetanggaModel::find($this->id_rukun_tetangga)->first();
+    }
+
+    public function getEmailVerifiedAt(): string|null
+    {
+        return $this->email_verified_at;
     }
 
 
@@ -312,5 +330,10 @@ class UserModel extends Authenticatable
     public function setDiperbaruiPada(string $diperbaruiPada): void
     {
         $this->diperbarui_pada = $diperbaruiPada;
+    }
+
+    public function setEmailVerifiedAt(string|null $emailVerifiedAt): void
+    {
+        $this->email_verified_at = $emailVerifiedAt;
     }
 }

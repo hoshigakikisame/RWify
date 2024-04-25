@@ -2,11 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\RW\RWController;
-use App\Http\Controllers\RW\Manage\ManageWargaController;
-use App\Http\Controllers\RW\Manage\ManagePengumumanController;
-use App\Http\Controllers\RW\Manage\ManageUmkmController;
-use App\Http\Controllers\RW\Manage\ManageTemplateDokumenController;
 use App\Http\Controllers\Shared\LayananController;
 
 // rw routes

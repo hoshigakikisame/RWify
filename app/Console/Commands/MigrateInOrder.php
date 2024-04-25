@@ -27,6 +27,10 @@ class MigrateInOrder extends Command
     public function handle()
     {
         $migrations = [
+            // laravel default migrations
+            '0001_01_01_000001_create_cache_table.php',
+
+            // custom migrations
             'tb_user/2024_03_15_151817_create_tb_user.php',
             'tb_rukun_warga/2024_03_15_145807_create_tb_rukun_warga.php',
             'tb_rukun_tetangga/2024_03_15_151505_create_tb_rukun_tetangga.php',
@@ -39,7 +43,7 @@ class MigrateInOrder extends Command
             'tb_permintaan_dokumen/2024_03_15_154726_create_tb_permintaan_dokumen.php',
             'tb_template_dokumen/2024_03_15_155026_create_tb_template_dokumen.php',
             'tb_log/2024_03_15_155105_create_tb_log.php',
-            'tb_pemulihan_akun/2024_03_15_155240_create_tb_pemulihan_akun.php'
+            'tb_password_reset_token/2024_03_15_155240_create_tb_password_reset_token.php',
         ];
 
         // set foreign key check to 0

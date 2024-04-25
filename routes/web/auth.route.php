@@ -23,8 +23,13 @@ Route::group([
         Route::get('callback', [GoogleOAuthController::class, 'callback'])->name('callback');
     });
 
-
-    Route::post('forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::get('forgot-password', [AuthController::class, 'forgotPasswordPage'])->name('forgotPasswordPage');
+    Route::post('forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+    
 
     Route::get('signout', [AuthController::class, 'signOut'])->name('signOut')->withoutMiddleware('guest')->middleware('auth');
 });
+
+// special route for reset password
+Route::get('auth/reset-password/{token}', [AuthController::class, 'resetPasswordPage'])->middleware('guest')->name('password.reset');
+Route::post('auth/reset-password', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.update');
