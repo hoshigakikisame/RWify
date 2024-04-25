@@ -19,6 +19,7 @@
         @stack('modals')
         @stack('scripts')
     </div>
+
 </body>
 
 </html>

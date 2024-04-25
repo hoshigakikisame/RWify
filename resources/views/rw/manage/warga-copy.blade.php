@@ -4,6 +4,16 @@
 
 {{-- content --}}
 @section('content')
+@php
+$genderOptions = \App\Models\UserModel::getKelaminOption();
+$agama = \App\Models\UserModel::getAgamaOption();
+$statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
+$golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
+$tipeWarga = \App\Models\UserModel::getTipeWargaOption();
+$role = \App\Models\UserModel::getRoleOption();
+$rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
+
+@endphp
 <section class="container px-2 mx-auto relative" x-data="{modalOpen: false}">
     <div class=" sm:flex sm:items-center sm:justify-between ">
 
@@ -38,7 +48,7 @@
 
                 <span>Add warga</span>
             </button>
-            <div x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                     <div x-cloak @click="modalOpen = false" x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
 
@@ -57,63 +67,47 @@
                             Add user warga ke dalam sistem
                         </p>
 
-                        <form class="mt-5">
-                            <div>
-                                <label for="username" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Username Warga</label>
-                                <input id="username" placeholder="Thoriq Fathurrozi" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
 
-                            <div class="mt-4">
-                                <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Email Warga</label>
-                                <input id="email" placeholder="thoriqfathurrozi@example.app" type="email" name="email" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
-
-                            <div class="mt-4">
-                                <label for="password" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Password Warga</label>
-                                <input id="password" placeholder="thoriqfathurrozi@example.app" type="password" name="password" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
 
 
-                            <div class="mt-4">
-                                <label for="nik" class="block text-sm text-gray-700 capitalize dark:text-gray-200">NIK Warga</label>
-                                <input id="nik" placeholder="3557893977977838" type="number" name="nik" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
-
-                            <div class="mt-4">
-                                <label for="nkk" class="block text-sm text-gray-700 capitalize dark:text-gray-200">NKK Warga</label>
-                                <input id="nkk" placeholder="4839289337494479" type="number" name="nkk" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                            </div>
-
-                            <div class="flex gap-4 mt-4">
-                                <div>
-                                    <label for="namaDepan" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Depan Warga</label>
-                                    <input id="namaDepan" placeholder="Thoriq" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
-                                <div>
-                                    <label for="namaBelakang" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Belakang Warga</label>
-                                    <input id="namaBelakang" placeholder="Fathurrozi" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
+                        <form class="mt-5" id="addModalForm" method="POST" action="{{route('rw.manage.warga.new')}}">
+                            @csrf
+                            <x-inputform title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" />
+                            <x-inputform title="Password Warga" key="password" type="password" placeholder="Use strong password" />
+                            <x-inputform title="NIK Warga" key="nik" type="number" placeholder="1234567892322" />
+                            <x-inputform title="NKK Warga" key="nkk" type="number" placeholder="1234567892322" />
+                            <div class="grid grid-cols-4 gap-4 ">
+                                <x-inputform title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" />
+                                <x-inputform title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" />
                             </div>
                             <div class="grid grid-cols-4 gap-4 mt-4">
-                                <div class="">
-                                    <label for="tempatLahir" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Depan Warga</label>
-                                    <input id="tempatLahir" placeholder="Banyuwangi" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
-                                <div class="grow">
-                                    <label for="tanggalLahir" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama Belakang Warga</label>
-                                    <input id="tanggalLahir" type="date" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">
-                                </div>
+                                <x-inputform title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" />
+                                <x-inputform title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" />
                             </div>
 
                             <div class="mt-4">
-                                <h1 class="text-xs font-medium text-gray-400 uppercase">Permissions</h1>
-
-
+                                <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
                             </div>
+                            <x-textareainputform title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" />
+                            <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" />
+                            <x-inputform title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" />
 
-                            <div class="flex justify-end mt-6">
-                                <button type="button" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
-                                    Invite Member
+
+
+                            <x-selectinputform title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" />
+                            <x-selectinputform title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" />
+                            <x-selectinputform title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
+                            <x-selectinputform title="Tipe Warga" key="tipe_warga" :options="$tipeWarga" placeholder="Pilih Tipe Warga" />
+                            <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" />
+                            <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" />
+
+                            <div class="flex justify-between mt-6">
+                                <p class="text-xs text-gray-200">Note: Pastikan semua sudah terisi dengan benar</p>
+                                <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                    Tambah Warga
                                 </button>
                             </div>
                         </form>
@@ -230,10 +224,7 @@
                                             </svg>
                                         </span>
                                     </button>
-                                    <!-- <form action="{{ route('rw.manage.warga.delete') }}" method="POST" class="w-full"> -->
-                                    <!-- @csrf -->
-                                    <!-- <form wire:submit="delete({{$user->getNik()}})"> -->
-                                    <button type="" wire:click="delete({{$user->getNik()}})" name="nik" value="{{ $user->getNik() }}" wire:confirm="Are you sure you want to delete this user {{$user->getNamaDepan() . ' ' . $user->getNamaBelakang()}}?" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
+                                    <button type="" x-click="delete({{$user->getNik()}})" name="nik" value="{{ $user->getNik() }}" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor" version="1.1">
                                                 <path d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
@@ -272,6 +263,42 @@
 
 </section>
 
+<script type="module">
+    modalElemen = /*html*/ `
+    
+    `
 
+    function addModal() {
 
+    }
+
+    $('#addModal').ready(function() {
+        $('#addModalForm').on('submit', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: "{{route('rw.manage.warga.new')}}",
+                type: "POST",
+                data: $('#addModalForm').serialize(),
+                success: function(res) {
+                    alert('Data Berhasil Ditambahkan');
+                }
+            })
+
+            $.ajax({
+                url: document.location,
+                type: "GET",
+                success: function(response) {
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(response, 'text/html');
+                    $('body').html(doc.body.innerHTML)
+                }
+            })
+        })
+    })
+
+    $('$editModal').ready(function() {
+
+    })
+</script>
 @endsection

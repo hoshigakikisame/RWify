@@ -6,18 +6,16 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class InputForm extends Component
+class TextareaInputForm extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $title, $key, $type, $placeholder;
-
-    public function __construct(string $title, string $key, string $type, string $placeholder)
+    public $title, $key, $placeholder;
+    public function __construct($title, $key, $placeholder)
     {
-        $this->title = $title;
+        $this->title =  $title;
         $this->key = $key;
-        $this->type = $type;
         $this->placeholder = $placeholder;
     }
 
@@ -26,6 +24,6 @@ class InputForm extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.input-form');
+        return view('components.textarea-input-form');
     }
 }

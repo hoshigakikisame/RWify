@@ -78,7 +78,8 @@ class ManageWargaController extends Controller
             session()->flash('success', 'Berhasil menambahkan warga baru.');
         }
 
-        return redirect()->route('rw.manage.warga.warga');
+        // return redirect()->route('rw.manage.warga.warga');
+        return 'sliwik';
     }
 
     // update warga with validation
