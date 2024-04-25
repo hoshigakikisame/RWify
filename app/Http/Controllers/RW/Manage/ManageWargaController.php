@@ -25,7 +25,7 @@ class ManageWargaController extends Controller
             "users" => $users
         ];
 
-        return view('rw.manage.warga', $data);
+        return view('rw.manage.warga-copy', $data);
     }
 
     public function addNewWarga()
@@ -49,7 +49,7 @@ class ManageWargaController extends Controller
             'alamat' => 'required',
             'id_rukun_tetangga' => 'required',
         ]);
-        
+
         $data = [
             'nik' => request()->nik,
             'nkk' => request()->nkk,
@@ -72,7 +72,7 @@ class ManageWargaController extends Controller
 
         $newUser = UserModel::create($data);
 
-        if(!$newUser) {
+        if (!$newUser) {
             session()->flash('danger', 'Gagal menambahkan warga baru.');
         } else {
             session()->flash('success', 'Berhasil menambahkan warga baru.');
@@ -105,7 +105,7 @@ class ManageWargaController extends Controller
         $nik = request()->nik;
         $user = UserModel::find($nik);
 
-        if(!$user) {
+        if (!$user) {
             session()->flash('danger', 'Gagal mengupdate warga.');
         } else {
             $user->setNik(request()->nik);
@@ -144,7 +144,7 @@ class ManageWargaController extends Controller
 
         $user = UserModel::find($nik);
 
-        if(!$user) {
+        if (!$user) {
             session()->flash('danger', 'Gagal menghapus warga.');
         } else {
             $user->delete();

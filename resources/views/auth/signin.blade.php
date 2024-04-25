@@ -17,8 +17,10 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
             </div>
         </div>
     </div>
+
     <div class="form-login lg:overflow-hidden">
         <div class="h-screen overflow-scroll no-scrollbar ">
+            @include('components.flash-message')
             <div class="container-fluid flex flex-col items-center text-darkLightGrey gap-5 lg:gap-2 lg:mt-12 xl:mt-32">
                 <div class="signIn-header text-center lg:w-2/3 2xl:w-1/2 md:px-10 flex flex-col gap-2 mb-4">
                     <h1 class=" text-5xl my-1 font-Inter font-bold dark:text-gray-100">Sign In</h1>
@@ -27,7 +29,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                 @csrf
                 <div class="signIn-body pt-2 md:px-24 w-full p-8 pb-0 2xl:w-2/3 lg:p-9 2xl:p-5 flex flex-col gap-3">
                     <!-- Image Sign -->
-                    <button class="sso sm:w-full border sm:rounded-md text-center sm:p-2 cursor-pointer flex justify-center gap-3 items-center order-last lg:order-none mb-6 hover:bg-gray-100 transition-all focus:opacity-[0.85] w-fit p-4 rounded-full mx-auto sm:mx-0" onclick="window.open('{{ route('auth.google.index') }}', '_self');">
+                    <button class="sso sm:w-full border sm:rounded-md text-center sm:p-2 cursor-pointer flex justify-center gap-3 items-center order-last lg:order-none mb-6 hover:bg-gray-100 transition-all focus:opacity-[0.85] w-fit p-4 rounded-full mx-auto sm:mx-0" onclick="window.open(`{{ route('auth.google.index') }}`, '_self');">
                         <img src="{{$googleIcon}}" alt="Google">
                         <h1 class="hidden lg:block dark:text-gray-200">Log In dengan Google</h1>
                     </button>

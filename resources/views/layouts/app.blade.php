@@ -15,7 +15,6 @@
 
 <body class="relative dark:bg-gray-900">
     <div class="">
-        @include('components.flash-message')
         @yield('content')
         @stack('modals')
         @stack('scripts')

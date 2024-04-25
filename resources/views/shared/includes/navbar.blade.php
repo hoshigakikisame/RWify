@@ -12,9 +12,9 @@ $informasi =[['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum 
         </div>
         <div class="navbar-body z-30">
             <ul class="link-container dark:text-gray-400 flex gap-2">
-                <li class="link-item px-2 py-1 hover:text-gray-100 transition-all ">Beranda</li>
-                <li class="link-item px-2 py-1 relative">
-                    <button id="dropdown-button" class="inline-flex justify-center w-full hover:text-gray-100">
+                <li class="link-item px-2 py-1 dark:hover:text-gray-100 transition-all hover:text-gray-600">Beranda</li>
+                <li class="link-item px-2 py-1 relative ">
+                    <button id="dropdown-button" class="inline-flex justify-center w-full dark:hover:text-gray-100 hover:text-gray-600 transition-all">
                         <span class="">Layanan</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -29,7 +29,7 @@ $informasi =[['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum 
                     </div>
                 </li>
                 <li class="link-item px-2 py-1 relative" x-data="{ isOpen: false }">
-                    <button class="inline-flex justify-center w-full hover:text-gray-100" x-on:click="isOpen = !isOpen" @keydown.escape="isOpen = false">
+                    <button class="inline-flex justify-center w-full dark:hover:text-gray-100 hover:text-gray-600 transition-all" x-on:click="isOpen = !isOpen" @keydown.escape="isOpen = false">
                         <span class="">Informasi</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -43,7 +43,7 @@ $informasi =[['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum 
                         @endforeach
                     </div>
                 </li>
-                <li class="link-item px-2 py-1">Hubungi Kami</li>
+                <li class="link-item px-2 py-1 dark:hover:text-gray-100 hover:text-gray-600 transition-all">Hubungi Kami</li>
             </ul>
         </div>
         <div class="navbar-action flex gap-3">

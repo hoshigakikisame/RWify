@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // CAUTION: This will delete all data in the database. This script meant to be used one time only.
-        
+
         DB::statement('DELETE FROM tb_user');
         DB::statement('DELETE FROM tb_rukun_warga');
         DB::statement('DELETE FROM tb_rukun_tetangga');
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             ['id_rukun_warga' => $rukunWargaInstance->getIdRukunWarga()]
         )->count(3)->create()->all();
         $ketuaRukunWargaInstance = UserModel::factory()->state(
-            [   
+            [
                 'email' => 'rwify.rw@gmail.com',
                 'role' => 'Ketua Rukun Warga'
             ]

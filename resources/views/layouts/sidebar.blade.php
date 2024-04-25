@@ -10,7 +10,6 @@
 
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    @livewireStyles
 
     @stack('style')
 </head>
@@ -74,7 +73,6 @@
             @stack('modals')
         </div>
     </main>
-    @livewireScripts
     @stack('scripts')
     <script type="module">
         //dropdown selector
