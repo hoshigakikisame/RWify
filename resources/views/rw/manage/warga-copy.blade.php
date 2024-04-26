@@ -73,7 +73,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         @endforeach
 
 
-                        <form class="mt-5" id="addModalForm" method="POST" action="{{route('rw.manage.warga.new')}}">
+                        <form class="mt-5" id="addModalForm">
                             @csrf
                             <x-inputform title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" />
                             <x-inputform title="Password Warga" key="password" type="password" placeholder="Use strong password" />
@@ -212,9 +212,9 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                 </td>
 
                                 <td class="px-4 py-4 text-sm whitespace-nowrap flex" id="action" x-data="{modalEditOpen: false}">
-                                    <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="appendUpdateModal({{$user}},event)">
-                                        <span class=" absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true" class="h-4 w-4">
+                                    <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{$user}},event);request(`{{route('rw.manage.warga.update')}}`, '#editModal', '#editModalForm')})()">
+                                        <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">
                                                 <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
                                                 </path>
                                             </svg>
@@ -225,7 +225,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor" version="1.1">
                                                 <path d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
                                                 </path>
-                                            </svg>
                                             </svg>
                                         </span>
                                     </button>
@@ -264,13 +263,13 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
         let modalEditElemen = /*html*/ `
         <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                    <div x-cloak @click="()=>{modalEditOpen = false;deleteEditModal()}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+                    <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
 
                     <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
                             <h1 class="text-xl font-medium text-gray-800 ">Edit Warga User</h1>
 
-                            <button @click="()=>{modalEditOpen = false;deleteEditModal()}" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                            <button @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" class="text-gray-600 focus:outline-none hover:text-gray-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -287,7 +286,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         @endforeach
 
 
-                        <form class="mt-5" id="editModalForm" method="POST" action="{{route('rw.manage.warga.update')}}">
+                        <form class="mt-5" id="editModalForm">
                             @csrf
                             <x-inputform title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" value="${user.email}" />
                             <x-inputform title="Password Warga" key="password" type="password" placeholder="Use strong password" />
@@ -316,7 +315,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                             <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" selected="${user.id_rukun_tetangga}"/>
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200">Note: Pastikan semua sudah terisi dengan benar</p>
-                                <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     Save Warga
                                 </button>
                             </div>
@@ -328,57 +327,16 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
     }
 
-    function submit(url, selector) {
-        $(selector).on('submit', function(e) {
-            e.preventDefault();
-
-            $.ajax({
-                url: `@{{route(${url})}}`,
-                type: "POST",
-                data: $(selector).serialize(),
-                success: function(res) {
-                    alert('Request Data Berhasil ');
-                }
-            })
-
-            $.ajax({
-                url: document.location,
-                type: "GET",
-                success: function(response) {
-                    let parser = new DOMParser();
-                    let doc = parser.parseFromString(response, 'text/html');
-                    $('body').html(doc.body.innerHTML)
-                }
-            })
-        })
-    }
-
-
-
-    function deleteEditModal() {
-        $("#editModal").ready(() => {
-            $("#editModal").remove()
-        })
-    }
-</script>
-
-<script type="module">
-    $('#editModal').ready(() => {
-        submit('rw.manage.warga.update', '#editModalForm')
-    })
-
-
-    function addModal() {
-        $('#addModal').ready(function() {
-            $('#addModalForm').on('submit', function(e) {
-                e.preventDefault();
-
+    function request(url, selectorParent, selectorForm) {
+        $(selectorParent).ready((e) => {
+            $(selectorForm).on('submit', function(e) {
+                e.preventDefault()
                 $.ajax({
-                    url: "{{route('rw.manage.warga.new')}}",
+                    url: url,
                     type: "POST",
-                    data: $('#addModalForm').serialize(),
+                    data: $(selectorForm).serialize(),
                     success: function(res) {
-                        alert('Data Berhasil Ditambahkan');
+                        alert('Request Data Berhasil ');
                     }
                 })
 
@@ -394,5 +352,44 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
             })
         })
     }
+
+
+    function deleteModal(selector) {
+        $(selector).ready(() => {
+            $(selector).remove()
+        })
+    }
+</script>
+
+<script type="module">
+    $('#editButton').on('click', function() {
+
+    })
+
+    $('#addModal').ready(function() {
+        $('#addModalForm').on('submit', function(e) {
+            console.log(e)
+            e.preventDefault();
+
+            $.ajax({
+                url: "{{route('rw.manage.warga.new')}}",
+                type: "POST",
+                data: $('#addModalForm').serialize(),
+                success: function(res) {
+                    alert('Data Berhasil Ditambahkan');
+                }
+            })
+
+            $.ajax({
+                url: document.location,
+                type: "GET",
+                success: function(response) {
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(response, 'text/html');
+                    $('body').html(doc.body.innerHTML)
+                }
+            })
+        })
+    })
 </script>
 @endsection

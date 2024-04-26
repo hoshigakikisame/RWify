@@ -312,6 +312,21 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         $this->role = $role;
     }
 
+    public function setTipeWarga(string $tipeWarga): void
+    {
+        $this->tipe_warga = $tipeWarga;
+    }
+
+    public function setGolonganDarah(string $golonganDarah): void
+    {
+        $this->golongan_darah = $golonganDarah;
+    }
+
+    public function setIdRukunTetangga(string $idRukunTetangga): void
+    {
+        $this->id_rukun_tetangga = $idRukunTetangga;
+    }
+
     public function setJenisKelamin(string $jenisKelamin): void
     {
         $this->jenis_kelamin = $jenisKelamin;
@@ -335,15 +350,5 @@ class UserModel extends Authenticatable implements MustVerifyEmail
     public function setEmailVerifiedAt(string|null $emailVerifiedAt): void
     {
         $this->email_verified_at = $emailVerifiedAt;
-    }
-
-    public function setGolonganDarah(string $golonganDarah): void
-    {
-        $this->golongan_darah = $golonganDarah;
-    }
-
-    public function setRukunTetangga(RukunTetanggaModel $rukunTetangga): void
-    {
-        $this->id_rukun_tetangga = $rukunTetangga->getIdRukunTetangga();
     }
 }

@@ -1,17 +1,17 @@
 @php
-    $reservation = Vite::asset('resources/assets/images/reservation.png');
-    $umkm = Vite::asset('resources/assets/images/store.png');
-    $information = Vite::asset('resources/assets/images/loud-speaker.png');
-    $report = Vite::asset('resources/assets/images/no-shouting.png');
-    $payment = Vite::asset('resources/assets/images/tips.png');
+$reservation = Vite::asset('resources/assets/images/reservation.png');
+$umkm = Vite::asset('resources/assets/images/store.png');
+$information = Vite::asset('resources/assets/images/loud-speaker.png');
+$report = Vite::asset('resources/assets/images/no-shouting.png');
+$payment = Vite::asset('resources/assets/images/tips.png');
 
 $layanan =[
-    ['title'=> 'Permintaan Dokumen', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $reservation],
-    ['title'=> 'Pengaduan', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $report],
-    ['title'=> 'Pembayaran Iuran', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $payment]];
+['title'=> 'Permintaan Dokumen', 'href' => route('layanan.permintaanDokumen'), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $reservation],
+['title'=> 'Pengaduan', 'href' => route("layanan.pengaduan"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $report],
+['title'=> 'Pembayaran Iuran', 'href' => route("layanan.pembayaranIuran"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $payment]];
 $informasi =[
-    ['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $umkm],
-    ['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $information ]]
+['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $umkm],
+['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $information ]]
 @endphp
 <div class="nav-container px-5 lg:px-10 py-5 dark:bg-gray-800">
     <nav class="flex justify-between items-center">
@@ -22,7 +22,7 @@ $informasi =[
         <div class="navbar-body z-30">
             <ul class="link-container dark:text-gray-400 flex gap-2">
                 <a href="{{route('index')}}">
-                <li class="link-item px-2 py-1 dark:hover:text-gray-100 transition-all hover:text-gray-600">Beranda</li>
+                    <li class="link-item px-2 py-1 dark:hover:text-gray-100 transition-all hover:text-gray-600">Beranda</li>
                 </a>
                 <li class="link-item px-2 py-1 relative ">
                     <button id="dropdown-button" class="inline-flex justify-center w-full dark:hover:text-gray-100 hover:text-gray-600 transition-all">
