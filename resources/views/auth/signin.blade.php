@@ -10,6 +10,13 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 @endphp
 <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-screen">
     <div class="relative">
+        <div class="z-50 absolute inset-x-10 inset-y-10">
+            <a href="{{route('index')}}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+            </a>
+        </div>
         <div id="sign-image" class="absolute Sign-Image top-0 bottom-0 right-0 left-0 bg-cover " style="background-image: url('{{$image}}')">
             <div class="text-wrap backdrop-brightness-75 dark:backdrop-brightness-90 w-full h-full flex items-center">
                 <h1 class="font-bold font-Poppins text-xl lg:text-6xl 3xl:text-8xl text-white px-7 mx-auto xl:ms-28 lg:block hidden max-w-xl">BUAT RW MENJADI LEBIH EFISIEN DENGAN RWIFY</h1>
@@ -29,7 +36,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                 @csrf
                 <div class="signIn-body pt-2 md:px-24 w-full p-8 pb-0 2xl:w-2/3 lg:p-9 2xl:p-5 flex flex-col gap-3">
                     <!-- Image Sign -->
-                    <button class="sso sm:w-full border sm:rounded-md text-center sm:p-2 cursor-pointer flex justify-center gap-3 items-center order-last lg:order-none mb-6 hover:bg-gray-100 transition-all focus:opacity-[0.85] w-fit p-4 rounded-full mx-auto sm:mx-0" onclick="window.open(`{{ route('auth.google.index') }}`, '_self');">
+                    <button class="sso sm:w-full border sm:rounded-md text-center sm:p-2 cursor-pointer flex justify-center gap-3 items-center order-last lg:order-none mb-6 hover:bg-gray-100 transition-all focus:opacity-[0.85] w-fit p-4 rounded-full mx-auto sm:mx-0 dark:hover:bg-gray-800" onclick="window.open(`{{ route('auth.google.index') }}`, '_self');">
                         <img src="{{$googleIcon}}" alt="Google">
                         <h1 class="hidden lg:block dark:text-gray-200">Log In dengan Google</h1>
                     </button>
@@ -52,7 +59,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                         </div>
                         <p class="font-Inter text-xs dark:text-gray-400">Lupa Password Anda? <a href="" class="text-darkGreen dark:text-green-600">Klik Disini</a></p>
                         <div class="submit-btn" style="margin-top: 20px;">
-                            <button type="submit" class="middle none center w-full rounded-md bg-darkGreen py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-darkGreen/20 transition-all hover:shadow-lg hover:shadow-darkGreen/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none dark:bg-green-700">Sign In</button>
+                            <button type="submit" class="middle none center w-full rounded-md bg-darkGreen py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-darkGreen/20 transition-all hover:shadow-lg hover:shadow-darkGreen/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none dark:bg-green-700 dark:hover:shadow-green-700/40">Sign In</button>
                         </div>
                     </form>
                 </div>

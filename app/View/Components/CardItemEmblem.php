@@ -8,12 +8,18 @@ use Illuminate\View\Component;
 
 class CardItemEmblem extends Component
 {
+
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $title, $description, $href, $icon;
+    public function __construct($title, $desc, $href, $icon = 'icon element')
     {
-        //
+        $this->title = $title;
+        $this->description = $desc;
+        $this->href = $href;
+        $this->icon = $icon;
     }
 
     /**
