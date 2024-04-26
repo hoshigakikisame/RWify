@@ -153,6 +153,7 @@ class ManageWargaController extends Controller
             session()->flash('success', 'Berhasil menghapus warga.');
         }
 
-        return redirect()->route('rw.manage.warga.warga');
+        // return redirect()->route('rw.manage.warga.warga');
+        return 'delete done';
     }
 }

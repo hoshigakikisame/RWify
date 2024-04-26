@@ -10,9 +10,9 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 @endphp
 <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-screen">
     <div class="relative">
-        <div class="z-50 absolute inset-x-10 inset-y-10">
-            <a href="{{route('index')}}">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="z-50 absolute right-5 xl:inset-x-5 inset-y-5 xl:inset-y-8 w-fit h-fit rounded-full p-2 bg-gray-100/20 hover:bg-gray-300/50 hover:stroke-darkGreen stroke-gray-300 transition-all">
+            <a href="{{route('index')}}" class="fill-inherit">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 xl:h-10 w-8 xl:w-10 fill-inherit stroke-inherit" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                 </svg>
             </a>
@@ -178,6 +178,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
     function setImageUrl(imgUrl) {
         const image = document.getElementById('sign-image');
         image.style.backgroundImage = `url(${imgUrl})`;
+        $(image).addClass('absolute Sign-Image top-0 bottom-0 right-0 left-0 bg-cover')
     }
 
     const interval = 72_000;

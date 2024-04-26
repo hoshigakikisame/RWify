@@ -48,11 +48,11 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
                 <span>Add warga</span>
             </button>
-            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                    <div x-cloak @click="modalOpen = false" x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+                    <div @click="modalOpen = false" x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
 
-                    <div x-cloak x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                    <div x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
                             <h1 class="text-xl font-medium text-gray-800 ">Add Warga User</h1>
 
@@ -211,7 +211,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                     <p class="dark:text-gray-200 truncate ..">{{ $user->getAlamat() }}</p>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm whitespace-nowrap flex" id="action" x-data="{modalEditOpen: false}">
+                                <td class="px-4 py-4 text-sm whitespace-nowrap flex" id="action" x-data="{modalEditOpen: false,modalDeleteOpen: false}">
                                     <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{$user}},event);request(`{{route('rw.manage.warga.update')}}`, '#editModal', '#editModalForm')})()">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">
@@ -220,7 +220,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                             </svg>
                                         </span>
                                     </button>
-                                    <button type="" x-click="delete({{$user->getNik()}})" name="nik" value="{{ $user->getNik() }}" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
+                                    <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen" onclick="(function (){appendDeleteModal('{{$user->getNIK()}}','{{$user->getNamaDepan().' '.$user->getNamaBelakang()}}',event);request(`{{route('rw.manage.warga.delete')}}`, '#deleteModal', '#deleteModalForm')})()" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor" version="1.1">
                                                 <path d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
@@ -259,8 +259,48 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 </section>
 
 <script>
+    function appendDeleteModal(nik, nama, event) {
+        const modalDeleteElemen = /*html*/ `
+        <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                    <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+
+                    <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                        <div class="flex items-center justify-between space-x-4">
+                            <h1 class="text-xl font-medium text-gray-800 ">Delete Warga User</h1>
+
+                            <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <p class="mt-2 text-sm text-gray-500 ">
+                            Menghapus user dari sistem
+                        </p>
+
+
+                        <form class="mt-5" id="deleteModalForm">
+                            @csrf
+                            <input type="text" name="nik" value="${nik}" hidden >
+                            <h1 class="text-xl text-wrap">Apakah Anda Yakin Menghapus <span class="font-semibold text-rose-600">${nama}</span> </h1>              
+                            <div class="flex justify-end mt-6">
+                                <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                    Delete Warga
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        `
+        $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
+
+    }
+
     function appendUpdateModal(user, event) {
-        let modalEditElemen = /*html*/ `
+        const modalEditElemen = /*html*/ `
         <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                     <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
@@ -277,7 +317,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         </div>
 
                         <p class="mt-2 text-sm text-gray-500 ">
-                            Add user warga ke dalam sistem
+                            Edit user warga di dalam sistem
                         </p>
 
 
@@ -325,6 +365,9 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
             </div>
     `
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
+        $("#editModal select[aria-selected]").each(function() {
+            $(this).val(this.ariaSelected).change()
+        })
     }
 
     function request(url, selectorParent, selectorForm) {
@@ -336,19 +379,39 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                     type: "POST",
                     data: $(selectorForm).serialize(),
                     success: function(res) {
-                        alert('Request Data Berhasil ');
+                        $.ajax({
+                            url: document.location,
+                            type: "GET",
+                            success: function(response) {
+                                let parser = new DOMParser();
+                                let doc = parser.parseFromString(response, 'text/html');
+                                $('body').html(doc.body.innerHTML)
+                                setTimeout(function() {
+                                    $.ajax({
+                                        url: document.location,
+                                        type: "GET",
+                                        success: function(response) {
+                                            let parser = new DOMParser();
+                                            let doc = parser.parseFromString(response, 'text/html');
+                                            $('body').html(doc.body.innerHTML)
+                                        }
+                                    })
+                                }, 5000)
+                            }
+                        })
+
+
+                    },
+                    error: function(res) {
+                        $.each(res.responseJSON.errors, (key, value) => {
+                            value.forEach(element => {
+                                $(e.currentTarget).find('#' + key).siblings('#error').append(`<li>${element}</li>`)
+                            });
+                        })
                     }
                 })
 
-                $.ajax({
-                    url: document.location,
-                    type: "GET",
-                    success: function(response) {
-                        let parser = new DOMParser();
-                        let doc = parser.parseFromString(response, 'text/html');
-                        $('body').html(doc.body.innerHTML)
-                    }
-                })
+
             })
         })
     }
@@ -362,34 +425,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 </script>
 
 <script type="module">
-    $('#editButton').on('click', function() {
-
-    })
-
-    $('#addModal').ready(function() {
-        $('#addModalForm').on('submit', function(e) {
-            console.log(e)
-            e.preventDefault();
-
-            $.ajax({
-                url: "{{route('rw.manage.warga.new')}}",
-                type: "POST",
-                data: $('#addModalForm').serialize(),
-                success: function(res) {
-                    alert('Data Berhasil Ditambahkan');
-                }
-            })
-
-            $.ajax({
-                url: document.location,
-                type: "GET",
-                success: function(response) {
-                    let parser = new DOMParser();
-                    let doc = parser.parseFromString(response, 'text/html');
-                    $('body').html(doc.body.innerHTML)
-                }
-            })
-        })
-    })
+    request('{{route("rw.manage.warga.new")}}', '#addModal', '#addModalForm')
 </script>
 @endsection
