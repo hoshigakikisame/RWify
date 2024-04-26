@@ -11,12 +11,13 @@ class TextareaInputForm extends Component
     /**
      * Create a new component instance.
      */
-    public $title, $key, $placeholder;
-    public function __construct($title, $key, $placeholder)
+    public $title, $key, $placeholder, $value;
+    public function __construct($title, $key, $placeholder, $value = "")
     {
         $this->title =  $title;
         $this->key = $key;
         $this->placeholder = $placeholder;
+        $this->value = $value;
     }
 
     /**
