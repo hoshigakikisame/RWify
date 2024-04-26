@@ -41,7 +41,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                 </svg>
                 <span>Import</span>
             </button>
-            <button id=" addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap md:w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="">
+            <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap md:w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -83,7 +83,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                 <x-inputform title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" />
                                 <x-inputform title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" />
                             </div>
-                            <div class="grid grid-cols-4 gap-4 mt-4">
+                            <div class="grid grid-cols-4 gap-4">
                                 <x-inputform title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" />
                                 <x-inputform title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" />
                             </div>
@@ -94,16 +94,12 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                             <x-textareainputform title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" />
                             <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" />
                             <x-inputform title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" />
-
-
-
                             <x-selectinputform title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" />
                             <x-selectinputform title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" />
                             <x-selectinputform title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
                             <x-selectinputform title="Tipe Warga" key="tipe_warga" :options="$tipeWarga" placeholder="Pilih Tipe Warga" />
                             <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" />
                             <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" />
-
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200">Note: Pastikan semua sudah terisi dengan benar</p>
                                 <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
@@ -215,9 +211,9 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                     <p class="dark:text-gray-200 truncate ..">{{ $user->getAlamat() }}</p>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm whitespace-nowrap flex" id="action">
-                                    <button class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="" wire:click="$dispatch('openModal', {component: 'user-modal', arguments: { user: {{ $user }} }})">
-                                        <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                                <td class="px-4 py-4 text-sm whitespace-nowrap flex" id="action" x-data="{modalEditOpen: false}">
+                                    <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="appendUpdateModal({{$user}},event)">
+                                        <span class=" absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true" class="h-4 w-4">
                                                 <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
                                                 </path>
@@ -263,25 +259,85 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
 </section>
 
-<script type="module">
-    modalElemen = /*html*/ `
-    
+<script>
+    function appendUpdateModal(user, event) {
+        let modalEditElemen = /*html*/ `
+        <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                    <div x-cloak @click="()=>{modalEditOpen = false;deleteEditModal()}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+
+                    <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                        <div class="flex items-center justify-between space-x-4">
+                            <h1 class="text-xl font-medium text-gray-800 ">Edit Warga User</h1>
+
+                            <button @click="()=>{modalEditOpen = false;deleteEditModal()}" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <p class="mt-2 text-sm text-gray-500 ">
+                            Add user warga ke dalam sistem
+                        </p>
+
+
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+
+
+                        <form class="mt-5" id="editModalForm" method="POST" action="{{route('rw.manage.warga.update')}}">
+                            @csrf
+                            <x-inputform title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" value="${user.email}" />
+                            <x-inputform title="Password Warga" key="password" type="password" placeholder="Use strong password" />
+                            <x-inputform title="NIK Warga" key="nik" type="number" placeholder="1234567892322" value="${user.nik}" />
+                            <x-inputform title="NKK Warga" key="nkk" type="number" placeholder="1234567892322" value="${user.nkk}" />
+                            <div class="grid grid-cols-4 gap-4 ">
+                                <x-inputform title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" value="${user.nama_depan}"/>
+                                <x-inputform title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" value="${user.nama_belakang}"/>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <x-inputform title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" value="${user.tempat_lahir}"/>
+                                <x-inputform title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" value="${user.tanggal_lahir}" />
+                            </div>
+
+                            <div class="mt-4">
+                                <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
+                            </div>
+                            <x-textareainputform title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" value="${user.alamat}"/>
+                            <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" selected="${user.jenis_kelamin}"/>
+                            <x-inputform title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" value="${user.pekerjaan}" />
+                            <x-selectinputform title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" selected="${user.agama}" />
+                            <x-selectinputform title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" selected="${user.status_perkawinan}" />
+                            <x-selectinputform title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
+                            <x-selectinputform title="Tipe Warga" key="tipe_warga" :options="$tipeWarga" placeholder="Pilih Tipe Warga" selected="${user.tipe_warga}"/>
+                            <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" />
+                            <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" selected="${user.id_rukun_tetangga}"/>
+                            <div class="flex justify-between mt-6">
+                                <p class="text-xs text-gray-200">Note: Pastikan semua sudah terisi dengan benar</p>
+                                <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                    Save Warga
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
     `
-
-    function addModal() {
-
+        $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
     }
 
-    $('#addModal').ready(function() {
-        $('#addModalForm').on('submit', function(e) {
+    function submit(url, selector) {
+        $(selector).on('submit', function(e) {
             e.preventDefault();
 
             $.ajax({
-                url: "{{route('rw.manage.warga.new')}}",
+                url: `@{{route(${url})}}`,
                 type: "POST",
-                data: $('#addModalForm').serialize(),
+                data: $(selector).serialize(),
                 success: function(res) {
-                    alert('Data Berhasil Ditambahkan');
+                    alert('Request Data Berhasil ');
                 }
             })
 
@@ -295,10 +351,48 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                 }
             })
         })
+    }
+
+
+
+    function deleteEditModal() {
+        $("#editModal").ready(() => {
+            $("#editModal").remove()
+        })
+    }
+</script>
+
+<script type="module">
+    $('#editModal').ready(() => {
+        submit('rw.manage.warga.update', '#editModalForm')
     })
 
-    $('$editModal').ready(function() {
 
-    })
+    function addModal() {
+        $('#addModal').ready(function() {
+            $('#addModalForm').on('submit', function(e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "{{route('rw.manage.warga.new')}}",
+                    type: "POST",
+                    data: $('#addModalForm').serialize(),
+                    success: function(res) {
+                        alert('Data Berhasil Ditambahkan');
+                    }
+                })
+
+                $.ajax({
+                    url: document.location,
+                    type: "GET",
+                    success: function(response) {
+                        let parser = new DOMParser();
+                        let doc = parser.parseFromString(response, 'text/html');
+                        $('body').html(doc.body.innerHTML)
+                    }
+                })
+            })
+        })
+    }
 </script>
 @endsection
