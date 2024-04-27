@@ -6,6 +6,7 @@
 @php
 $image = Vite::asset('resources/assets/images/Semeru.png');
 $signInElement = Vite::asset('resources/assets/elements/SignInElement.svg');
+$signInElementDark = Vite::asset('resources/assets/elements/SignInElementDark.svg');
 $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 @endphp
 <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-screen">
@@ -20,7 +21,8 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
         <div id="sign-image" class="absolute Sign-Image top-0 bottom-0 right-0 left-0 bg-cover " style="background-image: url('{{$image}}')">
             <div class="text-wrap backdrop-brightness-75 dark:backdrop-brightness-90 w-full h-full flex items-center">
                 <h1 class="font-bold font-Poppins text-xl lg:text-6xl 3xl:text-8xl text-white px-7 mx-auto xl:ms-28 lg:block hidden max-w-xl">BUAT RW MENJADI LEBIH EFISIEN DENGAN RWIFY</h1>
-                <img src="{{$signInElement}}" class="lg:hidden absolute -bottom-1 bg-transparent w-full z-10" alt="data">
+                <img src="{{$signInElement}}" class="lg:hidden absolute -bottom-1 bg-transparent w-full z-10 dark:hidden" alt="data">
+                <img src="{{$signInElementDark}}" class="dark:lg:hidden absolute -bottom-1 bg-transparent w-full z-10 hidden dark:block" alt="data">
             </div>
         </div>
     </div>
