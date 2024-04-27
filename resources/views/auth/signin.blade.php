@@ -57,7 +57,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                             <label for="password" class="font-Inter text-xs text-darkBlue font-normal opacity-70 dark:text-white">Password</label>
                             <input type="password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200 dark:bg-gray-900 dark:text-gray-100" placeholder="Password">
                         </div>
-                        <p class="font-Inter text-xs dark:text-gray-400">Lupa Password Anda? <a href="" class="text-darkGreen dark:text-green-600">Klik Disini</a></p>
+                        <p class="font-Inter text-xs dark:text-gray-400">Lupa Password Anda? <a href="{{route('auth.forgotPassword')}}" class="text-darkGreen dark:text-green-600">Klik Disini</a></p>
                         <div class="submit-btn" style="margin-top: 20px;">
                             <button type="submit" class="middle none center w-full rounded-md bg-darkGreen py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-darkGreen/20 transition-all hover:shadow-lg hover:shadow-darkGreen/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none dark:bg-green-700 dark:hover:shadow-green-700/40">Sign In</button>
                         </div>

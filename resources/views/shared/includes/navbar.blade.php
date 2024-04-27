@@ -13,7 +13,7 @@ $informasi =[
 ['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $umkm],
 ['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $information ]]
 @endphp
-<div class="nav-container px-5 lg:px-10 py-5 dark:bg-gray-800">
+<div class="nav-container px-5 lg:px-10 py-5 dark:bg-gray-800 sticky top-0 bg-gray-50 z-20">
     <nav class="flex justify-between items-center">
         <div class="navbar-brand flex dark:text-gray-200">
             <img src="" alt="logo">

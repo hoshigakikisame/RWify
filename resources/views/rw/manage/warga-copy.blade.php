@@ -52,20 +52,20 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
             </button>
             <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                    <div @click="modalOpen = false" x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+                    <div @click="modalOpen = false" x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
-                    <div x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                    <div x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
-                            <h1 class="text-xl font-medium text-gray-800 ">Add Warga User</h1>
+                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100 ">Add Warga User</h1>
 
-                            <button @click="modalOpen = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                            <button @click="modalOpen = false" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </button>
                         </div>
 
-                        <p class="mt-2 text-sm text-gray-500 ">
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             Add user warga ke dalam sistem
                         </p>
 
@@ -103,7 +103,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                             <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" />
                             <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" />
                             <div class="flex justify-between mt-6">
-                                <p class="text-xs text-gray-200">Note: Pastikan semua sudah terisi dengan benar</p>
+                                <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                 <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     Tambah Warga
                                 </button>
@@ -185,35 +185,35 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                             @foreach ($users as $user)
                             <tr>
-                                <td class=" px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                <td class=" px-4 py-4 text-sm font-medium">
                                     <div>
                                         <h2 class="font-medium text-gray-800 dark:text-white ">{{ $user->getNIK() }}
                                         </h2>
                                     </div>
                                 </td>
-                                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                <td class="px-4 py-4 text-sm font-medium">
                                     <div class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                         {{ $user->getNKK() }}
                                     </div>
                                 </td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                <td class="px-4 py-4 text-sm ">
                                     <div>
                                         <h4 class="text-gray-700 dark:text-gray-200">
                                             {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }}
                                         </h4>
                                     </div>
                                 </td>
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                <td class="px-4 py-4 text-sm">
                                     <p class=" -mx-1 text-xs text-blue-600 ">
                                         {{ $user->getTempatLahir() . ', ' . $user->getTanggalLahir() }}
                                     </p>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                    <p class="dark:text-gray-200 truncate ..">{{ $user->getAlamat() }}</p>
+                                <td class="px-4 py-4 text-sm">
+                                    <p class="dark:text-gray-200 truncate .. w-52 2xl:w-full">{{ $user->getAlamat() }}</p>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm whitespace-nowrap flex" id="action" x-data="{modalEditOpen: false,modalDeleteOpen: false}">
+                                <td class="px-4 py-4 text-sm flex" id="action" x-data="{modalEditOpen: false,modalDeleteOpen: false}">
                                     <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{$user}},event);request(`{{route('rw.manage.warga.update')}}`, '#editModal', '#editModalForm')})()">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">
@@ -260,18 +260,21 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
 </section>
 
+
+@endsection
+@push('scripts')
 <script>
     function appendDeleteModal(nik, nama, event) {
         const modalDeleteElemen = /*html*/ `
         <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                    <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+                    <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
-                    <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                    <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
-                            <h1 class="text-xl font-medium text-gray-800 ">Delete Warga User</h1>
+                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete Warga User</h1>
 
-                            <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                            <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -286,7 +289,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         <form class="mt-5" id="deleteModalForm">
                             @csrf
                             <input type="text" name="nik" value="${nik}" hidden >
-                            <h1 class="text-xl text-wrap">Apakah Anda Yakin Menghapus <span class="font-semibold text-rose-600">${nama}</span> </h1>              
+                            <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span class="font-semibold text-rose-600 underline underline-offset-8">${nama}</span> </h1>              
                             <div class="flex justify-end mt-6">
                                 <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     Delete Warga
@@ -305,20 +308,20 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
         const modalEditElemen = /*html*/ `
         <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                    <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-40" aria-hidden="true"></div>
+                    <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
-                    <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl">
+                    <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
-                            <h1 class="text-xl font-medium text-gray-800 ">Edit Warga User</h1>
+                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Edit Warga User</h1>
 
-                            <button @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                            <button @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </button>
                         </div>
 
-                        <p class="mt-2 text-sm text-gray-500 ">
+                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             Edit user warga di dalam sistem
                         </p>
 
@@ -356,7 +359,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                             <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" selected="${user.role}" />
                             <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" selected="${user.id_rukun_tetangga}"/>
                             <div class="flex justify-between mt-6">
-                                <p class="text-xs text-gray-200">Note: Pastikan semua sudah terisi dengan benar</p>
+                                <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                 <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     Save Warga
                                 </button>
@@ -433,6 +436,4 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
     }
 </script>
 
-<script type="module">
-</script>
-@endsection
+@endpush
