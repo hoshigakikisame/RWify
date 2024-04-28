@@ -1,11 +1,11 @@
 <!-- Nothing worth having comes easy. - Theodore Roosevelt -->
-<aside class="min-h-screen relative">
+<aside class="min-h-screen relative z-20">
     <nav class="h-full flex flex-col shadow-xl px-4 py-6 w-fit">
         <div class="sidebar-header">
             <h1 class="text-center text-3xl hidden lg:block dark:text-gray-200">{{ config('app.name') }}</h1>
             <img src="" alt="">
         </div>
-        <ul class="h-full grow py-5 w-full flex flex-col gap-1 fill-gray-500 dark:fill-gray-200 mx-auto">
+        <ul class="h-full grow py-5 w-full flex flex-col gap-1  fill-gray-500 dark:fill-gray-200">
             {{$slot}}
         </ul>
 
@@ -50,13 +50,13 @@
                                 </clipPath>
                             </defs>
                         </svg>
-                        <span class="hidden md:block">Light</span>
+                        <span class="hidden lg:block">Light</span>
                     </span>
                     <span id="moon" class="dark text-body-color flex items-center space-x-[2px] p-2 lg:px-[18px] rounded-full py-2 text-sm font-medium dark:bg-white text-gray-800">
                         <svg width="16" height="16" viewBox="0 0 16 16" class="fill-inherit">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M8.055 1.673a.67.67 0 0 1-.045.724 4 4 0 0 0 5.594 5.594.667.667 0 0 1 1.06.598 6.667 6.667 0 1 1-7.251-7.252.67.67 0 0 1 .642.336M6.212 2.96a5.333 5.333 0 1 0 6.83 6.83 5.333 5.333 0 0 1-6.83-6.83" />
                         </svg>
-                        <span class="hidden md:block">Dark</span>
+                        <span class="hidden lg:block">Dark</span>
                     </span>
                 </label>
             </div>
