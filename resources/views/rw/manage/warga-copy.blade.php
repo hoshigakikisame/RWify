@@ -14,7 +14,7 @@ $role = \App\Models\UserModel::getRoleOption();
 $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
 @endphp
-<section class="container px-2 mx-auto relative" x-data="{modalOpen: false}">
+<section class="container px-4 mt-7 mb-8 mx-auto relative" x-data="{modalOpen: false}">
     <div class=" sm:flex sm:items-center sm:justify-between ">
 
         <div>
@@ -435,17 +435,17 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
         })
     }
 
-    function searchRequest(query){
+    function searchRequest(query) {
         let url = document.location
-        url = url.origin + url.pathname+ "?q=" +query
-        
+        url = url.origin + url.pathname + "?q=" + query
+
         $.ajax({
             url: url,
-            success:function(res){
+            success: function(res) {
                 let parser = new DOMParser();
                 let doc = parser.parseFromString(res, 'text/html');
                 $('body').html(doc.body.innerHTML)
-                window.history.pushState({},"", url);
+                window.history.pushState({}, "", url);
             }
         })
     }
