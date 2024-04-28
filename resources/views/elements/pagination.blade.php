@@ -20,7 +20,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                             {!! __('pagination.previous') !!}
                         </span>
                     @else
-                        <button type="button" wire:click="previousPage('{{ $paginator->getPageName() }}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+                        <button type="button" onclick="paginate('{{ $paginator->getPageName() }}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before" class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
                             {!! __('pagination.previous') !!}
                         </button>
                     @endif
@@ -68,7 +68,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                     </span>
                                 </span>
                             @else
-                                <button type="button" wire:click="previousPage('{{ $paginator->getPageName() }}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('pagination.previous') }}">
+                                <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','prev')" x-on:click="{{ $scrollIntoViewJsSnippet }}" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('pagination.previous') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                                 </svg>
@@ -97,7 +97,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                                                 <span class="flex items-center justify-center w-1/2 px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">{{ $page }}</span>
                                             </span>
                                         @else
-                                            <button type="button" wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" class="flex items-center justify-center w-1/2 px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
+                                            <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','{{$page}}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" class="flex items-center justify-center w-1/2 px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                                                 {{ $page }}
                                             </button>
                                         @endif
@@ -109,7 +109,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                         <span>
                             {{-- Next Page Link --}}
                             @if ($paginator->hasMorePages())
-                                <button type="button" wire:click="nextPage('{{ $paginator->getPageName() }}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('pagination.next') }}">
+                                <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','forw')" x-on:click="{{ $scrollIntoViewJsSnippet }}" dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('pagination.next') }}">
 
                                 <span>
                                  Next
@@ -137,3 +137,39 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         </nav>
     @endif
 </div>
+
+<script>
+    function paginate(pageName,currentPage,move) { 
+        let url = document.location
+        let page = parseInt(currentPage)
+
+        if(move === 'prev'){
+            page -= 1
+        }else if(move === 'forw'){
+            page += 1
+        }else{
+            page = move 
+        }
+
+        if(url.search.includes(pageName)){
+            url = url.origin + url.pathname + url.search.replace(currentPage,page)
+        }else{
+            url = url.origin + url.pathname + "?" + pageName + "=" + page
+        }
+        
+        $.ajax({
+            url: url,
+            success:function (res) {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(res, 'text/html');
+                $('body').html(doc.body.innerHTML)
+                window.history.pushState({"html":res.html,"pageTitle":res.pageTitle},"", url);
+                console.log(res)
+            }
+        })
+        console.log(url)
+        console.log(page)
+        console.log(pageName)
+        console.log(currentPage)
+     }
+</script>
