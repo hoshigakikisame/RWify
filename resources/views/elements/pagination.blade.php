@@ -164,12 +164,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
                 let doc = parser.parseFromString(res, 'text/html');
                 $('body').html(doc.body.innerHTML)
                 window.history.pushState({"html":res.html,"pageTitle":res.pageTitle},"", url);
-                console.log(res)
             }
         })
-        console.log(url)
-        console.log(page)
-        console.log(pageName)
-        console.log(currentPage)
      }
 </script>

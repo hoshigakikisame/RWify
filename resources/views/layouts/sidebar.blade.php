@@ -15,7 +15,7 @@
 </head>
 
 <body class="relative bg-white dark:bg-gray-900">
-    <main class="flex gap-2">
+    <main class="flex">
         @php
         $footerMenu = ['Profile' => route('user.profile.index'), 'Sign Out' => route('auth.signOut')];
         @endphp
@@ -66,7 +66,7 @@
         </x-sidebarwrap>
         <div class=" overflow-hidden w-full">
             @include('components.flash-message')
-            <div class="h-screen pt-5 overflow-scroll no-scrollbar w-full ">
+            <div class="h-screen overflow-scroll no-scrollbar w-full ">
                 @yield('content')
             </div>
             @stack('modals')
@@ -111,13 +111,17 @@
         // hover for mobile views
         $('.nav-item a').on('mouseover', (e) => {
             if ($(window).width() < 1024) {
-                $(e.currentTarget).children('span').removeClass('hidden')
+                $($(e.currentTarget).children('span')).fadeIn(200, () => {
+                    $(e.currentTarget).children('span').removeClass('hidden')
+                });
             }
         })
 
         $('.nav-item a').on('mouseleave', (e) => {
             if ($(window).width() < 1024) {
-                $(e.currentTarget).children('span').addClass('hidden')
+                $($(e.currentTarget).children('span')).fadeOut(50, () => {
+                    $(e.currentTarget).children('span').addClass('hidden')
+                });
             }
         })
 
@@ -160,7 +164,7 @@
         }
 
         // check if user prefers dark mode in responsive device
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 1024) {
             checkTheme('hidden')
             moonIcon.addEventListener('click', () => {
                 switchTheme('hidden');
