@@ -155,6 +155,11 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         return $this->nkk;
     }
 
+    public function getImageUrl(): string | null
+    {
+        return $this->image_url;
+    }
+
     public function getEmail(): string
     {
         return $this->email;
@@ -260,6 +265,11 @@ class UserModel extends Authenticatable implements MustVerifyEmail
     public function setNkk(string $nkk): void
     {
         $this->nkk = $nkk;
+    }
+
+    public function setImageUrl(string $imageUrl): void
+    {
+        $this->image_url = $imageUrl;
     }
 
     public function setEmail(string $email): void

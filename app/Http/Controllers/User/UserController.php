@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\UserModel;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 class UserController extends Controller
 {
     /**
@@ -22,6 +24,23 @@ class UserController extends Controller
         return view('user/profile', compact('user'));
     }
 
+    public function updateProfileImage() {
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+        
+        /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+        $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+        $resultUrl = $cloudinaryResponse->getSecurePath();
+        
+        $user = request()->user();
+
+        $user->setImageUrl($resultUrl);
+        $user->save();
+
+        return redirect()->route('user.profile.index');
+    }
+
     public function updateProfile()
     {
         request()->validate([
@@ -29,6 +48,9 @@ class UserController extends Controller
             'pekerjaan' => 'required',
             'alamat' => 'required',
         ]);
+
+        $res = Cloudinary::upload(request()->file('image')->getRealPath());
+        dd($res);
 
         /** @var UserModel $user */
         $user = Auth::user();

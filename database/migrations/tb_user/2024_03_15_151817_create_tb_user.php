@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create("tb_user", function (Blueprint $table) {
             $table->string("nik", 16)->primary();
             $table->string("nkk", 16);
+            $table->string("image_url")->nullable();
             $table->string("email")->unique();
             $table->string("password", 72);
             $table->string("nama_depan");
