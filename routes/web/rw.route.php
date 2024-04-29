@@ -7,6 +7,7 @@ use App\Http\Controllers\RW\Manage\ManageWargaController;
 use App\Http\Controllers\RW\Manage\ManagePengumumanController;
 use App\Http\Controllers\RW\Manage\ManageUmkmController;
 use App\Http\Controllers\RW\Manage\ManageTemplateDokumenController;
+use App\Http\Controllers\RW\Manage\ManagePengaduanController;
 
 // rw routes
 Route::group([
@@ -64,6 +65,17 @@ Route::group([
             Route::post('new', [ManageTemplateDokumenController::class, 'addNewTemplateDokumen'])->name('new');
             Route::post('update', [ManageTemplateDokumenController::class, 'updateTemplateDokumen'])->name('update');
             Route::post('delete', [ManageTemplateDokumenController::class, 'deleteTemplateDokumen'])->name('delete');
+        });
+
+        // rw manage pengaduan routes
+        Route::group([
+            'prefix' => 'pengaduan',
+            'as' => 'pengaduan.'
+        ], function() {
+            Route::get('', [ManagePengaduanController::class, 'managePengaduanPage'])->name('pengaduan');
+            Route::post('new', [ManagePengaduanController::class, 'addNewPengaduan'])->name('new');
+            Route::post('update', [ManagePengaduanController::class, 'updatePengaduan'])->name('update');
+            Route::post('delete', [ManagePengaduanController::class, 'deletePengaduan'])->name('delete');
         });
     });
 });

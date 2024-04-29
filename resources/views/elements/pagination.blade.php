@@ -154,7 +154,6 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 </div>
 
 <script>
-
     $(document).ready(function(){
         $('#pageCount').val(document.location.search.includes('paginate') ? new URLSearchParams(document.location.search).get('paginate') : 10)
     });

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             PengumumanSeeder::class,
             UmkmSeeder::class,
             TemplateDokumenSeeder::class,
+            PengaduanSeeder::class,
         ]);
     }
 }

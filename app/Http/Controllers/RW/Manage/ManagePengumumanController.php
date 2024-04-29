@@ -46,9 +46,9 @@ class ManagePengumumanController extends Controller
             'konten' => request()->konten,
         ];
 
-        $newUser = UserModel::create($data);
+        $newPengumuman = PengumumanModel::create($data);
 
-        if(!$newUser) {
+        if(!$newPengumuman) {
             session()->flash('danger', 'Insert Failed.');
         } else {
             session()->flash('success', 'Insert Success.');

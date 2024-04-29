@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PengaduanModel extends Model {
+class PengaduanModel extends Model
+{
 
     use HasFactory;
     protected $table = 'tb_pengaduan';
@@ -15,7 +16,7 @@ class PengaduanModel extends Model {
 
     protected $fillable = [
         'id_pengaduan',
-        'nik',
+        'nik_pengadu',
         'judul',
         'isi',
         'path_gambar',
@@ -27,82 +28,102 @@ class PengaduanModel extends Model {
         'isi'
     ];
 
-    public static $statusOptions = [
-        'baru',
-        'diproses',
-        'invalid',
-        'selesai'
-    ];
+    public static function getStatusOptions()
+    {
+        return [
+            'baru',
+            'diproses',
+            'invalid',
+            'selesai'
+        ];
+    }
 
     // relationships
-    public function user() {
-        return $this->belongsTo(UserModel::class, 'nik', 'nik');
+    public function user()
+    {
+        return $this->belongsTo(UserModel::class, 'nik_pengadu', 'nik');
     }
 
     // GETTERS
-    public function getIdPengaduan(): int {
+    public function getIdPengaduan(): int
+    {
         return $this->id_pengaduan;
     }
 
-    public function getNik(): string {
-        return $this->nik;
+    public function getNikPengadu(): string
+    {
+        return $this->nik_pengadu;
     }
 
-    public function getJudul(): string {
+    public function getJudul(): string
+    {
         return $this->judul;
     }
 
-    public function getIsi(): string {
+    public function getIsi(): string
+    {
         return $this->isi;
     }
 
-    public function getPathGambar(): string {
+    public function getPathGambar(): string
+    {
         return $this->path_gambar;
     }
 
-    public function getStatus(): string {
+    public function getStatus(): string
+    {
         return $this->status;
     }
 
-    public function getDibuatPada(): string {
+    public function getDibuatPada(): string
+    {
         return $this->dibuat_pada;
     }
 
-    public function getDiperbaruiPada(): string {
+    public function getDiperbaruiPada(): string
+    {
         return $this->diperbarui_pada;
     }
 
 
     // SETTERS
-    public function setIdPengaduan(int $id_pengaduan): void {
+    public function setIdPengaduan(int $id_pengaduan): void
+    {
         $this->id_pengaduan = $id_pengaduan;
     }
 
-    public function setNik(string $nik): void {
-        $this->nik = $nik;
+    public function setNikPenganadu(string $nik): void
+    {
+        $this->nik_pengadu = $nik;
     }
 
-    public function setJudul(string $judul): void {
+    public function setJudul(string $judul): void
+    {
         $this->judul = $judul;
     }
 
-    public function setIsi(string $isi): void {
+    public function setIsi(string $isi): void
+    {
         $this->isi = $isi;
     }
 
-    public function setPathGambar(string $path_gambar): void {
+    public function setPathGambar(string $path_gambar): void
+    {
         $this->path_gambar = $path_gambar;
     }
 
-    public function setStatus(string $status): void {
+    public function setStatus(string $status): void
+    {
         $this->status = $status;
     }
 
-    public function setDibuatPada(string $dibuat_pada): void {
+    public function setDibuatPada(string $dibuat_pada): void
+    {
         $this->dibuat_pada = $dibuat_pada;
     }
 
-    public function setDiperbaruiPada(string $diperbarui_pada): void {
+    public function setDiperbaruiPada(string $diperbarui_pada): void
+    {
         $this->diperbarui_pada = $diperbarui_pada;
     }
 }
