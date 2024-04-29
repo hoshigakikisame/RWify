@@ -238,7 +238,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                     </table>
                 </div>
             </div>
-
         </div>
     </div>
 

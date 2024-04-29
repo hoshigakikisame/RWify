@@ -1,60 +1,56 @@
 @extends('layouts.sidebar')
 
 @section('content')
-    @php
-        $userImage = request()->user()->getImageUrl() ?? Vite::asset('resources/assets/images/avatar.jpg');
-        $image = Vite::asset('resources/assets/images/Semeru.png');
-    @endphp
-    <div class="mt-8 mx-14">
-        <div class="relative h-full">
-            <div class="background-display relative">
-                <img src="{{ $image }}" alt="backgroundImage" class="h-64 w-full bg-cover rounded-xl">
-                <button class="absolute -translate-y-2/4 right-5 bottom-0 bg-gray-500/50 p-2 rounded-full fill-gray-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
-                        <path
-                            d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
-                    </svg>
-                </button>
+@php
+$userImage = request()->user()->getImageUrl() ?? Vite::asset('resources/assets/images/avatar.jpg');
+$image = Vite::asset('resources/assets/images/Semeru.png');
+@endphp
+<div class="mt-8 mx-14">
+    <div class="relative h-full">
+        <div class="background-display relative">
+            <img src="{{ $image }}" alt="backgroundImage" class="h-64 w-full bg-cover rounded-xl">
+            <button class="absolute -translate-y-2/4 right-5 bottom-0 bg-gray-500/50 p-2 rounded-full fill-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
+                    <path d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
+                </svg>
+            </button>
+        </div>
+        <div class="user flex gap-12 relative">
+            <div class="user-avatar relative left-14 -top-20">
+                <div class="w-44 rounded-full border-4 bg-white dark:bg-gray-900 border-white dark:border-gray-800/20 h-44 bg-cover bg-center" style="background-image: url('{{ $userImage }}')">
+                </div>
+                <form action="{{ route('user.profile.updateImage') }}" method="post" id="formImage" enctype="multipart/form-data">
+                    @csrf
+                    <label>
+                        <input type="file" class="hidden" name="image" id="inputImage" accept="image/*">
+                        <div class="absolute -translate-y-1/4 right-5 bottom-0 bg-gray-500/80 p-2 rounded-full fill-gray-300 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
+                                <path d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
+                            </svg>
+                        </div>
+                    </label>
+                </form>
             </div>
-            <div class="user flex gap-12 relative">
-                <div class="user-avatar relative left-14 -top-20">
-                    <div class="w-44 rounded-full border-4 bg-white dark:bg-gray-900 border-white dark:border-gray-800/20 h-44 bg-cover bg-center"
-                        style="background-image: url('{{ $userImage }}')">
-                    </div>
-                    <form action="{{ route('user.profile.updateImage') }}" method="post" id="formImage"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <label>
-                            <input type="file" class="hidden" name="image" id="inputImage" accept="image/*">
-                            <div
-                                class="absolute -translate-y-1/4 right-5 bottom-0 bg-gray-500/80 p-2 rounded-full fill-gray-300 cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
-                                    <path
-                                        d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
-                                </svg>
-                            </div>
-                        </label>
-                    </form>
-                </div>
-                <div class="user-info relative mt-2 ml-8 dark:text-gray-50 text-gray-950">
-                    <h1 class="text-2xl font-Poppins font-semibold ">
-                        {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }}</h1>
-                    <h5 class="text-sm font-Inter font-medium text-gray-800 dark:text-gray-300">{{ $user->getRole() }}</h5>
-                    <p class="text-xs font-Inter text-gray-400 dark:text-gray-500">{{ $user->getEmail() }}</p>
-                </div>
+            <div class="user-info relative mt-2 ml-8 dark:text-gray-50 text-gray-950">
+                <h1 class="text-2xl font-Poppins font-semibold ">
+                    {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }}
+                </h1>
+                <h5 class="text-sm font-Inter font-medium text-gray-800 dark:text-gray-300">{{ $user->getRole() }}</h5>
+                <p class="text-xs font-Inter text-gray-400 dark:text-gray-500">{{ $user->getEmail() }}</p>
             </div>
         </div>
-        <nav class="py-1 px-2 mb-6 relative">
-            <ul class="flex gap-1 text-sm">
-                <li class="py-2 px-4"><button onclick="append(event);" ariaLabel="Profile">Profile</button></li>
-                <li class="py-2 px-4"><button onclick="append(event);" ariaLabel="changePassword">Change Password</button>
-                </li>
-            </ul>
-            <hr>
-        </nav>
-        <div class="body-profile">
-            <div class="container flex" id="panel">
-                <!-- <div class="user-information">
+    </div>
+    <nav class="py-1 px-2 mb-6 relative">
+        <ul class="flex gap-1 text-sm">
+            <li class="py-2 px-4 dark:text-gray-100"><button onclick="append(event);" ariaLabel="Profile">Profile</button></li>
+            <li class="py-2 px-4 dark:text-gray-100"><button onclick="append(event);" ariaLabel="changePassword">Change Password</button>
+            </li>
+        </ul>
+        <hr>
+    </nav>
+    <div class="body-profile">
+        <div class="container flex" id="panel">
+            <!-- <div class="user-information">
                                             <div class="panel panel-default ">
                                                 <div class="panel-heading mb-2">
                                                     <h1 class="text-xl leading-7">Profile</h1>
@@ -218,7 +214,7 @@
                                                 </div>
                                             </div>
                                         </div> -->
-                <!-- <div class="change-password">
+            <!-- <div class="change-password">
                                             <div class="panel">
                                                 <div class="panel-heading mb-2">
                                                     <h1 class="text-xl leading-7">Change Password</h1>
@@ -279,14 +275,14 @@
                                                 </div>
                                             </div>
                                         </div> -->
-            </div>
         </div>
     </div>
+</div>
 @endsection
 
 @push('scripts')
-    <script>
-        const passwordElement = /*html*/ `
+<script>
+    const passwordElement = /*html*/ `
     <div class="change-password">
                 <div class="panel">
                     <div class="panel-heading mb-2">
@@ -350,21 +346,21 @@
             </div>
     `
 
-        const profileElement = /*html */ `
+    const profileElement = /*html */ `
     <div class="user-information">
-                <div class="panel panel-default ">
+                <div class="panel panel-default dark:text-gray-100">
                     <div class="panel-heading mb-2">
                         <h1 class="text-xl leading-7">Profile</h1>
-                        <p class="text-[10px]">All information for {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }} in the system</p>
+                        <p class="text-[10px] dark:text-gray-400">All information for {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }} in the system</p>
                     </div>
                     <div id="panel-body" class="w-fit">
                         <form class="mb-5" method="POST" action="{{ route('user.profile.update') }}">
                             @csrf
                             <div class="flex gap-5 mb-3">
                                 <div class="form-group">
-                                    <label for="nama_depan" class="text-sm text-gray-700">Nama Depan</label>
+                                    <label for="nama_depan" class="text-sm text-gray-700 dark:text-gray-400">Nama Depan</label>
                                     <div class="mt-1">
-                                        <input id="nama_depan" type="text" class="rounded border-1 border-gray-500/50 text-gray-700 " name="nama_depan" value="{{ old('nama_depan', $user->getNamaDepan()) }}" disabled>
+                                        <input id="nama_depan" type="text" class="rounded border-1 border-gray-500/50 text-gray-200 dark:bg-gray-900" name="nama_depan" value="{{ old('nama_depan', $user->getNamaDepan()) }}" disabled>
                                     </div>
                                 </div>
 
@@ -510,49 +506,47 @@
                                 </div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>
     `
 
-        function appendProfileElement(element) {
-            $("#panel").fadeOut(500, () => {
-                $("#panel").html(element)
-            })
-
-            $("#panel").fadeIn(500, () => {
-                $("#panel").html(element)
-            })
-        }
-
-        let active = "rounded-t-md text-blue-500 border-blue-500 border-b-2"
-
-        function append(event, style = active) {
-            $(event.target).parents('ul').children().each((i, e) => {
-                $(e).removeClass(style)
-            })
-
-            $($(event.target).parent()).addClass(style)
-
-            if (event.target.attributes.arialabel.value === "changePassword") {
-                appendProfileElement(passwordElement)
-            } else {
-                appendProfileElement(profileElement)
-            }
-        }
-    </script>
-    <script type="module">
-        $(window).on('load', () => {
-            $($("[ariaLabel='Profile']").parent()).addClass(active)
-            appendProfileElement(profileElement)
+    function appendProfileElement(element) {
+        $("#panel").fadeOut(500, () => {
+            $("#panel").html(element)
         })
 
-        $('document').ready(() => {
-            $('#inputImage').change(() => {
-                $('#formImage').submit();
-            });
+        $("#panel").fadeIn(500, () => {
+            $("#panel").html(element)
+        })
+    }
+
+    let active = "rounded-t-md text-blue-500 dark:text-blue-500 border-blue-500 border-b-2"
+
+    function append(event, style = active) {
+        $(event.target).parents('ul').children().each((i, e) => {
+            $(e).removeClass(style)
+        })
+
+        $($(event.target).parent()).addClass(style)
+
+        if (event.target.attributes.arialabel.value === "changePassword") {
+            appendProfileElement(passwordElement)
+        } else {
+            appendProfileElement(profileElement)
+        }
+    }
+</script>
+<script type="module">
+    $(window).on('load', () => {
+        $($("[ariaLabel='Profile']").parent()).addClass(active)
+        appendProfileElement(profileElement)
+    })
+
+    $('document').ready(() => {
+        $('#inputImage').change(() => {
+            $('#formImage').submit();
         });
-    </script>
+    });
+</script>
 @endpush
