@@ -11,6 +11,9 @@ use App\Decorators\SearchableDecorator;
 use App\Models\PengumumanModel;
 use App\Models\UserModel;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
+
 
 class ManagePengumumanController extends Controller
 {
@@ -36,13 +39,17 @@ class ManagePengumumanController extends Controller
     {
         request()->validate([
             'judul' => 'required',
-            'path_gambar' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'konten' => 'required',
         ]);
+
+        /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+        $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+        $resultUrl = $cloudinaryResponse->getSecurePath();
         
         $data = [
             'judul' => request()->judul,
-            'path_gambar' => request()->path_gambar,
+            'image_url' => $resultUrl,
             'konten' => request()->konten,
         ];
 
@@ -63,7 +70,7 @@ class ManagePengumumanController extends Controller
         request()->validate([
             'id_pengumuman' => 'required',
             'judul' => 'required',
-            'path_gambar' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'konten' => 'required',
         ]);
 
@@ -73,9 +80,14 @@ class ManagePengumumanController extends Controller
         if(!$pengumuman) {
             session()->flash('danger', 'Update Failed.');
         } else {
-            $pengumuman->judul = request()->judul;
-            $pengumuman->path_gambar = request()->path_gambar;
-            $pengumuman->konten = request()->konten;
+
+            /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+            $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+            $resultUrl = $cloudinaryResponse->getSecurePath();
+
+            $pengumuman->setJudul(request()->judul);
+            $pengumuman->setImageUrl($resultUrl);
+            $pengumuman->setKonten(request()->konten);
             $pengumuman->save();
 
             session()->flash('success', 'Update Success.');

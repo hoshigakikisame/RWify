@@ -24,7 +24,7 @@ class PengaduanModelFactory extends Factory
             'judul' => $this->faker->sentence(),
             'nik_pengadu' => UserModel::get()->random()->getNik(),
             'isi' => $this->faker->paragraph(),
-            'path_gambar' => $this->faker->imageUrl(),
+            'image_url' => $this->faker->imageUrl(),
             'status' => $this->faker->randomElement(PengaduanModel::getStatusOptions()),
         ];
     }

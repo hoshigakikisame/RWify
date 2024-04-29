@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tb_umkm', function (Blueprint $table) {
             $table->id('id_umkm');
             $table->string('nama');
-            $table->text('path_gambar')->nullable();
+            $table->text('image_url')->nullable();
             $table->string('nama_pemilik');
             $table->string('alamat');
             $table->text('map_url')->nullable();

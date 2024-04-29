@@ -42,7 +42,7 @@
                         {{ substr(strip_tags($pengaduan->getIsi()), 50) . '...' }}
                     </td>
                     <td>
-                        {{ $pengaduan->getPathGambar() }}
+                        {{ $pengaduan->getImageUrl() }}
                     </td>
                     <td>
                         {{ $pengaduan->getStatus() }}

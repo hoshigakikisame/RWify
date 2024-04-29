@@ -34,7 +34,7 @@
                         {{ $pengumuman->getJudul() }}
                     </td>
                     <td>
-                        {{ $pengumuman->getPathGambar() }}
+                        {{ $pengumuman->getImageUrl() }}
                     </td>
                     <td>
                         {{ substr(strip_tags($pengumuman->getKonten()), 50) . '...' }}

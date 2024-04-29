@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nik_pengadu', 16);
             $table->text('judul');
             $table->text('isi');
-            $table->text('path_gambar');
+            $table->text('image_url');
             $table->enum('status', ['baru', 'invalid', 'diproses', 'selesai'])->default('baru');
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();

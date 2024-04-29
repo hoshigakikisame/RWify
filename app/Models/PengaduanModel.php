@@ -19,7 +19,7 @@ class PengaduanModel extends Model
         'nik_pengadu',
         'judul',
         'isi',
-        'path_gambar',
+        'image_url',
         'status',
     ];
 
@@ -65,9 +65,9 @@ class PengaduanModel extends Model
         return $this->isi;
     }
 
-    public function getPathGambar(): string
+    public function getImageUrl(): string
     {
-        return $this->path_gambar;
+        return $this->image_url;
     }
 
     public function getStatus(): string
@@ -107,9 +107,9 @@ class PengaduanModel extends Model
         $this->isi = $isi;
     }
 
-    public function setPathGambar(string $path_gambar): void
+    public function setImageUrl(string $image_url): void
     {
-        $this->path_gambar = $path_gambar;
+        $this->image_url = $image_url;
     }
 
     public function setStatus(string $status): void

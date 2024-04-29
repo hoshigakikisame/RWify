@@ -24,7 +24,7 @@ class UmkmModelFactory extends Factory
     {
         return [
             'nama' => $this->faker->sentence(),
-            'path_gambar' => 'build/assets/images/Semeru.png',
+            'image_url' => $this->faker->imageUrl(),
             'nama_pemilik' => $this->faker->name(),
             'alamat' => $this->faker->address(),
             'map_url' => $this->faker->url(),
