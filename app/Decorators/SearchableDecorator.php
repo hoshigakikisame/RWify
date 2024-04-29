@@ -22,14 +22,13 @@ class SearchableDecorator extends Decorator
      * @param string $query
      * @return LengthAwarePaginator
      */
-    public function search($query, $paginate = 10): LengthAwarePaginator
+    public function search($query, $paginate = 5): LengthAwarePaginator
     {
-        if ($paginate == null) $paginate = 10;
+        if ($paginate == null) $paginate = 5;
         return $this->model::where(function ($queryBuilder) use ($query) {
             foreach ($this->searchable as $field) {
                 $queryBuilder->orWhere($field, 'like', "%$query%");
             }
         })->paginate($paginate);
     }
-
 }

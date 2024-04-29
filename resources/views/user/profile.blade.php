@@ -17,7 +17,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
         </div>
         <div class="user flex gap-12 relative">
             <div class="user-avatar relative left-14 -top-20">
-                <div class="w-44 rounded-full border-4 bg-white dark:bg-gray-900 border-white dark:border-gray-800/20 h-44 bg-cover bg-center" style="background-image: url('{{ $userImage }}')">
+                <div class="w-44 rounded-full border-4 bg-white dark:bg-gray-900 border-white dark:border-gray-900 h-44 bg-cover bg-center" style="background-image: url('{{ $userImage }}')">
                 </div>
                 <form action="{{ route('user.profile.updateImage') }}" method="post" id="formImage" enctype="multipart/form-data">
                     @csrf
@@ -49,7 +49,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
         <hr>
     </nav>
     <div class="body-profile">
-        <div class="container flex" id="panel">
+        <div class="container flex pb-10" id="panel">
             <!-- <div class="user-information">
                                             <div class="panel panel-default ">
                                                 <div class="panel-heading mb-2">
@@ -284,19 +284,19 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
 <script>
     const passwordElement = /*html*/ `
     <div class="change-password">
-                <div class="panel">
+                <div class="panel dark:text-gray-100 w-80">
                     <div class="panel-heading mb-2">
                         <h1 class="text-xl leading-7">Change Password</h1>
-                        <p class="text-[10px]">Change your password for {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }} in the system</p>
+                        <p class="text-[10px] dark:text-gray-400">Change your password for {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }} in the system</p>
                     </div>
                     <div id="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('user.profile.updatePassword') }}">
+                        <form class="form-horizontal " method="POST" action="{{ route('user.profile.updatePassword') }}">
                             @csrf
-                            <div class="form-group mb-3">
-                                <label for="current_password" class="text-sm text-gray-700">Current Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="current_password" type="password" class="rounded border-1 border-gray-500/50 text-gray-700 @error('current_password') is-invalid @enderror" name="current_password" required>
+                            <div class="form-group mb-4">
+                                <label for="current_password" class="text-sm text-gray-500 dark:text-gray-400">Current Password</label>
+                                <div class="mt-1">
+                                    <input id="current_password" type="password" class="w-full rounded border-1 border-gray-500/50
+                                    text-gray-700 dark:text-gray-200 dark:bg-gray-900 @error('current_password') is-invalid @enderror" name="current_password" required>
                                     @error('current_password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -306,10 +306,10 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                             </div>
 
                             <div class="form-group mb-2">
-                                <label for="new_password" class="text-sm text-gray-700">New Password</label>
+                                <label for="new_password" class="text-sm text-gray-500 dark:text-gray-400">New Password</label>
 
-                                <div class="col-md-6">
-                                    <input id="new_password" type="password" class="rounded border-1 border-gray-500/50 text-gray-700 @error('new_password') is-invalid @enderror" name="new_password" required>
+                                <div class="mt-1">
+                                    <input id="new_password" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-gray-900 @error('new_password') is-invalid @enderror" name="new_password" required>
 
                                     @error('new_password')
                                     <span class="invalid-feedback" role="alert">
@@ -320,9 +320,9 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="new_password_confirmation" class="text-sm text-gray-700">New Password Confirmation</label>
-                                <div class="col-md-6">
-                                    <input id="new_password_confirmation" type="password" class="rounded border-1 border-gray-500/50 text-gray-700 @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required>
+                                <label for="new_password_confirmation" class="text-sm text-gray-500 dark:text-gray-400">New Password Confirmation</label>
+                                <div class="mt-1">
+                                    <input id="new_password_confirmation" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-gray-900 @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required>
 
                                     @error('new_password_confirmation')
                                     <span class="invalid-feedback" role="alert">
@@ -332,8 +332,8 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                            <div class="form-group mb-4">
+                                <div class="">
                                     <button type="submit" class="px-4 py-2
                                      bg-blue-500 rounded-md text-sm text-white">
                                         <span>Update Password</span>
@@ -357,49 +357,25 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                         <form class="mb-5" method="POST" action="{{ route('user.profile.update') }}">
                             @csrf
                             <div class="flex gap-5 mb-3">
-                                <div class="form-group">
-                                    <label for="nama_depan" class="text-sm text-gray-700 dark:text-gray-400">Nama Depan</label>
-                                    <div class="mt-1">
-                                        <input id="nama_depan" type="text" class="rounded border-1 border-gray-500/50 text-gray-200 dark:bg-gray-900" name="nama_depan" value="{{ old('nama_depan', $user->getNamaDepan()) }}" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="nama_belakang" class="text-sm text-gray-700">Nama Belakang</label>
-                                    <div class="mt-1">
-                                        <input id="nama_belakang" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="nama_belakang" value="{{ old('nama_belakang', $user->getNamaBelakang()) }}" disabled>
-                                    </div>
-                                </div>
+                                <x-inputprofile title="Nama Depan" key="nama_depan" type="text" value="{{old('nama_depan', $user->getNamaDepan()) }}" disabled="true"/>
+                                <x-inputprofile title="Nama Belakang" key="nama_belakang" type="text" value="{{ old('nama_belakang', $user->getNamaBelakang()) }}" disabled="true"/>
                             </div>
 
                             <div class="flex gap-5 mb-3">
-                                <div class="form-group">
-                                    <label for="nik" class="text-sm text-gray-700">NIK</label>
-
-                                    <div class="mt-1">
-                                        <input id="nik" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="nik" value="{{ old('nik', $user->getNik()) }}" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="nkk" class="text-sm text-gray-700">NKK</label>
-
-                                    <div class="mt-1">
-                                        <input id="nkk" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="nkk" value="{{ old('nkk', $user->getNkk()) }}" disabled>
-                                    </div>
-                                </div>
+                            <x-inputprofile title="NIK" key="nik" type="text" value="{{ old('nik', $user->getNik()) }}" disabled="true"/>
+                            <x-inputprofile title="NKK" key="nkk" type="text" value="{{ old('nkk', $user->getNkk()) }}" disabled="true"/>
                             </div>
 
 
                             <div class="form-group w-full mb-3">
-                                <label for="email" class="text-sm text-gray-700">Email <span class="text-xs {{ $user->getEmailVerifiedAt() ? 'text-green-500/80' : 'text-rose-500/90' }}">
+                                <label for="email" class="text-sm text-gray-500 dark:text-gray-400">Email <span class="text-xs {{ $user->getEmailVerifiedAt() ? 'text-green-500/80' : 'text-rose-500/90' }}">
                                         ({{ $user->getEmailVerifiedAt() ? 'Email Verified' : 'Email Not Verified' }})
                                     </span>
                                 </label>
                                 <div class="w-full flex text-nowrap gap-5 items-center mt-1">
-                                    <input id="email" type="email" class="rounded border-1 border-gray-500/50 text-gray-700" name="email" value="{{ old('email', $user->getEmail()) }}" required>
+                                    <input id="email" type="email" class="rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-gray-900" name="email" value="{{ old('email', $user->getEmail()) }}" required>
                                     @if ($user->getEmailVerifiedAt() == null)
-                                    <a href="{{ route('user.verification.send') }}" class="text-xs text-green-800 px-3 py-1 bg-green-500/20 rounded-full">Send Email
+                                    <a href="{{ route('user.verification.send') }}" class="text-xs text-green-800 dark:text-green-500 px-3 py-1 bg-green-500/20 bg-green-600/20 rounded-full">Send Email
                                         Verification</a>
                                     @endif
                                 </div>
@@ -407,97 +383,32 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
 
 
                             <div class="flex gap-5 mb-3">
-                                <div class="form-group">
-                                    <label for="tempat_lahir" class="text-sm text-gray-700">Tempat Lahir</label>
-
-                                    <div class="mt-1">
-                                        <input id="tempat_lahir" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="tempat_lahir" value="{{ old('tempat_lahir', $user->getTempatLahir()) }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group w-full">
-                                    <label for="tanggal_lahir" class="text-sm text-gray-700">Tanggal Lahir</label>
-                                    <div class="mt-1">
-                                        <input id="tanggal_lahir" type="date" class="w-full rounded border-1 border-gray-500/50 text-gray-700" name="tanggal_lahir" value="{{ old('tempat_lahir', $user->getTanggalLahir()) }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="golongan_darah" class="text-sm text-gray-700">Golongan Darah</label>
-
-                                    <div class="mt-1">
-                                        <input id="golongan_darah" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="golongan_darah" value="{{ old('golongan_darah', $user->getGolonganDarah()) }}" disabled>
-                                    </div>
-                                </div>
+                                <x-inputprofile title="Tempat Lahir" key="tempat_lahir" type="text" value="{{ old('tempat_lahir', $user->getTempatLahir()) }}" disabled="true"/>
+                                <x-inputprofile title="Tanggal Lahir" key="tanggal_lahir" type="date" value="{{ old('tempat_lahir', $user->getTanggalLahir()) }}" disabled="true" class="w-full" />
+                                <x-inputprofile title="Golongan Darah" key="golongan_darah" type="text" value="{{ old('golongan_darah', $user->getGolonganDarah()) }}" disabled="true"/> 
                             </div>
 
                             <div class="mb-3">
-                                <label for="alamat" class="text-sm text-gray-700">Alamat</label>
-
-                                <div class="mt-1">
-                                    <input id="alamat" type="text" class="w-full rounded border-1 border-gray-500/50 text-gray-700" name="alamat" value="{{ old('alamat', $user->getAlamat()) }}" required>
-                                </div>
+                                <x-inputprofile title="Alamat" key="alamat" type="text" value="{{ old('alamat', $user->getAlamat()) }}" disabled="true" class="w-full" />
                             </div>
                             <div class="flex gap-5 mb-3">
-                                <div class="form-group">
-                                    <label for="jenis_kelamin" class="text-sm text-gray-700">Jenis Kelamin</label>
-
-                                    <div class="mt-1">
-                                        <input id="jenis_kelamin" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="jenis_kelamin" value="{{ old('jenis_kelamin', $user->getJenisKelamin()) }}" disabled>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="agama" class="text-sm text-gray-700">Agama</label>
-
-                                    <div class="mt-1">
-                                        <input id="agama" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="agama" value="{{ old('agama', $user->getAgama()) }}" disabled>
-                                    </div>
-                                </div>
+                            <x-inputprofile title="Jenis Kelamin" key="jenis_kelamin" type="text" value="{{ old('jenis_kelamin', $user->getJenisKelamin()) }}" disabled="true" />
+                            <x-inputprofile title="Agama" key="agama" type="text" value="{{ old('agama', $user->getAgama()) }}" disabled="true" />
                             </div>
 
                             <div class="flex gap-5 mb-3">
-                                <div class="form-group">
-                                    <label for="pekerjaan" class="text-sm text-gray-700">Pekerjaan</label>
-
-                                    <div class="col-md-6">
-                                        <input id="pekerjaan" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="pekerjaan" value="{{ old('pekerjaan', $user->getPekerjaan()) }}" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="status_perkawinan" class="text-sm text-gray-700">Status Perkawinan</label>
-
-                                    <div class="col-md-6">
-                                        <input id="status_perkawinan" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="status_perkawinan" value="{{ old('status_perkawinan', $user->getStatusPerkawinan()) }}" disabled>
-                                    </div>
-                                </div>
-
+                            <x-inputprofile title="Pekerjaan" key="pekerjaan" type="text" value="{{ old('pekerjaan', $user->getPekerjaan()) }}" disabled="true" /> 
+                            <x-inputprofile title="Status Perkawinan" key="status_perkawinan" type="text" value="{{ old('status_perkawinan', $user->getStatusPerkawinan()) }}" disabled="true" />
                             </div>
 
                             <div class="flex gap-5 mb-3">
-                                <div class="form-group">
-                                    <label for="tipe_warga" class="text-sm text-gray-700">Tipe Warga</label>
-
-                                    <div class="col-md-6">
-                                        <input id="tipe_warga" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="tipe_warga" value="{{ old('tipe_warga', $user->getTipeWarga()) }}" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="role" class="text-sm text-gray-700">Role</label>
-
-                                    <div class="col-md-6">
-                                        <input id="role" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="role" value="{{ old('role', $user->getRole()) }}" disabled>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="id_rukun_tetangga" class="text-sm text-gray-700">Rukun Tetangga</label>
-
-                                    <div class="col-md-6">
-                                        <input id="id_rukun_tetangga" type="text" class="rounded border-1 border-gray-500/50 text-gray-700" name="id_rukun_tetangga" value="{{ old('id_rukun_tetangga', $user->getRukunTetangga()->getNomorRukunTetangga()) }}" disabled>
-                                    </div>
-                                </div>
+                            <x-inputprofile title="Tipe Warga" key="tipe_warga" type="text" value="{{ old('tipe_warga', $user->getTipeWarga()) }}" disabled="true" />
+                            <x-inputprofile title="Role" key="role" type="text" value="{{ old('role', $user->getRole()) }}" disabled="true" />
+                            <x-inputprofile title="Rukun Tetangga" key="id_rukun_tetangga" type="text" value="{{ old('id_rukun_tetangga', $user->getRukunTetangga()->getNomorRukunTetangga()) }}" disabled="true" />
+                            
                             </div>
 
-                            <div class="form-action">
+                            <div class="form-action mb-4">
                                 <div class="flex justify-end">
                                     <button type="submit" class="px-4 py-2
                                      bg-blue-500 rounded-md text-sm text-white">
