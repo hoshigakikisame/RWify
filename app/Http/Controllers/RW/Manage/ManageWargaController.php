@@ -15,11 +15,13 @@ class ManageWargaController extends Controller
     /**
      * Mark the authenticated user's email address as verified.
      */
+
     public function manageWargaPage()
     {
-        $reqQuery = request()->q;
+        $query = request()->q;
+        $paginate = request()->paginate;
 
-        $users = (new SearchableDecorator(UserModel::class))->search($reqQuery);
+        $users = (new SearchableDecorator(UserModel::class))->search($query, $paginate);
 
         $data = [
             "users" => $users

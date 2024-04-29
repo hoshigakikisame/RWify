@@ -10,6 +10,21 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
     : '';
 @endphp
 
+<div class="pt-3 ">
+    <div class="flex">
+        <div class="flex items-center">
+            <label for="perPage" class="w-32 text-sm font-medium text-gray-800 dark:text-gray-300">Per Page</label>
+            <select name="pageCount" id="pageCount" class="bg-white border border-gray-300 dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm rounded-lg" onchange="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','1')">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+    </div>
+</div>
+
 <div class="pt-2">
     @if ($paginator->hasPages())
         <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
@@ -139,6 +154,11 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 </div>
 
 <script>
+
+    $(document).ready(function(){
+        $('#pageCount').val(document.location.search.includes('paginate') ? new URLSearchParams(document.location.search).get('paginate') : 10)
+    });
+
     function paginate(pageName,currentPage,move) { 
         let url = document.location
         let page = parseInt(currentPage)
@@ -155,6 +175,13 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
             url = url.origin + url.pathname + url.search.replace(currentPage,page)
         }else{
             url = url.origin + url.pathname + "?" + pageName + "=" + page
+        }
+
+        const pageCount = document.querySelector('#pageCount').value
+        if (url.includes('paginate')) {
+            url = url.replace(/paginate=\d+/, `paginate=${pageCount}`)
+        } else {
+            url = url + `&paginate=${pageCount}`
         }
         
         $.ajax({
