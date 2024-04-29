@@ -287,12 +287,13 @@
 
                         <form enctype="multipart/form-data" class="mt-5" id="editModalForm" action="{{ route('rw.manage.umkm.update') }}" method="post">
                             @csrf
-                            <x-inputform title="Nama UMKM" key="umkm" type="text" placeholder="UMKM"  value="${umkm.nama}" />
-                            <x-inputform title="Nama Pemilik" key="pemilik" type="text" placeholder="Pemilik"  value="${umkm.nama_pemilik}" />
-                            <x-inputform title="No. Telepon" key="notelp" type="text" placeholder="1234567892322"  value="${umkm.telepon}" />
+                            <input type="text" name="id_umkm" value="${umkm.id_umkm}" hidden >
+                            <x-inputform title="Nama UMKM" key="nama" type="text" placeholder="UMKM"  value="${umkm.nama}" />
+                            <x-inputform title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik"  value="${umkm.nama_pemilik}" />
+                            <x-inputform title="No. Telepon" key="telepon" type="text" placeholder="1234567892322"  value="${umkm.telepon}" />
                             <x-textareainputform title="Alamat" key="alamat" placeholder="Jl Brawijaya no 14"  value="${umkm.alamat}" />
-                            <x-inputform title="Maps URL" key="maps" type="text" placeholder="Maps"  value="${umkm.map_url}" />
-                            <x-inputform title="Instagram URL" key="instagram" type="text" placeholder="Instagram"  value="${umkm.map_instagram}" />
+                            <x-inputform title="Maps URL" key="map_url" type="text" placeholder="Maps"  value="${umkm.map_url}" />
+                            <x-inputform title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram"  value="${umkm.map_instagram}" />
                             <x-textareainputform title="Deskripsi" key="deskripsi" placeholder="Deskripsi"  value="${umkm.deskripsi}" />
                             <x-inputform title="Gambar" key="gambar" type="file" placeholder="Gambar"  value="${umkm.path_gambar}" />
 
