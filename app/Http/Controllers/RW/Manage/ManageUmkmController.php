@@ -28,7 +28,7 @@ class ManageUmkmController extends Controller
     {
         request()->validate([
             'nama' => 'required',
-            'path_gambar' => 'required',
+            'path_gambar' => '',
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'map_url' => 'required',
@@ -39,7 +39,7 @@ class ManageUmkmController extends Controller
         
         $data = [
             'nama' => request()->nama,
-            'path_gambar' => request()->path_gambar,
+            // 'path_gambar' => request()->path_gambar,
             'nama_pemilik' => request()->nama_pemilik,
             'alamat' => request()->alamat,
             'map_url' => request()->map_url,
@@ -47,16 +47,17 @@ class ManageUmkmController extends Controller
             'instagram_url' => request()->instagram_url,
             'deskripsi' => request()->deskripsi,
         ];
-
+        
         $newUMKM = UmkmModel::create($data);
 
         if(!$newUMKM) {
-            session()->flash('danger', 'Insert Failed.');
+            session()->flash('danger', 'Gagal Menambahkan UMKM');
         } else {
-            session()->flash('success', 'Insert Success.');
+            session()->flash('success', 'Berhasil Menambahkan UMKM');
         }
 
-        return redirect()->route('rw.manage.umkm');
+        //return redirect()->route('rw.manage.umkm');
+        return 'sliwik';
     }
 
     // update UMKM with validation
@@ -65,7 +66,7 @@ class ManageUmkmController extends Controller
         request()->validate([
             'id_umkm' => 'required',
             'nama' => 'required',
-            'path_gambar' => 'required',
+            // 'path_gambar' => 'required',
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'map_url' => 'required',
@@ -78,7 +79,7 @@ class ManageUmkmController extends Controller
         $umkm = UmkmModel::find($idUmkm);
 
         if(!$umkm){
-            session()->flash('danger', 'Update Failed.');
+            session()->flash('danger', 'Gagal Mengupdate UMKM');
         } else {
             $umkm->setNama(request()->nama);
             $umkm->setPathGambar(request()->path_gambar);
@@ -90,10 +91,11 @@ class ManageUmkmController extends Controller
             $umkm->setDeskripsi(request()->deskripsi);
             $umkm->save();
 
-            session()->flash('success', 'Update Success.');   
+            session()->flash('success', 'Berhasil Mengupdate UMKM');   
         }
 
-        return redirect()->route('rw.manage.umkm');
+        //return redirect()->route('rw.manage.umkm');
+        return 'done';
     }
 
     public function deleteUmkm()
@@ -106,12 +108,13 @@ class ManageUmkmController extends Controller
         $umkm = UmkmModel::find($idUmkm);
 
         if(!$umkm) {
-            session()->flash('danger', 'Delete Failed.');
+            session()->flash('danger', 'Gagal Menghapus UMKM');
         } else {
             $umkm->delete();
-            session()->flash('success', 'Delete Success.');
+            session()->flash('success', 'Berhasil Menghapus UMKM');
         }
 
-        return redirect()->route('rw.manage.umkm');
+        //return redirect()->route('rw.manage.umkm');
+        return 'delete done';
     }
 }
