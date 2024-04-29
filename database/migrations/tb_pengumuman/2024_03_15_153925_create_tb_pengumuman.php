@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tb_pengumuman', function (Blueprint $table) {
             $table->id('id_pengumuman');
             $table->string('judul');
-            $table->text('path_gambar')->nullable();
+            $table->text('image_url')->nullable();
             $table->text('konten');
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();

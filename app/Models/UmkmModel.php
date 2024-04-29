@@ -16,7 +16,7 @@ class UmkmModel extends Model
     protected $fillable = [
         'id_umkm',
         'nama',
-        'path_gambar',
+        'image_url',
         'nama_pemilik',
         'alamat',
         'map_url',
@@ -47,8 +47,8 @@ class UmkmModel extends Model
         return $this->nama;
     }
 
-    public function getPathGambar(): string {
-        return $this->path_gambar;
+    public function getImageUrl(): string {
+        return $this->image_url;
     }
 
     public function getNamaPemilik(): string {
@@ -93,8 +93,8 @@ class UmkmModel extends Model
         $this->nama = $nama;
     }
 
-    public function setPathGambar(string $path_gambar): void {
-        $this->path_gambar = $path_gambar;
+    public function setImageUrl(string $image_url): void {
+        $this->image_url = $image_url;
     }
 
     public function setNamaPemilik(string $nama_pemilik): void {

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\RW\Manage;
 
-// Illuminate
-use Illuminate\Support\Facades\Hash;
-
 // App
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\PengaduanModel;
-use App\Models\UserModel;
-use Illuminate\Support\Facades\Auth;
+
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ManagePengaduanController extends Controller
 {
@@ -38,15 +35,19 @@ class ManagePengaduanController extends Controller
         request()->validate([
             'judul' => 'required',
             'isi' => 'required',
-            'path_gambar' => '',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'status' => 'required',
         ]);
+
+        /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+        $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+        $resultUrl = $cloudinaryResponse->getSecurePath();
         
         $data = [
             'judul' => request()->judul,
             'nik_pengadu' => request()->user()->getNik(),
             'isi' => request()->isi,
-            'path_gambar' => request()->path_gambar,
+            'image_url' => $resultUrl,
             'status' => request()->status,
         ];
 
@@ -68,7 +69,7 @@ class ManagePengaduanController extends Controller
             'id_pengaduan' => 'required',
             'judul' => 'required',
             'isi' => 'required',
-            'path_gambar' => '',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'status' => 'required',
         ]);
 
@@ -78,10 +79,15 @@ class ManagePengaduanController extends Controller
         if(!$pengaduan) {
             session()->flash('danger', 'Update Failed.');
         } else {
-            $pengaduan->judul = request()->judul;
-            $pengaduan->isi = request()->isi;
-            $pengaduan->path_gambar = request()->path_gambar;
-            $pengaduan->status = request()->status;
+
+            /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+            $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+            $resultUrl = $cloudinaryResponse->getSecurePath();
+
+            $pengaduan->setJudul(request()->judul);
+            $pengaduan->setIsi(request()->isi);
+            $pengaduan->setImageUrl($resultUrl);
+            $pengaduan->setStatus(request()->status);
             $pengaduan->save();
 
             session()->flash('success', 'Update Success.');

@@ -20,7 +20,7 @@ class PengumumanModelFactory extends Factory
     {
         return [
             'judul' => $this->faker->sentence(),
-            'path_gambar' => 'build/assets/images/Semeru.png',
+            'image_url' => $this->faker->imageUrl(),
             'konten' => $this->faker->paragraph()
         ];
     }

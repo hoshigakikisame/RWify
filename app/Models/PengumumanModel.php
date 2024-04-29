@@ -17,7 +17,7 @@ class PengumumanModel extends Model
     protected $fillable = [
         'id_pengumuman',
         'judul',
-        'path_gambar',
+        'image_url',
         'konten',
         'dibuat_pada',
         'diperbarui_pada'
@@ -41,9 +41,9 @@ class PengumumanModel extends Model
         return $this->judul;
     }
 
-    public function getPathGambar(): string
+    public function getImageUrl(): string
     {
-        return $this->path_gambar;
+        return $this->image_url;
     }
 
     public function getKonten(): string
@@ -73,9 +73,9 @@ class PengumumanModel extends Model
         $this->judul = $judul;
     }
 
-    public function setPathGambar(string $path_gambar): void
+    public function setImageUrl(string $image_url): void
     {
-        $this->path_gambar = $path_gambar;
+        $this->image_url = $image_url;
     }
 
     public function setKonten(string $konten): void

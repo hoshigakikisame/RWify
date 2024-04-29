@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\UmkmModel;
 use App\Decorators\SearchableDecorator;
 
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 class ManageUmkmController extends Controller
 {
     /**
@@ -16,7 +18,7 @@ class ManageUmkmController extends Controller
         $reqQuery = request()->q;
 
         $umkmInstances = (new SearchableDecorator(UmkmModel::class))->search($reqQuery);
-        
+
         $data = [
             "umkmInstances" => $umkmInstances
         ];
@@ -28,7 +30,7 @@ class ManageUmkmController extends Controller
     {
         request()->validate([
             'nama' => 'required',
-            'path_gambar' => '',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'map_url' => 'required',
@@ -36,10 +38,18 @@ class ManageUmkmController extends Controller
             'instagram_url' => 'required',
             'deskripsi' => 'required',
         ]);
-        
+
+        $imageUrl = '';
+
+        if (!request()->hasFile('image')) {
+            /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+            $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+            $imageUrl = $cloudinaryResponse->getSecurePath();
+        }
+
         $data = [
             'nama' => request()->nama,
-            // 'path_gambar' => request()->path_gambar,
+            'image_url' => $imageUrl,
             'nama_pemilik' => request()->nama_pemilik,
             'alamat' => request()->alamat,
             'map_url' => request()->map_url,
@@ -47,10 +57,10 @@ class ManageUmkmController extends Controller
             'instagram_url' => request()->instagram_url,
             'deskripsi' => request()->deskripsi,
         ];
-        
+
         $newUMKM = UmkmModel::create($data);
 
-        if(!$newUMKM) {
+        if (!$newUMKM) {
             session()->flash('danger', 'Gagal Menambahkan UMKM');
         } else {
             session()->flash('success', 'Berhasil Menambahkan UMKM');
@@ -66,7 +76,7 @@ class ManageUmkmController extends Controller
         request()->validate([
             'id_umkm' => 'required',
             'nama' => 'required',
-            // 'path_gambar' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'map_url' => 'required',
@@ -74,15 +84,22 @@ class ManageUmkmController extends Controller
             'instagram_url' => 'required',
             'deskripsi' => 'required',
         ]);
-        
+
         $idUmkm = request()->id_umkm;
         $umkm = UmkmModel::find($idUmkm);
 
-        if(!$umkm){
+        if (!$umkm) {
             session()->flash('danger', 'Gagal Mengupdate UMKM');
         } else {
+
+            if (request()->hasFile('image')) {
+                /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+                $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+                $imageUrl = $cloudinaryResponse->getSecurePath();
+                $umkm->setImageUrl($imageUrl);
+            }
+
             $umkm->setNama(request()->nama);
-            $umkm->setPathGambar(request()->path_gambar);
             $umkm->setNamaPemilik(request()->nama_pemilik);
             $umkm->setAlamat(request()->alamat);
             $umkm->setMapUrl(request()->map_url);
@@ -91,7 +108,7 @@ class ManageUmkmController extends Controller
             $umkm->setDeskripsi(request()->deskripsi);
             $umkm->save();
 
-            session()->flash('success', 'Berhasil Mengupdate UMKM');   
+            session()->flash('success', 'Berhasil Mengupdate UMKM');
         }
 
         //return redirect()->route('rw.manage.umkm');
@@ -107,7 +124,7 @@ class ManageUmkmController extends Controller
         $idUmkm = request()->id_umkm;
         $umkm = UmkmModel::find($idUmkm);
 
-        if(!$umkm) {
+        if (!$umkm) {
             session()->flash('danger', 'Gagal Menghapus UMKM');
         } else {
             $umkm->delete();
