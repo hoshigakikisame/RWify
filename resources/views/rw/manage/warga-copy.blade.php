@@ -386,15 +386,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                 let doc = parser.parseFromString(response, 'text/html');
                                 $('body').html(doc.body.innerHTML)
                                 setTimeout(function() {
-                                    $.ajax({
-                                        url: document.location,
-                                        type: "GET",
-                                        success: function(response) {
-                                            let parser = new DOMParser();
-                                            let doc = parser.parseFromString(response, 'text/html');
-                                            $('body').html(doc.body.innerHTML)
-                                        }
-                                    })
+                                    $(".flash-message").remove()
                                 }, 5000)
                             }
                         })
