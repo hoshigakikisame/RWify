@@ -11,7 +11,7 @@
                 <x-inputform title="Nama" key="email" type="text" placeholder="Enter Nama" />
                 <x-inputform title="NIK" key="nik" type="text" placeholder="Enter Email" />
                 <x-inputform title="Judul" key="judul" type="text" placeholder="Enter Judul" />
-                <x-textareainputform title="Judul" key="judul" type="text" placeholder="Enter Judul" />
+                <x-textareainputform title="Deskripsi Pengaduan" key="judul" type="text" placeholder="Enter Deskripsi Pengaduan" />
             </div>
             <div class="">
                 <x-inputimage id="imagePengaduan" title="Evidence" key="image" placeholder="Gambar" />
