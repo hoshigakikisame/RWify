@@ -154,35 +154,23 @@
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <span
-                                                class="dark:text-gray-200 truncate inline-flex items-center justify-center w-56 2xl:w-full px-3 py-1.5 rounded-full text-sm
-                                        @if ($pengaduan->getStatus() == 'baru') bg-blue-50 text-blue-700 ring-blue-700/10
-                                        @elseif($pengaduan->getStatus() == 'diproses') bg-yellow-50 text-yellow-800 ring-yellow-600/20
-                                        @elseif($pengaduan->getStatus() == 'invalid') bg-red-50 text-red-700 ring-red-600/10
-                                        @elseif($pengaduan->getStatus() == 'selesai') bg-green-50 text-green-700 ring-green-600/20
-                                        @else bg-gray-50 text-gray-600 ring-gray-500/10 @endif">
-                                                <span
-                                                    class="mr-1.5 h-3 w-3 rounded-full inline-block
-                                            @if ($pengaduan->getStatus() == 'baru') bg-blue-500
-                                            @elseif($pengaduan->getStatus() == 'diproses') bg-yellow-500
-                                            @elseif($pengaduan->getStatus() == 'invalid') bg-red-500
-                                            @elseif($pengaduan->getStatus() == 'selesai') bg-green-500
-                                            @else bg-gray-500 @endif"></span>
-                                                <span class="text-sm">
-                                                    {{ $pengaduan->getStatus() }}
+                                            <span class="dark:text-gray-200 truncate inline-flex items-center justify-center w-56 2xl:w-full px-3 py-1.5 rounded-full text-sm
+                                                @if($pengaduan->getStatus() == 'baru') bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blue-500 text-blue-500 
+                                                @elseif($pengaduan->getStatus() == 'diproses') bg-yellow-50 text-yellow-800 ring-yellow-600/20 dark:bg-yellow-500 text-yellow-500
+                                                @elseif($pengaduan->getStatus() == 'invalid') bg-red-50 text-red-700 ring-red-600/10 dark:bg-red-500 text-red-500
+                                                @elseif($pengaduan->getStatus() == 'selesai') bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-500 text-green-500
+                                                @else bg-gray-50 text-gray-600 ring-gray-500/10 @endif">
+                                                <span class="me-1 h-3 w-3 rounded-full inline-block
+                                                    @if($pengaduan->getStatus() == 'baru') bg-blue-500 dark:bg-blue-50
+                                                    @elseif($pengaduan->getStatus() == 'diproses') bg-yellow-500 dark:bg-yellow-50
+                                                    @elseif($pengaduan->getStatus() == 'invalid') bg-red-500 dark:bg-red-50
+                                                    @elseif($pengaduan->getStatus() == 'selesai') bg-green-500 dark:bg-green-50
+                                                    @else bg-gray-500 @endif">
                                                 </span>
+                                                {{ $pengaduan->getStatus() }}
                                             </span>
                                         </td>
-
-
-
-
-
-
-
-
-
-
+                                        
 
                                         <td class="px-4 py-4 pe-4 pe-0 ps-6 text-sm flex" id="action"
                                             x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
