@@ -134,7 +134,7 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                                 </td>
 
                                 <td class="px-4 py-4 text-sm">
-                                    <span class="truncate inline-flex items-center justify-center w-56 2xl:w-full px-3 py-1.5 rounded-full text-sm @php 
+                                    <span class="inline-flex items-center justify-center w-56 mx-1 2xl:w-full px-3 py-1.5 rounded-full text-sm @php 
                                     $statusStyle = ['baru' => 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-200 ring-blue-700/10', 'diproses' => 'bg-yellow-50 dark:bg-yellow-950 dark:text-yellow-200 text-yellow-800 ring-yellow-600/20', 'invalid' => 'bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-300 ring-red-600/10', 'selesai' => 'bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300 ring-green-600/20']; $dotStyle=['baru' => 'bg-blue-500 dark:bg-blue-300', 'diproses' => 'bg-yellow-500 dark:bg-yellow-300', 'invalid' => 'bg-red-500 dark:bg-red-300', 'selesai' => 'bg-green-500 dark:bg-green-300'];
                                     @endphp
                                         @if($pengaduan->getStatus())
@@ -143,14 +143,14 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                                         bg-gray-50 text-gray-600 ring-gray-500/10 
                                         @endif
                                         ">
-                                        <span class="me-1 h-3 w-3 rounded-full inline-block
+                                        <span class="me-1 p-[5px] rounded-full inline-block
                                         @if ($pengaduan->getStatus()) 
                                         {{ $dotStyle[$pengaduan->getStatus()] }}
                                         @else 
                                         bg-gray-50
                                         @endif
                                             "></span>
-                                        <span class="text-sm">
+                                        <span class="text-xs">
                                             {{ $pengaduan->getStatus() }}
                                         </span>
                                     </span>
