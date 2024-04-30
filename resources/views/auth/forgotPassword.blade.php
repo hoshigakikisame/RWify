@@ -6,7 +6,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
 @endphp
 
 <div class="overflow-hidden h-screen relative">
-    <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-full bg-gray-100 dark:bg-gray-900">
+    <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-full bg-gray-50 dark:bg-gray-900">
         <div class="forgotPassword-image lg:relative">
             <div class="z-50 absolute right-5 xl:inset-x-5 inset-y-5 xl:inset-y-8 w-fit h-fit rounded-full p-2 bg-gray-100/20 hover:bg-gray-300/50 hover:stroke-darkGreen stroke-gray-300 transition-all">
                 <a href="{{route('auth.signIn')}}" class="fill-inherit">
@@ -15,14 +15,14 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                     </svg>
                 </a>
             </div>
-            <div id="sign-image" class="absolute Sign-Image top-0 bottom-0 right-0 left-0 bg-cover hidden lg:block" style="background-image: url('{{$image}}')">
+            <div id="forgotPassword-image" class="absolute Sign-Image top-0 bottom-0 right-0 left-0 bg-cover hidden lg:block" style="background-image: url('{{$image}}')">
                 <div class="text-wrap backdrop-brightness-75 dark:backdrop-brightness-90 w-full h-full flex items-center">
                     <h1 class="font-bold font-Poppins text-xl lg:text-6xl 3xl:text-8xl text-white px-7 mx-auto xl:ms-28 lg:block hidden max-w-xl">BUAT RW MENJADI LEBIH EFISIEN DENGAN RWIFY</h1>
                 </div>
             </div>
         </div>
         <div class="forgotPassword-main 3xl:mx-52 mx-auto flex flex-col justify-between gap-52 lg:gap-0">
-            <div class="forgotPassword-wrap px-5 lg:px-10  my-auto">
+            <div class="forgotPassword-wrap px-5 lg:px-10 my-auto">
                 <div class="forgotPassword-header mb-8">
                     <h1 class="2xl:text-9xl text-4xl sm:text-7xl xl:text-8xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Forgot Password?</h1>
                     <p class="text-sm md:text-lg xl:text-xl font-Inter font-light dark:text-gray-200 ">Enter the email address assocoated with your account. </p>

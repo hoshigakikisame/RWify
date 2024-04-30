@@ -41,9 +41,12 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
         </div>
     </div>
     <nav class="py-1 px-2 mb-6 relative">
-        <ul class="flex gap-1 text-sm">
-            <li class="py-2 px-4 dark:text-gray-100"><button onclick="append(event);" ariaLabel="Profile">Profile</button></li>
-            <li class="py-2 px-4 dark:text-gray-100"><button onclick="append(event);" ariaLabel="changePassword">Change Password</button>
+        <ul class="flex gap-1 text-sm dark:text-gray-100">
+            <li class="py-2 px-4 ">
+                <button onclick="append(event);" ariaLabel="Profile">Profile</button>
+            </li>
+            <li class="py-2 px-4 ">
+                <button onclick="append(event);" ariaLabel="changePassword">Change Password</button>
             </li>
         </ul>
         <hr>
@@ -432,7 +435,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
         })
     }
 
-    let active = "rounded-t-md text-blue-500 dark:text-blue-500 border-blue-500 border-b-2"
+    let active = "rounded-t-md text-blue-500 dark:text-blue-400 border-blue-500 border-b-2"
 
     function append(event, style = active) {
         $(event.target).parents('ul').children().each((i, e) => {

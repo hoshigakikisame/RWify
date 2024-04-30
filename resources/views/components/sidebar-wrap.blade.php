@@ -13,7 +13,7 @@
             <div class="user-wrap border p-2 rounded-full text-gray-800 mb-2 w-full">
                 <div class="user flex items-center lg:gap-2 ">
                     <button id="moreButton">
-                        <img class="h-10 max-w-10 rounded-full" src="{{Vite::asset('resources/assets/images/frrxy.png')}}" alt="Thoriq Fathurrozi">
+                        <img class="h-10 max-w-10 rounded-full" src="{{$imageProfile}}" alt="Thoriq Fathurrozi">
                     </button>
                     <div class="body lg:min-w-10 hidden lg:block w-20 relative">
                         <h5 class="overflow-data text-sm lg:text-md dark:text-gray-200  dark:bg-gray-900 bg-white text-nowrap truncate ...">{{$role}}</h5>

@@ -11,12 +11,13 @@ class SidebarWrap extends Component
     /**
      * Create a new component instance.
      */
-    public $email, $role, $footerMenu;
-    public function __construct($email, $role, $footerMenu)
+    public $email, $role, $footerMenu, $imageProfile;
+    public function __construct($email, $role, $footerMenu, $imageProfile)
     {
         $this->email = $email;
         $this->role = $role;
         $this->footerMenu = $footerMenu;
+        $this->imageProfile = $imageProfile;
     }
 
     /**

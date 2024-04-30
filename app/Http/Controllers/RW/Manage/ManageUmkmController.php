@@ -16,8 +16,10 @@ class ManageUmkmController extends Controller
     public function manageUmkmPage()
     {
         $reqQuery = request()->q;
+        $paginate = request()->paginate;
 
-        $umkmInstances = (new SearchableDecorator(UmkmModel::class))->search($reqQuery);
+
+        $umkmInstances = (new SearchableDecorator(UmkmModel::class))->search($reqQuery, $paginate);
 
         $data = [
             "umkmInstances" => $umkmInstances
