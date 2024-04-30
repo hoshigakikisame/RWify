@@ -143,7 +143,7 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                                         bg-gray-50 text-gray-600 ring-gray-500/10 
                                         @endif
                                         ">
-                                        <span class="mr-1.5 h-3 w-3 rounded-full inline-block
+                                        <span class="me-1 h-3 w-3 rounded-full inline-block
                                         @if ($pengaduan->getStatus()) 
                                         {{ $dotStyle[$pengaduan->getStatus()] }}
                                         @else 
