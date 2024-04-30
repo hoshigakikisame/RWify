@@ -69,7 +69,7 @@ class ManagePengaduanController extends Controller
             'id_pengaduan' => 'required',
             'judul' => 'required',
             'isi' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'status' => 'required',
         ]);
 
@@ -80,20 +80,23 @@ class ManagePengaduanController extends Controller
             session()->flash('danger', 'Update Failed.');
         } else {
 
+            if(request()->hasFile('image')) {
             /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
             $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
             $resultUrl = $cloudinaryResponse->getSecurePath();
-
+            $pengaduan->setImageUrl($resultUrl);
+            }
+            
             $pengaduan->setJudul(request()->judul);
             $pengaduan->setIsi(request()->isi);
-            $pengaduan->setImageUrl($resultUrl);
             $pengaduan->setStatus(request()->status);
             $pengaduan->save();
 
             session()->flash('success', 'Update Success.');
         }
 
-        return redirect()->route('rw.manage.pengaduan');
+        //return redirect()->route('rw.manage.pengaduan');
+        return 'done';
     }
 
     public function deletePengaduan()
@@ -114,6 +117,7 @@ class ManagePengaduanController extends Controller
             session()->flash('success', 'Delete Success.');
         }
 
-        return redirect()->route('rw.manage.pengaduan');
+        //return redirect()->route('rw.manage.pengaduan');
+        return 'done';
     }
 }

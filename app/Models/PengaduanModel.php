@@ -17,6 +17,7 @@ class PengaduanModel extends Model
     protected $fillable = [
         'id_pengaduan',
         'nik_pengadu',
+        'nama_pengadu',
         'judul',
         'isi',
         'image_url',
@@ -41,7 +42,18 @@ class PengaduanModel extends Model
     // relationships
     public function user()
     {
-        return $this->belongsTo(UserModel::class, 'nik_pengadu', 'nik');
+        return $this->belongsTo(UserModel::class, 'nik_pengadu', 'nik', 'nama_depan', 'nama_belakang');
+    }
+
+    // options statics
+    public static function getStatusOption()
+    {
+        return [
+            'baru' => 'baru',
+            'diproses' => 'diproses',
+            'invalid' => 'invalid',
+            'selesai' => 'selesai',
+        ];
     }
 
     // GETTERS
@@ -53,6 +65,11 @@ class PengaduanModel extends Model
     public function getNikPengadu(): string
     {
         return $this->nik_pengadu;
+    }
+
+    public function getNamaPengadu(): string
+    {
+        return $this->user->nama_depan . ' ' . $this->user->nama_belakang;
     }
 
     public function getJudul(): string
