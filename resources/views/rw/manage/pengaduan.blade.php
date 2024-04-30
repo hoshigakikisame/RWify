@@ -4,250 +4,212 @@
 
 {{-- content --}}
 @php
-    $status = \App\Models\PengaduanModel::getStatusOption();
+$status = \App\Models\PengaduanModel::getStatusOption();
 
 @endphp
 @section('content')
-    <section class="container px-4 mt-7 mx-auto relative " x-data="{ modalOpen: false }">
-        <div class="flex flex-col">
-            <div class="sm:flex sm:items-center sm:justify-between ">
-                <div>
-                    <div class=" flex items-center gap-x-3">
-                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengaduan</h2>
-                        <span
-                            class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">126
-                            Pengaduan</span>
-                    </div>
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.
-                    </p>
+<section class="container px-4 mt-7 mx-auto relative " x-data="{ modalOpen: false }">
+    <div class="flex flex-col">
+        <div class="sm:flex sm:items-center sm:justify-between ">
+            <div>
+                <div class=" flex items-center gap-x-3">
+                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengaduan</h2>
+                    <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">126
+                        Pengaduan</span>
                 </div>
-            </div>
-
-            <div class="relative flex items-center mt-4 md:mt-0  w-fit self-end">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-                </span>
-
-                <input wire:model.live.debounce.400ms="search" type="text" placeholder="Search"
-                    class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
-
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.
+                </p>
             </div>
         </div>
 
-        <div class="flex flex-col mt-6 ">
-            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                        <table class="min-w-full w-full table-auto divide-y divide-gray-200 dark:divide-gray-700 px-2">
-                            <thead class="bg-gray-50 dark:bg-gray-800">
-                                <tr>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">NIK Pengadu</span>
-                                        </button>
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">Nama Pengadu</span>
-                                        </button>
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">Judul</span>
+        <div class="relative flex items-center mt-4 md:mt-0  w-fit self-end">
+            <span class="absolute">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+            </span>
 
-                                        </button>
-                                    </th>
+            <input wire:model.live.debounce.400ms="search" type="text" placeholder="Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
 
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">Isi</span>
+        </div>
+    </div>
 
-                                        </button>
+    <div class="flex flex-col mt-6 ">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                    <table class="min-w-full w-full table-auto divide-y divide-gray-200 dark:divide-gray-700 px-2">
+                        <thead class="bg-gray-50 dark:bg-gray-800">
+                            <tr>
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap">NIK Pengadu</span>
+                                    </button>
+                                </th>
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap">Nama Pengadu</span>
+                                    </button>
+                                </th>
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap">Judul</span>
 
-                                    <th scope="col"
-                                        class="py-3.5 px-4 pe-9 ps-5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">Gambar</span>
+                                    </button>
+                                </th>
 
-                                        </button>
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">Status</span>
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap">Isi</span>
 
-                                        </button>
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap"></span>
+                                    </button>
 
-                                        </button>
-                                    </th>
-                                    <th scope="col" class="relative py-3.5 px-4">
-                                        <span class="sr-only">Edit</span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                @foreach ($pengaduanInstances as $pengaduan)
-                                    <tr>
-                                        <td class=" px-4 py-4 text-sm font-medium">
-                                            <div>
-                                                <h2
-                                                    class="font-medium text-gray-800 dark:text-white  text-nowrap truncate w-[200px]">
-                                                    {{ $pengaduan->getNikPengadu() }}
-                                                </h2>
-                                            </div>
-                                        </td>
+                                <th scope="col" class="py-3.5 px-4 pe-9 ps-5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap">Gambar</span>
 
-                                        <td class=" px-4 py-4 text-sm font-medium">
-                                            <div>
-                                                <h2
-                                                    class="font-medium text-gray-800 dark:text-white  text-nowrap truncate w-[200px]">
-                                                    {{ $pengaduan->getNamaPengadu() }}
-                                                </h2>
-                                            </div>
-                                        </td>
+                                    </button>
+                                </th>
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap">Status</span>
 
-                                        <td class="px-4 py-4 text-sm ">
-                                            <div>
-                                                <h4 class="text-gray-700 dark:text-gray-200">
-                                                    {{ $pengaduan->getJudul() }}
-                                                </h4>
-                                            </div>
-                                        </td>
+                                    </button>
+                                </th>
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap"></span>
 
-                                        <td class="px-4 py-4 text-sm ">
-                                            <div>
-                                                <h4 class="text-gray-700 dark:text-gray-200">
-                                                    {{ implode(' ', array_slice(str_word_count($pengaduan->getIsi(), 1), 0, 10)) }}
-                                                    {{ str_word_count($pengaduan->getIsi()) > 10 ? '.....' : '' }}
-                                                </h4>
-                                            </div>
-                                        </td>
+                                    </button>
+                                </th>
+                                <th scope="col" class="relative py-3.5 px-4">
+                                    <span class="sr-only">Edit</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                            @foreach ($pengaduanInstances as $pengaduan)
+                            <tr>
+                                <td class=" px-4 py-4 text-sm font-medium">
+                                    <div>
+                                        <h2 class="font-medium text-gray-800 dark:text-white  text-nowrap truncate w-[200px]">
+                                            {{ $pengaduan->getNikPengadu() }}
+                                        </h2>
+                                    </div>
+                                </td>
 
-                                        <td class="px-4 py-4 text-sm">
-                                            <button id="imageButtom"
-                                                class=" relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
-                                                type="button"
-                                                onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
-                                                <span
-                                                    class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 "
-                                                        fill="currentColor" viewBox="0 0 24 24">
-                                                        <path
-                                                            d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z" />
-                                                        <path fill="currentColor"
-                                                            d="M8.91 8.51a.91.91 0 1 1-1.82 0a.91.91 0 0 1 1.82 0" />
-                                                    </svg> </span>
-                                            </button>
-                                        </td>
+                                <td class=" px-4 py-4 text-sm font-medium">
+                                    <div>
+                                        <h2 class="font-medium text-gray-800 dark:text-white  text-nowrap truncate w-[200px]">
+                                            {{ $pengaduan->getNamaPengadu() }}
+                                        </h2>
+                                    </div>
+                                </td>
 
-                                        <td class="px-4 py-4 text-sm">
-                                            <span
-                                                class="dark:text-gray-200 truncate inline-flex items-center justify-center w-56 2xl:w-full px-3 py-1.5 rounded-full text-sm
-                                        @if ($pengaduan->getStatus() == 'baru') bg-blue-50 text-blue-700 ring-blue-700/10
-                                        @elseif($pengaduan->getStatus() == 'diproses') bg-yellow-50 text-yellow-800 ring-yellow-600/20
-                                        @elseif($pengaduan->getStatus() == 'invalid') bg-red-50 text-red-700 ring-red-600/10
-                                        @elseif($pengaduan->getStatus() == 'selesai') bg-green-50 text-green-700 ring-green-600/20
-                                        @else bg-gray-50 text-gray-600 ring-gray-500/10 @endif">
-                                                <span
-                                                    class="mr-1.5 h-3 w-3 rounded-full inline-block
-                                            @if ($pengaduan->getStatus() == 'baru') bg-blue-500
-                                            @elseif($pengaduan->getStatus() == 'diproses') bg-yellow-500
-                                            @elseif($pengaduan->getStatus() == 'invalid') bg-red-500
-                                            @elseif($pengaduan->getStatus() == 'selesai') bg-green-500
-                                            @else bg-gray-500 @endif"></span>
-                                                <span class="text-sm">
-                                                    {{ $pengaduan->getStatus() }}
-                                                </span>
+                                <td class="px-4 py-4 text-sm ">
+                                    <div>
+                                        <h4 class="text-gray-700 dark:text-gray-200">
+                                            {{ $pengaduan->getJudul() }}
+                                        </h4>
+                                    </div>
+                                </td>
+
+                                <td class="px-4 py-4 text-sm ">
+                                    <div>
+                                        <h4 class="text-gray-700 dark:text-gray-200">
+                                            {{ implode(' ', array_slice(str_word_count($pengaduan->getIsi(), 1), 0, 10)) }}
+                                            {{ str_word_count($pengaduan->getIsi()) > 10 ? '.....' : '' }}
+                                        </h4>
+                                    </div>
+                                </td>
+
+                                <td class="px-4 py-4 text-sm">
+                                    <button id="imageButtom" class=" relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
+                                        <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z" />
+                                                <path fill="currentColor" d="M8.91 8.51a.91.91 0 1 1-1.82 0a.91.91 0 0 1 1.82 0" />
+                                            </svg> </span>
+                                    </button>
+                                </td>
+
+                                <td class="px-4 py-4 text-sm">
+                                    <span class="truncate inline-flex items-center justify-center w-56 2xl:w-full px-3 py-1.5 rounded-full text-sm @php 
+                                    $statusStyle = ['baru' => 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-200 ring-blue-700/10', 'diproses' => 'bg-yellow-50 dark:bg-yellow-950 dark:text-yellow-200 text-yellow-800 ring-yellow-600/20', 'invalid' => 'bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-300 ring-red-600/10', 'selesai' => 'bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-300 ring-green-600/20']; $dotStyle=['baru' => 'bg-blue-500 dark:bg-blue-300', 'diproses' => 'bg-yellow-500 dark:bg-yellow-300', 'invalid' => 'bg-red-500 dark:bg-red-300', 'selesai' => 'bg-green-500 dark:bg-green-300'];
+                                    @endphp
+                                        @if($pengaduan->getStatus())
+                                        {{ $statusStyle[$pengaduan->getStatus()] }}
+                                        @else
+                                        bg-gray-50 text-gray-600 ring-gray-500/10 
+                                        @endif
+                                        ">
+                                        <span class="mr-1.5 h-3 w-3 rounded-full inline-block
+                                        @if ($pengaduan->getStatus()) 
+                                        {{ $dotStyle[$pengaduan->getStatus()] }}
+                                        @else 
+                                        bg-gray-50
+                                        @endif
+                                            "></span>
+                                        <span class="text-sm">
+                                            {{ $pengaduan->getStatus() }}
+                                        </span>
+                                    </span>
+                                </td>
+
+
+
+
+
+
+
+
+
+
+
+                                <td class="px-4 py-4 pe-4 pe-0 ps-6 text-sm flex" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
+                                    <button id="detailButton" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
+                                        <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-blue-500" viewBox="0 0 28 28" fill="currentColor">
+                                                <path d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0" />
+                                            </svg>
+                                        </span>
+                                        <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
+                                            <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">
+                                                    <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
+                                                    </path>
+                                                </svg>
                                             </span>
-                                        </td>
-
-
-
-
-
-
-
-
-
-
-
-                                        <td class="px-4 py-4 pe-4 pe-0 ps-6 text-sm flex" id="action"
-                                            x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
-                                            <button id="detailButton"
-                                                class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
-                                                type="button"
-                                                onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
-                                                <span
-                                                    class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-blue-500"
-                                                        viewBox="0 0 28 28" fill="currentColor">
-                                                        <path
-                                                            d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0" />
-                                                    </svg>
-                                                </span>
-                                                <button id="editButton" @click="modalEditOpen = !modalEditOpen"
-                                                    class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
-                                                    type="button"
-                                                    onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
-                                                    <span
-                                                        class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                            class="h-4 w-4 dark:fill-gray-200" fill="currentColor"
-                                                            aria-hidden="true">
-                                                            <path
-                                                                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
-                                                            </path>
-                                                        </svg>
-                                                    </span>
-                                                </button>
-                                                <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen"
-                                                    onclick="(function (){appendDeleteModal('{{ $pengaduan->getIdPengaduan() }}','{{ $pengaduan->getJudul() }}',event);request(`{{ route('rw.manage.pengaduan.delete') }}`, '#deleteModal', '#deleteModalForm')})()"
-                                                    class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
-                                                    <span
-                                                        class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
-                                                            class="h-4 w-4 fill-red-500" viewBox="0 0 24 24"
-                                                            fill="currentColor" version="1.1">
-                                                            <path
-                                                                d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
-                                                            </path>
-                                                        </svg>
-                                                    </span>
-                                                </button>
-                                                <!-- </form> -->
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                        </button>
+                                        <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen" onclick="(function (){appendDeleteModal('{{ $pengaduan->getIdPengaduan() }}','{{ $pengaduan->getJudul() }}',event);request(`{{ route('rw.manage.pengaduan.delete') }}`, '#deleteModal', '#deleteModalForm')})()" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
+                                            <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor" version="1.1">
+                                                    <path d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <!-- </form> -->
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-
             </div>
+
         </div>
+    </div>
 
 
-        {{ $pengaduanInstances->links('elements.pagination') }}
+    {{ $pengaduanInstances->links('elements.pagination') }}
 
-    </section>
+</section>
 @endsection
 @push('scripts')
-    <script>
-        function appendDeleteModal(id_pengaduan, judul, event) {
-            const modalDeleteElemen = /*html*/ `
+<script>
+    function appendDeleteModal(id_pengaduan, judul, event) {
+        const modalDeleteElemen = /*html*/ `
         <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                     <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -282,12 +244,12 @@
                 </div>
             </div>
         `
-            $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
+        $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
 
-        }
+    }
 
-        function appendUpdateModal(pengaduan, event) {
-            const modalEditElemen = /*html*/ `
+    function appendUpdateModal(pengaduan, event) {
+        const modalEditElemen = /*html*/ `
         <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                     <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -333,87 +295,87 @@
                 </div>
             </div>
     `
-            $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-            $("#editModal select[aria-selected]").each(function() {
-                $(this).val(this.ariaSelected).change()
-            })
-        }
+        $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
+        $("#editModal select[aria-selected]").each(function() {
+            $(this).val(this.ariaSelected).change()
+        })
+    }
 
-        function request(url, selectorParent, selectorForm) {
-            $(selectorParent).ready((e) => {
-                $(selectorForm).on('submit', function(e) {
-                    e.preventDefault()
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: new FormData(this),
-                        contentType: false,
-                        processData: false,
-                        success: function(res) {
-                            $.ajax({
-                                url: document.location,
-                                type: "GET",
-                                success: function(response) {
-                                    let parser = new DOMParser();
-                                    let doc = parser.parseFromString(response,
-                                        'text/html');
-                                    $('body').html(doc.body.innerHTML)
-                                    setTimeout(function() {
-                                        $.ajax({
-                                            url: document.location,
-                                            type: "GET",
-                                            success: function(
-                                                response) {
-                                                let parser =
-                                                    new DOMParser();
-                                                let doc = parser
-                                                    .parseFromString(
-                                                        response,
-                                                        'text/html'
-                                                    );
-                                                $('body').html(
-                                                    doc.body
-                                                    .innerHTML
-                                                )
-                                            }
-                                        })
-                                    }, 5000)
-                                }
-                            })
-
-
-                        },
-                        error: function(res) {
-                            $.each(res.responseJSON.errors, (key, value) => {
-                                value.forEach(element => {
-                                    $(e.currentTarget).find('#' + key).siblings(
-                                        '#error').append(
-                                        `<li>${element}</li>`)
-                                });
-
-                                setTimeout(element => {
-                                    $(e.currentTarget).find('#' + key).siblings(
-                                        '#error').fadeOut("slow", () => {
-                                        $(e.currentTarget).find('#' +
-                                                key).siblings('#error')
-                                            .empty()
+    function request(url, selectorParent, selectorForm) {
+        $(selectorParent).ready((e) => {
+            $(selectorForm).on('submit', function(e) {
+                e.preventDefault()
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function(res) {
+                        $.ajax({
+                            url: document.location,
+                            type: "GET",
+                            success: function(response) {
+                                let parser = new DOMParser();
+                                let doc = parser.parseFromString(response,
+                                    'text/html');
+                                $('body').html(doc.body.innerHTML)
+                                setTimeout(function() {
+                                    $.ajax({
+                                        url: document.location,
+                                        type: "GET",
+                                        success: function(
+                                            response) {
+                                            let parser =
+                                                new DOMParser();
+                                            let doc = parser
+                                                .parseFromString(
+                                                    response,
+                                                    'text/html'
+                                                );
+                                            $('body').html(
+                                                doc.body
+                                                .innerHTML
+                                            )
+                                        }
                                     })
-                                }, 8000)
-                            })
-
-                        }
-                    })
+                                }, 5000)
+                            }
+                        })
 
 
+                    },
+                    error: function(res) {
+                        $.each(res.responseJSON.errors, (key, value) => {
+                            value.forEach(element => {
+                                $(e.currentTarget).find('#' + key).siblings(
+                                    '#error').append(
+                                    `<li>${element}</li>`)
+                            });
+
+                            setTimeout(element => {
+                                $(e.currentTarget).find('#' + key).siblings(
+                                    '#error').fadeOut("slow", () => {
+                                    $(e.currentTarget).find('#' +
+                                            key).siblings('#error')
+                                        .empty()
+                                })
+                            }, 8000)
+                        })
+
+                    }
                 })
-            })
-        }
 
 
-        function deleteModal(selector) {
-            $(selector).ready(() => {
-                $(selector).remove()
             })
-        }
-    </script>
+        })
+    }
+
+
+    function deleteModal(selector) {
+        $(selector).ready(() => {
+            $(selector).remove()
+        })
+    }
+</script>
 @endpush
