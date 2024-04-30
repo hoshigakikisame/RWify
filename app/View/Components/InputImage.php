@@ -11,10 +11,11 @@ class InputImage extends Component
     /**
      * Create a new component instance.
      */
-    public $title, $key, $type, $placeholder, $value;
+    public $id, $title, $key, $type, $placeholder, $value;
 
-    public function __construct(string $key, $title = null, $placeholder = null, $value = null)
+    public function __construct(string $id, string $key, $title = null, $placeholder = null, $value = null)
     {
+        $this->id = $id;
         $this->title = $title;
         $this->key = $key;
         $this->placeholder = $placeholder;
