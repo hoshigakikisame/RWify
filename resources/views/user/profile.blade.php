@@ -35,7 +35,7 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
             </div>
         </div>
     </div>
-    <nav class="py-1 px-2 mb-6 relative">
+    <nav class="py-1 px-2 mb-2 relative">
         <ul class="flex gap-1 text-sm dark:text-gray-100">
             <li class="py-2 px-4 ">
                 <button onclick="append(event);" ariaLabel="Profile">Profile</button>
@@ -46,7 +46,7 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
         </ul>
         <hr>
     </nav>
-    <div class="body-profile">
+    <div class="body-profile ms-2">
         <div class="container flex pb-10" id="panel">
             <!-- <div class="user-information">
                                             <div class="panel panel-default ">
