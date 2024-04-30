@@ -21,14 +21,16 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                 </div>
             </div>
         </div>
-        <div class="forgotPassword-main 3xl:mx-52 mx-auto flex flex-col justify-between gap-52 lg:gap-0">
-            <div class="forgotPassword-wrap px-5 lg:px-10 my-auto">
-                <div class="forgotPassword-header mb-8">
-                    <h1 class="2xl:text-9xl text-4xl sm:text-7xl xl:text-8xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Forgot Password?</h1>
-                    <p class="text-sm md:text-lg xl:text-xl font-Inter font-light dark:text-gray-200 ">Enter the email address assocoated with your account. </p>
+        <div class="forgotPassword-main 3xl:mx-52 flex flex-col justify-between gap-52 lg:gap-0">
+            <div class="forgotPassword-wrap px-5 lg:px-10 my-auto mx-auto inline-flex flex-col items-center">
+                <div class="forgotPassword-header mb-8 w-fit" >
+                    <div class="header-wrap w-3/5 mx-auto ">
+                        <h1 class="text-4xl sm:text-7xl xl:text-8xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Forgot Password?</h1>
+                        <p class="text-sm md:text-lg xl:text-xl font-Inter font-light dark:text-gray-200 text-wrap">Enter the email address assocoated with your account. </p>
+                    </div>
                 </div>
 
-                <div class="forgotPassword-body md:w-3/5 xl:w-4/5">
+                <div class="forgotPassword-body md:w-3/5 xl:w-3/5">
                     <form class="form" method="POST" action="{{ route('auth.forgotPassword') }}">
                         @csrf
                         <div class="form-group mb-3 md:mb-4 lg:mb-2 {{ $errors->has('email') ? ' has-error' : '' }}">

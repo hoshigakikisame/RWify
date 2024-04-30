@@ -24,14 +24,16 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
         </div>
         <div class="form-login lg:overflow-hidden">
             <div class="h-screen overflow-scroll no-scrollbar ">
-                <div class="resetPassword-main mt-20 3xl:mx-52 mx-auto flex flex-col justify-between gap-52 lg:gap-2 ">
-                    <div class="resetPassword-wrap px-5 lg:px-10 my-auto">
-                        <div class="resetPassword-header mb-8">
-                            <h1 class="2xl:text-9xl text-4xl sm:text-7xl xl:text-8xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Reset Password</h1>
+                <div class="resetPassword-main mt-20 3xl:mx-52 my-auto mx-auto flex flex-col items-center gap-28">
+                    <div class="resetPassword-wrap px-5 lg:px-10 my-auto inline-flex flex-col items-center">
+                        <div class="resetPassword-header mb-8 w-fit">
+                            <div class="header-wrap w-3/5 mx-auto ">
+                            <h1 class="text-4xl sm:text-7xl xl:text-8xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Reset Password</h1>
                             <p class="text-sm md:text-lg xl:text-xl font-Inter font-light dark:text-gray-200 ">Enter current password and new password for assocoated with your account. </p>
                         </div>
+                        </div>
 
-                        <div class="resetPassword-body md:w-3/5 xl:w-4/5">
+                        <div class="resetPassword-body md:w-3/5 ">
                             <form class="form" method="POST" action="{{ route('password.update') }}">
                                 @csrf
 

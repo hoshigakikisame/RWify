@@ -10,11 +10,11 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
     : '';
 @endphp
 
-<div class="pt-3 ">
+<div class="pt-3 mt-4">
     <div class="flex">
         <div class="flex items-center">
-            <label for="perPage" class="w-32 text-sm font-medium text-gray-800 dark:text-gray-300">Per Page</label>
-            <select name="pageCount" id="pageCount" class="bg-white border border-gray-300 dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm rounded-lg" onchange="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','1')">
+            <label for="perPage" class=" mr-3 text-sm font-medium text-gray-800 dark:text-gray-300">Per Page</label>
+            <select name="pageCount" id="pageCount" class="bg-white border border-gray-300 dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm rounded-lg focus:border-blue-500 focus:ring-blue-400 dark:focus:border-blue-400 dark:focus:ring-blue-400" onchange="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','1')">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>

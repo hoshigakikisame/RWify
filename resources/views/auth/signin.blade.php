@@ -30,7 +30,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
     <div class="form-login lg:overflow-hidden">
         <div class="h-screen overflow-scroll no-scrollbar ">
             @include('components.flash-message')
-            <div class="container-fluid flex flex-col items-center text-darkLightGrey gap-5 lg:gap-2 lg:mt-12 xl:mt-32">
+            <div class="container-fluid flex flex-col items-center text-darkLightGrey gap-5 lg:gap-2 lg:mt-12 xl:mt-32 lg:mb-10">
                 <div class="signIn-header text-center lg:w-2/3 2xl:w-1/2 md:px-10 flex flex-col gap-2 mb-4">
                     <h1 class=" text-5xl my-1 font-Inter font-bold dark:text-gray-100">Sign In</h1>
                     <p class="font-light font-Inter px-16 lg:p-2 dark:text-gray-200">Silahkan Sign In Untuk Pengalaman Terhubung yang Lebih Baik</p>
@@ -57,7 +57,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                         </div>
                         <div class="mb-3">
                             <label for="password" class="font-Inter text-xs text-darkBlue font-normal opacity-70 dark:text-white">Password</label>
-                            <input type="password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200 dark:bg-gray-900 dark:text-gray-100" placeholder="Password">
+                            <input type="password" name="password" id="password" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none focus:border-gray-200 focus:ring-0  border-gray-200 dark:bg-gray-900 dark:text-gray-100" placeholder="Password">
                         </div>
                         <p class="font-Inter text-xs dark:text-gray-400">Lupa Password Anda? <a href="{{route('auth.forgotPassword')}}" class="text-darkGreen dark:text-green-600">Klik Disini</a></p>
                         <div class="submit-btn" style="margin-top: 20px;">
