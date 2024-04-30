@@ -18,7 +18,6 @@ class ManageUmkmController extends Controller
         $reqQuery = request()->q;
         $paginate = request()->paginate;
 
-
         $umkmInstances = (new SearchableDecorator(UmkmModel::class))->search($reqQuery, $paginate);
 
         $data = [
@@ -43,7 +42,7 @@ class ManageUmkmController extends Controller
 
         $imageUrl = '';
 
-        if (!request()->hasFile('image')) {
+        if (request()->hasFile('image')) {
             /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
             $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
             $imageUrl = $cloudinaryResponse->getSecurePath();

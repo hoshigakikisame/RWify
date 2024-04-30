@@ -10,14 +10,16 @@
             <div>
                 <div class=" flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">UMKM</h2>
-                    <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">9 UMKM</span>
+                    <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">9
+                        UMKM</span>
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.</p>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.
+                </p>
             </div>
 
             <div class=" md:flex md:items-right md:justify-between">
                 <div class="flex items-center mt-2 gap-x-3" x-data="{ modalOpen: false }">
-                    <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center mb-2 text-nowrap px-5 py-2.5 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="request('{{ route('rw.manage.umkm.new')}}', '#addModal', '#addModalForm')">
+                    <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center mb-2 text-nowrap px-5 py-2.5 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="request('{{ route('rw.manage.umkm.new') }}', '#addModal', '#addModalForm')">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -49,9 +51,9 @@
                                 <li>{{ $error }}</li>
                                 @endforeach
 
-
-                                <form class="mt-5" id="addModalForm">
+                                <form enctype="multipart/form-data" class="mt-5" id="addModalForm" action="{{ route('rw.manage.umkm.new') }}" method="post">
                                     @csrf
+                                    <input type="text" name="id_umkm" hidden>
                                     <x-inputform title="Nama UMKM" key="nama" type="text" placeholder="UMKM" />
                                     <x-inputform title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik" />
                                     <x-inputform title="No. Telepon" key="telepon" type="text" placeholder="1234567892322" />
@@ -59,13 +61,13 @@
                                     <x-inputform title="Maps URL" key="map_url" type="text" placeholder="Maps" />
                                     <x-inputform title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram" />
                                     <x-textareainputform title="Deskripsi" key="deskripsi" placeholder="Deskripsi" />
-                                    <x-inputform title="Gambar" key="gambar" type="text" placeholder="Gambar" />
+                                    <x-inputimage id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
 
                                     <div class="flex justify-between mt-6">
-                                        <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi
-                                            dengan benar</p>
-                                        <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                            Tambah UMKM
+                                        <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah
+                                            terisi dengan benar</p>
+                                        <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                            Save UMKM
                                         </button>
                                     </div>
                                 </form>
@@ -162,7 +164,7 @@
                                 </td>
 
                                 <td class="px-4 py-4 text-sm">
-                                    <button id="imageButtom" class=" relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{$umkm}},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
+                                    <button id="imageButtom" class=" relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $umkm }},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z" />
@@ -177,14 +179,14 @@
                                     </p>
                                 </td>
 
-                                <td class="px-4 py-4 pe-0 ps-6 text-sm flex" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
-                                    <button id="detailButton" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{$umkm}},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
+                                <td class="px-4 py-4 pe-4 pe-0 ps-6 text-sm flex" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
+                                    <button id="detailButton" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $umkm }},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-blue-500" viewBox="0 0 28 28" fill="currentColor">
                                                 <path d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0" />
                                             </svg>
                                         </span>
-                                        <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{$umkm}},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
+                                        <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $umkm }},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
                                             <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">
                                                     <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
@@ -288,14 +290,14 @@
                         <form enctype="multipart/form-data" class="mt-5" id="editModalForm" action="{{ route('rw.manage.umkm.update') }}" method="post">
                             @csrf
                             <input type="text" name="id_umkm" value="${umkm.id_umkm}" hidden >
-                            <x-inputform title="Nama UMKM" key="nama" type="text" placeholder="UMKM"  value="${umkm.nama}" />
+                            <x-inputform title="Nama UMKM" key="nama" type="text" placeholder="UMKM" value="${umkm.nama}" />
                             <x-inputform title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik"  value="${umkm.nama_pemilik}" />
                             <x-inputform title="No. Telepon" key="telepon" type="text" placeholder="1234567892322"  value="${umkm.telepon}" />
                             <x-textareainputform title="Alamat" key="alamat" placeholder="Jl Brawijaya no 14"  value="${umkm.alamat}" />
-                            <x-inputform title="Maps URL" key="map_url" type="text" placeholder="Maps"  value="${umkm.map_url}" />
-                            <x-inputform title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram"  value="${umkm.map_instagram}" />
+                            <x-inputform title="Maps URL" key="map_url" type="text" placeholder="Maps"  value="${umkm.map_url}"  />
+                            <x-inputform title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram"  value="${umkm.instagram_url}" />
                             <x-textareainputform title="Deskripsi" key="deskripsi" placeholder="Deskripsi"  value="${umkm.deskripsi}" />
-                            <x-inputform title="Gambar" key="gambar" type="file" placeholder="Gambar"  value="${umkm.path_gambar}" />
+                            <x-inputimage id="imageupdate" title="Gambar" key="image" placeholder="Gambar"  value="${umkm.image_url}" />
 
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
@@ -322,7 +324,9 @@
                 $.ajax({
                     url: url,
                     type: "POST",
-                    data: $(selectorForm).serialize(),
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
                     success: function(res) {
                         $.ajax({
                             url: document.location,
