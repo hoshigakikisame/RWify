@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Warga\Layanan\Pengaduan;
+namespace App\Http\Controllers\Warga\Layanan;
 
 use App\Http\Controllers\Controller;
 use App\Models\PengaduanModel;

@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Warga\WargaController;
-use App\Http\Controllers\Warga\Layanan\Pengaduan\PengaduanWargaController;
+use App\Http\Controllers\Warga\Layanan\PengaduanWargaController;
+use App\Http\Controllers\Warga\Layanan\ReservasiJadwalTemuWargaController;
 
 // rw routes
 Route::group([
@@ -30,7 +31,21 @@ Route::group([
             
             // post
             Route::post('new', [PengaduanWargaController::class, 'addNewPengaduan'])->name('new');
-            Route::post('delete', [PengaduanWargaController::class, 'deleteWarga'])->name('delete');
+            Route::post('delete', [PengaduanWargaController::class, 'deletePengaduan'])->name('delete');
+        });
+
+        // rw manage reservasi jadwal temu routes
+        Route::group([
+            'prefix' => 'reservasi-jadwal-temu',
+            'as' => 'reservasiJadwalTemu.'
+        ], function() {
+            // pages
+            Route::get('', [ReservasiJadwalTemuWargaController::class, 'reservasiJadwalTemuPage'])->name('index');
+            Route::get('new', [ReservasiJadwalTemuWargaController::class, 'newReservasiJadwalTemuPage'])->name('newReservasiJadwalTemuPage');
+            
+            // post
+            Route::post('new', [ReservasiJadwalTemuWargaController::class, 'addNewReservasiJadwalTemu'])->name('new');
+            Route::post('delete', [ReservasiJadwalTemuWargaController::class, 'deleteReservasiJadwalTemu'])->name('delete');
         });
     });
 });
