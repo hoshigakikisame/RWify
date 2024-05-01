@@ -7,10 +7,6 @@ use App\Models\PengaduanModel;
 
 class LayananController extends Controller
 {
-    /**
-     * Mark the authenticated user's email address as verified.
-     */
-
     public function pengaduanDetail(int $idPengaduan)
     {
         $pengaduanInstance = PengaduanModel::find($idPengaduan);

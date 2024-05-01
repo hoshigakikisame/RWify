@@ -23,7 +23,7 @@ class ManageWargaController extends Controller
 
         $users = (new SearchableDecorator(UserModel::class))->search($query, $paginate);
 
-        $count = UserModel::all()->count();
+        $count = UserModel::count();
 
         $data = [
             "users" => $users,

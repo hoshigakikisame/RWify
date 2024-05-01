@@ -32,19 +32,6 @@
                 d="M22 11.95V18a1 1 0 0 1-1.985.165C19.626 15.832 16.395 15 13.501 15h-4.5V4h4.5c2.894 0 6.125-.831 6.514-3.165A1 1 0 0 1 22.001 1v6.05a2.5 2.5 0 0 1 0 4.9ZM7 15V4H5.5C2.467 4 0 6.467 0 9.5S2.467 15 5.5 15zm1.523 2H5.5a7.5 7.5 0 0 1-2.505-.431l2.171 5.792a2.48 2.48 0 0 0 1.289 1.405 2.48 2.48 0 0 0 1.905.082 2.48 2.48 0 0 0 1.405-1.289c.281-.604.31-1.28.082-1.904l-1.325-3.656Z" />
         </svg>
     </x-sidebar.sidebaritem>
-    <x-sidebar.sidebaritem href="{{ route('rw.dashboard') }}" title="Dokumen">
-        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="lg:w-5 w-6">
-            <path
-                d="M18 12a6 6 0 1 0 0 12 6 6 0 0 0 0-12m3.192 6.202-2.213 2.124c-.452.446-1.052.671-1.653.671s-1.203-.225-1.663-.674l-1.132-1.109a1 1 0 1 1 1.4-1.428l1.131 1.108a.374.374 0 0 0 .522-.002l2.223-2.134a1 1 0 1 1 1.385 1.443ZM10 18a7.98 7.98 0 0 1 2.709-6H5a1 1 0 1 1 0-2h8a1 1 0 0 1 .997 1.072A7.96 7.96 0 0 1 18 10V5c0-2.757-2.243-5-5-5H5C2.243 0 0 2.243 0 5v14c0 2.757 2.243 5 5 5h7.709A7.98 7.98 0 0 1 10 18M5 5h8a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2m2 12H5a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2" />
-        </svg>
-    </x-sidebar.sidebaritem>
-    <x-sidebar.sidebaritem href="{{ route('rw.manage.templateDokumen.templateDokumen') }}" title="Template Dokumen"
-        :active="request()->routeIs(['rw.manage.templateDokumen.templateDokumen'])">
-        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="lg:w-5 w-6">
-            <path
-                d="M18 12a6 6 0 1 0 0 12 6 6 0 0 0 0-12m3.192 6.202-2.213 2.124c-.452.446-1.052.671-1.653.671s-1.203-.225-1.663-.674l-1.132-1.109a1 1 0 1 1 1.4-1.428l1.131 1.108a.374.374 0 0 0 .522-.002l2.223-2.134a1 1 0 1 1 1.385 1.443ZM10 18a7.98 7.98 0 0 1 2.709-6H5a1 1 0 1 1 0-2h8a1 1 0 0 1 .997 1.072A7.96 7.96 0 0 1 18 10V5c0-2.757-2.243-5-5-5H5C2.243 0 0 2.243 0 5v14c0 2.757 2.243 5 5 5h7.709A7.98 7.98 0 0 1 10 18M5 5h8a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2m2 12H5a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2" />
-        </svg>
-    </x-sidebar.sidebaritem>
     <x-sidebar.sidebaritem href="{{ route('rw.manage.umkm.umkm') }}" title="UMKM" :active="request()->routeIs(['rw.manage.umkm.umkm'])">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="lg:w-5 w-6">
             <path
