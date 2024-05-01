@@ -17,7 +17,6 @@ class PengaduanModel extends Model
     protected $fillable = [
         'id_pengaduan',
         'nik_pengadu',
-        'nama_pengadu',
         'judul',
         'isi',
         'image_url',

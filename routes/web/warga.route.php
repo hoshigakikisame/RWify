@@ -24,7 +24,11 @@ Route::group([
             'prefix' => 'pengaduan',
             'as' => 'pengaduan.'
         ], function() {
-            Route::get('', [PengaduanWargaController::class, 'pengaduanPage'])->name('warga');
+            // pages
+            Route::get('', [PengaduanWargaController::class, 'pengaduanPage'])->name('index');
+            Route::get('new', [PengaduanWargaController::class, 'newPengaduanPage'])->name('newPengaduanPage');
+            
+            // post
             Route::post('new', [PengaduanWargaController::class, 'addNewPengaduan'])->name('new');
             Route::post('delete', [PengaduanWargaController::class, 'deleteWarga'])->name('delete');
         });

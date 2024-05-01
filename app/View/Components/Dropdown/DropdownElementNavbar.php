@@ -26,6 +26,6 @@ class DropdownElementNavbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.dropwdown.dropdown-element-navbar');
+        return view('components.dropdown.dropdown-element-navbar');
     }
 }

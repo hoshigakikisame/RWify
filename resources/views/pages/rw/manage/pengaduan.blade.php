@@ -186,12 +186,13 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                                 </td>
 
                                 <td class="px-4 py-4 pe-4 pe-0 ps-6 text-sm flex" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
-                                    <button id="detailButton" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
+                                    <a class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" target="_blank" href="{{ route('layanan.pengaduan.detail', ['idPengaduan' => $pengaduan->getIdPengaduan()]) }}">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-blue-500" viewBox="0 0 28 28" fill="currentColor">
                                                 <path d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0" />
                                             </svg>
                                         </span>
+                                    </a>
                                         <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
                                             <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">

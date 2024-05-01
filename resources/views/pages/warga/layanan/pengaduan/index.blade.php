@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends(request()->user()->getSidebarView())
 @section('content')
 Pengaduan Page
 @endsection

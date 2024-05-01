@@ -6,9 +6,9 @@ $report = Vite::asset('resources/assets/images/no-shouting.png');
 $payment = Vite::asset('resources/assets/images/tips.png');
 
 $layanan =[
-['title'=> 'Permintaan Dokumen', 'href' => route('layanan.permintaanDokumen'), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $reservation],
-['title'=> 'Pengaduan', 'href' => route("layanan.pengaduan"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $report],
-['title'=> 'Pembayaran Iuran', 'href' => route("layanan.pembayaranIuran"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $payment]];
+['title'=> 'Permintaan Dokumen', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $reservation],
+['title'=> 'Pengaduan', 'href' => route("warga.layanan.pengaduan.index"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $report],
+['title'=> 'Pembayaran Iuran', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $payment]];
 $informasi =[
 ['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $umkm],
 ['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $information ]]
@@ -35,7 +35,7 @@ $informasi =[
 
                         <!-- Dropdown content goes here -->
                         @foreach($layanan as $item)
-                        <x-dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
+                        <x-dropdown.dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
                         @endforeach
                     </div>
                 </li>
@@ -50,7 +50,7 @@ $informasi =[
 
                         <!-- Dropdown content goes here -->
                         @foreach($informasi as $item)
-                        <x-dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
+                        <x-dropdown.dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
                         @endforeach
                     </div>
                 </li>

@@ -67,8 +67,7 @@ class ManageUmkmController extends Controller
             session()->flash('success', 'Berhasil Menambahkan UMKM');
         }
 
-        //return redirect()->route('rw.manage.umkm');
-        return 'sliwik';
+        return 'success';
     }
 
     // update UMKM with validation

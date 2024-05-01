@@ -22,8 +22,8 @@ class ManagePengaduanController extends Controller
 
         $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search($request, $paginate);
         $count = PengaduanModel::all()->count();
-        
-        
+
+
         $data = [
             "pengaduanInstances" => $pengaduanInstances,
             "count" => $count
@@ -31,7 +31,7 @@ class ManagePengaduanController extends Controller
 
         return view('pages.rw.manage.pengaduan', $data);
     }
-    
+
 
     public function addNewPengaduan()
     {
@@ -45,7 +45,7 @@ class ManagePengaduanController extends Controller
         /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
         $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
         $resultUrl = $cloudinaryResponse->getSecurePath();
-        
+
         $data = [
             'judul' => request()->judul,
             'nik_pengadu' => request()->user()->getNik(),
@@ -56,7 +56,7 @@ class ManagePengaduanController extends Controller
 
         $newPengaduan = PengaduanModel::create($data);
 
-        if(!$newPengaduan) {
+        if (!$newPengaduan) {
             session()->flash('danger', 'Insert Failed.');
         } else {
             session()->flash('success', 'Insert Success.');
@@ -79,17 +79,17 @@ class ManagePengaduanController extends Controller
         $idPengaduan = request()->id_pengaduan;
         $pengaduan = PengaduanModel::find($idPengaduan);
 
-        if(!$pengaduan) {
+        if (!$pengaduan) {
             session()->flash('danger', 'Update Failed.');
         } else {
 
-            if(request()->hasFile('image')) {
-            /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
-            $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
-            $resultUrl = $cloudinaryResponse->getSecurePath();
-            $pengaduan->setImageUrl($resultUrl);
+            if (request()->hasFile('image')) {
+                /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+                $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+                $resultUrl = $cloudinaryResponse->getSecurePath();
+                $pengaduan->setImageUrl($resultUrl);
             }
-            
+
             $pengaduan->setJudul(request()->judul);
             $pengaduan->setIsi(request()->isi);
             $pengaduan->setStatus(request()->status);
@@ -113,7 +113,7 @@ class ManagePengaduanController extends Controller
 
         $pengaduan = PengaduanModel::find($idPengaduan);
 
-        if(!$pengaduan) {
+        if (!$pengaduan) {
             session()->flash('danger', 'Delete Failed');
         } else {
             $pengaduan->delete();
