@@ -29,7 +29,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         'agama',
         'status_perkawinan',
         'pekerjaan',
-        'tipe_warga',
         'role',
         'jenis_kelamin',
         'golongan_darah',
@@ -49,7 +48,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         'agama',
         'status_perkawinan',
         'pekerjaan',
-        'tipe_warga',
         'role',
         'jenis_kelamin',
         'golongan_darah'
@@ -103,15 +101,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail
             'Ketua Rukun Tetangga' => 'Ketua Rukun Tetangga',
             'Warga' => 'Warga',
             'Petugas Keamanan' => 'Petugas Keamanan',
-        ];
-    }
-
-    public static function getTipeWargaOption()
-    {
-        return [
-            'Domisili Lokal' => 'Domisili Lokal',
-            'Non Domisili Lokal' => 'Non Domisili Lokal',
-            'Bukan Warga' => 'Bukan Warga',
         ];
     }
 
@@ -203,11 +192,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail
     public function getPekerjaan(): string
     {
         return $this->pekerjaan;
-    }
-
-    public function getTipeWarga(): string
-    {
-        return $this->tipe_warga;
     }
 
     public function getRole(): string
@@ -320,11 +304,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail
     public function setRole(string $role): void
     {
         $this->role = $role;
-    }
-
-    public function setTipeWarga(string $tipeWarga): void
-    {
-        $this->tipe_warga = $tipeWarga;
     }
 
     public function setGolonganDarah(string $golonganDarah): void

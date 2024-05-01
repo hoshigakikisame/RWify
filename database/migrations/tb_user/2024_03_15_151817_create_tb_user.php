@@ -24,7 +24,6 @@ return new class extends Migration
             $table->enum("agama", ["Islam", "Kristen", "Katolik", "Hindu", "Budha", "Konghucu"])->nullable();
             $table->enum("status_perkawinan", ["Belum Kawin", "Kawin", "Cerai Hidup", "Cerai Mati"]);
             $table->string("pekerjaan")->nullable();
-            $table->enum("tipe_warga", ["Domisili Lokal", "Non Domisili Lokal", "Bukan Warga"])->default("Domisili Lokal");
             $table->enum("role", ["Ketua Rukun Warga", "Ketua Rukun Tetangga", "Warga", "Petugas Keamanan"])->default("Warga");
             $table->enum("jenis_kelamin", ["Laki-laki", "Perempuan"]);
             $table->enum("golongan_darah", ["A", "B", "AB", "O"])->nullable();

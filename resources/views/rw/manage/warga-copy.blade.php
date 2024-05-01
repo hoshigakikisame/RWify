@@ -9,7 +9,6 @@ $genderOptions = \App\Models\UserModel::getKelaminOption();
 $agama = \App\Models\UserModel::getAgamaOption();
 $statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
 $golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
-$tipeWarga = \App\Models\UserModel::getTipeWargaOption();
 $role = \App\Models\UserModel::getRoleOption();
 $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
@@ -98,7 +97,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                             <x-selectinputform title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" />
                             <x-selectinputform title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" />
                             <x-selectinputform title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
-                            <x-selectinputform title="Tipe Warga" key="tipe_warga" :options="$tipeWarga" placeholder="Pilih Tipe Warga" />
                             <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" />
                             <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" />
                             <div class="flex justify-between mt-6">
@@ -349,7 +347,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                             <x-selectinputform title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" selected="${user.agama}" />
                             <x-selectinputform title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" selected="${user.status_perkawinan}" />
                             <x-selectinputform title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
-                            <x-selectinputform title="Tipe Warga" key="tipe_warga" :options="$tipeWarga" placeholder="Pilih Tipe Warga" selected="${user.tipe_warga}"/>
                             <x-selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" selected="${user.role}" />
                             <x-selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" selected="${user.id_rukun_tetangga}"/>
                             <div class="flex justify-between mt-6">

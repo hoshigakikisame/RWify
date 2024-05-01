@@ -47,7 +47,6 @@ class ManageWargaController extends Controller
             'agama' => '',
             'status_perkawinan' => 'required',
             'pekerjaan' => '',
-            'tipe_warga' => 'required',
             'role' => 'required',
             'jenis_kelamin' => 'required',
             'golongan_darah' => 'required',
@@ -67,7 +66,6 @@ class ManageWargaController extends Controller
             'agama' => request()->agama,
             'status_perkawinan' => request()->status_perkawinan,
             'pekerjaan' => request()->pekerjaan,
-            'tipe_warga' => request()->tipe_warga,
             'role' => request()->role,
             'jenis_kelamin' => request()->jenis_kelamin,
             'golongan_darah' => request()->golongan_darah,
@@ -100,7 +98,6 @@ class ManageWargaController extends Controller
             'agama' => 'required',
             'status_perkawinan' => 'required',
             'pekerjaan' => 'required',
-            'tipe_warga' => 'required',
             'role' => 'required',
             'jenis_kelamin' => 'required',
             'golongan_darah' => 'required',
@@ -124,7 +121,6 @@ class ManageWargaController extends Controller
             $user->setAgama(request()->agama);
             $user->setStatusPerkawinan(request()->status_perkawinan);
             $user->setPekerjaan(request()->pekerjaan);
-            $user->setTipeWarga(request()->tipe_warga);
             $user->setRole(request()->role);
             $user->setJenisKelamin(request()->jenis_kelamin);
             $user->setGolonganDarah(request()->golongan_darah);
