@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('pesan');
             $table->timestamp('jadwal_temu')->useCurrent();
             $table->enum('status', ['pending', 'diterima', 'ditolak'])->default('pending');
+            $table->timestamp('dibuat_pada')->useCurrent();
+            $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 
             $table->foreign('nik_pemohon')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('nik_penerima')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');

@@ -66,10 +66,16 @@ class PengaduanModel extends Model
         return $this->nik_pengadu;
     }
 
+    public function getPengadu()
+    {
+        return $this->user;
+    }
+
     public function getNamaPengadu(): string
     {
         return $this->user->nama_depan . ' ' . $this->user->nama_belakang;
     }
+
 
     public static function getNamaPengaduByNIK($nik)
     {

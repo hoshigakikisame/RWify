@@ -6,7 +6,7 @@ use App\Http\Controllers\RW\RWController;
 use App\Http\Controllers\RW\Manage\ManageWargaController;
 use App\Http\Controllers\RW\Manage\ManagePengumumanController;
 use App\Http\Controllers\RW\Manage\ManageUmkmController;
-use App\Http\Controllers\RW\Manage\ManageTemplateDokumenController;
+use App\Http\Controllers\RW\Manage\ManageReservasiJadwalTemuController;
 use App\Http\Controllers\RW\Manage\ManagePengaduanController;
 
 // rw routes
@@ -56,17 +56,6 @@ Route::group([
             Route::post('delete', [ManageUmkmController::class, 'deleteUmkm'])->name('delete');
         });
 
-        // rw manage template-dokumen routes
-        Route::group([
-            'prefix' => 'template-dokumen',
-            'as' => 'templateDokumen.'
-        ], function() {
-            Route::get('', [ManageTemplateDokumenController::class, 'manageTemplateDokumenPage'])->name('templateDokumen');
-            Route::post('new', [ManageTemplateDokumenController::class, 'addNewTemplateDokumen'])->name('new');
-            Route::post('update', [ManageTemplateDokumenController::class, 'updateTemplateDokumen'])->name('update');
-            Route::post('delete', [ManageTemplateDokumenController::class, 'deleteTemplateDokumen'])->name('delete');
-        });
-
         // rw manage pengaduan routes
         Route::group([
             'prefix' => 'pengaduan',
@@ -76,6 +65,14 @@ Route::group([
             Route::post('new', [ManagePengaduanController::class, 'addNewPengaduan'])->name('new');
             Route::post('update', [ManagePengaduanController::class, 'updatePengaduan'])->name('update');
             Route::post('delete', [ManagePengaduanController::class, 'deletePengaduan'])->name('delete');
+        });
+
+        Route::group([
+            'prefix' => 'reservasiJadwalTemu',
+            'as' => 'reservasiJadwalTemu.'
+        ], function() {
+            Route::get('', [ManageReservasiJadwalTemuController::class, 'manageReservasiJadwalTemuPage'])->name('index');
+            Route::post('update', [ManageReservasiJadwalTemuController::class, 'updateReservasiJadwalTemu'])->name('update');
         });
     });
 });

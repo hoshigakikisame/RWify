@@ -4,9 +4,10 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserModel>
- */
+use App\Models\ReservasiJadwalTemuModel;
+use App\Models\UserModel;
+
+
 class ReservasiJadwalTemuModelFactory extends Factory
 {
     /**
@@ -15,12 +16,15 @@ class ReservasiJadwalTemuModelFactory extends Factory
      * @return array<string, mixed>
      */
 
-    protected $model = \App\Models\ReservasiJadwalTemuModel::class;
+    protected $model = ReservasiJadwalTemuModel::class;
     public function definition(): array
     {
+        $wargaInstances = UserModel::where('role', 'Warga')->get();
+        $ketuaRukunWargaInstance = UserModel::where('role', 'Ketua Rukun Warga')->get()->first();
+
         return [
-            'nik_pemohon' => $this->faker->randomNumber(16),
-            'nik_penerima' => $this->faker->randomNumber(16),
+            'nik_pemohon' => $this->faker->randomElement($wargaInstances)->getNik(),
+            'nik_penerima' => $ketuaRukunWargaInstance->getNik(),
             'subjek' => $this->faker->sentence(),
             'pesan' => $this->faker->paragraph(),
             'jadwal_temu' => $this->faker->dateTime(),

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UmkmSeeder::class,
             TemplateDokumenSeeder::class,
             PengaduanSeeder::class,
+            ReservasiJadwalTemuModelSeeder::class,
         ]);
     }
 }
