@@ -3,14 +3,14 @@
 @foreach ($umkmInstances as $umkm)
     <div class="card" id="umkm-{{ $umkm->getIdUmkm() }}">
         <div class="card-header">
-            <h5>Nama: {{ $umkm->nama }}</h5>
+            <h5>Nama: {{ $umkm->getNama() }}</h5>
         </div>
         <div class="card-body">
-            <p>Deskripsi: {{ $umkm->deskripsi }}</p>
+            <p>Deskripsi: {{ $umkm->getDeskripsi() }}</p>
         </div>
         <div class="card-footer">
-            <p>Alamat: {{ $umkm->alamat }}</p>
-            <p>Telepon: {{ $umkm->telepon }}</p>
+            <p>Alamat: {{ $umkm->getAlamat() }}</p>
+            <p>Telepon: {{ $umkm->getTelepon() }}</p>
         </div>
     </div>
     <br>

@@ -27,7 +27,16 @@ Route::group([
         'prefix' => 'informasi',
         'as' => 'informasi.'
     ], function () {
+        // umkm
         Route::get('umkm', [InformasiController::class, 'umkmPage'])->name('umkmPage');
+        
+        Route::group([
+            'prefix' => 'pengumuman',
+            'as' => 'pengumuman.'
+        ], function () {
+            Route::get('', [InformasiController::class, 'pengumumanPage'])->name('index');
+            Route::get('detail/{idPengumuman}', [InformasiController::class, 'pengumumanDetailPage'])->name('detail');
+        });
     });
 });
 
