@@ -14,23 +14,40 @@ $status = \App\Models\PengaduanModel::getStatusOption();
             <div>
                 <div class=" flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengaduan</h2>
-                    <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">126
+                    <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$count}}
                         Pengaduan</span>
                 </div>
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.
                 </p>
             </div>
         </div>
+        <div class="mt-6 md:flex md:items-center md:justify-between">
+            <div class="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
+                <button wire:click="selection('')" value="All" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300">
+                    Baru
+                </button>
 
-        <div class="relative flex items-center mt-4 md:mt-0  w-fit self-end">
-            <span class="absolute">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-            </span>
+                <button wire:click="selection('Ketua Rukun Tetangga')" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    Diproses
+                </button>
 
-            <input wire:model.live.debounce.400ms="search" type="text" placeholder="Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                <button wire:click="selection('Petugas Keamanan')" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    Invalid
+                </button>
 
+                <button wire:click="selection('Petugas Keamanan')" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    Selesai
+                </button>
+            </div>
+            <div id="search" class="relative flex items-center mt-4 md:mt-0" x-data="{search:''}">
+                <span class="absolute">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </span>
+
+                <input x-model="search" @keyup.enter="searchRequest(search,event)" type="text" placeholder="Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+            </div>
         </div>
     </div>
 
@@ -41,14 +58,14 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                     <table class="min-w-full w-full table-auto divide-y divide-gray-200 dark:divide-gray-700 px-2">
                         <thead class="bg-gray-50 dark:bg-gray-800">
                             <tr>
-                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                {{-- <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                         <span class="text-nowrap">NIK Pengadu</span>
                                     </button>
-                                </th>
+                                </th> --}}
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                        <span class="text-nowrap">Nama Pengadu</span>
+                                        <span class="text-nowrap">Pengadu</span>
                                     </button>
                                 </th>
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -63,6 +80,13 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                                         <span class="text-nowrap">Isi</span>
 
                                     </button>
+
+                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                        <span class="text-nowrap">Tanggal</span>
+
+                                    </button>
+                                </th>
 
                                 <th scope="col" class="py-3.5 px-4 pe-9 ps-5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <button class="flex items-center gap-x-2 dark:fill-gray-400">
@@ -90,13 +114,13 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                         <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                             @foreach ($pengaduanInstances as $pengaduan)
                             <tr>
-                                <td class=" px-4 py-4 text-sm font-medium">
+                                {{-- <td class=" px-4 py-4 text-sm font-medium">
                                     <div>
                                         <h2 class="font-medium text-gray-800 dark:text-white  text-nowrap truncate w-[200px]">
                                             {{ $pengaduan->getNikPengadu() }}
                                         </h2>
                                     </div>
-                                </td>
+                                </td> --}}
 
                                 <td class=" px-4 py-4 text-sm font-medium">
                                     <div>
@@ -114,13 +138,18 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                                     </div>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm ">
+                                <td class="px-4 py-4 text-sm">
                                     <div>
                                         <h4 class="text-gray-700 dark:text-gray-200">
                                             {{ implode(' ', array_slice(str_word_count($pengaduan->getIsi(), 1), 0, 10)) }}
                                             {{ str_word_count($pengaduan->getIsi()) > 10 ? '.....' : '' }}
                                         </h4>
                                     </div>
+                                
+                                <td class="px-4 py-4 text-sm">
+                                    <p class=" -mx-1 text-xs text-blue-600 ">
+                                        {{ $pengaduan->getDibuatPada() }}
+                                    </p>
                                 </td>
 
                                 <td class="px-4 py-4 text-sm">
@@ -155,16 +184,6 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                                         </span>
                                     </span>
                                 </td>
-
-
-
-
-
-
-
-
-
-
 
                                 <td class="px-4 py-4 pe-4 pe-0 ps-6 text-sm flex" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
                                     <button id="detailButton" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $pengaduan }},event);request(`{{ route('rw.manage.pengaduan.update') }}`, '#editModal', '#editModalForm')})()">
@@ -201,12 +220,21 @@ $status = \App\Models\PengaduanModel::getStatusOption();
         </div>
     </div>
 
-
     {{ $pengaduanInstances->links('elements.pagination') }}
 
 </section>
 @endsection
 @push('scripts')
+<script type="module">
+    $(document).ready(() => {
+        let reg = new RegExp('[?&]q=([^&#]*)', 'i');
+        let queryString = reg.exec(document.location);
+        if (queryString != null) {
+            let search = decodeURIComponent(queryString[1].replace(/\+/g, ' '));
+            $('#search input').val(search);
+        }
+    })
+</script>
 <script>
     function appendDeleteModal(id_pengaduan, judul, event) {
         const modalDeleteElemen = /*html*/ `
@@ -277,7 +305,7 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                         <form enctype="multipart/form-data" class="mt-5" id="editModalForm" action="{{ route('rw.manage.pengaduan.update') }}" method="post">
                             @csrf
                             <input type="text" name="id_pengaduan" value="${pengaduan.id_pengaduan}" hidden >
-                            <x-inputform title="NIK Pengadu" key="nik_pengadu" type="text" placeholder="NIK Pengadu" value="{{ $pengaduan->nik_pengadu }}" />
+                            <x-inputform title="NIK Pengadu" key="nik_pengadu" type="text" placeholder="NIK Pengadu" value="${pengaduan.nik_pengadu}" />
                             <x-inputform title="Judul" key="judul" type="text" placeholder="Judul"  value="${pengaduan.judul}" />
                             <x-textareainputform title="Isi" key="isi" placeholder="Isi"  value="${pengaduan.isi}" />
                             <x-selectinputform title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="${pengaduan.status}" />
@@ -375,6 +403,22 @@ $status = \App\Models\PengaduanModel::getStatusOption();
     function deleteModal(selector) {
         $(selector).ready(() => {
             $(selector).remove()
+        })
+    }
+
+    
+    function searchRequest(query, event) {
+        let url = document.location
+        url = url.origin + url.pathname + "?q=" + query
+
+        $.ajax({
+            url: url,
+            success: function(res) {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(res, 'text/html');
+                $('body').html(doc.body.innerHTML)
+                window.history.pushState({}, "", url);
+            }
         })
     }
 </script>

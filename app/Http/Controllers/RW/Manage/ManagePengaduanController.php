@@ -21,14 +21,17 @@ class ManagePengaduanController extends Controller
         $paginate = request()->paginate;
 
         $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search($request, $paginate);
+        $count = PengaduanModel::all()->count();
         
         
         $data = [
-            "pengaduanInstances" => $pengaduanInstances
+            "pengaduanInstances" => $pengaduanInstances,
+            "count" => $count
         ];
 
         return view('rw.manage.pengaduan', $data);
     }
+    
 
     public function addNewPengaduan()
     {

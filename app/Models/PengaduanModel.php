@@ -42,7 +42,7 @@ class PengaduanModel extends Model
     // relationships
     public function user()
     {
-        return $this->belongsTo(UserModel::class, 'nik_pengadu', 'nik', 'nama_depan', 'nama_belakang');
+        return $this->belongsTo(UserModel::class, 'nik_pengadu', 'nik');
     }
 
     // options statics
@@ -71,6 +71,19 @@ class PengaduanModel extends Model
     {
         return $this->user->nama_depan . ' ' . $this->user->nama_belakang;
     }
+
+    public static function getNamaPengaduByNIK($nik)
+    {
+        $pengadu = self::where('nik_pengaduan', $nik)->with('user')->first();
+        
+        if ($pengadu && $pengadu->user) {
+            return $pengadu->user->nama_depan . ' ' . $pengadu->user->nama_belakang;
+        } else {
+            return "null";
+        }
+    }
+    
+    
 
     public function getJudul(): string
     {
