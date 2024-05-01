@@ -26,6 +26,9 @@ class UserSeeder extends Seeder
         $rukunTetanggaInstances = RukunTetanggaModel::factory()->state(
             ['id_rukun_warga' => $rukunWargaInstance->getIdRukunWarga()]
         )->count(3)->create()->all();
+
+        // preserved instances
+        // rw test account instance
         $ketuaRukunWargaInstance = UserModel::factory()->state(
             [
                 'email' => 'niaoktav119@gmail.com',
@@ -34,9 +37,18 @@ class UserSeeder extends Seeder
             ]
         )->create()->first();
 
+        // warga test account instance
+        UserModel::factory()->state(
+            [
+                'email' => 'niaoktav119+warga@gmail.com',
+                'role' => 'Warga',
+                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+            ]
+        )->create();
+
         // attach ketua rukun warga to rukun warga
         $rukunWargaInstance->setNikKetuaRukunWarga($ketuaRukunWargaInstance->getNik());
-        $rukunWargaInstance->save();
+        $rukunWargaInstance->save();   
 
         // attach ketua rukun tetangga to rukun tetangga
         for ($i = 0; $i < count($rukunTetanggaInstances); $i++) {

@@ -20,6 +20,6 @@ class RWController extends Controller
         $data = [
             "users" => $users,
         ];
-        return view('rw.dashboard', $data);
+        return view('pages.rw.dashboard', $data);
     }
 }

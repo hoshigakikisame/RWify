@@ -30,7 +30,7 @@ class ManageWargaController extends Controller
             "count" => $count
         ];
 
-        return view('rw.manage.warga-copy', $data);
+        return view('pages.rw.manage.warga', $data);
     }
 
     public function addNewWarga()

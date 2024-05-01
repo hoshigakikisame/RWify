@@ -133,6 +133,40 @@ class UserModel extends Authenticatable implements MustVerifyEmail
             ->orWhere('alamat', 'like', "%{$search}%");
     }
 
+    // trait
+    public function redirectToDashboard() {
+        switch($this->getRole()) {
+            case "Ketua Rukun Warga":
+                return redirect()->route('rw.dashboard');
+            case "Ketua Rukun Tetangga":
+                return "Ketua RT";
+            case "Warga":
+                return redirect()->route('warga.dashboard');
+        }
+    }
+
+    public function getDashboardRoute() {
+        switch ($this->getRole()) {
+            case "Ketua Rukun Warga":
+                return route('rw.dashboard');
+            case "Ketua Rukun Tetangga":
+                return "Ketua RT";
+            case "Warga":
+                return route('warga.dashboard');
+        }
+    }
+
+    public function getSidebarView() {
+        switch ($this->getRole()) {
+            case "Ketua Rukun Warga":
+                return 'layouts.sidebar.rw-sidebar';
+            case "Ketua Rukun Tetangga":
+                return 'layouts.sidebar.rt-sidebar';
+            case "Warga":
+                return 'layouts.sidebar.warga-sidebar';
+        }
+    }
+
     // GETTERS
     public function getNik(): string
     {

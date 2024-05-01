@@ -27,7 +27,7 @@ class ManageTemplateDokumenController extends Controller
             "templateDokumenInstances" => $templateDokumenInstances
         ];
 
-        return view('rw.manage.templateDokumen', $data);
+        return view('pages.rw.manage.templateDokumen', $data);
     }
 
     public function addNewTemplateDokumen()

@@ -29,7 +29,7 @@ class ManagePengaduanController extends Controller
             "count" => $count
         ];
 
-        return view('rw.manage.pengaduan', $data);
+        return view('pages.rw.manage.pengaduan', $data);
     }
     
 
@@ -38,7 +38,7 @@ class ManagePengaduanController extends Controller
         request()->validate([
             'judul' => 'required',
             'isi' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
             'status' => 'required',
         ]);
 
@@ -72,7 +72,7 @@ class ManagePengaduanController extends Controller
             'id_pengaduan' => 'required',
             'judul' => 'required',
             'isi' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
             'status' => 'required',
         ]);
 

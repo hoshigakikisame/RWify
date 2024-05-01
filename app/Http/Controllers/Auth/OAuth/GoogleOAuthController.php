@@ -35,15 +35,7 @@ class GoogleOAuthController extends Controller
          * @var UserModel $user
          */
         $user = Auth::user();
-
-        switch ($user->getRole()) {
-            case "Ketua Rukun Warga":
-                return redirect()->route('rw.dashboard');
-            case "Ketua Rukun Tetangga":
-                return "Ketua RT";
-            case "Warga":
-                return "Warga";
-        }
+        $user->redirectToDashboard();
 
         return redirect()->route("auth.signIn");
     }

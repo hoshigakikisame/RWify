@@ -32,14 +32,14 @@ class ManagePengumumanController extends Controller
             "pengumumanInstances" => $pengumumanInstances
         ];
 
-        return view('rw.manage.pengumuman', $data);
+        return view('pages.rw.manage.pengumuman', $data);
     }
 
     public function addNewPengumuman()
     {
         request()->validate([
             'judul' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
             'konten' => 'required',
         ]);
 
@@ -70,7 +70,7 @@ class ManagePengumumanController extends Controller
         request()->validate([
             'id_pengumuman' => 'required',
             'judul' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
             'konten' => 'required',
         ]);
 

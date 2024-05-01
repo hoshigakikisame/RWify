@@ -18,7 +18,7 @@ class AuthController extends Controller
      */
     public function signInPage()
     {
-        return view('auth.signin');
+        return view('pages.auth.signin');
     }
 
     public function signIn()
@@ -39,15 +39,7 @@ class AuthController extends Controller
          * @var UserModel $user
          */
         $user = Auth::user();
-
-        switch($user->getRole()) {
-            case "Ketua Rukun Warga":
-                return redirect()->route('rw.dashboard');
-            case "Ketua Rukun Tetangga":
-                return "Ketua RT";
-            case "Warga":
-                return "Warga";
-        }
+        $user->redirectToDashboard();
 
         return redirect()->route("auth.signIn");
     }
@@ -64,7 +56,7 @@ class AuthController extends Controller
 
     public function forgotPasswordPage()
     {
-        return view('auth.forgotPassword');
+        return view('pages.auth.forgotPassword');
     }
 
     public function forgotPassword()
@@ -84,7 +76,7 @@ class AuthController extends Controller
 
     public function resetPasswordPage(string $token)
     {
-        return view('auth.resetPassword', compact('token'));
+        return view('pages.auth.resetPassword', compact('token'));
     }
 
     public function resetPassword()

@@ -24,14 +24,14 @@ class ManageUmkmController extends Controller
             "umkmInstances" => $umkmInstances
         ];
 
-        return view('rw.manage.umkm', $data);
+        return view('pages.rw.manage.umkm', $data);
     }
 
     public function addNewUmkm()
     {
         request()->validate([
             'nama' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => "image|mimes:" . config('cloudinary.allowed_mimes'),
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'map_url' => 'required',
@@ -77,7 +77,7 @@ class ManageUmkmController extends Controller
         request()->validate([
             'id_umkm' => 'required',
             'nama' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => "image|mimes:" . config('cloudinary.allowed_mimes'),
             'nama_pemilik' => 'required',
             'alamat' => 'required',
             'map_url' => 'required',

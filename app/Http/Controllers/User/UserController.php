@@ -21,12 +21,12 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('user/profile', compact('user'));
+        return view('pages.user.profile', compact('user'));
     }
 
     public function updateProfileImage() {
         request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes')
         ]);
         
         /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */

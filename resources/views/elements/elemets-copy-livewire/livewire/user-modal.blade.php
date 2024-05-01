@@ -13,25 +13,25 @@
                     <h1 class="text-md dark:text-gray-200">Data Diri</h1>
                 </div>
                 <div class="form-fields grow">
-                    <x-inputform title="NKK" key="nkk" name="nkk" type="number" />
-                    <x-inputform title="NIK" key="nik" name="nik" type="number" />
-                    <x-inputform title="Email" key="email" name="email" type="email"  />
-                    <x-inputform title="Password" key="password" name="password" type="password"  />
+                    <x-form.inputform title="NKK" key="nkk" name="nkk" type="number" />
+                    <x-form.inputform title="NIK" key="nik" name="nik" type="number" />
+                    <x-form.inputform title="Email" key="email" name="email" type="email"  />
+                    <x-form.inputform title="Password" key="password" name="password" type="password"  />
                     <div class="name flex gap-4 justify-between">
-                        <x-inputform title="Nama Depan" key="nama_depan" name="nama_depan" type="text"  />
-                        <x-inputform title="Nama Belakang" key="nama_belakang" name="nama_belakang" type="text" />
+                        <x-form.inputform title="Nama Depan" key="nama_depan" name="nama_depan" type="text"  />
+                        <x-form.inputform title="Nama Belakang" key="nama_belakang" name="nama_belakang" type="text" />
                     </div>
                     <div class="birthdate flex gap-4 ">
-                        <x-inputform title="Tempat Lahir" key="tempat_lahir" name="tempat_lahir" type="text"  />
-                        <x-inputform title="Tanggal Lahir" key="tanggal_lahir" name="tanggal_lahir" type="date" />
+                        <x-form.inputform title="Tempat Lahir" key="tempat_lahir" name="tempat_lahir" type="text"  />
+                        <x-form.inputform title="Tanggal Lahir" key="tanggal_lahir" name="tanggal_lahir" type="date" />
                     </div>
                     <div class="jenis-kelamin-dan-golongan-darah flex gap-4">
                         @php
 $genderOptions = \App\Models\UserModel::getKelaminOption();
 $golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
                         @endphp
-                        <x-selectinputform title="Jenis Kelamin" key="jenis_kelamin" name="jenis_kelamin" :options="$genderOptions"  />
-                        <x-selectinputform title="Golongan Darah" key="golongan_darah" name="golongan_darah" :options="$golonganDarah" />
+                        <x-form.selectinputform title="Jenis Kelamin" key="jenis_kelamin" name="jenis_kelamin" :options="$genderOptions"  />
+                        <x-form.selectinputform title="Golongan Darah" key="golongan_darah" name="golongan_darah" :options="$golonganDarah" />
                     </div>
                     <x-text-area title="Alamat" key="alamat" name="alamat" />
                 </div>
@@ -48,12 +48,12 @@ $role = \App\Models\UserModel::getRoleOption();
 $tipeWarga = \App\Models\UserModel::getTipeWargaOption();
 $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                     @endphp
-                    <x-selectinputform title="Agama" key="agama" name="agama" :options="$agama"  />
-                    <x-selectinputform title="Status Perkawinan" key="status_perkawinan" name="status_perkawinan" :options="$statusPerkawinan" />
-                    <x-inputform title="Pekerjaan" key="pekerjaan" name="pekerjaan" type="text" />
-                    <x-selectinputform title="Peran" key="role" name="role" :options="$role"  />
-                    <x-selectinputform title="Tipe" key="tipe_warga" name="tipe_warga" :options="$tipeWarga"  />
-                    <x-selectinputform title="RT" key="id_rukun_tetangga" name="id_rukun_tetangga" :options="$rukunTetangga"  />
+                    <x-form.selectinputform title="Agama" key="agama" name="agama" :options="$agama"  />
+                    <x-form.selectinputform title="Status Perkawinan" key="status_perkawinan" name="status_perkawinan" :options="$statusPerkawinan" />
+                    <x-form.inputform title="Pekerjaan" key="pekerjaan" name="pekerjaan" type="text" />
+                    <x-form.selectinputform title="Peran" key="role" name="role" :options="$role"  />
+                    <x-form.selectinputform title="Tipe" key="tipe_warga" name="tipe_warga" :options="$tipeWarga"  />
+                    <x-form.selectinputform title="RT" key="id_rukun_tetangga" name="id_rukun_tetangga" :options="$rukunTetangga"  />
                 </div>
             </section>
             <section class="actionButton w-full flex gap-2 justify-end py-3 px-1">

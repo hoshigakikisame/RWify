@@ -23,15 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
              * @var UserModel $user
              */
             $user = Auth::user();
-
-            switch ($user->getRole()) {
-                case "Ketua Rukun Warga":
-                    return route('rw.dashboard');
-                case "Ketua Rukun Tetangga":
-                    return "Ketua RT";
-                case "Warga":
-                    return "Warga";
-            }
+            return $user->getDashboardRoute();
         });
         $middleware->alias([
             'hasRole' => EnsureUserHasRole::class
