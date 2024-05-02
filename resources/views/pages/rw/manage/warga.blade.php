@@ -361,9 +361,9 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
             </div>
     `
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-        $("#editModal select[aria-selected]").each(function() {
-            $(this).val(this.ariaSelected).change()
-        })
+        // $("#editModal select[aria-selected]").each(function() {
+        //     $(this).val(this.ariaSelected).change()
+        // })
     }
 
     function request(url, selectorParent, selectorForm) {
