@@ -24,12 +24,14 @@ class ManagePengumumanController extends Controller
     {
 
         $reqQuery = request()->q;
+        $paginate = request()->paginate;
 
-        $pengumumanInstances = (new SearchableDecorator(PengumumanModel::class))->search($reqQuery);
-        
-        
+        $pengumumanInstances = (new SearchableDecorator(PengumumanModel::class))->search($reqQuery, $paginate);
+        $count = PengumumanModel::all()->count();
+
         $data = [
-            "pengumumanInstances" => $pengumumanInstances
+            "pengumumanInstances" => $pengumumanInstances,
+            "count" => $count,
         ];
 
         return view('pages.rw.manage.pengumuman', $data);
@@ -46,7 +48,7 @@ class ManagePengumumanController extends Controller
         /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
         $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
         $resultUrl = $cloudinaryResponse->getSecurePath();
-        
+
         $data = [
             'judul' => request()->judul,
             'image_url' => $resultUrl,
@@ -55,7 +57,7 @@ class ManagePengumumanController extends Controller
 
         $newPengumuman = PengumumanModel::create($data);
 
-        if(!$newPengumuman) {
+        if (!$newPengumuman) {
             session()->flash('danger', 'Insert Failed.');
         } else {
             session()->flash('success', 'Insert Success.');
@@ -77,7 +79,7 @@ class ManagePengumumanController extends Controller
         $idPengumuman = request()->id_pengumuman;
         $pengumuman = PengumumanModel::find($idPengumuman);
 
-        if(!$pengumuman) {
+        if (!$pengumuman) {
             session()->flash('danger', 'Update Failed.');
         } else {
 
@@ -107,7 +109,7 @@ class ManagePengumumanController extends Controller
 
         $pengumuman = PengumumanModel::find($idPengumuman);
 
-        if(!$pengumuman) {
+        if (!$pengumuman) {
             session()->flash('danger', 'Delete Failed');
         } else {
             $pengumuman->delete();
