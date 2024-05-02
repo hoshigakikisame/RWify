@@ -12,7 +12,7 @@
         <div class="">
             <div class="flex items-center gap-x-3">
                 <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengumuman</h2>
-                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400"> 9
+                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$count}}
                     Pengumuman</span>
                 <span class="px-3 py-1 inline-flex gap-2 items-center bg-green-100 rounded-full dark:bg-gray-800 ">
                     <p class="text-xs text-green-600 dark:text-green-400">9 published</p>
@@ -125,18 +125,29 @@
                                     </span>
                                 </div>
                                 <div class="action-dropdown relative" x-data="{actionModalOpen:false }">
-
                                     <button class="dark:fill-gray-100 h-5 w-5 mt-1" x-on:click="actionModalOpen = !actionModalOpen" @keydown.escape="actionModalOpen = false">
                                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="">
                                             <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0m0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10m1.5-15.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 6.5m0 11a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001m0-5.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 12" />
                                         </svg>
                                     </button>
-                                    <div class="absolute bg-gray-800 -left-10 top-0" style="display: none;" x-show="actionModalOpen" @click.away="actionModalOpen = false">
-                                        <button>
-                                            <div class="icon">
-
+                                    <div class="absolute right-8 top-0 rounded-lg border dark:border-gray-700 overflow-hidden divide-y" style="display: none;" x-show="actionModalOpen" @click.away="actionModalOpen = false">
+                                        <button class="inline-flex gap-2 px-4 pt-3 pb-2  hover:bg-gray-100 w-full items-center" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                                            <div class="icon w-3 fill-blue-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M18.656.93 6.464 13.122A4.97 4.97 0 0 0 5 16.657V18a1 1 0 0 0 1 1h1.343a4.97 4.97 0 0 0 3.535-1.464L23.07 5.344a3.125 3.125 0 0 0 0-4.414 3.194 3.194 0 0 0-4.414 0m3 3L9.464 16.122A3.02 3.02 0 0 1 7.343 17H7v-.343a3.02 3.02 0 0 1 .878-2.121L20.07 2.344a1.15 1.15 0 0 1 1.586 0 1.123 1.123 0 0 1 0 1.586" />
+                                                    <path d="M23 8.979a1 1 0 0 0-1 1V15h-4a3 3 0 0 0-3 3v4H5a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h9.042a1 1 0 0 0 0-2H5a5.006 5.006 0 0 0-5 5v14a5.006 5.006 0 0 0 5 5h11.343a4.97 4.97 0 0 0 3.536-1.464l2.656-2.658A4.97 4.97 0 0 0 24 16.343V9.979a1 1 0 0 0-1-1m-4.535 12.143a3 3 0 0 1-1.465.8V18a1 1 0 0 1 1-1h3.925a3 3 0 0 1-.8 1.464Z" />
+                                                </svg>
                                             </div>
-                                            <p class="text-xs text-gray-200 dark:text-gray-400">Edit</p>
+                                            <p class="font-medium text-xs text-blue-600 dark:text-gray-400 me-4">Edit</p>
+                                        </button>
+                                        <button class="inline-flex gap-2 px-4 pb-3 pt-2 hover:bg-gray-100 w-full border-b-2 items-center">
+                                            <div class="icon w-3 fill-rose-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M21 4h-3.1A5.01 5.01 0 0 0 13 0h-2a5.01 5.01 0 0 0-4.9 4H3a1 1 0 0 0 0 2h1v13a5.006 5.006 0 0 0 5 5h6a5.006 5.006 0 0 0 5-5V6h1a1 1 0 0 0 0-2M11 2h2a3.01 3.01 0 0 1 2.829 2H8.171A3.01 3.01 0 0 1 11 2m7 17a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V6h12Z" />
+                                                    <path d="M10 18a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1m4 0a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1" />
+                                                </svg>
+                                            </div>
+                                            <p class="font-medium text-xs text-rose-500 dark:text-gray-400 me-4">Delete</p>
                                         </button>
                                     </div>
                                 </div>

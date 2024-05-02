@@ -147,8 +147,8 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                     </div>
 
                 <td class="px-4 py-4 text-sm">
-                    <p class=" -mx-1 text-xs text-blue-600 ">
-                        {{ $pengaduan->getDibuatPada() }}
+                    <p class=" -mx-1 text-xs text-nowrap text-blue-600 ">
+                        {{ date('D, m-y', strtotime($pengaduan->getDibuatPada())); }}
                     </p>
                 </td>
 
