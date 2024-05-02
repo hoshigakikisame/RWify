@@ -50,7 +50,7 @@
 
                                     <label for="status">Select Status:</label>
                                     <select name="status" id="status" onchange="this.form.submit()">
-                                        @foreach (\App\Enums\ReservasiJadwalTamuStatusEnum::getValues() as $status)
+                                        @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $status)
                                             <option value="{{ $status }}"
                                                 {{ $status == $reservasiJadwalTemu->getStatus() ? 'selected=selected' : ''}}>
                                                 {{ $status }}</option>
