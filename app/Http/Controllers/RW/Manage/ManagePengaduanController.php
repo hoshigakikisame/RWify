@@ -72,7 +72,7 @@ class ManagePengaduanController extends Controller
             'id_pengaduan' => 'required',
             'judul' => 'required',
             'isi' => 'required',
-            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
+            'image' => "image|mimes:" . config('cloudinary.allowed_mimes'),
             'status' => 'required',
         ]);
 
