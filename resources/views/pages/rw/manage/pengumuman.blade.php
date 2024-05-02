@@ -128,13 +128,26 @@
                                     @endif
                                 </div>
                                 <div class="action-dropdown relative" x-data="{actionModalOpen:false }">
+
                                     <button class="dark:fill-gray-100 h-5 w-5 mt-1" x-on:click="actionModalOpen = !actionModalOpen" @keydown.escape="actionModalOpen = false">
                                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="">
                                             <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0m0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10m1.5-15.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 6.5m0 11a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001m0-5.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 12" />
                                         </svg>
                                     </button>
                                     <div class="absolute right-8 top-0 rounded-lg border dark:border-gray-700 overflow-hidden divide-y dark:divide-gray-700" style="display: none;" x-show="actionModalOpen" @click.away="actionModalOpen = false">
-                                        <button class="inline-flex gap-2 px-4 pt-3 pb-2  hover:bg-gray-100 dark:hover:bg-gray-800 w-full items-center" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                                        <div class="relative">
+                                            <a id="detailButton" class="inline-flex gap-2 px-4 pt-3 pb-2  hover:bg-gray-100 dark:hover:bg-gray-800 w-full items-center" target="_blank" href="{{route('informasi.pengumuman.index', ['#pengumuman-' . $pengumuman->getIdPengumuman() ])}}">
+                                                <div class="icon w-3 fill-gray-500">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                        <path d="M23.271 9.419C21.72 6.893 18.192 2.655 12 2.655S2.28 6.893.729 9.419a4.91 4.91 0 0 0 0 5.162C2.28 17.107 5.808 21.345 12 21.345s9.72-4.238 11.271-6.764a4.91 4.91 0 0 0 0-5.162m-1.705 4.115C20.234 15.7 17.219 19.345 12 19.345S3.766 15.7 2.434 13.534a2.92 2.92 0 0 1 0-3.068C3.766 8.3 6.781 4.655 12 4.655s8.234 3.641 9.566 5.811a2.92 2.92 0 0 1 0 3.068" />
+                                                        <path d="M12 7a5 5 0 1 0 5 5 5.006 5.006 0 0 0-5-5m0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3" />
+                                                    </svg>
+                                                </div>
+                                                <p class="font-medium text-xs text-gray-600 dark:text-gray-400 me-4">Detail</p>
+
+                                            </a>
+                                        </div>
+                                        <button class="inline-flex gap-2 px-4 pt-2 pb-2  hover:bg-gray-100 dark:hover:bg-gray-800 w-full items-center" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                                             <div class="icon w-3 fill-blue-500">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                     <path d="M18.656.93 6.464 13.122A4.97 4.97 0 0 0 5 16.657V18a1 1 0 0 0 1 1h1.343a4.97 4.97 0 0 0 3.535-1.464L23.07 5.344a3.125 3.125 0 0 0 0-4.414 3.194 3.194 0 0 0-4.414 0m3 3L9.464 16.122A3.02 3.02 0 0 1 7.343 17H7v-.343a3.02 3.02 0 0 1 .878-2.121L20.07 2.344a1.15 1.15 0 0 1 1.586 0 1.123 1.123 0 0 1 0 1.586" />
