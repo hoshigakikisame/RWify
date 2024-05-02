@@ -10,21 +10,21 @@ $status = \App\Models\PengaduanModel::getStatusOption();
 <section class="relative flex justify-between h-full">
     <div class="body px-6 md:px-12 mt-7 ">
         <div class="mb-8 flex flex-col sm:flex sm:justify-between gap-x-3">
-            <h2 class=" text-2xl font-medium text-gray-800 dark:text-white">{{ $pengaduanInstance->judul }}</h2>
+            <h2 class=" text-2xl font-medium text-gray-900 dark:text-gray-100 font-Poppins">{{ $pengaduanInstance->judul }}</h2>
         </div>
 
         <div class="flex flex-col">
-            <div class="profile flex ">
-                <div class="col mr-3">
-                    <img src="{{ $pengaduanInstance->user->image_url }}" alt="Profile" class="w-24 h-24 rounded-full">
+            <div class="profile flex gap-2">
+                <div class="mr-3">
+                    <img src="{{ $pengaduanInstance->user->image_url }}" alt="Profile" class="w-20 h-20 rounded-full">
                 </div>
-                <div class="col flex flex-col justify-center">
-                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">
+                <div class="flex flex-col justify-center">
+                    <h2 class="text-lg font-medium text-gray-800 dark:text-gray-200 leading-5">
                         {{ $pengaduanInstance->getNamaPengadu() }}
                     </h2>
-                    <p class=" text-sm text-gray-500 dark:text-gray-300 mb-2">{{ $pengaduanInstance->getNikPengadu() }}</p>
-                    <p class="mt-2 text-sm text-blue-600 dark:text-blue-600">Dibuat Pada :
-                        {{ $pengaduanInstance->getDibuatPada() }}
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">{{ $pengaduanInstance->getNikPengadu() }}</p>
+                    <p class="text-[11px] text-blue-500 dark:text-blue-500 bg-blue-100 dark:bg-blue-950 px-3 rounded-full">Reported at
+                        {{date('d-m-y H:i', strtotime($pengaduanInstance->getDibuatPada()));}}
                     </p>
                 </div>
             </div>
@@ -32,20 +32,22 @@ $status = \App\Models\PengaduanModel::getStatusOption();
 
 
         <div class="content mt-8">
-            <h2 class="text-lg font-medium text-gray-800 dark:text-white">Deskripsi:</h2>
-            <p class="mt-1 text-md text-gray-700 dark:text-gray-300">{{ $pengaduanInstance->getIsi() }}</p>
+            <h2 class="text-[12px] font-medium text-gray-800 dark:text-gray-100 mb-1 font-Poppins">Deskripsi pengaduan</h2>
+            <p class="text-gray-700 dark:text-gray-300 font-Inter">{{ $pengaduanInstance->getIsi() }}</p>
         </div>
 
         <div class="px-4 sm:block sm:p-0 mt-5">
-            <h2 class="text-lg font-medium text-gray-800 dark:text-white">Lampiran:</h2>
+            <h2 class="text-[12px] mb-2 font-medium text-gray-800 dark:text-white font-Poppins">Lampiran</h2>
             <div>
                 <img src="{{ $pengaduanInstance->image_url }}" class="w-110 h-96">
             </div>
         </div>
 
-        <div class="flex mt-6 mb-6">
-            <h2 class="text-lg font-medium text-gray-800 dark:text-white">Status Terkini :</h2>
-            <span class="inline-flex items-center justify-center mx-1 px-3 py-1.5 rounded-full ml-2 @php 
+        <div class="flex items-center mt-6 mb-6">
+            <h2 class="leading-8 font-medium text-gray-800 dark:text-white font-Poppins">Status Terkini</h2>
+            <div class="w-fit">
+
+                <span class="inline-flex items-center justify-center mx-1 px-3 py-1.5 rounded-full ml-2 @php 
                 $statusStyle = [
                     'baru' => 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-200 ring-blue-700/10', 
                     'diproses' => 'bg-yellow-50 dark:bg-yellow-950 dark:text-yellow-200 text-yellow-800 ring-yellow-600/20', 
@@ -65,32 +67,33 @@ $status = \App\Models\PengaduanModel::getStatusOption();
                         bg-gray-50 text-gray-600 ring-gray-500/10 
                     @endif
                     ">
-                <span class="me-1 p-[5px] rounded-full inline-block
+                    <span class="me-1 p-[5px] rounded-full inline-block
                     @if ($pengaduanInstance->getStatus()) 
                         {{ $dotStyle[$pengaduanInstance->getStatus()] }}
                     @else 
                         bg-gray-50
                     @endif
                         "></span>
-                <span class="text-sm">
-                    {{ $pengaduanInstance->getStatus() }}
+                    <span class="text-sm">
+                        {{ $pengaduanInstance->getStatus() }}
+                    </span>
                 </span>
-            </span>
+            </div>
         </div>
     </div>
     <aside class="pt-6 px-5 rounded-bl-lg" x-ref="sideContainer" x-data=" { sideAction: false }">
         <div class="inline-flex gap-2">
-            <button id="actionButton" class="fill-gray-900 dark:fill-gray-100" @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-gray-800 shadow-md')">
+            <button id="actionButton" class="fill-gray-900 dark:fill-gray-100 transition-all duration-300 ease-in-out" @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-gray-800 shadow-md')">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 ">
                     <path d="M12 24a1 1 0 0 1-.71-.29l-8.17-8.17a5 5 0 0 1 0-7.08L11.29.29a1 1 0 1 1 1.42 1.42L4.54 9.88a3 3 0 0 0 0 4.24l8.17 8.17a1 1 0 0 1 0 1.42A1 1 0 0 1 12 24" />
                     <path d="M22 24a1 1 0 0 1-.71-.29l-9.58-9.59a3 3 0 0 1 0-4.24L21.29.29a1 1 0 1 1 1.42 1.42l-9.59 9.58a1 1 0 0 0 0 1.42l9.59 9.58a1 1 0 0 1 0 1.42A1 1 0 0 1 22 24" />
                 </svg>
             </button>
-            <div class="header">
-                <h1 x-show="sideAction" class="text-gray-900 dark:text-gray-100 " style="display: none;">Rubah Status Pengaduan</h1>
+            <div class="header" style="display: none;" x-show="sideAction" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                <h1 class="text-gray-900 dark:text-gray-100 "> Rubah Status Pengaduan</h1>
             </div>
         </div>
-        <div class="sidebar-action px-4 ms-3 w-full" x-show="sideAction" style="display: none;" @click.away="sideAction = false; $($refs.sideContainer).removeClass('bg-gray-50 dark:bg-gray-800 shadow-md')">
+        <div class="sidebar-action px-4 ms-3 w-full transition-all" x-show="sideAction" style="display: none;" @click.away="sideAction = false; $($refs.sideContainer).removeClass('bg-gray-50 dark:bg-gray-800 shadow-md')" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
             <div class="heading">
                 <p class="text-xs text-wrap max-w-60 text-gray-950 dark:text-gray-500">Note: Pastikan pengaduan sudah benar benar tervalidasi sebelum merubah status pengaduan</p>
             </div>
