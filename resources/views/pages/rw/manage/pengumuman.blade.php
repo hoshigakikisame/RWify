@@ -112,17 +112,20 @@
                         <div class="card pt-4 border border-gray-200 ring-4 shadow-sm ring-gray-200/10 dark:border-gray-800 dark:ring-gray-700/10 rounded-lg overflow-hidden">
                             <div class="card-heading mb-1 px-8 flex justify-between items-start">
                                 <div class="status">
+                                    @if($pengumuman->getStatus() == App\Enums\Pengumuman\PengumumanStatusEnum::DRAFT->value)
+                                    <span class="px-2 py-1 inline-flex gap-1 items-center bg-blue-100 rounded-full dark:bg-gray-800 ">
+                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                                        <p class="text-[9px] text-blue-600 dark:text-blue-400">draft</p>
+                                    </span>
+                                    @else
                                     <span class="px-2 py-1 inline-flex gap-1 items-center bg-green-100 rounded-full dark:bg-gray-800 ">
                                         <span class="relative flex h-2 w-2 items-center justify-center">
                                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 duration-700"></span>
                                             <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                                         </span>
-                                        <p class="text-[9px] text-green-600 dark:text-green-400">published</p>
+                                        <p class="text-[9px] text-green-600 dark:text-green-400">publish</p>
                                     </span>
-                                    <span class="px-2 py-1 inline-flex gap-1 items-center bg-blue-100 rounded-full dark:bg-gray-800 ">
-                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                                        <p class="text-[9px] text-blue-600 dark:text-blue-400">draft</p>
-                                    </span>
+                                    @endif
                                 </div>
                                 <div class="action-dropdown relative" x-data="{actionModalOpen:false }">
                                     <button class="dark:fill-gray-100 h-5 w-5 mt-1" x-on:click="actionModalOpen = !actionModalOpen" @keydown.escape="actionModalOpen = false">

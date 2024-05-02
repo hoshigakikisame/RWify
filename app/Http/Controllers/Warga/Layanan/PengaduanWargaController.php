@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\PengaduanModel;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
+use App\Enums\Pengaduan\PengaduanStatusEnum;
+
 class PengaduanWargaController extends Controller
 {
     public function pengaduanPage()
@@ -38,7 +40,7 @@ class PengaduanWargaController extends Controller
             'judul' => request()->judul,
             'isi' => request()->isi,
             'image_url' => $imageUrl,
-            'status' => PengaduanModel::getStatusOption()['baru']
+            'status' => PengaduanStatusEnum::BARU
         ];
 
         $newUMKM = PengaduanModel::create($data);

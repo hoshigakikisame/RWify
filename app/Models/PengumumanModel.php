@@ -51,6 +51,10 @@ class PengumumanModel extends Model
         return $this->konten;
     }
 
+    public function getStatus(): string {
+        return $this->status;
+    }
+
     public function getDibuatPada(): string
     {
         return $this->dibuat_pada;

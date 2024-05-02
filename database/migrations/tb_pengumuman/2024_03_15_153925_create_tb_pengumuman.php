@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('image_url')->nullable();
             $table->text('konten');
+            $table->enum('status', ['draft', 'publish'])->default('draft');
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
         });

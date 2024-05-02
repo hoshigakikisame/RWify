@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Enums\Pengaduan\PengaduanStatusEnum;
+
 return new class extends Migration
 {
     /**
@@ -17,7 +19,7 @@ return new class extends Migration
             $table->text('judul');
             $table->text('isi');
             $table->text('image_url');
-            $table->enum('status', ['baru', 'invalid', 'diproses', 'selesai'])->default('baru');
+            $table->enum('status', PengaduanStatusEnum::getValues())->default(PengaduanStatusEnum::BARU);
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 

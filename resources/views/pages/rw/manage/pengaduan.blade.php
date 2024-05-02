@@ -4,7 +4,7 @@
 
 {{-- content --}}
 @php
-$status = \App\Models\PengaduanModel::getStatusOption();
+$status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
 
 @endphp
 @section('content')
@@ -148,7 +148,7 @@ $status = \App\Models\PengaduanModel::getStatusOption();
 
                 <td class="px-4 py-4 text-sm">
                     <p class=" -mx-1 text-xs text-nowrap text-blue-600 ">
-                        {{ date('D, m-y', strtotime($pengaduan->getDibuatPada())); }}
+                        {{ date('D, m-y', strtotime($pengaduan->getDibuatPada())) }}
                     </p>
                 </td>
 

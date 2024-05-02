@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum; 
+
 return new class extends Migration
 {
     /**
@@ -18,7 +20,7 @@ return new class extends Migration
             $table->string('subjek');
             $table->text('pesan');
             $table->timestamp('jadwal_temu')->useCurrent();
-            $table->enum('status', ['pending', 'diterima', 'ditolak'])->default('pending');
+            $table->enum('status', ReservasiJadwalTemuStatusEnum::getValues())->default(ReservasiJadwalTemuStatusEnum::PENDING);
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 

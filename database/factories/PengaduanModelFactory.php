@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\PengaduanModel;
 use App\Models\UserModel;
 
+use App\Enums\Pengaduan\PengaduanStatusEnum;
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PengaduanModel>
  */
@@ -25,7 +27,7 @@ class PengaduanModelFactory extends Factory
             'nik_pengadu' => UserModel::get()->random()->getNik(),
             'isi' => $this->faker->paragraph(),
             'image_url' => $this->faker->imageUrl(),
-            'status' => $this->faker->randomElement(PengaduanModel::getStatusOptions()),
+            'status' => $this->faker->randomElement(PengaduanStatusEnum::getValues())
         ];
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 use App\Models\ReservasiJadwalTemuModel;
 use App\Models\UserModel;
+use App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum;
 
 
 class ReservasiJadwalTemuModelFactory extends Factory
@@ -28,7 +29,7 @@ class ReservasiJadwalTemuModelFactory extends Factory
             'subjek' => $this->faker->sentence(),
             'pesan' => $this->faker->paragraph(),
             'jadwal_temu' => $this->faker->dateTime(),
-            'status' => $this->faker->randomElement(['pending', 'diterima', 'ditolak'])
+            'status' => $this->faker->randomElement(ReservasiJadwalTemuStatusEnum::getValues())
         ];
     }
 }

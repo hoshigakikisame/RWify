@@ -3,7 +3,7 @@
 
 {{-- content --}}
 @php
-$status = \App\Models\PengaduanModel::getStatusOption();
+$status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
 
 @endphp
 @section('content')

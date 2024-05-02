@@ -28,16 +28,6 @@ class PengaduanModel extends Model
         'isi'
     ];
 
-    public static function getStatusOptions()
-    {
-        return [
-            'baru',
-            'diproses',
-            'invalid',
-            'selesai'
-        ];
-    }
-
     // relationships
     public function user()
     {
@@ -45,15 +35,6 @@ class PengaduanModel extends Model
     }
 
     // options statics
-    public static function getStatusOption()
-    {
-        return [
-            'baru' => 'baru',
-            'diproses' => 'diproses',
-            'invalid' => 'invalid',
-            'selesai' => 'selesai',
-        ];
-    }
 
     // GETTERS
     public function getIdPengaduan(): int
