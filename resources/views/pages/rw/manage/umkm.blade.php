@@ -85,7 +85,7 @@
                 </svg>
             </span>
 
-            <input wire:model.live.debounce.400ms="search" type="text" placeholder="Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+            <input x-model="search" @keyup.enter="searchRequest(search,event)" type="text" placeholder="Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
 
         </div>
     </div>
@@ -221,6 +221,16 @@
 </section>
 @endsection
 @push('scripts')
+<script type="module">
+        $(document).ready(() => {
+            let reg = new RegExp('[?&]q=([^&#]*)', 'i');
+            let queryString = reg.exec(document.location);
+            if (queryString != null) {
+                let search = decodeURIComponent(queryString[1].replace(/\+/g, ' '));
+                $('#search input').val(search);
+            }
+        })
+</script>
 <script>
     function appendDeleteModal(id_umkm, nama, event) {
         const modalDeleteElemen = /*html*/ `
@@ -375,6 +385,21 @@
     function deleteModal(selector) {
         $(selector).ready(() => {
             $(selector).remove()
+        })
+    }
+
+    function searchRequest(query, event) {
+        let url = document.location
+        url = url.origin + url.pathname + "?q=" + query
+
+        $.ajax({
+            url: url,
+            success: function(res) {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(res, 'text/html');
+                $('body').html(doc.body.innerHTML)
+                window.history.pushState({}, "", url);
+            }
         })
     }
 </script>
