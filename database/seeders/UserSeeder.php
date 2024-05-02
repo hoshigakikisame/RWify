@@ -28,10 +28,27 @@ class UserSeeder extends Seeder
         )->count(3)->create()->all();
 
         // preserved instances
-        // rw test account instance
+        // permanent rw test account instance
         $ketuaRukunWargaInstance = UserModel::factory()->state(
             [
                 'email' => 'niaoktav119@gmail.com',
+                'role' => 'Ketua Rukun Warga',
+                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+            ]
+        )->create()->first();
+
+        // temporary rw test account instances
+        UserModel::factory()->state(
+            [
+                'email' => 'daffayudisa09@gmail.com',
+                'role' => 'Ketua Rukun Warga',
+                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+            ]
+        )->create()->first();
+
+        UserModel::factory()->state(
+            [
+                'email' => 'thoriqfathurrozi@gmail.com',
                 'role' => 'Ketua Rukun Warga',
                 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
             ]

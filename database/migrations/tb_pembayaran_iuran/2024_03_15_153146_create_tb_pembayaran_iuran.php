@@ -15,13 +15,12 @@ return new class extends Migration
             $table->id('id_pembayaran_iuran');
             $table->string('nkk', 16);
             $table->date('tanggal_bayar');
-            $table->text('path_gambar_bukti_bayar');
+            $table->text('image_url');
             $table->text('keterangan');
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 
             // Foreign key
-            // $table->foreign('nik_pembayar')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nik_pembayar', 16);
             $table->foreign('nik_pembayar')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
         });
