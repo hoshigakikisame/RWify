@@ -46,7 +46,7 @@ $informasi =[
                             <path fill-rule="evenodd" d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <div class=" absolute left-1 mt-2 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 p-1 space-y-1" x-cloak x-show="isOpen" @click.away="isOpen = false">
+                    <div class="absolute left-1 mt-2 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 p-1 space-y-1" style="display: none;" x-show="isOpen" @click.away="isOpen = false">
 
                         <!-- Dropdown content goes here -->
                         @foreach($informasi as $item)
