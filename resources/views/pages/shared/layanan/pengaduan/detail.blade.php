@@ -8,7 +8,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
 @endphp
 @section('content')
 <section class="relative flex justify-between h-full">
-    <div class="body px-6 md:px-12 mt-7 ">
+    <div class="body px-6 md:px-12 mt-7 mb-7">
         <div class="mb-8 flex flex-col sm:flex sm:justify-between gap-x-3">
             <h2 class=" text-2xl font-medium text-gray-900 dark:text-gray-100 font-Poppins">{{ $pengaduanInstance->judul }}</h2>
         </div>
@@ -19,7 +19,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
                     <img src="{{ $pengaduanInstance->user->image_url }}" alt="Profile" class="w-20 h-20 rounded-full">
                 </div>
                 <div class="flex flex-col justify-center">
-                    <h2 class="text-lg font-medium text-gray-800 dark:text-gray-200 leading-5">
+                    <h2 class="text-lg font-medium font-Poppins text-gray-800 dark:text-gray-200 leading-5">
                         {{ $pengaduanInstance->getNamaPengadu() }}
                     </h2>
                     <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">{{ $pengaduanInstance->getNikPengadu() }}</p>
@@ -32,18 +32,18 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
 
 
         <div class="content mt-8">
-            <h2 class="text-[12px] font-medium text-gray-800 dark:text-gray-100 mb-1 font-Poppins">Deskripsi pengaduan</h2>
+            <h2 class="leading-8 font-medium text-gray-800 dark:text-white font-Poppins">Deskripsi Pengaduan</h2>
             <p class="text-gray-700 dark:text-gray-300 font-Inter">{{ $pengaduanInstance->getIsi() }}</p>
         </div>
 
-        <div class="px-4 sm:block sm:p-0 mt-5">
-            <h2 class="text-[12px] mb-2 font-medium text-gray-800 dark:text-white font-Poppins">Lampiran</h2>
+        <div class="px-4 sm:block sm:p-0 mt-8">
+            <h2 class="leading-8 font-medium text-gray-800 dark:text-white font-Poppins">Lampiran</h2>
             <div>
-                <img src="{{ $pengaduanInstance->image_url }}" class="w-110 h-96">
+                <img src="{{ $pengaduanInstance->getImageUrl()}}" class="w-110 h-96">
             </div>
         </div>
 
-        <div class="flex items-center mt-6 mb-6">
+        <div class="flex items-center h-32">
             <h2 class="leading-8 font-medium text-gray-800 dark:text-white font-Poppins">Status Terkini</h2>
             <div class="w-fit">
 
@@ -84,23 +84,25 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
     <aside class="pt-6 px-5 rounded-bl-lg" x-ref="sideContainer" x-data=" { sideAction: false }">
         <div class="inline-flex gap-2">
             <button id="actionButton" class="fill-gray-900 dark:fill-gray-100 transition-all duration-300 ease-in-out" @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-gray-800 shadow-md')">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 ">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 ">
                     <path d="M12 24a1 1 0 0 1-.71-.29l-8.17-8.17a5 5 0 0 1 0-7.08L11.29.29a1 1 0 1 1 1.42 1.42L4.54 9.88a3 3 0 0 0 0 4.24l8.17 8.17a1 1 0 0 1 0 1.42A1 1 0 0 1 12 24" />
                     <path d="M22 24a1 1 0 0 1-.71-.29l-9.58-9.59a3 3 0 0 1 0-4.24L21.29.29a1 1 0 1 1 1.42 1.42l-9.59 9.58a1 1 0 0 0 0 1.42l9.59 9.58a1 1 0 0 1 0 1.42A1 1 0 0 1 22 24" />
                 </svg>
             </button>
             <div class="header" style="display: none;" x-show="sideAction" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                <h1 class="text-gray-900 dark:text-gray-100 "> Rubah Status Pengaduan</h1>
+                <h1 class="leading-8 font-medium font-Poppins text-gray-900 dark:text-gray-100 ml-3"> Rubah Status Pengaduan</h1>
             </div>
         </div>
-        <div class="sidebar-action px-4 ms-3 w-full transition-all" x-show="sideAction" style="display: none;" @click.away="sideAction = false; $($refs.sideContainer).removeClass('bg-gray-50 dark:bg-gray-800 shadow-md')" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-            <div class="heading">
-                <p class="text-xs text-wrap max-w-60 text-gray-950 dark:text-gray-500">Note: Pastikan pengaduan sudah benar benar tervalidasi sebelum merubah status pengaduan</p>
-            </div>
-            <form action="">
-                <x-form.selectinputform title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="{{$pengaduanInstance->getStatus()}}" />
+        <div id="updateStatus" class="mb-8 me-5 sidebar-action px-4 ms-6 w-72 transition-all" x-show="sideAction" style="display: none;" @click.away="sideAction = false; $($refs.sideContainer).removeClass('bg-gray-50 dark:bg-gray-800 shadow-md')" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 ">
+            <form id="updateForm" onclick="request('{{ route('rw.manage.pengaduan.update') }}', '#updateStatus', '#updateForm')">
+                @csrf
+                <input type="text" name="id_pengaduan" key="id_pengaduan" value="{{$pengaduanInstance->id_pengaduan}}" hidden >
+                <x-form.selectinputform  title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="{{$pengaduanInstance->getStatus()}}" />
+                    <div class="heading">
+                        <p class="mt-3 text-xs text-wrap max-w-60 text-gray-950 dark:text-gray-500">Note: Pastikan pengaduan sudah benar benar tervalidasi sebelum merubah status pengaduan</p>
+                    </div>
                 <div class="flex justify-end mt-4">
-                    <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                    <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50" ">
                         Save Pengaduan
                     </button>
                 </div>
@@ -109,3 +111,59 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
     </aside>
 </section>
 @endsection
+@push('scripts')
+<script>
+    function request(url, selectorParent, selectorForm) {
+        $(selectorParent).ready((e) => {
+            $(selectorForm).on('submit', function(e) {
+                e.preventDefault()
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function(res) {
+                        $.ajax({
+                            url: document.location,
+                            type: "GET",
+                            success: function(response) {
+                                let parser = new DOMParser();
+                                let doc = parser.parseFromString(response,
+                                    'text/html');
+                                $('body').html(doc.body.innerHTML)
+                                setTimeout(function() {
+                                    $(".flash-message").remove()
+                                }, 5000)
+                            }
+                        })
+
+
+                    },
+                    error: function(res) {
+                        $.each(res.responseJSON.errors, (key, value) => {
+                            value.forEach(element => {
+                                $(e.currentTarget).find('#' + key).siblings(
+                                    '#error').append(
+                                    `<li>${element}</li>`)
+                            });
+
+                            setTimeout(element => {
+                                $(e.currentTarget).find('#' + key).siblings(
+                                    '#error').fadeOut("slow", () => {
+                                    $(e.currentTarget).find('#' +
+                                            key).siblings('#error')
+                                        .empty()
+                                })
+                            }, 8000)
+                        })
+
+                    }
+                })
+
+
+            })
+        })
+    }
+</script>
+@endpush

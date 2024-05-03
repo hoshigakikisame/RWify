@@ -69,10 +69,6 @@ class ManagePengaduanController extends Controller
     public function updatePengaduan()
     {
         request()->validate([
-            'id_pengaduan' => 'required',
-            'judul' => 'required',
-            'isi' => 'required',
-            'image' => "image|mimes:" . config('cloudinary.allowed_mimes'),
             'status' => 'required',
         ]);
 
@@ -82,16 +78,6 @@ class ManagePengaduanController extends Controller
         if (!$pengaduan) {
             session()->flash('danger', 'Update Failed.');
         } else {
-
-            if (request()->hasFile('image')) {
-                /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
-                $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
-                $resultUrl = $cloudinaryResponse->getSecurePath();
-                $pengaduan->setImageUrl($resultUrl);
-            }
-
-            $pengaduan->setJudul(request()->judul);
-            $pengaduan->setIsi(request()->isi);
             $pengaduan->setStatus(request()->status);
             $pengaduan->save();
 
