@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
-@foreach ($umkmInstances as $umkm)
+@include('pages.shared.includes.navbar')
+<section class="dark:text-white mb-36">
+    @foreach ($umkmInstances as $umkm)
     <div class="card" id="umkm-{{ $umkm->getIdUmkm() }}">
         <div class="card-header">
             <h5>Nama: {{ $umkm->getNama() }}</h5>
@@ -14,5 +16,7 @@
         </div>
     </div>
     <br>
-@endforeach
+    @endforeach
+</section>
+@include('pages.shared.includes.footer')
 @endsection

@@ -5,13 +5,15 @@ $information = Vite::asset('resources/assets/images/loud-speaker.png');
 $report = Vite::asset('resources/assets/images/no-shouting.png');
 $payment = Vite::asset('resources/assets/images/tips.png');
 
-$layanan =[
-['title'=> 'Permintaan Dokumen', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $reservation],
-['title'=> 'Pengaduan', 'href' => route("warga.layanan.pengaduan.index"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $report],
-['title'=> 'Pembayaran Iuran', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $payment]];
-$informasi =[
-['title'=> 'Informasi UMKM', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $umkm],
-['title'=> 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te','icon' => $information ]]
+$layanan = [
+    ['title' => 'Permintaan Dokumen', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $reservation],
+    ['title' => 'Pengaduan', 'href' => route("warga.layanan.pengaduan.index"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $report],
+    ['title' => 'Pembayaran Iuran', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $payment]
+];
+$informasi = [
+    ['title' => 'Informasi UMKM', 'href' => route("informasi.umkmPage"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $umkm],
+    ['title' => 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $information]
+]
 @endphp
 <div class="nav-container px-5 lg:px-10 py-5 dark:bg-gray-800 sticky top-0 bg-gray-50 z-20">
     <nav class="flex justify-between items-center">
@@ -59,10 +61,10 @@ $informasi =[
         </div>
         <div class="navbar-action flex gap-3">
             @php
-            $login = 'Sign In';
-            if(Auth::user()){
-            $login = 'Dashboard';
-            }
+$login = 'Sign In';
+if (Auth::user()) {
+    $login = 'Dashboard';
+}
             @endphp
 
             <a class="login-button bg-green-900 text-gray-100 dark:text-gray-200 dark:bg-green-700 px-4 py-1 border border-gray-200 border-opacity-10 rounded-lg " href="{{route('auth.signIn')}}">{{$login}}</a>
