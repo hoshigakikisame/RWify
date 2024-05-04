@@ -9,12 +9,11 @@
             {{$slot}}
         </ul>
 
-        <div class="sidebar-footer">
-            <div class="user-wrap border p-2 rounded-full text-gray-800 mb-2 w-full">
-                <div class="user flex items-center lg:gap-2 ">
+        <div class="sidebar-footer flex flex-col items-center">
+            <div class="user-wrap border p-2 rounded-full text-gray-800 mb-2 w-fit ">
+                <div class="user flex items-center lg:gap-2">
                     <button id="moreButton">
-                        <div class="w-11 rounded-full bg-white dark:bg-gray-900 h-11 bg-cover bg-center" 
-                            style="background-image: url('{{ $imageProfile }}')">
+                        <div class="w-11 rounded-full bg-white dark:bg-gray-900 h-11 bg-cover bg-center" style="background-image: url('{{ $imageProfile }}')">
                         </div>
                     </button>
                     <div class="body lg:min-w-10 hidden lg:block w-20 relative">
