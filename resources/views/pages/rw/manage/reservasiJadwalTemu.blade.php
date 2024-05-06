@@ -90,8 +90,8 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="card-body me-24 flex flex-col h-full pb-8">
-                                <p class="grow text-sm text-gray-700 dark:text-gray-400">{{ $reservasiJadwalTemu->getPesan()}}</p>
+                            <div class="card-body me-24 flex flex-col">
+                                <p class="text-sm text-gray-700 dark:text-gray-400">{{ $reservasiJadwalTemu->getPesan()}}</p>
                                 <div class="action ">
                                     <form action="{{route('rw.manage.reservasiJadwalTemu.update')}}" method="post" autocomplete="off">
                                         @csrf
@@ -108,7 +108,6 @@
                                     </form>
                                 </div>
                             </div>
-
                         </div>
                         @endforeach
                     </div>
