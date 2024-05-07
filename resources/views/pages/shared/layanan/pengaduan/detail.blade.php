@@ -15,8 +15,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
 
         <div class="flex flex-col">
             <div class="profile flex gap-2">
-                <div class="mr-3">
-                    <img src="{{ $pengaduanInstance->user->image_url }}" alt="Profile" class="w-20 h-20 rounded-full">
+                <div class="mr-3 w-20 rounded-full bg-white dark:bg-gray-900 h-20 bg-cover bg-center" style="background-image: url('{{ $pengaduanInstance->user->image_url }}')">
                 </div>
                 <div class="flex flex-col justify-center">
                     <h2 class="text-lg font-medium font-Poppins text-gray-800 dark:text-gray-200 leading-5">
