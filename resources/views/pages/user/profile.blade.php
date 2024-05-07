@@ -1,57 +1,53 @@
 @extends(request()->user()->getSidebarView())
 @section('content')
-    @php
-        $userImage = request()->user()->getImageUrl() ?? Vite::asset('resources/assets/images/avatar.jpg');
-        $image = Vite::asset('resources/assets/images/profileImage.jpg');
-    @endphp
-    <div class="mt-8 mx-14">
-        <div class="relative h-full">
-            <div class="background-display relative">
-                <img src="{{ $image }}" alt="backgroundImage" class="h-64 w-full bg-cover rounded-xl">
+@php
+$userImage = request()->user()->getImageUrl() ?? Vite::asset('resources/assets/images/avatar.jpg');
+$image = Vite::asset('resources/assets/images/profileImage.jpg');
+@endphp
+<div class="mt-8 mx-14">
+    <div class="relative h-full">
+        <div class="background-display relative">
+            <img src="{{ $image }}" alt="backgroundImage" class="h-64 w-full bg-cover rounded-xl">
+        </div>
+        <div class="user flex gap-12 relative">
+            <div class="user-avatar relative left-14 -top-20">
+                <div class="w-44 rounded-full border-4 bg-white dark:bg-gray-900 border-white dark:border-gray-900 h-44 bg-cover bg-center" style="background-image: url('{{ $userImage }}')">
+                </div>
+                <form action="{{ route('user.profile.updateImage') }}" method="post" id="formImage" enctype="multipart/form-data">
+                    @csrf
+                    <label>
+                        <input type="file" class="hidden" name="image" id="inputImage" accept="image/*">
+                        <div class="absolute -translate-y-1/4 right-5 bottom-0 bg-gray-500/80 p-2 rounded-full fill-gray-300 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
+                                <path d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
+                            </svg>
+                        </div>
+                    </label>
+                </form>
             </div>
-            <div class="user flex gap-12 relative">
-                <div class="user-avatar relative left-14 -top-20">
-                    <div class="w-44 rounded-full border-4 bg-white dark:bg-gray-900 border-white dark:border-gray-900 h-44 bg-cover bg-center"
-                        style="background-image: url('{{ $userImage }}')">
-                    </div>
-                    <form action="{{ route('user.profile.updateImage') }}" method="post" id="formImage"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <label>
-                            <input type="file" class="hidden" name="image" id="inputImage" accept="image/*">
-                            <div
-                                class="absolute -translate-y-1/4 right-5 bottom-0 bg-gray-500/80 p-2 rounded-full fill-gray-300 cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
-                                    <path
-                                        d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
-                                </svg>
-                            </div>
-                        </label>
-                    </form>
-                </div>
-                <div class="user-info relative mt-2 ml-8 dark:text-gray-50 text-gray-950">
-                    <h1 class="text-2xl font-Poppins font-semibold ">
-                        {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }}
-                    </h1>
-                    <h5 class="text-sm font-Inter font-medium text-gray-800 dark:text-gray-300">{{ $user->getRole() }}</h5>
-                    <p class="text-xs font-Inter text-gray-400 dark:text-gray-500">{{ $user->getEmail() }}</p>
-                </div>
+            <div class="user-info relative mt-2 ml-8 dark:text-gray-50 text-gray-950">
+                <h1 class="text-2xl font-Poppins font-semibold ">
+                    {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }}
+                </h1>
+                <h5 class="text-sm font-Inter font-medium text-gray-800 dark:text-gray-300">{{ $user->getRole() }}</h5>
+                <p class="text-xs font-Inter text-gray-400 dark:text-gray-500">{{ $user->getEmail() }}</p>
             </div>
         </div>
-        <nav class="py-1 px-2 mb-2 relative">
-            <ul class="flex gap-1 text-sm dark:text-gray-100">
-                <li class="py-2 px-4 ">
-                    <button onclick="append(event);" ariaLabel="Profile">Profile</button>
-                </li>
-                <li class="py-2 px-4 ">
-                    <button onclick="append(event);" ariaLabel="changePassword">Change Password</button>
-                </li>
-            </ul>
-            <hr>
-        </nav>
-        <div class="body-profile ms-2">
-            <div class="container flex pb-10" id="panel">
-                <!-- <div class="user-information">
+    </div>
+    <nav class="py-1 px-2 mb-2 relative">
+        <ul class="flex gap-1 text-sm dark:text-gray-100">
+            <li class="py-2 px-4 ">
+                <button onclick="append(event);" ariaLabel="Profile">Profile</button>
+            </li>
+            <li class="py-2 px-4 ">
+                <button onclick="append(event);" ariaLabel="changePassword">Change Password</button>
+            </li>
+        </ul>
+        <hr>
+    </nav>
+    <div class="body-profile ms-2">
+        <div class="container flex pb-10" id="panel">
+            <!-- <div class="user-information">
                                                         <div class="panel panel-default ">
                                                             <div class="panel-heading mb-2">
                                                                 <h1 class="text-xl leading-7">Profile</h1>
@@ -208,7 +204,7 @@
                                                             </div>
                                                         </div>
                                                     </div> -->
-                <!-- <div class="change-password">
+            <!-- <div class="change-password">
                                                         <div class="panel">
                                                             <div class="panel-heading mb-2">
                                                                 <h1 class="text-xl leading-7">Change Password</h1>
@@ -269,14 +265,14 @@
                                                             </div>
                                                         </div>
                                                     </div> -->
-            </div>
         </div>
     </div>
+</div>
 @endsection
 
 @push('scripts')
-    <script>
-        const passwordElement = /*html*/ `
+<script>
+    const passwordElement = /*html*/ `
     <div class="change-password">
                 <div class="panel dark:text-gray-100 w-80">
                     <div class="panel-heading mb-2">
@@ -340,7 +336,7 @@
             </div>
     `
 
-        const profileElement = /*html */ `
+    const profileElement = /*html */ `
     <div class="user-information">
                 <div class="panel panel-default dark:text-gray-100">
                     <div class="panel-heading mb-2">
@@ -402,7 +398,7 @@
                             </div>
 
                             <div class="form-action mb-4">
-                                <div class="flex justify-end">
+                                <div class="flex">
                                     <button type="submit" class="px-4 py-2
                                      bg-blue-500 rounded-md text-sm text-white">
                                         <span>Save Profile</span>
@@ -415,42 +411,42 @@
             </div>
     `
 
-        function appendProfileElement(element) {
-            $("#panel").fadeOut(500, () => {
-                $("#panel").html(element)
-            })
-
-            $("#panel").fadeIn(500, () => {
-                $("#panel").html(element)
-            })
-        }
-
-        let active = "rounded-t-md text-blue-500 dark:text-blue-400 border-blue-500 border-b-2"
-
-        function append(event, style = active) {
-            $(event.target).parents('ul').children().each((i, e) => {
-                $(e).removeClass(style)
-            })
-
-            $($(event.target).parent()).addClass(style)
-
-            if (event.target.attributes.arialabel.value === "changePassword") {
-                appendProfileElement(passwordElement)
-            } else {
-                appendProfileElement(profileElement)
-            }
-        }
-    </script>
-    <script type="module">
-        $(window).on('load', () => {
-            $($("[ariaLabel='Profile']").parent()).addClass(active)
-            appendProfileElement(profileElement)
+    function appendProfileElement(element) {
+        $("#panel").fadeOut(500, () => {
+            $("#panel").html(element)
         })
 
-        $('document').ready(() => {
-            $('#inputImage').change(() => {
-                $('#formImage').submit();
-            });
+        $("#panel").fadeIn(500, () => {
+            $("#panel").html(element)
+        })
+    }
+
+    let active = "rounded-t-md text-blue-500 dark:text-blue-400 border-blue-500 border-b-2"
+
+    function append(event, style = active) {
+        $(event.target).parents('ul').children().each((i, e) => {
+            $(e).removeClass(style)
+        })
+
+        $($(event.target).parent()).addClass(style)
+
+        if (event.target.attributes.arialabel.value === "changePassword") {
+            appendProfileElement(passwordElement)
+        } else {
+            appendProfileElement(profileElement)
+        }
+    }
+</script>
+<script type="module">
+    $(window).on('load', () => {
+        $($("[ariaLabel='Profile']").parent()).addClass(active)
+        appendProfileElement(profileElement)
+    })
+
+    $('document').ready(() => {
+        $('#inputImage').change(() => {
+            $('#formImage').submit();
         });
-    </script>
+    });
+</script>
 @endpush

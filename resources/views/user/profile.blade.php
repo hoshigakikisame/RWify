@@ -407,7 +407,7 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
                             </div>
 
                             <div class="form-action mb-4">
-                                <div class="flex justify-end">
+                                <div class="">
                                     <button type="submit" class="px-4 py-2
                                      bg-blue-500 rounded-md text-sm text-white">
                                         <span>Save Profile</span>
