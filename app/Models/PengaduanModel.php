@@ -18,9 +18,9 @@ class PengaduanModel extends Model
         'id_pengaduan',
         'nik_pengadu',
         'judul',
-        'isi',
-        'image_url',
-        'status',
+        // 'isi',
+        // 'image_url',
+        // 'status',
     ];
 
     public static $searchable = [
@@ -56,20 +56,6 @@ class PengaduanModel extends Model
     {
         return $this->user->nama_depan . ' ' . $this->user->nama_belakang;
     }
-
-
-    public static function getNamaPengaduByNIK($nik)
-    {
-        $pengadu = self::where('nik_pengaduan', $nik)->with('user')->first();
-        
-        if ($pengadu && $pengadu->user) {
-            return $pengadu->user->nama_depan . ' ' . $pengadu->user->nama_belakang;
-        } else {
-            return "null";
-        }
-    }
-    
-    
 
     public function getJudul(): string
     {
