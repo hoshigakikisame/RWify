@@ -9,11 +9,17 @@ import Alpine from 'alpinejs'
 // import function to register Swiper custom elements
 import { register } from "swiper/element/bundle";
 
+// import loading.js
+import * as Loading from "./loading";
+
 // inject jQuery
 window.$ = jQuery;
 
 // inject Alpine
-window.Alpine = Alpine
+window.Alpine = Alpine;
+
+// inject Loading
+window.Loading = Loading;
 
 //start alpine
 Alpine.start()

@@ -405,8 +405,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
                     }
                 })
-
-
             })
         })
     }
@@ -429,7 +427,8 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                 let doc = parser.parseFromString(res, 'text/html');
                 $('body').html(doc.body.innerHTML)
                 window.history.pushState({}, "", url);
-            }
+            },
+
         })
     }
 </script>
