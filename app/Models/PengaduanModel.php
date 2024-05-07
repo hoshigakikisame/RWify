@@ -18,9 +18,9 @@ class PengaduanModel extends Model
         'id_pengaduan',
         'nik_pengadu',
         'judul',
-        // 'isi',
-        // 'image_url',
-        // 'status',
+        'isi',
+        'image_url',
+        'status',
     ];
 
     public static $searchable = [
