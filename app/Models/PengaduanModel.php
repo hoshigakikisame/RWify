@@ -57,20 +57,6 @@ class PengaduanModel extends Model
         return $this->user->nama_depan . ' ' . $this->user->nama_belakang;
     }
 
-
-    public static function getNamaPengaduByNIK($nik)
-    {
-        $pengadu = self::where('nik_pengaduan', $nik)->with('user')->first();
-        
-        if ($pengadu && $pengadu->user) {
-            return $pengadu->user->nama_depan . ' ' . $pengadu->user->nama_belakang;
-        } else {
-            return "null";
-        }
-    }
-    
-    
-
     public function getJudul(): string
     {
         return $this->judul;

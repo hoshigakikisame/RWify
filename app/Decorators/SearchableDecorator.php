@@ -5,6 +5,7 @@ namespace App\Decorators;
 use \Illuminate\Pagination\LengthAwarePaginator;
 
 use App\Decorators\Decorator;
+use \Illuminate\Database\Eloquent\Builder;
 
 class SearchableDecorator extends Decorator
 {
@@ -22,13 +23,22 @@ class SearchableDecorator extends Decorator
      * @param string $query
      * @return LengthAwarePaginator
      */
-    public function search($query, $paginate = 5): LengthAwarePaginator
+    public function search($query, $paginate = 5, array $relations = []): LengthAwarePaginator
     {
         if ($paginate == null) $paginate = 5;
-        return $this->model::where(function ($queryBuilder) use ($query) {
-            foreach ($this->searchable as $field) {
-                $queryBuilder->orWhere($field, 'like', "%$query%");
+
+        return $this->model::where(function (Builder $queryBuilder) use ($relations, $query) {
+
+            foreach ($relations as $relation => $model) {
+                foreach ($model::$searchable as $field) {
+                    $queryBuilder->orWhereRelation($relation, $field, 'LIKE', "%$query%");
+                }
             }
+
+            foreach ($this->searchable as $field) {
+                $queryBuilder->orWhere($field, 'LIKE', "%$query%");
+            }
+            
         })->paginate($paginate);
     }
 }

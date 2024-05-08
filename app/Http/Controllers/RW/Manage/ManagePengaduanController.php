@@ -6,6 +6,7 @@ namespace App\Http\Controllers\RW\Manage;
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\PengaduanModel;
+use App\Models\UserModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -20,9 +21,8 @@ class ManagePengaduanController extends Controller
         $request = request()->q;
         $paginate = request()->paginate;
 
-        $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search($request, $paginate);
-        $count = PengaduanModel::all()->count();
-
+        $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search($request, $paginate, ['user' => UserModel::class]);
+        $count = PengaduanModel::count();
 
         $data = [
             "pengaduanInstances" => $pengaduanInstances,

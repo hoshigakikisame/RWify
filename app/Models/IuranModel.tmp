@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class IuranModel extends Model {
+    
+    use HasFactory;
+    protected $table = 'tb_iuran';
+    protected $primaryKey = 'id_iuran';
+    const CREATED_AT = 'dibuat_pada';
+    const UPDATED_AT = 'diperbarui_pada';
+
+    protected $fillable = [
+        'id_iuran',
+        'nama_iuran',
+        'nominal',
+        'dibuat_pada',
+        'diperbarui_pada',
+    ];
+
+    public static $searchable = [
+        
+    ];
+
+    // relationships
+    public function 
+}
