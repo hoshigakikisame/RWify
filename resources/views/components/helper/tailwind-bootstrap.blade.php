@@ -1,1 +1,0 @@
-<div id="invisible" class="invisible {{$classes}}"></div>

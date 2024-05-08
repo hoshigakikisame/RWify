@@ -23,21 +23,22 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
         </div>
         <div class="mt-6 md:flex md:items-center md:justify-between">
             <div class="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-                <button @click="searchRequest('baru', event)" value="All" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300">
-                    Baru
+
+                <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
+                    x-effect="let params = new URLSearchParams(window.location.search); (params.has('filters[status]') && params.get('filters[status]') == '') || !params.has('filters[status]') ? $('#filter-all').addClass('!text-blue-400') : $('#filter-all').removeClass('!text-blue-400')"
+                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    semua
                 </button>
 
-                <button @click="searchRequest('diproses', event)" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Diproses
-                </button>
+                @foreach (\App\Enums\Pengaduan\PengaduanStatusEnum::getValues() as $key => $value)
+                    <button id="filter-{{ $key }}"
+                        onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
+                        x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                        class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                        {{ $value }}
+                    </button>
+                @endforeach
 
-                <button @click="searchRequest('invalid', event)" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Invalid
-                </button>
-
-                <button @click="searchRequest('selesai', event)" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Selesai
-                </button>
             </div>
             <div id="search" class="relative flex items-center mt-4 md:mt-0" x-data="{search:''}">
                 <span class="absolute">
@@ -46,7 +47,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
                     </svg>
                 </span>
 
-                <input x-model="search" @keyup.enter="searchRequest(search,event)" type="text" placeholder="Press Enter to Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text" placeholder="Press Enter to Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
         </div>
     </div>

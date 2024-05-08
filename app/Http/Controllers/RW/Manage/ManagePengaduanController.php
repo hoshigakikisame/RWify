@@ -18,15 +18,15 @@ class ManagePengaduanController extends Controller
     public function managePengaduanPage()
     {
 
-        $request = request()->q;
-        $status = request()->status;
+        $query = request()->q;
+        $filters = request()->filters ?? [];
         $paginate = request()->paginate;
 
         $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search(
-            $request, 
+            $query, 
             $paginate, 
             ['user' => UserModel::class], 
-            ['status' => $status]
+            $filters
         );
         $count = PengaduanModel::count();
 

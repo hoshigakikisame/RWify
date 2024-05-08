@@ -13,8 +13,6 @@ use App\Models\UserModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
-
-
 class ManagePengumumanController extends Controller
 {
     /**
@@ -23,10 +21,11 @@ class ManagePengumumanController extends Controller
     public function managePengumumanPage()
     {
 
-        $reqQuery = request()->q;
+        $query = request()->q;
+        $filters = request()->filters ?? [];
         $paginate = request()->paginate;
 
-        $pengumumanInstances = (new SearchableDecorator(PengumumanModel::class))->search($reqQuery, $paginate);
+        $pengumumanInstances = (new SearchableDecorator(PengumumanModel::class))->search($query, $paginate, [], $filters);
         $count = PengumumanModel::all()->count();
 
         $data = [
