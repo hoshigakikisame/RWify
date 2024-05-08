@@ -1,5 +1,5 @@
 @php
-    $previewDiv = '<div id="'.$id.'-preview" class="mt-2 bg-cover bg-center bg-no-repeat w-full h-96" style="background-image: url('.$value.')"></div>';
+$previewDiv = '<div id="'.$id.'-preview" class="mt-2 rounded-sm bg-cover bg-center bg-no-repeat w-full h-96" style="background-image: url('.$value.')"></div>';
 @endphp
 <div id="{{$id}}-wrapper" {{$attributes->merge(['class'=>'mt-4'])}}>
     <label for="{{$id}}" class="block text-sm text-gray-700 capitalize dark:text-gray-300">{{$title}}</label>
@@ -8,6 +8,6 @@
     </ul>
     <x-form.input-error :messages="$errors->get($key)" class="mt-2" />
     @if($value)
-        {!! $previewDiv !!}
+    {!! $previewDiv !!}
     @endif
 </div>
