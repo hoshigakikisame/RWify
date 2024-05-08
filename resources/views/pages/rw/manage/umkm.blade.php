@@ -117,8 +117,8 @@
                                     </button>
                                 </th>
 
-                                <th scope="col" class="py-3.5 px-4 pe-9 ps-5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                <th scope="col" class="py-3.5 px-4 ps-5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center text-center gap-x-2 dark:fill-gray-400">
                                         <span class="text-nowrap">Gambar</span>
 
                                     </button>
@@ -163,13 +163,14 @@
                                     </div>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm">
-                                    <button id="imageButtom" class=" relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $umkm }},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
+                                <td class="px-4 py-4 text-center" x-data="{showImage:false}">
+                                    <button id="imageButton" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" @click="showImage = !showImage" onclick="(function () {appendImageModal('{{$umkm->getImageUrl()}}','{{$umkm->getNama()}}',event);})()">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 ">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z" />
                                                 <path fill="currentColor" d="M8.91 8.51a.91.91 0 1 1-1.82 0a.91.91 0 0 1 1.82 0" />
-                                            </svg> </span>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </td>
 
@@ -222,16 +223,48 @@
 @endsection
 @push('scripts')
 <script type="module">
-        $(document).ready(() => {
-            let reg = new RegExp('[?&]q=([^&#]*)', 'i');
-            let queryString = reg.exec(document.location);
-            if (queryString != null) {
-                let search = decodeURIComponent(queryString[1].replace(/\+/g, ' '));
-                $('#search input').val(search);
-            }
-        })
+    $(document).ready(() => {
+        let reg = new RegExp('[?&]q=([^&#]*)', 'i');
+        let queryString = reg.exec(document.location);
+        if (queryString != null) {
+            let search = decodeURIComponent(queryString[1].replace(/\+/g, ' '));
+            $('#search input').val(search);
+        }
+    })
 </script>
 <script>
+    function appendImageModal(img_url, nama, event) {
+        const modalImageElement = /*html*/ `
+        <div id="imageModal" x-show="showImage" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                        <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                                            <div x-cloak @click="()=>{showImage = false;deleteModal('#imageModal')}" x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+
+                                            <div x-cloak x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+                                                <div class="flex items-center justify-between space-x-4">
+                                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Gambar UMKM</h1>
+
+                                                    <button @click="()=>{showImage = false;setTimeout(deleteModal('#imageModal'),3000)}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+
+                                                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                                    Gambar dari UMKM ${nama}
+                                                </p>
+                                                <div class="mt-7">
+                                                    <img src="${img_url}" alt="">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+        `
+        $(modalImageElement).insertAfter($(event.target).closest('#imageButton'))
+
+    }
+
     function appendDeleteModal(id_umkm, nama, event) {
         const modalDeleteElemen = /*html*/ `
         <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
