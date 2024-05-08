@@ -45,7 +45,6 @@ Route::group([
             
             // post
             Route::post('new', [ReservasiJadwalTemuWargaController::class, 'addNewReservasiJadwalTemu'])->name('new');
-            Route::post('delete', [ReservasiJadwalTemuWargaController::class, 'deleteReservasiJadwalTemu'])->name('delete');
         });
     });
 });

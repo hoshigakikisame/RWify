@@ -203,6 +203,11 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         return $this->nama_belakang;
     }
 
+    public function getNamaLengkap(): string
+    {
+        return $this->nama_depan . ' ' . $this->nama_belakang;
+    }
+
     public function getTempatLahir(): string
     {
         return $this->tempat_lahir;

@@ -19,9 +19,15 @@ class ManagePengaduanController extends Controller
     {
 
         $request = request()->q;
+        $status = request()->status;
         $paginate = request()->paginate;
 
-        $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search($request, $paginate, ['user' => UserModel::class]);
+        $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search(
+            $request, 
+            $paginate, 
+            ['user' => UserModel::class], 
+            ['status' => $status]
+        );
         $count = PengaduanModel::count();
 
         $data = [

@@ -23,11 +23,16 @@ class SearchableDecorator extends Decorator
      * @param string $query
      * @return LengthAwarePaginator
      */
-    public function search($query, $paginate = 5, array $relations = []): LengthAwarePaginator
+    public function search($query, $paginate = 5, array $relations = [], array $filter = []): LengthAwarePaginator
     {
         if ($paginate == null) $paginate = 5;
 
-        return $this->model::where(function (Builder $queryBuilder) use ($relations, $query) {
+        return $this->model::where(function(Builder $queryBuilder) use ($filter) {
+            foreach ($filter as $field => $value) {
+                if ($value == null || empty($value)) continue;
+                $queryBuilder->where($field, $value);
+            }
+        })->where(function (Builder $queryBuilder) use ($relations, $query) {
 
             foreach ($relations as $relation => $model) {
                 foreach ($model::$searchable as $field) {
@@ -39,6 +44,6 @@ class SearchableDecorator extends Decorator
                 $queryBuilder->orWhere($field, 'LIKE', "%$query%");
             }
             
-        })->paginate($paginate);
+        })->orderBy($this->model::CREATED_AT, 'DESC')->paginate($paginate);
     }
 }
