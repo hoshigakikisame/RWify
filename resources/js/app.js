@@ -12,6 +12,9 @@ import { register } from "swiper/element/bundle";
 // import loading.js
 import * as Loading from "./loading";
 
+// import Utils
+import * as Request from "./utils/request";
+
 // inject jQuery
 window.$ = jQuery;
 
@@ -20,6 +23,11 @@ window.Alpine = Alpine;
 
 // inject Loading
 window.Loading = Loading;
+
+// Utilities
+// inject Request
+window.utils = {};
+window.utils.Request = Request;
 
 //start alpine
 Alpine.start()

@@ -160,7 +160,7 @@
             <div
                 class="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
 
-                <button id="filter-all" onclick="filterRequest('', event)" x-effect="let params = new URLSearchParams(window.location.search); params.has('role') && params.get('role') == '' ? $('#filter-all').addClass('!text-blue-400') : $('#filter-all').removeClass('!text-blue-400')"
+                <button id="filter-all" onclick="filterRequest('', event)" x-effect="let params = new URLSearchParams(window.location.search); (params.has('role') && params.get('role') == '') || !params.has('role') ? $('#filter-all').addClass('!text-blue-400') : $('#filter-all').removeClass('!text-blue-400')"
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
                     Semua Warga
                 </button>
@@ -185,7 +185,7 @@
                     </svg>
                 </span>
 
-                <input x-model="search" @keyup.enter="searchRequest(search,event)" type="text" placeholder="Search"
+                <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text" placeholder="Search"
                     class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
         </div>
@@ -494,32 +494,31 @@
             })
         }
 
-        function searchRequest(query, event) {
+        // function searchRequest(query, event) {
 
-            var searchParams = new URLSearchParams(window.location.search);
-            searchParams.set("q", query);
-            window.location.search = searchParams.toString();
+        //     var searchParams = new URLSearchParams(window.location.search);
+        //     searchParams.set("q", query);
+        //     window.location.search = searchParams.toString();
 
-            let url = document.location
+        //     let url = document.location
 
-            $.ajax({
-                url: url,
-                beforeSend: window.Loading.showLoading,
-                success: function(res) {
-                    let parser = new DOMParser();
-                    let doc = parser.parseFromString(res, 'text/html');
-                    $('body').html(doc.body.innerHTML)
-                    window.history.pushState({}, "", url);
-                },
-
-            })
-        }
+        //     $.ajax({
+        //         url: url,
+        //         beforeSend: window.Loading.showLoading,
+        //         success: function(res) {
+        //             let parser = new DOMParser();
+        //             let doc = parser.parseFromString(res, 'text/html');
+        //             $('body').html(doc.body.innerHTML)
+        //             window.history.pushState({}, "", url);
+        //         },
+        //     })
+        // }
 
         function filterRequest(role, event) {
 
             var searchParams = new URLSearchParams(window.location.search);
             searchParams.set("role", role);
-            window.location.search = searchParams.toString();
+            document.location.search = searchParams.toString();
 
             let url = document.location
 

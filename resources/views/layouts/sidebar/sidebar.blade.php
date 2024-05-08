@@ -15,6 +15,8 @@
 </head>
 
 <body class="relative bg-white dark:bg-gray-900">
+    <div id="invisible" class="invisible animate-spin bg-blue-500 bg-blue-600 bg-black bg-indigo text-blue"></div>
+    {{-- <x-helper.tailwindbootstrap /> --}}
     <main class="flex">
         @php
         $footerMenu = ['Profile' => ['link'=> route('user.profile.index'),'icon'=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4">

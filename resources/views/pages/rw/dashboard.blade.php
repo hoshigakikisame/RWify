@@ -1,6 +1,6 @@
 @extends('layouts.sidebar.rw-sidebar')
 @section('content')
-    <section>
+    <section class="animate-spin">
         <div class="greeting mb-5">
             <h6>Hi {{ auth()->user()->nama_depan }},</h6>
             <h1 class="font-extrabold text-4xl">Selamat Datang di RWify</h1>
