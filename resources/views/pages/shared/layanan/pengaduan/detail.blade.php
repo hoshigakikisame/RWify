@@ -123,6 +123,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
                 $.ajax({
                     url: url,
                     type: "POST",
+                    beforeSend: window.Loading.showLoading,
                     data: new FormData(this),
                     contentType: false,
                     processData: false,

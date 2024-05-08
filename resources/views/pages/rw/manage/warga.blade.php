@@ -372,6 +372,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                 e.preventDefault()
                 $.ajax({
                     url: url,
+                    beforeSend: window.Loading.showLoading,
                     type: "POST",
                     data: $(selectorForm).serialize(),
                     success: function(res) {
@@ -422,6 +423,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
         $.ajax({
             url: url,
+            beforeSend: window.Loading.showLoading,
             success: function(res) {
                 let parser = new DOMParser();
                 let doc = parser.parseFromString(res, 'text/html');

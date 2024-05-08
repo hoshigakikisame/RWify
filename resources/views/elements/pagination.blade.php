@@ -189,6 +189,7 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
         
         $.ajax({
             url: url,
+            beforeSend: window.Loading.showLoading,
             success:function (res) {
                 let parser = new DOMParser();
                 let doc = parser.parseFromString(res, 'text/html');
