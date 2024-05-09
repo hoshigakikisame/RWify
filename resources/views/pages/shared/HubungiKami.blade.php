@@ -10,7 +10,7 @@ $image = Vite::asset('resources/assets/images/splendid-balaikota.jpg');
 <div class="dark:text-gray-200 dark:fill-gray-200">
     <section class="mb-10 relative">
         <div class="h-[485px] w-full bg-cover bg-center" style="background-image: url('{{ $image }}')">
-            <div class="absolute inset-0 flex flex-col justify-center items-center">
+            <div class="absolute dark:backdrop-brightness-150 inset-0 flex flex-col justify-center items-center">
                 <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-80 flex flex-col items-center h-full w-full">
                     <div class="text-wrap w-3/4 xl:max-w-4xl">
                         <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold mb-3 mt-40 whitespace-nowrap">Hubungi Kami</h1>
