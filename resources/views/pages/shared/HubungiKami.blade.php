@@ -7,7 +7,7 @@
 $image = Vite::asset('resources/assets/images/splendid-balaikota.jpg');
 @endphp
 @include('pages.shared.includes.navbar')
-<div class="dark:text-gray-200 dark:fill-gray-200">
+<div class="dark:text-gray-200 dark:fill-gray-200 overflow-scroll h-screen">
     <section class="mb-10 relative">
         <div class="h-[485px] w-full bg-cover bg-center" style="background-image: url('{{ $image }}')">
             <div class="absolute dark:backdrop-brightness-150 inset-0 flex flex-col justify-center items-center">
