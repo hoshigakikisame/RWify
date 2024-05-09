@@ -109,8 +109,26 @@ masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
                     </div>
                 </div>
             </swiper-slide>
-            <swiper-slide class=" dark:bg-white bg-gray-100">Slide 2</swiper-slide>
-            <swiper-slide class="dark:bg-white bg-gray-100">Slide 3</swiper-slide>
+            <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
+                <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
+                    <div class="text-wrap w-3/4 xl:max-w-4xl">
+                        <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
+                            Resik, Aman dan Serasi.</h1>
+                        <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
+                            Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+                    </div>
+                </div>
+            </swiper-slide>
+            <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
+                <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
+                    <div class="text-wrap w-3/4 xl:max-w-4xl">
+                        <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
+                            Resik, Aman dan Serasi.</h1>
+                        <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
+                            Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+                    </div>
+                </div>
+            </swiper-slide>
         </swiper-container>
     </section>
     <section class="px-8 lg:px-16 mb-28 ">
