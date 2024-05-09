@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Shared\LayananController;
 use App\Http\Controllers\Shared\InformasiController;
+use App\Http\Controllers\Shared\SharedController;
 
 // rw routes
 Route::group([
@@ -39,4 +40,8 @@ Route::group([
         });
     });
 });
+
+// shared routes
+Route::get('hubungi-kami', [SharedController::class, 'hubungiKami'])->name('hubungiKami');
+
 

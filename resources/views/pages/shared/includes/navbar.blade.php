@@ -6,7 +6,7 @@ $report = Vite::asset('resources/assets/images/no-shouting.png');
 $payment = Vite::asset('resources/assets/images/tips.png');
 
 $layanan = [
-    ['title' => 'Permintaan Dokumen', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $reservation],
+    ['title' => 'Reservasi Temu', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $reservation],
     ['title' => 'Pengaduan', 'href' => route("warga.layanan.pengaduan.index"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $report],
     ['title' => 'Pembayaran Iuran', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $payment]
 ];
@@ -56,8 +56,10 @@ $informasi = [
                         @endforeach
                     </div>
                 </li>
-                <li class="link-item px-2 py-1 dark:hover:text-gray-100 hover:text-gray-600 transition-all">Hubungi Kami</li>
-            </ul>
+                <a href="{{route('hubungiKami')}}">
+                    <li class="link-item px-2 py-1 dark:hover:text-gray-100 hover:text-gray-600 transition-all">Hubungi Kami</li>
+                </a>
+            </ul>   
         </div>
         <div class="navbar-action flex gap-3">
             @php

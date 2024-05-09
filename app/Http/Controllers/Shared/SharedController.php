@@ -13,4 +13,9 @@ class SharedController extends Controller
     {
         return view('pages.shared.index');
     }
+
+    public function hubungiKami()
+    {
+        return view('pages.shared.hubungiKami');
+    }
 }

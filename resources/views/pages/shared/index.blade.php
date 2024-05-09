@@ -14,7 +14,7 @@ $avatar = Vite::asset('resources/assets/images/avatar.jpg');
 
 $layanan = [
 [
-'title' => 'Permintaan Dokumen',
+'title' => 'Reservasi Temu',
 'href' => '#',
 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te',
 'icon' => $reservation,
