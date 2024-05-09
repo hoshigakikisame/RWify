@@ -24,7 +24,7 @@ $informasi = [
                     <h1 class="text-2xl ">RWify</h1>
                 </div>
 
-                <div :class="{' right-0': sideNavOpen, '-right-full': !sideNavOpen}" class="bg-gray-50 dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent w-3/4 md:w-auto absolute h-screen top-[78px] md:h-auto navbar-body z-30 md:static pb-4 md:pb-0 md:flex md:justify-end md:flex-row  transition-all">
+                <div :class="{'right-0': sideNavOpen, '-right-full': !sideNavOpen}" class="bg-gray-50 dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent w-3/4 md:w-auto absolute h-screen top-[78px] md:h-auto navbar-body z-30 md:static pb-4 md:pb-0 md:flex md:justify-end md:flex-row  transition-all">
                     <ul class="link-container dark:text-gray-200 px-4 md:px-0 pt-4 md:pt-0 md:p- flex flex-col justify-end md:justify-end md:flex-row transition-all fill-gray-900 dark:fill-gray-100">
                         <li class="md:dark:hover:text-gray-400 transition-all md:hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 md:dark:hover:bg-transparent md:hover:bg-transparent text-end md:text-start rounded-md ">
                             <a href="{{route('index')}}" class="link-item flex items-center justify-end px-5 md:px-1 py-2 md:py-1">

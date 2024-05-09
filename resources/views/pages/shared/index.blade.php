@@ -95,7 +95,7 @@ masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
 
 @endphp
 @include('pages.shared.includes.navbar')
-<div class="dark:text-gray-200 dark:fill-gray-200">
+<div class="dark:text-gray-200 dark:fill-gray-200 overflow-scroll h-screen">
     <section class="mb-10">
         <!-- Slider main container -->
         <swiper-container id="swiper-container-hero" class="mySwiper w-full h-[500px] lg:h-[650px]" pagination-clickable="true" slides-per-view="1" speed="500" loop="true" pagination="true" init="false">
@@ -180,7 +180,6 @@ masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
         </div>
     </section>
     @include('pages.shared.includes.footer')
-
 </div>
 @endsection
 @push('scripts')
