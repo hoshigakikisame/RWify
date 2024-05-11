@@ -65,8 +65,8 @@
                         $backgroundStyle = ['pending' => 'bg-blue-50 dark:bg-blue-950', 'ditolak' => 'bg-red-50 dark:bg-red-950', 'diterima' => 'bg-green-50 border dark:bg-green-950'];
                         @endphp
                         <div class="card px-10 py-8 rounded-lg border border-gray-300 ring ring-gray-200/20 dark:border-gray-700 dark:ring-gray-800/20">
-                            <div class="card-header flex justify-between mb-2">
-                                <h1 class="text-xl leading-8 dark:text-gray-100 text-gray-950">{{$reservasiJadwalTemu->getSubjek()}}</h1>
+                            <div class="card-header flex justify-between items-center mb-4">
+                                <p class="text-sm font-light font-Poppins">Tanggal temu <span class="font-semibold">{{ date('l, M jS Y H:i', strtotime($reservasiJadwalTemu->getJadwalTemu()))}}</span> oleh <span class="font-semibold">{{$reservasiJadwalTemu->getPemohon()->getNamaDepan()}}</span></p>
                                 <div class="status">
                                     <span class="inline-flex items-center justify-center mx-1 2xl:w-full px-3 py-[2px] rounded-full text-sm w-fit @php 
                                     $statusStyle = ['pending' => 'bg-blue-200 dark:bg-blue-950 text-blue-700 dark:text-blue-200 ring-blue-700/10', 'ditolak' => 'bg-red-200 dark:bg-red-950 text-red-700 dark:text-red-300 ring-red-600/10', 'diterima' => 'bg-green-200 dark:bg-green-950 text-green-700 dark:text-green-300 ring-green-600/20']; $dotStyle=['pending' => 'bg-blue-500 dark:bg-blue-300', 'ditolak' => 'bg-red-500 dark:bg-red-300', 'diterima' => 'bg-green-500 dark:bg-green-300'];
@@ -91,7 +91,8 @@
                                 </div>
                             </div>
                             <div class="card-body me-24 flex flex-col">
-                                <p class="text-sm text-gray-700 dark:text-gray-400">{{ $reservasiJadwalTemu->getPesan()}}</p>
+                                <h1 class="text-xl leading-6 dark:text-gray-100 text-gray-950 mb-2 capitalize">{{$reservasiJadwalTemu->getSubjek()}}</h1>
+                                <p class="text-sm text-gray-700 leading-6 dark:text-gray-400 capitalize pb-4">{{ $reservasiJadwalTemu->getPesan()}}</p>
                                 <div class="action ">
                                     <form action="{{route('rw.manage.reservasiJadwalTemu.update')}}" method="post" autocomplete="off">
                                         @csrf
