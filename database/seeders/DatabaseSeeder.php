@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             UmkmSeeder::class,
             PengaduanSeeder::class,
             ReservasiJadwalTemuModelSeeder::class,
+            TipePropertiSeeder::class,
+            PropertiSeeder::class,
         ]);
     }
 }

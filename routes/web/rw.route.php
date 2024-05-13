@@ -8,6 +8,8 @@ use App\Http\Controllers\RW\Manage\ManagePengumumanController;
 use App\Http\Controllers\RW\Manage\ManageUmkmController;
 use App\Http\Controllers\RW\Manage\ManageReservasiJadwalTemuController;
 use App\Http\Controllers\RW\Manage\ManagePengaduanController;
+use App\Http\Controllers\RW\Manage\ManagePropertiController;
+use App\Http\Controllers\RW\Manage\ManageTipePropertiController;
 
 // rw routes
 Route::group([
@@ -73,6 +75,28 @@ Route::group([
         ], function() {
             Route::get('', [ManageReservasiJadwalTemuController::class, 'manageReservasiJadwalTemuPage'])->name('index');
             Route::post('update', [ManageReservasiJadwalTemuController::class, 'updateReservasiJadwalTemu'])->name('update');
+        });
+
+        // rw manage properti routes
+        Route::group([
+            'prefix' => 'properti',
+            'as' => 'properti.'
+        ], function() {
+            Route::get('', [ManagePropertiController::class, 'managePropertiPage'])->name('index');
+            Route::post('new', [ManagePropertiController::class, 'addNewProperti'])->name('new');
+            Route::post('update', [ManagePropertiController::class, 'updateProperti'])->name('update');
+            Route::post('delete', [ManagePropertiController::class, 'deleteProperti'])->name('delete');
+        });
+
+        // rw manage tipe properti routes
+        Route::group([
+            'prefix' => 'tipeProperti',
+            'as' => 'tipeProperti.'
+        ], function() {
+            Route::get('', [ManageTipePropertiController::class, 'manageTipePropertiPage'])->name('index');
+            Route::post('new', [ManageTipePropertiController::class, 'addNewTipeProperti'])->name('new');
+            Route::post('update', [ManageTipePropertiController::class, 'updateTipeProperti'])->name('update');
+            Route::post('delete', [ManageTipePropertiController::class, 'deleteTipeProperti'])->name('delete');
         });
     });
 });

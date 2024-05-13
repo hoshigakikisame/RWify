@@ -20,7 +20,7 @@ Route::group([
         'as' => 'layanan.'
     ], function() {
 
-        // rw manage warga routes
+        // warga manage warga routes
         Route::group([
             'prefix' => 'pengaduan',
             'as' => 'pengaduan.'
@@ -34,7 +34,7 @@ Route::group([
             Route::post('delete', [PengaduanWargaController::class, 'deletePengaduan'])->name('delete');
         });
 
-        // rw manage reservasi jadwal temu routes
+        // warga manage reservasi jadwal temu routes
         Route::group([
             'prefix' => 'reservasi-jadwal-temu',
             'as' => 'reservasiJadwalTemu.'

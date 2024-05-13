@@ -43,6 +43,8 @@ class MigrateInOrder extends Command
             'tb_password_reset_token/2024_03_15_155240_create_tb_password_reset_token.php',
             'tb_reservasi_jadwal_temu/2024_04_25_032730_create_tb_reservasi_jadwal_temu.php',
             'tb_pengaduan/2024_04_28_153746_create_tb_pengaduan.php',
+            'tb_tipe_properti/2024_05_13_114623_create_tb_tipe_properti.php',
+            'tb_properti/2024_05_13_115019_create_tb_properti.php',
         ];
 
         // set foreign key check to 0
