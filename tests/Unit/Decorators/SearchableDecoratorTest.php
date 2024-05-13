@@ -1,77 +1,50 @@
 <?php
 
+use Tests\TestCase;
 use App\Decorators\SearchableDecorator;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
-use App\Models\UmkmModel;
+use App\Models\PengaduanModel;
+use App\Models\UserModel;
+use App\Enums\Pengaduan\PengaduanStatusEnum;
 
-// test('SearchableDecorator __construct method', function () {
-//     $mockModel = $this->getMockBuilder(UmkmModel::class)
-//         ->getMock();
+class SearchableDecotatorTest extends TestCase {
 
-//     $mockModel->searchable = ['field1', 'field2'];
+    public SearchableDecorator $decorator;
 
-//     $decorator = new SearchableDecorator($mockModel);
+    public function setUp(): void {
+        parent::setUp();
+        $this->decorator = new SearchableDecorator(PengaduanModel::class);
+    }
 
-//     $this->assertEquals(['field1', 'field2'], $decorator->searchable);
-// });
+    /**
+     * @test
+     */
+    public function it_can_search_through_relationships() {
+        $existingEmailPengadu = PengaduanModel::whereRelation('user', 'email', 'LIKE', '%a%')->first()->getPengadu()->getEmail();
 
-test('SearchableDecorator search method with paginate parameter as null', function () {
-    $mockModel = $this->getMockBuilder(UmkmModel::class)
-        ->getMock();
+        $results = $this->decorator->search($existingEmailPengadu, 10, ['user' => UserModel::class]);
 
-    $mockModel->searchable = ['field1', 'field2'];
-    $mockModel->method('where')->willReturn($mockModel);
-    $mockModel->method('paginate')->willReturn(new LengthAwarePaginator([], 0, 5));
+        $this->assertNotEmpty($results);
+        $this->assertEquals($existingEmailPengadu, $results->first()->getPengadu()->getEmail());
+    }
 
-    $decorator = new SearchableDecorator($mockModel);
+    /**
+     * @test
+     */
+    public function it_can_perform_filtering() {
+        $results = $this->decorator->search('', 10, [], ['status' => PengaduanStatusEnum::BARU]);
 
-    $result = $decorator->search('query', null, []);
+        $this->assertNotEmpty($results);
+        $this->assertEquals(PengaduanStatusEnum::BARU->value, $results->first()->getStatus());
+    }
 
-    $this->assertInstanceOf(LengthAwarePaginator::class, $result);
-});
+    /**
+     * @test
+     */
+    public function it_can_paginte_the_results() {
+        $results = $this->decorator->search('', 10);
+        $this->assertCount(10, $results);
 
-// test('SearchableDecorator search method with paginate parameter as not null', function () {
-//     $mockModel = $this->getMockBuilder(UmkmModel::class)
-//         ->getMock();
-
-//     $mockModel->searchable = ['field1', 'field2'];
-//     $mockModel->method('where')->willReturn($mockModel);
-//     $mockModel->method('paginate')->willReturn(new LengthAwarePaginator([], 0, 10));
-
-//     $decorator = new SearchableDecorator($mockModel);
-
-//     $result = $decorator->search('query', 10, []);
-
-//     $this->assertInstanceOf(LengthAwarePaginator::class, $result);
-// });
-
-// test('SearchableDecorator search method with relations parameter as empty', function () {
-//     $mockModel = $this->getMockBuilder(UmkmModel::class)
-//         ->getMock();
-
-//     $mockModel->searchable = ['field1', 'field2'];
-//     $mockModel->method('where')->willReturn($mockModel);
-//     $mockModel->method('paginate')->willReturn(new LengthAwarePaginator([], 0, 5));
-
-//     $decorator = new SearchableDecorator($mockModel);
-
-//     $result = $decorator->search('query', 5, []);
-
-//     $this->assertInstanceOf(LengthAwarePaginator::class, $result);
-// });
-
-// test('SearchableDecorator search method with relations parameter as not empty', function () {
-//     $mockModel = $this->getMockBuilder(UmkmModel::class)
-//         ->getMock();
-
-//     $mockModel->searchable = ['field1', 'field2'];
-//     $mockModel->method('where')->willReturn($mockModel);
-//     $mockModel->method('paginate')->willReturn(new LengthAwarePaginator([], 0, 5));
-
-//     $decorator = new SearchableDecorator($mockModel);
-
-//     $result = $decorator->search('query', 5, ['relation' => $mockModel]);
-
-//     $this->assertInstanceOf(LengthAwarePaginator::class, $result);
-// });
+        $results = $this->decorator->search('', 5);
+        $this->assertCount(5, $results);
+    }
+}

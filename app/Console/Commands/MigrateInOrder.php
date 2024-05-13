@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
+use function Pest\Laravel\artisan;
+
 class MigrateInOrder extends Command
 {
     /**
@@ -48,14 +50,10 @@ class MigrateInOrder extends Command
         ];
 
         // set foreign key check to 0
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if (env('DB_CONNECTION') == 'mysql') DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        
         // drop all the tables
-        $tables = DB::select('SHOW TABLES');
-        foreach ($tables as $table) {
-            $table_array = get_object_vars($table);
-            $table_name = $table_array[key($table_array)];
-            DB::statement("DROP TABLE $table_name");
-        }
+        $this->call('db:wipe');
 
         // execute the migrations
         foreach ($migrations as $migration) {
@@ -65,7 +63,7 @@ class MigrateInOrder extends Command
         }
 
         // set foreign key check to 1
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        if (env('DB_CONNECTION') == 'mysql') DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
     }
 }
