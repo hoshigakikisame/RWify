@@ -80,6 +80,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
             </div>
         </div>
     </div>
+    @if (request()->user()->getRole() != \App\Enums\User\UserRoleEnum::WARGA->value)
     <aside class="pt-6 px-5 rounded-bl-lg" x-ref="sideContainer" x-data=" { sideAction: false }">
         <div class="inline-flex gap-2">
             <button id="actionButton" class="fill-gray-900 dark:fill-gray-100 transition-all duration-300 ease-in-out" @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-gray-800 shadow-md')">
@@ -112,6 +113,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
             </form>
         </div>
     </aside>
+    @endif
 </section>
 @endsection
 @push('scripts')

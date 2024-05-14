@@ -6,13 +6,13 @@ $report = Vite::asset('resources/assets/images/no-shouting.png');
 $payment = Vite::asset('resources/assets/images/tips.png');
 
 $layanan = [
-['title' => 'Reservasi Temu', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $reservation],
-['title' => 'Pengaduan', 'href' => route("warga.layanan.pengaduan.index"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $report],
-['title' => 'Pembayaran Iuran', 'href' => '', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $payment]
+['title' => 'Reservasi Temu', 'href' => '', 'desc' => 'Jadwalkan reservasi temu dengan ketua RW/RT', 'icon' => $reservation],
+['title' => 'Pengaduan', 'href' => route("warga.layanan.pengaduan.index"), 'desc' => 'Laporkan pengaduan dengan cepat dan responsif', 'icon' => $report],
+['title' => 'Pembayaran Iuran', 'href' => '', 'desc' => 'Bayar iuran secara online dengan mudah', 'icon' => $payment]
 ];
 $informasi = [
-['title' => 'Informasi UMKM', 'href' => route("informasi.umkmPage"), 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $umkm],
-['title' => 'Informasi dan Berita', 'href' => '#', 'desc' => 'Lorem ipsum dolor sit amet, consecte tur adipiscing elit, sed do eiusmod te', 'icon' => $information]
+['title' => 'Informasi UMKM', 'href' => route("informasi.umkmPage"), 'desc' => 'Temukan UMKM di lingkungan RW', 'icon' => $umkm],
+['title' => 'Informasi dan Berita', 'href' => '#', 'desc' => 'Temukan berita dan informasi terkini', 'icon' => $information]
 ]
 @endphp
 <div class="w-full bg-gray-50 dark:bg-gray-800 sticky top-0 z-20">

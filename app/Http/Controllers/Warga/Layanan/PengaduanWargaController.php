@@ -5,14 +5,33 @@ namespace App\Http\Controllers\Warga\Layanan;
 use App\Http\Controllers\Controller;
 use App\Models\PengaduanModel;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-
+use App\Decorators\SearchableDecorator;
+use App\Models\UserModel;
 use App\Enums\Pengaduan\PengaduanStatusEnum;
 
 class PengaduanWargaController extends Controller
 {
+
     public function pengaduanPage()
     {
-        return view('pages.warga.layanan.pengaduan.index');
+        $query = request()->q;
+        $filters = request()->filters ?? [];
+        $paginate = request()->paginate;
+
+        $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search(
+            $query, 
+            $paginate, 
+            ['user' => UserModel::class], 
+            ['nik_pengadu' => request()->user()->getNik(), ...$filters]
+        );
+        $count = PengaduanModel::count();
+
+        $data = [
+            "pengaduanInstances" => $pengaduanInstances,
+            "count" => $count
+        ];
+
+        return view('pages.warga.layanan.pengaduan.index', $data);
     }
 
     public function newPengaduanPage()
