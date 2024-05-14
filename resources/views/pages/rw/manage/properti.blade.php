@@ -52,15 +52,15 @@
 
                                 <form class="mt-5" id="addModalForm" action="{{ route('rw.manage.properti.new') }}" method="post">
                                     @csrf
-                                    <x-form.inputform title="Nama Properti" key="nama_properti" type="text" placeholder="Nama Properti" />
+                                    <x-form.input-form title="Nama Properti" key="nama_properti" type="text" placeholder="Nama Properti" />
                                     <p>TODO: Selector Tipe Properti</p>
-                                    <x-form.inputform title="ID Tipe Properti" key="id_tipe_properti" type="number" placeholder="ID Tipe Properti"  />
+                                    <x-form.input-form title="ID Tipe Properti" key="id_tipe_properti" type="number" placeholder="ID Tipe Properti"  />
                                     <p>TODO: Selector Pemilik</p>
-                                    <x-form.inputform title="NIK Pemilik" key="nik_pemilik" type="number" placeholder="NIK Pemilik"  />
-                                    <x-form.textareainputform title="Alamat" key="alamat" placeholder="Alamat"  />
-                                    <x-form.inputform title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah"  />
-                                    <x-form.inputform title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan"  />
-                                    <x-form.inputform title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar"  />
+                                    <x-form.input-form title="NIK Pemilik" key="nik_pemilik" type="number" placeholder="NIK Pemilik"  />
+                                    <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat"  />
+                                    <x-form.input-form title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah"  />
+                                    <x-form.input-form title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan"  />
+                                    <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar"  />
                                     <div class="flex justify-between mt-6">
                                         <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                         <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
@@ -307,15 +307,15 @@
                         <form class="mt-5" id="editModalForm" action="{{ route('rw.manage.properti.update') }}" method="post">
                             @csrf
                             <input type="text" name="id_properti" value="${properti.id_properti}" hidden >
-                            <x-form.inputform title="Nama Properti" key="nama_properti" type="text" placeholder="Nama Properti" value="${properti.nama_properti}" />
+                            <x-form.input-form title="Nama Properti" key="nama_properti" type="text" placeholder="Nama Properti" value="${properti.nama_properti}" />
                             <p>TODO: Selector Tipe Properti</p>
-                            <x-form.inputform title="ID Tipe Properti" key="id_tipe_properti" type="number" placeholder="ID Tipe Properti"  value="${properti.id_tipe_properti}" />
+                            <x-form.input-form title="ID Tipe Properti" key="id_tipe_properti" type="number" placeholder="ID Tipe Properti"  value="${properti.id_tipe_properti}" />
                             <p>TODO: Selector Pemilik</p>
-                            <x-form.inputform title="NIK Pemilik" key="nik_pemilik" type="number" placeholder="NIK Pemilik"  value="${properti.nik_pemilik}" />
-                            <x-form.textareainputform title="Alamat" key="alamat" placeholder="Alamat"  value="${properti.alamat}" />
-                            <x-form.inputform title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah"  value="${properti.luas_tanah}" />
-                            <x-form.inputform title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan"  value="${properti.luas_bangunan}" />
-                            <x-form.inputform title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar"  value="${properti.jumlah_kamar}" />
+                            <x-form.input-form title="NIK Pemilik" key="nik_pemilik" type="number" placeholder="NIK Pemilik"  value="${properti.nik_pemilik}" />
+                            <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat"  value="${properti.alamat}" />
+                            <x-form.input-form title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah"  value="${properti.luas_tanah}" />
+                            <x-form.input-form title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan"  value="${properti.luas_bangunan}" />
+                            <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar"  value="${properti.jumlah_kamar}" />
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                 <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">

@@ -25,9 +25,9 @@
             <path d="m22.867 9.879-4.586-4.586a1 1 0 1 0-1.414 1.414l4.262 4.263L6 11a1 1 0 0 0 0 2l15.188-.031-4.323 4.324a1 1 0 1 0 1.414 1.414l4.586-4.586a3 3 0 0 0 .002-4.242" />
         </svg>']];
         @endphp
-        <x-sidebar.sidebarwrap email="{{auth()->user()->getEmail()}}" role="{{auth()->user()->getRole()}}" :imageProfile="auth()->user()->getImageUrl()" :footerMenu="$footerMenu">
+        <x-sidebar.sidebar-wrap email="{{auth()->user()->getEmail()}}" role="{{auth()->user()->getRole()}}" :imageProfile="auth()->user()->getImageUrl()" :footerMenu="$footerMenu">
             @yield('menu')
-        </x-sidebar.sidebarwrap>
+        </x-sidebar.sidebar-wrap>
         <div class=" overflow-hidden w-full">
             @include('components.message.flash-message')
             <div class="h-screen overflow-scroll no-scrollbar w-full ">

@@ -81,11 +81,11 @@
 
                             <form class="mt-5" id="addModalForm">
                                 @csrf
-                                <x-form.inputform title="Judul Pengumuman" key="judul" type="text"
+                                <x-form.input-form title="Judul Pengumuman" key="judul" type="text"
                                     placeholder="Gotong Royong Warga" class="col-span-2" />
-                                <x-form.textareainputform title="Konten" key="konten"
+                                <x-form.textarea-input-form title="Konten" key="konten"
                                     placeholder="dimas anjay mabar lagi main bersama bocah silkroach" />
-                                <x-form.inputimage id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
+                                <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
                                 <div class="flex justify-between mt-6">
                                     <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi
                                         dengan benar</p>

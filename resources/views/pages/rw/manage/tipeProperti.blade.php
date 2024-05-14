@@ -52,8 +52,8 @@
 
                                 <form class="mt-5" id="addModalForm" action="{{ route('rw.manage.tipeProperti.new') }}" method="post">
                                     @csrf
-                                    <x-form.inputform title="Nama Tipe" key="nama_tipe" type="text" placeholder="Nama Tipe" />
-                                    <x-form.inputform title="Iuran Per Bulan" key="iuran_per_bulan" type="int" placeholder="Iuran Perbulan" />
+                                    <x-form.input-form title="Nama Tipe" key="nama_tipe" type="text" placeholder="Nama Tipe" />
+                                    <x-form.input-form title="Iuran Per Bulan" key="iuran_per_bulan" type="int" placeholder="Iuran Perbulan" />
 
                                     <div class="flex justify-between mt-6">
                                         <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah
@@ -277,8 +277,8 @@
                         <form class="mt-5" id="editModalForm" action="{{ route('rw.manage.tipeProperti.update') }}" method="post">
                             @csrf
                             <input type="text" name="id_tipe_properti" value="${tipeProperti.id_tipe_properti}" hidden>
-                            <x-form.inputform title="Nama Properti" key="nama_tipe" type="text" placeholder="Properti" value="${tipeProperti.nama_tipe}" />
-                            <x-form.inputform title="Nama Pemilik" key="iuran_per_bulan" type="text" placeholder="Pemilik"  value="${tipeProperti.iuran_per_bulan}" />
+                            <x-form.input-form title="Nama Properti" key="nama_tipe" type="text" placeholder="Properti" value="${tipeProperti.nama_tipe}" />
+                            <x-form.input-form title="Nama Pemilik" key="iuran_per_bulan" type="text" placeholder="Pemilik"  value="${tipeProperti.iuran_per_bulan}" />
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                 <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">

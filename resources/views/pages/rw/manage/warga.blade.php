@@ -101,45 +101,45 @@
 
                             <form class="mt-5" id="addModalForm">
                                 @csrf
-                                <x-form.inputform title="Email Warga" key="email" type="email"
+                                <x-form.input-form title="Email Warga" key="email" type="email"
                                     placeholder="exemple@exemple.exemple" />
-                                <x-form.inputform title="Password Warga" key="password" type="password"
+                                <x-form.input-form title="Password Warga" key="password" type="password"
                                     placeholder="Use strong password" />
-                                <x-form.inputform title="NIK Warga" key="nik" type="number"
+                                <x-form.input-form title="NIK Warga" key="nik" type="number"
                                     placeholder="1234567892322" />
-                                <x-form.inputform title="NKK Warga" key="nkk" type="number"
+                                <x-form.input-form title="NKK Warga" key="nkk" type="number"
                                     placeholder="1234567892322" />
                                 <div class="grid grid-cols-4 gap-4 ">
-                                    <x-form.inputform title="Nama Depan Warga" key="nama_depan" type="text"
+                                    <x-form.input-form title="Nama Depan Warga" key="nama_depan" type="text"
                                         placeholder="Thoriq" class="col-span-2" />
-                                    <x-form.inputform title="Nama Belakang Warga" key="nama_belakang" type="text"
+                                    <x-form.input-form title="Nama Belakang Warga" key="nama_belakang" type="text"
                                         placeholder="Fathurrozi" class="col-span-2" />
                                 </div>
                                 <div class="grid grid-cols-4 gap-4">
-                                    <x-form.inputform title="Tempat Lahir Warga" key="tempat_lahir" type="text"
+                                    <x-form.input-form title="Tempat Lahir Warga" key="tempat_lahir" type="text"
                                         placeholder="Banyuwangi" class="col-span-2" />
-                                    <x-form.inputform title="Tanggal Lahir Warga" key="tanggal_lahir" type="date"
+                                    <x-form.input-form title="Tanggal Lahir Warga" key="tanggal_lahir" type="date"
                                         placeholder="Fathurrozi" class="col-span-2" />
                                 </div>
 
                                 <div class="mt-4">
                                     <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
                                 </div>
-                                <x-form.textareainputform title="Alamat Warga" key="alamat"
+                                <x-form.textarea-input-form title="Alamat Warga" key="alamat"
                                     placeholder="Jl Brawijaya no 14" />
-                                <x-form.selectinputform title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions"
+                                <x-form.select-input-form title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions"
                                     placeholder="Pilih Jenis Kelamin Warga" />
-                                <x-form.inputform title="Pekerjaan Warga" key="pekerjaan" type="text"
+                                <x-form.input-form title="Pekerjaan Warga" key="pekerjaan" type="text"
                                     placeholder="Mahasiswa" />
-                                <x-form.selectinputform title="Agama" key="agama" :options="$agama"
+                                <x-form.select-input-form title="Agama" key="agama" :options="$agama"
                                     placeholder="Pilih Agama Warga" />
-                                <x-form.selectinputform title="Status Perkawinan Warga" key="status_perkawinan"
+                                <x-form.select-input-form title="Status Perkawinan Warga" key="status_perkawinan"
                                     :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" />
-                                <x-form.selectinputform title="Golongan Darah Warga" key="golongan_darah"
+                                <x-form.select-input-form title="Golongan Darah Warga" key="golongan_darah"
                                     :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
-                                <x-form.selectinputform title="Role Warga" key="role" :options="$role"
+                                <x-form.select-input-form title="Role Warga" key="role" :options="$role"
                                     placeholder="Pilih Role Warga" />
-                                <x-form.selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga"
+                                <x-form.select-input-form title="Rukun Tetangga Warga" key="id_rukun_tetangga"
                                     :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" />
                                 <div class="flex justify-between mt-6">
                                     <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi
@@ -401,30 +401,30 @@
 
                         <form class="mt-5" id="editModalForm">
                             @csrf
-                            <x-form.inputform title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" value="${user.email}" />
-                            <x-form.inputform title="Password Warga" key="password" type="password" placeholder="Use strong password" />
-                            <x-form.inputform title="NIK Warga" key="nik" type="number" placeholder="1234567892322" value="${user.nik}" />
-                            <x-form.inputform title="NKK Warga" key="nkk" type="number" placeholder="1234567892322" value="${user.nkk}" />
+                            <x-form.input-form title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" value="${user.email}" />
+                            <x-form.input-form title="Password Warga" key="password" type="password" placeholder="Use strong password" />
+                            <x-form.input-form title="NIK Warga" key="nik" type="number" placeholder="1234567892322" value="${user.nik}" />
+                            <x-form.input-form title="NKK Warga" key="nkk" type="number" placeholder="1234567892322" value="${user.nkk}" />
                             <div class="grid grid-cols-4 gap-4 ">
-                                <x-form.inputform title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" value="${user.nama_depan}"/>
-                                <x-form.inputform title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" value="${user.nama_belakang}"/>
+                                <x-form.input-form title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" value="${user.nama_depan}"/>
+                                <x-form.input-form title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" value="${user.nama_belakang}"/>
                             </div>
                             <div class="grid grid-cols-4 gap-4">
-                                <x-form.inputform title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" value="${user.tempat_lahir}"/>
-                                <x-form.inputform title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" value="${user.tanggal_lahir}" />
+                                <x-form.input-form title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" value="${user.tempat_lahir}"/>
+                                <x-form.input-form title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" value="${user.tanggal_lahir}" />
                             </div>
 
                             <div class="mt-4">
                                 <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
                             </div>
-                            <x-form.textareainputform title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" value="${user.alamat}"/>
-                            <x-form.selectinputform title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" selected="${user.jenis_kelamin}"/>
-                            <x-form.inputform title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" value="${user.pekerjaan}" />
-                            <x-form.selectinputform title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" selected="${user.agama}" />
-                            <x-form.selectinputform title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" selected="${user.status_perkawinan}" />
-                            <x-form.selectinputform title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
-                            <x-form.selectinputform title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" selected="${user.role}" />
-                            <x-form.selectinputform title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" selected="${user.id_rukun_tetangga}"/>
+                            <x-form.textarea-input-form title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" value="${user.alamat}"/>
+                            <x-form.select-input-form title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" selected="${user.jenis_kelamin}"/>
+                            <x-form.input-form title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" value="${user.pekerjaan}" />
+                            <x-form.select-input-form title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" selected="${user.agama}" />
+                            <x-form.select-input-form title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" selected="${user.status_perkawinan}" />
+                            <x-form.select-input-form title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
+                            <x-form.select-input-form title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" selected="${user.role}" />
+                            <x-form.select-input-form title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" selected="${user.id_rukun_tetangga}"/>
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                 <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">

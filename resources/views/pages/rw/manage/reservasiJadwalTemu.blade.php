@@ -96,7 +96,7 @@
                                 <div class="action ">
                                     <form action="{{route('rw.manage.reservasiJadwalTemu.update')}}" method="post" autocomplete="off">
                                         @csrf
-                                        <x-form.inputform title="" id="idReservasiJadwalTemu" key="idReservasiJadwalTemu" type="hidden" value="{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}" placeholder="" />
+                                        <x-form.input-form title="" id="idReservasiJadwalTemu" key="idReservasiJadwalTemu" type="hidden" value="{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}" placeholder="" />
 
                                         <label for="status" class="text-sm me-2 text-gray-800 dark:text-gray-300">Change Status</label>
                                         <select name="status" id="status" class="border border-gray-300 rounded-lg bg-gray-50 text-gray-950 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" onchange="this.form.submit()">

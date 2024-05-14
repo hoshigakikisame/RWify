@@ -101,7 +101,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
             <form id="updateForm" onclick="request(`{{ route('rw.manage.pengaduan.update') }}`, '#updateStatus', '#updateForm')">
                 @csrf
                 <input type="text" name="id_pengaduan" key="id_pengaduan" value="{{$pengaduanInstance->id_pengaduan}}" hidden >
-                <x-form.selectinputform  title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="{{$pengaduanInstance->getStatus()}}" />
+                <x-form.select-input-form  title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="{{$pengaduanInstance->getStatus()}}" />
                     <div class="heading">
                         <p class="mt-3 text-xs text-wrap max-w-60 text-gray-950 dark:text-gray-500">Note: Pastikan pengaduan sudah benar benar tervalidasi sebelum merubah status pengaduan</p>
                     </div>
