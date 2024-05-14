@@ -52,6 +52,16 @@ class ReservasiJadwalTemuModel extends Model
         return $this->penerima;
     }
 
+    public function getNamaPemohon(): string
+    {
+        return $this->pemohon->nama_depan . ' ' . $this->pemohon->nama_belakang;
+    }
+
+    public function getNamaPenerima(): string
+    {
+        return $this->penerima->nama_depan . ' ' . $this->penerima->nama_belakang;
+    }
+
     public function getNikPemohon(): string {
         return $this->nik_pemohon;
     }
