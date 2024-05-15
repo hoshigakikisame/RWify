@@ -139,16 +139,16 @@ masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
         <div class="body-section">
             <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
                 <swiper-slide>
-                    <x-card.carditem></x-card.carditem>
+                    <x-card.card-item></x-card.carditem>
                 </swiper-slide>
                 <swiper-slide>
-                    <x-card.carditem></x-card.carditem>
+                    <x-card.card-item></x-card.carditem>
                 </swiper-slide>
                 <swiper-slide>
-                    <x-card.carditem></x-card.carditem>
+                    <x-card.card-item></x-card.carditem>
                 </swiper-slide>
                 <swiper-slide>
-                    <x-card.carditem></x-card.carditem>
+                    <x-card.card-item></x-card.carditem>
                 </swiper-slide>
             </swiper-container>
         </div>
@@ -160,7 +160,7 @@ masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
         </div>
         <div class="layanan-emblem flex flex-wrap justify-center">
             @foreach ($layanan as $item)
-            <x-card.carditememblem :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
+            <x-card.card-item-emblem :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
             @endforeach
         </div>
     </section>
@@ -173,7 +173,7 @@ masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
             <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
                 @foreach ($ucapan as $item)
                 <swiper-slide>
-                    <x-card.carditemmessage :name="$item['name']" :position="$item['position']" :desc="$item['desc']" :date="$item['date']" :image="$item['image']" />
+                    <x-card.card-item-message :name="$item['name']" :position="$item['position']" :desc="$item['desc']" :date="$item['date']" :image="$item['image']" />
                 </swiper-slide>
                 @endforeach
             </swiper-container>

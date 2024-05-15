@@ -8,17 +8,9 @@ export default defineConfig({
             input: [
                 "resources/css/app.css",
                 "resources/css/fonts.css",
-                "resources/js/app.js",
+                "resources/js/app.js"
             ],
             refresh: true,
-        }),
-        viteStaticCopy({
-            targets: [
-                {
-                    src: "resources/assets",
-                    dest: "",
-                },
-            ],
         }),
     ],
 });

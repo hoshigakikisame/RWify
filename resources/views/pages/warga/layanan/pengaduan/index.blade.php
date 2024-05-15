@@ -299,11 +299,11 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
                         <form enctype="multipart/form-data" class="mt-5" id="editModalForm" action="{{ route('rw.manage.pengaduan.update') }}" method="post">
                             @csrf
                             <input type="text" name="id_pengaduan" value="${pengaduan.id_pengaduan}" hidden >
-                            <x-form.inputform title="NIK Pengadu" key="nik_pengadu" type="text" placeholder="NIK Pengadu" value="${pengaduan.nik_pengadu}" />
-                            <x-form.inputform title="Judul" key="judul" type="text" placeholder="Judul"  value="${pengaduan.judul}" />
-                            <x-form.textareainputform title="Isi" key="isi" placeholder="Isi"  value="${pengaduan.isi}" />
-                            <x-form.selectinputform title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="${pengaduan.status}" />
-                            <x-form.inputimage id="imageupdate" title="Gambar" key="image" placeholder="Gambar" value="${pengaduan.image_url}" />
+                            <x-form.input-form title="NIK Pengadu" key="nik_pengadu" type="text" placeholder="NIK Pengadu" value="${pengaduan.nik_pengadu}" />
+                            <x-form.input-form title="Judul" key="judul" type="text" placeholder="Judul"  value="${pengaduan.judul}" />
+                            <x-form.textarea-input-form title="Isi" key="isi" placeholder="Isi"  value="${pengaduan.isi}" />
+                            <x-form.select-input-form title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="${pengaduan.status}" />
+                            <x-form.input-image id="imageupdate" title="Gambar" key="image" placeholder="Gambar" value="${pengaduan.image_url}" />
 
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>

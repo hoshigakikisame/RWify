@@ -53,14 +53,14 @@
                                 <form enctype="multipart/form-data" class="mt-5" id="addModalForm" action="{{ route('rw.manage.umkm.new') }}" method="post">
                                     @csrf
                                     <input type="text" name="id_umkm" hidden>
-                                    <x-form.inputform title="Nama UMKM" key="nama" type="text" placeholder="UMKM" />
-                                    <x-form.inputform title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik" />
-                                    <x-form.inputform title="No. Telepon" key="telepon" type="text" placeholder="1234567892322" />
-                                    <x-form.textareainputform title="Alamat" key="alamat" placeholder="Jl Brawijaya no 14" />
-                                    <x-form.inputform title="Maps URL" key="map_url" type="text" placeholder="Maps" />
-                                    <x-form.inputform title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram" />
-                                    <x-form.textareainputform title="Deskripsi" key="deskripsi" placeholder="Deskripsi" />
-                                    <x-form.inputimage id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
+                                    <x-form.input-form title="Nama UMKM" key="nama" type="text" placeholder="UMKM" />
+                                    <x-form.input-form title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik" />
+                                    <x-form.input-form title="No. Telepon" key="telepon" type="text" placeholder="1234567892322" />
+                                    <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Jl Brawijaya no 14" />
+                                    <x-form.input-form title="Maps URL" key="map_url" type="text" placeholder="Maps" />
+                                    <x-form.input-form title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram" />
+                                    <x-form.textarea-input-form title="Deskripsi" key="deskripsi" placeholder="Deskripsi" />
+                                    <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
 
                                     <div class="flex justify-between mt-6">
                                         <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah
@@ -333,14 +333,14 @@
                         <form enctype="multipart/form-data" class="mt-5" id="editModalForm" action="{{ route('rw.manage.umkm.update') }}" method="post">
                             @csrf
                             <input type="text" name="id_umkm" value="${umkm.id_umkm}" hidden >
-                            <x-form.inputform title="Nama UMKM" key="nama" type="text" placeholder="UMKM" value="${umkm.nama}" />
-                            <x-form.inputform title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik"  value="${umkm.nama_pemilik}" />
-                            <x-form.inputform title="No. Telepon" key="telepon" type="text" placeholder="1234567892322"  value="${umkm.telepon}" />
-                            <x-form.textareainputform title="Alamat" key="alamat" placeholder="Jl Brawijaya no 14"  value="${umkm.alamat}" />
-                            <x-form.inputform title="Maps URL" key="map_url" type="text" placeholder="Maps"  value="${umkm.map_url}"  />
-                            <x-form.inputform title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram"  value="${umkm.instagram_url}" />
-                            <x-form.textareainputform title="Deskripsi" key="deskripsi" placeholder="Deskripsi"  value="${umkm.deskripsi}" />
-                            <x-form.inputimage id="imageupdate" title="Gambar" key="image" placeholder="Gambar"  value="${umkm.image_url}" />
+                            <x-form.input-form title="Nama UMKM" key="nama" type="text" placeholder="UMKM" value="${umkm.nama}" />
+                            <x-form.input-form title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik"  value="${umkm.nama_pemilik}" />
+                            <x-form.input-form title="No. Telepon" key="telepon" type="text" placeholder="1234567892322"  value="${umkm.telepon}" />
+                            <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Jl Brawijaya no 14"  value="${umkm.alamat}" />
+                            <x-form.input-form title="Maps URL" key="map_url" type="text" placeholder="Maps"  value="${umkm.map_url}"  />
+                            <x-form.input-form title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram"  value="${umkm.instagram_url}" />
+                            <x-form.textarea-input-form title="Deskripsi" key="deskripsi" placeholder="Deskripsi"  value="${umkm.deskripsi}" />
+                            <x-form.input-image id="imageupdate" title="Gambar" key="image" placeholder="Gambar"  value="${umkm.image_url}" />
 
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>

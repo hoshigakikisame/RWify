@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Warga\Layanan;
 
+use App\Decorators\SearchableDecorator;
 use App\Enums\User\UserRoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\ReservasiJadwalTemuModel;
@@ -11,8 +12,27 @@ class ReservasiJadwalTemuWargaController extends Controller
 {
     public function reservasiJadwalTemuPage()
     {
-        return view('pages.warga.layanan.reservasiJadwalTemu.index');
+        $request = request()->q;
+        $filters = request()->filters ?? [];
+        $paginate = request()->paginate;
+
+        $reservasiJadwalTemuInstances = (new SearchableDecorator(ReservasiJadwalTemuModel::class))->search(
+            $request, 
+            $paginate, 
+            ['pemohon' => UserModel::class, 'penerima' => UserModel::class], 
+            ['nik_pemohon' => request()->user()->getNik(), ...$filters]
+        );
+        $count = ReservasiJadwalTemuModel::where('nik_pemohon', auth()->user()->nik)->count();
+
+        $data = [
+            "reservasiJadwalTemuInstances" => $reservasiJadwalTemuInstances,
+            "count" => $count
+        ];
+
+        return view('pages.warga.layanan.reservasiJadwalTemu.index', compact('data', 'count','reservasiJadwalTemuInstances'));
+
     }
+
 
     public function newReservasiJadwalTemuPage()
     {
@@ -47,6 +67,6 @@ class ReservasiJadwalTemuWargaController extends Controller
             session()->flash('success', 'Insert Success');
         }
 
-        return redirect()->route('warga.layanan.pengaduan.index');
+        return redirect()->route('warga.layanan.reservasiJadwalTemu.index');
     }
 }

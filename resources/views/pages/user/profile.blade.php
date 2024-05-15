@@ -347,13 +347,13 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
                         <form class="mb-5" method="POST" action="{{ route('user.profile.update') }}">
                             @csrf
                             <div class="flex gap-5 mb-3">
-                                <x-form.inputprofile title="Nama Depan" key="nama_depan" type="text" value="{{ old('nama_depan', $user->getNamaDepan()) }}" disabled="true"/>
-                                <x-form.inputprofile title="Nama Belakang" key="nama_belakang" type="text" value="{{ old('nama_belakang', $user->getNamaBelakang()) }}" disabled="true"/>
+                                <x-form.input-profile title="Nama Depan" key="nama_depan" type="text" value="{{ old('nama_depan', $user->getNamaDepan()) }}" disabled="true"/>
+                                <x-form.input-profile title="Nama Belakang" key="nama_belakang" type="text" value="{{ old('nama_belakang', $user->getNamaBelakang()) }}" disabled="true"/>
                             </div>
 
                             <div class="flex gap-5 mb-3">
-                            <x-form.inputprofile title="NIK" key="nik" type="text" value="{{ old('nik', $user->getNik()) }}" disabled="true"/>
-                            <x-form.inputprofile title="NKK" key="nkk" type="text" value="{{ old('nkk', $user->getNkk()) }}" disabled="true"/>
+                            <x-form.input-profile title="NIK" key="nik" type="text" value="{{ old('nik', $user->getNik()) }}" disabled="true"/>
+                            <x-form.input-profile title="NKK" key="nkk" type="text" value="{{ old('nkk', $user->getNkk()) }}" disabled="true"/>
                             </div>
 
 
@@ -373,27 +373,27 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
 
 
                             <div class="flex gap-5 mb-3">
-                                <x-form.inputprofile title="Tempat Lahir" key="tempat_lahir" type="text" value="{{ old('tempat_lahir', $user->getTempatLahir()) }}" disabled="true"/>
-                                <x-form.inputprofile title="Tanggal Lahir" key="tanggal_lahir" type="date" value="{{ old('tempat_lahir', $user->getTanggalLahir()) }}" disabled="true" class="w-full" />
-                                <x-form.inputprofile title="Golongan Darah" key="golongan_darah" type="text" value="{{ old('golongan_darah', $user->getGolonganDarah()) }}" disabled="true"/> 
+                                <x-form.input-profile title="Tempat Lahir" key="tempat_lahir" type="text" value="{{ old('tempat_lahir', $user->getTempatLahir()) }}" disabled="true"/>
+                                <x-form.input-profile title="Tanggal Lahir" key="tanggal_lahir" type="date" value="{{ old('tempat_lahir', $user->getTanggalLahir()) }}" disabled="true" class="w-full" />
+                                <x-form.input-profile title="Golongan Darah" key="golongan_darah" type="text" value="{{ old('golongan_darah', $user->getGolonganDarah()) }}" disabled="true"/> 
                             </div>
 
                             <div class="mb-3">
-                                <x-form.inputprofile title="Alamat" key="alamat" type="text" value="{{ old('alamat', $user->getAlamat()) }}" disabled="true" class="w-full" />
+                                <x-form.input-profile title="Alamat" key="alamat" type="text" value="{{ old('alamat', $user->getAlamat()) }}" disabled="true" class="w-full" />
                             </div>
                             <div class="flex gap-5 mb-3">
-                            <x-form.inputprofile title="Jenis Kelamin" key="jenis_kelamin" type="text" value="{{ old('jenis_kelamin', $user->getJenisKelamin()) }}" disabled="true" />
-                            <x-form.inputprofile title="Agama" key="agama" type="text" value="{{ old('agama', $user->getAgama()) }}" disabled="true" />
-                            </div>
-
-                            <div class="flex gap-5 mb-3">
-                            <x-form.inputprofile title="Pekerjaan" key="pekerjaan" type="text" value="{{ old('pekerjaan', $user->getPekerjaan()) }}" disabled="true" /> 
-                            <x-form.inputprofile title="Status Perkawinan" key="status_perkawinan" type="text" value="{{ old('status_perkawinan', $user->getStatusPerkawinan()) }}" disabled="true" />
+                            <x-form.input-profile title="Jenis Kelamin" key="jenis_kelamin" type="text" value="{{ old('jenis_kelamin', $user->getJenisKelamin()) }}" disabled="true" />
+                            <x-form.input-profile title="Agama" key="agama" type="text" value="{{ old('agama', $user->getAgama()) }}" disabled="true" />
                             </div>
 
                             <div class="flex gap-5 mb-3">
-                            <x-form.inputprofile title="Role" key="role" type="text" value="{{ old('role', $user->getRole()) }}" disabled="true" />
-                            <x-form.inputprofile title="Rukun Tetangga" key="id_rukun_tetangga" type="text" value="{{ old('id_rukun_tetangga', $user->getRukunTetangga()->getNomorRukunTetangga()) }}" disabled="true" />
+                            <x-form.input-profile title="Pekerjaan" key="pekerjaan" type="text" value="{{ old('pekerjaan', $user->getPekerjaan()) }}" disabled="true" /> 
+                            <x-form.input-profile title="Status Perkawinan" key="status_perkawinan" type="text" value="{{ old('status_perkawinan', $user->getStatusPerkawinan()) }}" disabled="true" />
+                            </div>
+
+                            <div class="flex gap-5 mb-3">
+                            <x-form.input-profile title="Role" key="role" type="text" value="{{ old('role', $user->getRole()) }}" disabled="true" />
+                            <x-form.input-profile title="Rukun Tetangga" key="id_rukun_tetangga" type="text" value="{{ old('id_rukun_tetangga', $user->getRukunTetangga()->getNomorRukunTetangga()) }}" disabled="true" />
                             
                             </div>
 

@@ -16,9 +16,9 @@
                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Berikan pengaduan yang lengkap dengan deskripsi yang jelas</p>
             </div>
             <div class="form-body">
-                <x-form.inputform title="Judul" key="judul" type="text" placeholder="Enter Judul" value="{{old('judul')}}" />
-                <x-form.textareainputform title="Deskripsi Pengaduan" key="isi" type="text" placeholder="Enter Isi Pengaduan" value="{{old('isi')}}" />
-                <x-form.inputimage id="imagePengaduan" title="Evidence" key="image" placeholder="Gambar" />
+                <x-form.input-form title="Judul" key="judul" type="text" placeholder="Enter Judul" value="{{old('judul')}}" />
+                <x-form.textarea-input-form title="Deskripsi Pengaduan" key="isi" type="text" placeholder="Enter Isi Pengaduan" value="{{old('isi')}}" />
+                <x-form.input-image id="imagePengaduan" title="Evidence" key="image" placeholder="Gambar" />
             </div>
             <div class="flex mt-5 justify-end">
                 <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">

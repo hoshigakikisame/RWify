@@ -51,7 +51,7 @@ $informasi = [
 
                                 <!-- Dropdown content goes here -->
                                 @foreach($layanan as $item)
-                                <x-dropdown.dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
+                                <x-dropdown.dropdown-element-navbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
                                 @endforeach
                             </div>
                         </li>
@@ -69,7 +69,7 @@ $informasi = [
 
                                 <!-- Dropdown content goes here -->
                                 @foreach($informasi as $item)
-                                <x-dropdown.dropdownelementnavbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
+                                <x-dropdown.dropdown-element-navbar :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
                                 @endforeach
                             </div>
                         </li>

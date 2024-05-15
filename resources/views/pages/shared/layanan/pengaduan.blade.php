@@ -9,13 +9,13 @@
         <form action="">
             <div class="flex gap-2">
                 <div class="">
-                    <x-form.inputform title="Nama" key="email" type="text" placeholder="Enter Nama" />
-                    <x-form.inputform title="NIK" key="nik" type="text" placeholder="Enter Email" />
-                    <x-form.inputform title="Judul" key="judul" type="text" placeholder="Enter Judul" />
-                    <x-form.textareainputform title="Deskripsi Pengaduan" key="judul" type="text" placeholder="Enter Deskripsi Pengaduan" />
+                    <x-form.input-form title="Nama" key="email" type="text" placeholder="Enter Nama" />
+                    <x-form.input-form title="NIK" key="nik" type="text" placeholder="Enter Email" />
+                    <x-form.input-form title="Judul" key="judul" type="text" placeholder="Enter Judul" />
+                    <x-form.textarea-input-form title="Deskripsi Pengaduan" key="judul" type="text" placeholder="Enter Deskripsi Pengaduan" />
                 </div>
                 <div class="">
-                    <x-form.inputimage id="imagePengaduan" title="Evidence" key="image" placeholder="Gambar" />
+                    <x-form.input-image id="imagePengaduan" title="Evidence" key="image" placeholder="Gambar" />
                 </div>
             </div>
             <div class="flex  mt-6">
