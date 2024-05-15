@@ -24,7 +24,9 @@ class PengaduanWargaController extends Controller
             ['user' => UserModel::class], 
             ['nik_pengadu' => request()->user()->getNik(), ...$filters]
         );
-        $count = PengaduanModel::count();
+        // $count = PengaduanModel::count();
+        $count = PengaduanModel::where('nik_pengadu', auth()->user()->nik)->count();
+
 
         $data = [
             "pengaduanInstances" => $pengaduanInstances,
