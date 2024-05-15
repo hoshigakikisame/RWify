@@ -37,4 +37,5 @@ register();
 
 import.meta.glob([
     '../assets/**/*',
+    '../assets/elements/*',
 ]);

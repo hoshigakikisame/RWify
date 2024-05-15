@@ -5,8 +5,8 @@
 @section('content')
 @php
 $image = Vite::asset('resources/assets/images/Semeru.png');
-$signInElement = Vite::asset('resources/assets/elements/SignInElement.svg');
-$signInElementDark = Vite::asset('resources/assets/elements/SignInElementDark.svg');
+$signInElement = Vite::asset('resources/assets/elements/signInElement.svg');
+$signInElementDark = Vite::asset('resources/assets/elements/signInElementDark.svg');
 $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 @endphp
 <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-screen">
