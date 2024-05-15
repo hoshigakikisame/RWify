@@ -71,7 +71,6 @@ $status = \App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValue
                                 <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                         <span class="text-nowrap">Tanggal</span>
-
                                     </button>
                                 </th>
 
@@ -82,13 +81,12 @@ $status = \App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValue
                                     </button>
                                 </th>
 
-                                <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                <th scope="col" class="py-3.5 px-4 text-sm text-center font-normal rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <button class="flex items-center mx-auto gap-x-2 dark:fill-gray-400">
                                         <span class="text-nowrap">Status</span>
-
                                     </button>
                                 </th>
-                               
+
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
@@ -122,7 +120,7 @@ $status = \App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValue
                                 </td>
 
                                 <td class="px-4 py-4 text-sm align-middle">
-                                    <h4 class="text-gray-700 dark:text-gray-200 w-[200px]">
+                                    <h4 class="text-gray-700 dark:text-gray-200">
                                         {{ $reservasiJadwalTemu->getNamaPenerima() }}
                                     </h4>
                                 </td>
@@ -150,7 +148,7 @@ $status = \App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValue
                                     </span>
                                 </td>
 
-                                
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -166,7 +164,7 @@ $status = \App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValue
 </section>
 @endsection
 @push('scripts')
- <script type="module">
+<script type="module">
     $(document).ready(() => {
         let reg = new RegExp('[?&]q=([^&#]*)', 'i');
         let queryString = reg.exec(document.location);
