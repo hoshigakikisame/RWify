@@ -4,7 +4,7 @@
 {{-- content --}}
 @section('content')
 
-<section>
+<section class=" mt-7 ms-10 w-1/2 mb-20">
     <h1 class="dark:text-gray-100">Pengaduan</h1>
     <div class="form">
         <form action="{{route('warga.layanan.reservasiJadwalTemu.new')}}" method="POST" enctype="">
@@ -21,7 +21,7 @@
                         <select name="nik_penerima" id="reservationTargets" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:focus:ring-blue-200 dark:focus:border-blue-300 dark:bg-gray-700 dark:border-gray-500 dark:text-gray-300 dark:placeholder-gray-500" onchange="this.form.submit()">
                             @foreach ($reservationTargets as $user)
                             <option value="{{ $user->getNik() }}">
-                                {{ $user->getNamaLengkap() }} - {{ $user->getRole() }} 
+                                {{ $user->getNamaLengkap() }} - {{ $user->getRole() }}
                             </option>
                             @endforeach
                         </select>
