@@ -34,3 +34,7 @@ Alpine.start()
 
 // register Swiper custom elements
 register();
+
+import.meta.glob([
+    '../assets/**/*',
+]);
