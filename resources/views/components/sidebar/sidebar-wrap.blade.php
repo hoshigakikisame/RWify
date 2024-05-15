@@ -1,9 +1,11 @@
 <!-- Nothing worth having comes easy. - Theodore Roosevelt -->
 <aside class="min-h-screen relative z-20">
     <nav class="h-full flex flex-col shadow-xl px-4 py-6 w-fit">
-        <div class="sidebar-header">
-            <h1 class="text-center text-3xl hidden lg:block dark:text-gray-200">{{ config('app.name') }}</h1>
-            <img src="" alt="">
+        <div class="sidebar-header mb-5 px-3 py-1 mt-1 inline-flex items-center gap-2 rounded-xl">
+            <div class="bg-indigo-200 w-7 h-7 rounded-lg">
+                <img src="" alt="">
+            </div>
+            <h1 class="text-center text-xl hidden lg:block dark:text-gray-200">{{ config('app.name') }}</h1>
         </div>
         <ul class="h-full grow py-5 w-full flex flex-col gap-1  fill-gray-500 dark:fill-gray-200">
             {{$slot}}
