@@ -64,9 +64,9 @@ class PengaduanWargaController extends Controller
             'status' => PengaduanStatusEnum::BARU
         ];
 
-        $newUMKM = PengaduanModel::create($data);
+        $newPengaduan = PengaduanModel::create($data);
 
-        if (!$newUMKM) {
+        if (!$newPengaduan) {
             session()->flash('danger', 'Insert Failed');
         } else {
             session()->flash('success', 'Insert Success');
