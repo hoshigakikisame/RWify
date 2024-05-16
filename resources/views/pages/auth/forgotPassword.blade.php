@@ -25,7 +25,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
             <div class="forgotPassword-wrap px-5 lg:px-10 my-auto mx-auto inline-flex flex-col items-center">
                 <div class="forgotPassword-header mb-8 w-fit" >
                     <div class="header-wrap w-3/5 mx-auto ">
-                        <h1 class="text-4xl sm:text-7xl xl:text-8xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Forgot Password?</h1>
+                        <h1 class="text-4xl sm:text-7xl xl:text-7xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Forgot Password?</h1>
                         <p class="text-sm md:text-lg xl:text-xl font-Inter font-light dark:text-gray-200 text-wrap">Enter the email address assocoated with your account. </p>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                                     <input type=" email" name="email" id="email" class="flex h-12 w-full items-center justify-center rounded-md border p-3 text-sm outline-none border-gray-200 dark:bg-gray-900 dark:text-gray-100" placeholder="Email">
                                 </div>
                                 @if ($errors->has('email'))
-                                <span class="help-block">
+                                <span class="help-block text-red-500">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                                 @endif
@@ -48,7 +48,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
 
                         <div class="form-group mb-0">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="text-nowrap text-xs bg-darkGreen px-5 py-3 rounded-xl text-md font-Poppins text-gray-200 dark:bg-green-800 ">
+                                <button type="submit" class="text-nowrap text-xs bg-darkGreen px-5 py-3 rounded-lg text-md font-medium font-Poppins text-gray-200 dark:bg-green-800 ">
                                     Send Password Reset Link
                                 </button>
                             </div>

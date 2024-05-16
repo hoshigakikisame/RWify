@@ -28,7 +28,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                     <div class="resetPassword-wrap px-5 lg:px-10 my-auto inline-flex flex-col items-center">
                         <div class="resetPassword-header mb-8 w-fit">
                             <div class="header-wrap w-3/5 mx-auto ">
-                            <h1 class="text-4xl sm:text-7xl xl:text-8xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Reset Password</h1>
+                            <h1 class="text-4xl sm:text-7xl xl:text-7xl lg:text-6xl font-bold text-wrap font-Poppins leading-tight sm:mb-5 xl:mb-2 dark:text-white">Reset Password</h1>
                             <p class="text-sm md:text-lg xl:text-xl font-Inter font-light dark:text-gray-200 ">Enter current password and new password for assocoated with your account. </p>
                         </div>
                         </div>
@@ -47,7 +47,7 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                                     </div>
                                 </div>
 
-                                <div class="form-group mb-2">
+                                <div class="form-group mb-5">
                                     <label for="password" class="text-gray-600 dark:text-gray-300">Password</label>
 
                                     <div class="col-md-6">
@@ -63,9 +63,9 @@ $image = Vite::asset('resources/assets/images/Semeru.png');
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mt-8">
                                     <div class="col-md-6 col-md-offset-4">
-                                        <button type="submit" class="text-nowrap text-xs bg-darkGreen px-5 py-3 rounded-xl text-md font-Poppins text-gray-200 dark:bg-green-800">
+                                        <button type="submit" class="text-nowrap text-sm bg-darkGreen px-5 py-3 rounded-lg text-md font-Poppins font-medium text-gray-200 dark:bg-green-800">
                                             Reset Password
                                         </button>
                                     </div>
