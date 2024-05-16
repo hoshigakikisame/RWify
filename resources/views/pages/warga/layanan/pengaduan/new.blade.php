@@ -3,12 +3,12 @@
 
 {{-- content --}}
 @section('content')
-<section class="mt-7 ms-10 w-1/2 mb-20">
+<section class="mt-7 ms-10 mb-20">
     <div class="header mb-5 border-b pb-5 ">
         <h1 class="dark:text-gray-100 font-medium text-lg text-gray-950">Pengaduan</h1>
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Kirim kan pengaduan ke Ketua RW melewati form ini</p>
     </div>
-    <div class="form bg-gray-50 dark:bg-gray-800/50 px-8 py-4 pb-8 rounded-lg shadow-sm">
+    <div class="form bg-gray-50 dark:bg-gray-800/50 px-8 py-4 pb-8 rounded-lg shadow-sm w-1/2">
         <form action="{{route('warga.layanan.pengaduan.new')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-header mt-2 mb-6">

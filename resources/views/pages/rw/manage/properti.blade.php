@@ -26,7 +26,7 @@
 
                         <span>Add Properti</span>
                     </button>
-                    <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
+                    <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                             <div @click="modalOpen = false" x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true">
                             </div>
@@ -54,13 +54,13 @@
                                     @csrf
                                     <x-form.input-form title="Nama Properti" key="nama_properti" type="text" placeholder="Nama Properti" />
                                     <p>TODO: Selector Tipe Properti</p>
-                                    <x-form.input-form title="ID Tipe Properti" key="id_tipe_properti" type="number" placeholder="ID Tipe Properti"  />
+                                    <x-form.input-form title="ID Tipe Properti" key="id_tipe_properti" type="number" placeholder="ID Tipe Properti" />
                                     <p>TODO: Selector Pemilik</p>
-                                    <x-form.input-form title="NIK Pemilik" key="nik_pemilik" type="number" placeholder="NIK Pemilik"  />
-                                    <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat"  />
-                                    <x-form.input-form title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah"  />
-                                    <x-form.input-form title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan"  />
-                                    <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar"  />
+                                    <x-form.input-form title="NIK Pemilik" key="nik_pemilik" type="number" placeholder="NIK Pemilik" />
+                                    <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat" />
+                                    <x-form.input-form title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah" />
+                                    <x-form.input-form title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan" />
+                                    <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar" />
                                     <div class="flex justify-between mt-6">
                                         <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                         <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
@@ -75,7 +75,7 @@
             </div>
         </div>
 
-        <div class="relative flex items-center mt-4 md:mt-0  w-fit self-end">
+        <div class="relative flex items-center mt-4 md:mt-0  w-fit self-end" x-data="{search: ''}">
             <span class="absolute">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -147,20 +147,20 @@
                                         </h4>
                                     </div>
                                 </td>
-                                <td class="px-4 py-4 text-sm font-medium">
+                                <td class="px-4 py-4 text-sm font-medium text-nowrap">
                                     <div class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                                         {{ $properti->getPemilik()->getNamaLengkap() }}
                                     </div>
                                 </td>
 
-                                <td class="px-4 py-4 text-sm">
-                                    <p class="dark:text-gray-200 truncate .. w-52 2xl:w-full">
+                                <td class="px-4 py-4 text-sm ">
+                                    <p class="dark:text-gray-200 text-center">
                                         {{ $properti->getJumlahKamar() }}
                                     </p>
                                 </td>
 
                                 <td class="px-4 py-4 pe-4 pe-0 ps-6 text-sm flex" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
-                                    
+
                                     <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $properti }},event);request(`{{ route('rw.manage.properti.update') }}`, '#editModal', '#editModalForm')})()">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">
@@ -208,7 +208,7 @@
 <script>
     function appendImageModal(img_url, nama, event) {
         const modalImageElement = /*html*/ `
-        <div id="imageModal" x-show="showImage" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div id="imageModal" x-show="showImage" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                                             <div x-cloak @click="()=>{showImage = false;deleteModal('#imageModal')}" x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
@@ -240,7 +240,7 @@
 
     function appendDeleteModal(properti, event) {
         const modalDeleteElemen = /*html*/ `
-        <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                     <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
@@ -280,7 +280,7 @@
 
     function appendUpdateModal(properti, event) {
         const modalEditElemen = /*html*/ `
-        <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                     <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 

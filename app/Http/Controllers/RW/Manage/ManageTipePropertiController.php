@@ -23,8 +23,8 @@ class ManageTipePropertiController extends Controller
         $paginate = request()->paginate;
 
         $tipePropertiInstances = (new SearchableDecorator(TipePropertiModel::class))->search(
-            $query, 
-            $paginate, 
+            $query,
+            $paginate,
             [],
             $filters
         );
@@ -70,7 +70,7 @@ class ManageTipePropertiController extends Controller
             'iuran_per_bulan' => 'required',
         ]);
 
-        $idTipeProperti = request()->id_tipeProperti;
+        $idTipeProperti = request()->id_tipe_properti;
         $tipeProperti = TipePropertiModel::find($idTipeProperti);
 
         if (!$tipeProperti) {
