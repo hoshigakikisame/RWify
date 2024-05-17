@@ -94,93 +94,96 @@ masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
 ];
 
 @endphp
-@include('pages.shared.includes.navbar')
-<div class="dark:text-gray-200 dark:fill-gray-200 overflow-scroll h-screen">
-    <section class="mb-10">
-        <!-- Slider main container -->
-        <swiper-container id="swiper-container-hero" class="mySwiper w-full h-[500px] lg:h-[650px]" pagination-clickable="true" slides-per-view="1" speed="500" loop="true" pagination="true" init="false">
-            <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
-                <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
-                    <div class="text-wrap w-3/4 xl:max-w-4xl">
-                        <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
-                            Resik, Aman dan Serasi.</h1>
-                        <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
-                            Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+<div class="overflow-hidden">
+    @include('pages.shared.includes.navbar')
+    <div class="dark:text-gray-200 dark:fill-gray-200 overflow-scroll h-screen">
+        <section class="mb-10">
+            <!-- Slider main container -->
+            <swiper-container id="swiper-container-hero" class="mySwiper w-full h-[500px] lg:h-[650px]" pagination-clickable="true" slides-per-view="1" speed="500" loop="true" pagination="true" init="false">
+                <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
+                    <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
+                        <div class="text-wrap w-3/4 xl:max-w-4xl">
+                            <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
+                                Resik, Aman dan Serasi.</h1>
+                            <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
+                                Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+                        </div>
                     </div>
-                </div>
-            </swiper-slide>
-            <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
-                <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
-                    <div class="text-wrap w-3/4 xl:max-w-4xl">
-                        <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
-                            Resik, Aman dan Serasi.</h1>
-                        <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
-                            Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+                </swiper-slide>
+                <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
+                    <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
+                        <div class="text-wrap w-3/4 xl:max-w-4xl">
+                            <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
+                                Resik, Aman dan Serasi.</h1>
+                            <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
+                                Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+                        </div>
                     </div>
-                </div>
-            </swiper-slide>
-            <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
-                <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
-                    <div class="text-wrap w-3/4 xl:max-w-4xl">
-                        <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
-                            Resik, Aman dan Serasi.</h1>
-                        <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
-                            Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+                </swiper-slide>
+                <swiper-slide class=" bg-cover bg-left" style="background-image: url('{{ $image }}');">
+                    <div class="text-container backdrop-brightness-50 dark:backdrop-brightness-75 flex flex-col justify-center items-center h-full w-full">
+                        <div class="text-wrap w-3/4 xl:max-w-4xl">
+                            <h1 class="text-gray-100 text-5xl text-center font-Poppins font-bold">RW 01 : Berwibawa, Peduli,
+                                Resik, Aman dan Serasi.</h1>
+                            <h2 class="font-Inter text-center text-gray-100 font-light text-xl">Selamat Datang di Situs
+                                Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten Malang, 65151</h2>
+                        </div>
                     </div>
-                </div>
-            </swiper-slide>
-        </swiper-container>
-    </section>
-    <section class="px-8 lg:px-16 mb-28 ">
-        <div class="header-section mx-6 mb-9">
-            <h1 class="text-4xl font-Poppins font-semibold">Berita dan Informasi</h1>
-            <h5 class="font-Inter font-normal dark:text-gray-500">Lihat berita dan pengumuman yang terbaru</h5>
-        </div>
-        <div class="body-section">
-            <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
-                <swiper-slide>
-                    <x-card.card-item></x-card.carditem>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card.card-item></x-card.carditem>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card.card-item></x-card.carditem>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card.card-item></x-card.carditem>
                 </swiper-slide>
             </swiper-container>
-        </div>
-    </section>
-    <section class="px-8 lg:px-16 mt-10 mb-28">
-        <div class="header-section text-center mb-12">
-            <h1 class="text-4xl font-Poppins font-semibold mb-3">Layanan Kami</h1>
-            <h5 class="font-Inter dark:text-gray-500">Layanan Pada Website yang Perlu Anda Ketahui</h5>
-        </div>
-        <div class="layanan-emblem flex flex-wrap justify-center">
-            @foreach ($layanan as $item)
-            <x-card.card-item-emblem :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
-            @endforeach
-        </div>
-    </section>
-
-    <section class=" px-8 lg:px-16 mb-56">
-        <div class="header-section mb-11 ms-10">
-            <h1 class="text-4xl font-Poppins font-semibold">Apa Kata Mereka?</h1>
-        </div>
-        <div class="body-section ">
-            <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
-                @foreach ($ucapan as $item)
-                <swiper-slide>
-                    <x-card.card-item-message :name="$item['name']" :position="$item['position']" :desc="$item['desc']" :date="$item['date']" :image="$item['image']" />
-                </swiper-slide>
+        </section>
+        <section class="px-8 lg:px-16 mb-28 ">
+            <div class="header-section mx-6 mb-9">
+                <h1 class="text-4xl font-Poppins font-semibold">Berita dan Informasi</h1>
+                <h5 class="font-Inter font-normal dark:text-gray-500">Lihat berita dan pengumuman yang terbaru</h5>
+            </div>
+            <div class="body-section">
+                <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                    <swiper-slide>
+                        <x-card.card-item></x-card.carditem>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <x-card.card-item></x-card.carditem>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <x-card.card-item></x-card.carditem>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <x-card.card-item></x-card.carditem>
+                    </swiper-slide>
+                </swiper-container>
+            </div>
+        </section>
+        <section class="px-8 lg:px-16 mt-10 mb-28">
+            <div class="header-section text-center mb-12">
+                <h1 class="text-4xl font-Poppins font-semibold mb-3">Layanan Kami</h1>
+                <h5 class="font-Inter dark:text-gray-500">Layanan Pada Website yang Perlu Anda Ketahui</h5>
+            </div>
+            <div class="layanan-emblem flex flex-wrap justify-center">
+                @foreach ($layanan as $item)
+                <x-card.card-item-emblem :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']" />
                 @endforeach
-            </swiper-container>
-        </div>
-    </section>
-    @include('pages.shared.includes.footer')
+            </div>
+        </section>
+
+        <section class=" px-8 lg:px-16 mb-56">
+            <div class="header-section mb-11 ms-10">
+                <h1 class="text-4xl font-Poppins font-semibold">Apa Kata Mereka?</h1>
+            </div>
+            <div class="body-section ">
+                <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                    @foreach ($ucapan as $item)
+                    <swiper-slide>
+                        <x-card.card-item-message :name="$item['name']" :position="$item['position']" :desc="$item['desc']" :date="$item['date']" :image="$item['image']" />
+                    </swiper-slide>
+                    @endforeach
+                </swiper-container>
+            </div>
+        </section>
+        @include('pages.shared.includes.footer')
+    </div>
 </div>
+
 @endsection
 @push('scripts')
 <script type="module">
