@@ -6,7 +6,7 @@ $image = Vite::asset('resources/assets/elements/waveLanding.svg');
         <img src="{{ $image }}" alt="WaveBackground" class="absolute -bottom-2 sm:-bottom-5 left-0 z-0">
     </div>
     <div class="footer-container-body pt-10 sm:px-20 pb-5 mb-16 text-gray-400 ">
-        <div class="footer-body mb-10  font-Inter font-light hidden">
+        <div class="footer-body mb-10 font-Inter font-light hidden md:block">
             <div class="flex gap-16 text-sm px-2">
                 <div class="shrink grow-0 text-wrap ">
                     <h4 class="font-Poppins font-semibold text-xl text-gray-200 mb-2">Lokasi</h4>
