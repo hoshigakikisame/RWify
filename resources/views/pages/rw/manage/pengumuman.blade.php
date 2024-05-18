@@ -21,7 +21,11 @@
                     </span>
                 </span>
             </div>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
+            @if($pengumumanInstances->sortByDesc('diperbarui_pada')->first())
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
+            @else
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Masih belum ada pengumuman yang dibagikan</p>
+            @endif
         </div>
         <div class="flex items-center mt-4 gap-x-3 w-fit" x-data="{ modalOpen: false }">
 

@@ -21,7 +21,12 @@
                     </span>
                 </span>
             </div>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
+            @if($reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first())
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
+            @else
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Masih belum ada data reservasi untuk anda</p>
+            @endif
+
         </div>
     </div>
 

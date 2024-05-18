@@ -17,7 +17,11 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
                     <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$count}}
                         Pengaduan</span>
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengaduanInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
+                @if ($pengaduanInstances->sortByDesc('diperbarui_pada')->first())
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengaduanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
+                @else
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Masih belum ada yang melakukan pengaduan</p>
+                @endif
             </div>
         </div>
         <div class="mt-6 md:flex md:items-center md:justify-between">
