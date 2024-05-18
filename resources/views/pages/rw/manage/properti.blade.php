@@ -368,11 +368,15 @@
 
                     },
                     error: function(res) {
+                        window.Loading.shutLoading()
                         $.each(res.responseJSON.errors, (key, value) => {
                             value.forEach(element => {
                                 $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').append(
-                                    `<li>${element}</li>`)
+                                    '#error').fadeIn("fast", () => {
+                                    $(e.currentTarget).find('#' + key).siblings(
+                                        '#error').append(
+                                        `<li>${element}</li>`)
+                                })
                             });
 
                             setTimeout(element => {
