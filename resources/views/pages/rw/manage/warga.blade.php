@@ -83,20 +83,20 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                             <x-form.input-form title="NIK Warga" key="nik" type="number" placeholder="1234567892322" />
                             <x-form.input-form title="NKK Warga" key="nkk" type="number" placeholder="1234567892322" />
                             <div class="grid grid-cols-4 gap-4 ">
-                                <x-form.input-form title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" />
-                                <x-form.input-form title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" />
+                                <x-form.input-form title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Nama Depan" class="col-span-2" />
+                                <x-form.input-form title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Nama Belakang" class="col-span-2" />
                             </div>
                             <div class="grid grid-cols-4 gap-4">
-                                <x-form.input-form title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" />
-                                <x-form.input-form title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" />
+                                <x-form.input-form title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Tempat Lahir" class="col-span-2" />
+                                <x-form.input-form title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Tanggal Lahir" class="col-span-2" />
                             </div>
 
                             <div class="mt-4">
                                 <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
                             </div>
-                            <x-form.textarea-input-form title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" />
+                            <x-form.textarea-input-form title="Alamat Warga" key="alamat" placeholder="Alamat tempat tinggal" />
                             <x-form.select-input-form title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" />
-                            <x-form.input-form title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" />
+                            <x-form.input-form title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Pekerjaan saat ini" />
                             <x-form.select-input-form title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" />
                             <x-form.select-input-form title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" />
                             <x-form.select-input-form title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
@@ -247,7 +247,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
         </div>
     </div>
 
-    {{ $users->onEachSide(-1)->links('elements.pagination') }}
+    {{ $users->onEachSide(0)->links('elements.pagination') }}
 
 </section>
 @endsection
@@ -368,9 +368,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                                                         </div>
                                                                 `
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-        // $("#editModal select[aria-selected]").each(function() {
-        //     $(this).val(this.ariaSelected).change()
-        // })
     }
 
     function request(url, selectorParent, selectorForm) {
@@ -404,8 +401,13 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         $.each(res.responseJSON.errors, (key, value) => {
                             value.forEach(element => {
                                 $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').append(
-                                    `<li>${element}</li>`)
+                                    '#error').fadeIn("fast", () => {
+                                    $(e.currentTarget).find('#' + key).siblings(
+                                        '#error').append(
+                                        `<li>${element}</li>`)
+                                })
+
+
                             });
 
                             setTimeout(element => {
@@ -415,7 +417,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                             key).siblings('#error')
                                         .empty()
                                 })
-                            }, 8000)
+                            }, 5000)
                         })
 
                     }
