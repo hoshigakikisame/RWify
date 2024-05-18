@@ -58,13 +58,13 @@
                                     @csrf
                                     <input type="text" name="id_umkm" hidden>
                                     <x-form.input-form title="Nama UMKM" key="nama" type="text" placeholder="UMKM" />
-                                    <x-form.input-form title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Pemilik" />
-                                    <x-form.input-form title="No. Telepon" key="telepon" type="text" placeholder="1234567892322" />
-                                    <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Jl Brawijaya no 14" />
-                                    <x-form.input-form title="Maps URL" key="map_url" type="text" placeholder="Maps" />
-                                    <x-form.input-form title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram" />
-                                    <x-form.textarea-input-form title="Deskripsi" key="deskripsi" placeholder="Deskripsi" />
-                                    <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
+                                    <x-form.input-form title="Nama Pemilik" key="nama_pemilik" type="text" placeholder="Nama Pemilik UMKM" />
+                                    <x-form.input-form title="No. Telepon" key="telepon" type="text" placeholder="08138237822" />
+                                    <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat UMKM" />
+                                    <x-form.input-form title="Maps URL" key="map_url" type="text" placeholder="Maps URL UMKM" />
+                                    <x-form.input-form title="Instagram URL" key="instagram_url" type="text" placeholder="Instagram URL UMKM" />
+                                    <x-form.textarea-input-form title="Deskripsi" key="deskripsi" placeholder="Deskripsi tentang UMKM" />
+                                    <x-form.input-image id="imageadd" title="Gambar UMKM" key="image" placeholder="Gambar UMKM" />
 
                                     <div class="flex justify-between mt-6">
                                         <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah
@@ -220,7 +220,7 @@
     </div>
 
 
-    {{ $umkmInstances->onEachSide(-1)->links('elements.pagination') }}
+    {{ $umkmInstances->onEachSide(0)->links('elements.pagination') }}
 
 </section>
 @endsection
@@ -359,9 +359,6 @@
             </div>
     `
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-        // $("#editModal select[aria-selected]").each(function() {
-        //     $(this).val(this.ariaSelected).change()
-        // })
     }
 
     function request(url, selectorParent, selectorForm) {
@@ -393,11 +390,15 @@
 
                     },
                     error: function(res) {
+                        window.Loading.shutLoading()
                         $.each(res.responseJSON.errors, (key, value) => {
                             value.forEach(element => {
                                 $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').append(
-                                    `<li>${element}</li>`)
+                                    '#error').fadeIn("fast", () => {
+                                    $(e.currentTarget).find('#' + key).siblings(
+                                        '#error').append(
+                                        `<li>${element}</li>`)
+                                })
                             });
 
                             setTimeout(element => {
@@ -407,7 +408,7 @@
                                             key).siblings('#error')
                                         .empty()
                                 })
-                            }, 8000)
+                            }, 5000)
                         })
 
                     }
