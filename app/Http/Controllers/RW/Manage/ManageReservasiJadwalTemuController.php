@@ -6,6 +6,7 @@ namespace App\Http\Controllers\RW\Manage;
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\ReservasiJadwalTemuModel;
+use App\Models\UserModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -17,19 +18,26 @@ class ManageReservasiJadwalTemuController extends Controller
     public function manageReservasiJadwalTemuPage()
     {
 
-        $request = request()->q;
+        $query = request()->q;
+        $filters = request()->filters ?? [];
         $paginate = request()->paginate;
 
-        $reservasiJadwalTemuInstances = (new SearchableDecorator(ReservasiJadwalTemuModel::class))->search($request, $paginate);
-        $count = ReservasiJadwalTemuModel::all()->count();
-
+        $reservasiJadwalTemuInstances = (new SearchableDecorator(ReservasiJadwalTemuModel::class))->search(
+            $query, 
+            $paginate, 
+            ['pemohon' => UserModel::class],
+            $filters
+        );
+        $count = ReservasiJadwalTemuModel::count();
+        $diterimaCount = ReservasiJadwalTemuModel::where('status', 'diterima')->count();
 
         $data = [
             "reservasiJadwalTemuInstances" => $reservasiJadwalTemuInstances,
             "count" => $count
         ];
 
-        return view('pages.rw.manage.reservasiJadwalTemu', $data);
+
+        return view('pages.rw.manage.reservasiJadwalTemu', $data, ['diterimaCount' => $diterimaCount]);
     }
 
     // update reservasi jadwal temu with validation

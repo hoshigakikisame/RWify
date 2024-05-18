@@ -13,34 +13,32 @@
                 <h2 class="text-lg font-medium text-gray-800 dark:text-white">Jadwal Temu</h2>
                 <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{$count}}
                     Jadwal Temu</span>
-                <span class="px-3 py-1 inline-flex gap-2 items-center bg-yellow-100 rounded-full dark:bg-gray-800 ">
-                    <p class="text-xs text-yellow-600 dark:text-yellow-400">9 Diterima</p>
+                <span class="px-3 py-1 inline-flex gap-2 items-center bg-green-100 rounded-full dark:bg-gray-800 ">
+                    <span class="text-xs text-green-600 dark:text-green-400">{{ $diterimaCount }} Diterima</span>
                     <span class="relative flex h-3 w-3 items-center justify-center">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400/75 duration-700"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400/75 duration-700"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
                 </span>
             </div>
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.</p>
         </div>
-
-
     </div>
 
     <div class="mt-6 md:flex md:items-center md:justify-between">
         <div class="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-            <button click="selection('published')" value="All" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300">
-                Pending
+
+            <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})" x-effect="let params = new URLSearchParams(window.location.search); (params.has('filters[status]') && params.get('filters[status]') == '') || !params.has('filters[status]') ? $('#filter-all').addClass('!text-blue-400') : $('#filter-all').removeClass('!text-blue-400')" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                semua
             </button>
 
-            <button click="selection('draft')" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                Diterima
+            @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $key => $value)
+            <button id="filter-{{ $key }}" onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})" x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                {{ $value }}
             </button>
-            <button click="selection('draft')" class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                Ditolak
-            </button>
+            @endforeach
+
         </div>
-
         <div id="search" class="relative flex items-center mt-4 md:mt-0" x-data="{search:''}">
             <span class="absolute">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
@@ -48,9 +46,10 @@
                 </svg>
             </span>
 
-            <input x-model="search" @keyup.enter="searchRequest(search,event)" type="text" placeholder="Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+            <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text" placeholder="Press Enter to Search" class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
         </div>
     </div>
+
 
     <div class="flex flex-col mt-6 ">
         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -84,7 +83,7 @@
                                         bg-gray-50
                                         @endif
                                             "></span>
-                                        <span class="text-[9px]">
+                                        <span class="text-[12px]">
                                             {{ $reservasiJadwalTemu->getStatus() }}
                                         </span>
                                     </span>
@@ -121,3 +120,15 @@
 
 </section>
 @endsection
+@push('scripts')
+<script type="module">
+    $(document).ready(() => {
+        let reg = new RegExp('[?&]q=([^&#]*)', 'i');
+        let queryString = reg.exec(document.location);
+        if (queryString != null) {
+            let search = decodeURIComponent(queryString[1].replace(/\+/g, ' '));
+            $('#search input').val(search);
+        }
+    })
+</script>
+@endpush
