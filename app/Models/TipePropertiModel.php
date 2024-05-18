@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,15 +43,18 @@ class TipePropertiModel extends Model
         return $this->iuran_per_bulan;
     }
 
-    public function setDibuatPada(string $dibuat_pada): void
+    public function getDibuatPada(): string
     {
-        $this->dibuat_pada = $dibuat_pada;
+        return $this->dibuat_pada;
     }
 
-    public function setDiperbaruiPada(string $diperbarui_pada): void
+    public function getDiperbaruiPada(): Carbon 
     {
-        $this->diperbarui_pada = $diperbarui_pada;
+        return Carbon::parse($this->diperbarui_pada);
     }
+    
+
+
 
     // SETTERS
     public function setNamaTipe(string $nama_tipe): void
@@ -61,5 +65,15 @@ class TipePropertiModel extends Model
     public function setIuranPerBulan(int $iuran_per_bulan): void
     {
         $this->iuran_per_bulan = $iuran_per_bulan;
+    }
+
+    public function setDibuatPada(string $dibuat_pada): void
+    {
+        $this->dibuat_pada = $dibuat_pada;
+    }
+
+    public function setDiperbaruiPada(string $diperbarui_pada): void
+    {
+        $this->diperbarui_pada = $diperbarui_pada;
     }
 }

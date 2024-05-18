@@ -21,9 +21,8 @@
                     </span>
                 </span>
             </div>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.</p>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>        
         </div>
-
         <div class="flex items-center mt-4 gap-x-3 w-fit" x-data="{ modalOpen: false }">
 
             <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="request('{{ route('rw.manage.pengumuman.new') }}', '#addModal', '#addModalForm')">

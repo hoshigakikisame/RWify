@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -263,9 +264,9 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         return $this->dibuat_pada;
     }
 
-    public function getDiperbaruiPada(): string
+    public function getDiperbaruiPada(): Carbon 
     {
-        return $this->diperbarui_pada;
+        return Carbon::parse($this->diperbarui_pada);
     }
 
     public function getRukunTetangga(): RukunTetanggaModel

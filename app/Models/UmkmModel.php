@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -79,8 +80,8 @@ class UmkmModel extends Model
         return $this->dibuat_pada;
     }
 
-    public function getDiperbaruiPada(): string {
-        return $this->diperbarui_pada;
+    public function getDiperbaruiPada(): Carbon {
+        return Carbon::parse($this->diperbarui_pada);
     }
 
 

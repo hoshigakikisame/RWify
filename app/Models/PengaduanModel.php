@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class PengaduanModel extends Model
 {
@@ -82,9 +83,9 @@ class PengaduanModel extends Model
         return $this->dibuat_pada;
     }
 
-    public function getDiperbaruiPada(): string
+    public function getDiperbaruiPada(): Carbon
     {
-        return $this->diperbarui_pada;
+        return Carbon::parse($this->diperbarui_pada);
     }
 
 

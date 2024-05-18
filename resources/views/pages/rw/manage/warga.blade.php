@@ -22,7 +22,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                     Warga</span>
             </div>
 
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir di update 12 menit yang lalu.</p>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $users->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>        
         </div>
 
         <div class="flex items-center mt-4 gap-x-3" x-data="{ modalOpen: false }">

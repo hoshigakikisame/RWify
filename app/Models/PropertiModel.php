@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -82,16 +83,6 @@ class PropertiModel extends Model
         return $this->jumlah_kamar;
     }
 
-    public function setDibuatPada(string $dibuat_pada): void
-    {
-        $this->dibuat_pada = $dibuat_pada;
-    }
-
-    public function setDiperbaruiPada(string $diperbarui_pada): void
-    {
-        $this->diperbarui_pada = $diperbarui_pada;
-    }
-
     public function getPemilik(): UserModel
     {
         return $this->pemilik;
@@ -100,6 +91,16 @@ class PropertiModel extends Model
     public function getTipeProperti(): TipePropertiModel
     {
         return $this->tipeProperti;
+    }
+
+    public function getDibuatPada(): string
+    {
+        return $this->dibuat_pada;
+    }
+
+    public function getDiperbaruiPada(): Carbon
+    {
+        return Carbon::parse($this->diperbarui_pada);
     }
 
     // SETTERS
@@ -141,5 +142,15 @@ class PropertiModel extends Model
     public function setJumlahKamar(int $jumlah_kamar): void
     {
         $this->jumlah_kamar = $jumlah_kamar;
+    }
+
+    public function setDibuatPada(string $dibuat_pada): void
+    {
+        $this->dibuat_pada = $dibuat_pada;
+    }
+
+    public function setDiperbaruiPada(string $diperbarui_pada): void
+    {
+        $this->diperbarui_pada = $diperbarui_pada;
     }
 }
