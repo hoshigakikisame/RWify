@@ -13,7 +13,7 @@
                     <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ $propertiInstances->total() }}
                         Properti</span>
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $propertiInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>        
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $propertiInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
             </div>
 
             <div class=" md:flex md:items-right md:justify-between">
@@ -189,7 +189,7 @@
     </div>
 
 
-    {{ $propertiInstances->links('elements.pagination') }}
+    {{ $propertiInstances->onEachSide(-1)->links('elements.pagination') }}
 
 </section>
 @endsection

@@ -158,7 +158,7 @@ $status = \App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValue
         </div>
     </div>
 
-    {{ $reservasiJadwalTemuInstances->links('elements.pagination') }}
+    {{ $reservasiJadwalTemuInstances->onEachSide(-1)->links('elements.pagination') }}
 
 </section>
 @endsection

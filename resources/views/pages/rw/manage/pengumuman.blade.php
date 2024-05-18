@@ -21,7 +21,7 @@
                     </span>
                 </span>
             </div>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>        
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
         </div>
         <div class="flex items-center mt-4 gap-x-3 w-fit" x-data="{ modalOpen: false }">
 
@@ -192,7 +192,7 @@
         </div>
     </div>
 
-    {{ $pengumumanInstances->links('elements.pagination') }}
+    {{ $pengumumanInstances->onEachSide(-1)->links('elements.pagination') }}
 
 </section>
 @endsection

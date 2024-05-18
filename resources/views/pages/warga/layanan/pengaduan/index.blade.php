@@ -181,7 +181,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
         </div>
     </div>
 
-    {{ $pengaduanInstances->links('elements.pagination') }}
+    {{ $pengaduanInstances->onEachSide(-1)->links('elements.pagination') }}
 
 </section>
 @endsection
