@@ -14,7 +14,7 @@
                 <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ $count }}
                     Pengumuman</span>
                 <span class="px-3 py-1 inline-flex gap-2 items-center bg-green-100 rounded-full dark:bg-gray-800 ">
-                    <p class="text-xs text-green-600 dark:text-green-400">9 published</p>
+                    <p class="text-xs text-green-600 dark:text-green-400">{{$published}} published</p>
                     <span class="relative flex h-3 w-3 items-center justify-center">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 duration-700"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -185,16 +185,15 @@
                                                 Edit</p>
                                         </button>
                                         <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen" onclick="(function (){appendDeleteModal('{{ $pengumuman->getIdPengumuman() }}','{{ $pengumuman->getJudul() }}',event);window.utils.Request.actionRequest(`{{ route('rw.manage.pengumuman.delete') }}`, '#deleteModal', '#deleteModalForm')})()" class="inline-flex gap-2 px-4 pb-3 pt-2 hover:bg-gray-100 dark:hover:bg-gray-800 w-full border-b-2 items-center">
-                                            <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen" onclick="(function (){appendDeleteModal('{{ $pengumuman->getIdPengumuman() }}','{{ $pengumuman->getJudul() }}',event);window.utils.Request.actionRequest(`{{ route('rw.manage.pengumuman.delete') }}`, '#deleteModal', '#deleteModalForm')})()" class="inline-flex gap-2 px-4 pb-3 pt-2 hover:bg-gray-100 dark:hover:bg-gray-800 w-full border-b-2 items-center">
-                                                <div class="icon w-3 fill-rose-500">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                        <path d="M21 4h-3.1A5.01 5.01 0 0 0 13 0h-2a5.01 5.01 0 0 0-4.9 4H3a1 1 0 0 0 0 2h1v13a5.006 5.006 0 0 0 5 5h6a5.006 5.006 0 0 0 5-5V6h1a1 1 0 0 0 0-2M11 2h2a3.01 3.01 0 0 1 2.829 2H8.171A3.01 3.01 0 0 1 11 2m7 17a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V6h12Z" />
-                                                        <path d="M10 18a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1m4 0a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1" />
-                                                    </svg>
-                                                </div>
-                                                <p class="font-medium text-xs text-rose-500 dark:text-rosse-400 me-4">
-                                                    Delete</p>
-                                            </button>
+                                            <div class="icon w-3 fill-rose-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path d="M21 4h-3.1A5.01 5.01 0 0 0 13 0h-2a5.01 5.01 0 0 0-4.9 4H3a1 1 0 0 0 0 2h1v13a5.006 5.006 0 0 0 5 5h6a5.006 5.006 0 0 0 5-5V6h1a1 1 0 0 0 0-2M11 2h2a3.01 3.01 0 0 1 2.829 2H8.171A3.01 3.01 0 0 1 11 2m7 17a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V6h12Z" />
+                                                    <path d="M10 18a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1m4 0a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1" />
+                                                </svg>
+                                            </div>
+                                            <p class="font-medium text-xs text-rose-500 dark:text-rosse-400 me-4">
+                                                Delete</p>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

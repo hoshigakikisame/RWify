@@ -27,10 +27,12 @@ class ManagePengumumanController extends Controller
 
         $pengumumanInstances = (new SearchableDecorator(PengumumanModel::class))->search($query, $paginate, [], $filters);
         $count = PengumumanModel::all()->count();
+        $published = PengumumanModel::where('status', 'publish')->count();
 
         $data = [
             "pengumumanInstances" => $pengumumanInstances,
             "count" => $count,
+            "published" => $published
         ];
 
         return view('pages.rw.manage.pengumuman', $data);

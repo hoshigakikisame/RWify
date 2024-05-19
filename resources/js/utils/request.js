@@ -86,6 +86,7 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
 export function searchRequest(query) {
 
     var searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has('page')) searchParams.set('page', 1);
     searchParams.set("q", query);
 
     let url = `${document.location.origin}${document.location.pathname}?${searchParams.toString()}`;
@@ -105,6 +106,7 @@ export function searchRequest(query) {
 export function filterRequest(filters) {
 
     var searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has('page')) searchParams.set('page', 1);
 
     for (const [key, value] of Object.entries(filters)) {
         searchParams.set(`filters[${key}]`, value);
