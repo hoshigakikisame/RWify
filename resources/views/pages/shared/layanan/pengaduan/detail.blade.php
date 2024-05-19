@@ -98,7 +98,7 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
             </div>
         </div>
         <div id="updateStatus" class="mb-8 me-5 sidebar-action px-4 ms-6 w-72 transition-all" x-show="sideAction" style="display: none;" @click.away="sideAction = false; $($refs.sideContainer).removeClass('bg-gray-50 dark:bg-gray-800 shadow-md')" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 ">
-            <form id="updateForm" onclick="request(`{{ route('rw.manage.pengaduan.update') }}`, '#updateStatus', '#updateForm')">
+            <form id="updateForm" onclick="window.utils.Request.actionRequest(`{{ route('rw.manage.pengaduan.update') }}`, '#updateStatus', '#updateForm')">
                 @csrf
                 <input type="text" name="id_pengaduan" key="id_pengaduan" value="{{$pengaduanInstance->id_pengaduan}}" hidden >
                 <x-form.select-input-form  title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="{{$pengaduanInstance->getStatus()}}" />
