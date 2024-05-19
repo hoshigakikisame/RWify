@@ -22,14 +22,17 @@
                 </span>
             </div>
             @if($pengumumanInstances->sortByDesc('diperbarui_pada')->first())
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true)}} yang lalu</p>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate
+                {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true)}}
+                yang lalu
+            </p>
             @else
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Masih belum ada pengumuman yang dibagikan</p>
             @endif
         </div>
         <div class="flex items-center mt-4 gap-x-3 w-fit" x-data="{ modalOpen: false }">
 
-            <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="request('{{ route('rw.manage.pengumuman.new') }}', '#addModal', '#addModalForm')">
+            <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pengumuman.new') }}', '#addModal', '#addModalForm',true)">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -62,13 +65,13 @@
 
                         <form class="mt-5" id="addModalForm">
                             @csrf
-                            <x-form.input-form title="Judul Pengumuman" key="judul" type="text" placeholder="Gotong Royong Warga" class="col-span-2" />
-                            <x-form.textarea-input-form title="Konten" key="konten" placeholder="dimas anjay mabar lagi main bersama bocah silkroach" />
+                            <x-form.input-form title="Judul Pengumuman" key="judul" type="text" placeholder="Judul Pengumuman" class="col-span-2" />
+                            <x-form.textarea-input-form title="Konten" key="konten" placeholder="Deskripsi dari pengumuman" />
                             <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
                             <div class="flex justify-between mt-6">
                                 <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi
                                     dengan benar</p>
-                                <button type="click" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                                     Tambah Pengumuman
                                 </button>
                             </div>
@@ -139,8 +142,8 @@
                                             <path d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0m0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10m1.5-15.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 6.5m0 11a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001m0-5.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 12" />
                                         </svg>
                                     </button>
-                                    <div class="absolute right-8 top-0 rounded-lg border dark:border-gray-700 overflow-hidden divide-y dark:divide-gray-700" style="display: none;" x-show="actionModalOpen" @click.away="actionModalOpen = false">
-                                        <div class="relative">
+                                    <div class="absolute right-8 top-0 rounded-lg border dark:border-gray-700 overflow-hidden divide-y dark:divide-gray-700" style="display: none;" x-show="actionModalOpen" @click.away="actionModalOpen = false" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
+                                        <div class=" relative">
                                             <a id="detailButton" class="inline-flex gap-2 px-4 pt-3 pb-2  hover:bg-gray-100 dark:hover:bg-gray-800 w-full items-center" target="_blank" href="{{ route('informasi.pengumuman.detail', [$pengumuman->getIdPengumuman()]) }}">
                                                 <div class="icon w-3 fill-gray-500">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -153,7 +156,7 @@
 
                                             </a>
                                         </div>
-                                        <button class="inline-flex gap-2 px-4 pt-2 pb-2  hover:bg-gray-100 dark:hover:bg-gray-800 w-full items-center" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
+                                        <button id="editButton" class="inline-flex gap-2 px-4 pt-2 pb-2  hover:bg-gray-100 dark:hover:bg-gray-800 w-full items-center" @click="modalEditOpen = !modalEditOpen" type="button" onclick="(function () {appendUpdateModal({{ $pengumuman }},event);request(`{{ route('rw.manage.pengumuman.update') }}`, '#editModal', '#editModalForm')})()" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
                                             <div class="icon w-3 fill-blue-500">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                     <path d="M18.656.93 6.464 13.122A4.97 4.97 0 0 0 5 16.657V18a1 1 0 0 0 1 1h1.343a4.97 4.97 0 0 0 3.535-1.464L23.07 5.344a3.125 3.125 0 0 0 0-4.414 3.194 3.194 0 0 0-4.414 0m3 3L9.464 16.122A3.02 3.02 0 0 1 7.343 17H7v-.343a3.02 3.02 0 0 1 .878-2.121L20.07 2.344a1.15 1.15 0 0 1 1.586 0 1.123 1.123 0 0 1 0 1.586" />
@@ -163,7 +166,7 @@
                                             <p class="font-medium text-xs text-blue-600 dark:text-blue-400 me-4">
                                                 Edit</p>
                                         </button>
-                                        <button class="inline-flex gap-2 px-4 pb-3 pt-2 hover:bg-gray-100 dark:hover:bg-gray-800 w-full border-b-2 items-center">
+                                        <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen" onclick="(function (){appendDeleteModal('{{ $pengumuman->getIdPengumuman() }}','{{ $pengumuman->getJudul() }}',event);request(`{{ route('rw.manage.pengumuman.delete') }}`, '#deleteModal', '#deleteModalForm')})()" class="inline-flex gap-2 px-4 pb-3 pt-2 hover:bg-gray-100 dark:hover:bg-gray-800 w-full border-b-2 items-center">
                                             <div class="icon w-3 fill-rose-500">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                                     <path d="M21 4h-3.1A5.01 5.01 0 0 0 13 0h-2a5.01 5.01 0 0 0-4.9 4H3a1 1 0 0 0 0 2h1v13a5.006 5.006 0 0 0 5 5h6a5.006 5.006 0 0 0 5-5V6h1a1 1 0 0 0 0-2M11 2h2a3.01 3.01 0 0 1 2.829 2H8.171A3.01 3.01 0 0 1 11 2m7 17a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V6h12Z" />
@@ -200,3 +203,135 @@
 
 </section>
 @endsection
+
+@push('scripts')
+<script>
+    function appendDeleteModal(id_pengumuman, judul, event) {
+        const modalDeleteElemen = /*html*/ `
+        <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto"
+         aria-labelledby="modal-title" role="dialog" aria-modal="true">
+         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+             <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen"
+                 x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
+                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                 class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+
+             <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform"
+                 x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                 x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                 x-transition:leave="transition ease-in duration-200 transform"
+                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                 class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+                 <div class="flex items-center justify-between space-x-4">
+                     <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete Pengumuman</h1>
+
+                     <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}"
+                         class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor">
+                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                 d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                         </svg>
+                     </button>
+                 </div>
+
+                 <p class="mt-2 text-sm text-gray-500 ">
+                     Menghapus pengumuman dari sistem
+                 </p>
+
+                 <form class="mt-5" id="deleteModalForm">
+                     @csrf
+                     <input type="text" name="id_pengumuman" value="${id_pengumuman}" hidden>
+                     <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span
+                             class="font-semibold text-rose-600 underline underline-offset-8">${judul}</span> </h1>
+                     <div class="flex justify-end mt-6">
+                         <button type="submit"
+                             class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                             Delete Pengumuman
+                         </button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
+                                                                            `
+        $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
+
+    }
+
+    function appendUpdateModal(pengumuman, event) {
+        const modalEditElemen = /*html*/ `
+                <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title"
+     role="dialog" aria-modal="true">
+     <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+         <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen"
+             x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
+             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+             class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+
+         <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave="transition ease-in duration-200 transform"
+             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+             <div class="flex items-center justify-between space-x-4">
+                 <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Edit Pengaduan</h1>
+
+                 <button @click="()=>{modalEditOpen = false;deleteModal('#editModal')}"
+                     class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                     </svg>
+                 </button>
+             </div>
+
+             <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                 Edit Pengaduan di dalam sistem
+             </p>
+
+             @foreach ($errors->all() as $error)
+             <li>{{ $error }}</li>
+             @endforeach
+
+             <form enctype="multipart/form-data" class="mt-5" id="editModalForm"
+                 action="{{ route('rw.manage.pengaduan.update') }}" method="post">
+                 @csrf
+                 <input type="text" name="id_pengumuman" value="${pengumuman.id_pengumuman}" hidden>
+                 <x-form.input-form title="Judul Pengumuman" key="judul" type="text" placeholder="Judul Pengumuman"
+                     class="col-span-2" value="${pengumuman.judul}" />
+                 <x-form.textarea-input-form title="Konten" key="konten" placeholder="Deskripsi dari pengumuman"
+                     value="${pengumuman.konten}" />
+                 <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar"
+                     value="${pengumuman.image_url}" />
+
+                 <div class="flex justify-between mt-6">
+                     <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
+                     </p>
+                     <button type="submit"
+                         class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                         Save Pengumuman
+                     </button>
+                 </div>
+             </form>
+
+         </div>
+     </div>
+ </div>
+            `
+        $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
+    }
+
+    function deleteModal(selector) {
+        $(selector).ready(() => {
+            $(selector).remove()
+        })
+    }
+</script>
+@endpush

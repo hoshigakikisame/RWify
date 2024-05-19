@@ -62,7 +62,7 @@ class ManagePengumumanController extends Controller
             session()->flash('success', 'Insert Success.');
         }
 
-        return redirect()->route('rw.manage.pengumuman');
+        return 'add success';
     }
 
     // update warga with validation
@@ -94,7 +94,7 @@ class ManagePengumumanController extends Controller
             session()->flash('success', 'Update Success.');
         }
 
-        return redirect()->route('rw.manage.pengumuman');
+        return 'update success';
     }
 
     public function deletePengumuman()
@@ -115,6 +115,6 @@ class ManagePengumumanController extends Controller
             session()->flash('success', 'Delete Success.');
         }
 
-        return redirect()->route('rw.manage.pengumuman');
+        return 'delete success';
     }
 }
