@@ -46,5 +46,29 @@ class SearchableDecotatorTest extends TestCase {
 
         $results = $this->decorator->search('', 5);
         $this->assertCount(5, $results);
+        
     }
+
+    /**
+     * @test
+     */
+    public function it_fails_login_with_invalid_credentials() {
+        // Attempt to login with invalid credentials
+        $response = $this->post('/auth/signin', [
+            'email' => 'nonexistent@example.com',
+            'password' => 'wrongpassword',
+        ]);
+
+        // Assert that the response redirects back to the sign-in page
+        $response->assertStatus(302);
+        $response->assertRedirect(route('auth.signInPage'));
+
+        // Assert that the user is not authenticated
+        $this->assertGuest();
+
+        // Assert that the session contains the error message
+        $response->assertSessionHas('danger', 'Invalid email or password');
+    }
+
+    
 }
