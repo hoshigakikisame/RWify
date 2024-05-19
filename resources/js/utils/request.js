@@ -52,9 +52,9 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
                             }
                         })
                     },
-                    error: function (res) {
+                    error: function (res, e) {
                         window.Loading.shutLoading()
-                        showError(res.responseJSON.errors)
+                        showError(res.responseJSON.errors, e)
                     }
                 })
             } else {
@@ -72,7 +72,7 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
                             }
                         })
                     },
-                    error: function (res) {
+                    error: function (res, e) {
                         window.Loading.shutLoading()
                         showError(res.responseJSON.errors, e)
                     }

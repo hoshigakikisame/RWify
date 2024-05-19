@@ -43,12 +43,12 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
             </button>
 
 
-            <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap md:w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="window.utils.Request.actionRequest('{{ route('rw.manage.warga.new') }}', '#addModal', '#addModalForm')">
+            <button id="addButton" @click="modalOpen = !modalOpen" class="flex items-center justify-center text-nowrap px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="window.utils.Request.actionRequest('{{ route('rw.manage.warga.new') }}', '#addModal', '#addModalForm')">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
 
-                <span>Add warga</span>
+                <span>Tambah warga</span>
             </button>
             <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none;">
                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
@@ -57,7 +57,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 
                     <div x-show="modalOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
-                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100 ">Add Warga User</h1>
+                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100 ">Tambah Warga User</h1>
 
                             <button @click="modalOpen = false" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,7 +67,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                         </div>
 
                         <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                            Add user warga ke dalam sistem
+                            Tambah user warga ke dalam sistem
                         </p>
 
 
@@ -265,108 +265,155 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
 <script>
     function appendDeleteModal(nik, nama, event) {
         const modalDeleteElemen = /*html*/ `
-                                                                    <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                                                            <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                                                                                <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+<div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title"
+     role="dialog" aria-modal="true">
+     <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+         <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen"
+             x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
+             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+             class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
-                                                                                <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
-                                                                                    <div class="flex items-center justify-between space-x-4">
-                                                                                        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete Warga User</h1>
+         <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave="transition ease-in duration-200 transform"
+             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+             <div class="flex items-center justify-between space-x-4">
+                 <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete Warga User</h1>
 
-                                                                                        <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                                                            </svg>
-                                                                                        </button>
-                                                                                    </div>
+                 <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}"
+                     class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                     </svg>
+                 </button>
+             </div>
 
-                                                                                    <p class="mt-2 text-sm text-gray-500 ">
-                                                                                        Menghapus user dari sistem
-                                                                                    </p>
+             <p class="mt-2 text-sm text-gray-500 ">
+                 Menghapus user dari sistem
+             </p>
 
-
-                                                                                    <form class="mt-5" id="deleteModalForm">
-                                                                                        @csrf
-                                                                                        <input type="text" name="nik" value="${nik}" hidden >
-                                                                                        <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span class="font-semibold text-rose-600 underline underline-offset-8">${nama}</span> </h1>              
-                                                                                        <div class="flex justify-end mt-6">
-                                                                                            <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                                                                                Delete Warga
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    `
+             <form class="mt-5" id="deleteModalForm">
+                 @csrf
+                 <input type="text" name="nik" value="${nik}" hidden>
+                 <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span
+                         class="font-semibold text-rose-600 underline underline-offset-8">${nama}</span> </h1>
+                 <div class="flex justify-end mt-6">
+                     <button type="submit"
+                         class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                         Delete Warga
+                     </button>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
+`
         $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
 
     }
 
     function appendUpdateModal(user, event) {
         const modalEditElemen = /*html*/ `
-                                                                    <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                                                            <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                                                                                <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+<div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title"
+     role="dialog" aria-modal="true">
+     <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+         <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen"
+             x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
+             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+             class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
-                                                                                <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
-                                                                                    <div class="flex items-center justify-between space-x-4">
-                                                                                        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Edit Warga User</h1>
+         <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform"
+             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave="transition ease-in duration-200 transform"
+             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+             class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+             <div class="flex items-center justify-between space-x-4">
+                 <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Edit Warga User</h1>
 
-                                                                                        <button @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
-                                                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                                                            </svg>
-                                                                                        </button>
-                                                                                    </div>
+                 <button @click="()=>{modalEditOpen = false;deleteModal('#editModal')}"
+                     class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                         stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                     </svg>
+                 </button>
+             </div>
 
-                                                                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                                                                        Edit user warga di dalam sistem
-                                                                                    </p>
+             <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                 Edit user warga di dalam sistem
+             </p>
 
+             @foreach ($errors->all() as $error)
+             <li>{{ $error }}</li>
+             @endforeach
 
-                                                                                    @foreach ($errors->all() as $error)
-                                                                                        <li>{{ $error }}</li>
-                                                                                    @endforeach
+             <form class="mt-5" id="editModalForm">
+                 @csrf
+                 <x-form.input-form title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple"
+                     value="${user.email}" />
+                 <x-form.input-form title="Password Warga" key="password" type="password"
+                     placeholder="Use strong password" />
+                 <x-form.input-form title="NIK Warga" key="nik" type="number" placeholder="1234567892322"
+                     value="${user.nik}" />
+                 <x-form.input-form title="NKK Warga" key="nkk" type="number" placeholder="1234567892322"
+                     value="${user.nkk}" />
+                 <div class="grid grid-cols-4 gap-4 ">
+                     <x-form.input-form title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq"
+                         class="col-span-2" value="${user.nama_depan}" />
+                     <x-form.input-form title="Nama Belakang Warga" key="nama_belakang" type="text"
+                         placeholder="Fathurrozi" class="col-span-2" value="${user.nama_belakang}" />
+                 </div>
+                 <div class="grid grid-cols-4 gap-4">
+                     <x-form.input-form title="Tempat Lahir Warga" key="tempat_lahir" type="text"
+                         placeholder="Banyuwangi" class="col-span-2" value="${user.tempat_lahir}" />
+                     <x-form.input-form title="Tanggal Lahir Warga" key="tanggal_lahir" type="date"
+                         placeholder="Fathurrozi" class="col-span-2" value="${user.tanggal_lahir}" />
+                 </div>
 
-
-                                                                                    <form class="mt-5" id="editModalForm">
-                                                                                        @csrf
-                                                                                        <x-form.input-form title="Email Warga" key="email" type="email" placeholder="exemple@exemple.exemple" value="${user.email}" />
-                                                                                        <x-form.input-form title="Password Warga" key="password" type="password" placeholder="Use strong password" />
-                                                                                        <x-form.input-form title="NIK Warga" key="nik" type="number" placeholder="1234567892322" value="${user.nik}" />
-                                                                                        <x-form.input-form title="NKK Warga" key="nkk" type="number" placeholder="1234567892322" value="${user.nkk}" />
-                                                                                        <div class="grid grid-cols-4 gap-4 ">
-                                                                                            <x-form.input-form title="Nama Depan Warga" key="nama_depan" type="text" placeholder="Thoriq" class="col-span-2" value="${user.nama_depan}"/>
-                                                                                            <x-form.input-form title="Nama Belakang Warga" key="nama_belakang" type="text" placeholder="Fathurrozi" class="col-span-2" value="${user.nama_belakang}"/>
-                                                                                        </div>
-                                                                                        <div class="grid grid-cols-4 gap-4">
-                                                                                            <x-form.input-form title="Tempat Lahir Warga" key="tempat_lahir" type="text" placeholder="Banyuwangi" class="col-span-2" value="${user.tempat_lahir}"/>
-                                                                                            <x-form.input-form title="Tanggal Lahir Warga" key="tanggal_lahir" type="date" placeholder="Fathurrozi" class="col-span-2" value="${user.tanggal_lahir}" />
-                                                                                        </div>
-
-                                                                                        <div class="mt-4">
-                                                                                            <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
-                                                                                        </div>
-                                                                                        <x-form.textarea-input-form title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14" value="${user.alamat}"/>
-                                                                                        <x-form.select-input-form title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions" placeholder="Pilih Jenis Kelamin Warga" selected="${user.jenis_kelamin}"/>
-                                                                                        <x-form.input-form title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa" value="${user.pekerjaan}" />
-                                                                                        <x-form.select-input-form title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga" selected="${user.agama}" />
-                                                                                        <x-form.select-input-form title="Status Perkawinan Warga" key="status_perkawinan" :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" selected="${user.status_perkawinan}" />
-                                                                                        <x-form.select-input-form title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
-                                                                                        <x-form.select-input-form title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga" selected="${user.role}" />
-                                                                                        <x-form.select-input-form title="Rukun Tetangga Warga" key="id_rukun_tetangga" :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" selected="${user.id_rukun_tetangga}"/>
-                                                                                        <div class="flex justify-between mt-6">
-                                                                                            <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
-                                                                                            <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                                                                                Save Warga
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                `
+                 <div class="mt-4">
+                     <h1 class="text-xs font-medium text-gray-400 uppercase">Identification Status</h1>
+                 </div>
+                 <x-form.textarea-input-form title="Alamat Warga" key="alamat" placeholder="Jl Brawijaya no 14"
+                     value="${user.alamat}" />
+                 <x-form.select-input-form title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions"
+                     placeholder="Pilih Jenis Kelamin Warga" selected="${user.jenis_kelamin}" />
+                 <x-form.input-form title="Pekerjaan Warga" key="pekerjaan" type="text" placeholder="Mahasiswa"
+                     value="${user.pekerjaan}" />
+                 <x-form.select-input-form title="Agama" key="agama" :options="$agama" placeholder="Pilih Agama Warga"
+                     selected="${user.agama}" />
+                 <x-form.select-input-form title="Status Perkawinan Warga" key="status_perkawinan"
+                     :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga"
+                     selected="${user.status_perkawinan}" />
+                 <x-form.select-input-form title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah"
+                     placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
+                 <x-form.select-input-form title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga"
+                     selected="${user.role}" />
+                 <x-form.select-input-form title="Rukun Tetangga Warga" key="id_rukun_tetangga"
+                     :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga"
+                     selected="${user.id_rukun_tetangga}" />
+                 <div class="flex justify-between mt-6">
+                     <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
+                     </p>
+                     <button type="submit"
+                         class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                         Save Warga
+                     </button>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
+`
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
     }
 
