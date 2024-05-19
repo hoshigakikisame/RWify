@@ -19,9 +19,11 @@ $informasi = [
     <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row xl:px-6 2xl:px-8" x-data="{sideNavOpen: false}">
         <div class="nav-container py-5 w-full">
             <nav class="flex justify-between items-center md:gap-10">
-                <div class="navbar-brand flex dark:text-gray-200">
-                    <img src="" alt="logo">
-                    <h1 class="text-2xl ">RWify</h1>
+                <div class="navbar-brand flex dark:text-gray-200 gap-1">
+                    <div class="bg-indigo-200 w-7 h-7 rounded-lg">
+                        <img src="" alt="">
+                    </div>
+                    <h1 class="md:text-2xl text-lg">RWify</h1>
                 </div>
 
                 <div :class="{'right-0': sideNavOpen, '-right-full': !sideNavOpen}" class="bg-gray-50 dark:bg-gray-800 md:bg-transparent md:dark:bg-transparent w-3/4 md:w-auto absolute h-screen top-[78px] md:h-auto navbar-body z-30 md:static pb-4 md:pb-0 md:flex md:justify-end md:flex-row  transition-all">
@@ -83,7 +85,7 @@ $informasi = [
                         </li>
                     </ul>
                 </div>
-                <div class="navbar-action flex gap-3">
+                <div class="navbar-action ms-2 flex gap-3 items-center">
                     @php
                     $login = 'Sign In';
                     if (Auth::user()) {
@@ -91,8 +93,10 @@ $informasi = [
                     }
                     @endphp
 
-                    <a class="login-button bg-green-900 text-gray-100 dark:text-gray-200 dark:bg-green-700 px-4 py-1 border border-gray-200 border-opacity-10 rounded-lg " href="{{route('auth.signIn')}}">{{$login}}</a>
-                    <div class=" flex justify-center" id="darkModeButton">
+                    <a class="order-2 md:order-1 login-button bg-green-900 text-gray-100 dark:text-gray-200 dark:bg-green-700 px-2 md:px-4 py-1 border border-gray-200 border-opacity-10 rounded-lg h-fit" href="{{route('auth.signIn')}}">
+                        <h1 class="text-xs md:text-sm">{{$login}}</h1>
+                    </a>
+                    <div class="order-1 md:order-2 flex justify-center" id="darkModeButton">
                         <label for="themeSwitcherOne" class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center bg-white dark:bg-gray-900 p-1 dark:text-gray-200 border rounded-full gap-1">
                             <span id="sun" class="light text-primary bg-gray dark:bg-gray-800 bg-gray-300 flex items-center space-x-[2px] rounded-full py-2 p-2 text-sm font-medium dark:fill-slate-200">
                                 <svg viewBox="0 0 16 16" class="w-3 fill-inherit">
@@ -113,7 +117,7 @@ $informasi = [
                             </span>
                         </label>
                     </div>
-                    <div class="button-mobile flex flex-col justify-center ">
+                    <div class="order-last button-mobile flex flex-col justify-center ">
                         <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline fill-gray-900 dark:fill-gray-100" @click="sideNavOpen = !sideNavOpen">
                             <svg viewBox="0 0 20 20" class="w-6 h-6">
                                 <path x-show="!sideNavOpen" x-cloak fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
