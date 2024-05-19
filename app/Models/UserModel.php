@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\RukunTetanggaModel;
+use App\Traits\HasTimeStamp;
 
 class UserModel extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasTimeStamp;
     protected $table = 'tb_user';
     protected $primaryKey = 'nik';
     const CREATED_AT = 'dibuat_pada';
@@ -259,16 +260,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         return $this->alamat;
     }
 
-    public function getDibuatPada(): string
-    {
-        return $this->dibuat_pada;
-    }
-
-    public function getDiperbaruiPada(): Carbon 
-    {
-        return Carbon::parse($this->diperbarui_pada);
-    }
-
     public function getRukunTetangga(): RukunTetanggaModel
     {
         return RukunTetanggaModel::find($this->id_rukun_tetangga)->first();
@@ -364,16 +355,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail
     public function setAlamat(string $alamat): void
     {
         $this->alamat = $alamat;
-    }
-
-    public function setDibuatPada(string $dibuatPada): void
-    {
-        $this->dibuat_pada = $dibuatPada;
-    }
-
-    public function setDiperbaruiPada(string $diperbaruiPada): void
-    {
-        $this->diperbarui_pada = $diperbaruiPada;
     }
 
     public function setEmailVerifiedAt(string|null $emailVerifiedAt): void

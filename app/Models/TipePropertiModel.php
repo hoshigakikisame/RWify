@@ -5,11 +5,12 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasTimeStamp;
 
 class TipePropertiModel extends Model
 {
 
-    use HasFactory;
+    use HasFactory, HasTimeStamp;
     protected $table = 'tb_tipe_properti';
     protected $primaryKey = 'id_tipe_properti';
     const CREATED_AT = 'dibuat_pada';
@@ -43,19 +44,6 @@ class TipePropertiModel extends Model
         return $this->iuran_per_bulan;
     }
 
-    public function getDibuatPada(): string
-    {
-        return $this->dibuat_pada;
-    }
-
-    public function getDiperbaruiPada(): Carbon 
-    {
-        return Carbon::parse($this->diperbarui_pada);
-    }
-    
-
-
-
     // SETTERS
     public function setNamaTipe(string $nama_tipe): void
     {
@@ -65,15 +53,5 @@ class TipePropertiModel extends Model
     public function setIuranPerBulan(int $iuran_per_bulan): void
     {
         $this->iuran_per_bulan = $iuran_per_bulan;
-    }
-
-    public function setDibuatPada(string $dibuat_pada): void
-    {
-        $this->dibuat_pada = $dibuat_pada;
-    }
-
-    public function setDiperbaruiPada(string $diperbarui_pada): void
-    {
-        $this->diperbarui_pada = $diperbarui_pada;
     }
 }
