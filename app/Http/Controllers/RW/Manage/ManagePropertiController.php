@@ -24,8 +24,8 @@ class ManagePropertiController extends Controller
         $paginate = request()->paginate;
 
         $propertiInstances = (new SearchableDecorator(PropertiModel::class))->search(
-            $query, 
-            $paginate, 
+            $query,
+            $paginate,
             [
                 'pemilik' => UserModel::class,
                 'tipeProperti' => TipePropertiModel::class
@@ -73,7 +73,8 @@ class ManagePropertiController extends Controller
             session()->flash('success', 'Insert Success.');
         }
 
-        return redirect()->route('rw.manage.properti.index');
+        // return redirect()->route('rw.manage.properti.index');
+        return "Add success";
     }
 
     // update warga with validation
@@ -109,7 +110,7 @@ class ManagePropertiController extends Controller
         }
 
         //return redirect()->route('rw.manage.properti');
-        return 'done';
+        return 'Update success';
     }
 
     public function deleteProperti()
@@ -131,6 +132,6 @@ class ManagePropertiController extends Controller
         }
 
         //return redirect()->route('rw.manage.properti');
-        return 'done';
+        return 'Delete success';
     }
 }

@@ -10,7 +10,10 @@ $signInElementDark = Vite::asset('resources/assets/elements/signInElementDark.sv
 $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 @endphp
 <div class="grid grid-rows-4 md:grid-rows-3 lg:grid-rows-1 lg:grid-cols-2 h-screen">
+
     <div class="relative">
+        <div class="invisible hidden bg-rose-200 text-rose-700">
+        </div>
         <div class="z-50 absolute right-5 xl:inset-x-5 inset-y-5 xl:inset-y-8 w-fit h-fit rounded-full p-2 bg-gray-100/20 hover:bg-gray-300/50 hover:stroke-darkGreen stroke-gray-300 transition-all">
             <a href="{{route('index')}}" class="fill-inherit">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 xl:h-10 w-8 xl:w-10 fill-inherit stroke-inherit" viewBox="0 0 24 24">
@@ -29,7 +32,6 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
 
     <div class="form-login lg:overflow-hidden">
         <div class="h-screen overflow-scroll no-scrollbar ">
-            @include('components.message.flash-message')
             <div class="container-fluid flex flex-col items-center text-darkLightGrey gap-5 lg:gap-2 lg:mt-12 xl:mt-32 lg:mb-10">
                 <div class="signIn-header text-center lg:w-2/3 2xl:w-1/2 md:px-10 flex flex-col gap-2 mb-4">
                     <h1 class=" text-5xl my-1 font-Inter font-bold dark:text-gray-100">Sign In</h1>
@@ -37,6 +39,7 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                 </div>
                 @csrf
                 <div class="signIn-body pt-2 md:px-24 w-full p-8 pb-0 2xl:w-2/3 lg:p-9 2xl:p-5 flex flex-col gap-3">
+
                     <!-- Image Sign -->
                     <button class="sso sm:w-full border sm:rounded-md text-center sm:p-2 cursor-pointer flex justify-center gap-3 items-center order-last lg:order-none mb-6 hover:bg-gray-100 transition-all focus:opacity-[0.85] w-fit p-4 rounded-full mx-auto sm:mx-0 dark:hover:bg-gray-800" onclick="window.open(`{{ route('auth.google.index') }}`, '_self');">
                         <img src="{{$googleIcon}}" alt="Google">
@@ -48,6 +51,8 @@ $googleIcon = Vite::asset('resources/assets/elements/google-icon.svg');
                         <p class="text-[9px] sm:text-xs shrink dark:text-gray-200">Atau Melanjutkan Menggunakan</p>
                         <div class="line h-[0.15vh] grow bg-alum"></div>
                     </div>
+                    @include('components.message.flash-message')
+
                     <!-- Sign In with Forms -->
                     <form action="{{ route('auth.signIn') }}" method="post" class="mb-2 ">
                         @csrf

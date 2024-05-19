@@ -330,102 +330,10 @@ $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
         // })
     }
 
-    function request(url, selectorParent, selectorForm) {
-        $(selectorParent).ready((e) => {
-            $(selectorForm).on('submit', function(e) {
-                e.preventDefault()
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    beforeSend: window.Loading.showLoading,
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    success: function(res) {
-                        $.ajax({
-                            url: document.location,
-                            type: "GET",
-                            success: function(response) {
-                                let parser = new DOMParser();
-                                let doc = parser.parseFromString(response,
-                                    'text/html');
-                                $('body').html(doc.body.innerHTML)
-                                setTimeout(function() {
-                                    $.ajax({
-                                        url: document.location,
-                                        type: "GET",
-                                        success: function(
-                                            response) {
-                                            let parser =
-                                                new DOMParser();
-                                            let doc = parser
-                                                .parseFromString(
-                                                    response,
-                                                    'text/html'
-                                                );
-                                            $('body').html(
-                                                doc.body
-                                                .innerHTML
-                                            )
-                                        }
-                                    })
-                                }, 5000)
-                            }
-                        })
-
-
-                    },
-                    error: function(res) {
-                        window.Loading.shutLoading()
-                        $.each(res.responseJSON.errors, (key, value) => {
-                            value.forEach(element => {
-                                $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').fadeIn("fast", () => {
-                                    $(e.currentTarget).find('#' + key).siblings(
-                                        '#error').append(
-                                        `<li>${element}</li>`)
-                                })
-                            });
-
-                            setTimeout(element => {
-                                $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').fadeOut("slow", () => {
-                                    $(e.currentTarget).find('#' +
-                                            key).siblings('#error')
-                                        .empty()
-                                })
-                            }, 8000)
-                        })
-
-                    }
-                })
-
-
-            })
-        })
-    }
-
 
     function deleteModal(selector) {
         $(selector).ready(() => {
             $(selector).remove()
-        })
-    }
-
-
-    function searchRequest(query, event) {
-        let url = document.location
-        url = url.origin + url.pathname + "?q=" + query
-
-        $.ajax({
-            url: url,
-            beforeSend: window.Loading.showLoading,
-            success: function(res) {
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(res, 'text/html');
-                $('body').html(doc.body.innerHTML)
-                window.history.pushState({}, "", url);
-            }
         })
     }
 </script>

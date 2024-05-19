@@ -23,7 +23,7 @@
 
             <div class=" md:flex md:items-right md:justify-between">
                 <div class="flex items-center mt-2 gap-x-3" x-data="{ modalOpen: false }">
-                    <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center mb-2 text-nowrap px-5 py-2.5 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="request('{{ route('rw.manage.umkm.new') }}', '#addModal', '#addModalForm')">
+                    <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center mb-2 text-nowrap px-5 py-2.5 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="window.utils.Request.actionRequest('{{ route('rw.manage.umkm.new') }}', '#addModal', '#addModalForm',true)">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -191,7 +191,7 @@
                                             </svg>
                                         </span>
                                     </a>
-                                    <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $umkm }},event);request(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm')})()">
+                                    <button id="editButton" @click="modalEditOpen = !modalEditOpen" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30" type="button" onclick="(function () {appendUpdateModal({{ $umkm }},event);window.utils.Request.actionRequest(`{{ route('rw.manage.umkm.update') }}`, '#editModal', '#editModalForm',true)})()">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 dark:fill-gray-200" fill="currentColor" aria-hidden="true">
                                                 <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
@@ -199,7 +199,7 @@
                                             </svg>
                                         </span>
                                     </button>
-                                    <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen" onclick="(function (){appendDeleteModal('{{ $umkm->getIdUmkm() }}','{{ $umkm->getNama() }}',event);request(`{{ route('rw.manage.umkm.delete') }}`, '#deleteModal', '#deleteModalForm')})()" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
+                                    <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen" onclick="(function (){appendDeleteModal('{{ $umkm->getIdUmkm() }}','{{ $umkm->getNama() }}',event);window.utils.Request.actionRequest(`{{ route('rw.manage.umkm.delete') }}`, '#deleteModal', '#deleteModalForm')})()" class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30">
                                         <span class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
                                             <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor" version="1.1">
                                                 <path d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
@@ -359,64 +359,6 @@
             </div>
     `
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-    }
-
-    function request(url, selectorParent, selectorForm) {
-        $(selectorParent).ready((e) => {
-            $(selectorForm).on('submit', function(e) {
-                e.preventDefault()
-                $.ajax({
-                    url: url,
-                    beforeSend: window.Loading.showLoading,
-                    type: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    success: function(res) {
-                        $.ajax({
-                            url: document.location,
-                            type: "GET",
-                            success: function(response) {
-                                let parser = new DOMParser();
-                                let doc = parser.parseFromString(response,
-                                    'text/html');
-                                $('body').html(doc.body.innerHTML)
-                                setTimeout(function() {
-                                    $(".flash-message").remove()
-                                }, 5000)
-                            }
-                        })
-
-
-                    },
-                    error: function(res) {
-                        window.Loading.shutLoading()
-                        $.each(res.responseJSON.errors, (key, value) => {
-                            value.forEach(element => {
-                                $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').fadeIn("fast", () => {
-                                    $(e.currentTarget).find('#' + key).siblings(
-                                        '#error').append(
-                                        `<li>${element}</li>`)
-                                })
-                            });
-
-                            setTimeout(element => {
-                                $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').fadeOut("slow", () => {
-                                    $(e.currentTarget).find('#' +
-                                            key).siblings('#error')
-                                        .empty()
-                                })
-                            }, 5000)
-                        })
-
-                    }
-                })
-
-
-            })
-        })
     }
 
 

@@ -43,7 +43,7 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
             </button>
 
 
-            <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap md:w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="request('{{ route('rw.manage.warga.new') }}', '#addModal', '#addModalForm')">
+            <button id="addButton" @click="modalOpen = !modalOpen" class=" flex items-center justify-center text-nowrap md:w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-blue-500 rounded-lg shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 dark:hover:bg-blue-500 dark:bg-blue-600" onclick="window.utils.Request.actionRequest('{{ route('rw.manage.warga.new') }}', '#addModal', '#addModalForm')">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -368,62 +368,6 @@ $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
                                                                         </div>
                                                                 `
         $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-    }
-
-    function request(url, selectorParent, selectorForm) {
-        $(selectorParent).ready((e) => {
-            $(selectorForm).on('submit', function(e) {
-                e.preventDefault()
-                $.ajax({
-                    url: url,
-                    beforeSend: window.Loading.showLoading,
-                    type: "POST",
-                    data: $(selectorForm).serialize(),
-                    success: function(res) {
-                        $.ajax({
-                            url: document.location,
-                            type: "GET",
-                            success: function(response) {
-                                let parser = new DOMParser();
-                                let doc = parser.parseFromString(response,
-                                    'text/html');
-                                $('body').html(doc.body.innerHTML)
-                                setTimeout(function() {
-                                    $(".flash-message").remove()
-                                }, 5000)
-                            }
-                        })
-
-
-                    },
-                    error: function(res) {
-                        window.Loading.shutLoading()
-                        $.each(res.responseJSON.errors, (key, value) => {
-                            value.forEach(element => {
-                                $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').fadeIn("fast", () => {
-                                    $(e.currentTarget).find('#' + key).siblings(
-                                        '#error').append(
-                                        `<li>${element}</li>`)
-                                })
-
-
-                            });
-
-                            setTimeout(element => {
-                                $(e.currentTarget).find('#' + key).siblings(
-                                    '#error').fadeOut("slow", () => {
-                                    $(e.currentTarget).find('#' +
-                                            key).siblings('#error')
-                                        .empty()
-                                })
-                            }, 5000)
-                        })
-
-                    }
-                })
-            })
-        })
     }
 
     function deleteModal(selector) {
