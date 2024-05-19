@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use App\Traits\HasTimeStamp;
 
 class PengaduanModel extends Model
 {
 
-    use HasFactory;
+    use HasFactory, HasTimeStamp;
     protected $table = 'tb_pengaduan';
     protected $primaryKey = 'id_pengaduan';
     const CREATED_AT = 'dibuat_pada';
@@ -78,16 +78,6 @@ class PengaduanModel extends Model
         return $this->status;
     }
 
-    public function getDibuatPada(): string
-    {
-        return $this->dibuat_pada;
-    }
-
-    public function getDiperbaruiPada(): Carbon
-    {
-        return Carbon::parse($this->diperbarui_pada);
-    }
-
 
     // SETTERS
     public function setIdPengaduan(int $id_pengaduan): void
@@ -118,15 +108,5 @@ class PengaduanModel extends Model
     public function setStatus(string $status): void
     {
         $this->status = $status;
-    }
-
-    public function setDibuatPada(string $dibuat_pada): void
-    {
-        $this->dibuat_pada = $dibuat_pada;
-    }
-
-    public function setDiperbaruiPada(string $diperbarui_pada): void
-    {
-        $this->diperbarui_pada = $diperbarui_pada;
     }
 }

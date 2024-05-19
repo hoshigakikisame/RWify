@@ -16,7 +16,7 @@
             <h1 class="text-4xl font-Poppins font-semibold">{{ $pengumumanInstance->getJudul() }}</h1>
         </div>
         <div class="content text-center max-w-5xl mx-auto mb-2">
-            <p class="mb-9">{{ $pengumumanInstance->getDiperbaruiPada() }}</p>
+            <p class="mb-9">{{ $pengumumanInstance->getReadableDibuatPada() }}</p>
         </div>
         <div class="text-center mb-20 max-w-6xl mx-auto">
             <img src="{{ $pengumumanInstance->getImageUrl() }}" class="mx-auto rounded-lg w-full max-h-96 object-cover" style="max-width:75%; height: auto;" alt="Gambar Pengumuman">

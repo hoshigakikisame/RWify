@@ -3,10 +3,11 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasTimeStamp;
 
 class PembayaranIuranModel extends Model {
     
-    use HasFactory;
+    use HasFactory, HasTimeStamp;
     protected $table = 'tb_pembayaran_iuran';
     protected $primaryKey = 'id_pembayaran_iuran';
     const CREATED_AT = 'dibuat_pada';
@@ -65,16 +66,6 @@ class PembayaranIuranModel extends Model {
     public function getKeterangan(): string
     {
         return $this->keterangan;
-    }
-
-    public function getDibuatPada(): string
-    {
-        return $this->dibuat_pada;
-    }
-
-    public function getDiperbaruiPada(): string
-    {
-        return $this->diperbarui_pada;
     }
 
     public function getUser()

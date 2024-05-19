@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasTimeStamp;
 
 class RukunWargaModel extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTimeStamp;
 
     protected $table = 'tb_rukun_warga';
     protected $primaryKey = 'id_rukun_warga';
@@ -41,15 +42,6 @@ class RukunWargaModel extends Model
     public function getNikKetuaRukunWarga(): string {
         return $this->nik_ketua_rukun_warga;
     }
-
-    public function getDibuatPada(): string {
-        return $this->dibuat_pada;
-    }
-
-    public function getDiperbaruiPada(): string {
-        return $this->diperbarui_pada;
-    }
-
     // SETTERS
     public function setIdRukunWarga(int $id_rukun_warga): void {
         $this->id_rukun_warga = $id_rukun_warga;
@@ -64,13 +56,5 @@ class RukunWargaModel extends Model
 
     public function setNikKetuaRukunWarga(string $nik_ketua_rukun_warga): void {
         $this->nik_ketua_rukun_warga = $nik_ketua_rukun_warga;
-    }
-
-    public function setDibuatPada(string $dibuat_pada): void {
-        $this->dibuat_pada = $dibuat_pada;
-    }
-
-    public function setDiperbaruiPada(string $diperbarui_pada): void {
-        $this->diperbarui_pada = $diperbarui_pada;
     }
 }

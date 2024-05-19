@@ -5,10 +5,11 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasTimeStamp;
 
 class UmkmModel extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTimeStamp;
     protected $table = 'tb_umkm';
     protected $primaryKey = 'id_umkm';
     const CREATED_AT = 'dibuat_pada';
@@ -76,14 +77,6 @@ class UmkmModel extends Model
         return $this->deskripsi;
     }
 
-    public function getDibuatPada(): string {
-        return $this->dibuat_pada;
-    }
-
-    public function getDiperbaruiPada(): Carbon {
-        return Carbon::parse($this->diperbarui_pada);
-    }
-
 
     // SETTERS
     public function setIdUmkm(int $id_umkm): void {
@@ -120,13 +113,5 @@ class UmkmModel extends Model
 
     public function setDeskripsi(string $deskripsi): void {
         $this->deskripsi = $deskripsi;
-    }
-
-    public function setDibuatPada(string $dibuat_pada): void {
-        $this->dibuat_pada = $dibuat_pada;
-    }
-
-    public function setDiperbaruiPada(string $diperbarui_pada): void {
-        $this->diperbarui_pada = $diperbarui_pada;
     }
 }
