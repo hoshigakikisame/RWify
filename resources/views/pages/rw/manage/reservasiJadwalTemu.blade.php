@@ -97,13 +97,13 @@
                             <div class="card-body me-24 flex flex-col">
                                 <h1 class="text-xl leading-6 dark:text-gray-100 text-gray-950 mb-2 capitalize">{{$reservasiJadwalTemu->getSubjek()}}</h1>
                                 <p class="text-sm text-gray-700 leading-6 dark:text-gray-400 capitalize pb-4">{{ $reservasiJadwalTemu->getPesan()}}</p>
-                                <div class="action ">
-                                    <form action="{{route('rw.manage.reservasiJadwalTemu.update')}}" method="post" autocomplete="off">
+                                <div id="actionStatus-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}">
+                                    <form id="actionStatusForm-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}" action="" method="post" autocomplete="off">
                                         @csrf
                                         <x-form.input-form title="" id="idReservasiJadwalTemu" key="idReservasiJadwalTemu" type="hidden" value="{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}" placeholder="" />
 
-                                        <label for="status" class="text-sm me-2 text-gray-800 dark:text-gray-300">Change Status</label>
-                                        <select name="status" id="status" class="border border-gray-300 rounded-lg bg-gray-50 text-gray-950 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100" onchange="this.form.submit()">
+                                        <label for="submitAction-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}" class="text-sm me-2 text-gray-800 dark:text-gray-300">Change Status</label>
+                                        <select aria-current="submitButton" id="submitAction-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}" name="status" x-effect="window.utils.Request.actionRequest('{{route('rw.manage.reservasiJadwalTemu.update')}}','#actionStatus-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}','#actionStatusForm-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}')" class="border border-gray-300 rounded-lg bg-gray-50 text-gray-950 text-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
                                             @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $status)
                                             <option value="{{ $status }}" {{ $status == $reservasiJadwalTemu->getStatus() ? 'selected=selected' : ''}}>
                                                 {{ $status }}
