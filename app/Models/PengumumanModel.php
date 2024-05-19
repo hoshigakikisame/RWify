@@ -52,7 +52,8 @@ class PengumumanModel extends Model
         return $this->konten;
     }
 
-    public function getStatus(): string {
+    public function getStatus(): string
+    {
         return $this->status;
     }
 
@@ -75,5 +76,11 @@ class PengumumanModel extends Model
     public function setKonten(string $konten): void
     {
         $this->konten = $konten;
+    }
+
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
     }
 }

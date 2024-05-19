@@ -10,26 +10,27 @@ use App\Http\Controllers\RW\Manage\ManageReservasiJadwalTemuController;
 use App\Http\Controllers\RW\Manage\ManagePengaduanController;
 use App\Http\Controllers\RW\Manage\ManagePropertiController;
 use App\Http\Controllers\RW\Manage\ManageTipePropertiController;
+use Illuminate\Routing\Router;
 
 // rw routes
 Route::group([
     'prefix' => 'rw',
     'as' => 'rw.',
     'middleware' => ['auth', 'hasRole:Ketua Rukun Warga']
-], function() {
+], function () {
     Route::get('dashboard', [RWController::class, 'dashboard'])->name('dashboard');
-    
+
     // rw manage routes
     Route::group([
         'prefix' => 'manage',
         'as' => 'manage.'
-    ], function() {
+    ], function () {
 
         // rw manage warga routes
         Route::group([
             'prefix' => 'warga',
             'as' => 'warga.'
-        ], function() {
+        ], function () {
             Route::get('', [ManageWargaController::class, 'manageWargaPage'])->name('warga');
             Route::post('new', [ManageWargaController::class, 'addNewWarga'])->name('new');
             Route::post('update', [ManageWargaController::class, 'updateWarga'])->name('update');
@@ -40,18 +41,19 @@ Route::group([
         Route::group([
             'prefix' => 'pengumuman',
             'as' => 'pengumuman.'
-        ], function() {
+        ], function () {
             Route::get('', [ManagePengumumanController::class, 'managePengumumanPage'])->name('pengumuman');
             Route::post('new', [ManagePengumumanController::class, 'addNewPengumuman'])->name('new');
             Route::post('update', [ManagePengumumanController::class, 'updatePengumuman'])->name('update');
             Route::post('delete', [ManagePengumumanController::class, 'deletePengumuman'])->name('delete');
+            Route::post('changeStatus', [ManagePengumumanController::class, 'changeStatusPengumuman'])->name('changeStatus');
         });
 
         // rw manage umkm routes
         Route::group([
             'prefix' => 'umkm',
             'as' => 'umkm.'
-        ], function() {
+        ], function () {
             Route::get('', [ManageUmkmController::class, 'manageUmkmPage'])->name('umkm');
             Route::post('new', [ManageUmkmController::class, 'addNewUmkm'])->name('new');
             Route::post('update', [ManageUmkmController::class, 'updateUmkm'])->name('update');
@@ -62,7 +64,7 @@ Route::group([
         Route::group([
             'prefix' => 'pengaduan',
             'as' => 'pengaduan.'
-        ], function() {
+        ], function () {
             Route::get('', [ManagePengaduanController::class, 'managePengaduanPage'])->name('pengaduan');
             Route::post('new', [ManagePengaduanController::class, 'addNewPengaduan'])->name('new');
             Route::post('update', [ManagePengaduanController::class, 'updatePengaduan'])->name('update');
@@ -72,7 +74,7 @@ Route::group([
         Route::group([
             'prefix' => 'reservasiJadwalTemu',
             'as' => 'reservasiJadwalTemu.'
-        ], function() {
+        ], function () {
             Route::get('', [ManageReservasiJadwalTemuController::class, 'manageReservasiJadwalTemuPage'])->name('index');
             Route::post('update', [ManageReservasiJadwalTemuController::class, 'updateReservasiJadwalTemu'])->name('update');
         });
@@ -81,7 +83,7 @@ Route::group([
         Route::group([
             'prefix' => 'properti',
             'as' => 'properti.'
-        ], function() {
+        ], function () {
             Route::get('', [ManagePropertiController::class, 'managePropertiPage'])->name('index');
             Route::post('new', [ManagePropertiController::class, 'addNewProperti'])->name('new');
             Route::post('update', [ManagePropertiController::class, 'updateProperti'])->name('update');
@@ -92,7 +94,7 @@ Route::group([
         Route::group([
             'prefix' => 'tipeProperti',
             'as' => 'tipeProperti.'
-        ], function() {
+        ], function () {
             Route::get('', [ManageTipePropertiController::class, 'manageTipePropertiPage'])->name('index');
             Route::post('new', [ManageTipePropertiController::class, 'addNewTipeProperti'])->name('new');
             Route::post('update', [ManageTipePropertiController::class, 'updateTipeProperti'])->name('update');
@@ -100,4 +102,3 @@ Route::group([
         });
     });
 });
-

@@ -117,4 +117,25 @@ class ManagePengumumanController extends Controller
 
         return 'delete success';
     }
+
+    public function changeStatusPengumuman()
+    {
+        request()->validate([
+            'id_pengumuman' => 'required',
+        ]);
+
+        $idPengumuman = request()->id_pengumuman;
+        $pengumuman = PengumumanModel::find($idPengumuman);
+
+
+        if (!$pengumuman) {
+            $pengumuman->getStatus() == 'publish' ? session()->flash('danger', 'Move to draft Failed.') : session()->flash('danger', 'Publish Failed.');
+        } else {
+            $pengumuman->getStatus() == 'publish' ? $pengumuman->setStatus('draft') : $pengumuman->setStatus('publish');
+            $pengumuman->save();
+            $pengumuman->getStatus() == 'publish' ? session()->flash('success', 'Publish success.') : session()->flash('success', 'Move to draft success.');
+        }
+
+        return $pengumuman->getStatus() == 'publish' ?  'move to draft failed' : 'publish success';
+    }
 }
