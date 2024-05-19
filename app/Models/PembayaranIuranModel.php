@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
 
-class PembayaranIuranModel extends Model {
-    
+class PembayaranIuranModel extends Model
+{
+
     use HasFactory, HasTimeStamp;
     protected $table = 'tb_pembayaran_iuran';
     protected $primaryKey = 'id_pembayaran_iuran';
@@ -16,7 +18,7 @@ class PembayaranIuranModel extends Model {
     protected $fillable = [
         'id_pembayaran_iuran',
         'nik_pembayar',
-        // 'nkk',
+        'nkk',
         'tanggal_bayar',
         'image_url',
         'keterangan',
@@ -48,10 +50,10 @@ class PembayaranIuranModel extends Model {
         return $this->nik_pembayar;
     }
 
-    // public function getNkk(): string
-    // {
-    //     return $this->nkk;
-    // }
+    public function getNkk(): string
+    {
+        return $this->nkk;
+    }
 
     public function getTanggalBayar(): string
     {
@@ -84,10 +86,10 @@ class PembayaranIuranModel extends Model {
         $this->nik_pembayar = $nik;
     }
 
-    // public function setNkk(string $nkk): void
-    // {
-    //     $this->nkk = $nkk;
-    // }
+    public function setNkk(string $nkk): void
+    {
+        $this->nkk = $nkk;
+    }
 
     public function setTanggalBayar(string $tanggal_bayar): void
     {

@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="form bg-gray-50 dark:bg-gray-800/50 px-8 py-4 pb-8 rounded-lg shadow-sm container">
-        <form action="{{ route('warga.layanan.pengaduan.new') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('warga.layanan.pembayaran-iuran.new') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class=" flex flex-col">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-body flex gap-10 relative mb-10" x-data="{ fileName: '' }">
                     <div class="left grow h-fit">
-                        <x-form.input-form title="NIK" key="nik_pembayar" type="text" value="{{ request()->user()->nik }}" placeholder="dsa" readonly="true" />
+                        <x-form.input-form title="NIK" key="nik_pembayar" type="text" value="{{ request()->user()->nik }}" placeholder="" readonly="true" />
                         <x-form.textarea-input-form title="Keterangan" key="keterangan" placeholder="Tambahkan keterangan bulan apa saja yang dibayarkan" value="" rows="5" />
                     </div>
                     <div class="right grow mt-4 relative" x-ref="wrap" x-data="{ fileName: '' }">

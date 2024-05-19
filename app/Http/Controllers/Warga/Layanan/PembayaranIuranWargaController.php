@@ -19,7 +19,8 @@ class PembayaranIuranWargaController extends Controller
         return view('pages.warga.layanan.pembayaranIuran.new');
     }
 
-    public function addNewPembayaranIuran() {
+    public function addNewPembayaranIuran()
+    {
         request()->validate([
             'keterangan' => 'required',
             'image' => 'required|image|mimes:' . config('cloudinary.allowed_mimes'),
@@ -37,6 +38,7 @@ class PembayaranIuranWargaController extends Controller
             'nik_pembayar' => auth()->user()->nik,
             'tanggal_bayar' => now(),
             'image_url' => $imageUrl,
+            'nkk' => auth()->user()->nkk,
             'keterangan' => request('keterangan'),
         ];
 
@@ -48,6 +50,6 @@ class PembayaranIuranWargaController extends Controller
             session()->flash('success', 'Insert Success');
         }
 
-        return redirect()->route('warga.layanan.pembayaranIuran.index');
+        return redirect()->route('warga.layanan.pembayaran-iuran.index');
     }
 }
