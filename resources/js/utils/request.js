@@ -1,23 +1,24 @@
 
 export function actionRequest(url, selectorParent, selectorForm, isMultipart = false) {
-    function showError(errors, e) {
+
+    function showError(errors) {
         $.each(errors, (key, value) => {
             value.forEach(element => {
-                $(e.currentTarget).find('#' + key).siblings(
+                $(selectorForm).find('#' + key).siblings(
                     '#error').fadeIn("fast", () => {
-                        $(e.currentTarget).find('#' + key).siblings(
+                        $(selectorForm).find('#' + key).siblings(
                             '#error').append(
                                 `<li>${element}</li>`)
                     })
 
                 setTimeout(() => {
-                    $(e.currentTarget).find('#' + key).siblings(
+                    $(selectorForm).find('#' + key).siblings(
                         '#error').fadeOut("slow", () => {
-                            $(e.currentTarget).find('#' +
+                            $(selectorForm).find('#' +
                                 key).siblings('#error')
                                 .empty()
                         })
-                }, 5000)
+                }, 2000)
             });
         })
     }
@@ -32,54 +33,72 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
         }, 5000)
     }
 
-    $(selectorParent).ready((e) => {
-        $(selectorForm).on('submit', function (e) {
-            e.preventDefault()
-            if (isMultipart) {
+    function defaultRequest() {
+        $.ajax({
+            url: url,
+            beforeSend: window.Loading.showLoading,
+            type: "POST",
+            data: $(selectorForm).serialize(),
+            success: function (res) {
                 $.ajax({
-                    url: url,
-                    beforeSend: window.Loading.showLoading,
-                    type: "POST",
-                    data: new FormData(this),
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        $.ajax({
-                            url: document.location,
-                            type: "GET",
-                            success: function (response) {
-                                replacedContent(response)
-                            }
-                        })
-                    },
-                    error: function (res, e) {
-                        window.Loading.shutLoading()
-                        showError(res.responseJSON.errors, e)
+                    url: document.location,
+                    type: "GET",
+                    success: function (response) {
+                        replacedContent(response)
                     }
                 })
-            } else {
-                $.ajax({
-                    url: url,
-                    beforeSend: window.Loading.showLoading,
-                    type: "POST",
-                    data: $(selectorForm).serialize(),
-                    success: function (res) {
-                        $.ajax({
-                            url: document.location,
-                            type: "GET",
-                            success: function (response) {
-                                replacedContent(response)
-                            }
-                        })
-                    },
-                    error: function (res, e) {
-                        window.Loading.shutLoading()
-                        showError(res.responseJSON.errors, e)
-                    }
-                })
+            },
+            error: function (res, e) {
+                window.Loading.shutLoading()
+                showError(res.responseJSON.errors)
             }
         })
+    }
+
+    function multipartRequest(target) {
+        $.ajax({
+            url: url,
+            beforeSend: window.Loading.showLoading,
+            type: "POST",
+            data: new FormData(target),
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                $.ajax({
+                    url: document.location,
+                    type: "GET",
+                    success: function (response) {
+                        replacedContent(response)
+                    }
+                })
+            },
+            error: function (res, e) {
+                window.Loading.shutLoading()
+                showError(res.responseJSON.errors)
+            }
+        })
+    }
+
+    $(selectorParent).ready((e) => {
+        console.log($(selectorForm).find('[aria-current = "submitButton"]').length)
+        if ($(selectorForm).find('[aria-current="submitButton"]').length == 1) {
+            $(selectorForm).on('change', function (element) {
+                console.log('change')
+                defaultRequest()
+            })
+        } else {
+            $(selectorForm).on('submit', function (e) {
+                e.preventDefault()
+                if (isMultipart) {
+                    multipartRequest(this)
+                } else {
+                    defaultRequest()
+                }
+            })
+        }
+
     })
+
 }
 
 
