@@ -80,20 +80,16 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
     }
 
     $(selectorParent).ready((e) => {
-        console.log($(selectorForm).find('[aria-current = "submitButton"]').length)
         if ($(selectorForm).find('[aria-current="submitButton"]').length == 1) {
             $(selectorForm).on('change', function (element) {
-                console.log('change')
-                defaultRequest()
+                (isMultipart) ? multipartRequest(this) : defaultRequest();
             })
+        } else if ($(selectorForm).find('[aria-current="directSubmitButton"]').length == 1) {
+            (isMultipart) ? multipartRequest(this) : defaultRequest();
         } else {
             $(selectorForm).on('submit', function (e) {
-                e.preventDefault()
-                if (isMultipart) {
-                    multipartRequest(this)
-                } else {
-                    defaultRequest()
-                }
+                e.preventDefault();
+                (isMultipart) ? multipartRequest(this) : defaultRequest();
             })
         }
 

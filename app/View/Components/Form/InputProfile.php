@@ -28,6 +28,5 @@ class InputProfile extends Component
     public function render(): View|Closure|string
     {
         return view('components.form.input-profile');
-        
     }
 }

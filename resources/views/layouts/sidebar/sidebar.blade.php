@@ -27,8 +27,8 @@
             @yield('menu')
         </x-sidebar.sidebar-wrap>
         <div class=" overflow-hidden w-full">
-            @include('components.message.flash-message')
             <div class="h-screen overflow-scroll no-scrollbar w-full ">
+                @include('components.message.flash-message')
                 @yield('content')
             </div>
             @stack('modals')
