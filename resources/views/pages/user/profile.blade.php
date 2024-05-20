@@ -9,7 +9,7 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
         <div class="background-display relative">
             <img src="{{ $image }}" alt="backgroundImage" class="h-64 w-full bg-cover rounded-xl">
         </div>
-        <div class="user flex gap-12 relative">
+        <div class="user flex gap-12 relative h-32">
             <div class="user-avatar relative left-14 -top-20">
                 <div class="w-44 rounded-full border-4 bg-white dark:bg-gray-900 border-white dark:border-gray-900 h-44 bg-cover bg-center" style="background-image: url('{{ $userImage }}')">
                 </div>
@@ -17,7 +17,7 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
                     @csrf
                     <label>
                         <input type="file" class="hidden" name="image" id="inputImage" accept="image/*">
-                        <div class="absolute -translate-y-1/4 right-5 bottom-0 bg-gray-500/80 p-2 rounded-full fill-gray-300 cursor-pointer">
+                        <div class="absolute right-5 -bottom-10 bg-gray-500/80 p-2 rounded-full fill-gray-300 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
                                 <path d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
                             </svg>
@@ -34,7 +34,7 @@ $image = Vite::asset('resources/assets/images/profileImage.jpg');
             </div>
         </div>
     </div>
-    <nav class="py-1 px-2 mb-2 relative">
+    <nav class="py-1 pt-0 px-2 mb-2 relative">
         <ul class="flex gap-1 text-sm dark:text-gray-100">
             <li class="py-2 px-4 ">
                 <button onclick="append(event);" ariaLabel="Profile">Profile</button>
