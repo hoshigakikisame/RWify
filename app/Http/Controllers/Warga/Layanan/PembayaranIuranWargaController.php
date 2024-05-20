@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\PembayaranIuranModel;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Decorators\SearchableDecorator;
+use App\Models\PropertiModel;
+use App\Models\TipePropertiModel;
 use App\Models\UserModel;
+use App\Models\IuranModel;
+use Carbon\Carbon;
 
 class PembayaranIuranWargaController extends Controller
 {
@@ -38,7 +42,40 @@ class PembayaranIuranWargaController extends Controller
 
     public function newPembayaranIuranPage()
     {
-        return view('pages.warga.layanan.pembayaranIuran.new');
+        $monthlyTotal = 0;
+        $ownedPropertiInstances = (new SearchableDecorator(PropertiModel::class))->search(
+            '',
+            0,
+            ['tipeProperti' => TipePropertiModel::class, 'pemilik' => UserModel::class],
+            ['nik_pemilik' => request()->user()->nik]
+        );
+
+        foreach ($ownedPropertiInstances as $properti) {
+            $monthlyTotal += $properti->getTipeProperti()->getIuranPerBulan();
+        }
+
+        // TODO: place it under app / config
+        $duesStartDate = Carbon::parse("2000-1-1");
+        $diffMonthsFromNow = $duesStartDate->diffInMonths(now(), false);
+
+        $selfIuranInstancesCount = (new SearchableDecorator(IuranModel::class))->search(
+            '', 
+            0, 
+            ['pembayaranIuran' => PembayaranIuranModel::class], 
+            ['nik_pembayar' => request()->user()->nik]
+        )->count();
+
+        $unpaidDueMonths = (int) ($diffMonthsFromNow - $selfIuranInstancesCount);
+        $totalUnpaidDueMonths = $unpaidDueMonths * $monthlyTotal;
+
+        $data = [
+            'ownedPropertiInstances' => $ownedPropertiInstances,
+            'unpaidDueMonths' => $unpaidDueMonths,
+            'totalUnpaidDueMonths' => $totalUnpaidDueMonths,
+            'monthlyTotal' => $monthlyTotal
+        ];
+
+        return view('pages.warga.layanan.pembayaranIuran.new', $data);
     }
 
     public function addNewPembayaranIuran()

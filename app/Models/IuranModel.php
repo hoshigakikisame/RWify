@@ -15,6 +15,7 @@ class IuranModel extends Model {
 
     protected $fillable = [
         'id_iuran',
+        'nik_pembayar',
         'bulan',
         'tahun',
         'dibuat_pada',
@@ -37,6 +38,11 @@ class IuranModel extends Model {
     public function getIdIuran(): int
     {
         return $this->id_iuran;
+    }
+
+    public function getNikPembayar(): string
+    {
+        return $this->nik_pembayar;
     }
 
     public function getBulan(): string
@@ -68,5 +74,10 @@ class IuranModel extends Model {
     public function setIdPembayaranIuran(int $id_pembayaran_iuran): void
     {
         $this->id_pembayaran_iuran = $id_pembayaran_iuran;
+    }
+
+    public function setNikPembayar(string $nik): void
+    {
+        $this->nik_pembayar = $nik;
     }
 }

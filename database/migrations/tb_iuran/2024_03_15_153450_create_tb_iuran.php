@@ -18,8 +18,11 @@ return new class extends Migration
             // $table->unsignedMediumInteger('jumlah_iuran');
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
-
+            
             // Foreign key
+            $table->string('nik_pembayar', 16);
+            $table->foreign('nik_pembayar')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
+
             $table->unsignedBigInteger('id_pembayaran_iuran');
             $table->foreign('id_pembayaran_iuran')->references('id_pembayaran_iuran')->on('tb_pembayaran_iuran')->onUpdate('cascade')->onDelete('cascade');
         });
