@@ -159,12 +159,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row-span-1 col-start-2 justify-self-end">
-                            <button type="submit"
-                                class="col-span-1 row-span-1 mt-4 px-5 py-2 text-md text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 font-semibold uppercase tracking-widest text-xs ring-2">
-                                KIRIM
-                            </button>
+                            <div class="row-span-1 col-start-2 w-full inline-flex justify-end">
+                                <button type="submit"
+                                    class="col-span-1 row-span-1 mt-4 px-5 py-2 text-md text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 font-semibold uppercase tracking-widest text-xs ring-2">
+                                    KIRIM
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
