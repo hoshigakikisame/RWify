@@ -18,7 +18,6 @@ class PembayaranIuranModel extends Model
     protected $fillable = [
         'id_pembayaran_iuran',
         'nik_pembayar',
-        'nkk',
         'tanggal_bayar',
         'image_url',
         'keterangan',
@@ -27,7 +26,6 @@ class PembayaranIuranModel extends Model
     ];
 
     public static $searchable = [
-        'nkk',
         'nik_pembayar',
         'tanggal_bayar',
         'keterangan',
@@ -48,11 +46,6 @@ class PembayaranIuranModel extends Model
     public function getNikPembayar(): string
     {
         return $this->nik_pembayar;
-    }
-
-    public function getNkk(): string
-    {
-        return $this->nkk;
     }
 
     public function getTanggalBayar(): string
@@ -84,11 +77,6 @@ class PembayaranIuranModel extends Model
     public function setNikPembayar(string $nik): void
     {
         $this->nik_pembayar = $nik;
-    }
-
-    public function setNkk(string $nkk): void
-    {
-        $this->nkk = $nkk;
     }
 
     public function setTanggalBayar(string $tanggal_bayar): void

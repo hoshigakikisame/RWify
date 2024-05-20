@@ -38,7 +38,7 @@ class PembayaranIuranWargaController extends Controller
             'nik_pembayar' => auth()->user()->nik,
             'tanggal_bayar' => now(),
             'image_url' => $imageUrl,
-            'nkk' => auth()->user()->nkk,
+            // 'nkk' => auth()->user()->nkk,
             'keterangan' => request('keterangan'),
         ];
 

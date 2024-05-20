@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('tb_pembayaran_iuran', function (Blueprint $table) {
             $table->id('id_pembayaran_iuran');
-            // $table->string('nkk', 16);
             $table->date('tanggal_bayar');
             $table->text('image_url');
             $table->text('keterangan');

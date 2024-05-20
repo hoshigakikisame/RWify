@@ -1,157 +1,57 @@
 @php
-if (!isset($scrollTo)) {
-    $scrollTo = 'body';
-}
+$pagesToShow = 2;
 
-$scrollIntoViewJsSnippet = ($scrollTo !== false)
-    ? <<<JS
-       (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()
-    JS
-    : '';
+$firstPage = max(1, $paginator->currentPage() - $pagesToShow);
+$lastPage = min($paginator->lastPage(), $paginator->currentPage() + $pagesToShow);
+
+$prevPage = $paginator->currentPage() - 1;
+$nextPage = $paginator->currentPage() + 1;
+
+$currentPath = request()->url();
 @endphp
 
-<div class="pt-3 mt-4">
-    <div class="flex">
-        <div class="flex items-center">
-            <label for="perPage" class=" mr-3 text-sm font-medium text-gray-800 dark:text-gray-300">Per Page</label>
-            <select name="pageCount" id="pageCount" class="bg-white border border-gray-300 dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm rounded-lg focus:border-blue-500 focus:ring-blue-400 dark:focus:border-blue-400 dark:focus:ring-blue-400" onchange="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','1')">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
+<div class="flex justify-between items-center mt-4 pt-3">
+        <div class="flex">
+            <div class="flex items-center">
+                <label for="perPage" class=" mr-3 text-sm font-medium text-gray-800 dark:text-gray-300">Per Page</label>
+                <select name="pageCount" id="pageCount" class="bg-white border border-gray-300 dark:bg-gray-900 text-gray-800 dark:text-gray-200 text-sm rounded-lg focus:border-blue-500 focus:ring-blue-400 dark:focus:border-blue-400 dark:focus:ring-blue-400" onchange="paginate({{$paginator->currentPage()}})">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
         </div>
+    <div aria-label="pagination">
+        <ul class="pagination flex gap-1">
+            @if ($paginator->currentPage() > 1)
+            <li class="page-item"><button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" onclick="paginate(1)">
+                    << </button></li>
+            @endif
+            <li class="page-item"><button id="prev_button" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 {{$paginator->onFirstPage() ? 'cursor-not-allowed' : ''}}" onclick="paginate({{$nextPage}})" {{$paginator->onFirstPage() ? 'disabled=1' : ''}}>
+                    Prev
+                </button></li>
+    
+            @for ($i = $firstPage; $i <= $lastPage; $i++)
+                <li class="page-item"><button {{$i == $paginator->currentPage() ? 'disabled=1' : ''}} class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 {{$i == $paginator->currentPage() ? '!bg-gray-200 cursor-not-allowed' : ''}}" onclick="paginate({{$i}})">
+                        {{$i}}
+                    </button></li>
+            @endfor
+    
+            <li class="page-item"><button id="next_button" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 {{$paginator->onLastPage() ? 'cursor-not-allowed' : ''}}" onclick="paginate({{$nextPage}})" {{$paginator->onLastPage() ? 'disabled=1' : ''}}>
+                    Next
+                </button></li>
+            @if ($nextPage < $paginator->lastPage())
+                <li class="page-item"><button class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" onclick="paginate({{$paginator->lastPage()}})">
+                    >></button></li>
+            @endif
+        </ul>
     </div>
+
 </div>
 
-<div class="pt-2">
-    @if ($paginator->hasPages())
-        <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
-            <div class="flex justify-between flex-1 sm:hidden">
-                <span>
-                    @if ($paginator->onFirstPage())
-                        <span class="flex items-center justify-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 select-none">
-                            {!! __('pagination.previous') !!}
-                        </span>
-                    @else
-                        <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','prev')" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before" class="flex items-center justify-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                            {!! __('pagination.previous') !!}
-                        </button>
-                    @endif
-                </span>
 
-                <span>
-                    @if ($paginator->hasMorePages())
-                        <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','forw')" x-on:click="{{ $scrollIntoViewJsSnippet }}" wire:loading.attr="disabled" dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before" class="flex items-center justify-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                            {!! __('pagination.next') !!}
-                        </button>
-                    @else
-                        <span class="flex items-center justify-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                            {!! __('pagination.next') !!}
-                        </span>
-                    @endif
-                </span>
-            </div>
-
-            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                <div>
-                    <p class="text-sm dark:text-gray-200 text-gray-800 leading-5">
-                        <span class="dark:text-gray-500 text-gray-800">{!! __('Showing') !!}</span>
-                        <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                        <span>{!! __('to') !!}</span>
-                        <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                        <span>{!! __('of') !!}</span>
-                        <span class="font-medium">{{ $paginator->total() }}</span>
-                        <span>{!! __('results') !!}</span>
-                    </p>
-                </div>
-
-                <div>
-                    <span class="relative z-0 inline-flex rounded-md shadow-sm gap-1">
-                        <span>
-                            {{-- Previous Page Link --}}
-                            @if ($paginator->onFirstPage())
-                                <span aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
-                                    <span class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-hidden="true">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                                    </svg>
-                                    <span>
-                                        previous
-                                    </span>
-                                    </span>
-                                </span>
-                            @else
-                                <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','prev')" x-on:click="{{ $scrollIntoViewJsSnippet }}" dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('pagination.previous') }}">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                                </svg>
-                                <span>
-                                  previous
-                                 </span>
-                                </button>
-                            @endif
-                        </span>
-
-                        {{-- Pagination Elements --}}
-                        @foreach ($elements as $element)
-                            {{-- "Three Dots" Separator --}}
-                            @if (is_string($element))
-                                <span aria-disabled="true">
-                                    <span class="flex items-center justify-center w-1/2 px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">{{ $element }}</span>
-                                </span>
-                            @endif
-
-                            {{-- Array Of Links --}}
-                            @if (is_array($element))
-                                @foreach ($element as $page => $url)
-                                    <span wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">
-                                        @if ($page == $paginator->currentPage())
-                                            <span aria-current="page">
-                                                <span class="flex items-center justify-center w-1/2 px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">{{ $page }}</span>
-                                            </span>
-                                        @else
-                                            <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','{{$page}}')" x-on:click="{{ $scrollIntoViewJsSnippet }}" class="flex items-center justify-center w-1/2 px-4 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
-                                                {{ $page }}
-                                            </button>
-                                        @endif
-                                    </span>
-                                @endforeach
-                            @endif
-                        @endforeach
-
-                        <span>
-                            {{-- Next Page Link --}}
-                            @if ($paginator->hasMorePages())
-                                <button type="button" onclick="paginate('{{ $paginator->getPageName() }}','{{$paginator->currentPage()}}','forw')" x-on:click="{{ $scrollIntoViewJsSnippet }}" dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-label="{{ __('pagination.next') }}">
-
-                                <span>
-                                 Next
-                                  </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                    </svg>
-                                </button>
-                            @else
-                                <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">
-                                    <span class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800" aria-hidden="true">
-                                    <span>
-                                        Next
-                                    </span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                                         <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                        </svg>
-                                     </span>
-                                </span>
-                            @endif
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </nav>
-    @endif
-</div>
 
 <script type="module" >
   $(document).ready(function(){
@@ -162,40 +62,35 @@ $scrollIntoViewJsSnippet = ($scrollTo !== false)
 <script>
   
 
-    function paginate(pageName,currentPage,move) { 
-        let url = document.location
-        let page = parseInt(currentPage)
+  function paginate(targetPage) { 
+      let url = document.location
 
-        if(move === 'prev'){
-            page -= 1
-        }else if(move === 'forw'){
-            page += 1
-        }else{
-            page = move 
-        }
+      if(url.search.includes("page")){
+          url = url.origin + url.pathname + url.search.replace({{$paginator->currentPage()}},targetPage)
+      }else{
+          url = url.origin + url.pathname + "?" + "page" + "=" + targetPage
+      }
 
-        if(url.search.includes(pageName)){
-            url = url.origin + url.pathname + url.search.replace(currentPage,page)
-        }else{
-            url = url.origin + url.pathname + "?" + pageName + "=" + page
-        }
+      const pageCount = document.querySelector('#pageCount').value
+      if (url.includes('paginate')) {
+          url = url.replace(/paginate=\d+/, `paginate=${pageCount}`)
+      } else {
+          url = url + `&paginate=${pageCount}`
+      }
 
-        const pageCount = document.querySelector('#pageCount').value
-        if (url.includes('paginate')) {
-            url = url.replace(/paginate=\d+/, `paginate=${pageCount}`)
-        } else {
-            url = url + `&paginate=${pageCount}`
-        }
-        
-        $.ajax({
-            url: url,
-            beforeSend: window.Loading.showLoading,
-            success:function (res) {
-                let parser = new DOMParser();
-                let doc = parser.parseFromString(res, 'text/html');
-                $('body').html(doc.body.innerHTML)
-                window.history.pushState({"html":res.html,"pageTitle":res.pageTitle},"", url);
-            }
-        })
-     }
+      if({{$paginator->currentPage()}} > Math.ceil({{$paginator->total()}}/pageCount)){
+          url = url.replace(/page=\d+/, 'page='+ Math.ceil({{$paginator->total()}}/pageCount))
+      }
+      
+      $.ajax({
+          url: url,
+          beforeSend: window.Loading.showLoading,
+          success:function (res) {
+              let parser = new DOMParser();
+              let doc = parser.parseFromString(res, 'text/html');
+              $('body').html(doc.body.innerHTML)
+              window.history.pushState({"html":res.html,"pageTitle":res.pageTitle},"", url);
+          }
+      })
+   }
 </script>

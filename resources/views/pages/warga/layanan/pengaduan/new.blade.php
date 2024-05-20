@@ -3,7 +3,7 @@
 
 {{-- content --}}
 @section('content')
-<section class="mt-7 ms-10 mb-20">
+<section class="container mt-7 ms-10 mb-20">
     <div class="header mb-5 border-b pb-5 ">
         <h1 class="dark:text-gray-100 font-medium text-lg text-gray-950">Pengaduan</h1>
         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Kirim kan pengaduan ke Ketua RW melewati form ini</p>
