@@ -33,6 +33,9 @@ class UserSeeder extends Seeder
             [
                 'email' => 'niaoktav119@gmail.com',
                 'role' => 'Ketua Rukun Warga',
+                'nama_depan' => 'Egar',
+                'nama_belakang' => 'Sayogo 🤙',
+                'image_url' => 'https://res.cloudinary.com/deg2r9cnr/image/upload/v1716194703/ky4wz6pvpjfvxetqhne1.jpg',
                 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
             ]
         )->create()->first();

@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="form bg-gray-50 dark:bg-gray-800/50 px-8 py-4 pb-8 rounded-lg shadow-sm">
-            <form action="{{ route('warga.layanan.pembayaran-iuran.new') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('warga.layanan.pembayaranIuran.new') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="">

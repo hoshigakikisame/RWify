@@ -63,11 +63,11 @@ Route::group([
 
         // warga manage iuran routes
         Route::group([
-            'prefix' => 'pembayaran-iuran',
-            'as' => 'pembayaran-iuran.'
+            'prefix' => 'pembayaranIuran',
+            'as' => 'pembayaranIuran.'
         ], function() {
             // pages
-            Route::get('', [PembayaranIuranWargaController::class, 'pembayaranIuranPage'])->name('index');
+            Route::get('riwayat', [PembayaranIuranWargaController::class, 'riwayatPembayaranIuranPage'])->name('riwayatPembayaranIuran');
             Route::get('new', [PembayaranIuranWargaController::class, 'newPembayaranIuranPage'])->name('newIuranPage');
             
             // post
