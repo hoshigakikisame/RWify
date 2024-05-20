@@ -24,21 +24,23 @@ class UserController extends Controller
         return view('pages.user.profile', compact('user'));
     }
 
-    public function updateProfileImage() {
+    public function updateProfileImage()
+    {
         request()->validate([
             'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes')
         ]);
-        
+
         /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
         $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
         $resultUrl = $cloudinaryResponse->getSecurePath();
-        
+
         $user = request()->user();
 
         $user->setImageUrl($resultUrl);
         $user->save();
+        session()->flash('success', 'Update Image Profile Success');
 
-        return redirect()->route('user.profile.index');
+        return "Update Image Profile";
     }
 
     public function updateProfile()
@@ -49,13 +51,12 @@ class UserController extends Controller
             'alamat' => 'required',
         ]);
 
-        $res = Cloudinary::upload(request()->file('image')->getRealPath());
-        dd($res);
+
 
         /** @var UserModel $user */
         $user = Auth::user();
 
-        if(!$user) {
+        if (!$user) {
             session()->flash('danger', 'Update Failed.');
         } else {
 
@@ -64,7 +65,7 @@ class UserController extends Controller
                 $user->setEmailVerifiedAt(null);
                 $user->email = request()->email;
             }
-            
+
             // update other fields
             $user->setPekerjaan(request()->pekerjaan);
             $user->setAlamat(request()->alamat);
@@ -74,7 +75,7 @@ class UserController extends Controller
             session()->flash('success', 'Update Success.');
         }
 
-        return redirect()->route('user.profile.index');
+        return  'Update User Profile';
     }
 
     public function updatePassword()
@@ -88,7 +89,7 @@ class UserController extends Controller
         /** @var UserModel $user */
         $user = Auth::user();
 
-        if(!$user) {
+        if (!$user) {
             session()->flash('danger', 'Update Failed.');
         } else {
             if (request()->new_password != request()->new_password_confirmation) {
@@ -104,7 +105,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect()->route('user.profile.index');
+        return 'Update Password';
     }
 
     public function sendVerificationEmail()

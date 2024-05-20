@@ -9,5 +9,7 @@ $style = "rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 d
         @else
         <input id="{{$key}}" type="{{$type}}" name="{{$key}}" value="{{$value}}" {{ $attributes->merge(['class' => $style]) }}>
         @endif
+        <ul id="error" class="'text-sm text-red-600 dark:text-red-400 space-y-1'">
+        </ul>
     </div>
 </div>
