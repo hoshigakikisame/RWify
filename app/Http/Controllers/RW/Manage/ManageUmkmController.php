@@ -62,9 +62,9 @@ class ManageUmkmController extends Controller
         $newUMKM = UmkmModel::create($data);
 
         if (!$newUMKM) {
-            session()->flash('danger', 'Gagal Menambahkan UMKM');
+            session()->flash('danger',['title' => 'Gagal Menambahkan UMKM', 'description' => 'Gagal Menambahkan UMKM']);
         } else {
-            session()->flash('success', 'Berhasil Menambahkan UMKM');
+            session()->flash('success',['title' => 'Berhasil Menambahkan UMKM', 'description' => 'Berhasil Menambahkan UMKM']);
         }
 
         return 'success';
@@ -89,7 +89,7 @@ class ManageUmkmController extends Controller
         $umkm = UmkmModel::find($idUmkm);
 
         if (!$umkm) {
-            session()->flash('danger', 'Gagal Mengupdate UMKM');
+            session()->flash('danger',['title' => 'Gagal Mengupdate UMKM', 'description' => 'Gagal Mengupdate UMKM']);
         } else {
 
             if (request()->hasFile('image')) {
@@ -108,7 +108,7 @@ class ManageUmkmController extends Controller
             $umkm->setDeskripsi(request()->deskripsi);
             $umkm->save();
 
-            session()->flash('success', 'Berhasil Mengupdate UMKM');
+            session()->flash('success',['title' => 'Berhasil Mengupdate UMKM', 'description' => 'Berhasil Mengupdate UMKM']);
         }
 
         //return redirect()->route('rw.manage.umkm');
@@ -125,10 +125,10 @@ class ManageUmkmController extends Controller
         $umkm = UmkmModel::find($idUmkm);
 
         if (!$umkm) {
-            session()->flash('danger', 'Gagal Menghapus UMKM');
+            session()->flash('danger',['title' => 'Gagal Menghapus UMKM', 'description' => 'Gagal Menghapus UMKM']);
         } else {
             $umkm->delete();
-            session()->flash('success', 'Berhasil Menghapus UMKM');
+            session()->flash('success',['title' => 'Berhasil Menghapus UMKM', 'description' => 'Berhasil Menghapus UMKM']);
         }
 
         //return redirect()->route('rw.manage.umkm');

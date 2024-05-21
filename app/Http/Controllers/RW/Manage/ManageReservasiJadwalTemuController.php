@@ -52,12 +52,12 @@ class ManageReservasiJadwalTemuController extends Controller
         $reservasiJadwalTemu = ReservasiJadwalTemuModel::find($idReservasiJadwalTemu);
 
         if (!$reservasiJadwalTemu) {
-            session()->flash('danger', 'Update Failed.');
+            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
             $reservasiJadwalTemu->setStatus(request()->status);
             $reservasiJadwalTemu->save();
 
-            session()->flash('success', 'Update Success.');
+            session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
         return redirect()->route('rw.manage.reservasiJadwalTemu.index');

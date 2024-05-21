@@ -102,7 +102,7 @@ class AuthController extends Controller
         );
 
         if ($status != Password::PASSWORD_RESET) {
-            session()->flash('danger', __($status));
+            session()->flash('danger',['title' => __($status), 'description' => __($status)]);
             return back()->withInput(request()->only('email'));
         }
 

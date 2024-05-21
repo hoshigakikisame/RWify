@@ -59,9 +59,9 @@ class ManagePengumumanController extends Controller
         $newPengumuman = PengumumanModel::create($data);
 
         if (!$newPengumuman) {
-            session()->flash('danger', 'Insert Failed.');
+            session()->flash('danger',['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
-            session()->flash('success', 'Insert Success.');
+            session()->flash('success',['title' => 'Insert Success.', 'description' => 'Insert Success.']);
         }
 
         return 'add success';
@@ -81,7 +81,7 @@ class ManagePengumumanController extends Controller
         $pengumuman = PengumumanModel::find($idPengumuman);
 
         if (!$pengumuman) {
-            session()->flash('danger', 'Update Failed.');
+            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
 
             /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
@@ -93,7 +93,7 @@ class ManagePengumumanController extends Controller
             $pengumuman->setKonten(request()->konten);
             $pengumuman->save();
 
-            session()->flash('success', 'Update Success.');
+            session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
         return 'update success';
@@ -111,10 +111,10 @@ class ManagePengumumanController extends Controller
         $pengumuman = PengumumanModel::find($idPengumuman);
 
         if (!$pengumuman) {
-            session()->flash('danger', 'Delete Failed');
+            session()->flash('danger',['title' => 'Delete Failed', 'description' => 'Delete Failed']);
         } else {
             $pengumuman->delete();
-            session()->flash('success', 'Delete Success.');
+            session()->flash('success',['title' => 'Delete Success.', 'description' => 'Delete Success.']);
         }
 
         return 'delete success';
@@ -131,11 +131,11 @@ class ManagePengumumanController extends Controller
 
 
         if (!$pengumuman) {
-            $pengumuman->getStatus() == 'publish' ? session()->flash('danger', 'Move to draft Failed.') : session()->flash('danger', 'Publish Failed.');
+            $pengumuman->getStatus() == 'publish' ? session()->flash('danger', 'Move to draft Failed.') : session()->flash('danger',['title' => 'Publish Failed.', 'description' => 'Publish Failed.']);
         } else {
             $pengumuman->getStatus() == 'publish' ? $pengumuman->setStatus('draft') : $pengumuman->setStatus('publish');
             $pengumuman->save();
-            $pengumuman->getStatus() == 'publish' ? session()->flash('success', 'Publish success.') : session()->flash('success', 'Move to draft success.');
+            $pengumuman->getStatus() == 'publish' ? session()->flash('success', 'Publish success.') : session()->flash('success',['title' => 'Move to draft success.', 'description' => 'Move to draft success.']);
         }
 
         return $pengumuman->getStatus() == 'publish' ?  'move to draft failed' : 'publish success';

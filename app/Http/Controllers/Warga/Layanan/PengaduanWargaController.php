@@ -67,9 +67,9 @@ class PengaduanWargaController extends Controller
         $newPengaduan = PengaduanModel::create($data);
 
         if (!$newPengaduan) {
-            session()->flash('danger', 'Insert Failed');
+            session()->flash('danger',['title' => 'Insert Failed', 'description' => 'Insert Failed']);
         } else {
-            session()->flash('success', 'Insert Success');
+            session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
         }
 
         return redirect()->route('warga.layanan.pengaduan.index');

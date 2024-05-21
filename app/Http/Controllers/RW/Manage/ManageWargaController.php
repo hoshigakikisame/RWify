@@ -10,7 +10,9 @@ use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\RukunTetanggaModel;
 use App\Models\UserModel;
+use Exception;
 use Illuminate\Support\Facades\Validator;
+use PDOException;
 
 class ManageWargaController extends Controller
 {
@@ -79,9 +81,9 @@ class ManageWargaController extends Controller
         $newUser = UserModel::create($data);
 
         if (!$newUser) {
-            session()->flash('danger', 'Gagal menambahkan warga baru.');
+            session()->flash('danger', ['title' => 'Gagal menambahkan warga baru.', 'description' => 'Gagal menambahkan warga baru.']);
         } else {
-            session()->flash('success', 'Berhasil menambahkan warga baru.');
+            session()->flash('success', ['title' => 'Berhasil menambahkan warga baru.', 'description' => 'Berhasil menambahkan warga baru.']);
         }
 
         // return redirect()->route('rw.manage.warga.warga');
@@ -107,7 +109,7 @@ class ManageWargaController extends Controller
         foreach ($csvData as $row) {
             $data[] = array_combine($header, $row);
         }
-        
+
         $rukunTetanggaInstances = [];
 
         RukunTetanggaModel::all()->each(function ($row) use (&$rukunTetanggaInstances) {
@@ -115,7 +117,7 @@ class ManageWargaController extends Controller
         });
 
         $newUsers = [];
-        
+
         $i = 1;
         foreach ($data as $row) {
             $validate = Validator::make($row, [
@@ -137,15 +139,18 @@ class ManageWargaController extends Controller
                 'rt' => 'required',
             ]);
 
-            if($validate->fails()) {
-                $message = sprintf('Gagal mengimport warga pada baris %d: ', $i);
+            if ($validate->fails()) {
+                $description = '';
                 foreach ($validate->errors()->all() as $error) {
-                    $message .= $error . ' ';
+                    $description .= $error . ' ';
                 }
-                session()->flash('danger', $message);
+                session()->flash('danger', [
+                    'title' => sprintf('Gagal mengimport warga pada baris %d', $i),
+                    'description' => $description
+                ]);
                 return redirect()->route('rw.manage.warga.warga');
             }
-            
+
             array_push($newUsers, [
                 'nik' => $row['nik'],
                 'nkk' => $row['nkk'],
@@ -167,13 +172,21 @@ class ManageWargaController extends Controller
 
             $i++;
         }
-        
-        $newUsers = UserModel::insert($newUsers);
+
+        try {
+            $newUsers = UserModel::insert($newUsers);
+        }   catch(PDOException $e) {
+            session()->flash('danger', [
+                'title' => sprintf('Gagal mengimport warga'),
+                'description' => $e->errorInfo[2]
+            ]);
+            return redirect()->route('rw.manage.warga.warga');
+        }
 
         if (!$newUsers) {
-            session()->flash('danger', 'Gagal mengimport warga.');
+            session()->flash('danger', ['title' => 'Gagal mengimport warga.', 'description' => 'Gagal mengimport warga.']);
         } else {
-            session()->flash('success', 'Berhasil mengimport warga.');
+            session()->flash('success', ['title' => 'Berhasil mengimport warga.', 'description' => 'Berhasil mengimport warga.']);
         }
 
         return redirect()->route('rw.manage.warga.warga');
@@ -203,7 +216,7 @@ class ManageWargaController extends Controller
         $user = UserModel::find($nik);
 
         if (!$user) {
-            session()->flash('danger', 'Gagal mengupdate warga.');
+            session()->flash('danger', ['title' => 'Gagal mengupdate warga.', 'description' => 'Gagal mengupdate warga.']);
         } else {
             $user->setNik(request()->nik);
             $user->setNkk(request()->nkk);
@@ -223,7 +236,7 @@ class ManageWargaController extends Controller
 
             $user->save();
 
-            session()->flash('success', 'Berhasil mengupdate warga.');
+            session()->flash('success', ['title' => 'Berhasil mengupdate warga.', 'description' => 'Berhasil mengupdate warga.']);
         }
 
         // return redirect()->route('rw.manage.warga.warga');
@@ -242,10 +255,10 @@ class ManageWargaController extends Controller
         $user = UserModel::find($nik);
 
         if (!$user) {
-            session()->flash('danger', 'Gagal menghapus warga.');
+            session()->flash('danger', ['title' => 'Gagal menghapus warga.', 'description' => 'Gagal menghapus warga.']);
         } else {
             $user->delete();
-            session()->flash('success', 'Berhasil menghapus warga.');
+            session()->flash('success', ['title' => 'Berhasil menghapus warga.', 'description' => 'Berhasil menghapus warga.']);
         }
 
         // return redirect()->route('rw.manage.warga.warga');

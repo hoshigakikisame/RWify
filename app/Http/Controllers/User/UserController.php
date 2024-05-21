@@ -38,7 +38,7 @@ class UserController extends Controller
 
         $user->setImageUrl($resultUrl);
         $user->save();
-        session()->flash('success', 'Update Image Profile Success');
+        session()->flash('success',['title' => 'Update Image Profile Success', 'description' => 'Update Image Profile Success']);
 
         return "Update Image Profile";
     }
@@ -57,7 +57,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            session()->flash('danger', 'Update Failed.');
+            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
 
             // if email is different, reset email verification
@@ -72,7 +72,7 @@ class UserController extends Controller
 
             $user->save();
 
-            session()->flash('success', 'Update Success.');
+            session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
         return  'Update User Profile';
@@ -90,18 +90,18 @@ class UserController extends Controller
         $user = Auth::user();
 
         if (!$user) {
-            session()->flash('danger', 'Update Failed.');
+            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
             if (request()->new_password != request()->new_password_confirmation) {
-                session()->flash('danger', 'Update Failed - Passwords do not match.');
+                session()->flash('danger',['title' => 'Update Failed - Passwords do not match.', 'description' => 'Update Failed - Passwords do not match.']);
             } else if (!password_verify(request()->current_password, $user->getPassword())) {
-                session()->flash('danger', 'Update Failed - Current password is incorrect.');
+                session()->flash('danger',['title' => 'Update Failed - Current password is incorrect.', 'description' => 'Update Failed - Current password is incorrect.']);
             } else {
                 $newPassword = Hash::make(request()->new_password);
                 $user->setPassword($newPassword);
                 $user->save();
 
-                session()->flash('success', 'Update Success.');
+                session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
             }
         }
 
@@ -116,7 +116,7 @@ class UserController extends Controller
         $user = request()->user();
         $user->sendEmailVerificationNotification();
 
-        session()->flash('success', 'Verification email sent.');
+        session()->flash('success',['title' => 'Verification email sent.', 'description' => 'Verification email sent.']);
 
         return redirect()->route('user.profile.index');
     }
@@ -126,7 +126,7 @@ class UserController extends Controller
         $request->fulfill();
         // $request->fulfill();
 
-        session()->flash('success', 'Email verified.');
+        session()->flash('success',['title' => 'Email verified.', 'description' => 'Email verified.']);
 
         return redirect()->route('user.profile.index');
     }

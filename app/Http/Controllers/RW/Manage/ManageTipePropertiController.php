@@ -54,9 +54,9 @@ class ManageTipePropertiController extends Controller
         $newTipeProperti = TipePropertiModel::create($data);
 
         if (!$newTipeProperti) {
-            session()->flash('danger', 'Insert Failed.');
+            session()->flash('danger',['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
-            session()->flash('success', 'Insert Success.');
+            session()->flash('success',['title' => 'Insert Success.', 'description' => 'Insert Success.']);
         }
 
         return redirect()->route('rw.manage.tipeProperti.index');
@@ -74,13 +74,13 @@ class ManageTipePropertiController extends Controller
         $tipeProperti = TipePropertiModel::find($idTipeProperti);
 
         if (!$tipeProperti) {
-            session()->flash('danger', 'Update Failed.');
+            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
             $tipeProperti->setNamaTipe(request()->nama_tipe);
             $tipeProperti->setIuranPerBulan(request()->iuran_per_bulan);
             $tipeProperti->save();
 
-            session()->flash('success', 'Update Success.');
+            session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
         //return redirect()->route('rw.manage.tipeProperti');
@@ -99,10 +99,10 @@ class ManageTipePropertiController extends Controller
         $tipeProperti = TipePropertiModel::find($idTipeProperti);
 
         if (!$tipeProperti) {
-            session()->flash('danger', 'Delete Failed');
+            session()->flash('danger',['title' => 'Delete Failed', 'description' => 'Delete Failed']);
         } else {
             $tipeProperti->delete();
-            session()->flash('success', 'Delete Success.');
+            session()->flash('success',['title' => 'Delete Success.', 'description' => 'Delete Success.']);
         }
 
         //return redirect()->route('rw.manage.tipeProperti');

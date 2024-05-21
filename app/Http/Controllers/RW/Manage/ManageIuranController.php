@@ -64,9 +64,9 @@ class ManageIuranController extends Controller
         $newIuran = IuranModel::create($data);
 
         if (!$newIuran) {
-            session()->flash('danger', 'Insert Failed.');
+            session()->flash('danger',['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
-            session()->flash('success', 'Insert Success.');
+            session()->flash('success',['title' => 'Insert Success.', 'description' => 'Insert Success.']);
         }
 
         return redirect()->route('rw.manage.iuran');
@@ -83,12 +83,12 @@ class ManageIuranController extends Controller
         $iuran = IuranModel::find($idIuran);
 
         if (!$iuran) {
-            session()->flash('danger', 'Update Failed.');
+            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
             $iuran->setStatus(request()->status);
             $iuran->save();
 
-            session()->flash('success', 'Update Success.');
+            session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
         //return redirect()->route('rw.manage.iuran');
@@ -107,10 +107,10 @@ class ManageIuranController extends Controller
         $iuran = IuranModel::find($idIuran);
 
         if (!$iuran) {
-            session()->flash('danger', 'Delete Failed');
+            session()->flash('danger',['title' => 'Delete Failed', 'description' => 'Delete Failed']);
         } else {
             $iuran->delete();
-            session()->flash('success', 'Delete Success.');
+            session()->flash('success',['title' => 'Delete Success.', 'description' => 'Delete Success.']);
         }
 
         //return redirect()->route('rw.manage.iuran');

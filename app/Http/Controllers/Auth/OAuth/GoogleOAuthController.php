@@ -43,7 +43,7 @@ class GoogleOAuthController extends Controller
     // utility
     private function failedAuthHandler()
     {
-        session()->flash('danger', 'Failed to login with Google');
+        session()->flash('danger',['title' => 'Failed to login with Google', 'description' => 'Failed to login with Google']);
         return redirect()->route("auth.signIn");
     }
 }
