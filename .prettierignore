@@ -1,15 +1,10 @@
-# Ignore artifacts:
-**/app
-**/bootstrap
-**/config
-**/database
-**/public
-**/routes
-**/storage
-**/vendor
-**/tests
-**/resources/assets
-**/resources/js
-**/resources/css
-**/.*
-**/*
+node_modules
+dist
+.env*
+vendor/
+/vendor
+public/
+.git
+**/.git
+package-lock.json
+composer.lock

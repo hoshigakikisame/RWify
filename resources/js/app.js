@@ -1,19 +1,19 @@
 // import bootstrap
-import "./bootstrap";
+import './bootstrap';
 // import Jquery
-import jQuery from "jquery";
+import jQuery from 'jquery';
 
 // import Alpine
-import Alpine from 'alpinejs'
- 
+import Alpine from 'alpinejs';
+
 // import function to register Swiper custom elements
-import { register } from "swiper/element/bundle";
+import { register } from 'swiper/element/bundle';
 
 // import loading.js
-import * as Loading from "./loading";
+import * as Loading from './loading';
 
 // import Utils
-import * as Request from "./utils/request";
+import * as Request from './utils/request';
 
 // inject jQuery
 window.$ = jQuery;
@@ -30,12 +30,9 @@ window.utils = {};
 window.utils.Request = Request;
 
 //start alpine
-Alpine.start()
+Alpine.start();
 
 // register Swiper custom elements
 register();
 
-import.meta.glob([
-    '../assets/**/*',
-    '../assets/elements/*',
-]);
+import.meta.glob(['../assets/**/*', '../assets/elements/*']);

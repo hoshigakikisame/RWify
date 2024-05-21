@@ -1,110 +1,142 @@
 @extends(request()->user()->getSidebarView())
 @section('content')
-    <section class="container px-4 mt-7 mx-auto relative " x-data="{ modalOpen: false }">
+    <section class="container relative mx-auto mt-7 px-4" x-data="{ modalOpen: false }">
         <div class="flex flex-col">
-            <div class="sm:flex sm:items-center sm:justify-between ">
+            <div class="sm:flex sm:items-center sm:justify-between">
                 <div>
-                    <div class=" flex items-center gap-x-3">
+                    <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Riwayat Pembayaran Iuran</h2>
                         <span
-                            class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ $count }}
-                            Pengaduan</span>
+                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400"
+                        >
+                            {{ $count }} Pengaduan
+                        </span>
                     </div>
-                    <div class=" flex items-center gap-x-3">
-                    </div>
+                    <div class="flex items-center gap-x-3"></div>
                     @if ($pembayaranIuranInstances->sortByDesc('diperbarui_pada')->first())
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Data ini terakhir diupdate
-                            {{ $pembayaranIuranInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
-                            yang lalu</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                            Data ini terakhir diupdate
+                            {{ $pembayaranIuranInstances->sortByDesc('diperbarui_pada')->first() ?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            yang lalu
+                        </p>
                     @else
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Masih belum ada pembayaranIuran yang
-                            diajukan</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                            Masih belum ada pembayaranIuran yang diajukan
+                        </p>
                     @endif
                 </div>
             </div>
             <div class="mt-6 md:flex md:items-center md:justify-between">
                 <div
-                    class="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-                </div>
-                <div id="search" class="relative flex items-center mt-4 md:mt-0" x-data="{ search: '' }">
+                    class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse"
+                ></div>
+                <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
                     <span class="absolute">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5 mx-3 text-gray-400 dark:text-gray-600">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                            />
                         </svg>
                     </span>
 
-                    <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
+                    <input
+                        x-model="search"
+                        @keyup.enter="window.utils.Request.searchRequest(search)"
+                        type="text"
                         placeholder="Press Enter to Search"
-                        class="block lg:w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                        class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11"
+                    />
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-col mt-6 ">
+        <div class="mt-6 flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                        <table class="min-w-full w-full table-auto divide-y divide-gray-200 dark:divide-gray-700 px-2">
+                        <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <th
+                                        scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
+                                    >
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Tanggal Bayar</span>
                                         </button>
                                     </th>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <th
+                                        scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
+                                    >
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Image</span>
-
                                         </button>
                                     </th>
-                                    <th scope="col"
-                                        class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <th
+                                        scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
+                                    >
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Keterangan</span>
                                         </button>
                                     </th>
-                                    {{-- <th scope="col" class="relative py-3.5 px-4">
-                                    <span class="sr-only">Edit</span>
-                                </th> --}}
+                                    {{--
+                                        <th scope="col" class="relative py-3.5 px-4">
+                                        <span class="sr-only">Edit</span>
+                                        </th>
+                                    --}}
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
                                 @foreach ($pembayaranIuranInstances as $pembayaranIuran)
                                     <tr>
-                                        <td class=" px-4 py-4 text-sm font-medium">
+                                        <td class="px-4 py-4 text-sm font-medium">
                                             <div>
                                                 <h2
-                                                    class="text-nowrap inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                                                    class="inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800"
+                                                >
                                                     {{ $pembayaranIuran->getTanggalBayar() }}
                                                 </h2>
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-start" x-data="{ showImage: false }">
-                                            <button id="imageButton"
-                                                class="relative select-none font-sans font-medium uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
-                                                type="button" @click="showImage = !showImage"
-                                                onclick="appendImageModal({{ $pembayaranIuran }})">
-                                                <span
-                                                    class="">
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                            <button
+                                                id="imageButton"
+                                                class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                                type="button"
+                                                @click="showImage = !showImage"
+                                                onclick="appendImageModal({{ $pembayaranIuran }})"
+                                            >
+                                                <span class="">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
                                                         class="h-6 w-6 fill-blue-700 dark:fill-blue-400"
-                                                        viewBox="0 0 24 24">
+                                                        viewBox="0 0 24 24"
+                                                    >
                                                         <path
-                                                            d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z" />
-                                                        <path fill="currentColor"
-                                                            d="M8.91 8.51a.91.91 0 1 1-1.82 0a.91.91 0 0 1 1.82 0" />
+                                                            d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z"
+                                                        />
+                                                        <path
+                                                            fill="currentColor"
+                                                            d="M8.91 8.51a.91.91 0 1 1-1.82 0a.91.91 0 0 1 1.82 0"
+                                                        />
                                                     </svg>
                                                 </span>
                                             </button>
                                         </td>
 
-                                        <td class="px-4 py-4 text-sm align-top">
+                                        <td class="px-4 py-4 align-top text-sm">
                                             <h4 class="text-gray-700 dark:text-gray-200">
                                                 {{ implode(' ', array_slice(str_word_count($pembayaranIuran->getKeterangan(), 1), 0, 13)) }}
                                                 {{ str_word_count($pembayaranIuran->getKeterangan()) > 10 ? '.....' : '' }}
@@ -116,14 +148,13 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
 
         {{ $pembayaranIuranInstances->onEachSide(-1)->links('elements.pagination') }}
-
     </section>
 @endsection
+
 @push('scripts')
     <script type="module">
         $(document).ready(() => {
@@ -133,12 +164,13 @@
                 let search = decodeURIComponent(queryString[1].replace(/\+/g, ' '));
                 $('#search input').val(search);
             }
-        })
+        });
     </script>
     <script>
         function appendImageModal(riwayatPembayaran) {
-            const modalImageElement = /*html*/
-            `<div id="imageModal" x-show="showImage" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            const modalImageElement =
+                /*html*/
+                `<div id="imageModal" x-show="showImage" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                                             <div x-cloak @click="()=>{showImage = false;deleteModal('#imageModal')}" x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
 
@@ -163,16 +195,14 @@
                                             </div>
                                         </div>
                                     </div>
-        `
-            $(modalImageElement).insertAfter($(event.target).closest('#imageButton'))
+        `;
+            $(modalImageElement).insertAfter($(event.target).closest('#imageButton'));
         }
-
 
         function deleteModal(selector) {
             $(selector).ready(() => {
-                $(selector).remove()
-            })
+                $(selector).remove();
+            });
         }
-
     </script>
 @endpush
