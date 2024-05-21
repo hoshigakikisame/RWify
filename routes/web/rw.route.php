@@ -35,6 +35,8 @@ Route::group([
             Route::post('new', [ManageWargaController::class, 'addNewWarga'])->name('new');
             Route::post('update', [ManageWargaController::class, 'updateWarga'])->name('update');
             Route::post('delete', [ManageWargaController::class, 'deleteWarga'])->name('delete');
+            
+            Route::post('import-csv', [ManageWargaController::class, 'importCSV'])->name('importCSV');
         });
 
         // rw manage pengumuman routes

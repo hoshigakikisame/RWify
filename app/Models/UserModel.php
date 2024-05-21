@@ -342,7 +342,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         $this->golongan_darah = $golonganDarah;
     }
 
-    public function setIdRukunTetangga(string $idRukunTetangga): void
+    public function setIdRukunTetangga($idRukunTetangga): void
     {
         $this->id_rukun_tetangga = $idRukunTetangga;
     }

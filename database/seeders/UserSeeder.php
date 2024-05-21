@@ -80,10 +80,11 @@ class UserSeeder extends Seeder
         }
 
         // warga
-        $wargaInstances = UserModel::factory()->count(30)->create();
+        UserModel::factory()->count(30)->create();
+        $wargaInstances = UserModel::where('role', 'Warga')->get();
         // attach warga to rukun tetangga
         for ($i = 0; $i < count($wargaInstances); $i++) {
-            $wargaInstances[$i]->setIdRukunTetangga($rukunTetanggaInstances[$i % 3]->getIdRukunTetangga());
+            $wargaInstances[$i]->setIdRukunTetangga($rukunTetanggaInstances[$i % 3]->id_rukun_tetangga);
             $wargaInstances[$i]->save();
         }
     }

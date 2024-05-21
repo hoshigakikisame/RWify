@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Hash;
 // App
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
+use App\Models\RukunTetanggaModel;
 use App\Models\UserModel;
+use Illuminate\Support\Facades\Validator;
 
 class ManageWargaController extends Controller
 {
@@ -84,6 +86,97 @@ class ManageWargaController extends Controller
 
         // return redirect()->route('rw.manage.warga.warga');
         return 'sliwik';
+    }
+
+    public function importCSV()
+    {
+        request()->validate([
+            'csv' => 'required|mimes:csv,txt'
+        ]);
+
+        $csv = request()->file('csv');
+
+        $csvData = array_map('str_getcsv', file($csv));
+
+        $header = array_map('strtolower', $csvData[0]);
+
+        $csvData = array_slice($csvData, 1);
+
+        $data = [];
+
+        foreach ($csvData as $row) {
+            $data[] = array_combine($header, $row);
+        }
+        
+        $rukunTetanggaInstances = [];
+
+        RukunTetanggaModel::all()->each(function ($row) use (&$rukunTetanggaInstances) {
+            $rukunTetanggaInstances[$row['nomor_rukun_tetangga']] = $row['id_rukun_tetangga'];
+        });
+
+        $newUsers = [];
+        
+        $i = 1;
+        foreach ($data as $row) {
+            $validate = Validator::make($row, [
+                'nik' => 'required',
+                'nkk' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+                'nama_depan' => 'required',
+                'nama_belakang' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required',
+                'agama' => '',
+                'status_perkawinan' => 'required',
+                'pekerjaan' => '',
+                'role' => 'required',
+                'jenis_kelamin' => 'required',
+                'golongan_darah' => 'required',
+                'alamat' => 'required',
+                'rt' => 'required',
+            ]);
+
+            if($validate->fails()) {
+                $message = sprintf('Gagal mengimport warga pada baris %d: ', $i);
+                foreach ($validate->errors()->all() as $error) {
+                    $message .= $error . ' ';
+                }
+                session()->flash('danger', $message);
+                return redirect()->route('rw.manage.warga.warga');
+            }
+            
+            array_push($newUsers, [
+                'nik' => $row['nik'],
+                'nkk' => $row['nkk'],
+                'email' => $row['email'],
+                'password' => Hash::make($row['password']),
+                'nama_depan' => $row['nama_depan'],
+                'nama_belakang' => $row['nama_belakang'],
+                'tempat_lahir' => $row['tempat_lahir'],
+                'tanggal_lahir' => date('Y-m-d', strtotime($row['tanggal_lahir'])),
+                'agama' => $row['agama'],
+                'status_perkawinan' => $row['status_perkawinan'],
+                'pekerjaan' => $row['pekerjaan'],
+                'role' => $row['role'],
+                'jenis_kelamin' => $row['jenis_kelamin'],
+                'golongan_darah' => $row['golongan_darah'],
+                'alamat' => $row['alamat'],
+                'id_rukun_tetangga' => $rukunTetanggaInstances[$row['rt']]
+            ]);
+
+            $i++;
+        }
+        
+        $newUsers = UserModel::insert($newUsers);
+
+        if (!$newUsers) {
+            session()->flash('danger', 'Gagal mengimport warga.');
+        } else {
+            session()->flash('success', 'Berhasil mengimport warga.');
+        }
+
+        return redirect()->route('rw.manage.warga.warga');
     }
 
     // update warga with validation
