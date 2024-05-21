@@ -176,14 +176,18 @@
 @endsection
 
 @push('scripts')
-    @vite('resources/js/statisticChart.js')
+    {{-- @vite('resources/js/statisticChart.js') --}}
+    <script type="module">
+        import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
+        ageChartStatistic(40, 20, 50, 70, 100);
+    </script>
     <script type="module">
         const calendarCanvas = document.getElementById('calendar');
         const calendarNextButton = document.getElementById('next-calendar');
         const calendarPrevButton = document.getElementById('prev-calendar');
         const listDay = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 
-        let urlsHoliday = 'https://api-harilibur.vercel.app/api';
+        let urlsHoliday = 'https://dayoffapi.vercel.app/api';
 
         let events = [];
         let today = new Date();
@@ -224,10 +228,11 @@
             })
             .then((responseData) => {
                 // Process the retrieved user data
-                responseData.map((e) => {
-                    console.log(e);
-                    events.push();
+                responseData.map((e, i) => {
+                    let data = { id: i, date: e['tanggal'], title: e['keterangan'], description: 'Hari Libur' };
+                    events.push(data);
                 });
+                showCalender(currentMonth, currentYear);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -250,6 +255,16 @@
             <td class="">
              <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
                  <p class="text-base text-gray-500 dark:text-gray-100 font-medium">${day}</p>
+             </div>
+            </td>
+                `;
+        }
+
+        function elementEventDay(day) {
+            return /*html*/ `
+            <td class="">
+             <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
+                 <p class="text-base text-indigo-500 dark:text-indigo-100 font-medium">${day}</p>
              </div>
             </td>
                 `;
@@ -301,7 +316,7 @@
 
         // Function to display the calendar
         function showCalender(month, year) {
-            let thisDate = new Date(year, month, 1);
+            let thisDate = new Date(year, month);
             let firstDay = thisDate.getDay();
             let calendarBody = document.querySelector('#calendar-body');
             let calendarHTML = '';
@@ -313,7 +328,7 @@
                 let row = '<tr>';
                 let endRow = '</tr>';
                 for (let j = 0; j < 7; j++) {
-                    if (i === 0 && j < firstDay) {
+                    if (i === 0 && j < firstDay - 1) {
                         row += elementDay('');
                     } else if (date > daysInMonth(month, year)) {
                         break;
@@ -322,13 +337,13 @@
                             row += thisElementDay(date);
                         } else if (j > 4) {
                             row += elementRedDay(date);
+                        } else if (hasEventOnDate(date, month, year)) {
+                            row += elementRedDay(date);
+                            // createEventTooltip(date, month, year);
                         } else {
                             row += elementDay(date);
                         }
 
-                        if (hasEventOnDate(date, month, year)) {
-                            createEventTooltip(date, month, year);
-                        }
                         date++;
                     }
                 }
@@ -354,8 +369,6 @@
         function daysInMonth(iMonth, iYear) {
             return 32 - new Date(iYear, iMonth, 32).getDate();
         }
-
-        showCalender(currentMonth, currentYear);
 
         $(calendarCanvas).find('#calendar-header').append('<tr></tr>');
 

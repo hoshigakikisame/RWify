@@ -1,12 +1,12 @@
 import Chart from 'chart.js/auto';
 
-(async function () {
+export default async function ageChartStatistic(lansia, dewasa, balita, remaja, anak) {
     const data = [
-        { label: 'Lansia', color: '#F0F9D9', count: 10 },
-        { label: 'Dewasa', color: '#265073', count: 20 },
-        { label: 'Balita', color: '#277F80', count: 15 },
-        { label: 'Remaja', color: '#9AD0C2', count: 25 },
-        { label: 'Anak-Anak', color: '#A8EEE2', count: 22 },
+        { label: 'Lansia', color: '#F0F9D9', count: lansia },
+        { label: 'Dewasa', color: '#265073', count: dewasa },
+        { label: 'Balita', color: '#277F80', count: balita },
+        { label: 'Remaja', color: '#9AD0C2', count: remaja },
+        { label: 'Anak-Anak', color: '#A8EEE2', count: anak },
     ];
 
     new Chart(document.getElementById('myChart'), {
@@ -35,4 +35,4 @@ import Chart from 'chart.js/auto';
             },
         },
     });
-})();
+};
