@@ -23,7 +23,7 @@
                     @if ($pengaduanInstances->sortByDesc("diperbarui_pada")->first())
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
-                            {{ $pengaduanInstances->sortByDesc("diperbarui_pada")->first() ?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            {{ $pengaduanInstances->sortByDesc("diperbarui_pada")->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                             yang lalu
                         </p>
                     @else

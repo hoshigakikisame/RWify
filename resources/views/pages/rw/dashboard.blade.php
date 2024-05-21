@@ -9,17 +9,32 @@
             <div class="left">
                 <div class="info mb-3 flex gap-5">
                     @php
-                        $list = ['Pengajuan Dokumen', 'Pengaduan Warga', 'UMKM'];
+                        $list = [
+                            [
+                                'name' => 'Properti',
+                                'count' => $propertiCount,
+                                'lastAddedAt' => $propertiLastAddedAt
+                            ],
+                            [
+                                'name' => 'Pengaduan Warga',
+                                'count' => $pengaduanCount,
+                                'lastAddedAt' => $pengaduanLastAddedAt
+                            ],
+                            [
+                                'name' => 'UMKM',
+                                'count' => $umkmCount,
+                                'lastAddedAt' => $umkmLastAddedAt
+                            ],
+                        ];
                     @endphp
-
-                    @foreach ($list as $name)
+                    @foreach ($list as $item)
                         <div class="info-element inline-flex flex-col gap-1 rounded-md border-2 px-4 py-2">
-                            <h2 class="text-md tracking-wide">{{ $name }}</h2>
+                            <h2 class="text-md tracking-wide">{{ $item['name'] }}</h2>
                             <div class="info-body mx-2 mb-2 flex justify-between">
-                                <h1 class="ms-4 font-Montserrat text-4xl font-medium">9</h1>
+                                <h1 class="ms-4 font-Montserrat text-4xl font-medium">{{ $item['count'] }}</h1>
                                 <img src="" alt="grafik" />
                             </div>
-                            <p class="text-xs italic">Terakhir diperbarui 10 Apr 2024</p>
+                            <p class="text-xs italic">Terakhir ditambah {{$item['lastAddedAt']}} lalu</p>
                         </div>
                     @endforeach
                 </div>
@@ -179,7 +194,7 @@
     {{-- @vite('resources/js/statisticChart.js') --}}
     <script type="module">
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
-        ageChartStatistic(40, 20, 50, 70, 100);
+        ageChartStatistic({{$lansiaCount}}, {{$dewasaCount}}, {{$remajaCount}}, {{$anakCount}}, {{$balitaCount}});
     </script>
     <script type="module">
         const calendarCanvas = document.getElementById('calendar');

@@ -1,6 +1,6 @@
 import Chart from 'chart.js/auto';
 
-export default async function ageChartStatistic(lansia, dewasa, balita, remaja, anak) {
+export default async function ageChartStatistic(lansia, dewasa, remaja, anak, balita) {
     const data = [
         { label: 'Lansia', color: '#F0F9D9', count: lansia },
         { label: 'Dewasa', color: '#265073', count: dewasa },
