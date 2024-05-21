@@ -39,6 +39,32 @@ class ManageIuranController extends Controller
         return view('pages.rw.manage.iuran', $data);
     }
 
+    public function verifyPembayaranIuranPage()
+    {
+        $query = request()->q;
+        $filters = request()->filters ?? [];
+        $paginate = request()->paginate;
+
+        $pembayaranIuranInstances = (new SearchableDecorator(PembayaranIuranModel::class))->search(
+            $query, 
+            $paginate, 
+            ['user' => UserModel::class], 
+            $filters
+        );
+        $count = PembayaranIuranModel::count();
+
+        $data = [
+            "pembayaranIuranInstances" => $pembayaranIuranInstances,
+            "count" => $count
+        ];
+
+        return view('pages.rw.manage.verifyPembayaranIuran', $data);
+    }
+
+    public function iuranLeaderboardPage() {
+        return view('pages.rw.manage.leaderboardIuran');
+    }
+
 
     public function addNewIuran()
     {

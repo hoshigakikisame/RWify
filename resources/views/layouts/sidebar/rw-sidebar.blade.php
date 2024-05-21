@@ -80,9 +80,9 @@
         </button>
         <ul x-show="sideDropdown" class="ms-3 mt-2 flex flex-col gap-2">
             <x-sidebar.sidebar-item
-                href="{{ route('rw.dashboard') }}"
+                href="{{ route('rw.manage.iuran.index') }}"
                 title="Iuran"
-                :active="request()->routeIs(['rw.dashboard'])"
+                :active="request()->routeIs(['rw.manage.iuran.index'])"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -111,9 +111,9 @@
                 </svg>
             </x-sidebar.sidebar-item>
             <x-sidebar.sidebar-item
-                href="{{ route('rw.dashboard') }}"
+                href="{{ route('rw.manage.iuran.verify') }}"
                 title="Kelola"
-                :active="request()->routeIs(['rw.dashboard'])"
+                :active="request()->routeIs(['rw.manage.iuran.verify'])"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -143,9 +143,9 @@
                 </svg>
             </x-sidebar.sidebar-item>
             <x-sidebar.sidebar-item
-                href="{{ route('warga.layanan.pengaduan.newPengaduanPage') }}"
+                href="{{ route('rw.manage.iuran.leaderboard') }}"
                 title="Leaderboard"
-                :active="request()->routeIs(['rw.dashboard'])"
+                :active="request()->routeIs(['rw.manage.iuran.leaderboard'])"
             >
                 <svg viewBox="0 0 24 24" class="w-7 fill-inherit lg:w-6" xmlns="http://www.w3.org/2000/svg">
                     <path

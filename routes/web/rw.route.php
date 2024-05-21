@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RW\Manage\ManageIuranController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RW\RWController;
@@ -101,6 +102,16 @@ Route::group([
             Route::post('new', [ManageTipePropertiController::class, 'addNewTipeProperti'])->name('new');
             Route::post('update', [ManageTipePropertiController::class, 'updateTipeProperti'])->name('update');
             Route::post('delete', [ManageTipePropertiController::class, 'deleteTipeProperti'])->name('delete');
+        });
+
+        // rw manage tipe properti routes
+        Route::group([
+            'prefix' => 'iuran',
+            'as' => 'iuran.'
+        ], function () {
+            Route::get('', [ManageIuranController::class, 'manageIuranPage'])->name('index');
+            Route::get('verify', [ManageIuranController::class, 'verifyPembayaranIuranPage'])->name('verify');
+            Route::get('leaderboard', [ManageIuranController::class, 'iuranLeaderboardPage'])->name('leaderboard');
         });
     });
 });
