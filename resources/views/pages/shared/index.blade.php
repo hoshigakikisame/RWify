@@ -50,8 +50,8 @@
                 'name' => 'Husni Mubarok',
                 'position' => 'Ketua RW 01',
                 'desc' => '“Dengan adanya website ini, sangat membantu kami dalam menjalankan berbagai aktivitas
-                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
-                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
+                                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
+                                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
                 'date' => '12 Agustus 2021',
                 'image' => $avatar,
             ],
@@ -59,8 +59,8 @@
                 'name' => 'Hary Oswald',
                 'position' => 'Ketua RT 01',
                 'desc' => '“Dengan adanya website ini, sangat membantu kami dalam menjalankan berbagai aktivitas
-                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
-                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
+                                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
+                                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
                 'date' => '12 Agustus 2021',
                 'image' => $avatar,
             ],
@@ -68,8 +68,8 @@
                 'name' => 'Muhammad Bagus Fajar',
                 'position' => 'Ketua RT 02',
                 'desc' => '“Dengan adanya website ini, sangat membantu kami dalam menjalankan berbagai aktivitas
-                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
-                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
+                                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
+                                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
                 'date' => '12 Agustus 2021',
                 'image' => $avatar,
             ],
@@ -77,8 +77,8 @@
                 'name' => 'Fanessa Bhirawaningtyas',
                 'position' => 'Bendahara RW 01',
                 'desc' => '“Dengan adanya website ini, sangat membantu kami dalam menjalankan berbagai aktivitas
-                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
-                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
+                                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
+                                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
                 'date' => '12 Agustus 2021',
                 'image' => $avatar,
             ],
@@ -86,8 +86,8 @@
                 'name' => 'Jihan Karuniawati',
                 'position' => 'Sekretaris RW 01',
                 'desc' => '“Dengan adanya website ini, sangat membantu kami dalam menjalankan berbagai aktivitas
-                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
-                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
+                                                administrasi yang ada di lingkungan ini. Harapan saya semoga website ini dapat membantu seluruh
+                                                masyarakat RW 01 Landungsari dalam menunjang kebutuhan administrasi mereka.”',
                 'date' => '12 Agustus 2021',
                 'image' => $avatar,
             ],
