@@ -20,11 +20,11 @@ class ManageReservasiJadwalTemuController extends Controller
 
         $query = request()->q;
         $filters = request()->filters ?? [];
-        $paginate = request()->paginate;
+        $paginate = request()->paginate ?? 5;
 
         $reservasiJadwalTemuInstances = (new SearchableDecorator(ReservasiJadwalTemuModel::class))->search(
-            $query, 
-            $paginate, 
+            $query,
+            $paginate,
             ['pemohon' => UserModel::class],
             $filters
         );
@@ -52,12 +52,12 @@ class ManageReservasiJadwalTemuController extends Controller
         $reservasiJadwalTemu = ReservasiJadwalTemuModel::find($idReservasiJadwalTemu);
 
         if (!$reservasiJadwalTemu) {
-            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
+            session()->flash('danger', ['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
             $reservasiJadwalTemu->setStatus(request()->status);
             $reservasiJadwalTemu->save();
 
-            session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
+            session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
         return redirect()->route('rw.manage.reservasiJadwalTemu.index');
