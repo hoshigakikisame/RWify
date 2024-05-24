@@ -8,6 +8,7 @@ use App\Models\PengaduanModel;
 use App\Models\UmkmModel;
 use App\Models\UserModel;
 use App\Models\PropertiModel;
+use App\Models\ReservasiJadwalTemuModel;
 
 class RWController extends Controller
 {
@@ -16,10 +17,6 @@ class RWController extends Controller
      */
     public function dashboard()
     {
-        $reqQuery = request()->q;
-
-        $users = (new SearchableDecorator(UserModel::class))->search($reqQuery);
-
         $lansiaCount = UserModel::whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
         $dewasaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
         $remajaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();
@@ -34,8 +31,9 @@ class RWController extends Controller
         $pengaduanLastAddedAt = PengaduanModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
         $propertiLastAddedAt = PropertiModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
 
+        $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
+
         $data = [
-            "users" => $users,
             'lansiaCount' => $lansiaCount,
             'dewasaCount' => $dewasaCount,
             'remajaCount' => $remajaCount,
@@ -47,6 +45,7 @@ class RWController extends Controller
             'umkmLastAddedAt' => $umkmLastAddedAt,
             'pengaduanLastAddedAt' => $pengaduanLastAddedAt,
             'propertiLastAddedAt' => $propertiLastAddedAt,
+            'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances
         ];
         return view('pages.rw.dashboard', $data);
     }

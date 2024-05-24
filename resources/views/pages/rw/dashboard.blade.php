@@ -1,4 +1,7 @@
 @extends('layouts.sidebar.rw-sidebar')
+@php
+    // dd($reservasiJadwalTemuInstances);
+@endphp
 @section('content')
     <section class="relativ container mx-auto mb-8 mt-7 px-4">
         <div class="greeting mb-5">
@@ -149,12 +152,16 @@
 
         let urlsHoliday = 'https://dayoffapi.vercel.app/api';
 
-        let events = [{
-            id: 0,
-            date: "2024-05-14",
-            title: "test",
-            description: "test"
-        }];
+        let events = [
+        @foreach ($reservasiJadwalTemuInstances as $item)
+            {
+                id: {{ $item->getIdReservasiJadwalTemu() }},
+                date: "{{ $item->getJadwalTemu() }}",
+                title: "{{ $item->getSubjek()}}",
+                description: "{{ $item->getPesan() }}"
+            },
+        @endforeach
+        ];
         let holiday = [];
         let today = new Date();
         let currentMonth = today.getMonth();
@@ -293,7 +300,7 @@
         ${event.title}
     </a>
     <p class="pt-2 text-sm leading-4 leading-none text-gray-600 dark:text-gray-300">
-        ${event.desc}
+        ${event.description}
     </p>
 </div>`
             }
@@ -342,12 +349,12 @@
                     } else {
                         if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                             row += thisElementDay(date);
+                        } else if (hasEventDay(date, month, year)) {
+                            row += elementEventDay(date);
                         } else if (j > 4) {
                             row += elementRedDay(date);
                         } else if (hasRedDay(date, month, year)) {
                             row += elementRedDay(date);
-                        } else if (hasEventDay(date, month, year)) {
-                            row += elementEventDay(date);
                         } else {
                             row += elementDay(date);
                         }

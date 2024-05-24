@@ -80,8 +80,8 @@ class ReservasiJadwalTemuModel extends Model
         return $this->pesan;
     }
 
-    public function getJadwalTemu(): string {
-        return $this->jadwal_temu;
+    public function getJadwalTemu() {
+        return Carbon::parse($this->jadwal_temu);
     }
 
     public function getStatus(): string {
