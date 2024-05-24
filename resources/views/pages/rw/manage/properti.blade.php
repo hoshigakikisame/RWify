@@ -101,6 +101,8 @@
                                             placeholder="Luas Bangunan" />
                                         <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text"
                                             placeholder="Jumlah Kamar" />
+                                        <x-form.input-form title="Mulai Dimiliki Pada" key="mulai_dimiliki_pada" type="date"
+                                            placeholder="Mulai Dimiliki Pada" />
                                         <div class="mt-6 flex justify-between">
                                             <p class="text-xs text-gray-200 dark:text-gray-400">
                                                 Note: Pastikan semua sudah terisi dengan benar
@@ -378,7 +380,8 @@
                                     <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat"  value="${properti.alamat}" />
                                     <x-form.input-form title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah"  value="${properti.luas_tanah}" />
                                     <x-form.input-form title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan"  value="${properti.luas_bangunan}" />
-                                    <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar"  value="${properti.jumlah_kamar}" />
+                                    <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text" placeholder="Jumlah Kamar" value="${properti.jumlah_kamar}" />
+                                    <x-form.input-form title="Mulai Dimiliki Pada" key="mulai_dimiliki_pada" type="date" placeholder="Mulai Dimiliki Pada" value="${properti.mulai_dimiliki_pada}" />
                                     <div class="flex justify-between mt-6">
                                         <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                         <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">

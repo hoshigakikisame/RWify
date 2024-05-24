@@ -74,7 +74,7 @@ class RukunTetanggaModel extends Model
         $this->alamat = $alamat;
     }
 
-    public function setNikKetuaRukunTetangga(string $nik_ketua_rukun_tetangga): void {
+    public function setNikKetuaRukunTetangga($nik_ketua_rukun_tetangga): void {
         $this->nik_ketua_rukun_tetangga = $nik_ketua_rukun_tetangga;
     }
 }

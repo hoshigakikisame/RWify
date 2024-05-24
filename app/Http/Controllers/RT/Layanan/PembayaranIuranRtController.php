@@ -75,7 +75,7 @@ class PembayaranIuranRtController extends Controller
             'monthlyTotal' => $monthlyTotal
         ];
 
-        return view('pages.rt.layanan.pembayaranIuran.new', $data);
+        return view('pages.warga.layanan.pembayaranIuran.new', $data);
     }
 
     public function addNewPembayaranIuran()

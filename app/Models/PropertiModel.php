@@ -140,4 +140,8 @@ class PropertiModel extends Model
         $this->jumlah_kamar = $jumlah_kamar;
     }
 
+    public function setMulaiDimilikiPada($mulai_dimiliki_pada): void
+    {
+        $this->mulai_dimiliki_pada = $mulai_dimiliki_pada;
+    }
 }

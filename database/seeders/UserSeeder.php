@@ -2,12 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Enums\User\UserRoleEnum;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\UserModel;
 use App\Models\RukunWargaModel;
 use App\Models\RukunTetanggaModel;
+use Illuminate\Foundation\Auth\User;
 
 class UserSeeder extends Seeder
 {
@@ -66,9 +68,6 @@ class UserSeeder extends Seeder
             ]
         )->create()->first();
 
-        // attach temporary ketua rt to one of the rt
-        $rukunTetanggaInstances[0]->setNikKetuaRukunTetangga($tempKetuaRT);
-
         // warga test account instance
         UserModel::factory()->state(
             [
@@ -82,15 +81,22 @@ class UserSeeder extends Seeder
         $rukunWargaInstance->setNikKetuaRukunWarga($ketuaRukunWargaInstance->getNik());
         $rukunWargaInstance->save();   
 
+        // ketua rukun tetangga instances
+        UserModel::factory()->count(3)->state(
+            ['role' => UserRoleEnum::KETUA_RUKUN_TETANGGA->value]
+        )->create();
+
         // attach ketua rukun tetangga to rukun tetangga
         for ($i = 0; $i < count($rukunTetanggaInstances); $i++) {
-            $ketuaRukunTetanggaInstance = UserModel::factory()->state(
-                ['role' => 'Ketua Rukun Tetangga']
-            )->create()->first();
-            $rukunTetanggaInstances[$i]->setNikKetuaRukunTetangga($ketuaRukunTetanggaInstance->getNik());
+            $ketuaRukunTetanggaInstance = UserModel::where('role', 'Ketua Rukun Tetangga')->get()[$i];
+            $rukunTetanggaInstances[$i]->nik_ketua_rukun_tetangga = $ketuaRukunTetanggaInstance->getNik();
             $rukunTetanggaInstances[$i]->save();
         }
 
+        // // attach temporary ketua rt to one of the rt
+        $rukunTetanggaInstances[1]->nik_ketua_rukun_tetangga = $tempKetuaRT->getNik();
+        $rukunTetanggaInstances[1]->save();
+        
         // warga
         UserModel::factory()->count(30)->create();
         $wargaInstances = UserModel::where('role', 'Warga')->get();

@@ -6,8 +6,9 @@ use App\Http\Controllers\RT\RTController;
 use App\Http\Controllers\RT\Manage\ManageWargaController;
 use App\Http\Controllers\RT\Manage\ManagePengaduanController;
 use App\Http\Controllers\RT\Manage\ManageReservasiJadwalTemuController;
-use App\Http\Controllers\RT\Layanan\PembayaranIuranRtController;
 use App\Http\Controllers\RT\Layanan\PengaduanRtController;
+use App\Http\Controllers\RT\Layanan\PembayaranIuranRtController;
+use App\Http\Controllers\Warga\Layanan\PembayaranIuranWargaController;
 
 
 // rt routes
@@ -59,11 +60,11 @@ Route::group([
             'as' => 'pembayaranIuran.'
         ], function() {
             // pages
-            Route::get('riwayat', [PembayaranIuranRtController::class, 'riwayatPembayaranIuranPage'])->name('riwayatPembayaranIuran');
-            Route::get('new', [PembayaranIuranRtController::class, 'newPembayaranIuranPage'])->name('newIuranPage');
+            Route::get('riwayat', [PembayaranIuranWargaController::class, 'riwayatPembayaranIuranPage'])->name('riwayatPembayaranIuran');
+            Route::get('new', [PembayaranIuranWargaController::class, 'newPembayaranIuranPage'])->name('newIuranPage');
             
             // post
-            Route::post('new', [PembayaranIuranRtController::class, 'addNewPembayaranIuran'])->name('new');
+            Route::post('new', [PembayaranIuranWargaController::class, 'addNewPembayaranIuran'])->name('new');
         });
     });
 });

@@ -60,6 +60,7 @@ class ManagePropertiController extends Controller
             'luas_tanah' => 'required',
             'luas_bangunan' => 'required',
             'jumlah_kamar' => 'required',
+            'mulai_dimiliki_pada' => 'required',
         ]);
 
         $data = [
@@ -70,6 +71,7 @@ class ManagePropertiController extends Controller
             'luas_tanah' => request()->luas_tanah,
             'luas_bangunan' => request()->luas_bangunan,
             'jumlah_kamar' => request()->jumlah_kamar,
+            'mulai_dimiliki_pada' => request()->mulai_dimiliki_pada,
         ];
 
         $newProperti = PropertiModel::create($data);
@@ -96,6 +98,7 @@ class ManagePropertiController extends Controller
             'luas_tanah' => 'required',
             'luas_bangunan' => 'required',
             'jumlah_kamar' => 'required',
+            'mulai_dimiliki_pada' => 'required',
         ]);
 
         $idProperti = request()->id_properti;
@@ -111,6 +114,7 @@ class ManagePropertiController extends Controller
             $properti->setLuasTanah(request()->luas_tanah);
             $properti->setLuasBangunan(request()->luas_bangunan);
             $properti->setJumlahKamar(request()->jumlah_kamar);
+            $properti->setMulaiDimilikiPada(request()->mulai_dimiliki_pada);
             $properti->save();
 
             session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
