@@ -14,12 +14,9 @@
     <div class="flex">
         <div class="flex items-center">
             <label for="perPage" class="mr-3 text-sm font-medium text-gray-800 dark:text-gray-300">Per Page</label>
-            <select
-                name="pageCount"
-                id="pageCount"
+            <select name="pageCount" id="pageCount"
                 class="rounded-lg border border-gray-300 bg-white text-sm text-gray-800 focus:border-blue-500 focus:ring-blue-400 dark:bg-gray-900 dark:text-gray-200 dark:focus:border-blue-400 dark:focus:ring-blue-400"
-                onchange="paginate({{ $paginator->currentPage() }})"
-            >
+                onchange="paginate({{ $paginator->currentPage() }})">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -34,32 +31,21 @@
                 <li class="page-item">
                     <button
                         class="flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
-                        onclick="paginate(1)"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            id="Layer_1"
-                            data-name="Layer 1"
-                            class="h-5 w-5 rtl:-scale-x-100"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
+                        onclick="paginate(1)">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
+                            class="h-5 w-5 rtl:-scale-x-100" stroke-width="1.5" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path
-                                d="m10.721,18.342l-5.281-5.281c-.283-.283-.439-.66-.439-1.061s.156-.777.439-1.061l5.281-5.281.707.707-5.281,5.281c-.094.095-.146.22-.146.354s.052.259.146.354l5.281,5.281-.707.707Zm8.052-.707l-5.635-5.635,5.635-5.635-.707-.707-5.871,5.871c-.26.26-.26.683,0,.942l5.871,5.871.707-.707Z"
-                            />
+                                d="m10.721,18.342l-5.281-5.281c-.283-.283-.439-.66-.439-1.061s.156-.777.439-1.061l5.281-5.281.707.707-5.281,5.281c-.094.095-.146.22-.146.354s.052.259.146.354l5.281,5.281-.707.707Zm8.052-.707l-5.635-5.635,5.635-5.635-.707-.707-5.871,5.871c-.26.26-.26.683,0,.942l5.871,5.871.707-.707Z" />
                         </svg>
                     </button>
                 </li>
             @endif
 
             <li class="page-item">
-                <button
-                    id="prev_button"
+                <button id="prev_button"
                     class="{{ $paginator->onFirstPage() ? 'cursor-not-allowed' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
-                    onclick="paginate({{ $nextPage }})"
-                    {{ $paginator->onFirstPage() ? 'disabled=1' : '' }}
-                >
+                    onclick="paginate({{ $nextPage }})" {{ $paginator->onFirstPage() ? 'disabled=1' : '' }}>
                     {{--
                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
                         class="w-5 h-5 rtl:-scale-x-100 fill-current" stroke-width="1.5" viewBox="0 0 24 24">
@@ -73,23 +59,18 @@
 
             @for ($i = $firstPage; $i <= $lastPage; $i++)
                 <li class="page-item">
-                    <button
-                        {{ $i == $paginator->currentPage() ? 'disabled=1' : '' }}
+                    <button {{ $i == $paginator->currentPage() ? 'disabled=1' : '' }}
                         class="{{ $i == $paginator->currentPage() ? 'cursor-not-allowed !bg-gray-200 dark:!bg-gray-800' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
-                        onclick="paginate({{ $i }})"
-                    >
+                        onclick="paginate({{ $i }})">
                         {{ $i }}
                     </button>
                 </li>
             @endfor
 
             <li class="page-item">
-                <button
-                    id="next_button"
+                <button id="next_button"
                     class="{{ $paginator->onLastPage() ? 'cursor-not-allowed' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
-                    onclick="paginate({{ $nextPage }})"
-                    {{ $paginator->onLastPage() ? 'disabled=1' : '' }}
-                >
+                    onclick="paginate({{ $nextPage }})" {{ $paginator->onLastPage() ? 'disabled=1' : '' }}>
                     {{--
                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
                         class="w-5 h-5 rtl:-scale-x-100 fill-current" stroke-width="1.5" viewBox="0 0 24 24">
@@ -104,20 +85,12 @@
                 <li class="page-item">
                     <button
                         class="flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
-                        onclick="paginate({{ $paginator->lastPage() }})"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            id="Layer_1"
-                            data-name="Layer 1"
-                            class="h-5 w-5 rtl:-scale-x-100"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
+                        onclick="paginate({{ $paginator->lastPage() }})">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
+                            class="h-5 w-5 rtl:-scale-x-100" stroke-width="1.5" stroke="currentColor"
+                            viewBox="0 0 24 24">
                             <path
-                                d="m13.279,18.342l-.707-.707,5.281-5.281c.095-.095.146-.22.146-.354s-.052-.259-.146-.354l-5.281-5.281.707-.707,5.281,5.281c.283.283.439.66.439,1.061s-.156.777-.439,1.061l-5.281,5.281Zm-1.475-5.871c.26-.26.26-.683,0-.942l-5.871-5.871-.707.707,5.635,5.635-5.635,5.635.707.707,5.871-5.871Z"
-                            />
+                                d="m13.279,18.342l-.707-.707,5.281-5.281c.095-.095.146-.22.146-.354s-.052-.259-.146-.354l-5.281-5.281.707-.707,5.281,5.281c.283.283.439.66.439,1.061s-.156.777-.439,1.061l-5.281,5.281Zm-1.475-5.871c.26-.26.26-.683,0-.942l-5.871-5.871-.707.707,5.635,5.635-5.635,5.635.707.707,5.871-5.871Z" />
                         </svg>
                     </button>
                 </li>
@@ -127,31 +100,23 @@
 </div>
 
 <script type="module">
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#pageCount').val(
-            document.location.search.includes('paginate')
-                ? new URLSearchParams(document.location.search).get('paginate')
-                : 5,
+            document.location.search.includes('paginate') ?
+            new URLSearchParams(document.location.search).get('paginate') :
+            5,
         );
     });
 </script>
 
 <script>
     function paginate(targetPage) {
-        let url = document.location;
+        let url = new URL(document.location.href);
 
-        if (url.search.includes('page')) {
-            url = url.origin + url.pathname + url.search.replace({{ $paginator->currentPage() }}, targetPage);
-        } else {
-            url = url.origin + url.pathname + '?' + 'page' + '=' + targetPage;
-        }
+        url.searchParams.set('page', targetPage);
 
         const pageCount = document.querySelector('#pageCount').value;
-        if (url.includes('paginate')) {
-            url = url.replace(/paginate=\d+/, `paginate=${pageCount}`);
-        } else {
-            url = url + `&paginate=${pageCount}`;
-        }
+        url.searchParams.set('paginate', pageCount);
 
         if ({{ $paginator->currentPage() }} > Math.ceil({{ $paginator->total() }} / pageCount)) {
             url = url.replace(/page=\d+/, 'page=' + Math.ceil({{ $paginator->total() }} / pageCount));
@@ -160,12 +125,11 @@
         $.ajax({
             url: url,
             beforeSend: window.Loading.showLoading,
-            success: function (res) {
+            success: function(res) {
                 let parser = new DOMParser();
                 let doc = parser.parseFromString(res, 'text/html');
                 $('body').html(doc.body.innerHTML);
-                window.history.pushState(
-                    {
+                window.history.pushState({
                         html: res.html,
                         pageTitle: res.pageTitle,
                     },
