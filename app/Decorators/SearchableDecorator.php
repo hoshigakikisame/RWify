@@ -25,8 +25,7 @@ class SearchableDecorator extends Decorator
      */
     public function search($query, $paginate = 5, array $relations = [], array $filter = []): LengthAwarePaginator
     {
-        if ($paginate == null)
-            $paginate = 0;
+        if ($paginate == null) $paginate = 5;
 
         return $this->model::where(function (Builder $queryBuilder) use ($filter) {
             foreach ($filter as $field => $value) {

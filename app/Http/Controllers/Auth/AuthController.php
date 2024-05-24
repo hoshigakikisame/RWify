@@ -30,7 +30,7 @@ class AuthController extends Controller
         $authenticated = Auth::attempt(["email" => $email, "password" => $password]);
 
         if (!$authenticated) {
-            session()->flash("danger", "Invalid email or password");
+            session()->flash('danger',['title' => "Auth Failed", 'description' => "Invalid email or password"]);
             return redirect()->route("auth.signInPage");
         }
 

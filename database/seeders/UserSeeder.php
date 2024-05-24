@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             ]
         )->create()->first();
 
-        // temporary rw test account instances
+        // temporary ketua rw test account instances
         UserModel::factory()->state(
             [
                 'email' => 'daffayudisa09@gmail.com',
@@ -56,6 +56,18 @@ class UserSeeder extends Seeder
                 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
             ]
         )->create()->first();
+
+        // temporary ketua rt test account instances
+        $tempKetuaRT = UserModel::factory()->state(
+            [
+                'email' => 'niaoktav119+rt@gmail.com',
+                'role' => 'Ketua Rukun Tetangga',
+                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+            ]
+        )->create()->first();
+
+        // attach temporary ketua rt to one of the rt
+        $rukunTetanggaInstances[0]->setNikKetuaRukunTetangga($tempKetuaRT);
 
         // warga test account instance
         UserModel::factory()->state(

@@ -141,7 +141,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail
             case "Ketua Rukun Warga":
                 return redirect()->route('rw.dashboard');
             case "Ketua Rukun Tetangga":
-                return "Ketua RT";
+                return redirect()->route('rt.dashboard');
             case "Warga":
                 return redirect()->route('warga.dashboard');
         }
@@ -152,7 +152,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail
             case "Ketua Rukun Warga":
                 return route('rw.dashboard');
             case "Ketua Rukun Tetangga":
-                return "Ketua RT";
+                return route('rt.dashboard');
             case "Warga":
                 return route('warga.dashboard');
         }

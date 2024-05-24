@@ -186,7 +186,7 @@
                                                     aria-current="submitButton"
                                                     id="submitAction-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}"
                                                     name="status"
-                                                    x-effect="window.utils.Request.actionRequest('{{route('rw.manage.reservasiJadwalTemu.update')}}','#actionStatus-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}','#actionStatusForm-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}')"
+                                                    x-effect="window.utils.Request.actionRequest('{{route('rt.manage.reservasiJadwalTemu.update')}}','#actionStatus-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}','#actionStatusForm-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}')"
                                                     class="rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-950 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
                                                 >
                                                     @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $status)

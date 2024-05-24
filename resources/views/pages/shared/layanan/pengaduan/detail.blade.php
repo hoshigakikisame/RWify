@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-        @if (request()->user()->getRole() != \App\Enums\User\UserRoleEnum::WARGA->value)
+        @if (request()->user()->getRole() != \App\Enums\User\UserRoleEnum::WARGA->value && request()->user()->getRole() != \App\Enums\User\UserRoleEnum::KETUA_RUKUN_TETANGGA->value))
             <aside class="rounded-bl-lg px-5 pt-6" x-ref="sideContainer" x-data="{ sideAction: false }">
                 <div class="inline-flex gap-2">
                     <button

@@ -131,11 +131,11 @@ class ManagePengumumanController extends Controller
 
 
         if (!$pengumuman) {
-            $pengumuman->getStatus() == 'publish' ? session()->flash('danger', 'Move to draft Failed.') : session()->flash('danger', ['title' => 'Publish Failed.', 'description' => 'Publish Failed.']);
+            $pengumuman->getStatus() == 'publish' ? session()->flash('danger', ['title' => 'Update Failed', 'description' => 'Cannot move to draft']) : session()->flash('danger', ['title' => 'Update Failed.', 'description' => 'Cannot publish.']);
         } else {
             $pengumuman->getStatus() == 'publish' ? $pengumuman->setStatus('draft') : $pengumuman->setStatus('publish');
             $pengumuman->save();
-            $pengumuman->getStatus() == 'publish' ? session()->flash('success', 'Publish success.') : session()->flash('success', ['title' => 'Move to draft success.', 'description' => 'Move to draft success.']);
+            $pengumuman->getStatus() == 'publish' ? session()->flash('success', ['title' => 'Updated', 'description' => 'Publish success.']) : session()->flash('success', ['title' => 'Updated', 'description' => 'Move to draft success.']);
         }
 
         return $pengumuman->getStatus() == 'publish' ? 'move to draft failed' : 'publish success';
