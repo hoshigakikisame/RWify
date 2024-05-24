@@ -126,9 +126,9 @@
                 </svg>
             </x-sidebar.sidebar-item>
             <x-sidebar.sidebar-item
-                href="{{ route('rt.layanan.pembayaranIuran.leaderboard') }}"
+                href="{{ route('rt.layanan.pembayaranIuran.new') }}"
                 title="Leaderboard"
-                :active="request()->routeIs(['rt.layanan.pembayaranIuran.leaderboard'])"
+                :active="request()->routeIs(['rt.layanan.pembayaranIuran.new'])"
             >
                 <svg viewBox="0 0 24 24" class="w-7 fill-inherit lg:w-6" xmlns="http://www.w3.org/2000/svg">
                     <path
