@@ -13,17 +13,17 @@
                             [
                                 'name' => 'Properti',
                                 'count' => $propertiCount,
-                                'lastAddedAt' => $propertiLastAddedAt
+                                'lastAddedAt' => $propertiLastAddedAt,
                             ],
                             [
                                 'name' => 'Pengaduan Warga',
                                 'count' => $pengaduanCount,
-                                'lastAddedAt' => $pengaduanLastAddedAt
+                                'lastAddedAt' => $pengaduanLastAddedAt,
                             ],
                             [
                                 'name' => 'UMKM',
                                 'count' => $umkmCount,
-                                'lastAddedAt' => $umkmLastAddedAt
+                                'lastAddedAt' => $umkmLastAddedAt,
                             ],
                         ];
                     @endphp
@@ -34,7 +34,7 @@
                                 <h1 class="ms-4 font-Montserrat text-4xl font-medium">{{ $item['count'] }}</h1>
                                 <img src="" alt="grafik" />
                             </div>
-                            <p class="text-xs italic">Terakhir ditambah {{$item['lastAddedAt']}} lalu</p>
+                            <p class="text-xs italic">Terakhir ditambah {{ $item['lastAddedAt'] }} lalu</p>
                         </div>
                     @endforeach
                 </div>
@@ -73,56 +73,31 @@
                 </div>
             </div>
             <div class="right flex flex-col">
-                <div class="calendar">
+                <div class="calendar" x-data="{ eventShow: false }">
                     <div class="w-full max-w-sm rounded-lg border-2">
                         <div class="rounded-t bg-white p-5 dark:bg-gray-800 md:p-8">
                             <div class="flex items-center justify-between px-4">
-                                <span
-                                    id="calenderMonthYearTitle"
-                                    tabindex="0"
-                                    class="text-base font-bold text-gray-800 focus:outline-none dark:text-gray-100"
-                                >
+                                <span id="calenderMonthYearTitle" tabindex="0"
+                                    class="text-base font-bold text-gray-800 focus:outline-none dark:text-gray-100">
                                     October 2020
                                 </span>
                                 <div class="flex items-center">
-                                    <button
-                                        id="prev-calendar"
-                                        aria-label="calendar backward"
-                                        class="text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-left"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            fill="none"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
+                                    <button id="prev-calendar" aria-label="calendar backward"
+                                        class="text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <polyline points="15 6 9 12 15 18" />
                                         </svg>
                                     </button>
-                                    <button
-                                        id="next-calendar"
-                                        aria-label="calendar forward"
-                                        class="ml-3 text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            fill="none"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        >
+                                    <button id="next-calendar" aria-label="calendar forward"
+                                        class="ml-3 text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <polyline points="9 6 15 12 9 18" />
                                         </svg>
@@ -140,42 +115,11 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="rounded-b bg-gray-50 px-5 py-5 dark:bg-gray-700 md:px-16 md:py-8">
-                            <div class="px-4">
-                                <div class="border-b border-dashed border-gray-400 pb-4">
-                                    <p class="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">9:00 AM</p>
-                                    <a
-                                        tabindex="0"
-                                        class="mt-2 text-lg font-medium leading-5 text-gray-800 focus:outline-none dark:text-gray-100"
-                                    >
-                                        Zoom call with design team
-                                    </a>
-                                    <p class="pt-2 text-sm leading-4 leading-none text-gray-600 dark:text-gray-300">
-                                        Discussion on UX sprint and Wireframe review
-                                    </p>
-                                </div>
-                                <div class="border-b border-dashed border-gray-400 pb-4 pt-5">
-                                    <p class="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">
-                                        10:00 AM
-                                    </p>
-                                    <a
-                                        tabindex="0"
-                                        class="mt-2 text-lg font-medium leading-5 text-gray-800 focus:outline-none dark:text-gray-100"
-                                    >
-                                        Orientation session with new hires
-                                    </a>
-                                </div>
-                                <div class="border-b border-dashed border-gray-400 pb-4 pt-5">
-                                    <p class="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">9:00 AM</p>
-                                    <a
-                                        tabindex="0"
-                                        class="mt-2 text-lg font-medium leading-5 text-gray-800 focus:outline-none dark:text-gray-100"
-                                    >
-                                        Zoom call with design team
-                                    </a>
-                                    <p class="pt-2 text-sm leading-4 leading-none text-gray-600 dark:text-gray-300">
-                                        Discussion on UX sprint and Wireframe review
-                                    </p>
+                        <div class="">
+                            <div id="event-desc" x-show="eventShow"
+                                class="rounded-b bg-gray-50 px-5 py-5 dark:bg-gray-700 md:px-16 md:py-8">
+                                <div class="px-4" id="body-event-desc">
+                                    {{-- body desc --}}
                                 </div>
                             </div>
                         </div>
@@ -194,7 +138,8 @@
     {{-- @vite('resources/js/statisticChart.js') --}}
     <script type="module">
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
-        ageChartStatistic({{$lansiaCount}}, {{$dewasaCount}}, {{$remajaCount}}, {{$anakCount}}, {{$balitaCount}});
+        ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }}, {{ $anakCount }},
+            {{ $balitaCount }});
     </script>
     <script type="module">
         const calendarCanvas = document.getElementById('calendar');
@@ -204,19 +149,24 @@
 
         let urlsHoliday = 'https://dayoffapi.vercel.app/api';
 
-        let events = [];
+        let events = [{
+            id: 0,
+            date: "2024-05-14",
+            title: "test",
+            description: "test"
+        }];
+        let holiday = [];
         let today = new Date();
         let currentMonth = today.getMonth();
         let currentYear = today.getFullYear();
 
+        // Counter to generate unique event IDs
+        let eventIdCounter = 1;
+
         // Function to add events
-        function addEvent() {
-            let date = eventDateInput.value;
-            let title = eventTitleInput.value;
-            let description = eventDescriptionInput.value;
+        function addEvent(date, title, description) {
 
             if (date && title) {
-                // Create a unique event ID
                 let eventId = eventIdCounter++;
 
                 events.push({
@@ -227,10 +177,24 @@
                 });
 
                 showCalendar(currentMonth, currentYear);
-                eventDateInput.value = '';
-                eventTitleInput.value = '';
-                eventDescriptionInput.value = '';
                 displayReminders();
+            }
+        }
+
+        function displayReminders() {
+            let bodyDesc = document.getElementById('body-event-desc');
+            let element = ''
+
+            for (let i = 0; i < events.length; i++) {
+                let event = events[i];
+                let eventDate = new Date(event.date);
+                if (eventDate.getMonth() ===
+                    currentMonth &&
+                    eventDate.getFullYear() ===
+                    currentYear) {
+                    element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate.getFullYear());
+                    $(bodyDesc).html(element);
+                }
             }
         }
 
@@ -244,9 +208,15 @@
             .then((responseData) => {
                 // Process the retrieved user data
                 responseData.map((e, i) => {
-                    let data = { id: i, date: e['tanggal'], title: e['keterangan'], description: 'Hari Libur' };
-                    events.push(data);
+                    let data = {
+                        id: i,
+                        date: e['tanggal'],
+                        title: e['keterangan'],
+                        description: 'Hari Libur'
+                    };
+                    holiday.push(data);
                 });
+                console.log(holiday, events)
                 showCalender(currentMonth, currentYear);
             })
             .catch((error) => {
@@ -277,12 +247,12 @@
 
         function elementEventDay(day) {
             return /*html*/ `
-            <td class="">
+            <td class="" @click='eventShow = !eventShow'>
              <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
                  <p class="text-base text-indigo-500 dark:text-indigo-100 font-medium">${day}</p>
              </div>
             </td>
-                `;
+                `
         }
 
         function thisElementDay(day) {
@@ -306,6 +276,28 @@
              </div>
             </td>
             `;
+        }
+
+        function elementEventDesc(date, month, year) {
+            let element = '';
+            let eventsOnDate = getEventDayOnDate(date, month, year);
+            console.log(eventsOnDate, date, month, year)
+            for (let i = 0; i < eventsOnDate.length; i++) {
+                let event = eventsOnDate[i]
+                console.log(event)
+                let eventDate = new Date(event.date);
+                element += /*html*/ ` 
+            <div class="border-b border-dashed border-gray-400 pb-4" x-effect="eventShow">
+    <p class="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">${event.date}</p>
+    <a tabindex="0" class="mt-2 text-lg font-medium leading-5 text-gray-800 focus:outline-none dark:text-gray-100">
+        ${event.title}
+    </a>
+    <p class="pt-2 text-sm leading-4 leading-none text-gray-600 dark:text-gray-300">
+        ${event.desc}
+    </p>
+</div>`
+            }
+            return element;
         }
 
         // Function to navigate to the next month
@@ -352,9 +344,10 @@
                             row += thisElementDay(date);
                         } else if (j > 4) {
                             row += elementRedDay(date);
-                        } else if (hasEventOnDate(date, month, year)) {
+                        } else if (hasRedDay(date, month, year)) {
                             row += elementRedDay(date);
-                            // createEventTooltip(date, month, year);
+                        } else if (hasEventDay(date, month, year)) {
+                            row += elementEventDay(date);
                         } else {
                             row += elementDay(date);
                         }
@@ -365,20 +358,37 @@
                 row += endRow;
                 calendarHTML += row;
             }
+            displayReminders()
             $(calendarBody).html(calendarHTML);
         }
 
-        function getEventsOnDate(date, month, year) {
-            return events.filter(function (event) {
-                let eventDate = new Date(event.date);
+        function getEventDayOnDate(date, month, year) {
+            return events.filter(function(event) {
+                let eventsDate = new Date(event.date);
                 return (
-                    eventDate.getDate() === date && eventDate.getMonth() === month && eventDate.getFullYear() === year
+                    eventsDate.getDate() === date && eventsDate.getMonth() === month && eventsDate
+                    .getFullYear() === year
                 );
             });
         }
 
-        function hasEventOnDate(date, month, year) {
-            return getEventsOnDate(date, month, year).length > 0;
+        function hasEventDay(date, month, year) {
+            return getEventDayOnDate(date, month, year).length > 0;
+        }
+
+
+        function getRedDayOnDate(date, month, year) {
+            return holiday.filter(function(event) {
+                let holidayDate = new Date(event.date);
+                return (
+                    holidayDate.getDate() === date && holidayDate.getMonth() === month && holidayDate
+                    .getFullYear() === year
+                );
+            });
+        }
+
+        function hasRedDay(date, month, year) {
+            return getRedDayOnDate(date, month, year).length > 0;
         }
 
         function daysInMonth(iMonth, iYear) {

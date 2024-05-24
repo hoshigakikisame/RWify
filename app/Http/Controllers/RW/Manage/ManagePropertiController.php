@@ -32,11 +32,18 @@ class ManagePropertiController extends Controller
             ],
             $filters
         );
+
+        $tipePropertiInstances = array_reduce(TipePropertiModel::all()->toArray(), function ($carry, $item) {
+            $carry[$item['id_tipe_properti']] = $item['nama_tipe'];
+            return $carry;
+        }, []);
+
         $count = PropertiModel::count();
 
         $data = [
             "propertiInstances" => $propertiInstances,
-            "count" => $count
+            "count" => $count,
+            "tipePropertiInstances" => $tipePropertiInstances
         ];
 
         return view('pages.rw.manage.properti', $data);
