@@ -25,6 +25,7 @@ class PropertiModelFactory extends Factory
             'nama_properti' => $this->faker->sentence(),
             'id_tipe_properti' => TipePropertiModel::get()->random()->getIdTipeProperti(),
             'nik_pemilik' => UserModel::get()->random()->getNik(),
+            'mulai_dimiliki_pada' => $this->faker->date(),
             'alamat' => $this->faker->address(),
             'luas_tanah' => $this->faker->randomNumber(2),
             'luas_bangunan' => $this->faker->randomNumber(2),

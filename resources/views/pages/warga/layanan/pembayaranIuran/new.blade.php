@@ -106,7 +106,7 @@
                                         <div class="mt-2 grid grid-cols-3 grid-rows-2">
                                             <div class="col-span-2 row-span-2">
                                                 <p class="font-semi-bold mb-2 text-lg text-gray-500">
-                                                    {{ $unpaidDueMonths }} Bulan
+                                                    {{ $oldestMonthDiff }} Bulan
                                                 </p>
                                             </div>
                                             <div

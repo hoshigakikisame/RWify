@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('id_tipe_properti')->references('id_tipe_properti')->on('tb_tipe_properti')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nik_pemilik', 16);
             $table->foreign('nik_pemilik')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
+            $table->date('mulai_dimiliki_pada')->default('2020-01-01');
             $table->text('alamat');
             $table->unsignedMediumInteger('luas_tanah');
             $table->unsignedMediumInteger('luas_bangunan');

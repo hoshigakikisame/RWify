@@ -50,27 +50,19 @@ class PembayaranIuranWargaController extends Controller
             ['nik_pemilik' => request()->user()->nik]
         );
 
+        $oldestMonthDiff = 0;
+        $totalUnpaidDueMonths = 0;
+
         foreach ($ownedPropertiInstances as $properti) {
             $monthlyTotal += $properti->getTipeProperti()->getIuranPerBulan();
+            $monthDiff = $properti->getMulaiDimilikiPada()->diffInMonths(now(), false);
+            $oldestMonthDiff = floor($monthDiff > $oldestMonthDiff ? $monthDiff : $oldestMonthDiff);
+            $totalUnpaidDueMonths += $monthDiff * $properti->getTipeProperti()->getIuranPerBulan();
         }
-
-        // TODO: place it under app / config
-        $duesStartDate = Carbon::parse("2000-1-1");
-        $diffMonthsFromNow = $duesStartDate->diffInMonths(now(), false);
-
-        $selfIuranInstancesCount = (new SearchableDecorator(IuranModel::class))->search(
-            '', 
-            0, 
-            ['pembayaranIuran' => PembayaranIuranModel::class], 
-            ['nik_pembayar' => request()->user()->nik]
-        )->count();
-
-        $unpaidDueMonths = (int) ($diffMonthsFromNow - $selfIuranInstancesCount);
-        $totalUnpaidDueMonths = $unpaidDueMonths * $monthlyTotal;
 
         $data = [
             'ownedPropertiInstances' => $ownedPropertiInstances,
-            'unpaidDueMonths' => $unpaidDueMonths,
+            'oldestMonthDiff' => $oldestMonthDiff,
             'totalUnpaidDueMonths' => $totalUnpaidDueMonths,
             'monthlyTotal' => $monthlyTotal
         ];
