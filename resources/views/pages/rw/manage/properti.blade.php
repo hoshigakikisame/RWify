@@ -91,7 +91,8 @@
                                             placeholder="Nama Properti" />
                                         <x-search-dropdown title="Tipe Properti" key="id_tipe_properti"
                                             placeholder="Masukkan Tipe Properti" :items="$tipePropertiInstances"></x-search-dropdown>
-                                        <p>TODO: Selector Pemilik</p>
+                                        <x-search-dropdown title="Nama Pemilik" key="nik_pemilik"
+                                            placeholder="Masukkan Nama Properti" :items="$nikPemilikInstances"></x-search-dropdown>
                                         <x-form.input-form title="NIK Pemilik" key="nik_pemilik" type="number"
                                             placeholder="NIK Pemilik" />
                                         <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat" />

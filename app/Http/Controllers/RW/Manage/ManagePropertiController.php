@@ -38,12 +38,18 @@ class ManagePropertiController extends Controller
             return $carry;
         }, []);
 
+        $nikPemilikInstances = array_reduce(UserModel::all()->toArray(), function ($carry, $item) {
+            $carry[$item['nik']] = $item['nama_depan'] . ' ' . $item['nama_belakang'];
+            return $carry;
+        }, []);
+
         $count = PropertiModel::count();
 
         $data = [
             "propertiInstances" => $propertiInstances,
             "count" => $count,
-            "tipePropertiInstances" => $tipePropertiInstances
+            "tipePropertiInstances" => $tipePropertiInstances,
+            "nikPemilikInstances" => $nikPemilikInstances,
         ];
 
         return view('pages.rw.manage.properti', $data);

@@ -25,19 +25,21 @@
 
      <input type="hidden" name="{{ $key }}" x-bind:value="data">
 
-     <ul id="" x-show="open" x-on:click.outside="open = !open"
-         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate"
-         x-transition:enter-end="opacity-100 translate" x-transition:leave="transition ease-in duration-300"
-         x-transition:leave-start="opacity-100 translate" x-transition:leave-end="opacity-0 translate"
-         class="border rounded-md border-gray-200 dark:border-gray-500 absolute top-20 z-30 w-full bg-white p-2"
-         :class="open ? 'ring border-blue-400 ring-blue-300 ring-opacity-40' : ''">
-         <template x-for="item in filteredItems" :key="item" class="flex flex-col">
-             <li><button
-                     class="w-full px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-blue-100/80 hover:text-blue-900 text-start rounded-md"
-                     x-text="item"
-                     @click="Object.keys(items).forEach((key)=> {if(items[key]==item) data = key});document.getElementById('search-{{ $key }}').value = item;open = false"></button>
-             </li>
-         </template>
-     </ul>
+     <div class="absolute top-20 z-30 border rounded-md border-gray-200 dark:border-gray-500 max-h-96 overflow-auto w-full bg-white p-2"
+         :class="open ? 'ring border-blue-400 ring-blue-300 ring-opacity-40' : ''" x-show="open"
+         x-on:click.outside="open = !open" x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate" x-transition:enter-end="opacity-100 translate"
+         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate"
+         x-transition:leave-end="opacity-0 translate">
+         <ul class="overflow-y-scroll">
+             <template x-for="item in filteredItems" :key="item" class="flex flex-col">
+                 <li><button
+                         class="w-full px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-blue-100/80 hover:text-blue-900 text-start rounded-md"
+                         x-text="item" type="button"
+                         @click="Object.keys(items).forEach((key)=> {if(items[key]==item) data = key});document.getElementById('search-{{ $key }}').value = item;open = false"></button>
+                 </li>
+             </template>
+         </ul>
+     </div>
 
  </div>
