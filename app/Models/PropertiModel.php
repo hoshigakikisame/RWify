@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use Carbon\Carbon;
 
 class PropertiModel extends Model
 {
@@ -61,6 +62,11 @@ class PropertiModel extends Model
     public function getNikPemilik(): int
     {
         return $this->nik_pemilik;
+    }
+
+    public function getMulaiDimilikiPada()
+    {
+        return Carbon::parse($this->mulai_dimiliki_pada);
     }
 
     public function getAlamat(): string
