@@ -23,7 +23,7 @@ class ManageWargaController extends Controller
     public function manageWargaPage()
     {
         $query = request()->q;
-        $paginate = request()->paginate;
+        $paginate = request()->paginate ?? 5;
         $filters = request()->filters ?? [];
 
         $users = (new SearchableDecorator(UserModel::class))->search($query, $paginate, [], $filters);
@@ -175,7 +175,7 @@ class ManageWargaController extends Controller
 
         try {
             $newUsers = UserModel::insert($newUsers);
-        }   catch(PDOException $e) {
+        } catch (PDOException $e) {
             session()->flash('danger', [
                 'title' => sprintf('Gagal mengimport warga'),
                 'description' => $e->errorInfo[2]

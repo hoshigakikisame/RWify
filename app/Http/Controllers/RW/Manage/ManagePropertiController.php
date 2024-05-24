@@ -21,7 +21,7 @@ class ManagePropertiController extends Controller
 
         $query = request()->q;
         $filters = request()->filters ?? [];
-        $paginate = request()->paginate;
+        $paginate = request()->paginate ?? 5;
 
         $propertiInstances = (new SearchableDecorator(PropertiModel::class))->search(
             $query,
@@ -68,9 +68,9 @@ class ManagePropertiController extends Controller
         $newProperti = PropertiModel::create($data);
 
         if (!$newProperti) {
-            session()->flash('danger',['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
+            session()->flash('danger', ['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
-            session()->flash('success',['title' => 'Insert Success.', 'description' => 'Insert Success.']);
+            session()->flash('success', ['title' => 'Insert Success.', 'description' => 'Insert Success.']);
         }
 
         // return redirect()->route('rw.manage.properti.index');
@@ -95,7 +95,7 @@ class ManagePropertiController extends Controller
         $properti = PropertiModel::find($idProperti);
 
         if (!$properti) {
-            session()->flash('danger',['title' => 'Update Failed.', 'description' => 'Update Failed.']);
+            session()->flash('danger', ['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
             $properti->setNamaProperti(request()->nama_properti);
             $properti->setIdTipeProperti(request()->id_tipe_properti);
@@ -106,7 +106,7 @@ class ManagePropertiController extends Controller
             $properti->setJumlahKamar(request()->jumlah_kamar);
             $properti->save();
 
-            session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
+            session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
         //return redirect()->route('rw.manage.properti');
@@ -125,10 +125,10 @@ class ManagePropertiController extends Controller
         $properti = PropertiModel::find($idProperti);
 
         if (!$properti) {
-            session()->flash('danger',['title' => 'Delete Failed', 'description' => 'Delete Failed']);
+            session()->flash('danger', ['title' => 'Delete Failed', 'description' => 'Delete Failed']);
         } else {
             $properti->delete();
-            session()->flash('success',['title' => 'Delete Success.', 'description' => 'Delete Success.']);
+            session()->flash('success', ['title' => 'Delete Success.', 'description' => 'Delete Success.']);
         }
 
         //return redirect()->route('rw.manage.properti');

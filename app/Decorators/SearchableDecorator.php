@@ -27,9 +27,10 @@ class SearchableDecorator extends Decorator
     {
         if ($paginate == null) $paginate = 5;
 
-        return $this->model::where(function(Builder $queryBuilder) use ($filter) {
+        return $this->model::where(function (Builder $queryBuilder) use ($filter) {
             foreach ($filter as $field => $value) {
-                if ($value == null || empty($value)) continue;
+                if ($value == null || empty ($value))
+                    continue;
                 $queryBuilder->where($field, $value);
             }
         })->where(function (Builder $queryBuilder) use ($relations, $query) {
@@ -43,7 +44,7 @@ class SearchableDecorator extends Decorator
             foreach ($this->searchable as $field) {
                 $queryBuilder->orWhere($field, 'LIKE', "%$query%");
             }
-            
+
         })->orderBy($this->model::CREATED_AT, 'DESC')->paginate($paginate);
     }
 }
