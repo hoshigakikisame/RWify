@@ -73,7 +73,6 @@ class ManagePengumumanController extends Controller
         request()->validate([
             'id_pengumuman' => 'required',
             'judul' => 'required',
-            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
             'konten' => 'required',
         ]);
 
@@ -84,12 +83,12 @@ class ManagePengumumanController extends Controller
             session()->flash('danger', ['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
 
-            /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
-            $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
-            $resultUrl = $cloudinaryResponse->getSecurePath();
+            // /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
+            // $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+            // $resultUrl = $cloudinaryResponse->getSecurePath();
 
             $pengumuman->setJudul(request()->judul);
-            $pengumuman->setImageUrl($resultUrl);
+            //$pengumuman->setImageUrl($resultUrl);
             $pengumuman->setKonten(request()->konten);
             $pengumuman->save();
 
