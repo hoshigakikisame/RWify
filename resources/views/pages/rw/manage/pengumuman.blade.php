@@ -140,9 +140,9 @@
                                     class="col-span-2"
                                 />
                                 <x-form.textarea-input-form
-                                    title="Konten"
+                                    title="Deskripsi"
                                     key="konten"
-                                    placeholder="Deskripsi dari pengumuman"
+                                    placeholder="Deskripsi dari Pengumuman"
                                 />
                                 <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
                                 <div class="mt-6 flex justify-between">
@@ -216,7 +216,7 @@
                     x-model="search"
                     @keyup.enter="window.utils.Request.searchRequest(search)"
                     type="text"
-                    placeholder="Search"
+                    placeholder="Press Enter to Search"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11"
                 />
             </div>
@@ -430,6 +430,16 @@
 @endsection
 
 @push('scripts')
+    <script type="module">
+        $(document).ready(() => {
+            let reg = new RegExp('[?&]q=([^&#]*)', 'i');
+            let queryString = reg.exec(document.location);
+            if (queryString != null) {
+                let search = decodeURIComponent(queryString[1].replace(/\+/g, ' '));
+                $('#search input').val(search);
+            }
+        });
+    </script>
     <script>
         function appendShareModal(id_pengumuman, judul, status, event) {
                let modalHeader, message, confirmation;
