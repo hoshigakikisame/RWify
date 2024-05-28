@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shared;
 
 use App\Http\Controllers\Controller;
+use App\Models\PengumumanModel;
 
 class SharedController extends Controller
 {
@@ -11,7 +12,10 @@ class SharedController extends Controller
      */
     public function index()
     {
-        return view('pages.shared.index');
+        
+        $latest_pengumuman = PengumumanModel::latest()->take(5)->get();
+
+        return view('pages.shared.index', ['latest_pengumuman' => $latest_pengumuman]);
     }
 
     public function hubungiKami()

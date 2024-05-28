@@ -163,18 +163,11 @@
                 </div>
                 <div class="body-section">
                     <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
-                        <swiper-slide>
-                            <x-card.card-item />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <x-card.card-item />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <x-card.card-item />
-                        </swiper-slide>
-                        <swiper-slide>
-                            <x-card.card-item />
-                        </swiper-slide>
+                        @foreach ($latest_pengumuman as $pengumuman)
+                            <swiper-slide>
+                                <x-card.card-item :pengumuman="$pengumuman" />
+                            </swiper-slide>
+                        @endforeach
                     </swiper-container>
                 </div>
             </section>
