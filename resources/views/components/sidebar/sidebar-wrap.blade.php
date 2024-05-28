@@ -1,8 +1,8 @@
 <!-- Nothing worth having comes easy. - Theodore Roosevelt -->
 <aside class="relative z-20 ">
-    <nav class="px-4 py-6 overflow-y-hidden shadow-xl h-screen">
-        <div class="overflow-y-auto w-fit h-full no-scrollbar">
-            <div class="flex flex-col min-h-screen">
+    <nav class="px-4 pb-6 overflow-y-hidden shadow-xl h-screen">
+        <div class="overflow-y-auto w-fit h-full min-h-screen no-scrollbar">
+            <div class="flex flex-col min-h-screen py-6">
                 <div class="sidebar-header mb-5 mt-1 inline-flex items-center gap-2 rounded-xl px-3 py-1">
                     <div class="h-7 w-7 rounded-lg bg-indigo-200">
                         <img src="" alt="" />
