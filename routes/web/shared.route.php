@@ -10,7 +10,6 @@ use App\Http\Controllers\Shared\SharedController;
 Route::group([
     'prefix' => '',
     'as' => '',
-    'middleware' => ['auth']
 ], function () {
     Route::group([
         'prefix' => 'layanan',
