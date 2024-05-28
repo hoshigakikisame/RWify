@@ -15,20 +15,20 @@
                     tumbuh dan berkembang serta lebih dikenal secara luas.
                 </p>
             </div>
-            <div class="umkm mt-20 grid grid-cols-8 gap-4">
+            <div class="umkm mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 @foreach ($umkmInstances as $umkm)
-                    <div class="card w-fit overflow-hidden rounded-lg shadow-lg dark:bg-gray-800" id="umkm-{{ $umkm->getIdUmkm() }}">
-                        <div class="h-56 w-full">
+                <div class="w-full">
+                    <div class="card w-full overflow-hidden rounded-lg shadow-lg dark:bg-gray-800" id="umkm-{{ $umkm->getIdUmkm() }}">
+                        <div class="h-64 w-full">
                             <img src="{{ $umkm->getImageUrl() }}" alt="Gambar UMKM" class="h-full w-full object-cover" />
                         </div>
                         <div class="card-content px-10 py-5">
-                            <div class="card-header mb-2 h-16">
+                            <div class="card-header h-16">
                                 <h5 class="text-lg font-semibold">{{ $umkm->getNama() }}</h5>
                             </div>
                             <div class="card-body mb-9 pt-2 h-36">
-                                <p class="... w-60 truncate text-wrap">
-                                    {{ implode(' ', array_slice(str_word_count($umkm->getDeskripsi(), 1), 0, 20)) }}
-                                    {{ str_word_count($umkm->getDeskripsi()) > 10 ? '.....' : '' }}
+                                <p class="... w-full line-clamp-5"> 
+                                    {{ $umkm->getDeskripsi()}}
                                 </p>
                             </div>
                             <div class="card-footer text-sm pt-7">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <br />
+                </div>
                 @endforeach
             </div>
         </section>
