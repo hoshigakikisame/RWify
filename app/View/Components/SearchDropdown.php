@@ -12,13 +12,15 @@ class SearchDropdown extends Component
      * Create a new component instance.
      */
 
-    public $placeholder, $key, $title, $items;
-    public function __construct($key, $placeholder, $title, $items)
+    public $placeholder, $key, $title, $items, $value, $parent;
+    public function __construct($key, $placeholder, $title, $items, $parent, $value = '')
     {
         $this->key = $key;
         $this->placeholder = $placeholder;
         $this->title = $title;
         $this->items = $items;
+        $this->value = $value;
+        $this->parent = $parent;
     }
 
 

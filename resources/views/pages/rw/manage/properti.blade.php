@@ -90,11 +90,20 @@
                                         <x-form.input-form title="Nama Properti" key="nama_properti" type="text"
                                             placeholder="Nama Properti" />
                                         <x-search-dropdown title="Tipe Properti" key="id_tipe_properti"
-                                            placeholder="Masukkan Tipe Properti" :items="$tipePropertiInstances"></x-search-dropdown>
-                                        <x-search-dropdown title="Nama Pemilik" key="nik_pemilik"
+                                            parent="#addModalForm" placeholder="Masukkan Tipe Properti"
+                                            :items="$tipePropertiInstances"></x-search-dropdown>
+                                        <x-search-dropdown title="Nama Pemilik" key="nik_pemilik" parent="#addModalForm"
                                             placeholder="Masukkan Nama Properti" :items="$nikPemilikInstances"></x-search-dropdown>
-                                        <x-form.input-form title="NIK Pemilik" key="nik_pemilik" type="number"
-                                            placeholder="NIK Pemilik" />
+                                        <div class='mt-4'>
+                                            <label for="display-nik_pemilik"
+                                                class="block text-sm capitalize text-gray-700 dark:text-gray-300">NIK
+                                                Pemilik</label>
+                                            <input id="display-nik_pemilik" placeholder="nik_pemilik" type="text"
+                                                value=""
+                                                class="mt-2 block w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-600 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-blue-300 dark:focus:ring-blue-200"
+                                                readonly />
+                                        </div>
+
                                         <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat" />
                                         <x-form.input-form title="Luas Tanah (m2)" key="luas_tanah" type="text"
                                             placeholder="Luas Tanah" />
@@ -102,8 +111,8 @@
                                             placeholder="Luas Bangunan" />
                                         <x-form.input-form title="Jumlah Kamar" key="jumlah_kamar" type="text"
                                             placeholder="Jumlah Kamar" />
-                                        <x-form.input-form title="Mulai Dimiliki Pada" key="mulai_dimiliki_pada" type="date"
-                                            placeholder="Mulai Dimiliki Pada" />
+                                        <x-form.input-form title="Mulai Dimiliki Pada" key="mulai_dimiliki_pada"
+                                            type="date" placeholder="Mulai Dimiliki Pada" />
                                         <div class="mt-6 flex justify-between">
                                             <p class="text-xs text-gray-200 dark:text-gray-400">
                                                 Note: Pastikan semua sudah terisi dengan benar
@@ -126,7 +135,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
                         <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            d=" M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </span>
 
@@ -374,10 +383,19 @@
                                     @csrf
                                     <input type="text" name="id_properti" value="${properti.id_properti}" hidden >
                                     <x-form.input-form title="Nama Properti" key="nama_properti" type="text" placeholder="Nama Properti" value="${properti.nama_properti}" />
-                                    <p>TODO: Selector Tipe Properti</p>
-                                    <x-form.input-form title="ID Tipe Properti" key="id_tipe_properti" type="number" placeholder="ID Tipe Properti"  value="${properti.id_tipe_properti}" />
-                                    <p>TODO: Selector Pemilik</p>
-                                    <x-form.input-form title="NIK Pemilik" key="nik_pemilik" type="number" placeholder="NIK Pemilik"  value="${properti.nik_pemilik}" />
+                                    <x-search-dropdown title="Tipe Properti" key="id_tipe_properti" parent="#editModal"
+                                            placeholder="Masukkan Tipe Properti" :items="$tipePropertiInstances" value="${properti.tipe_properti.nama_tipe}">
+                                    </x-search-dropdown>
+                                    <x-search-dropdown title="Nama Pemilik" key="nik_pemilik" parent="#editModal"
+                                            placeholder="Masukkan Nama Properti" :items="$nikPemilikInstances" value="${properti.pemilik.nama_depan} ${properti.pemilik.nama_belakang}"></x-search-dropdown>
+                                    <div class='mt-4'>
+                                    <label for="nik_pemilik"
+                                                class="block text-sm capitalize text-gray-700 dark:text-gray-300">NIK
+                                                Pemilik</label>
+                                    <input id="display-nik_pemilik" placeholder="nik_pemilik" type="text" value=""
+                                                class="mt-2 block w-full rounded-md border border-gray-200 bg-white px-3 py-2 text-gray-600 placeholder-gray-400 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-blue-300 dark:focus:ring-blue-200"
+                                                readonly />
+                                    </div>
                                     <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Alamat"  value="${properti.alamat}" />
                                     <x-form.input-form title="Luas Tanah (m2)" key="luas_tanah" type="text" placeholder="Luas Tanah"  value="${properti.luas_tanah}" />
                                     <x-form.input-form title="Luas Bangunan (m2)" key="luas_bangunan" type="text" placeholder="Luas Bangunan"  value="${properti.luas_bangunan}" />
