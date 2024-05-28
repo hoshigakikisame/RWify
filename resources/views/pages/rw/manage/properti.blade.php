@@ -89,11 +89,12 @@
                                         @csrf
                                         <x-form.input-form title="Nama Properti" key="nama_properti" type="text"
                                             placeholder="Nama Properti" />
-                                        <x-search-dropdown title="Tipe Properti" key="id_tipe_properti"
+                                        <x-form.search-dropdown title="Tipe Properti" key="id_tipe_properti"
                                             parent="#addModalForm" placeholder="Masukkan Tipe Properti"
-                                            :items="$tipePropertiInstances"></x-search-dropdown>
-                                        <x-search-dropdown title="Nama Pemilik" key="nik_pemilik" parent="#addModalForm"
-                                            placeholder="Masukkan Nama Properti" :items="$nikPemilikInstances"></x-search-dropdown>
+                                            :items="$tipePropertiInstances"></x-form.search-dropdown>
+                                        <x-form.search-dropdown title="Nama Pemilik" key="nik_pemilik"
+                                            parent="#addModalForm" placeholder="Masukkan Nama Properti"
+                                            :items="$nikPemilikInstances"></x-form.search-dropdown>
                                         <div class='mt-4'>
                                             <label for="display-nik_pemilik"
                                                 class="block text-sm capitalize text-gray-700 dark:text-gray-300">NIK
@@ -383,11 +384,11 @@
                                     @csrf
                                     <input type="text" name="id_properti" value="${properti.id_properti}" hidden >
                                     <x-form.input-form title="Nama Properti" key="nama_properti" type="text" placeholder="Nama Properti" value="${properti.nama_properti}" />
-                                    <x-search-dropdown title="Tipe Properti" key="id_tipe_properti" parent="#editModal"
+                                    <x-form.search-dropdown title="Tipe Properti" key="id_tipe_properti" parent="#editModal"
                                             placeholder="Masukkan Tipe Properti" :items="$tipePropertiInstances" value="${properti.tipe_properti.nama_tipe}">
-                                    </x-search-dropdown>
-                                    <x-search-dropdown title="Nama Pemilik" key="nik_pemilik" parent="#editModal"
-                                            placeholder="Masukkan Nama Properti" :items="$nikPemilikInstances" value="${properti.pemilik.nama_depan} ${properti.pemilik.nama_belakang}"></x-search-dropdown>
+                                    </x-form.search-dropdown>
+                                    <x-form.search-dropdown title="Nama Pemilik" key="nik_pemilik" parent="#editModal"
+                                            placeholder="Masukkan Nama Properti" :items="$nikPemilikInstances" value="${properti.pemilik.nama_depan} ${properti.pemilik.nama_belakang}"></x-form.search-dropdown>
                                     <div class='mt-4'>
                                     <label for="nik_pemilik"
                                                 class="block text-sm capitalize text-gray-700 dark:text-gray-300">NIK
