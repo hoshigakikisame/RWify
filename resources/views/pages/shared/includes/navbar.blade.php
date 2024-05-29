@@ -8,7 +8,7 @@
     $layanan = [
         ['title' => 'Reservasi Temu', 'href' => route('warga.layanan.reservasiJadwalTemu.newReservasiJadwalTemuPage'), 'desc' => 'Jadwalkan reservasi temu dengan ketua RW/RT', 'icon' => $reservation],
         ['title' => 'Pengaduan', 'href' => route('warga.layanan.pengaduan.newPengaduanPage'), 'desc' => 'Laporkan pengaduan dengan cepat dan responsif', 'icon' => $report],
-        ['title' => 'Pembayaran Iuran', 'href' => '', 'desc' => 'Bayar iuran secara online dengan mudah', 'icon' => $payment],
+        ['title' => 'Pembayaran Iuran', 'href' => route('warga.layanan.pembayaranIuran.newIuranPage'), 'desc' => 'Bayar iuran secara online dengan mudah', 'icon' => $payment],
     ];
     $informasi = [
         ['title' => 'Informasi UMKM', 'href' => route('informasi.umkmPage'), 'desc' => 'Temukan UMKM di lingkungan RW', 'icon' => $umkm],

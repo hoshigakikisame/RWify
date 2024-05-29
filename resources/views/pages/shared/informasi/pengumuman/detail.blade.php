@@ -11,7 +11,7 @@
                     <h1 class="font-Poppins text-4xl font-semibold">{{ $pengumumanInstance->getJudul() }}</h1>
                 </div>
                 <div class="content mx-auto mb-2 max-w-5xl text-center">
-                    <p class="mb-4">{{ $pengumumanInstance->getReadableDibuatPada() }}</p>
+                    <p class="mb-4">{{ $pengumumanInstance->getReadableDiperbaruiPada() }}</p>
                 </div>
                 <div class="mx-auto mb-10 max-w-6xl text-center">
                     <img

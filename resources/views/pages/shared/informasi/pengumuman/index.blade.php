@@ -23,7 +23,7 @@
                     </div>
                     <div class="card-content px-10 py-5">
                         <div class="card-header h-16">
-                            <p class="text-sm font-light">{{ $pengumuman->getDibuatPada() }} </p>
+                            <p class="text-sm font-light">{{ $pengumuman->getReadableDiperbaruiPada() }} </p>
                             <h5 class="text-lg font-semibold pt-2  line-clamp-2">{{ $pengumuman->getJudul() }}</h5>
                         </div>
                         <div class="card-body mb-9 pt-8 h-36">

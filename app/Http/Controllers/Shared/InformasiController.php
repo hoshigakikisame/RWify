@@ -16,11 +16,12 @@ class InformasiController extends Controller
     }
 
     public function pengumumanPage()
-    {
-        $pengumumanInstances = PengumumanModel::all()->sortByDesc('created_at');
+{
+    $pengumumanInstances = PengumumanModel::where('status', 'publish')->orderBy('diperbarui_pada', 'desc')->get();
 
-        return view('pages.shared.informasi.pengumuman.index', compact('pengumumanInstances'));
-    }
+    return view('pages.shared.informasi.pengumuman.index', compact('pengumumanInstances'));
+}
+
 
     public function pengumumanDetailPage(int $idPengumuman)
     {

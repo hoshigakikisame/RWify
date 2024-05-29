@@ -15,31 +15,31 @@
         $layanan = [
             [
                 'title' => 'Reservasi Temu',
-                'href' => '#',
+                'href' => route('warga.layanan.reservasiJadwalTemu.newReservasiJadwalTemuPage'),
                 'desc' => 'Buat janji atau reservasi bertemu dengan ketua RW atau ketua RT untuk mengurus dokumen maupun pertemuan penting lainnya dengan lebih mudah.',
                 'icon' => $reservation,
             ],
             [
                 'title' => 'Pengaduan',
-                'href' => '#',
+                'href' => route('warga.layanan.pengaduan.newPengaduanPage'),
                 'desc' => 'Laporkan masalah terkait infrastruktur, kebersihan, keamanan, atau masalah lainnya dengan detail dan kami akan segera menanganinya.',
                 'icon' => $report,
             ],
             [
                 'title' => 'Pembayaran Iuran',
-                'href' => '#',
+                'href' => route('warga.layanan.pembayaranIuran.newIuranPage'),
                 'desc' => 'Pembayaran iuran RW secara online, mengelola keuangan pribadi dengan lebih baik, dan menghindari keterlambatan pembayaran.',
                 'icon' => $payment,
             ],
             [
                 'title' => 'Informasi UMKM',
-                'href' => '#',
+                'href' =>  route('informasi.umkmPage'),
                 'desc' => 'Temukan informasi kontak, lokasi, dan produk atau layanan yang ditawarkan oleh setiap UMKM di sekitar lingkungan RW.',
                 'icon' => $umkm,
             ],
             [
                 'title' => 'Informasi dan Berita',
-                'href' => '#',
+                'href' => route('informasi.pengumuman.index'),
                 'desc' => 'Dapatkan akses cepat dan terpercaya untuk informasi serta berita penting seputar kegiatan terkini di lingkungan RW.',
                 'icon' => $information,
             ],
