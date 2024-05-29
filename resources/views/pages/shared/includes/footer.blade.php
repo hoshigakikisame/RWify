@@ -11,35 +11,56 @@
             <div class="flex gap-16 px-2 text-sm">
                 <div class="shrink grow-0 text-wrap">
                     <h4 class="mb-2 font-Poppins text-xl font-semibold text-gray-200">Lokasi</h4>
-                    <p class="">
-                        Perumahan Landungsari Asri, Jl. Tirto Utomo, Desa Landungsari, Kecamatan Dau, Kabupaten Malang
-                    </p>
+                    <a href="https://maps.app.goo.gl/XrTjTRXE31fawi9d9" target="_blank" class="hover:text-white">
+                        <p class="">
+                            Perumahan Landungsari Asri, Jl. Tirto Utomo, Desa Landungsari, Kecamatan Dau, Kabupaten Malang
+                        </p>
+                    </a>
                 </div>
                 <div class="grow text-nowrap">
                     <h4 class="mb-2 font-Poppins text-xl font-semibold text-gray-200">Featured Link</h4>
                     <ul class="flex flex-col gap-1">
-                        <li>Desa Landungsari</li>
-                        <li>Kecamatan Dau</li>
-                        <li>Kabupaten Malang</li>
-                        <li>Dispendukcapil Kab. Malang</li>
-                        <li>Humas POLRI Malang</li>
+                        <a href="http://landungsari-malangkab.desa.id/" target="_blank" class="hover:text-white">
+                            <li>Desa Landungsari</li>
+                        </a>
+                        <a href="https://dau.malangkab.go.id/pd/" target="_blank" class="hover:text-white">
+                            <li>Kecamatan Dau</li>
+                        </a>
+                        <a href="https://www.malangkab.go.id/" target="_blank" class="hover:text-white">
+                            <li>Kabupaten Malang</li>
+                        </a>
+                        <a href="https://dispendukcapil.malangkab.go.id/pd/" target="_blank" class="hover:text-white">
+                            <li>Dispendukcapil Kab. Malang</li>
+                        </a>
+                        <a href="https://humaspolresmalang.com/" target="_blank" class="hover:text-white">
+                            <li>Humas Polri Malang</li>
+                        </a>
                     </ul>
                 </div>
                 <div class="grow text-nowrap">
                     <h4 class="mb-2 font-Poppins text-xl font-semibold text-gray-200">Layanan</h4>
                     <ul class="flex flex-col gap-1">
-                        <li>Pembayaran Iuran</li>
-                        <li>Template Dokumen</li>
-                        <li>Reservasi Temu</li>
-                        <li>Pengaduan Warga</li>
-                        <li>Verifikasi Warga</li>
+                        <a href={{ route('warga.layanan.pembayaranIuran.newIuranPage') }} target="_blank" class="hover:text-white">
+                            <li>Pembayaran Iuran</li>
+                        </a>
+                        <a href= {{route('warga.layanan.reservasiJadwalTemu.newReservasiJadwalTemuPage')}} target="_blank" class="hover:text-white">
+                            <li>Reservasi Temu</li>
+                        </a>
+                        <a href= {{route('warga.layanan.pengaduan.newPengaduanPage')}} target="_blank" class="hover:text-white">
+                            <li>Pengaduan Warga</li>
+                        </a>
+                        
                     </ul>
                 </div>
                 <div class="grow text-nowrap">
                     <h4 class="mb-2 font-Poppins text-xl font-semibold text-gray-200">Informasi</h4>
                     <ul class="flex flex-col gap-1">
-                        <li>Berita dan Informasi</li>
-                        <li>UMKM</li>
+                        <a href= {{route('informasi.pengumuman.index')}} target="_blank" class="hover:text-white">
+                            <li>Berita dan Informasi</li>
+                        </a>
+                        <a href= {{route('informasi.umkmPage')}} target="_blank" class="hover:text-white">
+                            <li>Informasi UMKM</li>
+                        </a>
                     </ul>
                 </div>
                 <div class="grow text-nowrap">
@@ -47,7 +68,7 @@
                     <p>Desa Landungsari, Kode Pos 651515</p>
                     <ul class="mt-4 flex flex-col gap-1">
                         <li class="flex">
-                            <a href="https://wa.me/6285259478161" class="flex items-center">
+                            <a href="https://wa.me/6285259478161" target="_blank" class="flex items-center hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" viewBox="0 0 24 24">
                                     <path
                                         fill="currentColor"
@@ -58,7 +79,7 @@
                             </a>
                         </li>
                         <li class="flex">
-                            <a href="" class="flex items-center">
+                            <a href="mailto:rwsatulds@gmail.com" class="flex items-center hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" viewBox="0 0 24 24">
                                     <path
                                         fill="currentColor"
@@ -71,7 +92,7 @@
                             </a>
                         </li>
                         <li class="flex">
-                            <a href="" class="flex items-center">
+                            <a href="https://www.facebook.com/RW01Landungsari" target="_blank" class="flex items-center hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" viewBox="0 0 24 24">
                                     <path
                                         fill="currentColor"
