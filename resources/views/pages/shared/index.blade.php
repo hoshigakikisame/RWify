@@ -4,7 +4,9 @@
 {{-- content --}}
 @section('content')
     @php
-        $image = Vite::asset('resources/assets/images/handTogether.jpg');
+        $image1 = Vite::asset('resources/assets/images/handTogether.jpg');
+        $image2 = Vite::asset('resources/assets/images/image2.jpg');
+        $image3 = Vite::asset('resources/assets/images/image3.jpg');
         $reservation = Vite::asset('resources/assets/images/reservation.png');
         $umkm = Vite::asset('resources/assets/images/store.png');
         $information = Vite::asset('resources/assets/images/loud-speaker.png');
@@ -109,7 +111,7 @@
                     pagination="true"
                     init="false"
                 >
-                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image }}')">
+                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image1 }}')">
                         <div
                             class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
                         >
@@ -124,32 +126,32 @@
                             </div>
                         </div>
                     </swiper-slide>
-                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image }}')">
+                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image2 }}')">
                         <div
-                            class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
+                            class="text-container flex h-full w-full flex-col justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
                         >
-                            <div class="w-3/4 text-wrap xl:max-w-4xl">
-                                <h1 class="text-center font-Poppins text-5xl font-bold text-gray-100">
-                                    RW 01 : Berwibawa, Peduli, Resik, Aman dan Serasi.
+                            <div class="w-full text-wrap xl:max-w-full px-48">
+                                <h1 class="font-Poppins text-5xl font-bold text-gray-100">
+                                    RWify.
                                 </h1>
-                                <h2 class="text-center font-Inter text-xl font-light text-gray-100">
-                                    Selamat Datang di Situs Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten
-                                    Malang, 65151
+                                <h2 class="font-Inter text-xl font-light text-gray-100">
+                                    RWify adalah sebuah platform web yang dirancang khusus untuk membantu dalam administrasi dan manajemen lingkungan RW (Rukun Warga). 
+                                    Platform ini menyediakan berbagai fitur dan alat yang memudahkan pengurus RW dalam mengelola data penduduk, mengatur kegiatan komunitas, 
+                                    menyebarkan informasi penting, serta memfasilitasi komunikasi dan interaksi antara warga dalam lingkungan RW tersebut.
                                 </h2>
                             </div>
                         </div>
                     </swiper-slide>
-                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image }}')">
+                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image3 }}')">
                         <div
                             class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
                         >
                             <div class="w-3/4 text-wrap xl:max-w-4xl">
                                 <h1 class="text-center font-Poppins text-5xl font-bold text-gray-100">
-                                    RW 01 : Berwibawa, Peduli, Resik, Aman dan Serasi.
+                                    RWify: RW 01 Landungsari, Landungsari Asri.
                                 </h1>
                                 <h2 class="text-center font-Inter text-xl font-light text-gray-100">
-                                    Selamat Datang di Situs Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten
-                                    Malang, 65151
+                                    Menghubungkan Hati, Menyatukan Langkah: RWify, Aplikasi Terdepan untuk Manajemen RW yang Terintegrasi!
                                 </h2>
                             </div>
                         </div>

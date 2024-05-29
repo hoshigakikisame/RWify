@@ -144,7 +144,7 @@
                                         scope="col"
                                         class="px-4 py-3.5 text-center text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
                                     >
-                                        <button class="mx-auto flex items-center gap-x-2 dark:fill-gray-400">
+                                        <button class="mx-2 flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Status</span>
                                         </button>
                                     </th>

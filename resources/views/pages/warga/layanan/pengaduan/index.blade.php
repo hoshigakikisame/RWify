@@ -300,8 +300,7 @@
     </script>
     <script>
         function appendImageModal(img_url, judul, event) {
-                const modalImageElement = /html/
-                `
+                const modalImageElement = /*html*/ `
                 <div id="imageModal" x-show="showImage" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                                                     <div x-cloak @click="()=>{showImage = false;deleteModal('#imageModal')}" x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -333,8 +332,7 @@
             }
 
             function appendDeleteModal(id_pengaduan, judul, event) {
-                const modalDeleteElemen = /html/
-                `
+                const modalDeleteElemen = /*html*/ `
                 <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                             <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -374,8 +372,7 @@
             }
 
             function appendUpdateModal(pengaduan, event) {
-                const modalEditElemen = /html/
-                `
+                const modalEditElemen = /*html*/ `
                 <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                             <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -427,101 +424,11 @@
                 // })
             }
 
-            function request(url, selectorParent, selectorForm) {
-                $(selectorParent).ready((e) => {
-                        $(selectorForm).on('submit', function(e) {
-                                e.preventDefault()
-                                $.ajax({
-                                        url: url,
-                                        type: "POST",
-                                        beforeSend: window.Loading.showLoading,
-                                        data: new FormData(this),
-                                        contentType: false,
-                                        processData: false,
-                                        success: function(res) {
-                                            $.ajax({
-                                                url: document.location,
-                                                type: "GET",
-                                                success: function(response) {
-                                                    let parser = new DOMParser();
-                                                    let doc = parser.parseFromString(response,
-                                                        'text/html');
-                                                    $('body').html(doc.body.innerHTML)
-                                                    setTimeout(function() {
-                                                        $.ajax({
-                                                            url: document.location,
-                                                            type: "GET",
-                                                            success: function(
-                                                                response) {
-                                                                let parser =
-                                                                    new DOMParser();
-                                                                let doc = parser
-                                                                    .parseFromString(
-                                                                        response,
-                                                                        'text/html'
-                                                                    );
-                                                                $('body').html(
-                                                                    doc.body
-                                                                    .innerHTML
-                                                                )
-                                                            }
-                                                        })
-                                                    }, 5000)
-                                                }
-                                            })
 
-
-                                        },
-                                        error: function(res) {
-                                            $.each(res.responseJSON.errors, (key, value) => {
-                                                    value.forEach(element => {
-                                                            $(e.currentTarget).find('#' + key).siblings(
-                                                                '#error').append( <
-                                                                li > $ {
-                                                                    element
-                                                                } < /li>)
-                                                            });
-
-                                                        setTimeout(element => {
-                                                            $(e.currentTarget).find('#' + key).siblings(
-                                                                '#error').fadeOut("slow", () => {
-                                                                $(e.currentTarget).find('#' +
-                                                                        key).siblings('#error')
-                                                                    .empty()
-                                                            })
-                                                        }, 8000)
-                                                    })
-
-                                            }
-                                        })
-
-
-                                })
-                        })
-                }
-
-
-                function deleteModal(selector) {
-                    $(selector).ready(() => {
-                        $(selector).remove()
-                    })
-                }
-
-
-                function searchRequest(query, event) {
-                    let url = document.location
-                    url = url.origin + url.pathname + "?q=" + query
-
-                    $.ajax({
-                        url: url,
-                        beforeSend: window.Loading.showLoading,
-                        success: function(res) {
-                            let parser = new DOMParser();
-                            let doc = parser.parseFromString(res, 'text/html');
-                            $('body').html(doc.body.innerHTML)
-                            window.history.pushState({}, "", url);
-                        }
-                    })
-                }
+            function deleteModal(selector) {
+                $(selector).ready(() => {
+                    $(selector).remove()
+                })
+            }
     </script>
 @endpush
