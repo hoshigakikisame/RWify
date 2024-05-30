@@ -1,128 +1,78 @@
-@extends(request()->user()->getSidebarView())
+{{-- extend to layouts/app --}}
+@extends('layouts.sidebar.warga-sidebar')
+
+{{-- content --}}
 @section('content')
-    <section class="container mb-20 ms-10 mt-7">
-        <div class="header mb-5 border-b pb-5">
-            <h1 class="text-2xl font-medium text-gray-950 dark:text-gray-100">Bayar Iuran</h1>
+    <section class="container pb-20 px-10 mt-7">
+        <div class="header mb-5 border-b pb-5 w-full">
+            <h1 class="text-lg font-medium text-gray-950 dark:text-gray-100">Pembayaran Iuran</h1>
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                Kirim Pembayaran Iuran Anda Melalui Form Berikut
+                Lakukan Pembayaran Iuran Secara Online Melalui Halaman Ini
             </p>
         </div>
-        <div class="header container mb-5 pb-5">
-            <h1 class="text-xl font-medium text-gray-950 dark:text-gray-100">Metode Pembayaran</h1>
-            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Pembayaran Secara Transfer Bisa Melalui</p>
-            <div class="grid grid-flow-row-dense grid-cols-3 gap-10 pt-5">
-                <div
-                    class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700"
-                >
+
+        <div class="header mb-2">
+            <h4 class="text-md text-gray-950 dark:text-gray-100">Metode Pembayaran Iuran</h4>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                Pembayaran Secara Transfer Bisa Melalui
+            </p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row pb-4 pt-2 w-full justify-between">
+            <div class="mr-0 lg:mr-4 mb-4">
+                <div class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
                     <div class="col-span-1">
                         <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
                     </div>
-                    <div class="rows-2 col-span-1">
+                    <div class="col-span-1">
                         <p class="font-medium dark:text-gray-100">RW Satu Landungsari</p>
                         <p class="font-bold dark:text-gray-100">081234567812</p>
                     </div>
                 </div>
-                <div
-                    class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700"
-                >
+            </div>
+            <div class="mr-0 lg:mr-4 mb-4">
+                <div class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
                     <div class="col-span-1">
                         <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
                     </div>
-                    <div class="rows-2 col-span-1">
+                    <div class="col-span-1">
                         <p class="font-medium dark:text-gray-100">RW Satu Landungsari</p>
                         <p class="font-bold dark:text-gray-100">081234567812</p>
                     </div>
                 </div>
-                <div
-                    class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700"
-                >
+            </div>
+            <div class="">
+                <div class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
                     <div class="col-span-1">
                         <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
                     </div>
-                    <div class="rows-2 col-span-1">
+                    <div class="col-span-1">
                         <p class="font-medium dark:text-gray-100">RW Satu Landungsari</p>
                         <p class="font-bold dark:text-gray-100">081234567812</p>
                     </div>
                 </div>
             </div>
         </div>
+        
         <div class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-gray-800/50">
             <form
                 action="{{ route('warga.layanan.pembayaranIuran.new') }}"
                 method="POST"
+                onsubmit='window.Loading.showLoading()'
                 enctype="multipart/form-data"
             >
                 @csrf
 
                 <div class="">
                     <div class="form-header col-span-3 mb-6 mt-2">
-                        <h1 class="text-xl font-medium dark:text-gray-100">Form Pembayaran Iuran</h1>
-                        <p class="text-l mt-1 text-gray-500 dark:text-gray-400">
+                        <h1 class="font-medium dark:text-gray-100">Form Pembayaran Iuran</h1>
+                        <p class="text-sm mt-1 text-gray-500 dark:text-gray-400">
                             Berikan pengaduan yang lengkap dengan deskripsi yang jelas
                         </p>
                     </div>
 
                     <div class="form-body grid grid-flow-row-dense grid-cols-5 gap-10">
-                        <div class="col-span-2 row-span-1 mt-4">
-                            <div class="container">
-                                <h1 class="font-semi-bold text-xl dark:text-gray-100">Total Bulanan</h1>
-                                <div class="mt-4">
-                                    <div class="border-b-2">
-                                        @foreach ($ownedPropertiInstances as $properti)
-                                            <div class="mt-2 grid grid-cols-3 grid-rows-2">
-                                                <div class="col-span-2 row-span-2">
-                                                    <p class="text-md mb-2">{{ $properti->getNamaProperti() }}</p>
-                                                    <p class="mb-2 text-sm text-gray-500">
-                                                        {{ $properti->getTipeProperti()->getNamaTipe() }}
-                                                    </p>
-                                                </div>
-                                                <div
-                                                    class="col-span-1 row-span-2 inline-flex items-center justify-end text-right"
-                                                >
-                                                    <p class="font-semi-bold mb-2 align-middle text-xl">
-                                                        {{ \Illuminate\Support\Number::currency($properti->getTipeProperti()->getIuranPerBulan(), 'IDR') }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="mt-2 grid grid-cols-3 grid-rows-1">
-                                    <div class="col-span-2 row-span-1">
-                                        <p class="mb-2 text-lg">Total</p>
-                                    </div>
-                                    <div class="col-span-1 row-span-1 inline-flex items-center justify-end text-right">
-                                        <p class="font-semi-bold mb-2 align-middle text-xl">
-                                            {{ \Illuminate\Support\Number::currency($monthlyTotal, 'IDR') }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="container mt-10">
-                                <h1 class="font-semi-bold text-xl dark:text-gray-100">Total Tunggak Iuran</h1>
-                                <div class="mt-4">
-                                    <div class="container">
-                                        <div class="mt-2 grid grid-cols-3 grid-rows-2">
-                                            <div class="col-span-2 row-span-2">
-                                                <p class="font-semi-bold mb-2 text-lg text-gray-500">
-                                                    {{ $oldestMonthDiff }} Bulan
-                                                </p>
-                                            </div>
-                                            <div
-                                                class="col-span-1 row-span-2 inline-flex items-center justify-end text-right"
-                                            >
-                                                <p class="font-semi-bold mb-2 align-middle text-xl">
-                                                    {{ \Illuminate\Support\Number::currency($totalUnpaidDueMonths, 'IDR') }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-span-3 mt-4" x-ref="wrap" x-data="{ fileName: '' }">
+                        <div class="col-span-3" x-ref="wrap" x-data="{ fileName: '' }">
                             <x-form.input-form
                                 title="NIK"
                                 key="nik_pembayar"
@@ -134,9 +84,9 @@
                             <x-form.textarea-input-form
                                 title="Keterangan"
                                 key="keterangan"
-                                placeholder="Tambahkan keterangan bulan apa saja yang dibayarkan"
+                                placeholder="Tambahkan Keterangan Bulan Apa Saja yang Dibayarkan    "
                                 value=""
-                                rows="11"
+                                rows="7 "
                                 resize="none"
                             />
                             <div class="mt-4">
@@ -186,7 +136,7 @@
                                             x-ref="imgPreviewWrapper"
                                         ></div>
                                         <div
-                                            class="flex h-full w-full flex-col items-center justify-center text-center"
+                                            class="flex p-4 h-full w-full flex-col items-center justify-center text-center"
                                             x-ref="desc"
                                         >
                                             <svg
@@ -206,8 +156,8 @@
                                             </svg>
                                             {{-- $refs.imgPreview.setAttribute('src', event.target.result); --}}
                                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                                <span class="font-semibold">Click to upload</span>
-                                                or drag and drop
+                                                <span class="font-semibold">Click to Upload</span>
+                                                or Drag and Drop
                                             </p>
                                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                             <p class="mt-2 text-gray-900" x-text="fileName.name"></p>
@@ -215,13 +165,75 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-start-2 row-span-1 inline-flex w-full justify-end">
+                            <div class="mt-5 flex justify-end">
                                 <button
                                     type="submit"
-                                    class="text-md col-span-1 row-span-1 mt-4 transform rounded-md bg-blue-500 px-5 py-2 text-xs font-semibold uppercase capitalize tracking-widest text-white ring-2 transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700"
+                                    class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700"
                                 >
-                                    KIRIM
+                                    Kirim Pembayaran
                                 </button>
+                            </div> 
+                        </div>
+
+                        
+                        <div class="col-span-2 row-span-1 mt-4">
+                            <div class="rounded-lg border p-6">
+                                <div class="container">
+                                    <h1 class="font-bold font-poppins text-md dark:text-gray-100">Total Pembayaran Bulanan</h1>
+                                    <div class="mt-4">
+                                        <div class="border-b-2 dark:text-gray-100">
+                                            @foreach ($ownedPropertiInstances as $properti)
+                                                <div class="mt-2 grid grid-cols-3 grid-rows-2">
+                                                    <div class="col-span-2 row-span-2">
+                                                        <p class="text-md mb-2">{{ $properti->getNamaProperti() }}</p>
+                                                        <p class="mb-2 text-sm text-gray-500">
+                                                            {{ $properti->getTipeProperti()->getNamaTipe() }}
+                                                        </p>
+                                                    </div>
+                                                    <div
+                                                        class="col-span-1 row-span-2 inline-flex items-center justify-end text-right"
+                                                    >
+                                                        <p class="font-semi-bold font-poppins mb-2 items-center align-middle text-md dark:text-gray-100">
+                                                            {{ \Illuminate\Support\Number::currency($properti->getTipeProperti()->getIuranPerBulan(), 'IDR') }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 grid grid-cols-3 grid-rows-1 dark:text-gray-100">
+                                        <div class="col-span-2 row-span-1">
+                                            <p class="mb-2 font-poppins text-lg">Total</p>
+                                        </div>
+                                        <div class="col-span-1 row-span-1 inline-flex items-center justify-end text-right">
+                                            <p class="font-semi-bold mb-2 align-middle text-md ">
+                                                {{ \Illuminate\Support\Number::currency($monthlyTotal, 'IDR') }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="container mt-10">
+                                    <h1 class="font-bold text-md dark:text-gray-100">Total Tunggak Iuran</h1>
+                                    <div class="mt-4">
+                                        <div class="container">
+                                            <div class="mt-2 grid grid-cols-3 grid-rows-2">
+                                                <div class="col-span-2 row-span-2">
+                                                    <p class="font-semi-bold mb-2 text-md text-gray-500">
+                                                        {{ $oldestMonthDiff }} Bulan
+                                                    </p>
+                                                </div>
+                                                <div
+                                                    class="col-span-1 row-span-2 inline-flex items-center justify-end text-right"
+                                                >
+                                                    <p class="font-semi-bold mb-2 align-middle text-md dark:text-gray-100">
+                                                        {{ \Illuminate\Support\Number::currency($totalUnpaidDueMonths, 'IDR') }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -230,3 +242,4 @@
         </div>
     </section>
 @endsection
+

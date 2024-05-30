@@ -48,6 +48,11 @@ class PembayaranIuranModel extends Model
         return $this->nik_pembayar;
     }
 
+    public function getNamaPembayar(): string
+    {
+        return $this->user->nama_depan . ' ' . $this->user->nama_belakang;
+    }
+
     public function getTanggalBayar(): string
     {
         return $this->tanggal_bayar;
