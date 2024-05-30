@@ -133,11 +133,14 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     }
 
     // relationships
-    public function rukunTetangga()
-    {
-        return $this->belongsTo(RukunTetanggaModel::class, 'id_rukun_warga');
-    }
+    // public function rukunTetangga()
+    // {
+    //     return $this->belongsTo(RukunTetanggaModel::class, 'id_rukun_warga');
+    // }
 
+    public function kartuKeluarga() {
+        return $this->belongsTo(KartuKeluargaModel::class, 'nkk', 'nkk');
+    }
 
     // search
     public function scopeSearch($query, $search)

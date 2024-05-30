@@ -25,7 +25,7 @@ class UserModelFactory extends Factory
     {
         return [
             'nik' => $this->faker->unique()->regexify('[1-9]{16}'),
-            'nkk' => $this->faker->regexify('[1-9]{16}'),
+            // 'nkk' => $this->faker->regexify('[1-9]{16}'),
             'image_url' => $this->faker->imageUrl(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt(env('SEED_DEFAULT_USER_PASSWORD')),

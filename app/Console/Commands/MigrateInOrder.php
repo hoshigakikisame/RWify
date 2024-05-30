@@ -5,8 +5,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-use function Pest\Laravel\artisan;
-
 class MigrateInOrder extends Command
 {
     /**
@@ -34,9 +32,15 @@ class MigrateInOrder extends Command
 
             // custom migrations
             'tb_user/2024_03_15_151817_create_tb_user.php',
+            
             'tb_rukun_warga/2024_03_15_145807_create_tb_rukun_warga.php',
+
             'tb_rukun_tetangga/2024_03_15_151505_create_tb_rukun_tetangga.php',
-            'tb_user/2024_03_16_122638_create_tb_user_to_tb_rukun_tetangga_relation.php',
+            // 'tb_user/2024_03_16_122638_create_tb_user_to_tb_rukun_tetangga_relation.php',
+
+            'tb_kartu_keluarga/2024_05_30_160712_create_tb_kartu_keluarga.php',
+            'tb_user/2024_05_30_163240_tb_user_to_tb_kartu_keluarga_relation.php',
+
             'tb_pembayaran_iuran/2024_03_15_153146_create_tb_pembayaran_iuran.php',
             'tb_iuran/2024_03_15_153450_create_tb_iuran.php',
             'tb_pengumuman/2024_03_15_153925_create_tb_pengumuman.php',

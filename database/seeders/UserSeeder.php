@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\User\UserRoleEnum;
+use App\Models\KartuKeluargaModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -28,6 +29,11 @@ class UserSeeder extends Seeder
         $rukunTetanggaInstances = RukunTetanggaModel::factory()->state(
             ['id_rukun_warga' => $rukunWargaInstance->getIdRukunWarga()]
         )->count(3)->create()->all();
+        // spliting the process to avoid '0' nkk bug
+        KartuKeluargaModel::factory()->state(
+            ['id_rukun_tetangga' => $rukunTetanggaInstances[rand(0, count($rukunTetanggaInstances) - 1)]->getIdRukunTetangga()] 
+        )->count(20)->create();
+        $kartuKeluargaInstances = KartuKeluargaModel::all();
 
         // preserved instances
         // permanent rw test account instance
@@ -38,7 +44,7 @@ class UserSeeder extends Seeder
                 'nama_depan' => 'Egar',
                 'nama_belakang' => 'Sayogo 🤙',
                 'image_url' => 'https://res.cloudinary.com/deg2r9cnr/image/upload/v1716194703/ky4wz6pvpjfvxetqhne1.jpg',
-                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+                'nkk' => $kartuKeluargaInstances[0]->getNkk()
             ]
         )->create()->first();
 
@@ -47,7 +53,8 @@ class UserSeeder extends Seeder
             [
                 'email' => 'daffayudisa09@gmail.com',
                 'role' => 'Ketua Rukun Warga',
-                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
+                'nkk' => $kartuKeluargaInstances[0]->getNkk()
             ]
         )->create()->first();
 
@@ -55,7 +62,8 @@ class UserSeeder extends Seeder
             [
                 'email' => 'thoriqfathurrozi@gmail.com',
                 'role' => 'Ketua Rukun Warga',
-                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
+                'nkk' => $kartuKeluargaInstances[1]->getNkk()
             ]
         )->create()->first();
 
@@ -64,7 +72,8 @@ class UserSeeder extends Seeder
             [
                 'email' => 'niaoktav119+rt@gmail.com',
                 'role' => 'Ketua Rukun Tetangga',
-                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
+                'nkk' => $kartuKeluargaInstances[2]->getNkk()
             ]
         )->create()->first();
 
@@ -73,7 +82,8 @@ class UserSeeder extends Seeder
             [
                 'email' => 'niaoktav119+warga@gmail.com',
                 'role' => 'Warga',
-                'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga()
+                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
+                'nkk' => $kartuKeluargaInstances[2]->getNkk()
             ]
         )->create();
 
@@ -83,7 +93,10 @@ class UserSeeder extends Seeder
 
         // ketua rukun tetangga instances
         UserModel::factory()->count(3)->state(
-            ['role' => UserRoleEnum::KETUA_RUKUN_TETANGGA->value]
+            [
+                'role' => UserRoleEnum::KETUA_RUKUN_TETANGGA->value,
+                'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk()
+            ]
         )->create();
 
         // attach ketua rukun tetangga to rukun tetangga
@@ -98,12 +111,14 @@ class UserSeeder extends Seeder
         $rukunTetanggaInstances[1]->save();
         
         // warga
-        UserModel::factory()->count(30)->create();
-        $wargaInstances = UserModel::where('role', 'Warga')->get();
+        UserModel::factory()->count(30)->state([
+            'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk()
+        ])->create();
+        // $wargaInstances = UserModel::where('role', 'Warga')->get();
         // attach warga to rukun tetangga
-        for ($i = 0; $i < count($wargaInstances); $i++) {
-            $wargaInstances[$i]->setIdRukunTetangga($rukunTetanggaInstances[$i % 3]->id_rukun_tetangga);
-            $wargaInstances[$i]->save();
-        }
+        // for ($i = 0; $i < count($wargaInstances); $i++) {
+        //     $wargaInstances[$i]->setIdRukunTetangga($rukunTetanggaInstances[$i % 3]->id_rukun_tetangga);
+        //     $wargaInstances[$i]->save();
+        // }
     }
 }
