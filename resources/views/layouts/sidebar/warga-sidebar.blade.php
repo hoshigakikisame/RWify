@@ -21,7 +21,7 @@
     @php
         $activeStyle = ['default' => 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg px-3 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 lg:justify-normal', 'active' => 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg rounded-lg bg-gray-100 fill-blue-600 px-3 py-2 text-blue-600 dark:bg-gray-800 dark:fill-blue-400 dark:text-blue-300 dark:hover:bg-gray-800 lg:justify-normal'];
 
-        $activeDropIuran = request()->routeIs(['rw.dashboard']);
+        $activeDropIuran = request()->routeIs(['warga.layanan.pembayaranIuran.riwayatPembayaranIuran', 'warga.layanan.pembayaranIuran.newIuranPage', 'warga.layanan.pembayaranIuran.leaderboard']);
         $activeDropPengaduan = request()->routeIs(['warga.layanan.pengaduan.index', 'warga.layanan.pengaduan.newPengaduanPage']);
         $activeDropReservasi = request()->routeIs(['warga.layanan.reservasiJadwalTemu.index', 'warga.layanan.reservasiJadwalTemu.newReservasiJadwalTemuPage']);
     @endphp
@@ -94,9 +94,9 @@
                 </svg>
             </x-sidebar.sidebar-item>
             <x-sidebar.sidebar-item
-                href="{{ route('warga.layanan.pembayaranIuran.new') }}"
+                href="{{ route('warga.layanan.pembayaranIuran.newIuranPage') }}"
                 title="Bayar Iuran"
-                :active="request()->routeIs(['warga.layanan.pembayaranIuran.new'])"
+                :active="request()->routeIs(['warga.layanan.pembayaranIuran.newIuranPage'])"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

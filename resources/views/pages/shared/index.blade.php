@@ -5,7 +5,7 @@
 @section('content')
     @php
         $image1 = Vite::asset('resources/assets/images/handTogether.jpg');
-        $image2 = Vite::asset('resources/assets/images/image2.jpg');
+        $image4 = Vite::asset('resources/assets/images/image4.jpg');
         $image3 = Vite::asset('resources/assets/images/image3.jpg');
         $reservation = Vite::asset('resources/assets/images/reservation.png');
         $umkm = Vite::asset('resources/assets/images/store.png');
@@ -110,6 +110,9 @@
                     loop="true"
                     pagination="true"
                     init="false"
+                    effect="fade"
+                    autoplay
+                    autoplay-delay="7000"
                 >
                     <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image1 }}')">
                         <div
@@ -126,7 +129,7 @@
                             </div>
                         </div>
                     </swiper-slide>
-                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image2 }}')">
+                    <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image4 }}')">
                         <div
                             class="text-container flex h-full w-full flex-col justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
                         >
