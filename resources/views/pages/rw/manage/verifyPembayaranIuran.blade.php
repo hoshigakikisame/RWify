@@ -81,15 +81,41 @@
                         jumlah hasil pembayaran yang diterima 20 data
                     </p>
                 </div>
-                <div class="body-search">
-                    <div class="card">
-                        <div class="header">
-                            <h1>Thoriq Fathurrozi</h1>
-                            <h2>729302938209823029</h2>
-                            <p>Pembayaran iuran untuk bulan januari sampai dengan februari</p>
-                        </div>
-                        <div class="body">
+                <div class="body-search mt-5">
+                    <div class="card bg-gray-50 pt-4 rounded-lg overflow-hidden">
+                        <div class="flex py-2 border-b px-5 gap-3">
+                            <div class="header pb-5 pt-2 grow flex gap-2">
+                                <div class="bg-gray-200 rounded-lg overflow-hidden w-36 h-36">
+                                    <div class="bg-indigo-100 w-full h-full">
+                                    </div>
+                                </div>
+                                <div class="text w-full h-full">
+                                    <h1 class="text-xl mb-0.5 font-Poppins">Thoriq Fathurrozi</h1>
+                                    <h2 class="text-xs text-gray-600 mb-2">729302938209823029</h2>
+                                    <div class="container-status w-fit ">
+                                        @for ($j = 1; $j <= 3; $j++)
+                                            <div class="flex justify-around items-center gap-1">
+                                                <h6 class="text-xs me-2">{{ $j + 2021 }}</h6>
+                                                @for ($i = 1; $i <= 12; $i++)
+                                                    <div class="w-3 h-3 rounded-sm bg-indigo-300"></div>
+                                                @endfor
+                                            </div>
+                                        @endfor
+                                        <h6 class="text-xs text-center mt-2">Months</h6>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                        <div class="body px-5 py-2 bg-gray-100/80" x-data="{ isDetailOpen: false }">
+                            <div x-show="isDetailOpen" class="detailBody">
+                                <h1>hello</h1>
+                            </div>
+                            <div class="trigger">
+                                <button @click="isDetailOpen = !isDetailOpen">
+                                    <h6 class="text-xs">Detail Pembayaran</h6>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
