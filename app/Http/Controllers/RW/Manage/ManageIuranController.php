@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\RW\Manage;
 
+// illuminate
+use \Illuminate\Database\Eloquent\Builder;
+
 // App
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\IuranModel;
 use App\Models\PembayaranIuranModel;
 use App\Models\UserModel;
+
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -49,8 +53,19 @@ class ManageIuranController extends Controller
             $query,
             $paginate,
             ['user' => UserModel::class],
-            $filters
+            $filters,
+            function (Builder $queryBuilder) use ($filters) {
+                $iuranIds = IuranModel::all()->pluck('id_pembayaran_iuran')->toArray();
+                if (array_key_exists('status', $filters)) {
+                    if (request()->filters['status'] == 'verified') {
+                        $queryBuilder->whereIn('id_pembayaran_iuran', $iuranIds);
+                    } else if (request()->filters['status'] == 'unverified') {
+                        $queryBuilder->whereNotIn('id_pembayaran_iuran', $iuranIds);
+                    }
+                }
+            }
         );
+
         $count = PembayaranIuranModel::count();
 
         $data = [

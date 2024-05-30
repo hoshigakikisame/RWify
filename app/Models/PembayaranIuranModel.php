@@ -23,7 +23,7 @@ class PembayaranIuranModel extends Model
         'keterangan',
         'dibuat_pada',
         'diperbarui_pada',
-    ];
+    ]; 
 
     public static $searchable = [
         'nik_pembayar',
@@ -35,6 +35,11 @@ class PembayaranIuranModel extends Model
     public function user()
     {
         return $this->belongsTo(UserModel::class, 'nik_pembayar', 'nik');
+    }
+
+    public function iuran()
+    {
+        return $this->hasMany(IuranModel::class, 'id_pembayaran_iuran', 'id_pembayaran_iuran');
     }
 
     // GETTERS
@@ -71,6 +76,11 @@ class PembayaranIuranModel extends Model
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function getVerifiedCount(): int
+    {
+        return IuranModel::where('id_pembayaran_iuran', $this->id_pembayaran_iuran)->count();
     }
 
     // SETTERS

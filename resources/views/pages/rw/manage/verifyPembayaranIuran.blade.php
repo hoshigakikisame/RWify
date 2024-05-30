@@ -34,23 +34,23 @@
                     <div class="grid grid-cols-9 gap-2 text-gray-400">
                         <label for="search" class="text-xs font-Poppins font-medium col-span-3">Search</label>
                         <label for="status" class="text-xs font-Poppins font-medium col-span-2">Status</label>
-                        <label for="date" class="text-xs font-Poppins font-medium col-span-2">Date</label>
+                        <label for="tanggal_bayar" class="text-xs font-Poppins font-medium col-span-2">Date</label>
                     </div>
                     <div class="grid grid-cols-9 divide-x mt-2 divide-gray-300 dark:divide-gray-500">
                         <input id="search" type="text"
                             class="border-t border-b border-e-0 border-s border-gray-300 dark:border-gray-500 dark:bg-gray-800 rounded-s-md focus:outline-none focus:ring-0 col-span-3 dark:text-gray-300 dark:placeholder-gray-300"
                             placeholder="Search" />
-                        <select name="" id="status"
+                        <select name="status" id="status"
                             class="border focus:outline-none dark:bg-gray-800 dark:text-gray-300 focus:ring-0 col-span-2"
                             aria-placeholder="Status">
                             <option value="">All</option>
-                            <option value="">Terverifikasi</option>
-                            <option value="">Belum Terverifikasi</option>
+                            <option value="verified">Terverifikasi</option>
+                            <option value="unverified">Belum Terverifikasi</option>
                         </select>
-                        <input id="date" type="date"
+                        <input id="tanggal_bayar" type="date"
                             class="border focus:outline-none dark:bg-gray-800 dark:text-gray-300 focus:ring-0 col-span-2"
                             placeholder="Date" />
-                        <button
+                        <button onclick="applyFilter()"
                             class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto fill-white">
                             <div class="w-4 h-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 513.749 513.749" xml:space="preserve">
@@ -78,48 +78,84 @@
                         List Verifikasi Pembayaran
                     </h1>
                     <p class="text-xs mt-1 text-gray-500 dark:text-gray-30">
-                        jumlah hasil pembayaran yang diterima 20 data
+                        jumlah hasil pembayaran yang diterima {{ count($pembayaranIuranInstances) }} data
                     </p>
                 </div>
                 <div class="body-search mt-5">
-                    <div class="card bg-gray-50 pt-4 rounded-lg overflow-hidden">
-                        <div class="flex py-2 border-b px-5 gap-3">
-                            <div class="header pb-5 pt-2 grow flex gap-2">
-                                <div class="bg-gray-200 rounded-lg overflow-hidden w-36 h-36">
-                                    <div class="bg-indigo-100 w-full h-full">
+                    @foreach ($pembayaranIuranInstances as $pembayaranIuran)
+                        <div class="card bg-gray-50 pt-4 rounded-lg overflow-hidden">
+                            <div class="flex py-2 border-b px-5 gap-3">
+                                <div class="header pb-5 pt-2 grow flex gap-2">
+                                    <div class="bg-gray-200 rounded-lg overflow-hidden w-36 h-36">
+                                        <div class="bg-indigo-100 w-full h-full">
+                                        </div>
+                                    </div>
+                                    <div class="text w-full h-full">
+                                        <h1 class="text-xl mb-0.5 font-Poppins">
+                                            {{ $pembayaranIuran->getUser()->getNamaLengkap() }}</h1>
+                                        <h2 class="text-xs text-gray-600 mb-2">{{ $pembayaranIuran->getUser()->getNik() }}
+                                        <h2 class="text-xs text-gray-600 mb-2">Verified Count: {{ $pembayaranIuran->getVerifiedCount() }}
+                                        </h2>
                                     </div>
                                 </div>
-                                <div class="text w-full h-full">
-                                    <h1 class="text-xl mb-0.5 font-Poppins">Thoriq Fathurrozi</h1>
-                                    <h2 class="text-xs text-gray-600 mb-2">729302938209823029</h2>
-                                    <div class="container-status w-fit ">
-                                        @for ($j = 1; $j <= 3; $j++)
-                                            <div class="flex justify-around items-center gap-1">
-                                                <h6 class="text-xs me-2">{{ $j + 2021 }}</h6>
-                                                @for ($i = 1; $i <= 12; $i++)
-                                                    <div class="w-3 h-3 rounded-sm bg-indigo-300"></div>
-                                                @endfor
-                                            </div>
-                                        @endfor
-                                        <h6 class="text-xs text-center mt-2">Months</h6>
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
-                        <div class="body px-5 py-2 bg-gray-100/80" x-data="{ isDetailOpen: false }">
-                            <div x-show="isDetailOpen" class="detailBody">
-                                <h1>hello</h1>
                             </div>
-                            <div class="trigger">
-                                <button @click="isDetailOpen = !isDetailOpen">
-                                    <h6 class="text-xs">Detail Pembayaran</h6>
-                                </button>
+                            <div class="body px-5 py-2 bg-gray-100/80" x-data="{ isDetailOpen: false }">
+                                <div x-show="isDetailOpen" class="detailBody">
+                                    <h1>hello</h1>
+                                </div>
+                                <div class="trigger">
+                                    <button @click="isDetailOpen = !isDetailOpen">
+                                        <h6 class="text-xs">Detail Pembayaran</h6>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </section>
+
+    @push('scripts')
+        <script type="module">
+            $(document).ready(() => {
+                var searchParams = new URLSearchParams(window.location.search);
+                let search = searchParams.get('q');
+                let status = searchParams.get('filters[status]');
+                let tanggalBayar = searchParams.get('filters[tanggal_bayar]');
+
+                $('#search').val(search);
+                $('#status').val(status);
+                $('#tanggal_bayar').val(tanggalBayar);
+            });
+        </script>
+
+        <script>
+            function applyFilter() {
+                let search = document.getElementById('search').value;
+                let status = document.getElementById('status').value;
+                let tanggalBayar = document.getElementById('tanggal_bayar').value;
+
+                var searchParams = new URLSearchParams(window.location.search);
+                if (searchParams.has('page')) searchParams.set('page', 1);
+                searchParams.set('q', search);
+                searchParams.set('filters[status]', status);
+                searchParams.set('filters[tanggal_bayar]', tanggalBayar);
+
+                let url = `${document.location.origin}${document.location.pathname}?${searchParams.toString()}`;
+
+                $.ajax({
+                    url: url,
+                    beforeSend: window.Loading.showLoading,
+                    success: function(res) {
+                        let parser = new DOMParser();
+                        let doc = parser.parseFromString(res, 'text/html');
+                        $('body').html(doc.body.innerHTML);
+                        window.history.pushState({}, '', url);
+                    },
+                });
+            }
+        </script>
+    @endpush
 @endsection
