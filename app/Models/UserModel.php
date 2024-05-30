@@ -10,8 +10,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\RukunTetanggaModel;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class UserModel extends Authenticatable implements MustVerifyEmail
+class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompatible
 {
     use HasFactory, Notifiable, HasTimeStamp;
     protected $table = 'tb_user';
@@ -40,20 +41,35 @@ class UserModel extends Authenticatable implements MustVerifyEmail
         'diperbarui_pada',
     ];
 
-    public static $searchable = [
-        'nik',
-        'nkk',
-        'email',
-        'nama_depan',
-        'nama_belakang',
-        'tempat_lahir',
-        'agama',
-        'status_perkawinan',
-        'pekerjaan',
-        'role',
-        'jenis_kelamin',
-        'golongan_darah'
-    ];
+    public static function searchable(): array
+    {
+        return [
+            'nik',
+            'nkk',
+            'email',
+            'nama_depan',
+            'nama_belakang',
+            'tempat_lahir',
+            'agama',
+            'status_perkawinan',
+            'pekerjaan',
+            'role',
+            'jenis_kelamin',
+            'golongan_darah'
+        ];
+    }
+
+    public static function filterable(): array
+    {
+        return [
+            'role',
+            'jenis_kelamin',
+            'agama',
+            'status_perkawinan',
+            'golongan_darah',
+            'id_rukun_tetangga'
+        ];
+    }
 
     // options statics
     public static function getGolonganDarahOption()

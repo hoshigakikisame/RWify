@@ -5,18 +5,19 @@ namespace App\Decorators;
 use \Illuminate\Pagination\LengthAwarePaginator;
 
 use App\Decorators\Decorator;
+use App\Interfaces\SearchCompatible;
 use \Illuminate\Database\Eloquent\Builder;
 
 class SearchableDecorator extends Decorator
 {
-    public $searchable;
+    public $model;
+
     public function __construct($model)
     {
         parent::__construct($model);
 
-        // assert "searchable"
-        assert(property_exists($model, 'searchable'), 'Model must have searchable property');
-        $this->searchable = $model::$searchable;
+        // make sure model implements SearchCompatible interface
+        assert(in_array(SearchCompatible::class, class_implements($model)), 'Model must implement SearchCompatible interface');
     }
 
     /**
@@ -32,20 +33,22 @@ class SearchableDecorator extends Decorator
                 if ($value == null || empty ($value))
                     continue;
 
-                if (!in_array($field, $this->model::$searchable))
+                if (!in_array($field, $this->model::filterable())) {
+                    if (config('app.env') == 'local') throw new \Exception("Field $field is not filterable");
                     continue;
+                }
 
                 $queryBuilder->where($field, $value);
             }
         })->where(function (Builder $queryBuilder) use ($relations, $query) {
 
             foreach ($relations as $relation => $model) {
-                foreach ($model::$searchable as $field) {
+                foreach ($model::searchable() as $field) {
                     $queryBuilder->orWhereRelation($relation, $field, 'LIKE', "%$query%");
                 }
             }
 
-            foreach ($this->searchable as $field) {
+            foreach ($this->model::searchable() as $field) {
                 $queryBuilder->orWhere($field, 'LIKE', "%$query%");
             }
 

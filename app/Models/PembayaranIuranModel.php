@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class PembayaranIuranModel extends Model
+class PembayaranIuranModel extends Model implements SearchCompatible
 {
 
     use HasFactory, HasTimeStamp;
@@ -23,13 +24,24 @@ class PembayaranIuranModel extends Model
         'keterangan',
         'dibuat_pada',
         'diperbarui_pada',
-    ]; 
-
-    public static $searchable = [
-        'nik_pembayar',
-        'tanggal_bayar',
-        'keterangan',
     ];
+
+    public static function searchable(): array
+    {
+        return [
+            'nik_pembayar',
+            'tanggal_bayar',
+            'keterangan',
+        ];
+    }
+
+    public static function filterable(): array {
+        return [
+            'nik_pembayar',
+            'tanggal_bayar',
+            'keterangan',
+        ];
+    }
 
     // relationships
     public function user()

@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class RukunWargaModel extends Model
+class RukunWargaModel extends Model implements SearchCompatible
 {
     use HasFactory, HasTimeStamp;
 
@@ -20,6 +21,18 @@ class RukunWargaModel extends Model
         'alamat',
         'nik_ketua_rukun_warga'
     ];
+
+    public static function searchable(): array {
+        return [
+            'nomor_rukun_warga',
+            'alamat',
+            'nik_ketua_rukun_warga'
+        ];
+    }
+
+    public static function filterable(): array {
+        return [];
+    }
 
     // relationships
     public function ketuaRukunWarga() {

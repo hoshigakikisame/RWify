@@ -4,8 +4,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class IuranModel extends Model {
+class IuranModel extends Model implements SearchCompatible {
     
     use HasFactory, HasTimeStamp;
     protected $table = 'tb_iuran';
@@ -23,10 +24,20 @@ class IuranModel extends Model {
         'id_pembayaran_iuran',
     ];
 
-    public static $searchable = [
-        'bulan',
-        'tahun',
-    ];
+    public static function searchable(): array
+    {
+        return [
+            'bulan',
+            'tahun',
+        ];
+    }
+
+    public static function filterable(): array {
+        return [
+            'bulan',
+            'tahun',
+        ];
+    }
 
     // relationships
     public function pembayaranIuran()

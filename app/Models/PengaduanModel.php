@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class PengaduanModel extends Model
+class PengaduanModel extends Model implements SearchCompatible
 {
 
     use HasFactory, HasTimeStamp;
@@ -24,10 +25,20 @@ class PengaduanModel extends Model
         'status',
     ];
 
-    public static $searchable = [
-        'judul',
-        'isi'
-    ];
+    public static function searchable(): array
+    {
+        return [
+            'judul',
+            'isi',
+        ];
+    }
+
+    public static function filterable(): array
+    {
+        return [
+            'status',
+        ];
+    }
 
     // relationships
     public function user()

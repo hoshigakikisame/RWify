@@ -28,8 +28,9 @@ class ManageReservasiJadwalTemuController extends Controller
             ['pemohon' => UserModel::class],
             ['nik_penerima' => request()->user()->getNik(), ...$filters]
         );
-        $count = ReservasiJadwalTemuModel::where('nik_penerima', auth()->user()->nik)->count();
-        $diterimaCount = ReservasiJadwalTemuModel::where('nik_penerima', auth()->user()->nik)
+        
+        $count = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->count();
+        $diterimaCount = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())
                                                     ->where('status', 'diterima')
                                                     ->count();
 

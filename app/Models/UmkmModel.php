@@ -6,8 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class UmkmModel extends Model
+class UmkmModel extends Model implements SearchCompatible
 {
     use HasFactory, HasTimeStamp;
     protected $table = 'tb_umkm';
@@ -29,14 +30,22 @@ class UmkmModel extends Model
         'diperbarui_pada'
     ];
 
-    public static $searchable = [
-        'nama',
-        'nama_pemilik',
-        'alamat',
-        'telepon',
-        'instagram_url',
-        'deskripsi'
-    ];
+    public static function searchable(): array
+    {
+        return [
+            'nama',
+            'nama_pemilik',
+            'alamat',
+            'telepon',
+            'instagram_url',
+            'deskripsi'
+        ];
+    }
+
+    public static function filterable(): array
+    {
+        return [];
+    }
 
     // relationships
 

@@ -6,8 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class ReservasiJadwalTemuModel extends Model
+class ReservasiJadwalTemuModel extends Model implements SearchCompatible
 {
     use HasFactory, HasTimeStamp;
     protected $table = 'tb_reservasi_jadwal_temu';
@@ -27,10 +28,22 @@ class ReservasiJadwalTemuModel extends Model
         'diperbarui_pada'
     ];
 
-    public static $searchable = [
-        'subjek',
-        'pesan'
-    ];
+    public static function searchable(): array
+    {
+        return [
+            'subjek',
+            'pesan'
+        ];
+    }
+
+    public static function filterable(): array
+    {
+        return [
+            'nik_pemohon',
+            'nik_penerima',
+            'status'
+        ];
+    }
 
     // relationships
     public function pemohon() {

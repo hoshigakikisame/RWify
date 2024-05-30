@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 use Carbon\Carbon;
 
-class PropertiModel extends Model
+class PropertiModel extends Model implements SearchCompatible
 {
 
     use HasFactory, HasTimeStamp;
@@ -27,10 +28,19 @@ class PropertiModel extends Model
         'jumlah_kamar',
     ];
 
-    public static $searchable = [
-        'nama_properti',
-        'alamat'
-    ];
+    public static function searchable(): array
+    {
+        return [
+            'nik_pemilik',
+            'nama_properti',
+            'alamat',
+        ];
+    }
+
+    public static function filterable(): array
+    {
+        return [];
+    }
 
     // relationships
     public function tipeProperti()

@@ -6,8 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
+use App\Interfaces\SearchCompatible;
 
-class TipePropertiModel extends Model
+class TipePropertiModel extends Model implements SearchCompatible
 {
 
     use HasFactory, HasTimeStamp;
@@ -22,9 +23,17 @@ class TipePropertiModel extends Model
         'iuran_per_bulan',
     ];
 
-    public static $searchable = [
-        'nama_tipe'
-    ];
+    public static function searchable(): array
+    {
+        return [
+            'nama_tipe'
+        ];
+    }
+
+    public static function filterable(): array
+    {
+        return [];
+    }
 
     // relationships
 
