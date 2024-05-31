@@ -67,7 +67,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
             'agama',
             'status_perkawinan',
             'golongan_darah',
-            'id_rukun_tetangga'
+            // 'id_rukun_tetangga'
         ];
     }
 
@@ -264,10 +264,10 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
         return $this->jenis_kelamin;
     }
 
-    public function getIdRukunTetangga(): string
-    {
-        return $this->id_rukun_tetangga;
-    }
+    // public function getIdRukunTetangga(): string
+    // {
+    //     return $this->id_rukun_tetangga;
+    // }
 
     public function getGolonganDarah(): string
     {
@@ -281,12 +281,17 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
 
     public function getRukunTetangga(): RukunTetanggaModel
     {
-        return RukunTetanggaModel::find($this->id_rukun_tetangga)->first();
+        return RukunTetanggaModel::find($this->getRukunTetangga()->getIdRukunTetangga())->first();
     }
 
     public function getEmailVerifiedAt(): string|null
     {
         return $this->email_verified_at;
+    }
+
+    public function getKartuKeluarga(): KartuKeluargaModel
+    {
+        return KartuKeluargaModel::find($this->nkk)->first();
     }
 
 
@@ -361,10 +366,10 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
         $this->golongan_darah = $golonganDarah;
     }
 
-    public function setIdRukunTetangga($idRukunTetangga): void
-    {
-        $this->id_rukun_tetangga = $idRukunTetangga;
-    }
+    // public function setIdRukunTetangga($idRukunTetangga): void
+    // {
+    //     $this->id_rukun_tetangga = $idRukunTetangga;
+    // }
 
     public function setJenisKelamin(string $jenisKelamin): void
     {

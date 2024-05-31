@@ -9,6 +9,7 @@ use App\Models\RukunTetanggaModel;
 use App\Models\UmkmModel;
 use App\Models\UserModel;
 use App\Models\PropertiModel;
+use \Illuminate\Database\Eloquent\Builder;
 
 class RTController extends Controller
 {
@@ -19,15 +20,26 @@ class RTController extends Controller
     {
         $ownedRT = RukunTetanggaModel::where('nik_ketua_rukun_tetangga', '=', request()->user()->getNik())->first();
 
-        $lansiaCount = UserModel::where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
-        $dewasaCount = UserModel::where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
-        $remajaCount = UserModel::where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();
-        $anakCount = UserModel::where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 11)->whereYear('tanggal_lahir', '<', date('Y') - 5)->count();
-        $balitaCount = UserModel::where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 5)->whereYear('tanggal_lahir', '<', date('Y'))->count();
+        $lansiaCount = UserModel::withWhereHas('kartuKeluarga', function (Builder $query) use ($ownedRT) {
+            $query->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga());
+        })->whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
+
+        $dewasaCount = UserModel::withWhereHas('kartuKeluarga', function (Builder $query) use ($ownedRT) {
+            $query->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga());
+        })->whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
+
+        $remajaCount = UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
+            ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();
+
+        $anakCount =  UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
+        ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 11)->whereYear('tanggal_lahir', '<', date('Y') - 5)->count();
+
+        $balitaCount =  UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
+        ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 5)->whereYear('tanggal_lahir', '<', date('Y'))->count();
 
         $umkmCount = UmkmModel::count();
         $pengaduanCount = PengaduanModel::count();
-        $propertiCount = PropertiModel::withWhereHas('pemilik', function ($query) use ($ownedRT) {
+        $propertiCount = PropertiModel::withWhereHas('pemilik.kartuKeluarga', function (Builder $query) use ($ownedRT) {
             $query->where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga());
         })->count();
 

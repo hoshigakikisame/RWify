@@ -106,9 +106,9 @@ class KartuKeluargaModel extends Model
         $this->alamat = $alamat;
     }
 
-    public function setIdRukunWarga(int $id_rukun_warga): void
+    public function setIdRukunTetangga(int $id_rukun_tetangga): void
     {
-        $this->id_rukun_warga = $id_rukun_warga;
+        $this->id_rukun_tetangga = $id_rukun_tetangga;
     }
 
     public function setTagihanListrikPerBulan(int $tagihan_listrik_per_bulan): void

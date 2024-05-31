@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tb_kartu_keluarga', function (Blueprint $table) {
             $table->string("nkk", 16)->primary();
-            $table->foreignId('id_rukun_tetangga')->constrained('tb_rukun_tetangga', 'id_rukun_tetangga')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('id_rukun_tetangga')->nullable()->constrained('tb_rukun_tetangga', 'id_rukun_tetangga')->onUpdate('cascade')->onDelete('cascade');
             $table->string('alamat');
             $table->unsignedBigInteger('tagihan_listrik_per_bulan');
             $table->unsignedSmallInteger('jumlah_pekerja');
