@@ -117,6 +117,12 @@
                             <div class="body px-5 py-2 bg-gray-100/80" x-data="{ isDetailOpen: false }">
                                 <div x-show="isDetailOpen" class="detailBody">
                                     <p>{{ $pembayaranIuran->getKeterangan() }}</p>
+                                    {{-- mass sementara form e elek elek an sek ya jek bingung te design e yopo tak dekek kene sek jarno samean iso garap --}}
+                                    <form action="">
+                                        <input type="text" name="" id="">
+                                        <input type="text" name="" id="">
+                                        <button type="submit">submit bang</button>
+                                    </form>
                                 </div>
                                 <div class="trigger">
                                     <button @click="isDetailOpen = !isDetailOpen">
@@ -170,6 +176,10 @@
                     window.history.pushState({}, '', url);
                 },
             });
+        }
+
+        function appendFormVerif(data) {
+
         }
 
         function appendImageModal(img_url, nama, event) {
