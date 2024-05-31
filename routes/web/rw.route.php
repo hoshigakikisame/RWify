@@ -11,6 +11,7 @@ use App\Http\Controllers\RW\Manage\ManageReservasiJadwalTemuController;
 use App\Http\Controllers\RW\Manage\ManagePengaduanController;
 use App\Http\Controllers\RW\Manage\ManagePropertiController;
 use App\Http\Controllers\RW\Manage\ManageTipePropertiController;
+use App\Http\Controllers\RW\Manage\ManageKartuKeluargaController;
 use Illuminate\Routing\Router;
 
 // rw routes
@@ -27,17 +28,35 @@ Route::group([
         'as' => 'manage.'
     ], function () {
 
-        // rw manage warga routes
         Route::group([
-            'prefix' => 'warga',
-            'as' => 'warga.'
+            'prefix' => 'pendataan',
+            'as' => 'pendataan.'
         ], function () {
-            Route::get('', [ManageWargaController::class, 'manageWargaPage'])->name('warga');
-            Route::post('new', [ManageWargaController::class, 'addNewWarga'])->name('new');
-            Route::post('update', [ManageWargaController::class, 'updateWarga'])->name('update');
-            Route::post('delete', [ManageWargaController::class, 'deleteWarga'])->name('delete');
-            
-            Route::post('import-csv', [ManageWargaController::class, 'importCSV'])->name('importCSV');
+            // rw manage warga routes
+            Route::group([
+                'prefix' => 'warga',
+                'as' => 'warga.'
+            ], function () {
+                Route::get('', [ManageWargaController::class, 'manageWargaPage'])->name('warga');
+                Route::post('new', [ManageWargaController::class, 'addNewWarga'])->name('new');
+                Route::post('update', [ManageWargaController::class, 'updateWarga'])->name('update');
+                Route::post('delete', [ManageWargaController::class, 'deleteWarga'])->name('delete');
+
+                Route::post('import-csv', [ManageWargaController::class, 'importCSV'])->name('importCSV');
+            });
+
+            // rw manage kartu keluarga routes
+            Route::group([
+                'prefix' => 'kartuKeluarga',
+                'as' => 'kartuKeluarga.'
+            ], function () {
+                Route::get('', [ManageKartuKeluargaController::class, 'manageKartuKeluargaPage'])->name('kartuKeluarga');
+                Route::post('new', [ManageKartuKeluargaController::class, 'addNewKartuKeluarga'])->name('new');
+                Route::post('update', [ManageKartuKeluargaController::class, 'updateKartuKeluarga'])->name('update');
+                Route::post('delete', [ManageKartuKeluargaController::class, 'deleteKartuKeluarga'])->name('delete');
+
+                // Route::post('import-csv', [ManageKartuKeluargaController::class, 'importCSV'])->name('importCSV');
+            });
         });
 
         // rw manage pengumuman routes
