@@ -5,8 +5,10 @@ namespace App\Http\Controllers\RT\Manage;
 // App
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
+use App\Models\KartuKeluargaModel;
 use App\Models\RukunTetanggaModel;
 use App\Models\UserModel;
+use Illuminate\Database\Eloquent\Builder;
 
 class ManageWargaController extends Controller
 {
@@ -16,11 +18,15 @@ class ManageWargaController extends Controller
 
         $query = request()->q;
         $paginate = request()->paginate;
-        $filters = ['id_rukun_tetangga' => $ownedRT->getIdRukunTetangga(), ...request()->filters ?? []];
+        $filters = [...request()->filters ?? []];
 
-        $users = (new SearchableDecorator(UserModel::class))->search($query, $paginate, [], $filters);
+        $users = (new SearchableDecorator(UserModel::class))->search($query, $paginate, ['kartuKeluarga' => KartuKeluargaModel::class], $filters, function (Builder $queryBuilder) {
+            $queryBuilder->whereRelation('kartuKeluarga', 'id_rukun_tetangga', '=', request()->user()->getKartuKeluarga()->getIdRukunTetangga());
+        });
 
-        $count = UserModel::where('id_rukun_tetangga', auth()->user()->id_rukun_tetangga)->count();
+        $count = UserModel::withWhereHas('kartuKeluarga', function (Builder $query) {
+            $query->where('tb_kartu_keluarga.id_rukun_tetangga', '=', request()->user()->getKartuKeluarga()->getIdRukunTetangga());
+        })->count();
 
         $data = [
             "users" => $users,

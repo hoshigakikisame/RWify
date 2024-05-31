@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Interfaces\SearchCompatible;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasTimeStamp;
 
-class KartuKeluargaModel extends Model
+class KartuKeluargaModel extends Model implements SearchCompatible
 {
     use HasFactory, HasTimeStamp;
     protected $table = 'tb_kartu_keluarga';
@@ -27,6 +28,28 @@ class KartuKeluargaModel extends Model
         'dibuat_pada',
         'diperbarui_pada',
     ];
+
+    public static function searchable(): array
+    {
+        return [
+            'nkk',
+            'alamat',
+            'id_rukun_tetangga',
+            'tagihan_listrik_per_bulan',
+            'jumlah_pekerja',
+            'total_penghasilan_per_bulan',
+            'total_pajak_per_tahun',
+            'total_properti_dimiliki',
+            'tagihan_air_per_bulan',
+            'dibuat_pada',
+            'diperbarui_pada',
+        ];
+    }
+
+    public static function filterable(): array
+    {
+        return [];
+    }
 
     // relationships
     public function rukunTetangga()
@@ -50,9 +73,9 @@ class KartuKeluargaModel extends Model
         return $this->alamat;
     }
 
-    public function getIdRukunWarga(): int
+    public function getIdRukunTetangga(): int
     {
-        return $this->id_rukun_warga;
+        return $this->id_rukun_tetangga;
     }
 
     public function getTagihanListrikPerBulan(): int

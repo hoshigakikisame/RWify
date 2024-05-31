@@ -94,7 +94,7 @@ class UserSeeder extends Seeder
 
         // attach ketua rukun warga to rukun warga
         $rukunWargaInstance->setNikKetuaRukunWarga($ketuaRukunWargaInstance->getNik());
-        $rukunWargaInstance->save();   
+        $rukunWargaInstance->save(); 
 
         // ketua rukun tetangga instances
         UserModel::factory()->count(3)->state(
@@ -111,14 +111,14 @@ class UserSeeder extends Seeder
             $rukunTetanggaInstances[$i]->save();
         }
 
+        // dd($tempKetuaRT->getNik());
+
         // // attach temporary ketua rt to one of the rt
         $rukunTetanggaInstances[1]->nik_ketua_rukun_tetangga = $tempKetuaRT->getNik();
         $rukunTetanggaInstances[1]->save();
         
         // warga
-        UserModel::factory()->count(30)->state([
-            // 'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk()
-        ])->create();
+        UserModel::factory()->count(30)->create();
         $wargaInstances = UserModel::where('role', 'Warga')->get();
         // attach warga to rukun tetangga
         for ($i = 0; $i < count($wargaInstances); $i++) {
