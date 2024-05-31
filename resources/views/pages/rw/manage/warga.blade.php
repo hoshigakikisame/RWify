@@ -30,7 +30,7 @@
             </div>
 
             <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
-                <form id="importCSVForm" action="{{ route('rw.manage.warga.importCSV') }}" class="flex items-center justify-center" method="post" enctype="multipart/form-data">
+                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.warga.importCSV') }}" class="flex items-center justify-center" method="post" enctype="multipart/form-data">
                     @csrf
                     <label for="csv"
                         class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"><svg
@@ -54,7 +54,7 @@
 
                 <button id="addButton" @click="modalOpen = !modalOpen"
                     class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
-                    onclick="window.utils.Request.actionRequest('{{ route('rw.manage.warga.new') }}', '#addModal', '#addModalForm')">
+                    onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pendataan.warga.new') }}', '#addModal', '#addModalForm')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="h-5 w-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -287,7 +287,7 @@
                                             <button id="editButton" @click="modalEditOpen = !modalEditOpen"
                                                 class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                 type="button"
-                                                onclick="(function () {appendUpdateModal({{ $user }},event);window.utils.Request.actionRequest(`{{ route('rw.manage.warga.update') }}`, '#editModal', '#editModalForm')})()">
+                                                onclick="(function () {appendUpdateModal({{ $user }},event);window.utils.Request.actionRequest(`{{ route('rw.manage.pendataan.warga.update') }}`, '#editModal', '#editModalForm')})()">
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -300,7 +300,7 @@
                                                 </span>
                                             </button>
                                             <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen"
-                                                onclick="(function (){appendDeleteModal('{{ $user->getNIK() }}','{{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }}',event);window.utils.Request.actionRequest(`{{ route('rw.manage.warga.delete') }}`, '#deleteModal', '#deleteModalForm')})()"
+                                                onclick="(function (){appendDeleteModal('{{ $user->getNIK() }}','{{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }}',event);window.utils.Request.actionRequest(`{{ route('rw.manage.pendataan.warga.delete') }}`, '#deleteModal', '#deleteModalForm')})()"
                                                 class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
