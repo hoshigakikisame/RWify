@@ -55,7 +55,7 @@
         </div>
         <div class="rangking-body p-5 w-5/6 flex justify-evenly">
             @foreach ($medalImage as $item)
-                <div class="card w-52 border rounded-xl relative">
+                <div class="card w-52 border border-gray-300 dark:border-gray-500 rounded-xl relative">
                     <div class="medal absolute -right-6 w-16 -top-5">
                         <img class="" src="{{ $item }}" alt="">
                     </div>
@@ -66,12 +66,14 @@
 
                             </div>
                         </div>
-                        <div class="text">
-                            <h1 class="text-lg font-medium">Hary Van Oswald</h1>
-                            <h6 class="text-xs font-Inter font-light mb-16">1234567890112233</h6>
-                            <div class="status-pembayaran">
+                        <div class="text dark:text-gray-200">
+                            <h1 class="text-lg font-medium ">Hary Van Oswald</h1>
+                            <h6 class="text-xs font-Inter font-light mb-16 text-gray-700 dark:text-gray-400">
+                                1234567890112233</h6>
+                            <div class="status-pembayaran text-gray-600 dark:text-gray-400">
                                 <h1 class="font-normal text-xs">Pembayaran Terakhir</h1>
-                                <h6 class="font-Inter text-xs font-light">September 2024</h6>
+                                <h6 class="font-Inter text-xs font-light dark:text-gray-300 text-gray-700">September 2024
+                                </h6>
                             </div>
                         </div>
                     </div>
