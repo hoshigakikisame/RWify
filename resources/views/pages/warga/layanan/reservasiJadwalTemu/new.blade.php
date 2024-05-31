@@ -12,7 +12,7 @@
             <h1 class="text-lg font-medium text-gray-950 dark:text-gray-100">Reservasi</h1>
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Buat reservasi menggunakan form ini</p>
         </div>
-        <div class="flex flex-col lg:flex-row gap-8">
+        <div class="flex flex-col flex-col-reverse lg:flex-row gap-8 ">
             <div class="form w-full rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-gray-800/50">
                 <form action="{{ route('warga.layanan.reservasiJadwalTemu.new') }}" method="POST" enctype="">
                     @csrf
@@ -71,7 +71,7 @@
                             type="submit"
                             class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700"
                         >
-                            Add Pengaduan
+                            Buat Reservasi
                         </button>
                     </div>
                 </form>

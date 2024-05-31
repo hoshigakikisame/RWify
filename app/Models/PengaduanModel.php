@@ -36,6 +36,7 @@ class PengaduanModel extends Model implements SearchCompatible
     public static function filterable(): array
     {
         return [
+            'nik_pengadu',
             'status',
         ];
     }

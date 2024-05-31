@@ -39,7 +39,11 @@ class PropertiModel extends Model implements SearchCompatible
 
     public static function filterable(): array
     {
-        return [];
+        return [
+            'nik_pemilik',
+            'nama_properti',
+            'alamat',
+        ];
     }
 
     // relationships
