@@ -118,7 +118,7 @@
                                 </table>
                             </div>
                             <div class="action-event flex justify-end mt-4">
-                                <button class="flex gap-1" @click="(()=>{displayReminders();eventShow = !eventShow})()">
+                                <button class="flex gap-1" id="showAll" @click="eventShow = !eventShow">
                                     <div class="icon w-4 h-4 fill-indigo-400">
                                         <svg xmlns="http://www.w3.org/2000/svg" x-show='!eventShow' data-name="Layer 1"
                                             viewBox="0 0 24 24">
@@ -156,13 +156,31 @@
 @endsection
 
 @push('scripts')
-    {{-- @vite('resources/js/statisticChart.js') --}}
     <script type="module">
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
         ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }}, {{ $anakCount }},
             {{ $balitaCount }});
+
+        $(calendarCanvas).find('#calendar-header').append('<tr></tr>');
+
+        $(showAll).on('click', () => {
+            displayReminders(events, holiday);
+        });
+
+
+        $(document).ready(() => {
+            $('#prev-calendar').on('click', () => {
+                previous();
+            });
+            $('#next-calendar').on('click', () => {
+                next();
+            });
+        });
+
+        listDay.forEach((e) => {
+            $(calendarCanvas).find('#calendar-header').find('tr').append(elementWeekDay(e));
+        });
     </script>
-    <script></script>
     <script>
         const calendarCanvas = document.getElementById('calendar');
         const calendarNextButton = document.getElementById('next-calendar');
@@ -203,7 +221,6 @@
                 });
 
                 showCalendar(currentMonth, currentYear);
-                displayReminders();
             }
         }
 
@@ -212,36 +229,42 @@
             let bodyDesc = document.getElementById('body-event-desc');
             let element = ''
 
-            for (let i = 0; i < events.length; i++) {
-                let event = events[i];
-                let eventDate = new Date(event.date);
-                if (hasEventDay(day, month, year)) {
-                    element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate.getFullYear());
-                }
-                $(bodyDesc).html(element);
-            }
+            arrayOfEvent = events.concat(holiday);
+            console.log(arrayOfEvent)
 
-            let event = events[day];
-            let eventDate = new Date(event.date);
-            element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate.getFullYear());
+            for (let i = 0; i < arrayOfEvent.length; i++) {
+                let event = arrayOfEvent[i];
+                console.log(day, month, year, event.date)
+                let eventDate = new Date(event.date);
+                if (hasEventDay(day, month, year, arrayOfEvent) && eventDate.getDate() === day && eventDate
+                    .getMonth() ===
+                    month &&
+                    eventDate.getFullYear() === year) {
+                    element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate
+                        .getFullYear(), arrayOfEvent);
+                }
+            }
             $(bodyDesc).html(element);
         }
 
-        function displayReminders() {
+        function displayReminders(...args) {
             let bodyDesc = document.getElementById('body-event-desc');
             let element = ''
 
-            for (let i = 0; i < events.length; i++) {
-                let event = events[i];
-                let eventDate = new Date(event.date);
-                if (eventDate.getMonth() ===
-                    currentMonth &&
-                    eventDate.getFullYear() ===
-                    currentYear) {
-                    element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate.getFullYear());
-                    $(bodyDesc).html(element);
+            console.log(args)
+            args.forEach(array => {
+                for (let i = 0; i < array.length; i++) {
+                    let event = array[i];
+                    let eventDate = new Date(event.date);
+                    if (eventDate.getMonth() === currentMonth && eventDate.getFullYear() === currentYear) {
+                        element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate
+                            .getFullYear(), array);
+                    }
                 }
-            }
+            });
+
+
+            $(bodyDesc).html(element);
         }
 
         fetch(urlsHoliday)
@@ -262,7 +285,6 @@
                     };
                     holiday.push(data);
                 });
-                console.log(holiday, events)
                 showCalender(currentMonth, currentYear);
             })
             .catch((error) => {
@@ -291,9 +313,10 @@
                 `;
         }
 
-        function elementEventDay(day) {
+        function elementEventDay(day, month, year) {
+            console.log(day, month, year)
             return /*html*/ `
-            <td class="" @click='eventShow = !eventShow'>
+            <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
              <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
                  <p class="text-base text-indigo-500 dark:text-indigo-100 font-medium">${day}</p>
              </div>
@@ -301,9 +324,9 @@
                 `
         }
 
-        function thisElementDay(day) {
+        function thisElementDay(day, month, year) {
             return /*template */ `
-            <td>
+            <td @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
              <div class="w-full h-full">
                  <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
                      <a role="link" tabindex="0"
@@ -314,9 +337,9 @@
                 `;
         }
 
-        function elementRedDay(day) {
+        function elementRedDay(day, month, year) {
             return /*template*/ `
-            <td class="">
+            <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
              <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
                  <p class="text-base text-red-500 dark:text-red-100 font-medium">${day}</p>
              </div>
@@ -324,16 +347,14 @@
             `;
         }
 
-        function elementEventDesc(date, month, year) {
+        function elementEventDesc(date, month, year, arrayOfEvent) {
             let element = '';
-            let eventsOnDate = getEventDayOnDate(date, month, year);
-            console.log(eventsOnDate, date, month, year)
+            let eventsOnDate = getEventDayOnDate(date, month, year, arrayOfEvent);
             for (let i = 0; i < eventsOnDate.length; i++) {
                 let event = eventsOnDate[i]
-                console.log(event)
                 let eventDate = new Date(event.date);
                 element += /*html*/ ` 
-            <div class="border-b border-dashed border-gray-400 pb-4" x-effect="eventShow">
+<div class="border-b border-dashed border-gray-400 pb-4" x-effect="eventShow">
     <p class="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">${event.date}</p>
     <a tabindex="0" class="mt-2 text-lg font-medium leading-5 text-gray-800 focus:outline-none dark:text-gray-100">
         ${event.title}
@@ -387,13 +408,13 @@
                         break;
                     } else {
                         if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                            row += thisElementDay(date);
-                        } else if (hasEventDay(date, month, year)) {
-                            row += elementEventDay(date);
+                            row += thisElementDay(date, month, year);
+                        } else if (hasEventDay(date, month, year, events)) {
+                            row += elementEventDay(date, month, year);
+                        } else if (hasEventDay(date, month, year, holiday)) {
+                            row += elementRedDay(date, month, year);
                         } else if (j > 4) {
-                            row += elementRedDay(date);
-                        } else if (hasRedDay(date, month, year)) {
-                            row += elementRedDay(date);
+                            row += elementRedDay(date, month, year);
                         } else {
                             row += elementDay(date);
                         }
@@ -407,8 +428,8 @@
             $(calendarBody).html(calendarHTML);
         }
 
-        function getEventDayOnDate(date, month, year) {
-            return events.filter(function(event) {
+        function getEventDayOnDate(date, month, year, arrayOfEvent) {
+            return arrayOfEvent.filter(function(event) {
                 let eventsDate = new Date(event.date);
                 return (
                     eventsDate.getDate() === date && eventsDate.getMonth() === month && eventsDate
@@ -417,8 +438,8 @@
             });
         }
 
-        function hasEventDay(date, month, year) {
-            return getEventDayOnDate(date, month, year).length > 0;
+        function hasEventDay(date, month, year, arrayOfEvent) {
+            return getEventDayOnDate(date, month, year, arrayOfEvent).length > 0;
         }
 
 
@@ -439,20 +460,5 @@
         function daysInMonth(iMonth, iYear) {
             return 32 - new Date(iYear, iMonth, 32).getDate();
         }
-
-        $(calendarCanvas).find('#calendar-header').append('<tr></tr>');
-
-        $(document).ready(() => {
-            $('#prev-calendar').on('click', () => {
-                previous();
-            });
-            $('#next-calendar').on('click', () => {
-                next();
-            });
-        });
-
-        listDay.forEach((e) => {
-            $(calendarCanvas).find('#calendar-header').find('tr').append(elementWeekDay(e));
-        });
     </script>
 @endpush
