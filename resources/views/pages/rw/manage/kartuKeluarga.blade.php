@@ -3,9 +3,6 @@
 
 {{-- content --}}
 @section('content')
-    @php
-        $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
-    @endphp
 
     <section class="container relative mx-auto mb-8 mt-7 px-4" x-data="{ modalOpen: false }">
         <div class="sm:flex sm:items-center sm:justify-between">
@@ -104,7 +101,7 @@
                                 <x-form.input-form title="NKK" key="nkk" type="text"
                                 placeholder="Masukkan Nomor Kartu Keluarga" />
                                 <x-form.select-input-form title="Rukun Tetangga" key="id_rukun_tetangga"
-                                    :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga" />
+                                    :options="$rukunTetanggaOptions" placeholder="Pilih Rukun Tetangga" />
                                 <x-form.textarea-input-form title="Alamat" key="alamat"
                                 placeholder="Masukkan Alamat" />
                                 <x-form.input-form title="Jumlah Pekerja" key="jumlah_pekerja" type="number"
@@ -121,6 +118,7 @@
                                 placeholder="Masukkan Total Tagihan Listrik Perbulannya" />
                                 <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan" type="number"
                                 placeholder="Masukkan Total Tagihan Air Perbulannya" />
+                                <x-form.input-form title="Total Kendaraan Dimiliki" key="total_kendaraan_dimiliki" type="number" placeholder="Masukkan Total Kendaraan Dimiliki" />
 
                                 <div class="mt-6 flex justify-between">
                                     <p class="text-xs text-gray-200 dark:text-gray-400">
@@ -432,6 +430,8 @@
                      <form class="mt-5" id="editModalForm">
                          @csrf
                             <x-form.input-form title="NKK" key="nkk" type="text" placeholder="Masukkan NKK" value="${kk.nkk}"/>
+                            <x-form.select-input-form title="Rukun Tetangga" key="id_rukun_tetangga"
+                                    :options="$rukunTetanggaOptions" placeholder="Pilih Rukun Tetangga" selected="${kk.id_rukun_tetangga}"/>
                             <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Masukkan Alamat" value="${kk.alamat}"/>
                             <x-form.input-form title="Jumlah Pekerja" key="jumlah_pekerja" type="number" placeholder="Masukkan Jumlah Pekerja" value="${kk.jumlah_pekerja}"/>
                             <x-form.input-form title="Jumlah Properti Dimiliki" key="total_properti_dimiliki" type="number" placeholder="Masukkan Jumlah Properti" value="${kk.total_properti_dimiliki}"/>
@@ -440,6 +440,7 @@
                             <x-form.input-form title="Total Bayar Pajak Pertahun" key="total_pajak_per_tahun" type="number" placeholder="Masukkan Total Bayar Pajak Pertahunnya" value="${kk.total_pajak_per_tahun}"/>
                             <x-form.input-form title="Total Tagihan Listrik Perbulan" key="tagihan_listrik_per_bulan" type="number" placeholder="Masukkan Total Tagihan Listrik Perbulannya" value="${kk.tagihan_listrik_per_bulan}"/>
                             <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan" type="number" placeholder="Masukkan Total Tagihan Air Perbulannya" value="${kk.tagihan_air_per_bulan}"/>
+                            <x-form.input-form title="Total Kendaraan Dimiliki" key="total_kendaraan_dimiliki" type="number" placeholder="Masukkan Total Kendaraan Dimiliki" value="${kk.total_kendaraan_dimiliki}"/>
 
                          <div class="flex justify-between mt-6">
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar

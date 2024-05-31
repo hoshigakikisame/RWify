@@ -14,8 +14,6 @@ class ManageWargaController extends Controller
 {
     public function manageWargaPage()
     {
-        $ownedRT = RukunTetanggaModel::where('nik_ketua_rukun_tetangga', '=', request()->user()->getNik())->first();
-
         $query = request()->q;
         $paginate = request()->paginate;
         $filters = [...request()->filters ?? []];

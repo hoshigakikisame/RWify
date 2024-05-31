@@ -27,11 +27,17 @@ class ManageKartuKeluargaController extends Controller
         $filters = request()->filters ?? [];
 
         $kartuKeluargaInstances = (new SearchableDecorator(KartuKeluargaModel::class))->search($query, $paginate, [], $filters);
+        $rukunTetanggaOptions = [];
+        
+        RukunTetanggaModel::all()->map(function ($row) use (&$rukunTetanggaOptions) {
+            $rukunTetanggaOptions[$row['id_rukun_tetangga']] = $row['nomor_rukun_tetangga'];
+        });
 
         $count = KartuKeluargaModel::count();
 
         $data = [
             "kartuKeluargaInstances" => $kartuKeluargaInstances,
+            "rukunTetanggaOptions" => $rukunTetanggaOptions,
             "count" => $count
         ];
 
@@ -50,6 +56,7 @@ class ManageKartuKeluargaController extends Controller
             'total_pajak_per_tahun' => 'required',
             'total_properti_dimiliki' => 'required',
             'tagihan_air_per_bulan' => 'required',
+            'total_kendaraan_dimiliki' => 'required',
         ]);
 
         $data = [
@@ -62,11 +69,12 @@ class ManageKartuKeluargaController extends Controller
             'total_pajak_per_tahun' => request()->total_pajak_per_tahun,
             'total_properti_dimiliki' => request()->total_properti_dimiliki,
             'tagihan_air_per_bulan' => request()->tagihan_air_per_bulan,
+            'total_kendaraan_dimiliki' => request()->tagihan_air_per_bulan,
         ];
 
-        $newUser = UserModel::create($data);
+        $newKartuKeluarga = KartuKeluargaModel::create($data);
 
-        if (!$newUser) {
+        if (!$newKartuKeluarga) {
             session()->flash('danger', ['title' => 'Gagal menambahkan kartu keluarga baru.', 'description' => 'Gagal menambahkan kartu keluarga baru.']);
         } else {
             session()->flash('success', ['title' => 'Berhasil menambahkan kartu keluarga baru.', 'description' => 'Berhasil menambahkan kartu keluarga baru.']);
@@ -191,25 +199,27 @@ class ManageKartuKeluargaController extends Controller
             'total_pajak_per_tahun' => 'required',
             'total_properti_dimiliki' => 'required',
             'tagihan_air_per_bulan' => 'required',
+            'total_kendaraan_dimiliki' => 'required',
         ]);
 
-        $nik = request()->nik;
-        $user = UserModel::find($nik);
+        $nkk = request()->nkk;
+        $kartuKeluargaInstance = KartuKeluargaModel::find($nkk);
 
-        if (!$user) {
+        if (!$kartuKeluargaInstance) {
             session()->flash('danger', ['title' => 'Gagal mengupdate kartu keluarga.', 'description' => 'Gagal mengupdate kartu keluarga.']);
         } else {
-            $user->setNkk(request()->nkk);
-            $user->setAlamat(request()->alamat);
-            $user->setIdRukunTetangga(request()->id_rukun_tetangga);
-            $user->setTagihanListrikPerBulan(request()->tagihan_listrik_per_bulan);
-            $user->setJumlahPekerja(request()->jumlah_pekerja);
-            $user->setTotalPenghasilanPerBulan(request()->total_penghasilan_per_bulan);
-            $user->setTotalPajakPerTahun(request()->total_pajak_per_tahun);
-            $user->setTotalPropertiDimiliki(request()->total_properti_dimiliki);
-            $user->setTagihanAirPerBulan(request()->tagihan_air_per_bulan);
+            $kartuKeluargaInstance->setNkk(request()->nkk);
+            $kartuKeluargaInstance->setAlamat(request()->alamat);
+            $kartuKeluargaInstance->setIdRukunTetangga(request()->id_rukun_tetangga);
+            $kartuKeluargaInstance->setTagihanListrikPerBulan(request()->tagihan_listrik_per_bulan);
+            $kartuKeluargaInstance->setJumlahPekerja(request()->jumlah_pekerja);
+            $kartuKeluargaInstance->setTotalPenghasilanPerBulan(request()->total_penghasilan_per_bulan);
+            $kartuKeluargaInstance->setTotalPajakPerTahun(request()->total_pajak_per_tahun);
+            $kartuKeluargaInstance->setTotalPropertiDimiliki(request()->total_properti_dimiliki);
+            $kartuKeluargaInstance->setTagihanAirPerBulan(request()->tagihan_air_per_bulan);
+            $kartuKeluargaInstance->setTotalKendaraanDimiliki(request()->total_kendaraan_dimiliki);
 
-            $user->save();
+            $kartuKeluargaInstance->save();
 
             session()->flash('success', ['title' => 'Berhasil mengupdate kartu keluarga.', 'description' => 'Berhasil mengupdate kartu keluarga.']);
         }
@@ -225,9 +235,9 @@ class ManageKartuKeluargaController extends Controller
             'nkk' => 'required'
         ]);
 
-        $nik = request()->nik;
+        $nkk = request()->nkk;
 
-        $kartuKeluargaInstance = KartuKeluargaModel::find($nik);
+        $kartuKeluargaInstance = KartuKeluargaModel::find($nkk);
 
         if (!$kartuKeluargaInstance) {
             session()->flash('danger', ['title' => 'Gagal menghapus kartu keluarga.', 'description' => 'Gagal menghapus kartu keluarga.']);
