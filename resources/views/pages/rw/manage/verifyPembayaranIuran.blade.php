@@ -86,23 +86,37 @@
                         <div class="card bg-gray-50 pt-4 rounded-lg overflow-hidden">
                             <div class="flex py-2 border-b px-5 gap-3">
                                 <div class="header pb-5 pt-2 grow flex gap-2">
-                                    <div class="bg-gray-200 rounded-lg overflow-hidden w-36 h-36">
-                                        <div class="bg-indigo-100 w-full h-full">
+                                    <div class="bg-gray-200 rounded-lg w-36 h-36 overflow-hidden">
+                                        <div class="bg-indigo-100 w-full h-full" x-data="{ isOnImg: false, showImage: false }"
+                                            @mouseover="isOnImg = true" @mouseleave="isOnImg = false"
+                                            style="background: url({{ $pembayaranIuran->getImageUrl() }});background-size:cover">
+                                            <button x-show="isOnImg" id="imageButton" @click="showImage = true"
+                                                onclick="(function(){appendImageModal('{{ $pembayaranIuran->getImageUrl() }}','{{ $pembayaranIuran->getUser()->getNamaLengkap() }}',event);zoomInit()})()"
+                                                class="w-full h-full backdrop-brightness-75 flex justify-center items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    class="w-8 h-8 fill-gray-50">
+                                                    <path
+                                                        d="M10 20a9.96 9.96 0 0 0 6.327-2.258l5.966 5.965a1 1 0 0 0 1.414-1.414l-5.966-5.965A10 10 0 1 0 10 20M7 9h2V7a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H7a1 1 0 0 1 0-2" />
+                                                </svg>
+                                            </button>
+
                                         </div>
                                     </div>
                                     <div class="text w-full h-full">
                                         <h1 class="text-xl mb-0.5 font-Poppins">
                                             {{ $pembayaranIuran->getUser()->getNamaLengkap() }}</h1>
                                         <h2 class="text-xs text-gray-600 mb-2">{{ $pembayaranIuran->getUser()->getNik() }}
-                                        <h2 class="text-xs text-gray-600 mb-2">Verified Count: {{ $pembayaranIuran->getVerifiedCount() }}
-                                        </h2>
+                                            <h2 class="text-xs text-gray-600 mb-2">Verified Count:
+                                                {{ $pembayaranIuran->getVerifiedCount() }}
+                                            </h2>
+                                            <p class="text-sm text-gray-700">{{ $pembayaranIuran->getKeterangan() }}</p>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="body px-5 py-2 bg-gray-100/80" x-data="{ isDetailOpen: false }">
                                 <div x-show="isDetailOpen" class="detailBody">
-                                    <h1>hello</h1>
+                                    <p>{{ $pembayaranIuran->getKeterangan() }}</p>
                                 </div>
                                 <div class="trigger">
                                     <button @click="isDetailOpen = !isDetailOpen">
@@ -113,49 +127,106 @@
                         </div>
                     @endforeach
                 </div>
+
             </div>
         </div>
     </section>
-
-    @push('scripts')
-        <script type="module">
-            $(document).ready(() => {
-                var searchParams = new URLSearchParams(window.location.search);
-                let search = searchParams.get('q');
-                let status = searchParams.get('filters[status]');
-                let tanggalBayar = searchParams.get('filters[tanggal_bayar]');
-
-                $('#search').val(search);
-                $('#status').val(status);
-                $('#tanggal_bayar').val(tanggalBayar);
-            });
-        </script>
-
-        <script>
-            function applyFilter() {
-                let search = document.getElementById('search').value;
-                let status = document.getElementById('status').value;
-                let tanggalBayar = document.getElementById('tanggal_bayar').value;
-
-                var searchParams = new URLSearchParams(window.location.search);
-                if (searchParams.has('page')) searchParams.set('page', 1);
-                searchParams.set('q', search);
-                searchParams.set('filters[status]', status);
-                searchParams.set('filters[tanggal_bayar]', tanggalBayar);
-
-                let url = `${document.location.origin}${document.location.pathname}?${searchParams.toString()}`;
-
-                $.ajax({
-                    url: url,
-                    beforeSend: window.Loading.showLoading,
-                    success: function(res) {
-                        let parser = new DOMParser();
-                        let doc = parser.parseFromString(res, 'text/html');
-                        $('body').html(doc.body.innerHTML);
-                        window.history.pushState({}, '', url);
-                    },
-                });
-            }
-        </script>
-    @endpush
 @endsection
+@push('scripts')
+    <script type="module" src="{{ Vite::asset('resources/js/image-zoom.js') }}"></script>
+    <script type="module">
+        $(document).ready(() => {
+            var searchParams = new URLSearchParams(window.location.search);
+            let search = searchParams.get('q');
+            let status = searchParams.get('filters[status]');
+            let tanggalBayar = searchParams.get('filters[tanggal_bayar]');
+
+            $('#search').val(search);
+            $('#status').val(status);
+            $('#tanggal_bayar').val(tanggalBayar);
+        });
+    </script>
+    <script>
+        function applyFilter() {
+            let search = document.getElementById('search').value;
+            let status = document.getElementById('status').value;
+            let tanggalBayar = document.getElementById('tanggal_bayar').value;
+
+            var searchParams = new URLSearchParams(window.location.search);
+            if (searchParams.has('page')) searchParams.set('page', 1);
+            searchParams.set('q', search);
+            searchParams.set('filters[status]', status);
+            searchParams.set('filters[tanggal_bayar]', tanggalBayar);
+
+            let url = `${document.location.origin}${document.location.pathname}?${searchParams.toString()}`;
+
+            $.ajax({
+                url: url,
+                beforeSend: window.Loading.showLoading,
+                success: function(res) {
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(res, 'text/html');
+                    $('body').html(doc.body.innerHTML);
+                    window.history.pushState({}, '', url);
+                },
+            });
+        }
+
+        function appendImageModal(img_url, nama, event) {
+            const modalImageElement = /*html*/ `
+<div id="imageModal" x-show="showImage" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+    <div x-cloak @click="()=>{showImage = false;isOnImg=false;deleteModal('#imageModal')}" x-show="showImage"
+        x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+        class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+
+    <div x-cloak x-show="showImage" x-transition:enter="transition ease-out duration-300 transform"
+        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+        x-transition:leave="transition ease-in duration-200 transform"
+        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        class="inline-block w-full max-w-3xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+        <div class="flex items-center justify-between space-x-4">
+            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Gambar Pembayaran</h1>
+
+            <button @click="()=>{showImage = false;isOnImg=false;setTimeout(deleteModal('#imageModal'),3000)}"
+                class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
+        </div>
+
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+            Bukti gambar dari Pembayaran ${nama}
+        </p>
+
+        <div class="image-container">
+			<img id="imageZoom" src="${img_url}" alt="image">
+		</div>
+
+    </div>
+</div>
+</div>
+                `
+            $(modalImageElement).insertAfter($(event.target).closest('#imageButton'))
+        }
+
+        function deleteModal(selector) {
+            $(selector).ready(() => {
+                $(selector).remove()
+            })
+        }
+
+        function zoomInit() {
+            $(document).ready(function() {
+                $('#imageZoom').imageZoom();
+            });
+        }
+    </script>
+@endpush

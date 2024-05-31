@@ -1,5 +1,6 @@
 /* font styling */
 @import url('fonts.css');
+@import url('image-zoom.css');
 
 @tailwind base;
 @tailwind components;

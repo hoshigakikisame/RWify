@@ -16,7 +16,7 @@ import * as Loading from './loading';
 import * as Request from './utils/request';
 
 // inject jQuery
-window.$ = jQuery;
+window.$ = window.jQuery = jQuery;
 
 // inject Alpine
 window.Alpine = Alpine;
@@ -36,3 +36,4 @@ Alpine.start();
 register();
 
 import.meta.glob(['../assets/**/*', '../assets/elements/*']);
+

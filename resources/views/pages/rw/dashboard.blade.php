@@ -117,11 +117,29 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="action-event flex justify-end mt-4">
+                                <button class="flex gap-1" @click="(()=>{displayReminders();eventShow = !eventShow})()">
+                                    <div class="icon w-4 h-4 fill-indigo-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" x-show='!eventShow' data-name="Layer 1"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 2h-1V1a1 1 0 1 0-2 0v1H8V1a1 1 0 1 0-2 0v1H5C2.243 2 0 4.243 0 7v12c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5M5 4h14c1.654 0 3 1.346 3 3v1H2V7c0-1.654 1.346-3 3-3m14 18H5c-1.654 0-3-1.346-3-3v-9h20v9c0 1.654-1.346 3-3 3m-3.293-5.895a1 1 0 0 1 0 1.414l-1.613 1.613c-.577.577-1.336.866-2.094.866s-1.517-.289-2.094-.866l-1.613-1.613a.999.999 0 1 1 1.414-1.414L11 17.398V13a1 1 0 1 1 2 0v4.398l1.293-1.293a1 1 0 0 1 1.414 0" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" x-show='eventShow' data-name="Layer 1"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 2h-1V1a1 1 0 1 0-2 0v1H8V1a1 1 0 1 0-2 0v1H5C2.243 2 0 4.243 0 7v12c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5M5 4h14c1.654 0 3 1.346 3 3v1H2V7c0-1.654 1.346-3 3-3m14 18H5c-1.654 0-3-1.346-3-3v-9h20v9c0 1.654-1.346 3-3 3m-3.293-7.52a.999.999 0 1 1-1.414 1.414L13 14.601v4.398a1 1 0 1 1-2 0v-4.398l-1.293 1.293a.999.999 0 1 1-1.414-1.414l1.613-1.613a2.966 2.966 0 0 1 4.188 0z" />
+                                        </svg>
+                                    </div>
+
+                                    <h1 class="text-xs underline text-indigo-300">Show All Event </h1>
+                                </button>
+                            </div>
                         </div>
                         <div class="">
                             <div id="event-desc" x-show="eventShow"
                                 class="rounded-b bg-gray-50 px-5 py-5 dark:bg-gray-700 md:px-16 md:py-8">
-                                <div class="px-4" id="body-event-desc">
+                                <div class="px-4 flex flex-col gap-4" id="body-event-desc">
                                     {{-- body desc --}}
                                 </div>
                             </div>
@@ -144,7 +162,8 @@
         ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }}, {{ $anakCount }},
             {{ $balitaCount }});
     </script>
-    <script type="module">
+    <script></script>
+    <script>
         const calendarCanvas = document.getElementById('calendar');
         const calendarNextButton = document.getElementById('next-calendar');
         const calendarPrevButton = document.getElementById('prev-calendar');
@@ -153,14 +172,14 @@
         let urlsHoliday = 'https://dayoffapi.vercel.app/api';
 
         let events = [
-        @foreach ($reservasiJadwalTemuInstances as $item)
-            {
-                id: {{ $item->getIdReservasiJadwalTemu() }},
-                date: "{{ $item->getJadwalTemu() }}",
-                title: "{{ $item->getSubjek()}}",
-                description: "{{ $item->getPesan() }}"
-            },
-        @endforeach
+            @foreach ($reservasiJadwalTemuInstances as $item)
+                {
+                    id: {{ $item->getIdReservasiJadwalTemu() }},
+                    date: "{{ $item->getJadwalTemu() }}",
+                    title: "{{ $item->getSubjek() }}",
+                    description: "{{ $item->getPesan() }}"
+                },
+            @endforeach
         ];
         let holiday = [];
         let today = new Date();
@@ -186,6 +205,26 @@
                 showCalendar(currentMonth, currentYear);
                 displayReminders();
             }
+        }
+
+
+        function displayRemindersByDay(day, month, year) {
+            let bodyDesc = document.getElementById('body-event-desc');
+            let element = ''
+
+            for (let i = 0; i < events.length; i++) {
+                let event = events[i];
+                let eventDate = new Date(event.date);
+                if (hasEventDay(day, month, year)) {
+                    element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate.getFullYear());
+                }
+                $(bodyDesc).html(element);
+            }
+
+            let event = events[day];
+            let eventDate = new Date(event.date);
+            element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate.getFullYear());
+            $(bodyDesc).html(element);
         }
 
         function displayReminders() {
@@ -365,7 +404,6 @@
                 row += endRow;
                 calendarHTML += row;
             }
-            displayReminders()
             $(calendarBody).html(calendarHTML);
         }
 
