@@ -118,7 +118,9 @@ class ManageIuranController extends Controller
     public function updateIuran()
     {
         request()->validate([
-            'status' => 'required',
+            'id_iuran' => 'required',
+            'bulan' => 'required',
+            'tahun' => 'required',
         ]);
 
         $idIuran = request()->id_iuran;
@@ -127,7 +129,8 @@ class ManageIuranController extends Controller
         if (!$iuran) {
             session()->flash('danger', ['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
-            $iuran->setStatus(request()->status);
+            $iuran->setBulan(request()->bulan);
+            $iuran->setTahun(request()->tahun);
             $iuran->save();
 
             session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);

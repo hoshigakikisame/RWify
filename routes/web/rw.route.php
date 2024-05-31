@@ -110,6 +110,8 @@ Route::group([
             'as' => 'iuran.'
         ], function () {
             Route::get('', [ManageIuranController::class, 'manageIuranPage'])->name('index');
+            Route::post('update', [ManageIuranController::class, 'updateIuran'])->name('update');
+            Route::post('delete', [ManageIuranController::class, 'deleteIuran'])->name('delete');
             Route::get('verify', [ManageIuranController::class, 'verifyPembayaranIuranPage'])->name('verify');
             Route::get('leaderboard', [ManageIuranController::class, 'iuranLeaderboardPage'])->name('leaderboard');
         });

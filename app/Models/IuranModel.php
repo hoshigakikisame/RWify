@@ -27,6 +27,7 @@ class IuranModel extends Model implements SearchCompatible {
     public static function searchable(): array
     {
         return [
+            'nik_pembayar',
             'bulan',
             'tahun',
         ];
@@ -34,6 +35,7 @@ class IuranModel extends Model implements SearchCompatible {
 
     public static function filterable(): array {
         return [
+            'nik_pembayar',
             'bulan',
             'tahun',
         ];
@@ -56,6 +58,11 @@ class IuranModel extends Model implements SearchCompatible {
         return $this->nik_pembayar;
     }
 
+    public function getNamaPembayar(): string
+    {
+        return $this->pembayaranIuran->user->nama_depan . ' ' . $this->pembayaranIuran->user->nama_belakang;
+    }
+
     public function getBulan(): string
     {
         return $this->bulan;
@@ -66,10 +73,34 @@ class IuranModel extends Model implements SearchCompatible {
         return $this->tahun;
     }
 
+    public function getTanggalBayar(): string
+    {
+        return $this->pembayaranIuran->tanggal_bayar;
+    }
+
     public function getIdPembayaranIuran(): int
     {
         return $this->id_pembayaran_iuran;
     }
+
+    public static function getBulanOptions()
+    {
+        return [
+            'Januari' => 'Januari',
+            'Februari' => 'Februari',
+            'Maret' => 'Maret',
+            'April' => 'April',
+            'Mei' => 'Mei',
+            'Juni'  => 'Juni',
+            'Juli' => 'Juli',
+            'Agustus' => 'Agustus',
+            'September' => 'September',
+            'Oktober' => 'Oktober',
+            'November' => 'November',
+            'Desember' => 'Desember',
+        ];
+    }
+
 
     // SETTERS
     public function setBulan(string $bulan): void
