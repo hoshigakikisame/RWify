@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('total_pajak_per_tahun');
             $table->unsignedBigInteger('total_properti_dimiliki');
             $table->unsignedBigInteger('tagihan_air_per_bulan');
+            $table->unsignedInteger('total_kendaraan_dimiliki');
 
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();

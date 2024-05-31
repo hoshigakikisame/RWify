@@ -28,6 +28,7 @@ class KartuKeluargaModelFactory extends Factory
             'total_pajak_per_tahun' => $this->faker->numberBetween(1000000, 10000000),
             'total_properti_dimiliki' => $this->faker->numberBetween(1000000, 10000000),
             'tagihan_air_per_bulan' => $this->faker->numberBetween(100000, 1000000),
+            'total_kendaraan_dimiliki' => $this->faker->numberBetween(1, 10),
         ];
     }
 }
