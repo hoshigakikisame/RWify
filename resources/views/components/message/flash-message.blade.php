@@ -1,34 +1,34 @@
 @php
     $styleflash = [
         'danger' => [
-            'container-style' => 'bg-rose-50/50 fill-rose-500 ring-1 ring-rose-400',
-            'text-wrap-class' => 'text-rose-800',
-            'text-color' => 'text-rose-600',
+            'container-style' => 'bg-rose-50/50 dark:bg-rose-900/50 fill-rose-500 ring-1 ring-rose-400',
+            'text-wrap-class' => 'text-rose-800 dark:text-rose-400',
+            'text-color' => 'text-rose-600 dark:text-rose-200',
         ],
         'warning' => [
-            'container-style' => 'bg-yellow-50/50 fill-yellow-500 ring-1 ring-yellow-400',
-            'text-wrap-class' => 'text-yellow-800',
-            'text-color' => 'text-yellow-600',
+            'container-style' => 'bg-yellow-50/50 dark:bg-yellow-900/50 fill-yellow-500 ring-1 ring-yellow-400',
+            'text-wrap-class' => 'text-yellow-800 dark:text-yellow-400',
+            'text-color' => 'text-yellow-600 dark:text-yellow-200',
         ],
         'success' => [
-            'container-style' => 'bg-green-50/50 fill-green-500 ring-1 ring-green-400',
-            'text-wrap-class' => 'text-green-800',
-            'text-color' => 'text-green-600',
+            'container-style' => 'bg-green-50/50 dark:bg-green-900/50 fill-green-500 ring-1 ring-green-400',
+            'text-wrap-class' => 'text-green-800 dark:text-green-400',
+            'text-color' => 'text-green-600 dark:text-green-200',
         ],
         'info' => [
-            'container-style' => 'bg-blue-50/50 fill-blue-500 ring-1 ring-blue-400',
-            'text-wrap-class' => 'text-blue-800',
-            'text-color' => 'text-blue-600',
+            'container-style' => 'bg-blue-50/50 dark:bg-blue-900/50 fill-blue-500 ring-1 ring-blue-400',
+            'text-wrap-class' => 'text-blue-800 dark:text-blue-400',
+            'text-color' => 'text-blue-600 dark:text-blue-200',
         ],
     ];
-    @endphp
+@endphp
 
 <div class="flash-message relative transition-transform">
     @php
         $i = 0;
     @endphp
     @foreach ($styleflash as $msg => $msg_style)
-    @if (Session::has($msg))
+        @if (Session::has($msg))
             <div id="{{ $i }}" class="relative p-3">
                 <div
                     class="{{ $msg_style['container-style'] }} flex h-full w-full items-center gap-3 rounded-md px-4 py-2 transition-all">
@@ -81,9 +81,9 @@
                     </div>
                 </div>
             </div>
-        @php
-            $i++;
-        @endphp
+            @php
+                $i++;
+            @endphp
         @endif
     @endforeach
 
