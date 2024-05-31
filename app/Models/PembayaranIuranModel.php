@@ -31,7 +31,6 @@ class PembayaranIuranModel extends Model implements SearchCompatible
         return [
             'nik_pembayar',
             'tanggal_bayar',
-            'keterangan',
         ];
     }
 
@@ -39,7 +38,6 @@ class PembayaranIuranModel extends Model implements SearchCompatible
         return [
             'nik_pembayar',
             'tanggal_bayar',
-            'keterangan',
         ];
     }
 

@@ -30,7 +30,6 @@ class SearchableDecorator extends Decorator
 
         return $this->model::where(function (Builder $queryBuilder) use ($filter) {
 
-
             foreach ($filter as $field => $value) {
                 if ($value == null || empty ($value))
                     continue;
@@ -54,6 +53,8 @@ class SearchableDecorator extends Decorator
             foreach ($this->model::searchable() as $field) {
                 $queryBuilder->orWhere($field, 'LIKE', "%$query%");
             }
+
+            // dd($queryBuilder->toRawSql());
 
         })->where(function (Builder $queryBuilder) use ($queryBuilderCb) {
             if ($queryBuilderCb != null) {

@@ -22,7 +22,6 @@ class ManageIuranController extends Controller
      */
     public function manageIuranPage()
     {
-
         $query = request()->q;
         $filters = request()->filters ?? [];
         $paginate = request()->paginate ?? 5;
@@ -31,7 +30,10 @@ class ManageIuranController extends Controller
             $query,
             $paginate,
             ['pembayaranIuran' => PembayaranIuranModel::class],
-            $filters
+            $filters,
+            function (Builder $queryBuilder) {
+                // dd($queryBuilder->toRawSql());
+            }
         );
         $count = IuranModel::count();
 
