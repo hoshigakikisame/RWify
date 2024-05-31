@@ -28,11 +28,11 @@ class ManageReservasiJadwalTemuController extends Controller
             ['pemohon' => UserModel::class],
             ['nik_penerima' => request()->user()->getNik(), ...$filters]
         );
-        
+
         $count = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->count();
         $diterimaCount = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())
-                                                    ->where('status', 'diterima')
-                                                    ->count();
+            ->where('status', 'diterima')
+            ->count();
 
         $data = [
             "reservasiJadwalTemuInstances" => $reservasiJadwalTemuInstances,
@@ -63,6 +63,7 @@ class ManageReservasiJadwalTemuController extends Controller
             session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
-        return redirect()->route('rw.manage.reservasiJadwalTemu.index');
+        // return redirect()->route('rw.manage.reservasiJadwalTemu.index');
+        return 'update success';
     }
 }

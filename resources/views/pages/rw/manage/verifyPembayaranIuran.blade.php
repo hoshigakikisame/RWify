@@ -81,9 +81,9 @@
                         jumlah hasil pembayaran yang diterima {{ count($pembayaranIuranInstances) }} data
                     </p>
                 </div>
-                <div class="body-search mt-5">
+                <div class="body-search mt-5 flex flex-col gap-2">
                     @foreach ($pembayaranIuranInstances as $pembayaranIuran)
-                        <div class="card bg-gray-50 pt-4 rounded-lg overflow-hidden">
+                        <div class="card bg-gray-50 pt-4 rounded-lg mb-4 overflow-hidden">
                             <div class="flex py-2 border-b px-5 gap-3">
                                 <div class="header pb-5 pt-2 grow flex gap-2">
                                     <div class="bg-gray-200 rounded-lg w-36 h-36 overflow-hidden">
