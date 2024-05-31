@@ -31,6 +31,56 @@
         </svg>
     </x-sidebar.sidebar-item>
     <li class="relative" x-data="{ sideDropdown: false }">
+        <button class="{{ $activeDropPendataan ? $activeStyle['active'] : $activeStyle['default'] }}"
+            @click="sideDropdown = !sideDropdown"
+            x-effect="
+                document.location.pathname.split('/').includes('pendataan')
+                    ? (sideDropdown = true)
+                    : (sideDropdown = false)
+            ">
+            <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                class="w-6 fill-inherit lg:w-5">
+                <path
+                    d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
+            </svg>
+            <span
+                class="absolute left-16 hidden w-full rounded-lg bg-gray-200 px-2 py-1 transition-all ease-in dark:bg-gray-700 lg:static lg:block lg:bg-transparent lg:p-0 lg:dark:bg-transparent">
+                <div class="title flex items-center justify-between gap-4">
+                    Pendataan
+                    <div class="w-6 fill-inherit lg:w-5" x-show="!sideDropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M18.71 8.21a1 1 0 0 0-1.42 0l-4.58 4.58a1 1 0 0 1-1.42 0L6.71 8.21a1 1 0 0 0-1.42 0 1 1 0 0 0 0 1.41l4.59 4.59a3 3 0 0 0 4.24 0l4.59-4.59a1 1 0 0 0 0-1.41" />
+                        </svg>
+                    </div>
+                    <div class="w-6 fill-inherit lg:w-5" x-show="sideDropdown">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M18 15.5a1 1 0 0 1-.71-.29l-4.58-4.59a1 1 0 0 0-1.42 0l-4.58 4.59a1 1 0 0 1-1.42-1.42l4.59-4.58a3.06 3.06 0 0 1 4.24 0l4.59 4.58a1 1 0 0 1 0 1.42 1 1 0 0 1-.71.29" />
+                        </svg>
+                    </div>
+                </div>
+            </span>
+        </button>
+        <ul x-show="sideDropdown" class="ms-3 mt-2 flex flex-col gap-2">
+            <x-sidebar.sidebar-item href="{{ route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga') }}" title="Kartu Keluarga"
+                :active="request()->routeIs(['rw.manage.pendataan.kartuKeluarga.kartuKeluarga'])">
+                <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                    class="w-6 fill-inherit lg:w-5">
+                    <path
+                        d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
+                </svg>
+            </x-sidebar.sidebar-item>
+            <x-sidebar.sidebar-item href="{{ route('rw.manage.pendataan.warga.warga') }}" title="Warga" :active="request()->routeIs(['rw.manage.pendataan.warga.warga'])">
+                <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                    class="w-6 fill-inherit lg:w-5">
+                    <path
+                        d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
+                </svg>
+            </x-sidebar.sidebar-item>
+        </ul>
+    </li>
+    <li class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropIuran ? $activeStyle['active'] : $activeStyle['default'] }}"
             @click="sideDropdown = !sideDropdown"
             x-effect="
@@ -98,56 +148,6 @@
                         clip-rule="evenodd" />
                     <path class="fill-inherit"
                         d="M11 2h2c1.886 0 2.828 0 3.414.586S17 4.114 17 6v.018l-2.846-1.552a4.5 4.5 0 0 0-4.308 0L7 6.018V6c0-1.886 0-2.828.586-3.414S9.114 2 11 2" />
-                </svg>
-            </x-sidebar.sidebar-item>
-        </ul>
-    </li>
-    <li class="relative" x-data="{ sideDropdown: false }">
-        <button class="{{ $activeDropPendataan ? $activeStyle['active'] : $activeStyle['default'] }}"
-            @click="sideDropdown = !sideDropdown"
-            x-effect="
-                document.location.pathname.split('/').includes('pendataan')
-                    ? (sideDropdown = true)
-                    : (sideDropdown = false)
-            ">
-            <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                class="w-6 fill-inherit lg:w-5">
-                <path
-                    d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
-            </svg>
-            <span
-                class="absolute left-16 hidden w-full rounded-lg bg-gray-200 px-2 py-1 transition-all ease-in dark:bg-gray-700 lg:static lg:block lg:bg-transparent lg:p-0 lg:dark:bg-transparent">
-                <div class="title flex items-center justify-between gap-4">
-                    Pendataan
-                    <div class="w-6 fill-inherit lg:w-5" x-show="!sideDropdown">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path
-                                d="M18.71 8.21a1 1 0 0 0-1.42 0l-4.58 4.58a1 1 0 0 1-1.42 0L6.71 8.21a1 1 0 0 0-1.42 0 1 1 0 0 0 0 1.41l4.59 4.59a3 3 0 0 0 4.24 0l4.59-4.59a1 1 0 0 0 0-1.41" />
-                        </svg>
-                    </div>
-                    <div class="w-6 fill-inherit lg:w-5" x-show="sideDropdown">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path
-                                d="M18 15.5a1 1 0 0 1-.71-.29l-4.58-4.59a1 1 0 0 0-1.42 0l-4.58 4.59a1 1 0 0 1-1.42-1.42l4.59-4.58a3.06 3.06 0 0 1 4.24 0l4.59 4.58a1 1 0 0 1 0 1.42 1 1 0 0 1-.71.29" />
-                        </svg>
-                    </div>
-                </div>
-            </span>
-        </button>
-        <ul x-show="sideDropdown" class="ms-3 mt-2 flex flex-col gap-2">
-            <x-sidebar.sidebar-item href="{{ route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga') }}" title="Kartu Keluarga"
-                :active="request()->routeIs(['rw.manage.pendataan.kartuKeluarga.kartuKeluarga'])">
-                <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                    class="w-6 fill-inherit lg:w-5">
-                    <path
-                        d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
-                </svg>
-            </x-sidebar.sidebar-item>
-            <x-sidebar.sidebar-item href="{{ route('rw.manage.pendataan.warga.warga') }}" title="Warga" :active="request()->routeIs(['rw.manage.pendataan.warga.warga'])">
-                <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                    class="w-6 fill-inherit lg:w-5">
-                    <path
-                        d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
                 </svg>
             </x-sidebar.sidebar-item>
         </ul>

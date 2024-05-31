@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 // App
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
+use App\Models\KartuKeluargaModel;
 use App\Models\RukunTetanggaModel;
 use App\Models\UserModel;
 use Exception;
@@ -27,11 +28,13 @@ class ManageWargaController extends Controller
         $filters = request()->filters ?? [];
 
         $users = (new SearchableDecorator(UserModel::class))->search($query, $paginate, [], $filters);
+        $kartuKeluargaInstances = KartuKeluargaModel::all();
 
         $count = UserModel::count();
 
         $data = [
             "users" => $users,
+            "kartuKeluargaInstances" => $kartuKeluargaInstances,
             "count" => $count
         ];
 

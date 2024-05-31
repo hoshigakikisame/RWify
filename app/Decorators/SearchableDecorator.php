@@ -54,8 +54,6 @@ class SearchableDecorator extends Decorator
                 $queryBuilder->orWhere($field, 'LIKE', "%$query%");
             }
 
-            // dd($queryBuilder->toRawSql());
-
         })->where(function (Builder $queryBuilder) use ($queryBuilderCb) {
             if ($queryBuilderCb != null) {
                 $queryBuilderCb($queryBuilder);
