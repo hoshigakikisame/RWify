@@ -139,6 +139,7 @@ Route::group([
             'as' => 'bansos.'
         ], function () {
             Route::get('mfep', [ManageBansosController::class, 'bansosMfepPage'])->name('mfep');
+            Route::get('saw', [ManageBansosController::class, 'bansosSawPage'])->name('saw');
         });
     });
 });

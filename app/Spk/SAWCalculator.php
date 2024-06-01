@@ -1,24 +1,24 @@
 <?php
+
 namespace App\Spk;
 
 use App\Models\KartuKeluargaModel;
 
-class MFEPCalculator
-{
+class SAWCalculator {
     private $alternatives;
     private $criterias;
 
     private array $criteriaWeights = [];
     private array $raw = [];
-    private array $factored = [];
-    private array $weighted = [];
+    private array $initialized = [];
+    private array $divisors = [];
+    private array $normalized = [];
     private array $results = [];
     
     public function __construct($alternatives = null, $criterias = null)
     {
         $this->alternatives = $alternatives ?? KartuKeluargaModel::all();
         $this->criterias = $criterias ?? KartuKeluargaModel::getSpkCriteria();
-        $this->calculate();
     }
 
     public function criteriaWeights()
@@ -26,7 +26,10 @@ class MFEPCalculator
         foreach ($this->criterias as $key => $value) {
             $newKey = str_replace('_', ' ', $key);
             $newKey = ucwords($newKey);
-            $this->criteriaWeights[$newKey] = $value['weight'];
+            $this->criteriaWeights[$newKey] = [
+                'weight' => $value['weight'],
+                'type' => $value['type']
+            ];
         }
 
         return $this->criteriaWeights;
@@ -47,49 +50,43 @@ class MFEPCalculator
         return $this->raw;
     }
 
-    public function factor()
+    public function divisors()
     {
-        $this->factored = [];
+        // get divisors
+        foreach ($this->criterias as $key => $value) {
+            $this->divisors[$key] = $value['type'] == 'benefit' ? max(array_column($this->raw, $key)) : min(array_column($this->raw, $key));
+        }
 
-        // factor each criteria
+        return $this->divisors;
+    }
+
+    public function normalize() {
+        $this->divisors();
+
+        $this->normalized = [];
+
+        // normalize data
         foreach ($this->alternatives as $alternative) {
-            $this->factored[$alternative->nkk] = [];
+            $this->normalized[$alternative->nkk] = [];
             foreach ($this->criterias as $key => $value) {
-                $this->factored[$alternative->nkk][$key] = $value['rule']($alternative->$key);
+                $this->normalized[$alternative->nkk][$key] = $value['type'] == 'benefit' ? $alternative->$key / $this->divisors[$key] : $this->divisors[$key] / $alternative->$key;
             }
         }
 
-        return $this->factored;
+        return $this->normalized;
     }
 
-    public function weightEvaluation()
+    public function results()
     {
-        $this->factor();
-
-        $this->weighted = [];
-
-        // weight each criteria
-        foreach ($this->alternatives as $alternative) {
-            $this->weighted[$alternative->nkk] = [];
-            foreach ($this->criterias as $key => $value) {
-                $this->weighted[$alternative->nkk][$key] = $this->factored[$alternative->nkk][$key] * $value['weight'];
-            }
-        }
-
-        return $this->weighted;
-    }
-
-    public function calculate()
-    {
-        $this->weightEvaluation();
+        $this->normalize();
 
         $this->results = [];
 
-        // sum all weighted criteria
+        // sum all normalized criteria
         foreach ($this->alternatives as $alternative) {
             $this->results[] = [
                 'instance' => $alternative,
-                'preference' => array_sum($this->weighted[$alternative->nkk])
+                'preference' => array_sum($this->normalized[$alternative->nkk])
             ];
         }
 
