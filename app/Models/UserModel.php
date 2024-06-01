@@ -133,10 +133,13 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     }
 
     // relationships
-    // public function rukunTetangga()
-    // {
-    //     return $this->belongsTo(RukunTetanggaModel::class, 'id_rukun_warga');
-    // }
+    public function pembayaranIuran() {
+        return $this->hasMany(PembayaranIuranModel::class, 'nik_pembayar', 'nik');
+    }
+
+    public function iuran() {
+        return $this->hasMany(IuranModel::class, 'nik_pembayar', 'nik');
+    }
 
     public function kartuKeluarga() {
         return $this->belongsTo(KartuKeluargaModel::class, 'nkk', 'nkk');
@@ -264,11 +267,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
         return $this->jenis_kelamin;
     }
 
-    // public function getIdRukunTetangga(): string
-    // {
-    //     return $this->id_rukun_tetangga;
-    // }
-
     public function getGolonganDarah(): string
     {
         return $this->golongan_darah;
@@ -292,6 +290,11 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     public function getKartuKeluarga(): KartuKeluargaModel
     {
         return KartuKeluargaModel::find($this->nkk)->first();
+    }
+
+    public function getVerifiedIuranCount(): int
+    {
+        return IuranModel::where('nik_pembayar', $this->getNik())->count();
     }
 
 

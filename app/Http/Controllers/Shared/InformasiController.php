@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Shared;
 use App\Http\Controllers\Controller;
 use App\Models\PengumumanModel;
 use App\Models\UmkmModel;
+use App\Models\UserModel;
+use App\Models\IuranModel;
 
 class InformasiController extends Controller
 {
@@ -32,6 +34,17 @@ class InformasiController extends Controller
 
     public function iuranLeaderboardPage()
     {
-        return view('pages.shared.informasi.iuran.leaderboard');
+        $filters = request()->filters ?? [];
+
+        $isDesc = in_array('desc', array_keys($filters)) ? (bool) $filters['desc'] : true;
+
+        $leaderboardUsers = UserModel::all()->sortBy(function ($user) {
+            return $user->getVerifiedIuranCount();
+        }, SORT_REGULAR, $isDesc);
+
+        $top3LeaderboardUsers = $leaderboardUsers->take(3);
+        $leaderboardUsers = $leaderboardUsers->slice(3);
+
+        return view('pages.shared.informasi.iuran.leaderboard', compact('top3LeaderboardUsers', 'leaderboardUsers'));
     }
 }
