@@ -91,7 +91,7 @@ class ManagePengaduanController extends Controller
         }
 
         //return redirect()->route('rw.manage.pengaduan');
-        return 'done';
+        return 'update success';
     }
 
     public function deletePengaduan()
@@ -113,6 +113,6 @@ class ManagePengaduanController extends Controller
         }
 
         //return redirect()->route('rw.manage.pengaduan');
-        return 'done';
+        return 'delete success';
     }
 }

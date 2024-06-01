@@ -3,14 +3,14 @@
     // dd($reservasiJadwalTemuInstances);
 @endphp
 @section('content')
-    <section class="relativ container mx-auto mb-8 mt-7 px-4">
+    <section class="relative container mx-auto mb-8 mt-7 px-4 dark:text-gray-300">
         <div class="greeting mb-5">
             <h6 class="font-Inter">Hi {{ auth()->user()->nama_depan }},</h6>
             <h1 class="text-4xl font-semibold leading-relaxed">Selamat Datang di RWify</h1>
         </div>
-        <div class="working flex gap-4">
+        <div class="working flex flex-wrap gap-4">
             <div class="left">
-                <div class="info mb-3 flex gap-5">
+                <div class="info mb-3 flex flex-wrap gap-5">
                     @php
                         $list = [
                             [
@@ -31,7 +31,8 @@
                         ];
                     @endphp
                     @foreach ($list as $item)
-                        <div class="info-element inline-flex flex-col gap-1 rounded-md border-2 px-4 py-2">
+                        <div
+                            class="info-element inline-flex flex-col gap-1 rounded-md border-2 dark:border-gray-600 px-4 py-2">
                             <h2 class="text-md tracking-wide">{{ $item['name'] }}</h2>
                             <div class="info-body mx-2 mb-2 flex justify-between">
                                 <h1 class="ms-4 font-Montserrat text-4xl font-medium">{{ $item['count'] }}</h1>
@@ -41,7 +42,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div class="statistic mb-3 rounded-lg border-2 px-8 py-4">
+                <div class="statistic mb-3 rounded-lg border-2 dark:border-gray-600 px-8 py-4">
                     <div class="statistic-body flex">
                         <div class="text">
                             <h1 class="mb-4 text-3xl font-semibold leading-relaxed tracking-wide">Statistik Warga</h1>
@@ -75,10 +76,10 @@
                     <h1>Leaderboard Iuran</h1>
                 </div>
             </div>
-            <div class="right flex flex-col">
-                <div class="calendar" x-data="{ eventShow: false }">
-                    <div class="w-full max-w-sm rounded-lg border-2">
-                        <div class="rounded-t bg-white p-5 dark:bg-gray-800 md:p-8">
+            <div class="right flex flex-wrap gap-2">
+                <div class="calendar w-full" x-data="{ eventShow: false }">
+                    <div class="w-full max-w-sm rounded-lg border-2 overflow-hidden dark:border-gray-600">
+                        <div class="rounded-t bg-white p-5 dark:bg-gray-900 md:p-8">
                             <div class="flex items-center justify-between px-4">
                                 <span id="calenderMonthYearTitle" tabindex="0"
                                     class="text-base font-bold text-gray-800 focus:outline-none dark:text-gray-100">
@@ -136,12 +137,10 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="">
-                            <div id="event-desc" x-show="eventShow"
-                                class="rounded-b bg-gray-50 px-5 py-5 dark:bg-gray-700 md:px-16 md:py-8">
-                                <div class="px-4 flex flex-col gap-4" id="body-event-desc">
-                                    {{-- body desc --}}
-                                </div>
+                        <div id="event-desc" x-show="eventShow"
+                            class="rounded-b bg-gray-50 px-5 py-5 dark:bg-gray-700 md:px-4 md:py-8">
+                            <div class="px-4 flex flex-col gap-4" id="body-event-desc">
+                                {{-- body desc --}}
                             </div>
                         </div>
                     </div>
@@ -318,7 +317,7 @@
             return /*html*/ `
             <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
              <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                 <p class="text-base text-indigo-500 dark:text-indigo-100 font-medium">${day}</p>
+                 <p class="text-base text-indigo-500 dark:text-indigo-500 font-medium">${day}</p>
              </div>
             </td>
                 `
@@ -341,7 +340,7 @@
             return /*template*/ `
             <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
              <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                 <p class="text-base text-red-500 dark:text-red-100 font-medium">${day}</p>
+                 <p class="text-base text-red-500 dark:text-red-500 font-medium">${day}</p>
              </div>
             </td>
             `;
