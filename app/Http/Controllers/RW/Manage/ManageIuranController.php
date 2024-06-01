@@ -75,11 +75,6 @@ class ManageIuranController extends Controller
         return view('pages.rw.manage.verifyPembayaranIuran', $data);
     }
 
-    public function iuranLeaderboardPage()
-    {
-        return view('pages.rw.manage.leaderboardIuran');
-    }
-
 
     public function addNewIuran()
     {

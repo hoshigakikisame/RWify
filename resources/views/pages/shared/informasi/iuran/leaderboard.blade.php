@@ -1,5 +1,5 @@
 {{-- extend to layouts/app --}}
-@extends('layouts.sidebar.rw-sidebar')
+@extends(request()->user()->getSidebarView())
 
 @php
     $imageDummy = Vite::asset('resources/assets/images/avatar.jpg');

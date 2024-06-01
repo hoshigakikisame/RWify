@@ -29,4 +29,9 @@ class InformasiController extends Controller
 
         return view('pages.shared.informasi.pengumuman.detail', compact('pengumumanInstance'));
     }
+
+    public function iuranLeaderboardPage()
+    {
+        return view('pages.shared.informasi.iuran.leaderboard');
+    }
 }

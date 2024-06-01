@@ -30,6 +30,7 @@ Route::group([
         // umkm
         Route::get('umkm', [InformasiController::class, 'umkmPage'])->name('umkmPage');
         
+        // pengumuman
         Route::group([
             'prefix' => 'pengumuman',
             'as' => 'pengumuman.'
@@ -37,6 +38,8 @@ Route::group([
             Route::get('', [InformasiController::class, 'pengumumanPage'])->name('index');
             Route::get('detail/{idPengumuman}', [InformasiController::class, 'pengumumanDetailPage'])->name('detail');
         });
+
+        Route::get('iuran/leaderboard', [InformasiController::class, 'iuranLeaderboardPage'])->name('iuranLeaderboard');
     });
 });
 
