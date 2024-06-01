@@ -17,6 +17,7 @@ export default async function ageChartStatistic(lansia, dewasa, remaja, anak, ba
                 {
                     data: data.map((row) => row.count),
                     backgroundColor: data.map((row) => row.color),
+                    borderColor: data.map((row) => row.color),
                 },
             ],
         },
