@@ -1,4 +1,4 @@
-@extends('layouts.sidebar.warga-sidebar')
+@extends(request()->user()->getSidebarView())
 @section('content')
     Dashboard Warga
 @endsection
