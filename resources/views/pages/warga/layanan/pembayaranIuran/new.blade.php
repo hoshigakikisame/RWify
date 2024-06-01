@@ -1,5 +1,5 @@
 {{-- extend to layouts/app --}}
-@extends('layouts.sidebar.warga-sidebar')
+@extends(request()->user()->getSidebarView())
 
 {{-- content --}}
 @section('content')
@@ -20,7 +20,8 @@
 
         <div class="flex flex-col lg:flex-row pb-4 pt-2 w-full justify-between">
             <div class="mr-0 lg:mr-4 mb-4">
-                <div class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
+                <div
+                    class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
                     <div class="col-span-1">
                         <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
                     </div>
@@ -31,7 +32,8 @@
                 </div>
             </div>
             <div class="mr-0 lg:mr-4 mb-4">
-                <div class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
+                <div
+                    class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
                     <div class="col-span-1">
                         <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
                     </div>
@@ -42,7 +44,8 @@
                 </div>
             </div>
             <div class="">
-                <div class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
+                <div
+                    class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
                     <div class="col-span-1">
                         <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
                     </div>
@@ -53,14 +56,10 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-gray-800/50">
-            <form
-                action="{{ route('warga.layanan.pembayaranIuran.new') }}"
-                method="POST"
-                onsubmit='window.Loading.showLoading()'
-                enctype="multipart/form-data"
-            >
+            <form action="{{ route('warga.layanan.pembayaranIuran.new') }}" method="POST"
+                onsubmit='window.Loading.showLoading()' enctype="multipart/form-data">
                 @csrf
 
                 <div class="">
@@ -73,41 +72,20 @@
 
                     <div class="form-body grid grid-flow-row-dense grid-cols-5 gap-10">
                         <div class="col-span-3" x-ref="wrap" x-data="{ fileName: '' }">
-                            <x-form.input-form
-                                title="NIK"
-                                key="nik_pembayar"
-                                type="text"
-                                value="{{ request()->user()->nik }}"
-                                placeholder=""
-                                readonly="true"
-                            />
-                            <x-form.textarea-input-form
-                                title="Keterangan"
-                                key="keterangan"
-                                placeholder="Tambahkan Keterangan Bulan Apa Saja yang Dibayarkan    "
-                                value=""
-                                rows="7 "
-                                resize="none"
-                            />
+                            <x-form.input-form title="NIK" key="nik_pembayar" type="text"
+                                value="{{ request()->user()->nik }}" placeholder="" readonly="true" />
+                            <x-form.textarea-input-form title="Keterangan" key="keterangan"
+                                placeholder="Tambahkan Keterangan Bulan Apa Saja yang Dibayarkan    " value=""
+                                rows="7 " resize="none" />
                             <div class="mt-4">
-                                <label
-                                    for="dropzone-file"
-                                    class="mt-4 text-sm capitalize text-gray-700 dark:text-gray-300"
-                                >
+                                <label for="dropzone-file" class="mt-4 text-sm capitalize text-gray-700 dark:text-gray-300">
                                     Bukti Pembayaran
                                 </label>
                                 <div
-                                    class="dark:hover:bg-bray-800 relative mt-2 flex h-[300px] h-full w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-                                >
+                                    class="dark:hover:bg-bray-800 relative mt-2 flex h-[300px] h-full w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                     <div x-ref="dnd" class="flex h-full w-full flex-col">
-                                        <input
-                                            id="dropzone-file"
-                                            accept="*"
-                                            type="file"
-                                            name="image"
-                                            title=""
-                                            x-ref="file"
-                                            @change="fileName = $refs.file.files[0]"
+                                        <input id="dropzone-file" accept="*" type="file" name="image"
+                                            title="" x-ref="file" @change="fileName = $refs.file.files[0]"
                                             class="absolute inset-0 z-40 h-full w-full cursor-pointer opacity-0 outline-none"
                                             @dragover="$refs.dnd.classList.add('bg-indigo-50')"
                                             @dragleave="$refs.dnd.classList.remove('bg-indigo-50')"
@@ -129,30 +107,16 @@
                                                     $refs.imgPreviewWrapper.classList.remove('hidden')
                                                 }
                                                 fileReader.readAsDataURL(fileName)
-                                            "
-                                        />
-                                        <div
-                                            class="hidden h-[360px] w-full bg-cover bg-center"
-                                            x-ref="imgPreviewWrapper"
-                                        ></div>
-                                        <div
-                                            class="flex p-4 h-full w-full flex-col items-center justify-center text-center"
-                                            x-ref="desc"
-                                        >
-                                            <svg
-                                                class="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 20 16"
-                                            >
-                                                <path
-                                                    stroke="currentColor"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
+                                            " />
+                                        <div class="hidden h-[360px] w-full bg-cover bg-center" x-ref="imgPreviewWrapper">
+                                        </div>
+                                        <div class="flex p-4 h-full w-full flex-col items-center justify-center text-center"
+                                            x-ref="desc">
+                                            <svg class="mb-4 h-8 w-8 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                                     stroke-width="2"
-                                                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                                                />
+                                                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                                             </svg>
                                             {{-- $refs.imgPreview.setAttribute('src', event.target.result); --}}
                                             <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
@@ -166,20 +130,19 @@
                                 </div>
                             </div>
                             <div class="mt-5 flex justify-end">
-                                <button
-                                    type="submit"
-                                    class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700"
-                                >
+                                <button type="submit"
+                                    class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
                                     Kirim Pembayaran
                                 </button>
-                            </div> 
+                            </div>
                         </div>
 
-                        
+
                         <div class="col-span-2 row-span-1 mt-4">
                             <div class="rounded-lg border p-6">
                                 <div class="container">
-                                    <h1 class="font-bold font-poppins text-md dark:text-gray-100">Total Pembayaran Bulanan</h1>
+                                    <h1 class="font-bold font-poppins text-md dark:text-gray-100">Total Pembayaran Bulanan
+                                    </h1>
                                     <div class="mt-4">
                                         <div class="border-b-2 dark:text-gray-100">
                                             @foreach ($ownedPropertiInstances as $properti)
@@ -191,9 +154,9 @@
                                                         </p>
                                                     </div>
                                                     <div
-                                                        class="col-span-1 row-span-2 inline-flex items-center justify-end text-right"
-                                                    >
-                                                        <p class="font-semi-bold font-poppins mb-2 items-center align-middle text-md dark:text-gray-100">
+                                                        class="col-span-1 row-span-2 inline-flex items-center justify-end text-right">
+                                                        <p
+                                                            class="font-semi-bold font-poppins mb-2 items-center align-middle text-md dark:text-gray-100">
                                                             {{ \Illuminate\Support\Number::currency($properti->getTipeProperti()->getIuranPerBulan(), 'IDR') }}
                                                         </p>
                                                     </div>
@@ -212,7 +175,7 @@
                                         </div>
                                     </div>
                                 </div>
-    
+
                                 <div class="container mt-10">
                                     <h1 class="font-bold text-md dark:text-gray-100">Total Tunggak Iuran</h1>
                                     <div class="mt-4">
@@ -224,8 +187,7 @@
                                                     </p>
                                                 </div>
                                                 <div
-                                                    class="col-span-1 row-span-2 inline-flex items-center justify-end text-right"
-                                                >
+                                                    class="col-span-1 row-span-2 inline-flex items-center justify-end text-right">
                                                     <p class="font-semi-bold mb-2 align-middle text-md dark:text-gray-100">
                                                         {{ \Illuminate\Support\Number::currency($totalUnpaidDueMonths, 'IDR') }}
                                                     </p>
@@ -242,4 +204,3 @@
         </div>
     </section>
 @endsection
-

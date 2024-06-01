@@ -10,6 +10,7 @@ use App\Models\UmkmModel;
 use App\Models\UserModel;
 use App\Models\PropertiModel;
 use \Illuminate\Database\Eloquent\Builder;
+use App\Models\ReservasiJadwalTemuModel;
 
 class RTController extends Controller
 {
@@ -31,11 +32,11 @@ class RTController extends Controller
         $remajaCount = UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
             ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();
 
-        $anakCount =  UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
-        ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 11)->whereYear('tanggal_lahir', '<', date('Y') - 5)->count();
+        $anakCount = UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
+            ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 11)->whereYear('tanggal_lahir', '<', date('Y') - 5)->count();
 
-        $balitaCount =  UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
-        ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 5)->whereYear('tanggal_lahir', '<', date('Y'))->count();
+        $balitaCount = UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
+            ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 5)->whereYear('tanggal_lahir', '<', date('Y'))->count();
 
         $umkmCount = UmkmModel::count();
         $pengaduanCount = PengaduanModel::count();
@@ -46,6 +47,9 @@ class RTController extends Controller
         $umkmLastAddedAt = UmkmModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
         $pengaduanLastAddedAt = PengaduanModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
         $propertiLastAddedAt = PropertiModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
+
+        $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
+
 
         $data = [
             'lansiaCount' => $lansiaCount,
@@ -59,6 +63,8 @@ class RTController extends Controller
             'umkmLastAddedAt' => $umkmLastAddedAt,
             'pengaduanLastAddedAt' => $pengaduanLastAddedAt,
             'propertiLastAddedAt' => $propertiLastAddedAt,
+            'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances
+
         ];
         return view('pages.rt.dashboard', $data);
     }

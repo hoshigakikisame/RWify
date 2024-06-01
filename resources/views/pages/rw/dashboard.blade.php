@@ -1,6 +1,5 @@
-@extends('layouts.sidebar.rw-sidebar')
+@extends(request()->user()->getSidebarView())
 @php
-    // dd($reservasiJadwalTemuInstances);
 @endphp
 @section('content')
     <section class="relative container mx-auto mb-8 mt-7 px-4 dark:text-gray-300">

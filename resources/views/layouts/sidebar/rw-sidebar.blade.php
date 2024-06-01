@@ -63,8 +63,8 @@
             </span>
         </button>
         <ul x-show="sideDropdown" class="ms-3 mt-2 flex flex-col gap-2">
-            <x-sidebar.sidebar-item href="{{ route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga') }}" title="Kartu Keluarga"
-                :active="request()->routeIs(['rw.manage.pendataan.kartuKeluarga.kartuKeluarga'])">
+            <x-sidebar.sidebar-item href="{{ route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga') }}"
+                title="Kartu Keluarga" :active="request()->routeIs(['rw.manage.pendataan.kartuKeluarga.kartuKeluarga'])">
                 <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                     class="w-6 fill-inherit lg:w-5">
                     <path
