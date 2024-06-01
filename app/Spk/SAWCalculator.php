@@ -10,7 +10,6 @@ class SAWCalculator {
 
     private array $criteriaWeights = [];
     private array $raw = [];
-    private array $initialized = [];
     private array $divisors = [];
     private array $normalized = [];
     private array $results = [];
