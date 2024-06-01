@@ -20,6 +20,8 @@
         ]);
 
         $activeDropProperti = request()->routeIs(['rw.manage.properti.index', 'rw.manage.tipeProperti.index']);
+
+        $activeDropBansos = request()->routeIs(['rw.manage.bansos.mfep', 'rw.manage.bansos.saw']);
     @endphp
 
     <x-sidebar.sidebar-item href="{{ route('rw.dashboard') }}" title="Dashboard" :active="request()->routeIs(['rw.dashboard'])">
@@ -250,10 +252,10 @@
         </ul>
     </li>
     <li class="relative" x-data="{ sideDropdown: false }">
-        <button class="{{ $activeDropIuran ? $activeStyle['active'] : $activeStyle['default'] }}"
+        <button class="{{ $activeDropBansos ? $activeStyle['active'] : $activeStyle['default'] }}"
             @click="sideDropdown = !sideDropdown"
             x-effect="
-                document.location.pathname.split('/').includes('iuran')
+                document.location.pathname.split('/').includes('bansos')
                     ? (sideDropdown = true)
                     : (sideDropdown = false)
             ">
