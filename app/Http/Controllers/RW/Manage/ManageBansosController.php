@@ -12,20 +12,19 @@ class ManageBansosController extends Controller
         
         $mfep = new MFEPCalculator(KartuKeluargaModel::all(), KartuKeluargaModel::getSpkCriteria());
 
-        $criteriaWeights = [];
-        foreach ($mfep->criterias as $key => $value) {
-            $newKey = str_replace('_', ' ', $key);
-            $newKey = ucwords($newKey);
-            $criteriaWeights[$newKey] = $value['weight'];
-        }
-
-        // dd($criteriaWeights, $mfep->factor(), $mfep->weightEvaluation(), $mfep->calculate());
+        // dd($mfep->criteriaWeights(), $mfep->raw(), $mfep->factor(), $mfep->weightEvaluation(), $mfep->calculate());
 
         return view('pages.rw.manage.bansos.mfep', [
-            'criteriaWeights' => $criteriaWeights,
+            'criteriaWeights' => $mfep->criteriaWeights(),
+            'raw' => $mfep->raw(),
             'factored' => $mfep->factor(),
             'weighted' => $mfep->weightEvaluation(),
             'results' => $mfep->calculate()
         ]);
+    }
+
+    public function bansosSawPage()
+    {
+        return view('pages.rw.manage.bansos.saw');
     }
 }

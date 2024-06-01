@@ -7,6 +7,9 @@ class MFEPCalculator
 {
     public $alternatives;
     public $criterias;
+
+    private array $criteriaWeights = [];
+    private array $raw = [];
     private array $factored = [];
     private array $weighted = [];
     private array $results = [];
@@ -16,6 +19,32 @@ class MFEPCalculator
         $this->alternatives = $alternatives ?? KartuKeluargaModel::all();
         $this->criterias = $criterias ?? KartuKeluargaModel::getSpkCriteria();
         $this->calculate();
+    }
+
+    public function criteriaWeights()
+    {
+        foreach ($this->criterias as $key => $value) {
+            $newKey = str_replace('_', ' ', $key);
+            $newKey = ucwords($newKey);
+            $this->criteriaWeights[$newKey] = $value['weight'];
+        }
+
+        return $this->criteriaWeights;
+    }
+
+    public function raw()
+    {
+        $this->raw = [];
+
+        // get raw data
+        foreach ($this->alternatives as $alternative) {
+            $this->raw[$alternative->nkk] = [];
+            foreach ($this->criterias as $key => $value) {
+                $this->raw[$alternative->nkk][$key] = $alternative->$key;
+            }
+        }
+
+        return $this->raw;
     }
 
     public function factor()
