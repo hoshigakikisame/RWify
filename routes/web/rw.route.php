@@ -12,7 +12,7 @@ use App\Http\Controllers\RW\Manage\ManagePengaduanController;
 use App\Http\Controllers\RW\Manage\ManagePropertiController;
 use App\Http\Controllers\RW\Manage\ManageTipePropertiController;
 use App\Http\Controllers\RW\Manage\ManageKartuKeluargaController;
-use Illuminate\Routing\Router;
+use App\Http\Controllers\RW\Manage\ManageBansosController;
 
 // rw routes
 Route::group([
@@ -132,6 +132,13 @@ Route::group([
             Route::post('update', [ManageIuranController::class, 'updateIuran'])->name('update');
             Route::post('delete', [ManageIuranController::class, 'deleteIuran'])->name('delete');
             Route::get('verify', [ManageIuranController::class, 'verifyPembayaranIuranPage'])->name('verify');
+        });
+
+        Route::group([
+            'prefix' => 'bansos',
+            'as' => 'bansos.'
+        ], function () {
+            Route::get('mfep', [ManageBansosController::class, 'bansosMfepPage'])->name('mfep');
         });
     });
 });

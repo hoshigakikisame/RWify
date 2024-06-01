@@ -29,6 +29,114 @@ class KartuKeluargaModel extends Model implements SearchCompatible
         'diperbarui_pada',
     ];
 
+    public static function getSpkCriteria(): array
+    {
+        return [
+            'tagihan_listrik_per_bulan' => [
+                'weight' => 0.2,
+                'type' => 'benefit',
+                'rule' => function ($tagihanListrikPerBulan) {
+                    if ($tagihanListrikPerBulan > 250000) {
+                        return 5;
+                    } else if ($tagihanListrikPerBulan > 200000) {
+                        return 4;
+                    } else if ($tagihanListrikPerBulan > 150000) {
+                        return 3;
+                    } else if ($tagihanListrikPerBulan > 100000) {
+                        return 2;
+                    } else {
+                        return 1;
+                    }
+                }
+            ],
+            'total_penghasilan_per_bulan' => [
+                'weight' => 0.2,
+                'type' => 'cost',
+                'rule' => function ($totalPenghasilanPerBulan) {
+                    if ($totalPenghasilanPerBulan > 5000000) {
+                        return 1;
+                    } else if ($totalPenghasilanPerBulan > 4000000) {
+                        return 2;
+                    } else if ($totalPenghasilanPerBulan > 3000000) {
+                        return 3;
+                    } else if ($totalPenghasilanPerBulan > 2000000) {
+                        return 4;
+                    } else {
+                        return 5;
+                    }
+                }
+            ],
+            'jumlah_pekerja' => [
+                'weight' => 0.15,
+                'type' => 'cost',
+                'rule' => function ($jumlahPekerja) {
+                    if ($jumlahPekerja >= 5) {
+                        return 5;
+                    } else if ($jumlahPekerja == 4) {
+                        return 4;
+                    } else if ($jumlahPekerja == 3) {
+                        return 3;
+                    } else if ($jumlahPekerja == 2) {
+                        return 2;
+                    } else {
+                        return 1;
+                    }
+                }
+            ],
+            'total_pajak_per_tahun' => [
+                'weight' => 0.15,
+                'type' => 'cost',
+                'rule' => function ($totalPajakPerTahun) {
+                    if ($totalPajakPerTahun > 5000000) {
+                        return 5;
+                    } else if ($totalPajakPerTahun > 4000000) {
+                        return 4;
+                    } else if ($totalPajakPerTahun > 3000000) {
+                        return 3;
+                    } else if ($totalPajakPerTahun > 2000000) {
+                        return 2;
+                    } else {
+                        return 1;
+                    }
+                }
+            ],
+            'tagihan_air_per_bulan' => [
+                'weight' => 0.15,
+                'type' => 'benefit',
+                'rule' => function ($tagihanAirPerBulan) {
+                    if ($tagihanAirPerBulan > 150000) {
+                        return 5;
+                    } else if ($tagihanAirPerBulan > 100000) {
+                        return 4;
+                    } else if ($tagihanAirPerBulan > 75000) {
+                        return 3;
+                    } else if ($tagihanAirPerBulan > 50000) {
+                        return 2;
+                    } else {
+                        return 1;
+                    }
+                }
+            ],
+            'total_kendaraan_dimiliki' => [
+                'weight' => 0.15,
+                'type' => 'cost',
+                'rule' => function ($totalKendaraanDimiliki) {
+                    if ($totalKendaraanDimiliki >= 5) {
+                        return 5;
+                    } else if ($totalKendaraanDimiliki == 4) {
+                        return 4;
+                    } else if ($totalKendaraanDimiliki == 3) {
+                        return 3;
+                    } else if ($totalKendaraanDimiliki == 2) {
+                        return 2;
+                    } else {
+                        return 1;
+                    }
+                }
+            ]
+        ];
+    }
+
     public static function searchable(): array
     {
         return [
