@@ -54,7 +54,6 @@ class ManageKartuKeluargaController extends Controller
             'jumlah_pekerja' => 'required',
             'total_penghasilan_per_bulan' => 'required',
             'total_pajak_per_tahun' => 'required',
-            'total_properti_dimiliki' => 'required',
             'tagihan_air_per_bulan' => 'required',
             'total_kendaraan_dimiliki' => 'required',
         ]);
@@ -67,7 +66,6 @@ class ManageKartuKeluargaController extends Controller
             'jumlah_pekerja' => request()->jumlah_pekerja,
             'total_penghasilan_per_bulan' => request()->total_penghasilan_per_bulan,
             'total_pajak_per_tahun' => request()->total_pajak_per_tahun,
-            'total_properti_dimiliki' => request()->total_properti_dimiliki,
             'tagihan_air_per_bulan' => request()->tagihan_air_per_bulan,
             'total_kendaraan_dimiliki' => request()->tagihan_air_per_bulan,
         ];
@@ -197,7 +195,6 @@ class ManageKartuKeluargaController extends Controller
             'jumlah_pekerja' => 'required',
             'total_penghasilan_per_bulan' => 'required',
             'total_pajak_per_tahun' => 'required',
-            'total_properti_dimiliki' => 'required',
             'tagihan_air_per_bulan' => 'required',
             'total_kendaraan_dimiliki' => 'required',
         ]);
@@ -215,7 +212,6 @@ class ManageKartuKeluargaController extends Controller
             $kartuKeluargaInstance->setJumlahPekerja(request()->jumlah_pekerja);
             $kartuKeluargaInstance->setTotalPenghasilanPerBulan(request()->total_penghasilan_per_bulan);
             $kartuKeluargaInstance->setTotalPajakPerTahun(request()->total_pajak_per_tahun);
-            $kartuKeluargaInstance->setTotalPropertiDimiliki(request()->total_properti_dimiliki);
             $kartuKeluargaInstance->setTagihanAirPerBulan(request()->tagihan_air_per_bulan);
             $kartuKeluargaInstance->setTotalKendaraanDimiliki(request()->total_kendaraan_dimiliki);
 

@@ -106,8 +106,6 @@
                                 placeholder="Masukkan Alamat" />
                                 <x-form.input-form title="Jumlah Pekerja" key="jumlah_pekerja" type="number"
                                 placeholder="Masukkan Jumlah Pekerja" />
-                                <x-form.input-form title="Jumlah Properti Dimiliki" key="total_properti_dimiliki" type="number"
-                                placeholder="Masukkan Jumlah Properti" />
                                 <x-form.input-form title="Jumlah Kendaraan Dimiliki" key="total_kendaraan_dimiliki" type="number"
                                 placeholder="Masukkan Jumlah Kendaraan" />
                                 <x-form.input-form title="Total Penghasilan Perbulan" key="total_penghasilan_per_bulan" type="number"
@@ -176,12 +174,6 @@
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">Jumlah Properti</span>
-                                        </button>
-                                    </th>
-                                    <th scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Jumlah Kendaraan</span>
                                         </button>
                                     </th>
@@ -229,12 +221,6 @@
                                             class="text-gray-700 dark:text-gray-200">
                                                 {{ $kk->getJumlahPekerja() }}
                                             </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 text-sm">
-                                            <p  class="text-gray-700 dark:text-gray-200">
-                                                {{ $kk->getTotalPropertiDimiliki() }}
-                                            </p>
                                         </td>
 
                                         <td class="px-10 py-4 text-sm font-medium">
@@ -434,7 +420,6 @@
                                     :options="$rukunTetanggaOptions" placeholder="Pilih Rukun Tetangga" selected="${kk.id_rukun_tetangga}"/>
                             <x-form.textarea-input-form title="Alamat" key="alamat" placeholder="Masukkan Alamat" value="${kk.alamat}"/>
                             <x-form.input-form title="Jumlah Pekerja" key="jumlah_pekerja" type="number" placeholder="Masukkan Jumlah Pekerja" value="${kk.jumlah_pekerja}"/>
-                            <x-form.input-form title="Jumlah Properti Dimiliki" key="total_properti_dimiliki" type="number" placeholder="Masukkan Jumlah Properti" value="${kk.total_properti_dimiliki}"/>
                             <x-form.input-form title="Jumlah Kendaraan Dimiliki" key="total_kendaraan_dimiliki" type="number" placeholder="Masukkan Jumlah Kendaraan" value="${kk.total_kendaraan_dimiliki}"/>
                             <x-form.input-form title="Total Penghasilan Perbulan" key="total_penghasilan_per_bulan" type="number" placeholder="Masukkan Jumlah Total Penghasilan Tiap Bulannya" value="${kk.total_penghasilan_per_bulan}"/>
                             <x-form.input-form title="Total Bayar Pajak Pertahun" key="total_pajak_per_tahun" type="number" placeholder="Masukkan Total Bayar Pajak Pertahunnya" value="${kk.total_pajak_per_tahun}"/>

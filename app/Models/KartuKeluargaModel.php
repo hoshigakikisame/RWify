@@ -23,7 +23,6 @@ class KartuKeluargaModel extends Model implements SearchCompatible
         'jumlah_pekerja',
         'total_penghasilan_per_bulan',
         'total_pajak_per_tahun',
-        'total_properti_dimiliki',
         'tagihan_air_per_bulan',
         'total_kendaraan_dimiliki',
         'dibuat_pada',
@@ -40,7 +39,6 @@ class KartuKeluargaModel extends Model implements SearchCompatible
             'jumlah_pekerja',
             'total_penghasilan_per_bulan',
             'total_pajak_per_tahun',
-            'total_properti_dimiliki',
             'tagihan_air_per_bulan',
             'total_kendaraan_dimiliki',
             'dibuat_pada',
@@ -100,11 +98,6 @@ class KartuKeluargaModel extends Model implements SearchCompatible
         return $this->total_pajak_per_tahun;
     }
 
-    public function getTotalPropertiDimiliki(): int
-    {
-        return $this->total_properti_dimiliki;
-    }
-
     public function getTagihanAirPerBulan(): int
     {
         return $this->tagihan_air_per_bulan;
@@ -159,11 +152,6 @@ class KartuKeluargaModel extends Model implements SearchCompatible
     public function setTotalPajakPerTahun(int $total_pajak_per_tahun): void
     {
         $this->total_pajak_per_tahun = $total_pajak_per_tahun;
-    }
-
-    public function setTotalPropertiDimiliki(int $total_properti_dimiliki): void
-    {
-        $this->total_properti_dimiliki = $total_properti_dimiliki;
     }
 
     public function setTagihanAirPerBulan(int $tagihan_air_per_bulan): void

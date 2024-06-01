@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedSmallInteger('jumlah_pekerja');
             $table->unsignedBigInteger('total_penghasilan_per_bulan'); 
             $table->unsignedBigInteger('total_pajak_per_tahun');
-            $table->unsignedBigInteger('total_properti_dimiliki');
             $table->unsignedBigInteger('tagihan_air_per_bulan');
             $table->unsignedInteger('total_kendaraan_dimiliki');
 
