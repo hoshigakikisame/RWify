@@ -8,7 +8,12 @@
                 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg rounded-lg bg-gray-100 fill-blue-600 px-3 py-2 text-blue-600 dark:bg-gray-800 dark:fill-blue-400 dark:text-blue-300 dark:hover:bg-gray-800 lg:justify-normal',
         ];
 
-        $activeDropIuran = request()->routeIs(['rt.dashboard']);
+        $activeDropIuran = request()->routeIs([
+            'rt.layanan.pembayaranIuran.iuran',
+            'rt.layanan.pembayaranIuran.riwayatPembayaranIuran',
+            'rt.layanan.pembayaranIuran.newIuranPage',
+            'informasi.iuranLeaderboard',
+        ]);
         $activeDropPengaduan = request()->routeIs([
             'rt.layanan.pengaduan.index',
             'rt.layanan.pengaduan.newPengaduanPage',
@@ -62,6 +67,20 @@
             </span>
         </button>
         <ul x-show="sideDropdown" class="ms-3 mt-2 flex flex-col gap-2">
+            <x-sidebar.sidebar-item href="{{ route('rt.layanan.pembayaranIuran.iuran') }}" title="Iuran" :active="request()->routeIs(['rt.layanan.pembayaranIuran.iuran'])">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
+                    y="0" viewBox="0 0 32 32" style="enable-background: new 0 0 512 512" xml:space="preserve"
+                    class="w-7 fill-inherit lg:w-6">
+                    <g>
+                        <path
+                            d="M2 8.7h28v4.08H2zM30 7.2c0-1.94-1.57-3.5-3.5-3.5h-21C3.57 3.7 2 5.26 2 7.2zM2 14.28v6.38c0 1.94 1.57 3.5 3.5 3.5h13.35a6.309 6.309 0 0 1 1.816-5.193c1.198-1.198 2.792-1.858 4.487-1.858s3.289.66 4.487 1.859c.127.127.244.261.358.397V14.28zm4.308 1.287h2.757a.9.9 0 0 1 0 1.8H6.308a.9.9 0 0 1 0-1.8zm5.514 5.188H6.308a.9.9 0 0 1 0-1.8h5.514a.9.9 0 0 1 0 1.8z"
+                            opacity="1" data-original="#000000" class=""></path>
+                        <path
+                            d="M28.58 20.03a4.847 4.847 0 0 0-6.85 0 4.829 4.829 0 0 0 0 6.85c1.89 1.89 4.96 1.89 6.85 0s1.89-4.96 0-6.85zm-1.315 3.38-2.22 1.789a.9.9 0 0 1-1.272-.145l-.873-1.113a.901.901 0 0 1 1.416-1.112l.311.396 1.51-1.217a.902.902 0 0 1 1.266.136.903.903 0 0 1-.138 1.266z"
+                            opacity="1" data-original="#000000" class=""></path>
+                    </g>
+                </svg>
+            </x-sidebar.sidebar-item>
             <x-sidebar.sidebar-item href="{{ route('rt.layanan.pembayaranIuran.riwayatPembayaranIuran') }}" title="Riwayat"
                 :active="request()->routeIs(['rt.layanan.pembayaranIuran.riwayatPembayaranIuran'])">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -77,8 +96,8 @@
                         d="m7.777 4.024 1.958-1.443a2.97 2.97 0 0 1 3.53 0l1.969 1.451C14.41 4 13.49 4 12.483 4h-2.17c-.922 0-1.769 0-2.536.024" />
                 </svg>
             </x-sidebar.sidebar-item>
-            <x-sidebar.sidebar-item href="{{ route('rt.layanan.pembayaranIuran.new') }}" title="Bayar Iuran"
-                :active="request()->routeIs(['rt.layanan.pembayaranIuran.new'])">
+            <x-sidebar.sidebar-item href="{{ route('rt.layanan.pembayaranIuran.newIuranPage') }}" title="Bayar Iuran"
+                :active="request()->routeIs(['rt.layanan.pembayaranIuran.newIuranPage'])">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 24 24" style="enable-background: new 0 0 512 512" xml:space="preserve"
                     class="w-7 fill-inherit lg:w-6">

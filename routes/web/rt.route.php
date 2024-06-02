@@ -60,6 +60,7 @@ Route::group([
             'as' => 'pembayaranIuran.'
         ], function() {
             // pages
+            Route::get('iuran', [PembayaranIuranWargaController::class, 'iuran'])->name('iuran');
             Route::get('riwayat', [PembayaranIuranWargaController::class, 'riwayatPembayaranIuranPage'])->name('riwayatPembayaranIuran');
             Route::get('new', [PembayaranIuranWargaController::class, 'newPembayaranIuranPage'])->name('newIuranPage');
             

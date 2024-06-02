@@ -20,7 +20,7 @@
             'warga.layanan.pembayaranIuran.iuran',
             'warga.layanan.pembayaranIuran.riwayatPembayaranIuran',
             'warga.layanan.pembayaranIuran.newIuranPage',
-            'warga.layanan.pembayaranIuran.leaderboard',
+            'informasi.iuranLeaderboard',
         ]);
         $activeDropPengaduan = request()->routeIs([
             'warga.layanan.pengaduan.index',
