@@ -70,7 +70,7 @@
                     </li>
                     <li x-ref="rank" class="px-4 py-2">
                         <button @click="(function(){appendRankData();setActivePanel($refs.rank)})()" ariaLabel="Konversi">
-                            Rangkin
+                            Rangking
                         </button>
                     </li>
                 </ul>
@@ -105,7 +105,6 @@
 @endsection
 
 @push('scripts')
-    <script></script>
     <script>
         function titleTable(titleFirst) {
             return element = /*html*/ `
