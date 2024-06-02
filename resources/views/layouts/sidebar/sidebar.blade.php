@@ -39,7 +39,7 @@
             @yield('menu')
         </x-sidebar.sidebar-wrap>
         <div class="w-full overflow-hidden">
-            <div class="no-scrollbar h-screen pb-6 w-full overflow-scroll">
+            <div class="no-scrollbar h-screen pb-6 w-full overflow-scroll dark:bg-gray-950/20">
                 @include('components.message.flash-message')
                 @yield('content')
             </div>

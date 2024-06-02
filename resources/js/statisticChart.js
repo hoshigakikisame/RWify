@@ -1,6 +1,6 @@
 import Chart from 'chart.js/auto';
 
-export default async function ageChartStatistic(lansia, dewasa, remaja, anak, balita) {
+export default function ageChartStatistic(lansia, dewasa, remaja, anak, balita) {
     const data = [
         { label: 'Lansia', color: '#F0F9D9', count: lansia },
         { label: 'Dewasa', color: '#265073', count: dewasa },
@@ -9,7 +9,18 @@ export default async function ageChartStatistic(lansia, dewasa, remaja, anak, ba
         { label: 'Anak-Anak', color: '#A8EEE2', count: anak },
     ];
 
+    const plugin = {
+        beforeInit(chart) {
+            const originalFit = chart.legend.fit;
+            chart.legend.fit = function fit() {
+                originalFit.bind(chart.legend)();
+                this.width += 100;
+            }
+        }
+    }
+
     new Chart(document.getElementById('myChart'), {
+
         type: 'doughnut',
         data: {
             labels: data.map((row) => row.label),
@@ -22,18 +33,28 @@ export default async function ageChartStatistic(lansia, dewasa, remaja, anak, ba
             ],
         },
         options: {
+            maintainAspectRatio: false,
             plugins: {
-                datalabels: {
-                    labels: {
-                        formatter: (value) => {
-                            return value + '%';
-                        },
-                    },
-                },
                 legend: {
-                    display: false,
-                },
+                    display: true,
+                    position: 'left',
+                    align: 'start',
+                    labels: {
+                        padding: 20,
+                    },
+                }
             },
+            layout: {
+                padding: {
+                    left: 50
+                }
+            }
         },
+        plugins: {
+            beforeInit: [plugin]
+        }
     });
+
+
+
 };

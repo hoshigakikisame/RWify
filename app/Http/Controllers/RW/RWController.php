@@ -33,6 +33,13 @@ class RWController extends Controller
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
 
+        $leaderboardUsers = UserModel::all()->sortBy(function ($user) {
+            return $user->getVerifiedIuranCount();
+        }, SORT_REGULAR, false);
+
+        $leaderboardUsers = $leaderboardUsers->take(10);
+
+
         $data = [
             'lansiaCount' => $lansiaCount,
             'dewasaCount' => $dewasaCount,
@@ -45,7 +52,8 @@ class RWController extends Controller
             'umkmLastAddedAt' => $umkmLastAddedAt,
             'pengaduanLastAddedAt' => $pengaduanLastAddedAt,
             'propertiLastAddedAt' => $propertiLastAddedAt,
-            'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances
+            'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
+            'leaderboardUsers' => $leaderboardUsers
         ];
         return view('pages.rw.dashboard', $data);
     }
