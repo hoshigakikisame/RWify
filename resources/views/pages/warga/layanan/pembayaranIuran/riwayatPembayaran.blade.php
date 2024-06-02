@@ -119,8 +119,8 @@
                                         </td>
                                         
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="-mx-1 text-nowrap text-xs text-blue-600">
-                                                {{ date("D, m-y", strtotime($pembayaranIuran->getTanggalBayar())) }}
+                                            <p class="inline gap-x-2 text-nowrap rounded-full bg-blue-100/60 px-3 py-1 text-sm font-normal text-blue-500 dark:bg-gray-800">
+                                                {{ ($pembayaranIuran->getTanggalBayar()) }}
                                             </p>
                                         </td>
 

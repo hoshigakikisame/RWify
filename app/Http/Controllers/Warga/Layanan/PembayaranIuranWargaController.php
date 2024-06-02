@@ -15,6 +15,28 @@ use Carbon\Carbon;
 class PembayaranIuranWargaController extends Controller
 {
 
+    public function iuran()
+    {
+        $query = request()->q;
+        $filters = request()->filters ?? [];
+        $paginate = request()->paginate ?? 5;
+
+        $iuranInstances = (new SearchableDecorator(IuranModel::class))->search(
+            $query,
+            $paginate,
+            ['pembayaranIuran' => PembayaranIuranModel::class],
+            ['nik_pembayar' => request()->user()->getNik(), ...$filters],
+        );
+        $count = IuranModel::where('nik_pembayar', auth()->user()->nik)->count();
+
+        $data = [
+            "iuranInstances" => $iuranInstances,
+            "count" => $count
+        ];
+
+        return view('pages.warga.layanan.pembayaranIuran.iuran', $data);
+    }
+    
     public function riwayatPembayaranIuranPage()
     {
 
