@@ -28,9 +28,9 @@ class ManageKartuKeluargaController extends Controller
 
         $kartuKeluargaInstances = (new SearchableDecorator(KartuKeluargaModel::class))->search($query, $paginate, [], $filters);
         $rukunTetanggaOptions = [];
-        
+
         RukunTetanggaModel::all()->map(function ($row) use (&$rukunTetanggaOptions) {
-            $rukunTetanggaOptions[$row['id_rukun_tetangga']] = $row['nomor_rukun_tetangga'];
+            $rukunTetanggaOptions[$row['nomor_rukun_tetangga']] = $row['id_rukun_tetangga'];
         });
 
         $count = KartuKeluargaModel::count();
@@ -78,7 +78,6 @@ class ManageKartuKeluargaController extends Controller
             session()->flash('success', ['title' => 'Berhasil menambahkan kartu keluarga baru.', 'description' => 'Berhasil menambahkan kartu keluarga baru.']);
         }
 
-        // return redirect()->route('rw.manage.warga.warga');
         return 'completed';
     }
 
@@ -108,27 +107,20 @@ class ManageKartuKeluargaController extends Controller
             $rukunTetanggaInstances[$row['nomor_rukun_tetangga']] = $row['id_rukun_tetangga'];
         });
 
-        $newUsers = [];
+        $newKartuKeluargaInstances = [];
 
         $i = 1;
         foreach ($data as $row) {
             $validate = Validator::make($row, [
-                'nik' => 'required',
                 'nkk' => 'required',
-                'email' => 'required',
-                'password' => 'required',
-                'nama_depan' => 'required',
-                'nama_belakang' => 'required',
-                'tempat_lahir' => 'required',
-                'tanggal_lahir' => 'required',
-                'agama' => '',
-                'status_perkawinan' => 'required',
-                'pekerjaan' => '',
-                'role' => 'required',
-                'jenis_kelamin' => 'required',
-                'golongan_darah' => 'required',
                 'alamat' => 'required',
                 'rt' => 'required',
+                'tagihan_listrik_per_bulan' => 'required',
+                'jumlah_pekerja' => 'required',
+                'total_penghasilan_per_bulan' => 'required',
+                'total_pajak_per_tahun' => 'required',
+                'tagihan_air_per_bulan' => 'required',
+                'total_kendaraan_dimiliki' => 'required',
             ]);
 
             if ($validate->fails()) {
@@ -137,54 +129,57 @@ class ManageKartuKeluargaController extends Controller
                     $description .= $error . ' ';
                 }
                 session()->flash('danger', [
-                    'title' => sprintf('Gagal mengimport warga pada baris %d', $i),
+                    'title' => sprintf('Gagal mengimport kartu keluarga pada baris %d', $i),
                     'description' => $description
                 ]);
-                return redirect()->route('rw.manage.warga.warga');
+                return redirect()->route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga');
             }
 
-            array_push($newUsers, [
-                'nik' => $row['nik'],
+            $isRukunTetanggaExists = array_key_exists($row['rt'], $rukunTetanggaInstances);
+
+            if (!$isRukunTetanggaExists) {
+                session()->flash('danger', [
+                    'title' => sprintf('Gagal mengimport kartu keluarga pada baris %d', $i),
+                    'description' => 'Nomor rukun tetangga tidak ditemukan.'
+                ]);
+                return redirect()->route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga');
+            }
+
+            array_push($newKartuKeluargaInstances, [
                 'nkk' => $row['nkk'],
-                'email' => $row['email'],
-                'password' => Hash::make($row['password']),
-                'nama_depan' => $row['nama_depan'],
-                'nama_belakang' => $row['nama_belakang'],
-                'tempat_lahir' => $row['tempat_lahir'],
-                'tanggal_lahir' => date('Y-m-d', strtotime($row['tanggal_lahir'])),
-                'agama' => $row['agama'],
-                'status_perkawinan' => $row['status_perkawinan'],
-                'pekerjaan' => $row['pekerjaan'],
-                'role' => $row['role'],
-                'jenis_kelamin' => $row['jenis_kelamin'],
-                'golongan_darah' => $row['golongan_darah'],
                 'alamat' => $row['alamat'],
-                'id_rukun_tetangga' => $rukunTetanggaInstances[$row['rt']]
+                'id_rukun_tetangga' => $rukunTetanggaInstances[$row['rt']],
+                'tagihan_listrik_per_bulan' => $row['tagihan_listrik_per_bulan'],
+                'jumlah_pekerja' => $row['jumlah_pekerja'],
+                'total_penghasilan_per_bulan' => $row['total_penghasilan_per_bulan'],
+                'total_pajak_per_tahun' => $row['total_pajak_per_tahun'],
+                'tagihan_air_per_bulan' => $row['tagihan_air_per_bulan'],
+                'total_kendaraan_dimiliki' => $row['total_kendaraan_dimiliki'],
             ]);
 
             $i++;
         }
 
         try {
-            $newUsers = UserModel::insert($newUsers);
+            $newKartuKeluargaInstances = KartuKeluargaModel::insert($newKartuKeluargaInstances);
         } catch (PDOException $e) {
             session()->flash('danger', [
-                'title' => sprintf('Gagal mengimport warga'),
+                'title' => sprintf('Gagal mengimport kartu keluarga'),
                 'description' => $e->errorInfo[2]
             ]);
-            return redirect()->route('rw.manage.warga.warga');
+            return redirect()->route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga');
         }
 
-        if (!$newUsers) {
-            session()->flash('danger', ['title' => 'Gagal mengimport warga.', 'description' => 'Gagal mengimport warga.']);
+        if (!$newKartuKeluargaInstances) {
+            session()->flash('danger', ['title' => 'Gagal mengimport kartu keluarga.', 'description' => 'Gagal mengimport kartu keluarga.']);
         } else {
-            session()->flash('success', ['title' => 'Berhasil mengimport warga.', 'description' => 'Berhasil mengimport warga.']);
+            session()->flash('success', ['title' => 'Berhasil mengimport kartu keluarga.', 'description' => 'Berhasil mengimport kartu keluarga.']);
         }
 
-        return redirect()->route('rw.manage.warga.warga');
+        return redirect()->route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga');
     }
 
-    // update warga with validation
+    // update kartu keluarga with validation
     public function updateKartuKeluarga()
     {
         request()->validate([
@@ -220,7 +215,6 @@ class ManageKartuKeluargaController extends Controller
             session()->flash('success', ['title' => 'Berhasil mengupdate kartu keluarga.', 'description' => 'Berhasil mengupdate kartu keluarga.']);
         }
 
-        // return redirect()->route('rw.manage.warga.warga');
         return 'done';
     }
 
@@ -242,7 +236,6 @@ class ManageKartuKeluargaController extends Controller
             session()->flash('success', ['title' => 'Berhasil menghapus kartu keluarga.', 'description' => 'Berhasil menghapus kartu keluarga.']);
         }
 
-        // return redirect()->route('rw.manage.warga.warga');
         return 'completed';
     }
 }

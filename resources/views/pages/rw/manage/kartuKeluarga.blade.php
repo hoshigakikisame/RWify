@@ -23,7 +23,7 @@
 
             
             <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
-                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.warga.importCSV') }}" class="flex items-center justify-center" method="post" enctype="multipart/form-data">
+                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.kartuKeluarga.importCSV') }}" class="flex items-center justify-center" method="post" enctype="multipart/form-data">
                     @csrf
                     <label for="csv"
                         class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"><svg

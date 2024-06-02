@@ -55,7 +55,7 @@ Route::group([
                 Route::post('update', [ManageKartuKeluargaController::class, 'updateKartuKeluarga'])->name('update');
                 Route::post('delete', [ManageKartuKeluargaController::class, 'deleteKartuKeluarga'])->name('delete');
 
-                // Route::post('import-csv', [ManageKartuKeluargaController::class, 'importCSV'])->name('importCSV');
+                Route::post('import-csv', [ManageKartuKeluargaController::class, 'importCSV'])->name('importCSV');
             });
         });
 
