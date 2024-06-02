@@ -111,12 +111,6 @@ class ManageWargaController extends Controller
             $data[] = array_combine($header, $row);
         }
 
-        $rukunTetanggaInstances = [];
-
-        RukunTetanggaModel::all()->each(function ($row) use (&$rukunTetanggaInstances) {
-            $rukunTetanggaInstances[$row['nomor_rukun_tetangga']] = $row['id_rukun_tetangga'];
-        });
-
         $newUsers = [];
 
         $i = 1;
@@ -137,7 +131,6 @@ class ManageWargaController extends Controller
                 'jenis_kelamin' => 'required',
                 'golongan_darah' => 'required',
                 'alamat' => 'required',
-                'rt' => 'required',
             ]);
 
             if ($validate->fails()) {
@@ -150,6 +143,15 @@ class ManageWargaController extends Controller
                     'description' => $description
                 ]);
                 return redirect()->route('rw.manage.warga.warga');
+            }
+
+            $isKartuKeluargaExists = KartuKeluargaModel::where('nkk', $row['nkk'])->exists();
+            if (!$isKartuKeluargaExists) {
+                session()->flash('danger', [
+                    'title' => sprintf('Gagal mengimport warga pada baris %d', $i),
+                    'description' => 'Kartu keluarga tidak ditemukan.'
+                ]);
+                return redirect()->route('rw.manage.pendataan.warga.warga');
             }
 
             array_push($newUsers, [
@@ -168,7 +170,6 @@ class ManageWargaController extends Controller
                 'jenis_kelamin' => $row['jenis_kelamin'],
                 'golongan_darah' => $row['golongan_darah'],
                 'alamat' => $row['alamat'],
-                'id_rukun_tetangga' => $rukunTetanggaInstances[$row['rt']]
             ]);
 
             $i++;
@@ -181,7 +182,7 @@ class ManageWargaController extends Controller
                 'title' => sprintf('Gagal mengimport warga'),
                 'description' => $e->errorInfo[2]
             ]);
-            return redirect()->route('rw.manage.warga.warga');
+            return redirect()->route('rw.manage.pendataan.warga.warga');
         }
 
         if (!$newUsers) {
@@ -190,7 +191,7 @@ class ManageWargaController extends Controller
             session()->flash('success', ['title' => 'Berhasil mengimport warga.', 'description' => 'Berhasil mengimport warga.']);
         }
 
-        return redirect()->route('rw.manage.warga.warga');
+        return redirect()->route('rw.manage.pendataan.warga.warga');
     }
 
     // update warga with validation
