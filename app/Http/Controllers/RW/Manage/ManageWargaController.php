@@ -58,8 +58,7 @@ class ManageWargaController extends Controller
             'role' => 'required',
             'jenis_kelamin' => 'required',
             'golongan_darah' => 'required',
-            'alamat' => 'required',
-            'id_rukun_tetangga' => 'required',
+            'alamat' => 'required'
         ]);
 
         $data = [
@@ -77,8 +76,7 @@ class ManageWargaController extends Controller
             'role' => request()->role,
             'jenis_kelamin' => request()->jenis_kelamin,
             'golongan_darah' => request()->golongan_darah,
-            'alamat' => request()->alamat,
-            'id_rukun_tetangga' => request()->id_rukun_tetangga,
+            'alamat' => request()->alamat
         ];
 
         $newUser = UserModel::create($data);
@@ -90,7 +88,7 @@ class ManageWargaController extends Controller
         }
 
         // return redirect()->route('rw.manage.warga.warga');
-        return 'sliwik';
+        return 'completed';
     }
 
     public function importCSV()
@@ -212,7 +210,6 @@ class ManageWargaController extends Controller
             'jenis_kelamin' => 'required',
             'golongan_darah' => 'required',
             'alamat' => 'required',
-            'id_rukun_tetangga' => 'required',
         ]);
 
         $nik = request()->nik;
@@ -235,7 +232,10 @@ class ManageWargaController extends Controller
             $user->setJenisKelamin(request()->jenis_kelamin);
             $user->setGolonganDarah(request()->golongan_darah);
             $user->setAlamat(request()->alamat);
-            $user->setIdRukunTetangga(request()->id_rukun_tetangga);
+
+            if (request()->password) {
+                $user->setPassword(Hash::make(request()->password));
+            }
 
             $user->save();
 

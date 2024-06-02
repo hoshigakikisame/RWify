@@ -9,7 +9,6 @@
         $statusPerkawinan = \App\Models\UserModel::getStatusPerkawinanOption();
         $golonganDarah = \App\Models\UserModel::getGolonganDarahOption();
         $role = \App\Models\UserModel::getRoleOption();
-        $rukunTetangga = \App\Models\UserModel::getRukunTetanggaOption();
     @endphp
 
     <section class="container relative mx-auto mb-8 mt-7 px-4" x-data="{ modalOpen: false }">
@@ -143,8 +142,6 @@
                                     :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
                                 <x-form.select-input-form title="Role Warga" key="role" :options="$role"
                                     placeholder="Pilih Role Warga" />
-                                <x-form.select-input-form title="Rukun Tetangga Warga" key="id_rukun_tetangga"
-                                    :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga" />
                                 <div class="mt-6 flex justify-between">
                                     <p class="text-xs text-gray-200 dark:text-gray-400">
                                         Note: Pastikan semua sudah terisi dengan benar
@@ -476,9 +473,6 @@
                              placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
                          <x-form.select-input-form title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga"
                              selected="${user.role}" />
-                         <x-form.select-input-form title="Rukun Tetangga Warga" key="id_rukun_tetangga"
-                             :options="$rukunTetangga" placeholder="Pilih Rukun Tetangga Warga"
-                             selected="${user.id_rukun_tetangga}" />
                          <div class="flex justify-between mt-6">
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
                              </p>
