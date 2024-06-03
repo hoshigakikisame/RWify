@@ -294,7 +294,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
 
     public function getVerifiedIuranCount(): int
     {
-        return IuranModel::where('nik_pembayar', $this->getNik())->count();
+        return IuranModel::select('id_iuran')->where('nik_pembayar', $this->getNik())->count();
     }
 
 

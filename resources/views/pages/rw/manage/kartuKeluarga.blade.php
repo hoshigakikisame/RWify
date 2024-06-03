@@ -3,7 +3,6 @@
 
 {{-- content --}}
 @section('content')
-
     <section class="container relative mx-auto mb-8 mt-7 px-4" x-data="{ modalOpen: false }">
         <div class="sm:flex sm:items-center sm:justify-between">
             <div>
@@ -21,9 +20,10 @@
                 </p>
             </div>
 
-            
+
             <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
-                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.kartuKeluarga.importCSV') }}" class="flex items-center justify-center" method="post" enctype="multipart/form-data">
+                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.kartuKeluarga.importCSV') }}"
+                    class="flex items-center justify-center" method="post" enctype="multipart/form-data">
                     @csrf
                     <label for="csv"
                         class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"><svg
@@ -42,7 +42,19 @@
                             </defs>
                         </svg>Import
                     </label>
-                    <input id="csv" name="csv" type="file" class="hidden" onchange="document.querySelector('#importCSVForm').submit()">
+                    <input id="csv" name="csv" type="file" class="hidden"
+                        onchange="document.querySelector('#importCSVForm').submit()">
+                </form>
+
+                <form id="exportCSVForm" method="get" action="{{ route('rw.manage.pendataan.kartuKeluarga.exportCSV') }}"
+                    class="flex items-center justify-center">
+                    @csrf
+                    <label for="exportCSV"
+                        class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4"/></svg>Export
+                    </label>
+                    <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
+                        onclick="document.querySelector('#exportCSVForm').submit()">
                 </form>
 
                 <button id="addButton" @click="modalOpen = !modalOpen"
@@ -99,24 +111,25 @@
                             <form class="mt-5" id="addModalForm">
                                 @csrf
                                 <x-form.input-form title="NKK" key="nkk" type="text"
-                                placeholder="Masukkan Nomor Kartu Keluarga" />
-                                <x-form.select-input-form title="Rukun Tetangga" key="id_rukun_tetangga"
-                                    :options="$rukunTetanggaOptions" placeholder="Pilih Rukun Tetangga" />
+                                    placeholder="Masukkan Nomor Kartu Keluarga" />
+                                <x-form.select-input-form title="Rukun Tetangga" key="id_rukun_tetangga" :options="$rukunTetanggaOptions"
+                                    placeholder="Pilih Rukun Tetangga" />
                                 <x-form.textarea-input-form title="Alamat" key="alamat"
-                                placeholder="Masukkan Alamat" />
+                                    placeholder="Masukkan Alamat" />
                                 <x-form.input-form title="Jumlah Pekerja" key="jumlah_pekerja" type="number"
-                                placeholder="Masukkan Jumlah Pekerja" />
-                                <x-form.input-form title="Jumlah Kendaraan Dimiliki" key="total_kendaraan_dimiliki" type="number"
-                                placeholder="Masukkan Jumlah Kendaraan" />
-                                <x-form.input-form title="Total Penghasilan Perbulan" key="total_penghasilan_per_bulan" type="number"
-                                placeholder="Masukkan Jumlah Total Penghasilan Tiap Bulannya" />
-                                <x-form.input-form title="Total Bayar Pajak Pertahun" key="total_pajak_per_tahun" type="number"
-                                placeholder="Masukkan Total Bayar Pajak Pertahunnya" />
-                                <x-form.input-form title="Total Tagihan Listrik Perbulan" key="tagihan_listrik_per_bulan" type="number"
-                                placeholder="Masukkan Total Tagihan Listrik Perbulannya" />
-                                <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan" type="number"
-                                placeholder="Masukkan Total Tagihan Air Perbulannya" />
-                                <x-form.input-form title="Total Kendaraan Dimiliki" key="total_kendaraan_dimiliki" type="number" placeholder="Masukkan Total Kendaraan Dimiliki" />
+                                    placeholder="Masukkan Jumlah Pekerja" />
+                                <x-form.input-form title="Jumlah Kendaraan Dimiliki" key="total_kendaraan_dimiliki"
+                                    type="number" placeholder="Masukkan Jumlah Kendaraan" />
+                                <x-form.input-form title="Total Penghasilan Perbulan" key="total_penghasilan_per_bulan"
+                                    type="number" placeholder="Masukkan Jumlah Total Penghasilan Tiap Bulannya" />
+                                <x-form.input-form title="Total Bayar Pajak Pertahun" key="total_pajak_per_tahun"
+                                    type="number" placeholder="Masukkan Total Bayar Pajak Pertahunnya" />
+                                <x-form.input-form title="Total Tagihan Listrik Perbulan" key="tagihan_listrik_per_bulan"
+                                    type="number" placeholder="Masukkan Total Tagihan Listrik Perbulannya" />
+                                <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan"
+                                    type="number" placeholder="Masukkan Total Tagihan Air Perbulannya" />
+                                <x-form.input-form title="Total Kendaraan Dimiliki" key="total_kendaraan_dimiliki"
+                                    type="number" placeholder="Masukkan Total Kendaraan Dimiliki" />
 
                                 <div class="mt-6 flex justify-between">
                                     <p class="text-xs text-gray-200 dark:text-gray-400">
@@ -136,7 +149,8 @@
         </div>
 
         <div class="mt-6 md:flex md:items-center justify-end">
-            <div id="search" class="relative mt-4 flex w-fit items-center justify-items-end md:mt-0" x-data="{ search: '' }">
+            <div id="search" class="relative mt-4 flex w-fit items-center justify-items-end md:mt-0"
+                x-data="{ search: '' }">
                 <span class="absolute">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
@@ -149,7 +163,7 @@
                     placeholder="Search"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
-        </div>  
+        </div>
 
         <div class="mt-6 flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -211,20 +225,20 @@
                                     <tr>
                                         <td class="px-6 py-4 text-sm font-medium">
                                             <div>
-                                                <h2 class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800"">
+                                                <h2
+                                                    class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800"">
                                                     {{ $kk->getNkk() }}
                                                 </h2>
                                             </div>
                                         </td>
                                         <td class="px-10 py-4 text-sm font-medium">
-                                            <div
-                                            class="text-gray-700 dark:text-gray-200">
+                                            <div class="text-gray-700 dark:text-gray-200">
                                                 {{ $kk->getJumlahPekerja() }}
                                             </div>
                                         </td>
 
                                         <td class="px-10 py-4 text-sm font-medium">
-                                            <p  class="text-gray-700 dark:text-gray-200">
+                                            <p class="text-gray-700 dark:text-gray-200">
                                                 {{ $kk->getTotalKendaraanDimiliki() }}
                                             </p>
                                         </td>

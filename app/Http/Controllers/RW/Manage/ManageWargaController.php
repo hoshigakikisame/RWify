@@ -194,6 +194,46 @@ class ManageWargaController extends Controller
         return redirect()->route('rw.manage.pendataan.warga.warga');
     }
 
+    // export
+    public function exportCSV()
+    {
+        $userInstances = UserModel::all();
+
+        $csv = 'nik,nkk,image_url,email,nama_depan,nama_belakang,tempat_lahir,tanggal_lahir,agama,status_perkawinan,pekerjaan,role,jenis_kelamin,golongan_darah,alamat' . PHP_EOL;
+
+        foreach ($userInstances as $row) {
+            
+            $alamat = preg_replace("/\r|\n|,/", "", $row->getAlamat());
+
+            $csv .= sprintf(
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s', 
+                $row->getNik(),
+                $row->getNkk(),
+                $row->getImageUrl(),
+                $row->getEmail(),
+                $row->getNamaDepan(),
+                $row->getNamaBelakang(),
+                $row->getTempatLahir(),
+                $row->getTanggalLahir(),
+                $row->getAgama(),
+                $row->getStatusPerkawinan(),
+                $row->getPekerjaan(),
+                $row->getRole(),
+                $row->getJenisKelamin(),
+                $row->getGolonganDarah(),
+                $alamat
+                ) . PHP_EOL;
+            }
+            
+            $filename = 'warga_' . date('Y-m-d_H-i-s') . '.csv';
+
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        echo $csv;
+        exit();
+    }
+
     // update warga with validation
     public function updateWarga()
     {

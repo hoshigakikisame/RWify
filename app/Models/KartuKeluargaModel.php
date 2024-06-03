@@ -186,6 +186,10 @@ class KartuKeluargaModel extends Model implements SearchCompatible
         return $this->id_rukun_tetangga;
     }
 
+    public function getNomorRukunTetangga(): int {
+        return $this->rukunTetangga->nomor_rukun_tetangga;
+    }
+
     public function getTagihanListrikPerBulan(): int
     {
         return $this->tagihan_listrik_per_bulan;
