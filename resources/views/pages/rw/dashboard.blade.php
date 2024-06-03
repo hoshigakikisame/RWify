@@ -326,7 +326,7 @@
                     id: {{ $item->getIdReservasiJadwalTemu() }},
                     date: "{{ $item->getJadwalTemu() }}",
                     title: "{{ $item->getSubjek() }}",
-                    description: "{{ $item->getPesan() }}"
+                    description: `{{ $item->getPesan() }}`,
                 },
             @endforeach
         ];
