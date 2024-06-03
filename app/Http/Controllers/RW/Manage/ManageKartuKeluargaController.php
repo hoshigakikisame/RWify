@@ -179,6 +179,40 @@ class ManageKartuKeluargaController extends Controller
         return redirect()->route('rw.manage.pendataan.kartuKeluarga.kartuKeluarga');
     }
 
+    // export
+    public function exportCSV()
+    {
+        $kartuKeluargaInstances = KartuKeluargaModel::all();
+
+        $csv = 'nkk,alamat,rt,tagihan_listrik_per_bulan,jumlah_pekerja,total_penghasilan_per_bulan,total_pajak_per_tahun,tagihan_air_per_bulan,total_kendaraan_dimiliki' . PHP_EOL;
+
+        foreach ($kartuKeluargaInstances as $row) {
+            
+            $alamat = preg_replace("/\r|\n|,/", "", $row->getAlamat());
+
+            $csv .= sprintf(
+                '%s,%s,%s,%s,%s,%s,%s,%s,%s', 
+                $row->getNkk(), 
+                $alamat, 
+                $row->getNomorRukunTetangga(), 
+                $row->getTagihanListrikPerBulan(), 
+                $row->getJumlahPekerja(), 
+                $row->getTotalPenghasilanPerBulan(), 
+                $row->getTotalPajakPerTahun(), 
+                $row->getTagihanAirPerBulan(), 
+                $row->getTotalKendaraanDimiliki()
+                ) . PHP_EOL;
+            }
+            
+            $filename = 'kartu_keluarga_' . date('Y-m-d_H-i-s') . '.csv';
+
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        echo $csv;
+        exit();
+    }
+
     // update kartu keluarga with validation
     public function updateKartuKeluarga()
     {

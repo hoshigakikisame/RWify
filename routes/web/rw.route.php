@@ -43,6 +43,7 @@ Route::group([
                 Route::post('delete', [ManageWargaController::class, 'deleteWarga'])->name('delete');
 
                 Route::post('import-csv', [ManageWargaController::class, 'importCSV'])->name('importCSV');
+                Route::get('export-csv', [ManageWargaController::class, 'exportCSV'])->name('exportCSV');
             });
 
             // rw manage kartu keluarga routes
@@ -56,6 +57,7 @@ Route::group([
                 Route::post('delete', [ManageKartuKeluargaController::class, 'deleteKartuKeluarga'])->name('delete');
 
                 Route::post('import-csv', [ManageKartuKeluargaController::class, 'importCSV'])->name('importCSV');
+                Route::get('export-csv', [ManageKartuKeluargaController::class, 'exportCSV'])->name('exportCSV');
             });
         });
 
