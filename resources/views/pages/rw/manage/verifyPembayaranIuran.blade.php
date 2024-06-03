@@ -99,7 +99,6 @@
                                                         d="M10 20a9.96 9.96 0 0 0 6.327-2.258l5.966 5.965a1 1 0 0 0 1.414-1.414l-5.966-5.965A10 10 0 1 0 10 20M7 9h2V7a1 1 0 0 1 2 0v2h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2H7a1 1 0 0 1 0-2" />
                                                 </svg>
                                             </button>
-
                                         </div>
                                     </div>
                                     <div class="text w-full h-full">
@@ -112,17 +111,103 @@
                                             <p class="text-sm text-gray-700">{{ $pembayaranIuran->getKeterangan() }}</p>
                                     </div>
                                 </div>
+                                <div class="form-action-verified" x-data="{ isFromOpen: false }">
+                                    <button id="verified-button" class=""
+                                        @click="isFromOpen = !isFromOpen;zoomInit()">
+                                        <div class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5">
+                                                <path
+                                                    d="M18 12a6 6 0 1 0 0 12 6 6 0 0 0 0-12m3.192 6.202-2.213 2.124c-.452.446-1.052.671-1.653.671s-1.203-.225-1.663-.674l-1.132-1.109a1 1 0 1 1 1.4-1.428l1.131 1.108a.374.374 0 0 0 .522-.002l2.223-2.134a1 1 0 1 1 1.385 1.443ZM10 18a7.98 7.98 0 0 1 2.709-6H5a1 1 0 1 1 0-2h8a1 1 0 0 1 .997 1.072A7.96 7.96 0 0 1 18 10V5c0-2.757-2.243-5-5-5H5C2.243 0 0 2.243 0 5v14c0 2.757 2.243 5 5 5h7.709A7.98 7.98 0 0 1 10 18M5 5h8a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2m2 12H5a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2" />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                    <div class="">
+                                        <div id="verifiedModal" x-show="isFromOpen"
+                                            class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title"
+                                            role="dialog" aria-modal="true" style="display: none">
+                                            <div
+                                                class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
+                                                <div @click="isFromOpen = false" x-show="isFromOpen"
+                                                    x-transition:enter="transform transition duration-300 ease-out"
+                                                    x-transition:enter-start="opacity-0"
+                                                    x-transition:enter-end="opacity-100"
+                                                    x-transition:leave="transform transition duration-200 ease-in"
+                                                    x-transition:leave-start="opacity-100"
+                                                    x-transition:leave-end="opacity-0"
+                                                    class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-gray-800/40"
+                                                    aria-hidden="true">
+                                                </div>
+
+                                                <div x-show="isFromOpen"
+                                                    x-transition:enter="transform transition duration-300 ease-out"
+                                                    x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                                    x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                                    x-transition:leave="transform transition duration-200 ease-in"
+                                                    x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                                    x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                                    class="my-20 inline-block w-full max-w-4xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-gray-800 2xl:max-w-2xl">
+                                                    <div class="flex items-center justify-between space-x-4">
+                                                        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
+                                                            Verifikasi Pembayaran</h1>
+
+                                                        <button @click="isFromOpen = false"
+                                                            class="text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                                        Verifikasi pembayaran dari warga dari form ini
+                                                    </p>
+
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                    <div class="flex gap-2">
+                                                        <div class="image-desc shrink w-fit">
+                                                            <div class="image-container rounded-md overflow-hidden">
+                                                                <img id="imageZoom"
+                                                                    src="{{ $pembayaranIuran->getImageUrl() }}"
+                                                                    alt="image">
+                                                            </div>
+                                                            <p>
+                                                                {{ $pembayaranIuran->getKeterangan() }}
+                                                            </p>
+                                                        </div>
+                                                        <form class="mt-5 grow" id="verifiedModalForm">
+                                                            @csrf
+
+                                                            <x-form.input-form title="Bulan Terbayar" key="bulan"
+                                                                type="number" placeholder="Januari" />
+                                                            <x-form.input-form title="Tahun Terbayar" key="tahun"
+                                                                type="number" placeholder="2024" />
+
+                                                            <div class="mt-6 flex justify-between">
+                                                                <p class="text-xs text-gray-200 dark:text-gray-400">
+                                                                    Note: Pastikan semua sudah terisi dengan benar
+                                                                </p>
+                                                                <button type="click"
+                                                                    class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                                                                    Verified Pembayaran
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                             <div class="body px-5 py-2 bg-gray-100/80" x-data="{ isDetailOpen: false }">
                                 <div x-show="isDetailOpen" class="detailBody">
                                     <p>{{ $pembayaranIuran->getKeterangan() }}</p>
-                                    {{-- mass sementara form e elek elek an sek ya jek bingung te design e yopo tak dekek kene sek jarno samean iso garap --}}
-                                    <form action="">
-                                        <input type="text" name="" id="">
-                                        <input type="text" name="" id="">
-                                        <button type="submit">submit bang</button>
-                                    </form>
                                 </div>
                                 <div class="trigger">
                                     <button @click="isDetailOpen = !isDetailOpen">
