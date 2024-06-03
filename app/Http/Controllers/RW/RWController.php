@@ -35,7 +35,7 @@ class RWController extends Controller
 
         $leaderboardUsers = UserModel::all()->sortBy(function ($user) {
             return $user->getVerifiedIuranCount();
-        }, SORT_REGULAR, false);
+        }, SORT_REGULAR, true);
 
         $leaderboardUsers = $leaderboardUsers->take(10);
 
