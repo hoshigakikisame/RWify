@@ -33,7 +33,7 @@
          x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 translate"
          x-transition:leave-end="opacity-0 translate">
          <ul class="">
-             <template x-for="item in filteredItems" :key="item" class="flex flex-col">
+             <template x-for="item in filteredItems" class="flex flex-col">
                  <li><button
                          class="w-full px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-blue-100/80 hover:text-blue-900 text-start rounded-md"
                          x-text="item" type="button"
