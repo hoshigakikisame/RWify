@@ -9,6 +9,7 @@ use App\Models\UmkmModel;
 use App\Models\UserModel;
 use App\Models\PropertiModel;
 use App\Models\ReservasiJadwalTemuModel;
+use Illuminate\Database\Eloquent\Builder;
 
 class RWController extends Controller
 {
@@ -33,9 +34,9 @@ class RWController extends Controller
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
 
-        $leaderboardUsers = UserModel::all()->sortBy(function ($user) {
-            return $user->getVerifiedIuranCount();
-        }, SORT_REGULAR, false);
+        $leaderboardUsers = UserModel::withCount('iuran')->get()->sortBy(function ($user) {
+            return $user->iuran_count;
+        }, SORT_REGULAR, true);
 
         $leaderboardUsers = $leaderboardUsers->take(10);
 

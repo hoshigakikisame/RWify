@@ -38,8 +38,8 @@ class InformasiController extends Controller
 
         $isDesc = in_array('desc', array_keys($filters)) ? (bool) $filters['desc'] : true;
 
-        $leaderboardUsers = UserModel::all()->sortBy(function ($user) {
-            return $user->getVerifiedIuranCount();
+        $leaderboardUsers = UserModel::withCount('iuran')->get()->sortBy(function ($user) {
+            return $user->iuran_count;
         }, SORT_REGULAR, $isDesc);
 
         $top3LeaderboardUsers = $leaderboardUsers->take(3);
