@@ -16,7 +16,7 @@ class RWController extends Controller
      */
     public function dashboard()
     {
-        dd(request()->user()->getUnreadNotifications());
+        // dd(request()->user()->getUnreadNotifications());
 
         $lansiaCount = UserModel::whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
         $dewasaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
