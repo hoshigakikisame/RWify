@@ -22,6 +22,7 @@ class IuranModel extends Model implements SearchCompatible {
         'dibuat_pada',
         'diperbarui_pada',
         'id_pembayaran_iuran',
+        'jumlah_bayar'
     ];
 
     public static function searchable(): array
@@ -83,22 +84,9 @@ class IuranModel extends Model implements SearchCompatible {
         return $this->id_pembayaran_iuran;
     }
 
-    public static function getBulanOptions()
+    public function getJumlahBayar(): int
     {
-        return [
-            'Januari' => 'Januari',
-            'Februari' => 'Februari',
-            'Maret' => 'Maret',
-            'April' => 'April',
-            'Mei' => 'Mei',
-            'Juni'  => 'Juni',
-            'Juli' => 'Juli',
-            'Agustus' => 'Agustus',
-            'September' => 'September',
-            'Oktober' => 'Oktober',
-            'November' => 'November',
-            'Desember' => 'Desember',
-        ];
+        return $this->jumlah_bayar;
     }
 
 
@@ -121,5 +109,10 @@ class IuranModel extends Model implements SearchCompatible {
     public function setNikPembayar(string $nik): void
     {
         $this->nik_pembayar = $nik;
+    }
+
+    public function setJumlahBayar(int $jumlah_bayar): void
+    {
+        $this->jumlah_bayar = $jumlah_bayar;
     }
 }

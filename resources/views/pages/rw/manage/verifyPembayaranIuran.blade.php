@@ -179,13 +179,18 @@
                                                                 {{ $pembayaranIuran->getKeterangan() }}
                                                             </p>
                                                         </div>
-                                                        <form class="mt-5 grow" id="verifiedModalForm">
+                                                        <form class="mt-5 grow" id="verifiedModalForm" method="POST" action="{{ route('rw.manage.iuran.new') }}">
                                                             @csrf
 
-                                                            <x-form.input-form title="Bulan Terbayar" key="bulan"
-                                                                type="number" placeholder="Januari" />
-                                                            <x-form.input-form title="Tahun Terbayar" key="tahun"
-                                                                type="number" placeholder="2024" />
+                                                            <x-form.input-form title="" key="id_pembayaran_iuran" type="hidden" value="{{$pembayaranIuran->getIdPembayaranIuran()}}" placeholder="" />
+                                                                
+                                                            <x-form.input-form title="" key="nik_pembayar" type="hidden" value="{{request()->user()->getNik()}}" placeholder="" />
+                                                                
+                                                            <x-form.input-form title="Bulan Terbayar" key="bulan" type="text" placeholder="Januari" />
+
+                                                            <x-form.input-form title="Tahun Terbayar" key="tahun" type="number" placeholder="2024" />
+
+                                                            <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number" placeholder="100000" value='{{request()->user()->getTagihanIuranPerBulan()}}' readonly="true"/>
 
                                                             <div class="mt-6 flex justify-between">
                                                                 <p class="text-xs text-gray-200 dark:text-gray-400">

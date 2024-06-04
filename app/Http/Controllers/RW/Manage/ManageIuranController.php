@@ -11,6 +11,7 @@ use App\Decorators\SearchableDecorator;
 use App\Models\IuranModel;
 use App\Models\PembayaranIuranModel;
 use App\Models\UserModel;
+use App\Enums\Iuran\IuranBulanEnum;
 
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
@@ -79,22 +80,38 @@ class ManageIuranController extends Controller
     public function addNewIuran()
     {
         request()->validate([
-            'judul' => 'required',
-            'isi' => 'required',
-            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
-            'status' => 'required',
+            'id_pembayaran_iuran' => 'required',
+            'nik_pembayar' => 'required',
+            'bulan' => [
+                'required',
+                'in:' . implode(',', IuranBulanEnum::getValues())
+            ],
+            'tahun' => [
+                'required',
+                'regex:/^(19|20)[0-9]{2}/'
+            ],
+            'jumlah_bayar' => 'required',
         ]);
 
-        /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
-        $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
-        $resultUrl = $cloudinaryResponse->getSecurePath();
+        $idPembayaranIuran = request()->id_pembayaran_iuran;
+        $nikPembayar = request()->nik_pembayar;
+        $tahun = request()->tahun;
+        $bulan = request()->bulan;
+
+        if (IuranModel::where('bulan', $bulan)->where('tahun', $tahun)->where('nik_pembayar', $nikPembayar)->exists()) {
+            session()->flash('danger', [
+                'title' => 'Insert Failed.', 
+                'description' => "Tagihan $nikPembayar pada bulan $bulan tahun $tahun sudah diverifikasi sebelumnya."
+            ]);
+            return redirect()->route('rw.manage.iuran.verify');
+        }
 
         $data = [
-            'judul' => request()->judul,
-            'nik_pengadu' => request()->user()->getNik(),
-            'isi' => request()->isi,
-            'image_url' => $resultUrl,
-            'status' => request()->status,
+            'id_pembayaran_iuran' => request()->id_pembayaran_iuran,
+            'nik_pembayar' => request()->nik_pembayar,
+            'bulan' => request()->bulan,
+            'tahun' => request()->tahun,
+            'jumlah_bayar' => request()->jumlah_bayar,
         ];
 
         $newIuran = IuranModel::create($data);
@@ -105,7 +122,7 @@ class ManageIuranController extends Controller
             session()->flash('success', ['title' => 'Insert Success.', 'description' => 'Insert Success.']);
         }
 
-        return redirect()->route('rw.manage.iuran');
+        return redirect()->route('rw.manage.iuran.verify');
     }
 
     // update warga with validation

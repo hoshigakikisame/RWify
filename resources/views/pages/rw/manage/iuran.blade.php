@@ -2,10 +2,10 @@
 @extends(request()->user()->getSidebarView())
 
 @php
-    $bulanOptions =  \App\Models\IuranModel::getBulanOptions();
+    $bulanOptions = \App\Enums\Iuran\IuranBulanEnum::getValues();
 @endphp
 {{-- content --}}
-@section("content")
+@section("content") 
     <section class="container relative mx-auto mt-7 px-4" x-data="{ modalOpen: false }">
         <div class="flex flex-col">
             <div class="sm:flex sm:items-center sm:justify-between">

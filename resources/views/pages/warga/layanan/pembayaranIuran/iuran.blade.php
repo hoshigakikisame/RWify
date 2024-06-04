@@ -2,7 +2,7 @@
 @extends(request()->user()->getSidebarView())
 
 @php
-    $bulanOptions =  \App\Models\IuranModel::getBulanOptions();
+    $bulanOptions = \App\Enums\Iuran\IuranBulanEnum::getValues();
 @endphp
 {{-- content --}}
 @section("content")

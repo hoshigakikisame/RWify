@@ -131,9 +131,11 @@ Route::group([
             'as' => 'iuran.'
         ], function () {
             Route::get('', [ManageIuranController::class, 'manageIuranPage'])->name('index');
+            Route::post('new', [ManageIuranController::class, 'addNewIuran'])->name('new');
             Route::post('update', [ManageIuranController::class, 'updateIuran'])->name('update');
             Route::post('delete', [ManageIuranController::class, 'deleteIuran'])->name('delete');
             Route::get('verify', [ManageIuranController::class, 'verifyPembayaranIuranPage'])->name('verify');
+
         });
 
         Route::group([

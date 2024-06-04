@@ -145,6 +145,10 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
         return $this->belongsTo(KartuKeluargaModel::class, 'nkk', 'nkk');
     }
 
+    public function properti() {
+        return $this->hasMany(PropertiModel::class, 'nik_pemilik', 'nik');
+    }
+
     // search
     public function scopeSearch($query, $search)
     {
@@ -295,6 +299,13 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     public function getVerifiedIuranCount(): int
     {
         return IuranModel::select('id_iuran')->where('nik_pembayar', $this->getNik())->count();
+    }
+
+    public function getTagihanIuranPerBulan(): int
+    {
+        $monthlyTotal = $this->properti()->join('tb_tipe_properti', 'tb_tipe_properti.id_tipe_properti', '=', 'tb_properti.id_tipe_properti')->sum('iuran_per_bulan');
+
+        return $monthlyTotal;
     }
 
 

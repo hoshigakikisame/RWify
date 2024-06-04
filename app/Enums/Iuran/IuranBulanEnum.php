@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Enums\User;
+namespace App\Enums\Iuran;
 
 use App\Enums\Enum;
 
-enum UserJenisKelaminEnum: string {
+enum IuranBulanEnum: string {
     use Enum;
     case JANUARI = 'Januari';
     case FEBRUARI = 'Februari';

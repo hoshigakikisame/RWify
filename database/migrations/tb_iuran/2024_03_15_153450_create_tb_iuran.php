@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_iuran');
             $table->enum('bulan', ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
             $table->unsignedSmallInteger('tahun');
-            // $table->unsignedMediumInteger('jumlah_iuran');
+            $table->unsignedMediumInteger('jumlah_bayar');
             $table->timestamp('dibuat_pada')->useCurrent();
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
             
