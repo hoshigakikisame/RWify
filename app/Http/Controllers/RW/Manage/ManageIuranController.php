@@ -97,6 +97,7 @@ class ManageIuranController extends Controller
         $nikPembayar = request()->nik_pembayar;
         $tahun = request()->tahun;
         $bulan = request()->bulan;
+        $jumlahBayar = request()->jumlah_bayar;
 
         if (IuranModel::where('bulan', $bulan)->where('tahun', $tahun)->where('nik_pembayar', $nikPembayar)->exists()) {
             session()->flash('danger', [
@@ -107,11 +108,11 @@ class ManageIuranController extends Controller
         }
 
         $data = [
-            'id_pembayaran_iuran' => request()->id_pembayaran_iuran,
-            'nik_pembayar' => request()->nik_pembayar,
-            'bulan' => request()->bulan,
-            'tahun' => request()->tahun,
-            'jumlah_bayar' => request()->jumlah_bayar,
+            'id_pembayaran_iuran' => $idPembayaranIuran,
+            'nik_pembayar' => $nikPembayar,
+            'bulan' => $bulan,
+            'tahun' => $tahun,
+            'jumlah_bayar' => $jumlahBayar,
         ];
 
         $newIuran = IuranModel::create($data);

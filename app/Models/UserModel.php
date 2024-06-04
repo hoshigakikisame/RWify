@@ -305,6 +305,8 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     {
         $monthlyTotal = $this->properti()->join('tb_tipe_properti', 'tb_tipe_properti.id_tipe_properti', '=', 'tb_properti.id_tipe_properti')->sum('iuran_per_bulan');
 
+        // dd($this->properti()->join('tb_tipe_properti', 'tb_tipe_properti.id_tipe_properti', '=', 'tb_properti.id_tipe_properti'));
+
         return $monthlyTotal;
     }
 

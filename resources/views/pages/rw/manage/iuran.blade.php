@@ -101,6 +101,15 @@
                                             <span class="text-nowrap">Pembayaran Tahun</span>
                                         </button>
                                     </th>
+                                    
+                                    <th
+                                        scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
+                                    >
+                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                            <span class="text-nowrap">Jumlah Bayar</span>
+                                        </button>
+                                    </th>
 
                                     <th
                                         scope="col"
@@ -151,6 +160,12 @@
                                         <td class="px-4 py-4 text-sm">
                                             <p class="mx-1 text-nowrap text-sm text-blue-600">
                                                 {{ ($iuran->getTahun()) }}
+                                            </p>
+                                        </td>
+
+                                        <td class="px-4 py-4 text-sm">
+                                            <p class="mx-1 text-nowrap text-sm text-blue-600">
+                                                Rp. {{ ($iuran->getJumlahBayar()) }}
                                             </p>
                                         </td>
 
@@ -333,6 +348,7 @@
                          <x-form.input-form title="Nama Pembayar" key="" type="text" placeholder="Masukkan Nama Pembayar" value="${iuran.pembayaran_iuran.user.nama_depan} ${iuran.pembayaran_iuran.user.nama_belakang}" readonly/>
                          <x-form.select-input-form title="Bulan Bayar" key="bulan" placeholder="Pilih Bulan Pembayaran Warga" :options="$bulanOptions" selected="${iuran.bulan}" />
                          <x-form.input-form title="Tahun Bayar" key="tahun" type="number" placeholder="Masukkan Tahun Pembayaran" value="${iuran.tahun}" />
+                         <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number" placeholder="100000" value='${iuran.jumlah_bayar}' readonly="true"/>
 
                          <div class="flex justify-between mt-6">
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
