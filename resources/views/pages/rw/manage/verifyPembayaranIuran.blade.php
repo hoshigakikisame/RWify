@@ -138,13 +138,16 @@
                             <div class="body px-5 py-2 bg-gray-50 dark:bg-gray-800/80  " x-data="{ isDetailOpen: false }">
                                 <div x-show="isDetailOpen" class="detailBody pt-3 pb-2 border-b-2 dark:border-gray-700">
                                     <p class="text-sm mb-1 text-gray-800 dark:text-gray-400">Tanggal Bayar Pada
-                                        {{ date('F j, Y ', strtotime($pembayaranIuran->getTanggalBayar())) }}</p>
+                                        {{ date('F, j-Y ', strtotime($pembayaranIuran->getTanggalBayar())) }}</p>
                                     <p class="text-xs text-gray-700 dark:text-gray-500">Last Updated
                                         {{ date('d/m/y H:i', strtotime($pembayaranIuran->getDiperbaruiPada())) }}</p>
                                 </div>
                                 <div class="trigger flex justify-between items-center py-2 ">
-                                    <button @click="isDetailOpen = !isDetailOpen">
-                                        <h6 class="text-xs text-gray-600 dark:text-gray-300">Detail Pembayaran</h6>
+                                    <button @click="isDetailOpen = !isDetailOpen" class="">
+                                        <h6
+                                            class="text-xs hover:!text-blue-600 transition-all duration-300 dark:hover:!text-blue-500 text-gray-600 dark:text-gray-300  ">
+                                            Detail
+                                            Pembayaran</h6>
                                     </button>
                                     <div class="information">
                                         <h6 class="text-xs text-gray-400 dark:text-gray-500">

@@ -5,7 +5,7 @@
     $bulanOptions = \App\Enums\Iuran\IuranBulanEnum::getValues();
 @endphp
 {{-- content --}}
-@section("content") 
+@section('content')
     <section class="container relative mx-auto mt-7 px-4" x-data="{ modalOpen: false }">
         <div class="flex flex-col">
             <div class="sm:flex sm:items-center sm:justify-between">
@@ -13,16 +13,15 @@
                     <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Iuran Terverifikasi</h2>
                         <span
-                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400"
-                        >
+                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400">
                             {{ $count }} Iuran Terverifikasi
                         </span>
                     </div>
 
-                    @if ($iuranInstances->sortByDesc("diperbarui_pada")->first())
+                    @if ($iuranInstances->sortByDesc('diperbarui_pada')->first())
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
-                            {{ $iuranInstances->sortByDesc("diperbarui_pada")->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            {{ $iuranInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                             yang lalu
                         </p>
                     @else
@@ -34,29 +33,16 @@
             </div>
             <div id="search" class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
                 <span class="absolute">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                        />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                 </span>
 
-                <input
-                    x-model="search"
-                    @keyup.enter="window.utils.Request.searchRequest(search)"
-                    type="text"
+                <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11"
-                />
+                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
         </div>
 
@@ -67,62 +53,48 @@
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Pembayar</span>
                                         </button>
                                     </th>
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">NIK</span>
                                         </button>
                                     </th>
 
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Pembayaran Bulan</span>
                                         </button>
                                     </th>
 
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Pembayaran Tahun</span>
                                         </button>
                                     </th>
-                                    
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Jumlah Bayar</span>
                                         </button>
                                     </th>
 
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 ps-5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 ps-5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 text-center dark:fill-gray-400">
                                             <span class="text-nowrap">Tanggal Bayar</span>
                                         </button>
                                     </th>
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap"></span>
                                         </button>
@@ -138,8 +110,7 @@
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div>
                                                 <h2
-                                                    class=" inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800"
-                                                >
+                                                    class=" inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                     {{ $iuran->getNamaPembayar() }}
                                                 </h2>
                                             </div>
@@ -153,65 +124,55 @@
 
                                         <td class="px-4 py-4 text-sm">
                                             <p class="mx-1 text-nowrap text-sm text-blue-600">
-                                                {{ ($iuran->getBulan()) }}
+                                                {{ $iuran->getBulan() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
                                             <p class="mx-1 text-nowrap text-sm text-blue-600">
-                                                {{ ($iuran->getTahun()) }}
+                                                {{ $iuran->getTahun() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
                                             <p class="mx-1 text-nowrap text-sm text-blue-600">
-                                                Rp. {{ ($iuran->getJumlahBayar()) }}
+                                                Rp. {{ $iuran->getJumlahBayar() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="inline gap-x-2 text-nowrap rounded-full bg-blue-100/60 px-3 py-1 text-sm font-normal text-blue-500 dark:bg-gray-800">
-                                                {{ ($iuran->getTanggalBayar()) }}
+                                            <p
+                                                class="inline gap-x-2 text-nowrap rounded-full bg-blue-100/60 px-3 py-1 text-sm font-normal text-blue-500 dark:bg-gray-800">
+                                                {{ date('F, j-Y ', strtotime($iuran->getTanggalBayar())) }}
                                             </p>
                                         </td>
 
-                                        <td
-                                            class="flex px-4 py-4 pe-0 pe-4 ps-6 text-sm"
-                                            id="action"
-                                            x-data="{ modalEditOpen: false, modalDeleteOpen: false }"
-                                        >
-                                            <button
-                                                id="editButton"
-                                                @click="modalEditOpen = !modalEditOpen"
+                                        <td class="flex px-4 py-4 pe-0 pe-4 ps-6 text-sm" id="action"
+                                            x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
+                                            <button id="editButton" @click="modalEditOpen = !modalEditOpen"
                                                 class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                 type="button"
-                                                onclick="(function () {appendUpdateModal({{ $iuran }},event);window.utils.Request.actionRequest(`{{ route('rw.manage.iuran.update') }}`, '#editModal', '#editModalForm')})()"
-                                            >
+                                                onclick="(function () {appendUpdateModal({{ $iuran }},event);window.utils.Request.actionRequest(`{{ route('rw.manage.iuran.update') }}`, '#editModal', '#editModalForm')})()">
                                                 <span
-                                                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 24 24"
-                                                        class="h-4 w-4 dark:fill-gray-200"
-                                                        fill="currentColor"
-                                                        aria-hidden="true"
-                                                    >
+                                                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        class="h-4 w-4 dark:fill-gray-200" fill="currentColor"
+                                                        aria-hidden="true">
                                                         <path
-                                                            d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"
-                                                        ></path>
+                                                            d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
+                                                        </path>
                                                     </svg>
                                                 </span>
                                             </button>
                                             <button id="deleteButton" @click="modalDeleteOpen = !modalDeleteOpen"
-                                            onclick="(function (){appendDeleteModal('{{ $iuran->getIdIuran() }}','{{ $iuran->getNamaPembayar() }}', '{{ $iuran->getBulan() }}', '{{ $iuran->getTahun() }}', event); window.utils.Request.actionRequest('{{ route('rw.manage.iuran.delete') }}', '#deleteModal', '#deleteModalForm');})()"
-                                            class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                                                onclick="(function (){appendDeleteModal('{{ $iuran->getIdIuran() }}','{{ $iuran->getNamaPembayar() }}', '{{ $iuran->getBulan() }}', '{{ $iuran->getTahun() }}', event); window.utils.Request.actionRequest('{{ route('rw.manage.iuran.delete') }}', '#deleteModal', '#deleteModalForm');})()"
+                                                class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
 
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
-                                                        class="h-4 w-4 fill-red-500" viewBox="0 0 24 24"
-                                                        fill="currentColor" version="1.1">
+                                                        class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor"
+                                                        version="1.1">
                                                         <path
                                                             d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
                                                         </path>
@@ -229,7 +190,7 @@
             </div>
         </div>
 
-        {{ $iuranInstances->onEachSide(-1)->links("elements.pagination") }}
+        {{ $iuranInstances->links('elements.pagination') }}
     </section>
 @endsection
 

@@ -6,7 +6,7 @@
     $status = \App\Enums\Pengaduan\PengaduanStatusEnum::getValues();
 @endphp
 
-@section("content")
+@section('content')
     <section class="container relative mx-auto mt-7 px-4" x-data="{ modalOpen: false }">
         <div class="flex flex-col">
             <div class="sm:flex sm:items-center sm:justify-between">
@@ -14,16 +14,15 @@
                     <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengaduan</h2>
                         <span
-                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400"
-                        >
+                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400">
                             {{ $count }} Pengaduan
                         </span>
                     </div>
 
-                    @if ($pengaduanInstances->sortByDesc("diperbarui_pada")->first())
+                    @if ($pengaduanInstances->sortByDesc('diperbarui_pada')->first())
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
-                            {{ $pengaduanInstances->sortByDesc("diperbarui_pada")->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            {{ $pengaduanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                             yang lalu
                         </p>
                     @else
@@ -35,11 +34,8 @@
             </div>
             <div class="mt-6 md:flex md:items-center md:justify-between">
                 <div
-                    class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse"
-                >
-                    <button
-                        id="filter-all"
-                        onclick="window.utils.Request.filterRequest({'status': ''})"
+                    class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse">
+                    <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
                         x-effect="
                             let params = new URLSearchParams(window.location.search)
                             ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
@@ -47,47 +43,31 @@
                                 ? $('#filter-all').addClass('!text-blue-400')
                                 : $('#filter-all').removeClass('!text-blue-400')
                         "
-                        class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm"
-                    >
+                        class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         semua
                     </button>
 
                     @foreach (\App\Enums\Pengaduan\PengaduanStatusEnum::getValues() as $key => $value)
-                        <button
-                            id="filter-{{ $key }}"
+                        <button id="filter-{{ $key }}"
                             onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
                             x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
-                            class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm"
-                        >
+                            class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                             {{ $value }}
                         </button>
                     @endforeach
                 </div>
                 <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
                     <span class="absolute">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                            />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                         </svg>
                     </span>
 
-                    <input
-                        x-model="search"
-                        @keyup.enter="window.utils.Request.searchRequest(search)"
-                        type="text"
+                    <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                         placeholder="Press Enter to Search"
-                        class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11"
-                    />
+                        class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
                 </div>
             </div>
         </div>
@@ -99,61 +79,47 @@
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Pengadu</span>
                                         </button>
                                     </th>
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Judul</span>
                                         </button>
                                     </th>
 
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Isi</span>
                                         </button>
                                     </th>
 
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Tanggal</span>
                                         </button>
                                     </th>
 
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 ps-5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 ps-5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 text-center dark:fill-gray-400">
                                             <span class="text-nowrap">Gambar</span>
                                         </button>
                                     </th>
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Status</span>
                                         </button>
                                     </th>
-                                    <th
-                                        scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
-                                    >
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap"></span>
                                         </button>
@@ -169,8 +135,7 @@
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div>
                                                 <h2
-                                                    class="inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800"
-                                                >
+                                                    class="inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                     {{ $pengaduan->getNamaPengadu() }}
                                                 </h2>
                                             </div>
@@ -184,40 +149,31 @@
 
                                         <td class="px-4 py-4 align-top text-sm">
                                             <h4 class="text-gray-700 dark:text-gray-200">
-                                                {{ implode(" ", array_slice(str_word_count($pengaduan->getIsi(), 1), 0, 13)) }}
-                                                {{ str_word_count($pengaduan->getIsi()) > 10 ? "....." : "" }}
+                                                {{ implode(' ', array_slice(str_word_count($pengaduan->getIsi(), 1), 0, 13)) }}
+                                                {{ str_word_count($pengaduan->getIsi()) > 10 ? '.....' : '' }}
                                             </h4>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
                                             <p class="-mx-1 text-nowrap text-xs text-blue-600">
-                                                {{ date("D, m-y", strtotime($pengaduan->getDibuatPada())) }}
+                                                {{ date('F, d-Y', strtotime($pengaduan->getDibuatPada())) }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-center" x-data="{ showImage: false }">
-                                            <button
-                                                id="imageButton"
+                                            <button id="imageButton"
                                                 class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                                type="button"
-                                                @click="showImage = !showImage"
-                                                onclick="(function () {appendImageModal('{{ $pengaduan->getImageUrl() }}','{{ $pengaduan->getJudul() }}',event);})()"
-                                            >
+                                                type="button" @click="showImage = !showImage"
+                                                onclick="(function () {appendImageModal('{{ $pengaduan->getImageUrl() }}','{{ $pengaduan->getJudul() }}',event);})()">
                                                 <span
-                                                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="h-6 w-6 fill-blue-700 dark:fill-blue-400"
-                                                        viewBox="0 0 24 24"
-                                                    >
+                                                        viewBox="0 0 24 24">
                                                         <path
-                                                            d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z"
-                                                        />
-                                                        <path
-                                                            fill="currentColor"
-                                                            d="M8.91 8.51a.91.91 0 1 1-1.82 0a.91.91 0 0 1 1.82 0"
-                                                        />
+                                                            d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z" />
+                                                        <path fill="currentColor"
+                                                            d="M8.91 8.51a.91.91 0 1 1-1.82 0a.91.91 0 0 1 1.82 0" />
                                                     </svg>
                                                 </span>
                                             </button>
@@ -226,52 +182,33 @@
                                         <td class="px-4 py-4 text-sm">
                                             <span
                                                 class="@php
-                                                $statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "diproses" => "bg-yellow-50 text-yellow-800 ring-yellow-600/20 dark:bg-yellow-950 dark:text-yellow-200", "invalid" => "bg-red-50 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "selesai" => "bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
-                                                $dotStyle = ["baru" => "bg-blue-500 dark:bg-blue-300", "diproses" => "bg-yellow-500 dark:bg-yellow-300", "invalid" => "bg-red-500 dark:bg-red-300", "selesai" => "bg-green-500 dark:bg-green-300"];
-
- @endphp @if ($pengaduan->getStatus())
-                                                    {{ $statusStyle[$pengaduan->getStatus()] }}
+$statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "diproses" => "bg-yellow-50 text-yellow-800 ring-yellow-600/20 dark:bg-yellow-950 dark:text-yellow-200", "invalid" => "bg-red-50 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "selesai" => "bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
+                                                $dotStyle = ["baru" => "bg-blue-500 dark:bg-blue-300", "diproses" => "bg-yellow-500 dark:bg-yellow-300", "invalid" => "bg-red-500 dark:bg-red-300", "selesai" => "bg-green-500 dark:bg-green-300"]; @endphp @if ($pengaduan->getStatus()) {{ $statusStyle[$pengaduan->getStatus()] }}
                                                 @else
                                                     bg-gray-50
                                                     text-gray-600
-                                                    ring-gray-500/10
-                                                @endif mx-1 inline-flex w-56 w-fit items-center justify-center rounded-full px-3 py-1.5 text-sm 2xl:w-full"
-                                            >
+                                                    ring-gray-500/10 @endif mx-1 inline-flex w-56 w-fit items-center justify-center rounded-full px-3 py-1.5 text-sm 2xl:w-full">
                                                 <span
-                                                    class="@if ($pengaduan->getStatus())
-                                                        {{ $dotStyle[$pengaduan->getStatus()] }}
+                                                    class="@if ($pengaduan->getStatus()) {{ $dotStyle[$pengaduan->getStatus()] }}
                                                     @else
-                                                        bg-gray-50
-                                                    @endif me-1 inline-block rounded-full p-[5px]"
-                                                ></span>
+                                                        bg-gray-50 @endif me-1 inline-block rounded-full p-[5px]"></span>
                                                 <span class="text-xs">
                                                     {{ $pengaduan->getStatus() }}
                                                 </span>
                                             </span>
                                         </td>
 
-                                        <td
-                                            class="flex px-4 py-4 pe-0 pe-4 ps-6 text-sm"
-                                            id="action"
-                                            x-data="{ modalEditOpen: false, modalDeleteOpen: false }"
-                                        >
-                                            <a
-                                                class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                        <td class="flex px-4 py-4 pe-0 pe-4 ps-6 text-sm" id="action"
+                                            x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
+                                            <a class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                 target="_blank"
-                                                href="{{ route("layanan.pengaduan.detail", ["idPengaduan" => $pengaduan->getIdPengaduan()]) }}"
-                                            >
+                                                href="{{ route('layanan.pengaduan.detail', ['idPengaduan' => $pengaduan->getIdPengaduan()]) }}">
                                                 <span
-                                                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform"
-                                                >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-6 w-6 fill-blue-500"
-                                                        viewBox="0 0 28 28"
-                                                        fill="currentColor"
-                                                    >
+                                                    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-blue-500"
+                                                        viewBox="0 0 28 28" fill="currentColor">
                                                         <path
-                                                            d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0"
-                                                        />
+                                                            d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0" />
                                                     </svg>
                                                 </span>
                                             </a>
@@ -286,11 +223,11 @@
             </div>
         </div>
 
-        {{ $pengaduanInstances->onEachSide(-1)->links("elements.pagination") }}
+        {{ $pengaduanInstances->links('elements.pagination') }}
     </section>
 @endsection
 
-@push("scripts")
+@push('scripts')
     <script type="module">
         $(document).ready(() => {
             let reg = new RegExp('[?&]q=([^&#]*)', 'i');
@@ -303,7 +240,7 @@
     </script>
     <script>
         function appendImageModal(img_url, judul, event) {
-                const modalImageElement = /*html*/ `
+            const modalImageElement = /*html*/ `
                 <div id="imageModal" x-show="showImage" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                                                     <div x-cloak @click="()=>{showImage = false;deleteModal('#imageModal')}" x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -330,12 +267,12 @@
                                                 </div>
                                             </div>
                 `
-                $(modalImageElement).insertAfter($(event.target).closest('#imageButton'))
+            $(modalImageElement).insertAfter($(event.target).closest('#imageButton'))
 
-            }
+        }
 
-            function appendDeleteModal(id_pengaduan, judul, event) {
-                const modalDeleteElemen = /*html*/ `
+        function appendDeleteModal(id_pengaduan, judul, event) {
+            const modalDeleteElemen = /*html*/ `
                 <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                             <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -370,12 +307,12 @@
                         </div>
                     </div>
                 `
-                $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
+            $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
 
-            }
+        }
 
-            function appendUpdateModal(pengaduan, event) {
-                const modalEditElemen = /*html*/ `
+        function appendUpdateModal(pengaduan, event) {
+            const modalEditElemen = /*html*/ `
                 <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                             <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
@@ -421,17 +358,17 @@
                         </div>
                     </div>
             `
-                $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-                // $("#editModal select[aria-selected]").each(function() {
-                //     $(this).val(this.ariaSelected).change()
-                // })
-            }
+            $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
+            // $("#editModal select[aria-selected]").each(function() {
+            //     $(this).val(this.ariaSelected).change()
+            // })
+        }
 
 
-            function deleteModal(selector) {
-                $(selector).ready(() => {
-                    $(selector).remove()
-                })
-            }
+        function deleteModal(selector) {
+            $(selector).ready(() => {
+                $(selector).remove()
+            })
+        }
     </script>
 @endpush

@@ -170,7 +170,7 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
             </div>
         </div>
 
-        {{ $reservasiJadwalTemuInstances->onEachSide(-1)->links('elements.pagination') }}
+        {{ $reservasiJadwalTemuInstances->links('elements.pagination') }}
     </section>
 @endsection
 
