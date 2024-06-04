@@ -208,7 +208,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
 
     public function getImageUrl(): string | null
     {
-        return $this->image_url;
+        return $this->image_url ?? 'https://ui-avatars.com/api/?name=' . $this->getNamaLengkap() . '&background=random&color=fff';
     }
 
     public function getEmail(): string
@@ -304,8 +304,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     public function getTagihanIuranPerBulan(): int
     {
         $monthlyTotal = $this->properti()->join('tb_tipe_properti', 'tb_tipe_properti.id_tipe_properti', '=', 'tb_properti.id_tipe_properti')->sum('iuran_per_bulan');
-
-        // dd($this->properti()->join('tb_tipe_properti', 'tb_tipe_properti.id_tipe_properti', '=', 'tb_properti.id_tipe_properti'));
 
         return $monthlyTotal;
     }
