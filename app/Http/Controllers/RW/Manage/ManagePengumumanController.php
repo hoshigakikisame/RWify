@@ -84,12 +84,16 @@ class ManagePengumumanController extends Controller
         } else {
 
             // /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
-            // $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
-            // $resultUrl = $cloudinaryResponse->getSecurePath();
-
             $pengumuman->setJudul(request()->judul);
-            //$pengumuman->setImageUrl($resultUrl);
             $pengumuman->setKonten(request()->konten);
+            
+            if (request()->hasFile('image')) {
+                $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
+                $resultUrl = $cloudinaryResponse->getSecurePath();
+
+                $pengumuman->setImageUrl($resultUrl);
+            }
+            
             $pengumuman->save();
 
             session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);

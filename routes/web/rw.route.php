@@ -112,6 +112,8 @@ Route::group([
             Route::post('new', [ManagePropertiController::class, 'addNewProperti'])->name('new');
             Route::post('update', [ManagePropertiController::class, 'updateProperti'])->name('update');
             Route::post('delete', [ManagePropertiController::class, 'deleteProperti'])->name('delete');
+
+            Route::get('export-csv', [ManagePropertiController::class, 'exportCSV'])->name('exportCSV');
         });
 
         // rw manage tipe properti routes

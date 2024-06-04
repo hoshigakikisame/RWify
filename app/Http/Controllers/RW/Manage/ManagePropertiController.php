@@ -10,6 +10,7 @@ use App\Models\TipePropertiModel;
 use App\Models\UserModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Date;
 
 class ManagePropertiController extends Controller
 {
@@ -90,6 +91,39 @@ class ManagePropertiController extends Controller
 
         // return redirect()->route('rw.manage.properti.index');
         return "Add success";
+    }
+
+    public function exportCSV()
+    {
+        $propertiInstances = PropertiModel::with(['pemilik', 'tipeProperti'])->get();
+
+        $csv = 'nama_properti,nama_tipe,nik_pemilik,alamat,luas_tanah,luas_bangunan,jumlah_kamar,mulai_dimiliki_pada' . PHP_EOL;
+
+        foreach ($propertiInstances as $row) {
+
+            $alamat = preg_replace("/\r|\n|,/", "", $row->getAlamat());
+            $mulaiDimilikiPada = Date::parse($row->getMulaiDimilikiPada())->format('d-m-Y');
+
+            $csv .= sprintf(
+                '%s,%s,%s,%s,%s,%s,%s,%s',
+                $row->getNamaProperti(),
+                $row->tipeProperti->getNamaTipe(),
+                $row->pemilik->getNamaDepan() . ' ' . $row->pemilik->getNamaBelakang(),
+                $alamat,
+                $row->getLuasTanah(),
+                $row->getLuasBangunan(),
+                $row->getJumlahKamar(),
+                $mulaiDimilikiPada
+            ) . PHP_EOL;
+        }
+
+        $filename = 'properti_' . date('Y-m-d_H-i-s') . '.csv';
+
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        echo $csv;
+        exit();
     }
 
     // update warga with validation
