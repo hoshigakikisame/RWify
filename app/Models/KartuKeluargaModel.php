@@ -276,12 +276,12 @@ class KartuKeluargaModel extends Model implements SearchCompatible
         $this->total_kendaraan_dimiliki = $total_kendaraan_dimiliki;
     }
 
-    public function setDibuatPada($dibuat_pada): void
+    public function setDibuatPada($dibuat_pada): mixed
     {
         $this->dibuat_pada = $dibuat_pada;
     }
 
-    public function setDiperbaruiPada($diperbarui_pada): void
+    public function setDiperbaruiPada($diperbarui_pada): mixed
     {
         $this->diperbarui_pada = $diperbarui_pada;
     }

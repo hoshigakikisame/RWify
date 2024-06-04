@@ -15,7 +15,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
                     Data ini terakhir diupdate
-                    {{ $kartuKeluargaInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                    {{ $kartuKeluargaInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()?->diffForHumans(null, true) }}
                     yang lalu
                 </p>
             </div>
