@@ -28,7 +28,6 @@
                         </p>
                     @endif
                 </div>
-
                 <div class="md:items-right md:flex md:justify-between gap-x-3">
                     <form id="exportCSVForm" method="get" action="{{ route('rw.manage.properti.exportCSV') }}"
                         class="flex items-center justify-center">
@@ -44,6 +43,8 @@
                         <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
                             onclick="document.querySelector('#exportCSVForm').submit()">
                     </form>
+                </div>
+
                     <div class="mt-2 flex items-center gap-x-3" x-data="{ modalOpen: false }">
                         <button id="addButton" @click="modalOpen = !modalOpen"
                             class="mb-2 flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2.5 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"

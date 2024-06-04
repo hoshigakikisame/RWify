@@ -138,6 +138,8 @@ Route::group([
             Route::post('delete', [ManageIuranController::class, 'deleteIuran'])->name('delete');
             Route::get('verify', [ManageIuranController::class, 'verifyPembayaranIuranPage'])->name('verify');
 
+            Route::get('export-csv', [ManageIuranController::class, 'exportCSV'])->name('exportCSV');
+
         });
 
         Route::group([

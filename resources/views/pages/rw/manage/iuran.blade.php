@@ -30,7 +30,25 @@
                         </p>
                     @endif
                 </div>
+                <div class="md:items-right md:flex md:justify-between gap-x-3">
+                    <form id="exportCSVForm" method="get" action="{{ route('rw.manage.iuran.exportCSV') }}"
+                        class="flex items-center justify-center">
+                        @csrf
+                        <label for="exportCSV"
+                            class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
+                            </svg>Export
+                        </label>
+                        <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
+                            onclick="document.querySelector('#exportCSVForm').submit()">
+                    </form>
+                </div>
             </div>
+
+
             <div id="search" class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
                 <span class="absolute">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

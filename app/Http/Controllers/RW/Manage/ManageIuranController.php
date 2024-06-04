@@ -15,6 +15,7 @@ use App\Enums\Iuran\IuranBulanEnum;
 
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Date;
 
 class ManageIuranController extends Controller
 {
@@ -124,6 +125,35 @@ class ManageIuranController extends Controller
         }
 
         return redirect()->route('rw.manage.iuran.verify');
+    }
+
+    public function exportCSV()
+    {
+        $iuranInstances = IuranModel::all();
+
+        $csv = 'nik_pembayar,bulan,tahun,jumlah_bayar,tanggal_bayar' . PHP_EOL;
+
+        foreach ($iuranInstances as $row) {
+
+            $mulaiDimilikiPada = Date::parse($row->getDibuatPada())->format('d-m-Y');
+
+            $csv .= sprintf(
+                '%s,%s,%s,%s,%s',
+                $row->getNikPembayar(),
+                $row->getBulan(),
+                $row->getTahun(),
+                $row->getJumlahBayar(),
+                $mulaiDimilikiPada
+            ) . PHP_EOL;
+        }
+
+        $filename = 'iuran_' . date('Y-m-d_H-i-s') . '.csv';
+
+        header('Content-Type: application/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        echo $csv;
+        exit();
     }
 
     // update warga with validation
