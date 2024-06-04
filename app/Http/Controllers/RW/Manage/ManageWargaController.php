@@ -142,7 +142,7 @@ class ManageWargaController extends Controller
                     'title' => sprintf('Gagal mengimport warga pada baris %d', $i),
                     'description' => $description
                 ]);
-                return redirect()->route('rw.manage.warga.warga');
+                return redirect()->route('rw.manage.pendataan.warga.warga');
             }
 
             $isKartuKeluargaExists = KartuKeluargaModel::where('nkk', $row['nkk'])->exists();
