@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Warga\Layanan;
 use App\Decorators\SearchableDecorator;
 use App\Enums\User\UserRoleEnum;
 use App\Http\Controllers\Controller;
+use App\Models\NotificationModel;
 use App\Models\ReservasiJadwalTemuModel;
 use App\Models\UserModel;
 
@@ -65,6 +66,14 @@ class ReservasiJadwalTemuWargaController extends Controller
             session()->flash('danger',['title' => 'Insert Failed', 'description' => 'Insert Failed']);
         } else {
             session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
+
+            $penerima = UserModel::where('nik', request()->nik_penerima)->first();
+
+            NotificationModel::new(
+                $penerima->getNik(),
+                'Reservasi jadwal temu baru dari ' . request()->user()->getNamaLengkap() . ' telah dibuat',
+                $penerima->getRole() == UserRoleEnum::KETUA_RUKUN_WARGA ? 'rw.manage.reservasiJadwalTemu.index' : 'rt.manage.reservasiJadwalTemu.index'
+            );
         }
 
         return redirect()->route('warga.layanan.reservasiJadwalTemu.index');

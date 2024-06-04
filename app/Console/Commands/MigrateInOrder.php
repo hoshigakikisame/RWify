@@ -51,6 +51,7 @@ class MigrateInOrder extends Command
             'tb_pengaduan/2024_04_28_153746_create_tb_pengaduan.php',
             'tb_tipe_properti/2024_05_13_114623_create_tb_tipe_properti.php',
             'tb_properti/2024_05_13_115019_create_tb_properti.php',
+            'tb_notification/2024_06_04_172711_create_tb_notification_table.php',
         ];
 
         // set foreign key check to 0

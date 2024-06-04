@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Hash;
 // App
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
+use App\Enums\User\UserRoleEnum;
 use App\Models\PengumumanModel;
 use App\Models\UserModel;
+use App\Models\NotificationModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -83,11 +85,11 @@ class ManagePengumumanController extends Controller
             session()->flash('danger', ['title' => 'Update Failed.', 'description' => 'Update Failed.']);
         } else {
 
-            // /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
             $pengumuman->setJudul(request()->judul);
             $pengumuman->setKonten(request()->konten);
             
             if (request()->hasFile('image')) {
+                /** @var \CloudinaryLabs\CloudinaryLaravel\Model\Media $cloudinaryResponse */
                 $cloudinaryResponse = Cloudinary::upload(request()->file('image')->getRealPath());
                 $resultUrl = $cloudinaryResponse->getSecurePath();
 

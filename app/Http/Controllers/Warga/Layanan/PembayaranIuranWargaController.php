@@ -10,6 +10,7 @@ use App\Models\PropertiModel;
 use App\Models\TipePropertiModel;
 use App\Models\UserModel;
 use App\Models\IuranModel;
+use App\Models\NotificationModel;
 use Carbon\Carbon;
 
 class PembayaranIuranWargaController extends Controller
@@ -64,6 +65,7 @@ class PembayaranIuranWargaController extends Controller
 
     public function newPembayaranIuranPage()
     {
+
         $monthlyTotal = 0;
         $ownedPropertiInstances = (new SearchableDecorator(PropertiModel::class))->search(
             '',
@@ -122,6 +124,12 @@ class PembayaranIuranWargaController extends Controller
         } else {
             session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
         }
+
+        // current ketua rukun warga
+        $ketuaRW = request()->user()->getKetuaRukunWarga();
+
+        // send notification to ketua rukun warga
+        NotificationModel::new($ketuaRW->getNik(), request()->user()->getNamaLengkap() . ' telah melakukan pembayaran iuran.', route('rw.manage.iuran.verify', [], false));
 
         return redirect()->route('warga.layanan.pembayaranIuran.riwayatPembayaranIuran');
     }

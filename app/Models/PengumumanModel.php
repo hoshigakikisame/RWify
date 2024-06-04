@@ -68,6 +68,11 @@ class PengumumanModel extends Model implements SearchCompatible
         return $this->status;
     }
 
+    public function getSlug(): string
+    {
+        return route('informasi.pengumuman.detail', [$this->getIdPengumuman()]);
+    }
+
     // SETTERS
     public function setIdPengumuman(int $id_pengumuman): void
     {

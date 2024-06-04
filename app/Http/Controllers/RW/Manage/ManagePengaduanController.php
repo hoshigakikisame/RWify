@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\PengaduanModel;
 use App\Models\UserModel;
+use App\Models\NotificationModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
@@ -88,9 +89,9 @@ class ManagePengaduanController extends Controller
             $pengaduan->save();
 
             session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
+            NotificationModel::new($pengaduan->getNikPengadu(), 'Pengaduan anda dengan judul ' . $pengaduan->getJudul() . ' saat ini berstatus ' . $pengaduan->getStatus(), route('warga.layanan.pengaduan.detail', ['id_pengaduan' => $pengaduan->getId()], false));
         }
 
-        //return redirect()->route('rw.manage.pengaduan');
         return 'update success';
     }
 

@@ -59,12 +59,12 @@ class ReservasiJadwalTemuModel extends Model implements SearchCompatible
         return $this->id_reservasi_jadwal_temu;
     }
 
-    public function getPemohon() {
-        return $this->pemohon;
+    public function getPemohon(): UserModel {
+        return UserModel::find($this->nik_pemohon)->first();
     }
 
-    public function getPenerima() {
-        return $this->penerima;
+    public function getPenerima(): UserModel {
+        return UserModel::find($this->nik_penerima)->first();
     }
 
     public function getNamaPemohon(): string

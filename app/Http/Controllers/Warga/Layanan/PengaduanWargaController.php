@@ -7,6 +7,7 @@ use App\Models\PengaduanModel;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Decorators\SearchableDecorator;
 use App\Models\UserModel;
+use App\Models\NotificationModel;
 use App\Enums\Pengaduan\PengaduanStatusEnum;
 
 class PengaduanWargaController extends Controller
@@ -70,6 +71,14 @@ class PengaduanWargaController extends Controller
             session()->flash('danger',['title' => 'Insert Failed', 'description' => 'Insert Failed']);
         } else {
             session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
+            // current ketua rukun warga
+            $ketuaRW = request()->user()->getKetuaRukunWarga();
+
+            NotificationModel::new(
+                $ketuaRW->getNik(),
+                'Pengaduan baru dari ' . request()->user()->getNamaLengkap() . ' telah dibuat',
+                route('layanan.pengaduan.detail', ['idPengaduan' => $newPengaduan->getIdPengaduan()])
+            );
         }
 
         return redirect()->route('warga.layanan.pengaduan.index');

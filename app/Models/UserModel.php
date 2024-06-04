@@ -281,11 +281,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
         return $this->alamat;
     }
 
-    public function getRukunTetangga(): RukunTetanggaModel
-    {
-        return RukunTetanggaModel::find($this->getRukunTetangga()->getIdRukunTetangga())->first();
-    }
-
     public function getEmailVerifiedAt(): string|null
     {
         return $this->email_verified_at;
@@ -294,6 +289,16 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     public function getKartuKeluarga(): KartuKeluargaModel
     {
         return KartuKeluargaModel::find($this->nkk)->first();
+    }
+
+    public function getKetuaRukunWarga(): UserModel {
+        $idKetuaRukunWarga = KartuKeluargaModel::
+            join('tb_rukun_tetangga', 'tb_kartu_keluarga.id_rukun_tetangga', '=', 'tb_rukun_tetangga.id_rukun_tetangga')
+            ->join('tb_rukun_warga', 'tb_rukun_tetangga.id_rukun_warga', '=', 'tb_rukun_warga.id_rukun_warga')
+            ->where('tb_kartu_keluarga.nkk', $this->getNkk())
+            ->select('nik_ketua_rukun_warga')->first()->nik_ketua_rukun_warga;  
+            
+        return UserModel::where('nik', $idKetuaRukunWarga)->first();
     }
 
     public function getVerifiedIuranCount(): int
@@ -308,6 +313,9 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
         return $monthlyTotal;
     }
 
+    public function getUnreadNotifications() {
+        return NotificationModel::where('target_nik', $this->getNik())->whereNull('dibaca_pada')->get();
+    }
 
     // SETTERS
     public function setNik(string $nik): void

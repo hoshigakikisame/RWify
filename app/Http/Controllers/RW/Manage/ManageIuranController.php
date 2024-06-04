@@ -12,9 +12,9 @@ use App\Models\IuranModel;
 use App\Models\PembayaranIuranModel;
 use App\Models\UserModel;
 use App\Enums\Iuran\IuranBulanEnum;
-
-
+use App\Models\NotificationModel;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Date;
 
 class ManageIuranController extends Controller
@@ -122,6 +122,7 @@ class ManageIuranController extends Controller
             session()->flash('danger', ['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
             session()->flash('success', ['title' => 'Insert Success.', 'description' => 'Insert Success.']);
+            NotificationModel::new($nikPembayar, 'Pembayaran iuran anda pada bulan ' . $bulan . ' tahun ' . $tahun . ' berhasil diverifikasi.', route('warga.layanan.pembayaranIuran.iuran', [], false));
         }
 
         return redirect()->route('rw.manage.iuran.verify');

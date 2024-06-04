@@ -170,6 +170,11 @@ class KartuKeluargaModel extends Model implements SearchCompatible
         return $this->hasMany(UserModel::class, 'nkk', 'nkk');
     }
 
+    public function getRukunTetangga(): RukunTetanggaModel
+    {
+        return RukunTetanggaModel::find($this->id_rukun_tetangga)->first();
+    }
+
     // GETTERS
     public function getNkk(): string
     {

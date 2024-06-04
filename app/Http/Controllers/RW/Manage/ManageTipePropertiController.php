@@ -6,9 +6,6 @@ namespace App\Http\Controllers\RW\Manage;
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\TipePropertiModel;
-use App\Models\UserModel;
-
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ManageTipePropertiController extends Controller
 {

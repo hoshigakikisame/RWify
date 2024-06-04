@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\RW;
 
 use App\Http\Controllers\Controller;
-use App\Decorators\SearchableDecorator;
 use App\Models\PengaduanModel;
 use App\Models\UmkmModel;
 use App\Models\UserModel;
 use App\Models\PropertiModel;
 use App\Models\ReservasiJadwalTemuModel;
-use Illuminate\Database\Eloquent\Builder;
 
 class RWController extends Controller
 {
@@ -18,6 +16,8 @@ class RWController extends Controller
      */
     public function dashboard()
     {
+        dd(request()->user()->getUnreadNotifications());
+
         $lansiaCount = UserModel::whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
         $dewasaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
         $remajaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();

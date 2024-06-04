@@ -7,8 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
 use App\Models\ReservasiJadwalTemuModel;
 use App\Models\UserModel;
-
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Models\NotificationModel;
 
 class ManageReservasiJadwalTemuController extends Controller
 {
@@ -61,6 +60,10 @@ class ManageReservasiJadwalTemuController extends Controller
             $reservasiJadwalTemu->save();
 
             session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
+            NotificationModel::new(
+                $reservasiJadwalTemu->getNikPemohon(), 
+                'Reservasi jadwal temu anda dengan ' . $reservasiJadwalTemu->getPenerima()->getNamaLengkap() . ' saat ini berstatus ' . $reservasiJadwalTemu->getStatus(), route('warga.layanan.reservasiJadwalTemu.index')
+            );
         }
 
         // return redirect()->route('rw.manage.reservasiJadwalTemu.index');

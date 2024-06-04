@@ -55,6 +55,7 @@ class RukunWargaModel extends Model implements SearchCompatible
     public function getNikKetuaRukunWarga(): string {
         return $this->nik_ketua_rukun_warga;
     }
+
     // SETTERS
     public function setIdRukunWarga(int $id_rukun_warga): void {
         $this->id_rukun_warga = $id_rukun_warga;

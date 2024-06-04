@@ -8,6 +8,7 @@ use App\Decorators\SearchableDecorator;
 use App\Models\PropertiModel;
 use App\Models\TipePropertiModel;
 use App\Models\UserModel;
+use App\Models\NotificationModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Date;
@@ -87,9 +88,9 @@ class ManagePropertiController extends Controller
             session()->flash('danger', ['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
             session()->flash('success', ['title' => 'Insert Success.', 'description' => 'Insert Success.']);
+            NotificationModel::new(request()->nik_pemilik, "Properti baru '." . request()->nama_properti . ".' berhasil ditambahkan", route('warga.layanan.properti', [], false));
         }
 
-        // return redirect()->route('rw.manage.properti.index');
         return "Add success";
     }
 
