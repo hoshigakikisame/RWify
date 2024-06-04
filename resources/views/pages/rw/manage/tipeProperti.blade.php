@@ -160,7 +160,7 @@
                 </div>
             </div>
 
-            <div class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
+            <div id="search" class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
                 <span class="absolute">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +182,7 @@
                     x-model="search"
                     @keyup.enter="window.utils.Request.searchRequest(search)"
                     type="text"
-                    placeholder="Search"
+                    placeholder="Press Enter to Search"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11"
                 />
             </div>
