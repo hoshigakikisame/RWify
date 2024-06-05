@@ -19,13 +19,14 @@ class PengaduanRtController extends Controller
         $paginate = request()->paginate;
 
         $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search(
-            $query, 
-            $paginate, 
-            ['user' => UserModel::class], 
+            $query,
+            $paginate,
+            ['user' => UserModel::class],
             ['nik_pengadu' => request()->user()->getNik(), ...$filters]
         );
         // $count = PengaduanModel::count();
-        $count = PengaduanModel::where('nik_pengadu', auth()->user()->nik)->count();;
+        $count = PengaduanModel::where('nik_pengadu', auth()->user()->nik)->count();
+        ;
 
 
         $data = [
@@ -41,7 +42,8 @@ class PengaduanRtController extends Controller
         return view('pages.rt.layanan.pengaduan.new');
     }
 
-    public function addNewPengaduan() {
+    public function addNewPengaduan()
+    {
         request()->validate([
             'judul' => 'required',
             'isi' => 'required',
@@ -67,15 +69,17 @@ class PengaduanRtController extends Controller
         $newPengaduan = PengaduanModel::create($data);
 
         if (!$newPengaduan) {
-            session()->flash('danger',['title' => 'Insert Failed', 'description' => 'Insert Failed']);
+            session()->flash('danger', ['title' => 'Insert Failed', 'description' => 'Insert Failed']);
         } else {
-            session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
+            session()->flash('success', ['title' => 'Insert Success', 'description' => 'Insert Success']);
         }
 
-        return redirect()->route('rt.layanan.pengaduan.index');
+        // return redirect()->route('rt.layanan.pengaduan.index');
+        return 'Add New Pengaduan success';
     }
 
-    public function deletePengaduan() {
+    public function deletePengaduan()
+    {
         return 'Delete';
     }
 }

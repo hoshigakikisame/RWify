@@ -3,87 +3,160 @@
 @endphp
 @section('content')
     <section class="relative container mx-auto mb-8 mt-7 px-4 dark:text-gray-300">
-        <div class="greeting mb-5">
-            <h6 class="font-Inter">Hi {{ auth()->user()->nama_depan }},</h6>
-            <h1 class="text-4xl font-semibold leading-relaxed">Selamat Datang di RWify</h1>
+        <div class="greeting mb-2 border-b pb-3">
+            <h6 class="font-Inter text-indigo-800 dark:text-indigo-400">Hi {{ auth()->user()->nama_depan }},</h6>
+            <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-300">Selamat Datang di RWify</h1>
         </div>
-        <div class="working flex flex-wrap gap-4">
-            <div class="left">
-                <div class="info mb-3 flex flex-wrap gap-5">
+
+        <div class="working grid grid-cols-5 gap-4">
+            <div class="left col-span-3">
+                <div class="header-wrap mb-4">
+                    <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Total data</h1>
+                    <p class="text-xs text-gray-400 dark:text-gray-600">berikut merupakan kalkulasi dari seluruh data yang
+                        ada</p>
+                </div>
+                <div class="info mb-3 grid grid-cols-3 gap-4">
                     @php
                         $list = [
                             [
                                 'name' => 'Properti',
                                 'count' => $propertiCount,
                                 'lastAddedAt' => $propertiLastAddedAt,
+                                'wrapClass' =>
+                                    'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
+                                'iconColor' => 'fill-green-700',
+                                'updateColor' => 'text-green-600',
                             ],
                             [
                                 'name' => 'Pengaduan Warga',
                                 'count' => $pengaduanCount,
                                 'lastAddedAt' => $pengaduanLastAddedAt,
+                                'wrapClass' =>
+                                    'ring-indigo-200/30 border-indigo-500/70 dark:border-indigo-400/70 dark:ring-indigo-600/30',
+                                'iconColor' => 'fill-indigo-700',
+                                'updateColor' => 'text-indigo-600',
                             ],
                             [
                                 'name' => 'UMKM',
                                 'count' => $umkmCount,
                                 'lastAddedAt' => $umkmLastAddedAt,
+                                'wrapClass' =>
+                                    'ring-blue-200/30 border-blue-500/70 dark:border-blue-400/70 dark:ring-blue-600/30',
+                                'iconColor' => 'fill-blue-700',
+                                'updateColor' => 'text-blue-600',
                             ],
                         ];
                     @endphp
                     @foreach ($list as $item)
                         <div
-                            class="info-element inline-flex flex-col gap-1 rounded-md border-2 dark:border-gray-600 px-4 py-2">
-                            <h2 class="text-md tracking-wide">{{ $item['name'] }}</h2>
-                            <div class="info-body mx-2 mb-2 flex justify-between">
-                                <h1 class="ms-4 font-Montserrat text-4xl font-medium">{{ $item['count'] }}</h1>
-                                <img src="" alt="grafik" />
+                            class="card bg-white/80 text-gray-600 dark:text-gray-100 ring  dark:border-gray-400 border dark:bg-gray-800/30 px-5 py-4 rounded-lg {{ $item['wrapClass'] }}">
+                            <div class="card-header mb-0.5 flex justify-between gap-3 ">
+                                <h1 class="text-xs font-medium tracking-wide">{{ $item['name'] }}</h1>
+                                <div class="icon {{ $item['iconColor'] }}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Isolation Mode" viewBox="0 0 24 24"
+                                        class="w-5 h-5 drop-shadow-md">
+                                        <path
+                                            d="M12 0a12 12 0 1 0 12 12A12.013 12.013 0 0 0 12 0m8.941 11h-3.478a18.4 18.4 0 0 0-2.289-7.411A9.01 9.01 0 0 1 20.941 11M9.685 14h4.63A17 17 0 0 1 12 19.9 16.9 16.9 0 0 1 9.685 14m-.132-3A16.25 16.25 0 0 1 12 4.1a16.24 16.24 0 0 1 2.447 6.9Zm-.727-7.411A18.4 18.4 0 0 0 6.537 11H3.059a9.01 9.01 0 0 1 5.767-7.411M3.232 14h3.409a18.9 18.9 0 0 0 2.185 6.411A9.02 9.02 0 0 1 3.232 14m11.942 6.411A18.9 18.9 0 0 0 17.359 14h3.409a9.02 9.02 0 0 1-5.594 6.411" />
+                                    </svg>
+                                </div>
                             </div>
-                            <p class="text-xs italic">Terakhir ditambah {{ $item['lastAddedAt'] }} lalu</p>
+                            <div class="card-body mb-2">
+                                <h3
+                                    class="text-3xl font-Montserrat font-semibold tracking-wider text-gray-950 dark:text-gray-50">
+                                    {{ $item['count'] }}
+                                </h3>
+                            </div>
+                            <div class="card-footer">
+                                <p class="text-[9px] tracking-wide font-Montserrat">Terakhir diupdate <span
+                                        class="{{ $item['updateColor'] }}">{{ $item['lastAddedAt'] }}
+                                    </span></p>
+                            </div>
+
                         </div>
                     @endforeach
                 </div>
-                <div class="statistic mb-3 rounded-lg border-2 dark:border-gray-600 px-8 py-4">
-                    <div class="statistic-body flex">
-                        <div class="text">
-                            <h1 class="mb-4 text-3xl font-semibold leading-relaxed tracking-wide">Statistik Warga</h1>
-                            <div class="desc flex flex-col gap-4">
-                                @php
-                                    $elemenChart = [
-                                        'Lansia' => 'bg-[#F0F9D9]',
-                                        'Dewasa' => 'bg-[#265073]',
-                                        'Balita' => 'bg-[#277F80]',
-                                        'Remaja' => 'bg-[#9AD0C2]',
-                                        'Anak-Anak' => 'bg-[#A8EEE2]',
-                                    ];
-                                @endphp
-
-                                @foreach ($elemenChart as $desc => $color)
-                                    <div class="mark flex items-center gap-4">
-                                        <div class="color {{ $color }} h-6 w-10 rounded-md"></div>
-                                        <h1>{{ $desc }}</h1>
-                                    </div>
-                                @endforeach()
+                <div class="statistics mb-3">
+                    <div
+                        class="statistics-content px-6 py-5 ring ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-gray-800/30">
+                        <div class="statistic-header flex justify-between mb-1">
+                            <div class="text">
+                                <h1 class="text-xl">
+                                    Statistik Warga
+                                </h1>
+                                <p class="text-xs text-gray-400">Berikut visualisasi warga dalam pie chart</p>
+                            </div>
+                            <div class="icon fill-gray-500 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve"
+                                    class="w-5 h-5 drop-shadow-md">
+                                    <path
+                                        d="m257.209 65.285-.276-21.258h-21.258a236 236 0 0 0-4.455 0C102.431 45.257-.977 150.659.253 279.448c1.23 128.79 106.632 232.197 235.421 230.967 128.729-.141 233.052-104.455 233.205-233.183v-21.258H256.933z" />
+                                    <path d="M299.854 1.574v211.925h211.904C511.211 96.692 416.661 2.133 299.854 1.574" />
+                                </svg>
                             </div>
                         </div>
-                        <div class="chart">
-                            <div class="">
-                                <canvas width="300" id="myChart"></canvas>
+                        <div class="statistic-body mb-4">
+                            <div class="chart">
+                                <div class="relative w-full">
+                                    <canvas id="myChart" height="180"></canvas>
+                                </div>
                             </div>
+                        </div>
+                        <div class="footer">
+                            <p class="text-[9px] tracking-wide font-Montserrat">Terakhir diupdate <span
+                                    class="text-gray-600">8 jam
+                                </span></p>
                         </div>
                     </div>
                 </div>
-                <div class="leaderboard">
-                    <h1>Leaderboard Iuran</h1>
+                <div class="graph mt-4 ">
+                    <div
+                        class="w-full ring py-5 px-6 ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
+                        <div class="graph-header flex justify-between mb-1">
+                            <div class="text-wrap">
+                                <h1 class="text-xl">Grafik Iuran</h1>
+                                <p class="text-xs text-gray-400">berikut visualisasi data pembayaran iuran</p>
+                            </div>
+                            <div class="icon fill-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 drop-shadow-md" viewBox="0 0 384 384"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M10.668 234.668h42.664c5.89 0 10.668 4.773 10.668 10.664V352c0 5.89-4.777 10.668-10.668 10.668H10.668C4.778 362.668 0 357.891 0 352V245.332c0-5.89 4.777-10.664 10.668-10.664m106.664-85.336H160c5.89 0 10.668 4.777 10.668 10.668v192c0 5.89-4.777 10.668-10.668 10.668h-42.668c-5.89 0-10.664-4.777-10.664-10.668V160c0-5.89 4.773-10.668 10.664-10.668M224 192h42.668c5.89 0 10.664 4.777 10.664 10.668V352c0 5.89-4.773 10.668-10.664 10.668H224c-5.89 0-10.668-4.777-10.668-10.668V202.668c0-5.89 4.777-10.668 10.668-10.668m106.668-64h42.664c5.89 0 10.668 4.777 10.668 10.668V352c0 5.89-4.777 10.668-10.668 10.668h-42.664c-5.89 0-10.668-4.777-10.668-10.668V138.668c0-5.89 4.777-10.668 10.668-10.668m0 0"
+                                        data-original="" />
+                                    <path
+                                        d="M352 0c-17.664.02-31.98 14.336-32 32 .043 3.484.66 6.938 1.828 10.219L268.43 73.96a31.728 31.728 0 0 0-51.082 6.84L170.25 57.473q.343-2.058.418-4.141a32 32 0 0 0-54.621-22.695 31.99 31.99 0 0 0-6.938 34.894l-61.093 45.594A31.63 31.63 0 0 0 32 106.668c-17.672 0-32 14.324-32 32 0 17.672 14.328 32 32 32s32-14.328 32-32a31.8 31.8 0 0 0-2.145-11.25l61.704-46.05c12.07 6.73 27.125 4.757 37.05-4.86l53.559 26.527c3.57 15.903 18.535 26.574 34.734 24.77s28.45-15.504 28.43-31.805c0-.813-.18-1.578-.238-2.375l58.078-34.527A31.7 31.7 0 0 0 352 64c17.672 0 32-14.328 32-32S369.672 0 352 0m0 0"
+                                        data-original="" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div id="moneyChart" class=""></div>
+                    </div>
                 </div>
             </div>
-            <div class="right flex flex-wrap gap-2">
+            <div class="right col-span-2">
+                <div class="header-wrap mb-4 w-fit">
+                    <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Kalender</h1>
+                    <p class="text-xs text-gray-400 dark:text-gray-600 text-wrap">Check pertemuan anda di kalender ini</p>
+                </div>
                 <div class="calendar w-full" x-data="{ eventShow: false }">
-                    <div class="w-full max-w-sm rounded-lg border-2 overflow-hidden dark:border-gray-600">
-                        <div class="rounded-t bg-white p-5 dark:bg-gray-900 md:p-8">
-                            <div class="flex items-center justify-between px-4">
-                                <span id="calenderMonthYearTitle" tabindex="0"
-                                    class="text-base font-bold text-gray-800 focus:outline-none dark:text-gray-100">
-                                    October 2020
-                                </span>
+                    <div
+                        class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
+                        <div class="rounded-t py-5 px-6">
+                            <div class="flex items-center justify-between">
+                                <div class="month-year flex gap-2">
+
+                                    <h1 id="calenderMonthYearTitle" tabindex="0"
+                                        class="text-base font-semibold text-gray-800 focus:outline-none dark:text-gray-100">
+                                        October 2020
+                                    </h1>
+                                    <div class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                                            class="w-4 h-4 drop-shadow-md fill-indigo-700">
+                                            <path
+                                                d="M11.206 14.656c-.246 1.557-.756 3.155-1.257 4.66a1.001 1.001 0 0 1-1.897-.633c.238-.715.479-1.45.687-2.184a1.01 1.01 0 0 1-.852-.445 1 1 0 0 1 .277-1.387l1.5-1a1 1 0 0 1 1.542.988Zm6.792-4.209c0 4.144-.977 8.042-1.798 10.579a4.29 4.29 0 0 1-4.1 2.975H3.322a3.46 3.46 0 0 1-2.837-1.52c-.581-.864-.695-1.895-.314-2.825.823-2.012 2.356-5.757 2.406-9.17a1 1 0 0 1 .353-.748c.491-.408 1.237-.736 1.839-.739a2.67 2.67 0 0 1 1.724.616 1.63 1.63 0 0 0 2.087 0 2.68 2.68 0 0 1 3.418 0 1.63 1.63 0 0 0 2.087 0 2.67 2.67 0 0 1 1.735-.616c.598.006 1.281.277 1.769.682a1 1 0 0 1 .409.766m-2.004.583a.69.69 0 0 0-.631.125c-1.313 1.091-3.326 1.091-4.641 0a.68.68 0 0 0-.864 0c-1.315 1.091-3.327 1.091-4.642 0a.69.69 0 0 0-.657-.116c-.158 3.163-1.308 6.369-2.539 9.375-.17.415.005.775.124.953.262.391.713.634 1.177.634h8.778c1.007 0 1.89-.639 2.197-1.59.741-2.29 1.618-5.733 1.697-9.381ZM24 4.001v14c0 2.206-1.794 4-4 4h-1a1 1 0 1 1 0-2h1c1.103 0 2-.897 2-2V7c-.614 0-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0l-.014.012c-.637.539-1.616.068-1.616-.767V4A4.007 4.007 0 0 1 10 0h10c2.206 0 4 1.794 4 4Zm-2 0c0-1.103-.897-2-2-2H10c-1.103 0-2 .897-2 2v.056a4 4 0 0 1 .667-.056c.856 0 1.687.307 2.338.865q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0 .5.5 0 0 0 .328.135v-1Z" />
+                                        </svg>
+                                    </div>
+                                </div>
                                 <div class="flex items-center">
                                     <button id="prev-calendar" aria-label="calendar backward"
                                         class="text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
@@ -107,13 +180,25 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-between overflow-x-auto pt-12">
+                            <div class="flex flex-col relative items-center justify-between overflow-x-auto pt-6">
+                                <div id="loader-element"
+                                    class="w-60 h-60 relative bg-black/20 rounded-lg flex justify-center items-center">
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                            stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
+                                </div>
                                 <table class="w-full" id="calendar">
                                     <thead id="calendar-header">
                                         <!-- header day -->
                                     </thead>
-                                    <tbody id="calendar-body">
+                                    <tbody id="calendar-body" class="min-h-60">
                                         {{-- body day --}}
+
                                     </tbody>
                                 </table>
                             </div>
@@ -144,9 +229,81 @@
                         </div>
                     </div>
                 </div>
+                <div
+                    class="leaderboard mt-4 ring py-5 ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-gray-800/30">
+                    <div class="leaderboard-header flex justify-between mb-3 px-6">
+                        <div class="text">
+                            <h1 class="text-xl">
+                                Leaderboard Iuran
+                            </h1>
+                            <p class="text-xs text-gray-400">Berikut leaderboard warga</p>
+                        </div>
+                        <div class="icon fill-gray-500 ">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve"
+                                class="w-5 h-5 drop-shadow-md">
+                                <path
+                                    d="M0 7c0-2.757 2.243-5 5-5h14c2.757 0 5 2.243 5 5zm7 2H0v8c0 2.757 2.243 5 5 5h2zm2 0v13h10c2.757 0 5-2.243 5-5V9z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="">
+                        <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-800 ">
+                                <tr>
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
+                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                            <span class="text-nowrap">No</span>
+                                        </button>
+                                    </th>
 
-                <div class="graph">
-                    <h1>Graph</h1>
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
+                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                            <span class="text-nowrap">Nama</span>
+                                        </button>
+                                    </th>
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
+                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                            <span class="text-nowrap">Jumlah Bulan Pelunasan</span>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
+                                @foreach ($leaderboardUsers as $user)
+                                    @php
+                                        $isUserOwnedPosition = $user->getNik() == request()->user()->getNik();
+                                    @endphp
+                                    <tr class="{{ $isUserOwnedPosition ? 'bg-blue-50 dark:bg-blue-800' : '' }}">
+                                        <td class="px-4 py-4 text-sm font-medium">
+                                            <div>
+                                                <h2 class="text-nowrap font-medium text-gray-800 dark:text-white">
+                                                    {{ $loop->iteration }}
+                                                </h2>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 text-sm">
+                                            <div>
+                                                <h4 class="text-gray-700 dark:text-gray-200">
+                                                    {{ $user->getNamaLengkap() }}
+                                                </h4>
+                                            </div>
+                                        </td>
+
+                                        <td class="px-4 py-4 text-sm">
+                                            <div>
+                                                <h4 class="text-gray-700 dark:text-gray-200">
+                                                    {{ $user->getVerifiedIuranCount() }} Bulan
+                                                </h4>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -156,12 +313,16 @@
 @push('scripts')
     <script type="module">
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
-        ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }}, {{ $anakCount }},
+        import moneyChart from '{{ Vite::asset('resources/js/moneyChart.js') }}';
+
+        let moneyChartElement = moneyChart('#moneyChart')
+
+        let chart = ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }},
+            {{ $anakCount }},
             {{ $balitaCount }});
 
-        $(calendarCanvas).find('#calendar-header').append('<tr></tr>');
 
-        $(showAll).on('click', () => {
+        $('#showAll').on('click', () => {
             displayReminders(events, holiday);
         });
 
@@ -173,10 +334,6 @@
             $('#next-calendar').on('click', () => {
                 next();
             });
-        });
-
-        listDay.forEach((e) => {
-            $(calendarCanvas).find('#calendar-header').find('tr').append(elementWeekDay(e));
         });
     </script>
     <script>
@@ -193,7 +350,7 @@
                     id: {{ $item->getIdReservasiJadwalTemu() }},
                     date: "{{ $item->getJadwalTemu() }}",
                     title: "{{ $item->getSubjek() }}",
-                    description: "{{ $item->getPesan() }}"
+                    description: `{{ $item->getPesan() }}`,
                 },
             @endforeach
         ];
@@ -217,6 +374,7 @@
                     title: title,
                     description: description,
                 });
+
 
                 showCalendar(currentMonth, currentYear);
             }
@@ -283,6 +441,8 @@
                     };
                     holiday.push(data);
                 });
+                $('#loader-element').addClass('hidden');
+
                 showCalender(currentMonth, currentYear);
             })
             .catch((error) => {
@@ -393,6 +553,16 @@
             let calendarBody = document.querySelector('#calendar-body');
             let calendarHTML = '';
             let date = 1;
+
+            if ($(calendarCanvas).find('#calendar-header').find('tr').length == 0) {
+
+                $(calendarCanvas).find('#calendar-header').append('<tr></tr>');
+
+                listDay.forEach((e) => {
+                    $(calendarCanvas).find('#calendar-header').find('tr').append(elementWeekDay(e));
+                });
+            }
+
 
             $('#calenderMonthYearTitle').text(`${thisDate.toLocaleString('default', { month: 'long' })} ${year}`);
 

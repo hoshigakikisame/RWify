@@ -37,7 +37,7 @@ class PembayaranIuranRtController extends Controller
 
         return view('pages.rt.layanan.pembayaranIuran.iuran', $data);
     }
-    
+
     public function riwayatPembayaranIuranPage()
     {
 
@@ -46,8 +46,8 @@ class PembayaranIuranRtController extends Controller
         $paginate = request()->paginate;
 
         $pembayaranIuranInstances = (new SearchableDecorator(PembayaranIuranModel::class))->search(
-            $query, 
-            $paginate, 
+            $query,
+            $paginate,
             ['user' => UserModel::class],
             ['nik_pembayar' => request()->user()->getNik(), ...$filters]
         );
@@ -120,9 +120,9 @@ class PembayaranIuranRtController extends Controller
         $newIuran = PembayaranIuranModel::create($data);
 
         if (!$newIuran) {
-            session()->flash('danger',['title' => 'Insert Failed', 'description' => 'Insert Failed']);
+            session()->flash('danger', ['title' => 'Insert Failed', 'description' => 'Insert Failed']);
         } else {
-            session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
+            session()->flash('success', ['title' => 'Insert Success', 'description' => 'Insert Success']);
         }
 
         // current ketua rukun warga
@@ -131,6 +131,7 @@ class PembayaranIuranRtController extends Controller
         // send notification to ketua rukun warga
         NotificationModel::new($ketuaRW->getNik(), request()->user()->getNamaLengkap() . ' telah melakukan pembayaran iuran.', route('rw.manage.iuran.verify', [], false));
 
-        return redirect()->route('rt.layanan.pembayaranIuran.riwayatPembayaranIuran');
+        // return redirect()->route('rt.layanan.pembayaranIuran.riwayatPembayaranIuran');
+        return 'add pengaduan success';
     }
 }

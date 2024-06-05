@@ -57,9 +57,11 @@
             </div>
         </div>
 
-        <div class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-gray-800/50">
-            <form action="{{ route('rt.layanan.pembayaranIuran.new') }}" method="POST"
-                onsubmit='window.Loading.showLoading()' enctype="multipart/form-data">
+        <div id="addPembayaran" class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-gray-800/50"
+            x-data="{}">
+            <form id="addPembayaranForm" action="{{ route('rt.layanan.pembayaranIuran.new') }}" method="POST"
+                x-effect="window.utils.Request.actionRequest('{{ route('rt.layanan.pembayaranIuran.new') }}','#addPembayaran','#addPembayaranForm',true);window.utils.Request.redirectToPage('{{ route('rt.layanan.pembayaranIuran.riwayatPembayaranIuran') }}')"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="">
