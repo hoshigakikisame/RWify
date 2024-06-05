@@ -2,14 +2,14 @@
 @php
 @endphp
 @section('content')
-    <section class="relative container mx-auto mb-8 mt-7 px-4 dark:text-gray-300 ">
+    <section class="relative container mx-auto mb-8 mt-7 px-4 dark:text-gray-300">
         <div class="greeting mb-2 border-b pb-3">
             <h6 class="font-Inter text-indigo-800 dark:text-indigo-400">Hi {{ auth()->user()->nama_depan }},</h6>
             <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-300">Selamat Datang di RWify</h1>
         </div>
 
-        <div class="working flex gap-4">
-            <div class="left">
+        <div class="working grid grid-cols-5 gap-4">
+            <div class="left col-span-3">
                 <div class="header-wrap mb-4">
                     <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Total data</h1>
                     <p class="text-xs text-gray-400 dark:text-gray-600">berikut merupakan kalkulasi dari seluruh data yang
@@ -108,8 +108,129 @@
                         </div>
                     </div>
                 </div>
+                <div class="graph mt-4 ">
+                    <div
+                        class="w-full ring py-5 px-6 ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
+                        <div class="graph-header flex justify-between mb-1">
+                            <div class="text-wrap">
+                                <h1 class="text-xl">Grafik Iuran</h1>
+                                <p class="text-xs text-gray-400">berikut visualisasi data pembayaran iuran</p>
+                            </div>
+                            <div class="icon fill-gray-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 drop-shadow-md" viewBox="0 0 384 384"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M10.668 234.668h42.664c5.89 0 10.668 4.773 10.668 10.664V352c0 5.89-4.777 10.668-10.668 10.668H10.668C4.778 362.668 0 357.891 0 352V245.332c0-5.89 4.777-10.664 10.668-10.664m106.664-85.336H160c5.89 0 10.668 4.777 10.668 10.668v192c0 5.89-4.777 10.668-10.668 10.668h-42.668c-5.89 0-10.664-4.777-10.664-10.668V160c0-5.89 4.773-10.668 10.664-10.668M224 192h42.668c5.89 0 10.664 4.777 10.664 10.668V352c0 5.89-4.773 10.668-10.664 10.668H224c-5.89 0-10.668-4.777-10.668-10.668V202.668c0-5.89 4.777-10.668 10.668-10.668m106.668-64h42.664c5.89 0 10.668 4.777 10.668 10.668V352c0 5.89-4.777 10.668-10.668 10.668h-42.664c-5.89 0-10.668-4.777-10.668-10.668V138.668c0-5.89 4.777-10.668 10.668-10.668m0 0"
+                                        data-original="" />
+                                    <path
+                                        d="M352 0c-17.664.02-31.98 14.336-32 32 .043 3.484.66 6.938 1.828 10.219L268.43 73.96a31.728 31.728 0 0 0-51.082 6.84L170.25 57.473q.343-2.058.418-4.141a32 32 0 0 0-54.621-22.695 31.99 31.99 0 0 0-6.938 34.894l-61.093 45.594A31.63 31.63 0 0 0 32 106.668c-17.672 0-32 14.324-32 32 0 17.672 14.328 32 32 32s32-14.328 32-32a31.8 31.8 0 0 0-2.145-11.25l61.704-46.05c12.07 6.73 27.125 4.757 37.05-4.86l53.559 26.527c3.57 15.903 18.535 26.574 34.734 24.77s28.45-15.504 28.43-31.805c0-.813-.18-1.578-.238-2.375l58.078-34.527A31.7 31.7 0 0 0 352 64c17.672 0 32-14.328 32-32S369.672 0 352 0m0 0"
+                                        data-original="" />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div id="moneyChart" class=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="right col-span-2">
+                <div class="header-wrap mb-4 w-fit">
+                    <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Kalender</h1>
+                    <p class="text-xs text-gray-400 dark:text-gray-600 text-wrap">Check pertemuan anda di kalender ini</p>
+                </div>
+                <div class="calendar w-full" x-data="{ eventShow: false }">
+                    <div
+                        class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
+                        <div class="rounded-t py-5 px-6">
+                            <div class="flex items-center justify-between">
+                                <div class="month-year flex gap-2">
+
+                                    <h1 id="calenderMonthYearTitle" tabindex="0"
+                                        class="text-base font-semibold text-gray-800 focus:outline-none dark:text-gray-100">
+                                        October 2020
+                                    </h1>
+                                    <div class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                                            class="w-4 h-4 drop-shadow-md fill-indigo-700">
+                                            <path
+                                                d="M11.206 14.656c-.246 1.557-.756 3.155-1.257 4.66a1.001 1.001 0 0 1-1.897-.633c.238-.715.479-1.45.687-2.184a1.01 1.01 0 0 1-.852-.445 1 1 0 0 1 .277-1.387l1.5-1a1 1 0 0 1 1.542.988Zm6.792-4.209c0 4.144-.977 8.042-1.798 10.579a4.29 4.29 0 0 1-4.1 2.975H3.322a3.46 3.46 0 0 1-2.837-1.52c-.581-.864-.695-1.895-.314-2.825.823-2.012 2.356-5.757 2.406-9.17a1 1 0 0 1 .353-.748c.491-.408 1.237-.736 1.839-.739a2.67 2.67 0 0 1 1.724.616 1.63 1.63 0 0 0 2.087 0 2.68 2.68 0 0 1 3.418 0 1.63 1.63 0 0 0 2.087 0 2.67 2.67 0 0 1 1.735-.616c.598.006 1.281.277 1.769.682a1 1 0 0 1 .409.766m-2.004.583a.69.69 0 0 0-.631.125c-1.313 1.091-3.326 1.091-4.641 0a.68.68 0 0 0-.864 0c-1.315 1.091-3.327 1.091-4.642 0a.69.69 0 0 0-.657-.116c-.158 3.163-1.308 6.369-2.539 9.375-.17.415.005.775.124.953.262.391.713.634 1.177.634h8.778c1.007 0 1.89-.639 2.197-1.59.741-2.29 1.618-5.733 1.697-9.381ZM24 4.001v14c0 2.206-1.794 4-4 4h-1a1 1 0 1 1 0-2h1c1.103 0 2-.897 2-2V7c-.614 0-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0l-.014.012c-.637.539-1.616.068-1.616-.767V4A4.007 4.007 0 0 1 10 0h10c2.206 0 4 1.794 4 4Zm-2 0c0-1.103-.897-2-2-2H10c-1.103 0-2 .897-2 2v.056a4 4 0 0 1 .667-.056c.856 0 1.687.307 2.338.865q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0 .5.5 0 0 0 .328.135v-1Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <button id="prev-calendar" aria-label="calendar backward"
+                                        class="text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <polyline points="15 6 9 12 15 18" />
+                                        </svg>
+                                    </button>
+                                    <button id="next-calendar" aria-label="calendar forward"
+                                        class="ml-3 text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <polyline points="9 6 15 12 9 18" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col relative items-center justify-between overflow-x-auto pt-6">
+                                <div id="loader-element"
+                                    class="w-60 h-60 relative bg-black/20 rounded-lg flex justify-center items-center">
+                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                            stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <table class="w-full" id="calendar">
+                                    <thead id="calendar-header">
+                                        <!-- header day -->
+                                    </thead>
+                                    <tbody id="calendar-body" class="min-h-60">
+                                        {{-- body day --}}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="action-event flex justify-end mt-4">
+                                <button class="flex gap-1" id="showAll" @click="eventShow = !eventShow">
+                                    <div class="icon w-4 h-4 fill-indigo-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" x-show='!eventShow' data-name="Layer 1"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 2h-1V1a1 1 0 1 0-2 0v1H8V1a1 1 0 1 0-2 0v1H5C2.243 2 0 4.243 0 7v12c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5M5 4h14c1.654 0 3 1.346 3 3v1H2V7c0-1.654 1.346-3 3-3m14 18H5c-1.654 0-3-1.346-3-3v-9h20v9c0 1.654-1.346 3-3 3m-3.293-5.895a1 1 0 0 1 0 1.414l-1.613 1.613c-.577.577-1.336.866-2.094.866s-1.517-.289-2.094-.866l-1.613-1.613a.999.999 0 1 1 1.414-1.414L11 17.398V13a1 1 0 1 1 2 0v4.398l1.293-1.293a1 1 0 0 1 1.414 0" />
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" x-show='eventShow' data-name="Layer 1"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 2h-1V1a1 1 0 1 0-2 0v1H8V1a1 1 0 1 0-2 0v1H5C2.243 2 0 4.243 0 7v12c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5M5 4h14c1.654 0 3 1.346 3 3v1H2V7c0-1.654 1.346-3 3-3m14 18H5c-1.654 0-3-1.346-3-3v-9h20v9c0 1.654-1.346 3-3 3m-3.293-7.52a.999.999 0 1 1-1.414 1.414L13 14.601v4.398a1 1 0 1 1-2 0v-4.398l-1.293 1.293a.999.999 0 1 1-1.414-1.414l1.613-1.613a2.966 2.966 0 0 1 4.188 0z" />
+                                        </svg>
+                                    </div>
+
+                                    <h1 class="text-xs underline text-indigo-300">Show All Event </h1>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="event-desc" x-show="eventShow"
+                            class="rounded-b bg-gray-50 px-5 py-5 dark:bg-gray-700 md:px-4 md:py-8">
+                            <div class="px-4 flex flex-col gap-4" id="body-event-desc">
+                                {{-- body desc --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div
-                    class="leaderboard ring py-5 ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-gray-800/30">
+                    class="leaderboard mt-4 ring py-5 ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-gray-800/30">
                     <div class="leaderboard-header flex justify-between mb-3 px-6">
                         <div class="text">
                             <h1 class="text-xl">
@@ -185,107 +306,6 @@
                     </div>
                 </div>
             </div>
-            <div class="right">
-                <div class="header-wrap mb-4 w-fit">
-                    <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Kalender</h1>
-                    <p class="text-xs text-gray-400 dark:text-gray-600 text-wrap">Check pertemuan anda di kalender ini</p>
-                </div>
-                <div class="calendar w-full" x-data="{ eventShow: false }">
-                    <div
-                        class="w-full max-w-sm ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
-                        <div class="rounded-t py-5 px-6">
-                            <div class="flex items-center justify-between">
-                                <div class="month-year flex gap-2">
-
-                                    <h1 id="calenderMonthYearTitle" tabindex="0"
-                                        class="text-base font-semibold text-gray-800 focus:outline-none dark:text-gray-100">
-                                        October 2020
-                                    </h1>
-                                    <div class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                                            class="w-4 h-4 drop-shadow-md fill-indigo-700">
-                                            <path
-                                                d="M11.206 14.656c-.246 1.557-.756 3.155-1.257 4.66a1.001 1.001 0 0 1-1.897-.633c.238-.715.479-1.45.687-2.184a1.01 1.01 0 0 1-.852-.445 1 1 0 0 1 .277-1.387l1.5-1a1 1 0 0 1 1.542.988Zm6.792-4.209c0 4.144-.977 8.042-1.798 10.579a4.29 4.29 0 0 1-4.1 2.975H3.322a3.46 3.46 0 0 1-2.837-1.52c-.581-.864-.695-1.895-.314-2.825.823-2.012 2.356-5.757 2.406-9.17a1 1 0 0 1 .353-.748c.491-.408 1.237-.736 1.839-.739a2.67 2.67 0 0 1 1.724.616 1.63 1.63 0 0 0 2.087 0 2.68 2.68 0 0 1 3.418 0 1.63 1.63 0 0 0 2.087 0 2.67 2.67 0 0 1 1.735-.616c.598.006 1.281.277 1.769.682a1 1 0 0 1 .409.766m-2.004.583a.69.69 0 0 0-.631.125c-1.313 1.091-3.326 1.091-4.641 0a.68.68 0 0 0-.864 0c-1.315 1.091-3.327 1.091-4.642 0a.69.69 0 0 0-.657-.116c-.158 3.163-1.308 6.369-2.539 9.375-.17.415.005.775.124.953.262.391.713.634 1.177.634h8.778c1.007 0 1.89-.639 2.197-1.59.741-2.29 1.618-5.733 1.697-9.381ZM24 4.001v14c0 2.206-1.794 4-4 4h-1a1 1 0 1 1 0-2h1c1.103 0 2-.897 2-2V7c-.614 0-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0l-.014.012c-.637.539-1.616.068-1.616-.767V4A4.007 4.007 0 0 1 10 0h10c2.206 0 4 1.794 4 4Zm-2 0c0-1.103-.897-2-2-2H10c-1.103 0-2 .897-2 2v.056a4 4 0 0 1 .667-.056c.856 0 1.687.307 2.338.865q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0 .5.5 0 0 0 .328.135v-1Z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="flex items-center">
-                                    <button id="prev-calendar" aria-label="calendar backward"
-                                        class="text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <polyline points="15 6 9 12 15 18" />
-                                        </svg>
-                                    </button>
-                                    <button id="next-calendar" aria-label="calendar forward"
-                                        class="ml-3 text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                            <polyline points="9 6 15 12 9 18" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex flex-col relative items-center justify-between overflow-x-auto pt-6">
-                                <div id="loader-element"
-                                    class="w-60 h-60 relative bg-black/20 rounded-lg flex justify-center items-center">
-                                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10"
-                                            stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <table class="w-full" id="calendar">
-                                    <thead id="calendar-header">
-                                        <!-- header day -->
-                                    </thead>
-                                    <tbody id="calendar-body" class="min-h-60">
-                                        {{-- body day --}}
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="action-event flex justify-end mt-4">
-                                <button class="flex gap-1" id="showAll" @click="eventShow = !eventShow">
-                                    <div class="icon w-4 h-4 fill-indigo-400">
-                                        <svg xmlns="http://www.w3.org/2000/svg" x-show='!eventShow' data-name="Layer 1"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M19 2h-1V1a1 1 0 1 0-2 0v1H8V1a1 1 0 1 0-2 0v1H5C2.243 2 0 4.243 0 7v12c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5M5 4h14c1.654 0 3 1.346 3 3v1H2V7c0-1.654 1.346-3 3-3m14 18H5c-1.654 0-3-1.346-3-3v-9h20v9c0 1.654-1.346 3-3 3m-3.293-5.895a1 1 0 0 1 0 1.414l-1.613 1.613c-.577.577-1.336.866-2.094.866s-1.517-.289-2.094-.866l-1.613-1.613a.999.999 0 1 1 1.414-1.414L11 17.398V13a1 1 0 1 1 2 0v4.398l1.293-1.293a1 1 0 0 1 1.414 0" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" x-show='eventShow' data-name="Layer 1"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M19 2h-1V1a1 1 0 1 0-2 0v1H8V1a1 1 0 1 0-2 0v1H5C2.243 2 0 4.243 0 7v12c0 2.757 2.243 5 5 5h14c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5M5 4h14c1.654 0 3 1.346 3 3v1H2V7c0-1.654 1.346-3 3-3m14 18H5c-1.654 0-3-1.346-3-3v-9h20v9c0 1.654-1.346 3-3 3m-3.293-7.52a.999.999 0 1 1-1.414 1.414L13 14.601v4.398a1 1 0 1 1-2 0v-4.398l-1.293 1.293a.999.999 0 1 1-1.414-1.414l1.613-1.613a2.966 2.966 0 0 1 4.188 0z" />
-                                        </svg>
-                                    </div>
-
-                                    <h1 class="text-xs underline text-indigo-300">Show All Event </h1>
-                                </button>
-                            </div>
-                        </div>
-                        <div id="event-desc" x-show="eventShow"
-                            class="rounded-b bg-gray-50 px-5 py-5 dark:bg-gray-700 md:px-4 md:py-8">
-                            <div class="px-4 flex flex-col gap-4" id="body-event-desc">
-                                {{-- body desc --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="graph">
-                    <h1>Graph</h1>
-                </div>
-            </div>
         </div>
     </section>
 @endsection
@@ -293,6 +313,10 @@
 @push('scripts')
     <script type="module">
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
+        import moneyChart from '{{ Vite::asset('resources/js/moneyChart.js') }}';
+
+        let moneyChartElement = moneyChart('#moneyChart')
+
         let chart = ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }},
             {{ $anakCount }},
             {{ $balitaCount }});
