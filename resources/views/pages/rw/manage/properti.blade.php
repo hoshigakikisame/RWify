@@ -28,23 +28,23 @@
                         </p>
                     @endif
                 </div>
-                <div class="md:items-right md:flex md:justify-between gap-x-3">
-                    <form id="exportCSVForm" method="get" action="{{ route('rw.manage.properti.exportCSV') }}"
-                        class="flex items-center justify-center">
-                        @csrf
-                        <label for="exportCSV"
-                            class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
-                            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
-                            </svg>Export
-                        </label>
-                        <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
-                            onclick="document.querySelector('#exportCSVForm').submit()">
-                    </form>
-                </div>
-
+                <div class="flex gap-2">
+                    <div class="md:items-right md:flex md:justify-between gap-x-3">
+                        <form id="exportCSVForm" method="get" action="{{ route('rw.manage.properti.exportCSV') }}"
+                            class="flex items-center justify-center">
+                            @csrf
+                            <label for="exportCSV"
+                                class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
+                                </svg>Export
+                            </label>
+                            <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
+                                onclick="document.querySelector('#exportCSVForm').submit()">
+                        </form>
+                    </div>
                     <div class="mt-2 flex items-center gap-x-3" x-data="{ modalOpen: false }">
                         <button id="addButton" @click="modalOpen = !modalOpen"
                             class="mb-2 flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2.5 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
