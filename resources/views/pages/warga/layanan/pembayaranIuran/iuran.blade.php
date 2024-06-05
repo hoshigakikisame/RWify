@@ -81,6 +81,13 @@
                                     </th>
 
                                     <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
+                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                            <span class="text-nowrap">Jumlah Bayar</span>
+                                        </button>
+                                    </th>
+
+                                    <th scope="col"
                                         class="px-4 py-3.5 ps-5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 text-center dark:fill-gray-400">
                                             <span class="text-nowrap">Tanggal Bayar</span>
@@ -115,6 +122,12 @@
                                         <td class="px-4 py-4 text-sm">
                                             <p class="mx-1 text-nowrap text-sm text-blue-600">
                                                 {{ $iuran->getTahun() }}
+                                            </p>
+                                        </td>
+                                        
+                                        <td class="px-4 py-4 text-sm">
+                                            <p class="mx-1 text-nowrap text-sm text-blue-600">
+                                                Rp. {{ $iuran->getJumlahBayar() }}
                                             </p>
                                         </td>
 
