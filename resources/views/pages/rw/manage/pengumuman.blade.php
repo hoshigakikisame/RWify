@@ -192,7 +192,7 @@
                                                         d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0m0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10m1.5-15.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 6.5m0 11a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001m0-5.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 12" />
                                                 </svg>
                                             </button>
-                                            <div class="absolute right-8 top-0 divide-y overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700"
+                                            <div class="absolute right-8 top-0 divide-y overflow-hidden rounded-lg border bg-white dark:bg-gray-900 dark:divide-gray-700 dark:border-gray-700"
                                                 style="display: none" x-show="actionModalOpen"
                                                 @click.away="actionModalOpen = false" x-data="{
                                                     modalEditOpen: false,
