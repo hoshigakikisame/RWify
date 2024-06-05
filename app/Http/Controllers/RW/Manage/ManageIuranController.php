@@ -36,9 +36,15 @@ class ManageIuranController extends Controller
         );
         $count = IuranModel::count();
 
+        $nikPemilikInstances = array_reduce(UserModel::all()->toArray(), function ($carry, $item) {
+            $carry[$item['nik']] = $item['nama_depan'] . ' ' . $item['nama_belakang'];
+            return $carry;
+        }, []);
+
         $data = [
             "iuranInstances" => $iuranInstances,
-            "count" => $count
+            "count" => $count,
+            "nikPemilikInstances" => $nikPemilikInstances,
         ];
 
         return view('pages.rw.manage.iuran', $data);

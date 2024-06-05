@@ -9,7 +9,7 @@ class WargaController extends Controller
 {
     public function dashboard()
     {
-        dd(request()->user()->getUnreadNotifications());
+        // dd(request()->user()->getUnreadNotifications());
 
         return view('pages.warga.dashboard');
     }

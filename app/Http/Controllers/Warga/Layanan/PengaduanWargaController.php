@@ -17,7 +17,7 @@ class PengaduanWargaController extends Controller
     {
         $query = request()->q;
         $filters = request()->filters ?? [];
-        $paginate = request()->paginate;
+        $paginate = request()->paginate ?? 10;
 
         $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search(
             $query, 

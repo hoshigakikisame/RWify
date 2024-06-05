@@ -15,7 +15,7 @@ class ReservasiJadwalTemuWargaController extends Controller
     {
         $request = request()->q;
         $filters = request()->filters ?? [];
-        $paginate = request()->paginate;
+        $paginate = request()->paginate ?? 10;
 
         $reservasiJadwalTemuInstances = (new SearchableDecorator(ReservasiJadwalTemuModel::class))->search(
             $request, 

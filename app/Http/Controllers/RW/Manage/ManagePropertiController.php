@@ -23,7 +23,7 @@ class ManagePropertiController extends Controller
 
         $query = request()->q;
         $filters = request()->filters ?? [];
-        $paginate = request()->paginate ?? 5;
+        $paginate = request()->paginate ?? 10;
 
         $propertiInstances = (new SearchableDecorator(PropertiModel::class))->search(
             $query,

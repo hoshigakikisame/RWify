@@ -25,7 +25,7 @@ class ManagePengumumanController extends Controller
 
         $query = request()->q;
         $filters = request()->filters ?? [];
-        $paginate = request()->paginate ?? 5;
+        $paginate = request()->paginate ?? 10;
 
         $pengumumanInstances = (new SearchableDecorator(PengumumanModel::class))->search($query, $paginate, [], $filters);
         $count = PengumumanModel::all()->count();

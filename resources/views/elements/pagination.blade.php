@@ -17,7 +17,6 @@
             <select name="pageCount" id="pageCount"
                 class="rounded-lg border border-gray-300 bg-white text-sm text-gray-800 focus:border-blue-500 focus:ring-blue-400 dark:bg-gray-900 dark:text-gray-200 dark:focus:border-blue-400 dark:focus:ring-blue-400"
                 onchange="paginate({{ $paginator->currentPage() }})">
-                <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="50">50</option>
@@ -104,7 +103,7 @@
         $('#pageCount').val(
             document.location.search.includes('paginate') ?
             new URLSearchParams(document.location.search).get('paginate') :
-            5,
+            10,
         );
     });
 </script>

@@ -23,7 +23,7 @@ class ManageKartuKeluargaController extends Controller
     public function manageKartuKeluargaPage()
     {
         $query = request()->q;
-        $paginate = request()->paginate ?? 5;
+        $paginate = request()->paginate ?? 10;
         $filters = request()->filters ?? [];
 
         $kartuKeluargaInstances = (new SearchableDecorator(KartuKeluargaModel::class))->search($query, $paginate, [], $filters);

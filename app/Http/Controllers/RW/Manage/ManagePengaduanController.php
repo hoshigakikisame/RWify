@@ -21,7 +21,7 @@ class ManagePengaduanController extends Controller
 
         $query = request()->q;
         $filters = request()->filters ?? [];
-        $paginate = request()->paginate ?? 5;
+        $paginate = request()->paginate ?? 10;
 
         $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search(
             $query,

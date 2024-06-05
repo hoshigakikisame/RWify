@@ -24,7 +24,7 @@ class ManageWargaController extends Controller
     public function manageWargaPage()
     {
         $query = request()->q;
-        $paginate = request()->paginate ?? 5;
+        $paginate = request()->paginate ?? 10;
         $filters = request()->filters ?? [];
 
         $users = (new SearchableDecorator(UserModel::class))->search($query, $paginate, [], $filters);

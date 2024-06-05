@@ -332,7 +332,7 @@
             </div>
         </div>
 
-        {{ $users->onEachSide(0)->links('elements.pagination') }}
+        {{ $users->links('elements.pagination') }}
     </section>
 @endsection
 
