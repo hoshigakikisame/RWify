@@ -25,7 +25,7 @@
     @endphp
 
     <x-sidebar.sidebar-item href="{{ route('rw.dashboard') }}" title="Dashboard" :active="request()->routeIs(['rw.dashboard'])">
-        <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve" class="w-6 fill-inherit lg:w-5">
+        <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve" class="w-5 transition-all">
             <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
             <path
                 d="M362.667 383.841v128H448c35.346 0 64-28.654 64-64V253.26a42.67 42.67 0 0 0-12.011-29.696l-181.29-195.99c-31.988-34.61-85.976-36.735-120.586-4.747a85 85 0 0 0-4.747 4.747L12.395 223.5A42.67 42.67 0 0 0 0 253.58v194.261c0 35.346 28.654 64 64 64h85.333v-128c.399-58.172 47.366-105.676 104.073-107.044 58.604-1.414 108.814 46.899 109.261 107.044" />
@@ -34,14 +34,15 @@
     </x-sidebar.sidebar-item>
     <li class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropPendataan ? $activeStyle['active'] : $activeStyle['default'] }}"
-            @click="sideDropdown = !sideDropdown"
+            @click="sideDropdown = !sideDropdown" x-ref="dropdown"
+            @mouseover="$($refs.dropdown).find('svg').addClass('!w-6')"
+            @mouseleave="$($refs.dropdown).find('svg').removeClass('!w-6')"
             x-effect="
                 document.location.pathname.split('/').includes('pendataan')
                     ? (sideDropdown = true)
                     : (sideDropdown = false)
             ">
-            <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                class="w-6 fill-inherit lg:w-5">
+            <svg xmlns=" http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="fill-inherit w-5">
                 <path
                     d="M22.026 7h-7V0h-10a3 3 0 0 0-3 3v21H6v-2c0-1.654 1.346-3 3-3h6.026c1.654 0 3 1.346 3 3v2h4zm-10 10c-2.205 0-4-1.795-4-4s1.795-4 4-4 4 1.795 4 4-1.795 4-4 4M21.44 5h-4.414V.586zm-7.414 8c0 1.103-.897 2-2 2s-2-.897-2-2 .897-2 2-2 2 .897 2 2m2 9v2H8v-2c0-.551.449-1 1-1h6.026c.552 0 1 .449 1 1" />
             </svg>
@@ -84,13 +85,15 @@
     </li>
     <li class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropIuran ? $activeStyle['active'] : $activeStyle['default'] }}"
-            @click="sideDropdown = !sideDropdown"
+            @click="sideDropdown = !sideDropdown" x-ref="dropdown"
+            @mouseover="$($refs.dropdown).find('svg').addClass('!w-6')"
+            @mouseleave="$($refs.dropdown).find('svg').removeClass('!w-6')"
             x-effect="
                 document.location.pathname.split('/').includes('iuran')
                     ? (sideDropdown = true)
                     : (sideDropdown = false)
             ">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 fill-inherit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 fill-inherit">
                 <path
                     d="M24 6.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 24 6.5M15.5 3a1.5 1.5 0 1 0-.001-3.001A1.5 1.5 0 0 0 15.5 3m.945 4.832a1 1 0 0 0 1.387-.277l4-6a1.001 1.001 0 0 0-1.664-1.11l-4 6a1 1 0 0 0 .277 1.387M5.75 8c3.176 0 5.75-1.343 5.75-3S8.926 2 5.75 2 0 3.343 0 5s2.574 3 5.75 3m0 8c3.278 0 5.75-1.505 5.75-3.5v-2c0 1.971-2.396 3.5-5.75 3.5S0 12.471 0 10.5v2C0 14.495 2.472 16 5.75 16m0-4c3.278 0 5.75-1.505 5.75-3.5v-2c0 1.971-2.396 3.5-5.75 3.5S0 8.471 0 6.5v2C0 10.495 2.472 12 5.75 12m11.5-2c-3.176 0-5.75 1.343-5.75 3s2.574 3 5.75 3S23 14.657 23 13s-2.574-3-5.75-3m0 12c-3.354 0-5.75-1.529-5.75-3.5 0 1.971-2.396 3.5-5.75 3.5S0 20.471 0 18.5v2C0 22.495 2.472 24 5.75 24s5.75-1.505 5.75-3.5c0 1.995 2.472 3.5 5.75 3.5S23 22.495 23 20.5v-2c0 1.971-2.396 3.5-5.75 3.5m0-4c-3.354 0-5.75-1.529-5.75-3.5 0 1.971-2.396 3.5-5.75 3.5S0 16.471 0 14.5v2C0 18.495 2.472 20 5.75 20s5.75-1.505 5.75-3.5c0 1.995 2.472 3.5 5.75 3.5S23 18.495 23 16.5v-2c0 1.971-2.396 3.5-5.75 3.5" />
             </svg>
@@ -132,7 +135,7 @@
             <x-sidebar.sidebar-item href="{{ route('rw.manage.iuran.verify') }}" title="Kelola" :active="request()->routeIs(['rw.manage.iuran.verify'])">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 32 32" style="enable-background: new 0 0 512 512" xml:space="preserve"
-                    class="w-7 fill-inherit lg:w-6">
+                    class="w-5 fill-inherit">
                     <g>
                         <path
                             d="M2 8.7h28v4.08H2zM30 7.2c0-1.94-1.57-3.5-3.5-3.5h-21C3.57 3.7 2 5.26 2 7.2zM2 14.28v6.38c0 1.94 1.57 3.5 3.5 3.5h13.35a6.309 6.309 0 0 1 1.816-5.193c1.198-1.198 2.792-1.858 4.487-1.858s3.289.66 4.487 1.859c.127.127.244.261.358.397V14.28zm4.308 1.287h2.757a.9.9 0 0 1 0 1.8H6.308a.9.9 0 0 1 0-1.8zm5.514 5.188H6.308a.9.9 0 0 1 0-1.8h5.514a.9.9 0 0 1 0 1.8z"
@@ -144,7 +147,7 @@
                 </svg>
             </x-sidebar.sidebar-item>
             <x-sidebar.sidebar-item href="{{ route('informasi.iuranLeaderboard') }}" title="Leaderboard" :active="request()->routeIs(['informasi.iuranLeaderboard'])">
-                <svg viewBox="0 0 24 24" class="w-7 fill-inherit lg:w-6" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 24 24" class="w-5 fill-inherit" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" class="fill-inherit"
                         d="M13.436 5.783a3 3 0 0 0-2.872 0L5.769 8.397a3 3 0 0 0-1.563 2.634v4.938a3 3 0 0 0 1.563 2.634l4.795 2.614a3 3 0 0 0 2.872 0l4.794-2.614a3 3 0 0 0 1.564-2.634V11.03a3 3 0 0 0-1.564-2.634zM12 10.5c-.284 0-.474.34-.854 1.023l-.098.176c-.108.194-.162.29-.246.354-.085.064-.19.088-.4.135l-.19.044c-.738.167-1.107.25-1.195.532s.164.577.667 1.165l.13.152c.143.167.215.25.247.354s.021.215 0 .438l-.02.203c-.076.785-.114 1.178.115 1.352.23.174.576.015 1.267-.303l.178-.082c.197-.09.295-.135.399-.135s.202.045.399.135l.178.082c.691.319 1.037.477 1.267.303s.191-.567.115-1.352l-.02-.203c-.021-.223-.032-.334 0-.438s.104-.187.247-.354l.13-.152c.503-.588.755-.882.667-1.165-.088-.282-.457-.365-1.195-.532l-.19-.044c-.21-.047-.315-.07-.4-.135-.084-.064-.138-.16-.246-.354l-.098-.176c-.38-.682-.57-1.023-.854-1.023"
                         clip-rule="evenodd" />
@@ -184,7 +187,9 @@
     </x-sidebar.sidebar-item>
     <li class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropProperti ? $activeStyle['active'] : $activeStyle['default'] }}"
-            @click="sideDropdown = !sideDropdown"
+            @click="sideDropdown = !sideDropdown" x-ref="dropdown"
+            @mouseover="$($refs.dropdown).find('svg').addClass('!w-6')"
+            @mouseleave="$($refs.dropdown).find('svg').removeClass('!w-6')"
             x-effect="
                 let path = document.location.pathname.split('/')
                 path.includes('properti') || path.includes('tipeProperti')
@@ -192,8 +197,7 @@
                     : (sideDropdown = false)
             ">
             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
-                viewBox="0 0 32 32" style="enable-background: new 0 0 512 512" xml:space="preserve"
-                class="w-7 fill-inherit">
+                viewBox="0 0 32 32" xml:space="preserve" class="w-5 fill-inherit">
                 <g>
                     <path
                         d="M2.001 6.609c0-1.013.43-1.985 1.179-2.667a3.575 3.575 0 0 1 2.779-.919c1.82.174 3.245 1.836 3.245 3.782v14.397a5.572 5.572 0 0 0-3.623-1.333c-.42 0-.844.047-1.268.144A5.403 5.403 0 0 0 2 21.179V6.609z"
@@ -253,13 +257,15 @@
     </li>
     <li class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropBansos ? $activeStyle['active'] : $activeStyle['default'] }}"
-            @click="sideDropdown = !sideDropdown"
+            @click="sideDropdown = !sideDropdown" x-ref="dropdown"
+            @mouseover="$($refs.dropdown).find('svg').addClass('!w-6')"
+            @mouseleave="$($refs.dropdown).find('svg').removeClass('!w-6')"
             x-effect="
                 document.location.pathname.split('/').includes('bansos')
                     ? (sideDropdown = true)
                     : (sideDropdown = false)
             ">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 fill-inherit">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 fill-inherit">
                 <path
                     d="M24 6.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 24 6.5M15.5 3a1.5 1.5 0 1 0-.001-3.001A1.5 1.5 0 0 0 15.5 3m.945 4.832a1 1 0 0 0 1.387-.277l4-6a1.001 1.001 0 0 0-1.664-1.11l-4 6a1 1 0 0 0 .277 1.387M5.75 8c3.176 0 5.75-1.343 5.75-3S8.926 2 5.75 2 0 3.343 0 5s2.574 3 5.75 3m0 8c3.278 0 5.75-1.505 5.75-3.5v-2c0 1.971-2.396 3.5-5.75 3.5S0 12.471 0 10.5v2C0 14.495 2.472 16 5.75 16m0-4c3.278 0 5.75-1.505 5.75-3.5v-2c0 1.971-2.396 3.5-5.75 3.5S0 8.471 0 6.5v2C0 10.495 2.472 12 5.75 12m11.5-2c-3.176 0-5.75 1.343-5.75 3s2.574 3 5.75 3S23 14.657 23 13s-2.574-3-5.75-3m0 12c-3.354 0-5.75-1.529-5.75-3.5 0 1.971-2.396 3.5-5.75 3.5S0 20.471 0 18.5v2C0 22.495 2.472 24 5.75 24s5.75-1.505 5.75-3.5c0 1.995 2.472 3.5 5.75 3.5S23 22.495 23 20.5v-2c0 1.971-2.396 3.5-5.75 3.5m0-4c-3.354 0-5.75-1.529-5.75-3.5 0 1.971-2.396 3.5-5.75 3.5S0 16.471 0 14.5v2C0 18.495 2.472 20 5.75 20s5.75-1.505 5.75-3.5c0 1.995 2.472 3.5 5.75 3.5S23 18.495 23 16.5v-2c0 1.971-2.396 3.5-5.75 3.5" />
             </svg>

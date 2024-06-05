@@ -43,7 +43,7 @@
                                 'wrapClass' =>
                                     'ring-blue-200/30 border-blue-500/70 dark:border-blue-400/70 dark:ring-blue-600/30',
                                 'iconColor' => 'fill-blue-700',
-                                'updateColor' => 'text-indigo-600',
+                                'updateColor' => 'text-blue-600',
                             ],
                         ];
                     @endphp

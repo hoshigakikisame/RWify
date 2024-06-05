@@ -31,4 +31,8 @@
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none; /* Firefox */
     }
+
+    svg {
+        @apply transition-all;
+    }
 }
