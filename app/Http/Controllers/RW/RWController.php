@@ -22,6 +22,7 @@ class RWController extends Controller
      */
     public function dashboard()
     {
+        // warga statistic dependencies
         $usersByAge = Cache::remember('usersByAge', null, function () {
             return UserModel::selectRaw(
                 '
@@ -33,7 +34,7 @@ class RWController extends Controller
             )->first();
         });
 
-        // information panel
+        // information panel dependencies
         $umkmInstances = Cache::remember('umkmInstances', config('cache.ttl'), function () {
             return UmkmModel::pluck('dibuat_pada')->all();
         });
@@ -46,24 +47,24 @@ class RWController extends Controller
         $pengaduanCount = count($pengaduanInstances);
         $pengaduanLastAddedAt = Carbon::parse(array_key_last($pengaduanInstances))->diffForHumans(null, true);
 
-
         $propertiInstances = Cache::remember('propertiInstances', config('cache.ttl'), function () {
             return PropertiModel::pluck('id_properti', 'dibuat_pada')->all();
         });
         $propertiCount = count($propertiInstances);
         $propertiLastAddedAt = Carbon::parse(array_key_last($propertiInstances))->diffForHumans(null, true);
 
+        // calendar dependencies
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->where('status', ReservasiJadwalTemuStatusEnum::DITERIMA)->get();
 
 
-        // leaderboard
+        // leaderboard dependencies
         $leaderboardUsers = UserModel::withCount('iuran')->get()->sortBy(function ($user) {
             return $user->iuran_count;
         }, SORT_REGULAR, true);
         $leaderboardUsers = $leaderboardUsers->take(10);
 
 
-        // iuran line chart
+        // iuran line chart dependencies
         $selectRaw = '';
 
         foreach (IuranBulanEnum::getValues() as $key => $value) {
