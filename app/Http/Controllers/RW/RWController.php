@@ -18,11 +18,14 @@ class RWController extends Controller
      */
     public function dashboard()
     {
-        $lansiaCount = UserModel::whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
-        $dewasaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
-        $remajaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();
-        $anakCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 11)->whereYear('tanggal_lahir', '<', date('Y') - 5)->count();
-        $balitaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 5)->whereYear('tanggal_lahir', '<', date('Y'))->count();
+        $usersByAge = UserModel::selectRaw(
+            '
+            SUM(CASE WHEN YEAR(tanggal_lahir) < ' . (date('Y') - 45) . ' THEN 1 ELSE 0 END) AS lansiaCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 45) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 25) . ' THEN 1 ELSE 0 END) AS dewasaCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 25) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 11) . ' THEN 1 ELSE 0 END) AS remajaCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 11) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 5) . ' THEN 1 ELSE 0 END) AS anakCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 5) . ' AND YEAR(tanggal_lahir) < ' . date('Y') . ' THEN 1 ELSE 0 END) AS balitaCount'
+        )->first();
 
         $umkmCount = UmkmModel::count();
         $pengaduanCount = PengaduanModel::count();
@@ -54,11 +57,11 @@ class RWController extends Controller
         $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->first()->toArray();
 
         $data = [
-            'lansiaCount' => $lansiaCount,
-            'dewasaCount' => $dewasaCount,
-            'remajaCount' => $remajaCount,
-            'anakCount' => $anakCount,
-            'balitaCount' => $balitaCount,
+            'lansiaCount' => $usersByAge->lansiaCount,
+            'dewasaCount' => $usersByAge->dewasaCount,
+            'remajaCount' => $usersByAge->remajaCount,
+            'anakCount' => $usersByAge->anakCount,
+            'balitaCount' => $usersByAge->balitaCount,
             'umkmCount' => $umkmCount,
             'pengaduanCount' => $pengaduanCount,
             'propertiCount' => $propertiCount,
