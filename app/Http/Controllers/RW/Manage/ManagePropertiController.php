@@ -88,7 +88,6 @@ class ManagePropertiController extends Controller
             session()->flash('danger', ['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
             session()->flash('success', ['title' => 'Insert Success.', 'description' => 'Insert Success.']);
-            // NotificationModel::new(request()->nik_pemilik, "Properti baru '." . request()->nama_properti . ".' berhasil ditambahkan", route('warga.layanan.properti', [], false));
         }
 
         return "Add success";

@@ -1,16 +1,16 @@
 import ApexCharts from 'apexcharts'
 
-export default function moneyChart(chartSelector) {
+export default function monthlyIuranCountChart(chartSelector, keys, values) {
     let options = {
         chart: {
             type: 'area'
         },
         series: [{
-            name: 'sales',
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+            name: 'Jumlah Iuran',
+            data: values
         }],
         xaxis: {
-            categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+            categories: keys
         }
     }
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\RW;
 
+use App\Enums\Iuran\IuranBulanEnum;
 use App\Http\Controllers\Controller;
+use App\Models\IuranModel;
 use App\Models\PengaduanModel;
 use App\Models\UmkmModel;
 use App\Models\UserModel;
@@ -16,8 +18,6 @@ class RWController extends Controller
      */
     public function dashboard()
     {
-        // dd(request()->user()->getUnreadNotifications());
-
         $lansiaCount = UserModel::whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
         $dewasaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
         $remajaCount = UserModel::whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();
@@ -34,12 +34,24 @@ class RWController extends Controller
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
 
+
+        // leaderboard
         $leaderboardUsers = UserModel::withCount('iuran')->get()->sortBy(function ($user) {
             return $user->iuran_count;
         }, SORT_REGULAR, true);
 
         $leaderboardUsers = $leaderboardUsers->take(10);
 
+
+        // iuran line chart
+        $selectRaw = '';
+
+        foreach (IuranBulanEnum::getValues() as $key => $value) {
+            $suffix = $key == array_key_last(IuranBulanEnum::getValues()) ? '' : ', ';
+            $selectRaw .= 'SUM(CASE WHEN bulan = "' . $value . '" THEN 1 ELSE 0 END)' . ' AS ' . $value . $suffix;
+        }
+
+        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->first()->toArray();
 
         $data = [
             'lansiaCount' => $lansiaCount,
@@ -54,7 +66,8 @@ class RWController extends Controller
             'pengaduanLastAddedAt' => $pengaduanLastAddedAt,
             'propertiLastAddedAt' => $propertiLastAddedAt,
             'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
-            'leaderboardUsers' => $leaderboardUsers
+            'leaderboardUsers' => $leaderboardUsers,
+            'monthlyIuranCount' => $monthlyIuranCount,
         ];
         return view('pages.rw.dashboard', $data);
     }

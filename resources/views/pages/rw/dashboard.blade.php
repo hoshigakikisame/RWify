@@ -1,6 +1,4 @@
 @extends(request()->user()->getSidebarView())
-@php
-@endphp
 @section('content')
     <section class="relative container mx-auto mb-8 mt-7 px-4 dark:text-gray-300">
         <div class="greeting mb-2 border-b pb-3">
@@ -109,6 +107,7 @@
                     </div>
                 </div>
                 <div class="graph mt-4 ">
+
                     <div
                         class="w-full ring py-5 px-6 ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
                         <div class="graph-header flex justify-between mb-1">
@@ -129,10 +128,13 @@
                             </div>
                         </div>
 
-                        <div id="moneyChart" class=""></div>
+                        <div id="monthlyIuranCountChart" class=""></div>
                     </div>
                 </div>
+
             </div>
+
+
             <div class="right col-span-2">
                 <div class="header-wrap mb-4 w-fit">
                     <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Kalender</h1>
@@ -313,9 +315,13 @@
 @push('scripts')
     <script type="module">
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
-        import moneyChart from '{{ Vite::asset('resources/js/moneyChart.js') }}';
+        import monthlyIuranCountChart from '{{ Vite::asset('resources/js/monthlyIuranCountChart.js') }}';
 
-        let moneyChartElement = moneyChart('#moneyChart')
+        let monthlyIuranCountChartElement = monthlyIuranCountChart(
+            '#monthlyIuranCountChart',  
+            {!! json_encode(array_keys($monthlyIuranCount)) !!},
+            {!! json_encode(array_values($monthlyIuranCount)) !!},
+        );
 
         let chart = ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }},
             {{ $anakCount }},
