@@ -108,7 +108,7 @@ class ManageIuranController extends Controller
 
         if (IuranModel::where('bulan', $bulan)->where('tahun', $tahun)->where('nik_pembayar', $nikPembayar)->exists()) {
             session()->flash('danger', [
-                'title' => 'Insert Failed.', 
+                'title' => 'Insert Failed.',
                 'description' => "Tagihan $nikPembayar pada bulan $bulan tahun $tahun sudah diverifikasi sebelumnya."
             ]);
             return redirect()->route('rw.manage.iuran.verify');
@@ -131,7 +131,8 @@ class ManageIuranController extends Controller
             NotificationModel::new($nikPembayar, 'Pembayaran iuran anda pada bulan ' . $bulan . ' tahun ' . $tahun . ' berhasil diverifikasi.', route('warga.layanan.pembayaranIuran.iuran', [], false));
         }
 
-        return redirect()->route('rw.manage.iuran.verify');
+        // return redirect()->route('rw.manage.iuran.verify');
+        return 'add iuran success';
     }
 
     public function exportCSV()

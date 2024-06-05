@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="form-action-verified" x-data="{ isFromOpen: false }">
                                     <button id="verifiedButton" class="" @click="isFromOpen = !isFromOpen"
-                                        onclick="(function(){appendFormVerifiedModal(event,{{ $pembayaranIuran }},{{ $pembayaranIuran->getUser()->getTagihanIuranPerBulan() }});zoomInit()})()">
+                                        onclick="(function(){appendFormVerifiedModal(event,{{ $pembayaranIuran }},{{ $pembayaranIuran->getUser()->getTagihanIuranPerBulan() }});zoomInit();window.utils.Request.actionRequest(`{{ route('rw.manage.iuran.new') }}`, '#verifiedModal', '#verifiedModalForm')})()">
                                         <div class="icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                 class="w-5 h-5 dark:fill-gray-100 fill-gray-950">
