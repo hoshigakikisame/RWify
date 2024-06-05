@@ -67,7 +67,7 @@ class ManageKartuKeluargaController extends Controller
             'total_penghasilan_per_bulan' => request()->total_penghasilan_per_bulan,
             'total_pajak_per_tahun' => request()->total_pajak_per_tahun,
             'tagihan_air_per_bulan' => request()->tagihan_air_per_bulan,
-            'total_kendaraan_dimiliki' => request()->tagihan_air_per_bulan,
+            'total_kendaraan_dimiliki' => request()->total_kendaraan_dimiliki,
         ];
 
         $newKartuKeluarga = KartuKeluargaModel::create($data);

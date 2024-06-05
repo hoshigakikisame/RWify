@@ -128,8 +128,6 @@
                                     type="number" placeholder="Masukkan Total Tagihan Listrik Perbulannya" />
                                 <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan"
                                     type="number" placeholder="Masukkan Total Tagihan Air Perbulannya" />
-                                <x-form.input-form title="Total Kendaraan Dimiliki" key="total_kendaraan_dimiliki"
-                                    type="number" placeholder="Masukkan Total Kendaraan Dimiliki" />
 
                                 <div class="mt-6 flex justify-between">
                                     <p class="text-xs text-gray-200 dark:text-gray-400">
@@ -439,7 +437,6 @@
                             <x-form.input-form title="Total Bayar Pajak Pertahun" key="total_pajak_per_tahun" type="number" placeholder="Masukkan Total Bayar Pajak Pertahunnya" value="${kk.total_pajak_per_tahun}"/>
                             <x-form.input-form title="Total Tagihan Listrik Perbulan" key="tagihan_listrik_per_bulan" type="number" placeholder="Masukkan Total Tagihan Listrik Perbulannya" value="${kk.tagihan_listrik_per_bulan}"/>
                             <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan" type="number" placeholder="Masukkan Total Tagihan Air Perbulannya" value="${kk.tagihan_air_per_bulan}"/>
-                            <x-form.input-form title="Total Kendaraan Dimiliki" key="total_kendaraan_dimiliki" type="number" placeholder="Masukkan Total Kendaraan Dimiliki" value="${kk.total_kendaraan_dimiliki}"/>
 
                          <div class="flex justify-between mt-6">
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
