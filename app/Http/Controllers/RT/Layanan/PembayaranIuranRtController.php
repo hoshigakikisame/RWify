@@ -10,11 +10,34 @@ use App\Models\PropertiModel;
 use App\Models\TipePropertiModel;
 use App\Models\UserModel;
 use App\Models\IuranModel;
+use App\Models\NotificationModel;
 use Carbon\Carbon;
 
 class PembayaranIuranRtController extends Controller
 {
 
+    public function iuran()
+    {
+        $query = request()->q;
+        $filters = request()->filters ?? [];
+        $paginate = request()->paginate ?? 10;
+
+        $iuranInstances = (new SearchableDecorator(IuranModel::class))->search(
+            $query,
+            $paginate,
+            ['pembayaranIuran' => PembayaranIuranModel::class],
+            ['nik_pembayar' => request()->user()->getNik(), ...$filters],
+        );
+        $count = IuranModel::where('nik_pembayar', auth()->user()->nik)->count();
+
+        $data = [
+            "iuranInstances" => $iuranInstances,
+            "count" => $count
+        ];
+
+        return view('pages.rt.layanan.pembayaranIuran.iuran', $data);
+    }
+    
     public function riwayatPembayaranIuranPage()
     {
 
@@ -42,6 +65,7 @@ class PembayaranIuranRtController extends Controller
 
     public function newPembayaranIuranPage()
     {
+
         $monthlyTotal = 0;
         $ownedPropertiInstances = (new SearchableDecorator(PropertiModel::class))->search(
             '',
@@ -50,32 +74,24 @@ class PembayaranIuranRtController extends Controller
             ['nik_pemilik' => request()->user()->nik]
         );
 
+        $oldestMonthDiff = 0;
+        $totalUnpaidDueMonths = 0;
+
         foreach ($ownedPropertiInstances as $properti) {
             $monthlyTotal += $properti->getTipeProperti()->getIuranPerBulan();
+            $monthDiff = $properti->getMulaiDimilikiPada()->diffInMonths(now(), false);
+            $oldestMonthDiff = floor($monthDiff > $oldestMonthDiff ? $monthDiff : $oldestMonthDiff);
+            $totalUnpaidDueMonths += $monthDiff * $properti->getTipeProperti()->getIuranPerBulan();
         }
-
-        // TODO: place it under app / config
-        $duesStartDate = Carbon::parse("2000-1-1");
-        $diffMonthsFromNow = $duesStartDate->diffInMonths(now(), false);
-
-        $selfIuranInstancesCount = (new SearchableDecorator(IuranModel::class))->search(
-            '', 
-            0, 
-            ['pembayaranIuran' => PembayaranIuranModel::class], 
-            ['nik_pembayar' => request()->user()->nik]
-        )->count();
-
-        $unpaidDueMonths = (int) ($diffMonthsFromNow - $selfIuranInstancesCount);
-        $totalUnpaidDueMonths = $unpaidDueMonths * $monthlyTotal;
 
         $data = [
             'ownedPropertiInstances' => $ownedPropertiInstances,
-            'unpaidDueMonths' => $unpaidDueMonths,
+            'oldestMonthDiff' => $oldestMonthDiff,
             'totalUnpaidDueMonths' => $totalUnpaidDueMonths,
             'monthlyTotal' => $monthlyTotal
         ];
 
-        return view('pages.warga.layanan.pembayaranIuran.new', $data);
+        return view('pages.rt.layanan.pembayaranIuran.new', $data);
     }
 
     public function addNewPembayaranIuran()
@@ -108,6 +124,12 @@ class PembayaranIuranRtController extends Controller
         } else {
             session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
         }
+
+        // current ketua rukun warga
+        $ketuaRW = request()->user()->getKetuaRukunWarga();
+
+        // send notification to ketua rukun warga
+        NotificationModel::new($ketuaRW->getNik(), request()->user()->getNamaLengkap() . ' telah melakukan pembayaran iuran.', route('rw.manage.iuran.verify', [], false));
 
         return redirect()->route('rt.layanan.pembayaranIuran.riwayatPembayaranIuran');
     }

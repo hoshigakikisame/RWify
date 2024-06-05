@@ -55,6 +55,12 @@
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
+                                            <span class="text-nowrap">Pembayar</span>
+                                        </button>
+                                    </th>
+                                    <th scope="col"
+                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
+                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
                                             <span class="text-nowrap">Tanggal Bayar</span>
                                         </button>
                                     </th>
@@ -84,9 +90,16 @@
                                             <div>
                                                 <h2
                                                     class="inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
-                                                    {{ $pembayaranIuran->getTanggalBayar() }}
+                                                    {{ $pembayaranIuran->getNamaPembayar() }}
                                                 </h2>
                                             </div>
+                                        </td>
+
+                                        <td class="px-4 py-4 text-sm">
+                                            <p
+                                                class="inline gap-x-2 text-nowrap rounded-full bg-blue-100/60 px-3 py-1 text-sm font-normal text-blue-500 dark:bg-gray-800">
+                                                {{ date('F, j-Y ', strtotime($pembayaranIuran->getTanggalBayar())) }}
+                                            </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-start" x-data="{ showImage: false }">
@@ -107,10 +120,9 @@
                                             </button>
                                         </td>
 
-                                        <td class="px-4 py-4 align-top text-sm">
-                                            <h4 class="text-gray-700 dark:text-gray-200">
-                                                {{ implode(' ', array_slice(str_word_count($pembayaranIuran->getKeterangan(), 1), 0, 13)) }}
-                                                {{ str_word_count($pembayaranIuran->getKeterangan()) > 10 ? '.....' : '' }}
+                                        <td class="px-4 py-4 align-center text-sm">
+                                            <h4 class=".. truncate w-96 text-gray-700 dark:text-gray-200">
+                                                {{ $pembayaranIuran->getKeterangan() }}
                                             </h4>
                                         </td>
                                     </tr>

@@ -470,7 +470,6 @@
                          @csrf
                          <input type="text" name="id_iuran" value="${iuran.id_iuran}" hidden >
                          <x-form.input-form title="NIK Pembayar" key="nik_pembayar" type="number" placeholder="1234567892322" value="${iuran.nik_pembayar}" readonly/>
-                         <x-form.input-form title="Nama Pembayar" key="" type="text" placeholder="Masukkan Nama Pembayar" value="{{ $iuran->getNamaPembayar() }}" readonly/>
                          <x-form.select-input-form title="Bulan Bayar" key="bulan" placeholder="Pilih Bulan Pembayaran Warga" :options="$bulanOptions" selected="${iuran.bulan}" />
                          <x-form.input-form title="Tahun Bayar" key="tahun" type="number" placeholder="Masukkan Tahun Pembayaran" value="${iuran.tahun}" />
                          <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number" placeholder="100000" value='${iuran.jumlah_bayar}' readonly="true"/>
