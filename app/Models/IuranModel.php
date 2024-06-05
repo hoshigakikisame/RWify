@@ -61,7 +61,13 @@ class IuranModel extends Model implements SearchCompatible {
 
     public function getNamaPembayar(): string
     {
-        return $this->pembayaranIuran->user->nama_depan . ' ' . $this->pembayaranIuran->user->nama_belakang;
+        $user = UserModel::where('nik', $this->nik_pembayar)->first();
+
+        if ($user) {
+            return $user->nama_depan . ' ' . $user->nama_belakang;
+        } else {
+            return 'Pembayar tidak ditemukan';
+        }
     }
 
     public function getBulan(): string
@@ -73,11 +79,15 @@ class IuranModel extends Model implements SearchCompatible {
     {
         return $this->tahun;
     }
-
     public function getTanggalBayar(): string
     {
-        return $this->pembayaranIuran->tanggal_bayar;
+        if ($this->pembayaranIuran) {
+            return $this->pembayaranIuran->tanggal_bayar;
+        } else {
+            return $this->dibuat_pada;
+        }
     }
+    
 
     public function getIdPembayaranIuran(): int
     {

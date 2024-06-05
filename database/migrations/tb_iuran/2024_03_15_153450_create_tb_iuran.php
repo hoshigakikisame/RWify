@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('nik_pembayar', 16);
             $table->foreign('nik_pembayar')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('id_pembayaran_iuran');
+            $table->unsignedBigInteger('id_pembayaran_iuran')->nullable();
             $table->foreign('id_pembayaran_iuran')->references('id_pembayaran_iuran')->on('tb_pembayaran_iuran')->onUpdate('cascade')->onDelete('cascade');
         });
     }

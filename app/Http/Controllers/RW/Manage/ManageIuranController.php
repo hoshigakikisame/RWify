@@ -87,7 +87,7 @@ class ManageIuranController extends Controller
     public function addNewIuran()
     {
         request()->validate([
-            'id_pembayaran_iuran' => 'required',
+            'id_pembayaran_iuran' => 'nullable',
             'nik_pembayar' => 'required',
             'bulan' => [
                 'required',
