@@ -22,6 +22,8 @@ class PengaduanModelFactory extends Factory
     protected $model = PengaduanModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
             'judul' => $this->faker->sentence(),
             'nik_pengadu' => UserModel::get()->random()->getNik(),

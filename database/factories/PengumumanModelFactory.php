@@ -18,6 +18,8 @@ class PengumumanModelFactory extends Factory
     protected $model = \App\Models\PengumumanModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
             'judul' => $this->faker->sentence(),
             'image_url' => $this->faker->imageUrl(),

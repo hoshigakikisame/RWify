@@ -19,8 +19,10 @@ class KartuKeluargaModelFactory extends Factory
     protected $model = KartuKeluargaModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
-            'nkk' => $this->faker->unique()->regexify('[1-9]{16}'),
+            'nkk' => $this->faker->nik(),
             'alamat' => $this->faker->address(),
             'tagihan_listrik_per_bulan' => $this->faker->numberBetween(100000, 1000000),
             'jumlah_pekerja' => $this->faker->numberBetween(1, 10),

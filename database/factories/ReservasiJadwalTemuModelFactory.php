@@ -20,6 +20,8 @@ class ReservasiJadwalTemuModelFactory extends Factory
     protected $model = ReservasiJadwalTemuModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         $wargaInstances = UserModel::where('role', 'Warga')->get();
         $ketuaRukunWargaInstance = UserModel::where('role', 'Ketua Rukun Warga')->get()->first();
 
