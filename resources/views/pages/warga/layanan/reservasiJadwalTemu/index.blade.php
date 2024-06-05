@@ -137,7 +137,7 @@
                                         </td>
 
                                         <td class="px-4 py-4 align-middle text-sm">
-                                            <h4 class="w-[200px] text-gray-700 dark:text-gray-200">
+                                            <h4 class="max-w-[400px] text-gray-700 dark:text-gray-200 truncate ..">
                                                 {{ $reservasiJadwalTemu->getPesan() }}
                                             </h4>
                                         </td>

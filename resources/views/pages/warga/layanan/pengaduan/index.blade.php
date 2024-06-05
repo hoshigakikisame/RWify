@@ -115,12 +115,6 @@
                                             <span class="text-nowrap">Status</span>
                                         </button>
                                     </th>
-                                    <th scope="col"
-                                        class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
-                                        <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap"></span>
-                                        </button>
-                                    </th>
                                     <th scope="col" class="relative px-4 py-3.5">
                                         <span class="sr-only">Edit</span>
                                     </th>
@@ -152,7 +146,7 @@
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="-mx-1 text-nowrap text-xs text-blue-600">
+                                            <p class=" text-nowrap text-xs text-blue-600">
                                                 {{ date('F, j-Y ', strtotime($pengaduan->getDibuatPada())) }}
                                             </p>
                                         </td>
@@ -175,7 +169,6 @@
                                                 </span>
                                             </button>
                                         </td>
-
                                         <td class="px-4 py-4 text-sm">
                                             <span
                                                 class="@php
@@ -195,9 +188,8 @@ $statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blu
                                             </span>
                                         </td>
 
-                                        <td class="flex px-4 py-4 pe-0 pe-4 ps-6 text-sm" id="action"
-                                            x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
-                                            <a class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                        <td class="pb-2 w-20" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
+                                            <a class="text-blue-gray-500 hover:bg-blue-gray-500/10 pe-5 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                 target="_blank"
                                                 href="{{ route('layanan.pengaduan.detail', ['idPengaduan' => $pengaduan->getIdPengaduan()]) }}">
                                                 <span
@@ -209,7 +201,6 @@ $statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blu
                                                     </svg>
                                                 </span>
                                             </a>
-                                            <!-- </form> -->
                                         </td>
                                     </tr>
                                 @endforeach
