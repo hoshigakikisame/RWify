@@ -11,6 +11,10 @@ use App\Models\UserModel;
 use App\Models\PropertiModel;
 use App\Models\ReservasiJadwalTemuModel;
 
+use App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum;
+use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
+
 class RWController extends Controller
 {
     /**
@@ -18,31 +22,44 @@ class RWController extends Controller
      */
     public function dashboard()
     {
-        $usersByAge = UserModel::selectRaw(
-            '
-            SUM(CASE WHEN YEAR(tanggal_lahir) < ' . (date('Y') - 45) . ' THEN 1 ELSE 0 END) AS lansiaCount,
-            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 45) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 25) . ' THEN 1 ELSE 0 END) AS dewasaCount,
-            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 25) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 11) . ' THEN 1 ELSE 0 END) AS remajaCount,
-            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 11) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 5) . ' THEN 1 ELSE 0 END) AS anakCount,
-            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 5) . ' AND YEAR(tanggal_lahir) < ' . date('Y') . ' THEN 1 ELSE 0 END) AS balitaCount'
-        )->first();
+        $usersByAge = Cache::remember('usersByAge', null, function () {
+            return UserModel::selectRaw(
+                '
+                SUM(CASE WHEN YEAR(tanggal_lahir) < ' . (date('Y') - 45) . ' THEN 1 ELSE 0 END) AS lansiaCount,
+                SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 45) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 25) . ' THEN 1 ELSE 0 END) AS dewasaCount,
+                SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 25) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 11) . ' THEN 1 ELSE 0 END) AS remajaCount,
+                SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 11) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 5) . ' THEN 1 ELSE 0 END) AS anakCount,
+                SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 5) . ' AND YEAR(tanggal_lahir) < ' . date('Y') . ' THEN 1 ELSE 0 END) AS balitaCount'
+            )->first();
+        });
 
-        $umkmCount = UmkmModel::count();
-        $pengaduanCount = PengaduanModel::count();
-        $propertiCount = PropertiModel::count();
+        // information panel
+        $umkmInstances = Cache::remember('umkmInstances', config('cache.ttl'), function () {
+            return UmkmModel::pluck('dibuat_pada')->all();
+        });
+        $umkmCount = count($umkmInstances);
+        $umkmLastAddedAt = Carbon::parse(array_key_last($umkmInstances))->diffForHumans(null, true);
 
-        $umkmLastAddedAt = UmkmModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
-        $pengaduanLastAddedAt = PengaduanModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
-        $propertiLastAddedAt = PropertiModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
+        $pengaduanInstances = Cache::remember('pengaduanInstances', config('cache.ttl'), function () {
+            return PengaduanModel::pluck('dibuat_pada')->all();
+        });
+        $pengaduanCount = count($pengaduanInstances);
+        $pengaduanLastAddedAt = Carbon::parse(array_key_last($pengaduanInstances))->diffForHumans(null, true);
 
-        $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
+
+        $propertiInstances = Cache::remember('propertiInstances', config('cache.ttl'), function () {
+            return PropertiModel::pluck('id_properti', 'dibuat_pada')->all();
+        });
+        $propertiCount = count($propertiInstances);
+        $propertiLastAddedAt = Carbon::parse(array_key_last($propertiInstances))->diffForHumans(null, true);
+
+        $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->where('status', ReservasiJadwalTemuStatusEnum::DITERIMA)->get();
 
 
         // leaderboard
         $leaderboardUsers = UserModel::withCount('iuran')->get()->sortBy(function ($user) {
             return $user->iuran_count;
         }, SORT_REGULAR, true);
-
         $leaderboardUsers = $leaderboardUsers->take(10);
 
 
@@ -54,7 +71,9 @@ class RWController extends Controller
             $selectRaw .= 'SUM(CASE WHEN bulan = "' . $value . '" THEN 1 ELSE 0 END)' . ' AS ' . $value . $suffix;
         }
 
-        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->first()->toArray();
+        $monthlyIuranCount = Cache::remember('monthlyIuranCount', null, function () use ($selectRaw) {
+            return IuranModel::selectRaw($selectRaw)->first()->toArray();
+        });
 
         $data = [
             'lansiaCount' => $usersByAge->lansiaCount,
