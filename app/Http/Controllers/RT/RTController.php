@@ -50,6 +50,12 @@ class RTController extends Controller
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
 
+        $leaderboardUsers = UserModel::withCount('iuran')->get()->sortBy(function ($user) {
+            return $user->iuran_count;
+        }, SORT_REGULAR, true);
+
+        $leaderboardUsers = $leaderboardUsers->take(10);
+
 
         $data = [
             'lansiaCount' => $lansiaCount,
@@ -63,7 +69,9 @@ class RTController extends Controller
             'umkmLastAddedAt' => $umkmLastAddedAt,
             'pengaduanLastAddedAt' => $pengaduanLastAddedAt,
             'propertiLastAddedAt' => $propertiLastAddedAt,
-            'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances
+            'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
+            'leaderboardUsers' => $leaderboardUsers
+
 
         ];
         return view('pages.rt.dashboard', $data);
