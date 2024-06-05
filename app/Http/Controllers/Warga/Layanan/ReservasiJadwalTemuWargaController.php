@@ -18,9 +18,9 @@ class ReservasiJadwalTemuWargaController extends Controller
         $paginate = request()->paginate ?? 10;
 
         $reservasiJadwalTemuInstances = (new SearchableDecorator(ReservasiJadwalTemuModel::class))->search(
-            $request, 
-            $paginate, 
-            ['pemohon' => UserModel::class, 'penerima' => UserModel::class], 
+            $request,
+            $paginate,
+            ['pemohon' => UserModel::class, 'penerima' => UserModel::class],
             ['nik_pemohon' => request()->user()->getNik(), ...$filters]
         );
         $count = ReservasiJadwalTemuModel::where('nik_pemohon', auth()->user()->nik)->count();
@@ -30,7 +30,7 @@ class ReservasiJadwalTemuWargaController extends Controller
             "count" => $count
         ];
 
-        return view('pages.warga.layanan.reservasiJadwalTemu.index', compact('data', 'count','reservasiJadwalTemuInstances'));
+        return view('pages.warga.layanan.reservasiJadwalTemu.index', compact('data', 'count', 'reservasiJadwalTemuInstances'));
 
     }
 
@@ -40,11 +40,12 @@ class ReservasiJadwalTemuWargaController extends Controller
         $reservationTargets = UserModel::orWhere('role', UserRoleEnum::KETUA_RUKUN_WARGA)
             ->orWhere('role', UserRoleEnum::KETUA_RUKUN_TETANGGA)
             ->get();
-        
+
         return view('pages.warga.layanan.reservasiJadwalTemu.new', compact('reservationTargets'));
     }
 
-    public function addNewReservasiJadwalTemu() {
+    public function addNewReservasiJadwalTemu()
+    {
         request()->validate([
             'subjek' => 'required',
             'pesan' => 'required',
@@ -63,9 +64,9 @@ class ReservasiJadwalTemuWargaController extends Controller
         $newReservation = ReservasiJadwalTemuModel::create($data);
 
         if (!$newReservation) {
-            session()->flash('danger',['title' => 'Insert Failed', 'description' => 'Insert Failed']);
+            session()->flash('danger', ['title' => 'Insert Failed', 'description' => 'Insert Failed']);
         } else {
-            session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
+            session()->flash('success', ['title' => 'Insert Success', 'description' => 'Insert Success']);
 
             $penerima = UserModel::where('nik', request()->nik_penerima)->first();
 
@@ -76,6 +77,7 @@ class ReservasiJadwalTemuWargaController extends Controller
             );
         }
 
-        return redirect()->route('warga.layanan.reservasiJadwalTemu.index');
+        // return redirect()->route('warga.layanan.reservasiJadwalTemu.index');
+        return 'add new reservasi jadwal temu success';
     }
 }

@@ -138,3 +138,13 @@ export function filterRequest(filters) {
         },
     });
 }
+
+export function redirectToPage(url) {
+    $(document).ready(() => {
+        if ($('.flash-message').children().length > 1) {
+            setTimeout(() => {
+                window.location = url
+            }, 1500);
+        }
+    })
+}

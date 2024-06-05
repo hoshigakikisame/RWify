@@ -14,8 +14,11 @@
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Buat reservasi menggunakan form ini</p>
         </div>
         <div class="flex flex-col flex-col-reverse lg:flex-row gap-8 ">
-            <div class="form w-full rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-gray-800/50">
-                <form action="{{ route('warga.layanan.reservasiJadwalTemu.new') }}" method="POST" enctype="">
+            <div id="addReservasi" class="form w-full rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-gray-800/50"
+                x-data="{}">
+                <form id="addReservasiForm" action="{{ route('warga.layanan.reservasiJadwalTemu.new') }}" method="POST"
+                    enctype=""
+                    x-effect="window.utils.Request.actionRequest('{{ route('warga.layanan.reservasiJadwalTemu.new') }}','#addReservasi','#addReservasiForm',true);window.utils.Request.redirectToPage('{{ route('warga.layanan.reservasiJadwalTemu.index') }}')">
                     @csrf
                     <div class="form-header mb-6 mt-2">
                         <h1 class="font-medium dark:text-gray-100">Form Reservasi</h1>

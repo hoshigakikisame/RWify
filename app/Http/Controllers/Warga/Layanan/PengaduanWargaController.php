@@ -20,9 +20,9 @@ class PengaduanWargaController extends Controller
         $paginate = request()->paginate ?? 10;
 
         $pengaduanInstances = (new SearchableDecorator(PengaduanModel::class))->search(
-            $query, 
-            $paginate, 
-            ['user' => UserModel::class], 
+            $query,
+            $paginate,
+            ['user' => UserModel::class],
             ['nik_pengadu' => request()->user()->getNik(), ...$filters]
         );
         // $count = PengaduanModel::count();
@@ -42,7 +42,8 @@ class PengaduanWargaController extends Controller
         return view('pages.warga.layanan.pengaduan.new');
     }
 
-    public function addNewPengaduan() {
+    public function addNewPengaduan()
+    {
         request()->validate([
             'judul' => 'required',
             'isi' => 'required',
@@ -68,9 +69,9 @@ class PengaduanWargaController extends Controller
         $newPengaduan = PengaduanModel::create($data);
 
         if (!$newPengaduan) {
-            session()->flash('danger',['title' => 'Insert Failed', 'description' => 'Insert Failed']);
+            session()->flash('danger', ['title' => 'Insert Failed', 'description' => 'Insert Failed']);
         } else {
-            session()->flash('success',['title' => 'Insert Success', 'description' => 'Insert Success']);
+            session()->flash('success', ['title' => 'Insert Success', 'description' => 'Insert Success']);
             // current ketua rukun warga
             $ketuaRW = request()->user()->getKetuaRukunWarga();
 
@@ -81,10 +82,12 @@ class PengaduanWargaController extends Controller
             );
         }
 
-        return redirect()->route('warga.layanan.pengaduan.index');
+        // return redirect()->route('warga.layanan.pengaduan.index');
+        return 'add new pengaduan success';
     }
 
-    public function deletePengaduan() {
+    public function deletePengaduan()
+    {
         return 'Delete';
     }
 }
