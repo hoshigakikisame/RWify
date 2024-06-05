@@ -4,13 +4,19 @@ namespace App\Http\Controllers\Warga;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserModel;
+use App\Models\ReservasiJadwalTemuModel;
 
 class WargaController extends Controller
 {
     public function dashboard()
     {
-        // dd(request()->user()->getUnreadNotifications());
 
-        return view('pages.warga.dashboard');
+        $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->orWhere('nik_pemohon', request()->user()->getNik())->get();
+
+        $data = [
+            'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
+        ];
+
+        return view('pages.warga.dashboard', $data);
     }
 }

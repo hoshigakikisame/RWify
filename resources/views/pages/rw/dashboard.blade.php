@@ -322,7 +322,7 @@
             {{ $balitaCount }});
 
 
-        $(showAll).on('click', () => {
+        $('#showAll').on('click', () => {
             displayReminders(events, holiday);
         });
 
