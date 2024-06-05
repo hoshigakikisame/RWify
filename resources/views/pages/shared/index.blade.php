@@ -168,11 +168,17 @@
                 </div>
                 <div class="body-section">
                     <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                        @if(count($latest_pengumuman) > 0)
                         @foreach ($latest_pengumuman as $pengumuman)
                             <swiper-slide>
                                 <x-card.card-item :pengumuman="$pengumuman" />
                             </swiper-slide>
                         @endforeach
+                    @else
+                        <div class="flex justify-center items-center h-40 w-full rounded-lg border border-gray-300 mt-4 p-6 ml-6">
+                            <p class="text-gray-700 dark:text-white text-lg">Belum ada pengumuman yang dipublikasikan.</p>
+                        </div>
+                    @endif
                     </swiper-container>
                 </div>
             </section>
