@@ -38,7 +38,6 @@ class UserSeeder extends Seeder
             $kartuKeluargaInstances[$i]->setIdRukunTetangga($rukunTetanggaInstances[$i % count($rukunTetanggaInstances)]->id_rukun_tetangga);
             $kartuKeluargaInstances[$i]->save();
         }
-            // ['id_rukun_tetangga' => $rukunTetanggaInstances[rand(0, count($rukunTetanggaInstances) - 1)]->getIdRukunTetangga()] 
 
         // preserved instances
         // permanent rw test account instance
@@ -97,7 +96,7 @@ class UserSeeder extends Seeder
         $rukunWargaInstance->save(); 
 
         // ketua rukun tetangga instances
-        UserModel::factory()->count(3)->state(
+        UserModel::factory()->count(2)->state(
             [
                 'role' => UserRoleEnum::KETUA_RUKUN_TETANGGA->value,
                 'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk()
@@ -110,12 +109,6 @@ class UserSeeder extends Seeder
             $rukunTetanggaInstances[$i]->nik_ketua_rukun_tetangga = $ketuaRukunTetanggaInstance->getNik();
             $rukunTetanggaInstances[$i]->save();
         }
-
-        // dd($tempKetuaRT->getNik());
-
-        // // attach temporary ketua rt to one of the rt
-        $rukunTetanggaInstances[1]->nik_ketua_rukun_tetangga = $tempKetuaRT->getNik();
-        $rukunTetanggaInstances[1]->save();
         
         // warga
         UserModel::factory()->count(30)->create();

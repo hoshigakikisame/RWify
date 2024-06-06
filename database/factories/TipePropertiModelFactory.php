@@ -22,6 +22,8 @@ class TipePropertiModelFactory extends Factory
     protected $model = TipePropertiModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
             'nama_tipe' => $this->faker->sentence(),
             'iuran_per_bulan' => $this->faker->randomNumber(6),

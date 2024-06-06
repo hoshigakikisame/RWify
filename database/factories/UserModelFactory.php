@@ -23,9 +23,10 @@ class UserModelFactory extends Factory
     protected $model = \App\Models\UserModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
-            'nik' => $this->faker->unique()->regexify('[1-9]{16}'),
-            // 'nkk' => $this->faker->regexify('[1-9]{16}'),
+            'nik' => $this->faker->nik(),
             'image_url' => $this->faker->imageUrl(),
             'email' => $this->faker->unique()->safeEmail(),
             'password' => bcrypt(env('SEED_DEFAULT_USER_PASSWORD')),

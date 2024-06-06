@@ -221,7 +221,6 @@
 
                                     <div class="flex gap-5 mb-3">
                                     <x-form.input-profile title="Role" key="role" type="text" value="${user.role}" disabled="true" />
-                                    <x-form.input-profile title="Rukun Tetangga" key="id_rukun_tetangga" type="text" value="${user.id_rukun_tetangga}" disabled="true" />
 
                                     </div>
 

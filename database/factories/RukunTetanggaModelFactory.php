@@ -18,6 +18,8 @@ class RukunTetanggaModelFactory extends Factory
     protected $model = \App\Models\RukunTetanggaModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
             'nomor_rukun_tetangga' => $this->faker->unique()->randomDigit(),
             'alamat' => $this->faker->address()

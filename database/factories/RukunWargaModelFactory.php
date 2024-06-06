@@ -19,6 +19,8 @@ class RukunWargaModelFactory extends Factory
      protected $model = \App\Models\RukunWargaModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
             'nomor_rukun_warga' => 1,
             'alamat' => $this->faker->address()

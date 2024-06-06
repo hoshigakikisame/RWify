@@ -21,6 +21,8 @@ class PropertiModelFactory extends Factory
     protected $model = PropertiModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
             'nama_properti' => $this->faker->sentence(),
             'id_tipe_properti' => TipePropertiModel::get()->random()->getIdTipeProperti(),

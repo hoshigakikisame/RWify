@@ -22,6 +22,8 @@ class UmkmModelFactory extends Factory
     protected $model = UmkmModel::class;
     public function definition(): array
     {
+        $this->faker = fake('id_ID');
+
         return [
             'nama' => $this->faker->sentence(),
             'image_url' => $this->faker->imageUrl(),
