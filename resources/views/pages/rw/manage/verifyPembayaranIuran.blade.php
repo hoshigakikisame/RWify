@@ -94,7 +94,7 @@
                                     <div class="rounded-lg w-36 h-36 overflow-hidden">
                                         <div class="bg-indigo-100 w-full h-full " x-data="{ isOnImg: false, showImage: false }"
                                             @mouseover="isOnImg = true" @mouseleave="isOnImg = false"
-                                            style="background: url({{ $pembayaranIuran->getImageUrl() }});background-size:cover">
+                                            style="background: url({{ $pembayaranIuran->getImageUrl() }});background-size:cover; background-position: center">
                                             <button x-show="isOnImg" id="imageButton" @click="showImage = true"
                                                 onclick="(function(){appendImageModal('{{ $pembayaranIuran->getImageUrl() }}','{{ $pembayaranIuran->getUser()->getNamaLengkap() }}',event);zoomInit()})()"
                                                 class="w-full h-full flex justify-center items-center "
