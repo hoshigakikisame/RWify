@@ -181,6 +181,8 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
                 return route('rt.dashboard');
             case "Warga":
                 return route('warga.dashboard');
+            case "Petugas Keamanan":
+                return route('warga.dashboard');
         }
     }
 
@@ -191,6 +193,8 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
             case "Ketua Rukun Tetangga":
                 return 'layouts.sidebar.rt-sidebar';
             case "Warga":
+                return 'layouts.sidebar.warga-sidebar';
+            case "Petugas Keamanan":
                 return 'layouts.sidebar.warga-sidebar';
         }
     }
@@ -387,11 +391,6 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     {
         $this->golongan_darah = $golonganDarah;
     }
-
-    // public function setIdRukunTetangga($idRukunTetangga): void
-    // {
-    //     $this->id_rukun_tetangga = $idRukunTetangga;
-    // }
 
     public function setJenisKelamin(string $jenisKelamin): void
     {

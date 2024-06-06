@@ -64,7 +64,8 @@
             </span>
         </button>
         <ul x-show="sideDropdown" class="ms-3 mt-2 flex flex-col gap-2">
-            <x-sidebar.sidebar-item href="{{ route('warga.layanan.pembayaranIuran.iuran') }}" title="Iuran" :active="request()->routeIs(['warga.layanan.pembayaranIuran.iuran'])">
+            <x-sidebar.sidebar-item href="{{ route('warga.layanan.pembayaranIuran.iuran') }}" title="Iuran"
+                :active="request()->routeIs(['warga.layanan.pembayaranIuran.iuran'])">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 32 32" style="enable-background: new 0 0 512 512" xml:space="preserve"
                     class="w-7 fill-inherit lg:w-6">
@@ -210,4 +211,17 @@
             </x-sidebar.sidebar-item>
         </ul>
     </div>
+
+    @if (request()->user()->getRole() == \App\Enums\User\UserRoleEnum::PETUGAS_KEAMANAN->value)
+        <x-sidebar.sidebar-item href="{{ route('petugasKeamanan.wargaVerification') }}" title="Verifikasi Warga"
+            :active="request()->routeIs(['petugasKeamanan.wargaVerification'])">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 512 512"
+                class="w-6 fill-inherit lg:w-5">
+                <g transform="matrix(1,0,0,1,0,65)">
+                    <path d="M453.332 0H58.668C26.305 0 0 26.305 0 58.668v266.664C0 357.695 26.305 384 58.668 384h394.664C485.695 384 512 357.695 512 325.332V58.668C512 26.305 485.695 0 453.332 0zM160 85.332c29.398 0 53.332 23.938 53.332 53.336C213.332 168.062 189.398 192 160 192s-53.332-23.938-53.332-53.332c0-29.398 23.934-53.336 53.332-53.336zm96 197.336c0 8.832-7.168 16-16 16H80c-8.832 0-16-7.168-16-16V272c0-32.363 26.305-58.668 58.668-58.668h74.664C229.695 213.332 256 239.637 256 272zm176 16H314.668c-8.832 0-16-7.168-16-16s7.168-16 16-16H432c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0-85.336H314.668c-8.832 0-16-7.168-16-16s7.168-16 16-16H432c8.832 0 16 7.168 16 16s-7.168 16-16 16zM432 128H314.668c-8.832 0-16-7.168-16-16s7.168-16 16-16H432c8.832 0 16 7.168 16 16s-7.168 16-16 16zm0 0" class=""></path>
+                </g>
+            </svg>
+        </x-sidebar.sidebar-item>
+    @endif
 @endsection

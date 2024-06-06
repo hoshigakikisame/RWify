@@ -17,14 +17,14 @@ class EnsureUserHasRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $role): Response
+    public function handle(Request $request, Closure $next, ...$role): Response
     {
         /**
          * @var UserModel $currentUser
          */
         $currentUser = Auth::user();
 
-        if ($currentUser->getRole() != $role) {
+        if (!in_array($currentUser->getRole(), $role)) {
             return abort(403, 'Access Denied');
         }
  

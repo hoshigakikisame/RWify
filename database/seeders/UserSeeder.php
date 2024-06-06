@@ -118,5 +118,24 @@ class UserSeeder extends Seeder
             $wargaInstances[$i]->setNkk($kartuKeluargaInstances[$i % 3]->getNkk());
             $wargaInstances[$i]->save();
         }
+
+        // petugas keamanan
+        UserModel::factory()->count(3)->state(
+            [
+                'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
+                'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk(),    
+                'pekerjaan' => 'Petugas Keamanan'
+            ]
+        )->create()->all();
+
+        // preserved petugas keamanan instance
+        UserModel::factory()->state(
+            [
+                'email' => 'niaoktav119+satpam@gmail.com',
+                'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
+                'nkk' => $kartuKeluargaInstances[0]->getNkk(),
+                'pekerjaan' => 'Petugas Keamanan'
+            ]
+        )->create();
     }
 }

@@ -11,7 +11,7 @@ use App\Http\Controllers\Warga\Layanan\PembayaranIuranWargaController;
 Route::group([
     'prefix' => 'warga',
     'as' => 'warga.',
-    'middleware' => ['auth', 'hasRole:Warga']
+    'middleware' => ['auth', 'hasRole:Warga,Petugas Keamanan']
 ], function() {
     Route::get('dashboard', [WargaController::class, 'dashboard'])->name('dashboard');
     
