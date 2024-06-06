@@ -57,4 +57,4 @@ export default function ageChartStatistic(lansia, dewasa, remaja, anak, balita) 
 
 
 
-};
+}

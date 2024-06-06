@@ -23,4 +23,9 @@ export default defineConfig({
             '$': 'jQuery'
         },
     },
+    build: {
+        rollupOptions: {
+            preserveEntrySignatures: 'strict',
+        }
+    }
 });
