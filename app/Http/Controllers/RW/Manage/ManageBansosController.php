@@ -24,6 +24,20 @@ class ManageBansosController extends Controller
         ]);
     }
 
+    public function exportMfep()
+    {
+        $mfep = new MFEPCalculator(KartuKeluargaModel::all(), KartuKeluargaModel::getSpkCriteria());
+        
+        $xslx = $mfep->exportAsXlsx();
+
+        $filename = 'bansos-mfep-' . date('Y-m-d-H-i-s') . '.xlsx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        $xslx->save('php://output');
+    }
+
     public function bansosSawPage()
     {
         $saw = new SAWCalculator(KartuKeluargaModel::all(), KartuKeluargaModel::getSpkCriteria());
@@ -37,5 +51,19 @@ class ManageBansosController extends Controller
             'normalized' => $saw->normalize(),
             'results' => $saw->results()
         ]);
+    }
+
+    public function exportSaw()
+    {
+        $saw = new SAWCalculator(KartuKeluargaModel::all(), KartuKeluargaModel::getSpkCriteria());
+        
+        $xslx = $saw->exportAsXlsx();
+
+        $filename = 'bansos-saw-' . date('Y-m-d-H-i-s') . '.xlsx';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+        $xslx->save('php://output');
     }
 }

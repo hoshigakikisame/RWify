@@ -14,6 +14,7 @@
         "laravel/framework": "^11.0",
         "laravel/socialite": "^5.13",
         "laravel/tinker": "^2.9",
+        "phpoffice/phpspreadsheet": "^2.1",
         "socialiteproviders/google": "*",
         "wire-elements/modal": "^2.0"
     },
