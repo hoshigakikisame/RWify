@@ -9,15 +9,15 @@
 @layer base {
     @font-face {
         font-family: 'Poppins';
-        src: url(/resources/assets/fonts/Poppins/Poppins.ttf) format('truetype');
+        src: url(/resources/assets/fonts/Poppins.ttf) format('truetype');
     }
     @font-face {
         font-family: 'Inter';
-        src: url(/resources/assets/fonts/Inter/Inter.ttf) format('truetype');
+        src: url(/resources/assets/fonts/Inter.ttf) format('truetype');
     }
     @font-face {
         font-family: 'Montserrat';
-        src: url(/resources/assets/fonts/Montserrat/Montserrat.woff2) format('woff2');
+        src: url(/resources/assets/fonts/Montserrat.woff2) format('woff2');
     }
 }
 

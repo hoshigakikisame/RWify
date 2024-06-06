@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
-import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
     plugins: [
@@ -13,6 +12,8 @@ export default defineConfig({
                 "resources/js/image-zoom.js",
                 "resources/js/loading.js",
                 "resources/js/utils/request.js",
+                "resources/js/statisticChart.js",
+                "resources/js/monthlyIuranCountChart.js",
             ],
             refresh: true,
         }),
