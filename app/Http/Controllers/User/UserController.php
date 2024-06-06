@@ -8,9 +8,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\NotificationModel;
 use App\Models\UserModel;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Livewire\Attributes\Validate;
 
 class UserController extends Controller
 {
@@ -129,5 +131,20 @@ class UserController extends Controller
         session()->flash('success',['title' => 'Email verified.', 'description' => 'Email verified.']);
 
         return redirect()->route('user.profile.index');
+    }
+
+    public function markNotificationAsRead()
+    {
+        if (!request()->json()->has('id_notification')) {
+            return 'Notification ID is required.';
+        }
+
+        $idNotification = request()->json()->get('id_notification');
+
+        $notification = NotificationModel::findOrFail($idNotification);
+
+        $notification->markAsRead();
+
+        return 'Successfully marked notification with ' . $idNotification . ' as read.';
     }
 }

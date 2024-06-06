@@ -83,6 +83,7 @@ class RWController extends Controller
             'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
             'leaderboardUsers' => $leaderboardUsers,
             'monthlyIuranCount' => $monthlyIuranCount,
+            'unreadNotifications' => request()->user()->getUnreadNotifications(),
         ];
         return view('pages.rw.dashboard', $data);
     }

@@ -38,6 +38,15 @@ Route::group(
             }
         );
 
+        Route::group(
+            [
+                'prefix' => 'notification',
+                'as' => 'notification.'
+            ],
+            function () {
+                Route::post('mark-as-read', [UserController::class, 'markNotificationAsRead'])->name('markAsRead');
+            }
+        );
     }
 );
 
