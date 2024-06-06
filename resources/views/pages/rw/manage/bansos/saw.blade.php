@@ -33,17 +33,18 @@
                     ];
                 @endphp
                 @foreach ($criteriaWeights as $key => $value)
-                    <div
-                        class="card border-l dark:text-gray-200 dark:bg-gray-800/60 ring rounded-md px-3 py-2 {{ $colorRing[$loop->index] }}">
+                <div class="card border-l dark:text-gray-200 dark:bg-gray-800/60 ring rounded-md px-3 py-2 h-full {{ $colorRing[$loop->index] }}">
+                    <div class="flex flex-col justify-between h-full">
                         <h5 class="text-sm dark:text-gray-300">{{ $key }}</h5>
-                        <div class="flex justify-between items-center">
-                            <h1 class="text-2xl dark:text-gray-50"> {{ $value['weight'] }}</h1>
-                            <p
-                                class="text-xs px-3 py-1 rounded-full w-fit {{ $value['type'] == 'benefit' ? 'text-green-700 dark:text-green-300 bg-green-200 dark:bg-green-800' : 'text-red-700 dark:text-red-300 bg-red-200 dark:bg-red-800/60' }}">
-                                {{ $value['type'] }}</p>
+                        <div class="flex justify-between mt-2 items-center">
+                            <h1 class="text-2xl dark:text-gray-50">{{ $value['weight'] }}</h1>
+                            <p class="text-xs px-3 py-1 rounded-full items-center h-fit w-fit {{ $value['type'] == 'benefit' ? 'text-green-700 dark:text-green-300 bg-green-200 dark:bg-green-800' : 'text-red-700 dark:text-red-300 bg-red-200 dark:bg-red-800/60' }}">
+                                {{ $value['type'] }}
+                            </p>
                         </div>
                     </div>
-                @endforeach
+                </div>
+                @endforeach 
             </div>
         </div>
         <div class="wrap-body">
@@ -89,7 +90,6 @@
                                         </thead>
                                         <tbody id="table-body"
                                             class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -145,19 +145,19 @@
                         <tr>
                             <td class="px-4 py-4 text-sm font-medium">
                                 <div>
-                                    <h2 class="font-medium text-gray-800 dark:text-white">
+                                    <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                         {{ $key }}
                                     </h2>
                                 </div>
                             </td>
                             @foreach ($value as $key2 => $value2)
-<td class="px-4 py-4 text-sm font-medium">
-    <div>
-        <h2 class="font-medium text-gray-800 dark:text-white">
-            {{ $value2 }}
-        </h2>
-    </div>
-</td>
+                            <td class="px-4 py-4 text-sm text-center font-medium">
+                                <div>
+                                    <h2 class="font-medium text-gray-800 dark:text-white">
+                                        {{ round($value2, 4) }}
+                                    </h2>
+                                </div>
+                            </td>
                             @endforeach
                         </tr>
                     @endforeach
@@ -167,24 +167,24 @@
         function elementNorm() {
             return element = /*html*/ `
             @foreach ($normalized as $key => $value)
-                        <tr>
-                            <td class="px-4 py-4 text-sm font-medium"> 
-                    <div>
-      <h2 class="font-medium text-gray-800 dark:text-white">
-        {{ $key }}
-      </h2>
-  </div>
-  </td>
-                            @foreach ($value as $key2 => $value2)
-                            <td class="px-4 py-4 text-sm font-medium"> 
-                    <div>
-      <h2 class="font-medium text-gray-800 dark:text-white">
-        {{ $value2 }}
-      </h2>
-  </div>
-  </td>
-                            @endforeach
-                        </tr>
+                <tr>
+                    <td class="px-4 py-4 text-sm font-medium"> 
+                        <div>
+                            <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
+                                {{ $key }}
+                            </h2>
+                        </div>
+                    </td>
+                    @foreach ($value as $key2 => $value2)
+                        <td class="px-4 py-4 text-sm font-medium text-center"> 
+                            <div>
+                                <h2 class="font-medium text-gray-800 dark:text-white">
+                                    {{ round($value2, 4) }}
+                                </h2>
+                            </div>
+                        </td>       
+                    @endforeach
+                </tr>
                     @endforeach
             `
         }
@@ -193,28 +193,28 @@
             return element = /*html*/ `
             @foreach ($results as $key => $value)
             <tr>
-            <td class="px-4 py-4 text-sm font-medium"> 
+                <td class="px-4 py-4 text-sm font-medium"> 
                     <div>
-      <h2 class="font-medium text-gray-800 dark:text-white">
-        {{ $key + 1 }}
-      </h2>
-  </div>
-  </td>
-            <td class="px-4 py-4 text-sm font-medium"> 
+                        <h2 class="font-medium text-center text-gray-800 dark:text-white">
+                            {{ $key + 1 }}
+                        </h2>
+                    </div>
+                </td>
+                        <td class="px-4 py-4 text-sm font-medium"> 
+                            <div>
+                                <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
+                                    {{ $value['instance']->getNkk() }}
+                                </h2>
+                            </div>
+                        </td>
+                <td class="px-4 py-4 text-sm font-medium"> 
                     <div>
-      <h2 class="font-medium text-gray-800 dark:text-white">
-        {{ $value['instance']->getNkk() }}
-      </h2>
-  </div>
-  </td>
-            <td class="px-4 py-4 text-sm font-medium"> 
-                    <div>
-      <h2 class="font-medium text-gray-800 dark:text-white">
-        {{ $value['preference'] }}
-      </h2>
-  </div>
-  </td>
-</tr>
+                        <h2 class="font-medium text-gray-800 dark:text-white">
+                            {{ round($value['preference'], 4) }}
+                        </h2>
+                    </div>
+                </td>
+            </tr>
             @endforeach
             `
         }
