@@ -6,10 +6,11 @@
                 <h6 class="font-Inter text-indigo-800 dark:text-indigo-400">Hi {{ auth()->user()->nama_depan }},</h6>
                 <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-300">Selamat Datang di RWify</h1>
             </div>
-            <div class="notification">
+            <div class="notification relative" x-data="{ notifDrop: false }">
                 <div class="trigger px-5">
-                    <button class="relative hover:bg-gray-200/70 p-4 rounded-full transition-all hover:fill-blue-900"
-                        type="button">
+                    <button
+                        class="relative hover:bg-gray-200/70 p-4 rounded-full dark:fill-gray-50 transition-all dark:hover:fill-blue-200 dark:hover:bg-gray-700/70 hover:fill-blue-900"
+                        type="button" @click="notifDrop = !notifDrop">
                         <div class="relative ">
 
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
@@ -26,6 +27,59 @@
                             </span>
                         </div>
                     </button>
+                </div>
+                <div id="notif-drop-container"
+                    class="absolute right-10 bg-gray-50 ring ring-blue-200/40 dark:ring-blue-400/40 dark:bg-gray-900 rounded-xl min-w-96 z-30 shadow-lg border border-blue-400 "
+                    x-cloak x-show="notifDrop" @click.away="notifDrop = false"
+                    x-transition:enter="transition ease-out duration-300 transform"
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave="transition ease-in duration-200 transform"
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                    <div class="px-5 py-5">
+                        <div class="header-notif flex justify-between mb-2">
+                            <div class="wrap-text-header">
+                                <h1 class="text-xl font-semibold tracking-wide">Notifikasi</h1>
+                                <p class="text-xs text-gray-400 dark:text-gray-500">Anda mempunyai <span
+                                        class="text-blue-500">5
+                                        notifikasi</span> baru</p>
+                            </div>
+                            <button type="button" class="fill-gray-500 dark:fill-gray-400 self-start"
+                                @click="notifDrop = false">
+                                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                                    class="w-5 h-5">
+                                    <path
+                                        d="M16.707 8.707 13.414 12l3.293 3.293-1.414 1.414L12 13.414l-3.293 3.293-1.414-1.414L10.586 12 7.293 8.707l1.414-1.414L12 10.586l3.293-3.293zM24 12c0 6.617-5.383 12-12 12S0 18.617 0 12 5.383 0 12 0s12 5.383 12 12m-2 0c0-5.514-4.486-10-10-10S2 6.486 2 12s4.486 10 10 10 10-4.486 10-10" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <ul class="body-wrap">
+                            <li class="border-b flex justify-between items-center py-2 pb-3">
+                                <div class="wrap-text">
+                                    <h1 class="text-gray-900 dark:text-gray-300">Title notif</h1>
+                                    <p class="text-xs text-gray-700 dark:text-gray-500">description of notif</p>
+                                </div>
+                                <div class="action flex gap-2">
+                                    <a href="" class="bg-gray-100 dark:bg-gray-800 p-2 rounded-full fill-blue-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
+                                            <path
+                                                d="m15.75 9.525-4.586-4.586a1.5 1.5 0 0 0-2.121 2.122l4.586 4.585a.5.5 0 0 1 0 .708l-4.586 4.585a1.5 1.5 0 0 0 2.121 2.122l4.586-4.586a3.505 3.505 0 0 0 0-4.95"
+                                                z />
+                                        </svg>
+                                    </a>
+                                    <button type="button"
+                                        class="bg-gray-100 dark:bg-gray-800 p-2 fill-red-500 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
+                                            <path
+                                                d="M18 6a1 1 0 0 0-1.414 0L12 10.586 7.414 6A1 1 0 0 0 6 6a1 1 0 0 0 0 1.414L10.586 12 6 16.586A1 1 0 0 0 6 18a1 1 0 0 0 1.414 0L12 13.414 16.586 18A1 1 0 0 0 18 18a1 1 0 0 0 0-1.414L13.414 12 18 7.414A1 1 0 0 0 18 6" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
@@ -47,8 +101,8 @@
                                 'lastAddedAt' => $propertiLastAddedAt,
                                 'wrapClass' =>
                                     'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
-                                'iconColor' => 'fill-green-700',
-                                'updateColor' => 'text-green-600',
+                                'iconColor' => 'fill-green-700 dark:fill-green-400',
+                                'updateColor' => 'text-green-600 dark:text-green-500',
                             ],
                             [
                                 'name' => 'Pengaduan Warga',
@@ -56,8 +110,8 @@
                                 'lastAddedAt' => $pengaduanLastAddedAt,
                                 'wrapClass' =>
                                     'ring-indigo-200/30 border-indigo-500/70 dark:border-indigo-400/70 dark:ring-indigo-600/30',
-                                'iconColor' => 'fill-indigo-700',
-                                'updateColor' => 'text-indigo-600',
+                                'iconColor' => 'fill-indigo-700 dark:fill-indigo-400',
+                                'updateColor' => 'text-indigo-600 dark:text-indigo-500',
                             ],
                             [
                                 'name' => 'UMKM',
@@ -65,8 +119,8 @@
                                 'lastAddedAt' => $umkmLastAddedAt,
                                 'wrapClass' =>
                                     'ring-blue-200/30 border-blue-500/70 dark:border-blue-400/70 dark:ring-blue-600/30',
-                                'iconColor' => 'fill-blue-700',
-                                'updateColor' => 'text-blue-600',
+                                'iconColor' => 'fill-blue-700 dark:fill-blue-400',
+                                'updateColor' => 'text-blue-600 dark:text-blue-500',
                             ],
                         ];
                     @endphp
@@ -106,9 +160,10 @@
                                 <h1 class="text-xl">
                                     Statistik Warga
                                 </h1>
-                                <p class="text-xs text-gray-400">Berikut visualisasi warga dalam pie chart</p>
+                                <p class="text-xs text-gray-400 dark:text-gray-500">Berikut visualisasi warga dalam pie
+                                    chart</p>
                             </div>
-                            <div class="icon fill-gray-500 ">
+                            <div class="icon fill-gray-500 dark:fill-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve"
                                     class="w-5 h-5 drop-shadow-md">
                                     <path
@@ -126,7 +181,7 @@
                         </div>
                         <div class="footer">
                             <p class="text-[9px] tracking-wide font-Montserrat">Terakhir diupdate <span
-                                    class="text-gray-600">8 jam
+                                    class="text-gray-600 dark:text-gray-100">8 jam
                                 </span></p>
                         </div>
                     </div>
@@ -138,11 +193,12 @@
                         <div class="graph-header flex justify-between mb-1">
                             <div class="text-wrap">
                                 <h1 class="text-xl">Grafik Iuran</h1>
-                                <p class="text-xs text-gray-400">berikut visualisasi data pembayaran iuran</p>
+                                <p class="text-xs text-gray-400 dark:text-gray-500">berikut visualisasi data pembayaran
+                                    iuran</p>
                             </div>
-                            <div class="icon fill-gray-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 drop-shadow-md" viewBox="0 0 384 384"
-                                    xml:space="preserve">
+                            <div class="icon fill-gray-500 dark:fill-gray-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 drop-shadow-md"
+                                    viewBox="0 0 384 384" xml:space="preserve">
                                     <path
                                         d="M10.668 234.668h42.664c5.89 0 10.668 4.773 10.668 10.664V352c0 5.89-4.777 10.668-10.668 10.668H10.668C4.778 362.668 0 357.891 0 352V245.332c0-5.89 4.777-10.664 10.668-10.664m106.664-85.336H160c5.89 0 10.668 4.777 10.668 10.668v192c0 5.89-4.777 10.668-10.668 10.668h-42.668c-5.89 0-10.664-4.777-10.664-10.668V160c0-5.89 4.773-10.668 10.664-10.668M224 192h42.668c5.89 0 10.664 4.777 10.664 10.668V352c0 5.89-4.773 10.668-10.664 10.668H224c-5.89 0-10.668-4.777-10.668-10.668V202.668c0-5.89 4.777-10.668 10.668-10.668m106.668-64h42.664c5.89 0 10.668 4.777 10.668 10.668V352c0 5.89-4.777 10.668-10.668 10.668h-42.664c-5.89 0-10.668-4.777-10.668-10.668V138.668c0-5.89 4.777-10.668 10.668-10.668m0 0"
                                         data-original="" />
@@ -178,7 +234,7 @@
                                     </h1>
                                     <div class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                                            class="w-4 h-4 drop-shadow-md fill-indigo-700">
+                                            class="w-4 h-4 drop-shadow-md fill-indigo-700 dark:fill-indigo-400">
                                             <path
                                                 d="M11.206 14.656c-.246 1.557-.756 3.155-1.257 4.66a1.001 1.001 0 0 1-1.897-.633c.238-.715.479-1.45.687-2.184a1.01 1.01 0 0 1-.852-.445 1 1 0 0 1 .277-1.387l1.5-1a1 1 0 0 1 1.542.988Zm6.792-4.209c0 4.144-.977 8.042-1.798 10.579a4.29 4.29 0 0 1-4.1 2.975H3.322a3.46 3.46 0 0 1-2.837-1.52c-.581-.864-.695-1.895-.314-2.825.823-2.012 2.356-5.757 2.406-9.17a1 1 0 0 1 .353-.748c.491-.408 1.237-.736 1.839-.739a2.67 2.67 0 0 1 1.724.616 1.63 1.63 0 0 0 2.087 0 2.68 2.68 0 0 1 3.418 0 1.63 1.63 0 0 0 2.087 0 2.67 2.67 0 0 1 1.735-.616c.598.006 1.281.277 1.769.682a1 1 0 0 1 .409.766m-2.004.583a.69.69 0 0 0-.631.125c-1.313 1.091-3.326 1.091-4.641 0a.68.68 0 0 0-.864 0c-1.315 1.091-3.327 1.091-4.642 0a.69.69 0 0 0-.657-.116c-.158 3.163-1.308 6.369-2.539 9.375-.17.415.005.775.124.953.262.391.713.634 1.177.634h8.778c1.007 0 1.89-.639 2.197-1.59.741-2.29 1.618-5.733 1.697-9.381ZM24 4.001v14c0 2.206-1.794 4-4 4h-1a1 1 0 1 1 0-2h1c1.103 0 2-.897 2-2V7c-.614 0-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0l-.014.012c-.637.539-1.616.068-1.616-.767V4A4.007 4.007 0 0 1 10 0h10c2.206 0 4 1.794 4 4Zm-2 0c0-1.103-.897-2-2-2H10c-1.103 0-2 .897-2 2v.056a4 4 0 0 1 .667-.056c.856 0 1.687.307 2.338.865q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0 .5.5 0 0 0 .328.135v-1Z" />
                                         </svg>
@@ -188,9 +244,9 @@
                                     <button id="prev-calendar" aria-label="calendar backward"
                                         class="text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                                            class="icon icon-tabler icon-tabler-chevron-left" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <polyline points="15 6 9 12 15 18" />
                                         </svg>
@@ -263,9 +319,9 @@
                             <h1 class="text-xl">
                                 Leaderboard Iuran
                             </h1>
-                            <p class="text-xs text-gray-400">Berikut leaderboard warga</p>
+                            <p class="text-xs text-gray-400 dark:text-gray-500">Berikut leaderboard warga</p>
                         </div>
-                        <div class="icon fill-gray-500 ">
+                        <div class="icon fill-gray-500 dark:fill-gray-400">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve"
                                 class="w-5 h-5 drop-shadow-md">
                                 <path
@@ -343,7 +399,7 @@
         import monthlyIuranCountChart from '{{ Vite::asset('resources/js/monthlyIuranCountChart.js') }}';
 
         let monthlyIuranCountChartElement = monthlyIuranCountChart(
-            '#monthlyIuranCountChart',  
+            '#monthlyIuranCountChart',
             {!! json_encode(array_keys($monthlyIuranCount)) !!},
             {!! json_encode(array_values($monthlyIuranCount)) !!},
         );
