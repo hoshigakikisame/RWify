@@ -11,6 +11,13 @@ export default function monthlyIuranCountChart(chartSelector, keys, values) {
         }],
         xaxis: {
             categories: keys
+        },
+        yaxis: {
+            labels: {
+                formatter: function ($value) {
+                    return "Rp." + $value
+                }
+            }
         }
     }
 

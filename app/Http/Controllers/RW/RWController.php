@@ -63,10 +63,10 @@ class RWController extends Controller
 
         foreach (IuranBulanEnum::getValues() as $key => $value) {
             $suffix = $key == array_key_last(IuranBulanEnum::getValues()) ? '' : ', ';
-            $selectRaw .= 'SUM(CASE WHEN bulan = "' . $value . '" THEN 1 ELSE 0 END)' . ' AS ' . $value . $suffix;
+            $selectRaw .= 'SUM(CASE WHEN bulan = "' . $value . '" THEN jumlah_bayar ELSE 0 END)' . ' AS ' . $value . $suffix;
         }
 
-        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->first()->toArray();
+        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->where('tahun', date('Y'))->first()->toArray();
 
         $data = [
             'lansiaCount' => $usersByAge->lansiaCount,
