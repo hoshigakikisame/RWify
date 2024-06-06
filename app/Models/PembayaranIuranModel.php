@@ -9,7 +9,6 @@ use App\Interfaces\SearchCompatible;
 
 class PembayaranIuranModel extends Model implements SearchCompatible
 {
-
     use HasFactory, HasTimeStamp;
     protected $table = 'tb_pembayaran_iuran';
     protected $primaryKey = 'id_pembayaran_iuran';

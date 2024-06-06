@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             ReservasiJadwalTemuModelSeeder::class,
             TipePropertiSeeder::class,
             PropertiSeeder::class,
+            PembayaranIuranSeeder::class,
+            IuranSeeder::class,
         ]);
     }
 }
