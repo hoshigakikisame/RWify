@@ -56,27 +56,23 @@
                         </div>
 
                         <ul class="body-wrap">
-                            <li class="border-b flex justify-between items-center py-2 pb-3">
-                                <div class="wrap-text">
-                                    <h1 class="text-gray-900 dark:text-gray-300">Title notif</h1>
-                                    <p class="text-xs text-gray-700 dark:text-gray-500">description of notif</p>
-                                </div>
-                                <div class="action flex gap-2">
-                                    <a href="" class="bg-gray-100 dark:bg-gray-800 p-2 rounded-full fill-blue-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
-                                            <path
-                                                d="m15.75 9.525-4.586-4.586a1.5 1.5 0 0 0-2.121 2.122l4.586 4.585a.5.5 0 0 1 0 .708l-4.586 4.585a1.5 1.5 0 0 0 2.121 2.122l4.586-4.586a3.505 3.505 0 0 0 0-4.95"
-                                                z />
-                                        </svg>
-                                    </a>
-                                    <button type="button"
-                                        class="bg-gray-100 dark:bg-gray-800 p-2 fill-red-500 rounded-full">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
-                                            <path
-                                                d="M18 6a1 1 0 0 0-1.414 0L12 10.586 7.414 6A1 1 0 0 0 6 6a1 1 0 0 0 0 1.414L10.586 12 6 16.586A1 1 0 0 0 6 18a1 1 0 0 0 1.414 0L12 13.414 16.586 18A1 1 0 0 0 18 18a1 1 0 0 0 0-1.414L13.414 12 18 7.414A1 1 0 0 0 18 6" />
-                                        </svg>
-                                    </button>
-                                </div>
+                            <li class="">
+                                <a href=""
+                                    class="hover:bg-gray-100 dark:hover:bg-gray-800 flex justify-between items-center py-2 pb-3 border-b px-3 rounded-t-md">
+                                    <div class="wrap-text">
+                                        <h1 class="text-gray-900 dark:text-gray-300">Title notif</h1>
+                                        <p class="text-xs text-gray-700 dark:text-gray-500">description of notif</p>
+                                    </div>
+                                    <div class="action flex gap-2">
+                                        <button type="button"
+                                            class="bg-gray-100 dark:hover:bg-gray-700 hover:bg-gray-200 dark:bg-gray-800 p-2 fill-red-500 rounded-full">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
+                                                <path
+                                                    d="M18 6a1 1 0 0 0-1.414 0L12 10.586 7.414 6A1 1 0 0 0 6 6a1 1 0 0 0 0 1.414L10.586 12 6 16.586A1 1 0 0 0 6 18a1 1 0 0 0 1.414 0L12 13.414 16.586 18A1 1 0 0 0 18 18a1 1 0 0 0 0-1.414L13.414 12 18 7.414A1 1 0 0 0 18 6" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </a>
                             </li>
                         </ul>
                     </div>
