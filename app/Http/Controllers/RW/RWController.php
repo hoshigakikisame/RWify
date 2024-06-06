@@ -35,21 +35,15 @@ class RWController extends Controller
         });
 
         // information panel dependencies
-        $umkmInstances = Cache::remember('umkmInstances', config('cache.ttl'), function () {
-            return UmkmModel::pluck('dibuat_pada')->all();
-        });
+        $umkmInstances = UmkmModel::pluck('dibuat_pada')->all();
         $umkmCount = count($umkmInstances);
         $umkmLastAddedAt = Carbon::parse(array_key_last($umkmInstances))->diffForHumans(null, true);
 
-        $pengaduanInstances = Cache::remember('pengaduanInstances', config('cache.ttl'), function () {
-            return PengaduanModel::pluck('dibuat_pada')->all();
-        });
+        $pengaduanInstances = PengaduanModel::pluck('dibuat_pada')->all();
         $pengaduanCount = count($pengaduanInstances);
         $pengaduanLastAddedAt = Carbon::parse(array_key_last($pengaduanInstances))->diffForHumans(null, true);
 
-        $propertiInstances = Cache::remember('propertiInstances', config('cache.ttl'), function () {
-            return PropertiModel::pluck('id_properti', 'dibuat_pada')->all();
-        });
+        $propertiInstances = PropertiModel::pluck('dibuat_pada')->all();
         $propertiCount = count($propertiInstances);
         $propertiLastAddedAt = Carbon::parse(array_key_last($propertiInstances))->diffForHumans(null, true);
 
@@ -72,9 +66,7 @@ class RWController extends Controller
             $selectRaw .= 'SUM(CASE WHEN bulan = "' . $value . '" THEN 1 ELSE 0 END)' . ' AS ' . $value . $suffix;
         }
 
-        $monthlyIuranCount = Cache::remember('monthlyIuranCount', null, function () use ($selectRaw) {
-            return IuranModel::selectRaw($selectRaw)->first()->toArray();
-        });
+        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->first()->toArray();
 
         $data = [
             'lansiaCount' => $usersByAge->lansiaCount,
