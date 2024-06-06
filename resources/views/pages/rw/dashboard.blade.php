@@ -1,9 +1,34 @@
 @extends(request()->user()->getSidebarView())
 @section('content')
     <section class="relative container mx-auto mb-8 mt-7 px-4 dark:text-gray-300">
-        <div class="greeting mb-2 border-b pb-3">
-            <h6 class="font-Inter text-indigo-800 dark:text-indigo-400">Hi {{ auth()->user()->nama_depan }},</h6>
-            <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-300">Selamat Datang di RWify</h1>
+        <div class="greeting mb-2 border-b pb-3 flex justify-between items-center">
+            <div class="text-wrap">
+                <h6 class="font-Inter text-indigo-800 dark:text-indigo-400">Hi {{ auth()->user()->nama_depan }},</h6>
+                <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-300">Selamat Datang di RWify</h1>
+            </div>
+            <div class="notification">
+                <div class="trigger px-5">
+                    <button class="relative hover:bg-gray-200/70 p-4 rounded-full transition-all hover:fill-blue-900"
+                        type="button">
+                        <div class="relative ">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                                class="w-5 h-5 fill-inherit drop-shadow-xl">
+                                <path
+                                    d="M4.068 18h15.656a3 3 0 0 0 2.821-4.021l-2.852-7.885A8.32 8.32 0 0 0 11.675 0a8.32 8.32 0 0 0-8.123 6.516l-2.35 7.6A3 3 0 0 0 4.068 18M7.1 20a5 5 0 0 0 9.8 0Z" />
+                            </svg>
+                            <span class="absolute top-0">
+                                <span class="relative flex h-2 w-2">
+                                    <span
+                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
+                                </span>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+
+            </div>
         </div>
 
         <div class="working grid grid-cols-5 gap-4">
@@ -173,9 +198,9 @@
                                     <button id="next-calendar" aria-label="calendar forward"
                                         class="ml-3 text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24"
-                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                                            class="icon icon-tabler icon-tabler-chevron-right" width="24"
+                                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <polyline points="9 6 15 12 9 18" />
                                         </svg>
