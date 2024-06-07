@@ -5,7 +5,7 @@
             <div class="header">
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Perhitungan</h2>
-                    <span class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400">
+                    <span class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
                         SAW
                     </span>
                 </div>
@@ -17,7 +17,7 @@
                 class="flex items-center justify-center">
                 @csrf
                 <label for="exportCSV"
-                    class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                    class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
                     <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2"
@@ -50,7 +50,7 @@
                     ];
                 @endphp
                 @foreach ($criteriaWeights as $key => $value)
-                <div class="card border-l dark:text-gray-200 dark:bg-gray-800/60 ring rounded-md px-3 py-2 h-full {{ $colorRing[$loop->index] }}">
+                <div class="card border-l dark:text-gray-200 dark:bg-darkBg/60 ring rounded-md px-3 py-2 h-full {{ $colorRing[$loop->index] }}">
                     <div class="flex flex-col justify-between h-full">
                         <h5 class="text-sm dark:text-gray-300">{{ $key }}</h5>
                         <div class="flex justify-between mt-2 items-center">
@@ -102,11 +102,11 @@
                                 <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                                     <table
                                         class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
-                                        <thead class="bg-gray-50 dark:bg-gray-800 " id="table-head">
+                                        <thead class="bg-gray-50 dark:bg-darkBg " id="table-head">
 
                                         </thead>
                                         <tbody id="table-body"
-                                            class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
+                                            class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-darkBg">
                                         </tbody>
                                     </table>
                                 </div>
@@ -162,7 +162,7 @@
                         <tr>
                             <td class="px-4 py-4 text-sm font-medium">
                                 <div>
-                                    <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
+                                    <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
                                         {{ $key }}
                                     </h2>
                                 </div>
@@ -187,7 +187,7 @@
                 <tr>
                     <td class="px-4 py-4 text-sm font-medium"> 
                         <div>
-                            <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
+                            <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
                                 {{ $key }}
                             </h2>
                         </div>
@@ -219,7 +219,7 @@
                 </td>
                         <td class="px-4 py-4 text-sm font-medium"> 
                             <div>
-                                <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
+                                <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
                                     {{ $value['instance']->getNkk() }}
                                 </h2>
                             </div>

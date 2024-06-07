@@ -46,7 +46,7 @@
                         @endphp
                         @foreach ($list as $item)
                             <div
-                                class="card bg-white/80 text-gray-600 dark:text-gray-100 ring border dark:bg-gray-800/30 px-5 py-4 rounded-lg {{ $item['wrapClass'] }}">
+                                class="card bg-white/80 text-gray-600 dark:text-gray-100 ring border dark:bg-darkBg/30 px-5 py-4 rounded-lg {{ $item['wrapClass'] }}">
                                 <div class="card-header mb-0.5 flex justify-between">
                                     <h1 class="text-xs font-medium tracking-wide">{{ $item['name'] }}</h1>
                                     <div class="icon {{ $item['iconColor'] }}">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="calendar w-full" x-data="{ eventShow: false }">
                     <div
-                        class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
+                        class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-darkBg/30 rounded-lg border dark:border-gray-400 overflow-hidden">
                         <div class="rounded-t py-5 px-6">
                             <div class="flex items-center justify-between">
                                 <div class="month-year flex gap-2">

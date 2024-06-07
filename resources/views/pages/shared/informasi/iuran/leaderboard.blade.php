@@ -27,7 +27,7 @@
         </div>
         <div class="mt-2 md:flex md:items-center md:justify-between">
             <div
-                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse">
+                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
                 <button id="filter-desc" onclick="window.utils.Request.filterRequest({'desc': 1})"
                     x-effect="
                         let params = new URLSearchParams(window.location.search)
@@ -89,7 +89,7 @@
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-800">
+                            <thead class="bg-gray-50 dark:bg-darkBg">
                                 <tr>
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
@@ -112,7 +112,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
+                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-darkBg">
                                 @foreach ($leaderboardUsers as $user)
                                     @php
                                         $isUserOwnedPosition = $user->getNik() == request()->user()->getNik();

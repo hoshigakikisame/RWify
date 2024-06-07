@@ -12,10 +12,10 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Jadwal Temu</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400">
+                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
                         {{ $count }} Jadwal Temu
                     </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-gray-800">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
                         <span class="text-xs text-green-600 dark:text-green-400">{{ $diterimaCount }} Diterima</span>
                         <span class="relative flex h-3 w-3 items-center justify-center">
                             <span
@@ -41,7 +41,7 @@
 
         <div class="mt-6 md:flex md:items-center md:justify-between">
             <div
-                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse">
+                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
                 <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
                     x-effect="
                         let params = new URLSearchParams(window.location.search)
@@ -74,7 +74,7 @@
 
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
         </div>
 
@@ -151,7 +151,7 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
                                                     id="submitAction-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}"
                                                     name="status" x-ref="status"
                                                     @change="(function(){modalUpdateOpen = true;appendUpdateModal('{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}',$refs.status.value,'{{ $reservasiJadwalTemu->getStatus() }}','{{ $reservasiJadwalTemu->getSubjek() }}',event);window.utils.Request.actionRequest('{{ route('rw.manage.reservasiJadwalTemu.update') }}','#actionStatus-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}','#actionStatusForm-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}')})()"
-                                                    class="rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-950 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
+                                                    class="rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-950 dark:border-gray-700 dark:bg-darkBg dark:text-gray-100">
                                                     @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $status)
                                                         <option value="{{ $status }}"
                                                             {{ $status == $reservasiJadwalTemu->getStatus() ? 'selected=selected' : '' }}>
@@ -190,9 +190,9 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
             const modalUpdateElemen = /*html*/ `
                 <div id="updateModal" x-show="modalUpdateOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                            <div x-cloak @click="(()=>{modalUpdateOpen = false;$('select#submitAction-${id_reservasi}').val('${old_status}').change();deleteModal('#updateModal')})()" x-show="modalUpdateOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+                            <div x-cloak @click="(()=>{modalUpdateOpen = false;$('select#submitAction-${id_reservasi}').val('${old_status}').change();deleteModal('#updateModal')})()" x-show="modalUpdateOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
 
-                            <div x-cloak x-show="modalUpdateOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+                            <div x-cloak x-show="modalUpdateOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
                                 <div class="flex items-center justify-between space-x-4">
                                     <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete Pengaduan</h1>
 

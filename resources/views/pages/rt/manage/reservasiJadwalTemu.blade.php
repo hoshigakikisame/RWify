@@ -12,10 +12,10 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Jadwal Temu</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400">
+                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
                         {{ $count }} Jadwal Temu
                     </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-gray-800">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
                         <span class="text-xs text-green-600 dark:text-green-400">{{ $diterimaCount }} Diterima</span>
                         <span class="relative flex h-3 w-3 items-center justify-center">
                             <span
@@ -41,7 +41,7 @@
 
         <div class="mt-6 md:flex md:items-center md:justify-between">
             <div
-                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse">
+                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
                 <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
                     x-effect="
                         let params = new URLSearchParams(window.location.search)
@@ -74,7 +74,7 @@
 
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
         </div>
 
@@ -151,7 +151,7 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
                                                     id="submitAction-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}"
                                                     name="status"
                                                     x-effect="window.utils.Request.actionRequest('{{ route('rt.manage.reservasiJadwalTemu.update') }}','#actionStatus-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}','#actionStatusForm-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}')"
-                                                    class="rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-950 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
+                                                    class="rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-950 dark:border-gray-700 dark:bg-darkBg dark:text-gray-100">
                                                     @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $status)
                                                         <option value="{{ $status }}"
                                                             {{ $status == $reservasiJadwalTemu->getStatus() ? 'selected=selected' : '' }}>

@@ -103,7 +103,7 @@
                                     type=" email"
                                     name="email"
                                     id="email"
-                                    class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none dark:bg-gray-900 dark:text-gray-100"
+                                    class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none dark:bg-darkBg dark:text-gray-100"
                                     placeholder="Email"
                                 />
                             </div>
@@ -118,7 +118,7 @@
                                     type="password"
                                     name="password"
                                     id="password"
-                                    class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none focus:border-gray-200 focus:ring-0 dark:bg-gray-900 dark:text-gray-100"
+                                    class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none focus:border-gray-200 focus:ring-0 dark:bg-darkBg dark:text-gray-100"
                                     placeholder="Password"
                                 />
                             </div>
@@ -145,11 +145,11 @@
                 <div class="flex justify-center xl:mb-32" id="darkModeButton">
                     <label
                         for="themeSwitcherOne"
-                        class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-gray-900 dark:text-gray-200"
+                        class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-darkBg dark:text-gray-200"
                     >
                         <span
                             id="sun"
-                            class="light text-primary bg-gray flex items-center space-x-[2px] rounded-full bg-gray-300 p-2 py-2 text-sm font-medium dark:bg-gray-800 dark:fill-slate-200 lg:px-[18px]"
+                            class="light text-primary bg-gray flex items-center space-x-[2px] rounded-full bg-gray-300 p-2 py-2 text-sm font-medium dark:bg-darkBg dark:fill-slate-200 lg:px-[18px]"
                         >
                             <svg width="16" height="16" viewBox="0 0 16 16" class="fill-inherit">
                                 <g clip-path="url(#a)">

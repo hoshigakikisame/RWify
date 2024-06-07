@@ -16,16 +16,16 @@
             <div class="user-wrap mb-2 w-fit rounded-full border p-2 text-gray-800">
                 <div class="user flex items-center lg:gap-2">
                     <button id="moreButton">
-                        <div class="h-11 w-11 rounded-full bg-white bg-cover bg-center dark:bg-gray-900"
+                        <div class="h-11 w-11 rounded-full bg-white bg-cover bg-center dark:bg-darkBg"
                             style="background-image: url('{{ $imageProfile }}')"></div>
                     </button>
                     <div class="body relative hidden w-20 lg:block lg:min-w-10">
                         <h5
-                            class="overflow-data lg:text-md ... truncate text-nowrap bg-white text-sm dark:bg-gray-900 dark:text-gray-200">
+                            class="overflow-data lg:text-md ... truncate text-nowrap bg-white text-sm dark:bg-darkBg dark:text-gray-200">
                             {{ $role }}
                         </h5>
                         <p
-                            class="overflow-data ... cursor-pointer truncate bg-white dark:bg-gray-900 dark:text-gray-200 sm:text-xs">
+                            class="overflow-data ... cursor-pointer truncate bg-white dark:bg-darkBg dark:text-gray-200 sm:text-xs">
                             {{ $email }}
                         </p>
                     </div>
@@ -39,7 +39,7 @@
                             </svg>
                         </button>
                         <div id="moreMenu"
-                            class="-right-30 absolute bottom-0 z-20 rounded-lg border bg-gray-50 px-2 py-0.5 shadow-md dark:bg-gray-900">
+                            class="-right-30 absolute bottom-0 z-20 rounded-lg border bg-gray-50 px-2 py-0.5 shadow-md dark:bg-darkBg">
                             <div class="flex w-full flex-col px-1 py-2">
                                 @foreach ($footerMenu as $key => $item)
                                     <a class="inline-flex items-center gap-2 text-nowrap rounded-md px-3 py-1 text-gray-800 hover:bg-white dark:text-gray-200 dark:hover:bg-gray-800"
@@ -55,9 +55,9 @@
             </div>
             <div class="flex justify-center" id="darkModeButton">
                 <label for="themeSwitcherOne"
-                    class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-gray-900 dark:text-gray-200">
+                    class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-darkBg dark:text-gray-200">
                     <span id="sun"
-                        class="light text-primary bg-gray flex items-center space-x-[2px] rounded-full bg-gray-300 p-2 py-2 text-sm font-medium dark:bg-gray-800 dark:fill-slate-200 lg:px-[18px]">
+                        class="light text-primary bg-gray flex items-center space-x-[2px] rounded-full bg-gray-300 p-2 py-2 text-sm font-medium dark:bg-darkBg dark:fill-slate-200 lg:px-[18px]">
                         <svg width="16" height="16" viewBox="0 0 16 16" class="fill-inherit">
                             <g clip-path="url(#a)">
                                 <path fill-rule="evenodd" clip-rule="evenodd"

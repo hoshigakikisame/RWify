@@ -17,7 +17,7 @@
 
             <div class="flex flex-col">
                 <div class="profile flex gap-2">
-                    <div class="mr-3 h-20 w-20 rounded-full bg-white bg-cover bg-center dark:bg-gray-900"
+                    <div class="mr-3 h-20 w-20 rounded-full bg-white bg-cover bg-center dark:bg-darkBg"
                         style="background-image: url('{{ $pengaduanInstance->user->image_url }}')"></div>
                     <div class="flex flex-col justify-center">
                         <h2 class="font-Poppins text-lg font-medium leading-5 text-gray-800 dark:text-gray-200">
@@ -85,7 +85,7 @@ $statusStyle = [
                 <div class="inline-flex gap-2">
                     <button id="actionButton"
                         class="fill-gray-900 transition-all duration-300 ease-in-out dark:fill-gray-100"
-                        @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-gray-800 shadow-md')">
+                        @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-darkBg shadow-md')">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4" x-show="!sideAction">
                             <path
                                 d="M12 24a1 1 0 0 1-.71-.29l-8.17-8.17a5 5 0 0 1 0-7.08L11.29.29a1 1 0 1 1 1.42 1.42L4.54 9.88a3 3 0 0 0 0 4.24l8.17 8.17a1 1 0 0 1 0 1.42A1 1 0 0 1 12 24" />
@@ -110,7 +110,7 @@ $statusStyle = [
                 </div>
                 <div id="updateStatus" class="sidebar-action mb-8 me-5 ms-6 w-72 px-4 transition-all" x-show="sideAction"
                     style="display: none"
-                    @click.away="sideAction = false; $($refs.sideContainer).removeClass('bg-gray-50 dark:bg-gray-800 shadow-md')"
+                    @click.away="sideAction = false; $($refs.sideContainer).removeClass('bg-gray-50 dark:bg-darkBg shadow-md')"
                     x-transition:enter="duration-300 ease-out" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="transform transition duration-200 ease-in"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 ">
@@ -141,7 +141,7 @@ $statusStyle = [
                                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                                         x-transition:leave="transition ease-in duration-200 transform"
                                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40"
+                                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40"
                                         aria-hidden="true"></div>
 
                                     <div x-cloak x-show="changePopUp"
@@ -151,7 +151,7 @@ $statusStyle = [
                                         x-transition:leave="transition ease-in duration-200 transform"
                                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                                        class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+                                        class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
                                         <div class="flex items-center justify-between space-x-4">
                                             <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Rubah Status
                                                 Pengaduan</h1>

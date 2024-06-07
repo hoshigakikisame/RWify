@@ -17,7 +17,7 @@
         <div class="pengumuman mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             @foreach ($pengumumanInstances as $pengumuman)
             <div class="w-full">
-                <div class="card w-full overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 hover:shadow:900" id="pengumuman-{{ $pengumuman->getIdPengumuman() }}">
+                <div class="card w-full overflow-hidden rounded-lg shadow-lg dark:bg-darkBg hover:shadow:900" id="pengumuman-{{ $pengumuman->getIdPengumuman() }}">
                     <div class="h-64 w-full">
                         <img src="{{ $pengumuman->getImageUrl() }}" alt="Gambar Pengumuman" class="h-full w-full object-cover"/>
                     </div>

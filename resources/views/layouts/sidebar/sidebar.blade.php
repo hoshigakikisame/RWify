@@ -13,7 +13,7 @@
     @stack('style')
 </head>
 
-<body class="relative bg-white dark:bg-gray-900">
+<body class="relative bg-white dark:bg-darkBg">
     <x-loading.loading />
     <main class="flex">
         @php

@@ -1,5 +1,5 @@
 @php
-    $style = 'border-1 rounded border-gray-500/50 text-gray-700 dark:bg-gray-900 dark:text-gray-200';
+    $style = 'border-1 rounded border-gray-500/50 text-gray-700 dark:bg-darkBg dark:text-gray-200';
 @endphp
 
 <div {{ $attributes->merge(['class' => 'form-group']) }}>

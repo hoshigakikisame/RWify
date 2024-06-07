@@ -30,7 +30,7 @@
             </div>
             <div class="absolute inset-0 flex justify-center">
                 <div
-                    class="flex h-[385px] w-4/6 translate-y-80 transform overflow-hidden rounded-lg bg-white shadow-lg dark:bg-gray-800"
+                    class="flex h-[385px] w-4/6 translate-y-80 transform overflow-hidden rounded-lg bg-white shadow-lg dark:bg-darkBg"
                 >
                     <div class="ml-8 w-2/3 p-8">
                         <h1 class="mb-8 mt-3 font-Poppins text-4xl font-bold text-gray-800 dark:text-gray-200">

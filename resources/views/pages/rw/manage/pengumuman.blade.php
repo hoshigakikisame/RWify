@@ -12,10 +12,10 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengumuman</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400">
+                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
                         {{ $count }} Pengumuman
                     </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-gray-800">
+                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
                         <p class="text-xs text-green-600 dark:text-green-400">{{ $published }} published</p>
                         <span class="relative flex h-3 w-3 items-center justify-center">
                             <span
@@ -57,7 +57,7 @@
                             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                             x-transition:leave="transform transition duration-200 ease-in"
                             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                            class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-gray-800/40" aria-hidden="true">
+                            class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40" aria-hidden="true">
                         </div>
 
                         <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
@@ -66,7 +66,7 @@
                             x-transition:leave="transform transition duration-200 ease-in"
                             x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
                             x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                            class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-gray-800 2xl:max-w-2xl">
+                            class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
                             <div class="flex items-center justify-between space-x-4">
                                 <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Tambah Pengumuman</h1>
 
@@ -113,7 +113,7 @@
 
         <div class="mt-6 md:flex md:items-center md:justify-between">
             <div
-                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse">
+                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
                 <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
                     x-effect="
                         let params = new URLSearchParams(window.location.search)
@@ -147,7 +147,7 @@
 
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
         </div>
 
@@ -164,14 +164,14 @@
                                         <div class="status">
                                             @if ($pengumuman->getStatus() == App\Enums\Pengumuman\PengumumanStatusEnum::DRAFT->value)
                                                 <span
-                                                    class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 dark:bg-gray-800">
+                                                    class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 dark:bg-darkBg">
                                                     <span
                                                         class="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
                                                     <p class="text-[9px] text-blue-600 dark:text-blue-400">draft</p>
                                                 </span>
                                             @else
                                                 <span
-                                                    class="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 dark:bg-gray-800">
+                                                    class="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 dark:bg-darkBg">
                                                     <span class="relative flex h-2 w-2 items-center justify-center">
                                                         <span
                                                             class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 duration-700"></span>
@@ -192,7 +192,7 @@
                                                         d="M12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0m0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10m1.5-15.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 6.5m0 11a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001m0-5.5a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 13.5 12" />
                                                 </svg>
                                             </button>
-                                            <div class="absolute right-8 top-0 divide-y overflow-hidden rounded-lg border bg-white dark:bg-gray-900 dark:divide-gray-700 dark:border-gray-700"
+                                            <div class="absolute right-8 top-0 divide-y overflow-hidden rounded-lg border bg-white dark:bg-darkBg dark:divide-gray-700 dark:border-gray-700"
                                                 style="display: none" x-show="actionModalOpen"
                                                 @click.away="actionModalOpen = false" x-data="{
                                                     modalEditOpen: false,
@@ -292,7 +292,7 @@
                                         <p class="text-sm dark:text-gray-400">{{ $pengumuman->getKonten() }}</p>
                                     </div>
                                     <div
-                                        class="card-footer flex justify-between border-t bg-gray-50 px-8 py-2 dark:border-gray-800 dark:bg-gray-800">
+                                        class="card-footer flex justify-between border-t bg-gray-50 px-8 py-2 dark:border-gray-800 dark:bg-darkBg">
                                         <p class="text-xs text-gray-300 dark:text-gray-600">
                                             Created at
                                             {{ date('d/m/y', strtotime($pengumuman->getDibuatPada())) }}
@@ -346,7 +346,7 @@
                         x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
 
                     <div x-cloak x-show="modalShareOpen" x-transition:enter="transition ease-out duration-300 transform"
                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -354,7 +354,7 @@
                         x-transition:leave="transition ease-in duration-200 transform"
                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+                        class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
                             <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">${modalHeader}</h1>
 
@@ -401,7 +401,7 @@
                         x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
 
                     <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform"
                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -409,7 +409,7 @@
                         x-transition:leave="transition ease-in duration-200 transform"
                         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+                        class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
                         <div class="flex items-center justify-between space-x-4">
                             <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete Pengumuman</h1>
 
@@ -456,7 +456,7 @@
                     x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                    class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-gray-800/40" aria-hidden="true"></div>
+                    class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
 
                 <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -464,7 +464,7 @@
                     x-transition:leave="transition ease-in duration-200 transform"
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-gray-800 rounded-lg shadow-xl 2xl:max-w-2xl">
+                    class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
                     <div class="flex items-center justify-between space-x-4">
                         <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Edit Pengaduan</h1>
 

@@ -49,7 +49,7 @@
                     @endphp
                     @foreach ($list as $item)
                         <div
-                            class="card bg-white/80 text-gray-600 dark:text-gray-100 ring  dark:border-gray-400 border dark:bg-gray-800/30 px-5 py-4 rounded-lg {{ $item['wrapClass'] }}">
+                            class="card bg-white/80 text-gray-600 dark:text-gray-100 ring  dark:border-gray-400 border dark:bg-darkBg/30 px-5 py-4 rounded-lg {{ $item['wrapClass'] }}">
                             <div class="card-header mb-0.5 flex justify-between gap-3 ">
                                 <h1 class="text-xs font-medium tracking-wide">{{ $item['name'] }}</h1>
                                 <div class="icon {{ $item['iconColor'] }}">
@@ -77,7 +77,7 @@
                 </div>
                 <div class="statistics mb-3">
                     <div
-                        class="statistics-content px-6 py-5 ring ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-gray-800/30">
+                        class="statistics-content px-6 py-5 ring ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-darkBg/30">
                         <div class="statistic-header flex justify-between mb-1">
                             <div class="text">
                                 <h1 class="text-xl">
@@ -110,7 +110,7 @@
                 </div>
                 <div class="graph mt-4 ">
                     <div
-                        class="w-full ring py-5 px-6 ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
+                        class="w-full ring py-5 px-6 ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-darkBg/30 rounded-lg border dark:border-gray-400 overflow-hidden">
                         <div class="graph-header flex justify-between mb-1">
                             <div class="text-wrap">
                                 <h1 class="text-xl">Grafik Iuran</h1>
@@ -140,7 +140,7 @@
                 </div>
                 <div class="calendar w-full" x-data="{ eventShow: false }">
                     <div
-                        class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-gray-800/30 rounded-lg border dark:border-gray-400 overflow-hidden">
+                        class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-darkBg/30 rounded-lg border dark:border-gray-400 overflow-hidden">
                         <div class="rounded-t py-5 px-6">
                             <div class="flex items-center justify-between">
                                 <div class="month-year flex gap-2">
@@ -230,7 +230,7 @@
                     </div>
                 </div>
                 <div
-                    class="leaderboard mt-4 ring py-5 ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-gray-800/30">
+                    class="leaderboard mt-4 ring py-5 ring-gray-200/30 dark:ring-gray-700/30 rounded-lg border border-gray-300 dark:bg-darkBg/30">
                     <div class="leaderboard-header flex justify-between mb-3 px-6">
                         <div class="text">
                             <h1 class="text-xl">
@@ -248,7 +248,7 @@
                     </div>
                     <div class="">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-800 ">
+                            <thead class="bg-gray-50 dark:bg-darkBg ">
                                 <tr>
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
@@ -271,7 +271,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
+                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-darkBg">
                                 @foreach ($leaderboardUsers as $user)
                                     @php
                                         $isUserOwnedPosition = $user->getNik() == request()->user()->getNik();

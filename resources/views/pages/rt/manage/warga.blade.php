@@ -9,7 +9,7 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Warga</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-gray-800 dark:text-blue-400">
+                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
                         {{ $count }} Warga
                     </span>
                 </div>
@@ -23,7 +23,7 @@
 
         <div class="mt-6 md:flex md:items-center md:justify-between">
             <div
-                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900 rtl:flex-row-reverse">
+                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
                 <button id="filter-all" onclick="window.utils.Request.filterRequest({'role': ''})"
                     x-effect="
                         let params = new URLSearchParams(window.location.search)
@@ -61,7 +61,7 @@
 
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search,event)" type="text"
                     placeholder="Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
         </div>
 
@@ -70,7 +70,7 @@
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-800">
+                            <thead class="bg-gray-50 dark:bg-darkBg">
                                 <tr>
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
@@ -105,7 +105,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
+                            <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-darkBg">
                                 @foreach ($users as $user)
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium">
@@ -117,7 +117,7 @@
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div
-                                                class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
+                                                class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
                                                 {{ $user->getNKK() }}
                                             </div>
                                         </td>

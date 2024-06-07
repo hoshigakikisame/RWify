@@ -23,7 +23,7 @@
         </button>
     </div>
     <div id="notif-drop-container"
-        class="absolute right-10 bg-gray-50 ring ring-blue-200/40 dark:ring-blue-400/40 dark:bg-gray-900 rounded-xl min-w-96 z-30 shadow-lg border border-blue-400 "
+        class="absolute right-10 bg-gray-50 ring ring-blue-200/40 dark:ring-blue-400/40 dark:bg-darkBg rounded-xl min-w-96 z-30 shadow-lg border border-blue-400 "
         x-cloak x-show="notifDrop" @click.away="notifDrop = false"
         x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -58,7 +58,7 @@
                             <div class="action flex gap-2">
                                 <button id="close-{{ $notification->id_notification }}" type="button"
                                     onclick="markAsRead({{ $notification->id_notification }})"
-                                    class="bg-gray-100 dark:hover:bg-gray-700 hover:bg-gray-200 dark:bg-gray-800 p-2 fill-red-500 rounded-full">
+                                    class="bg-gray-100 dark:hover:bg-gray-700 hover:bg-gray-200 dark:bg-darkBg p-2 fill-red-500 rounded-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
                                         <path
                                             d="M18 6a1 1 0 0 0-1.414 0L12 10.586 7.414 6A1 1 0 0 0 6 6a1 1 0 0 0 0 1.414L10.586 12 6 16.586A1 1 0 0 0 6 18a1 1 0 0 0 1.414 0L12 13.414 16.586 18A1 1 0 0 0 18 18a1 1 0 0 0 0-1.414L13.414 12 18 7.414A1 1 0 0 0 18 6" />

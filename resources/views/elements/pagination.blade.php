@@ -15,7 +15,7 @@
         <div class="flex items-center">
             <label for="perPage" class="mr-3 text-sm font-medium text-gray-800 dark:text-gray-300">Per Page</label>
             <select name="pageCount" id="pageCount"
-                class="rounded-lg border border-gray-300 bg-white text-sm text-gray-800 focus:border-blue-500 focus:ring-blue-400 dark:bg-gray-900 dark:text-gray-200 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                class="rounded-lg border border-gray-300 bg-white text-sm text-gray-800 focus:border-blue-500 focus:ring-blue-400 dark:bg-darkBg dark:text-gray-200 dark:focus:border-blue-400 dark:focus:ring-blue-400"
                 onchange="paginate({{ $paginator->currentPage() }})">
                 <option value="10">10</option>
                 <option value="20">20</option>
@@ -29,7 +29,7 @@
             @if ($paginator->currentPage() > 1)
                 <li class="page-item">
                     <button
-                        class="flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
+                        class="flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
                         onclick="paginate(1)">
                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
                             class="h-5 w-5 rtl:-scale-x-100" stroke-width="1.5" stroke="currentColor"
@@ -43,7 +43,7 @@
 
             <li class="page-item">
                 <button id="prev_button"
-                    class="{{ $paginator->onFirstPage() ? 'cursor-not-allowed' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
+                    class="{{ $paginator->onFirstPage() ? 'cursor-not-allowed' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
                     onclick="paginate({{ $nextPage }})" {{ $paginator->onFirstPage() ? 'disabled=1' : '' }}>
                     {{--
                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
@@ -59,7 +59,7 @@
             @for ($i = $firstPage; $i <= $lastPage; $i++)
                 <li class="page-item">
                     <button {{ $i == $paginator->currentPage() ? 'disabled=1' : '' }}
-                        class="{{ $i == $paginator->currentPage() ? 'cursor-not-allowed !bg-gray-200 dark:!bg-gray-800' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
+                        class="{{ $i == $paginator->currentPage() ? 'cursor-not-allowed !bg-gray-200 dark:!bg-gray-800' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
                         onclick="paginate({{ $i }})">
                         {{ $i }}
                     </button>
@@ -68,7 +68,7 @@
 
             <li class="page-item">
                 <button id="next_button"
-                    class="{{ $paginator->onLastPage() ? 'cursor-not-allowed' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
+                    class="{{ $paginator->onLastPage() ? 'cursor-not-allowed' : '' }} flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
                     onclick="paginate({{ $nextPage }})" {{ $paginator->onLastPage() ? 'disabled=1' : '' }}>
                     {{--
                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
@@ -83,7 +83,7 @@
             @if ($nextPage < $paginator->lastPage())
                 <li class="page-item">
                     <button
-                        class="flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
+                        class="flex w-1/2 items-center justify-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"
                         onclick="paginate({{ $paginator->lastPage() }})">
                         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1"
                             class="h-5 w-5 rtl:-scale-x-100" stroke-width="1.5" stroke="currentColor"

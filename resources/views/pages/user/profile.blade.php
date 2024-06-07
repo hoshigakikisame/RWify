@@ -16,7 +16,7 @@
             <div class="user relative flex h-32 gap-12" x-data="{}">
                 <div id="userImage" class="user-avatar relative -top-20 left-14">
                     <div
-                        class="h-44 w-44 rounded-full border-4 border-white bg-white bg-cover bg-center dark:border-gray-900 dark:bg-gray-900"
+                        class="h-44 w-44 rounded-full border-4 border-white bg-white bg-cover bg-center dark:border-gray-900 dark:bg-darkBg"
                         style="background-image: url('{{ $userImage }}')"
                     ></div>
 
@@ -111,7 +111,7 @@
                                         <label for="current_password" class="text-sm text-gray-500 dark:text-gray-400">Current Password</label>
                                         <div class="mt-1">
                                             <input id="current_password" type="password" class="w-full rounded border-1 border-gray-500/50
-                                            text-gray-700 dark:text-gray-200 dark:bg-gray-900 @error('current_password') is-invalid @enderror" name="current_password" required>
+                                            text-gray-700 dark:text-gray-200 dark:bg-darkBg @error('current_password') is-invalid @enderror" name="current_password" required>
                                             @error('current_password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -124,7 +124,7 @@
                                         <label for="new_password" class="text-sm text-gray-500 dark:text-gray-400">New Password</label>
 
                                         <div class="mt-1">
-                                            <input id="new_password" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-gray-900 @error('new_password') is-invalid @enderror" name="new_password" required>
+                                            <input id="new_password" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-darkBg @error('new_password') is-invalid @enderror" name="new_password" required>
 
                                             @error('new_password')
                                             <span class="invalid-feedback" role="alert">
@@ -137,7 +137,7 @@
                                     <div class="form-group mb-3">
                                         <label for="new_password_confirmation" class="text-sm text-gray-500 dark:text-gray-400">New Password Confirmation</label>
                                         <div class="mt-1">
-                                            <input id="new_password_confirmation" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-gray-900 @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required>
+                                            <input id="new_password_confirmation" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-darkBg @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required>
 
                                             @error('new_password_confirmation')
                                             <span class="invalid-feedback" role="alert">
@@ -191,7 +191,7 @@
                                             </span>
                                         </label>
                                         <div class="w-full flex text-nowrap gap-5 items-center mt-1">
-                                            <input id="email" type="email" class="rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-gray-900" name="email" value="${ user.email }" required>
+                                            <input id="email" type="email" class="rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-darkBg" name="email" value="${ user.email }" required>
                                             @if ($user->getEmailVerifiedAt() == null)
                                             <a href="{{ route('user.verification.send') }}" class="text-xs text-green-800 dark:text-green-500 px-3 py-1 bg-green-500/20 bg-green-600/20 rounded-full">Send Email
                                                 Verification</a>

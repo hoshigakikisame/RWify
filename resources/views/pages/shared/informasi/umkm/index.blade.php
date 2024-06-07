@@ -18,7 +18,7 @@
             <div class="umkm mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 @foreach ($umkmInstances as $umkm)
                     <div class="w-full ">
-                        <div class="card w-full overflow-hidden rounded-lg shadow-lg dark:bg-gray-800 h-full"
+                        <div class="card w-full overflow-hidden rounded-lg shadow-lg dark:bg-darkBg h-full"
                             id="umkm-{{ $umkm->getIdUmkm() }}">
                             <div class="h-64 w-full">
                                 <img src="{{ $umkm->getImageUrl() }}" alt="Gambar UMKM"

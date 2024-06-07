@@ -13,7 +13,7 @@
     @stack('style')
 </head>
 
-<body class="relative overflow-hidden dark:bg-gray-800">
+<body class="relative overflow-hidden dark:bg-darkBg">
     <div class="">
         @yield('content')
         @stack('modals')

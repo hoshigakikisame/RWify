@@ -81,7 +81,7 @@
                                 </svg>
                             </button>
                             <div
-                                class="left-1 flex flex-col space-y-1 rounded-md p-1 md:absolute md:mt-2 md:bg-white md:shadow-lg md:ring-1 md:ring-black md:ring-opacity-5 md:dark:bg-gray-900"
+                                class="left-1 flex flex-col space-y-1 rounded-md p-1 md:absolute md:mt-2 md:bg-white md:shadow-lg md:ring-1 md:ring-black md:ring-opacity-5 md:dark:bg-darkBg"
                                 style="display: none"
                                 x-show="dropdownIsOpen"
                                 @click.away="dropdownIsOpen = false"
@@ -127,7 +127,7 @@
                                 </svg>
                             </button>
                             <div
-                                class="left-1 flex flex-col space-y-1 rounded-md p-1 md:absolute md:mt-2 md:bg-white md:shadow-lg md:ring-1 md:ring-black md:ring-opacity-5 md:dark:bg-gray-900"
+                                class="left-1 flex flex-col space-y-1 rounded-md p-1 md:absolute md:mt-2 md:bg-white md:shadow-lg md:ring-1 md:ring-black md:ring-opacity-5 md:dark:bg-darkBg"
                                 style="display: none"
                                 x-show="dropdownIsOpen"
                                 @click.away="dropdownIsOpen = false"
@@ -179,7 +179,7 @@
                     <div class="order-1 flex justify-center md:order-2" id="darkModeButton">
                         <label
                             for="themeSwitcherOne"
-                            class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-gray-900 dark:text-gray-200"
+                            class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-darkBg dark:text-gray-200"
                         >
                             <span
                                 id="sun"
