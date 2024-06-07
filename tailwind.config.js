@@ -21,6 +21,7 @@ export default {
                 Inter: ["Inter", ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                darkBg: "#101820",
                 darkGreen: "#0C3B2E",
                 darkBlue: "#222831",
                 darkLightGrey: "#393E46",

@@ -16,7 +16,7 @@
     ];
 @endphp
 
-<div class="sticky top-0 z-20 w-full bg-gray-50 dark:bg-gray-800">
+<div class="sticky top-0 z-20 w-full bg-gray-50 dark:bg-darkBg dark:shadow-lg">
     <div
         class="mx-auto flex max-w-screen-xl flex-col px-4 md:flex-row md:items-center md:justify-between xl:px-6 2xl:px-8"
         x-data="{ sideNavOpen: false }"
@@ -24,15 +24,15 @@
         <div class="nav-container w-full py-5">
             <nav class="flex items-center justify-between md:gap-10">
                 <div class="navbar-brand flex gap-1 dark:text-gray-200">
-                    <div class="h-7 w-7 rounded-lg bg-indigo-200">
-                        <img src="" alt="" />
+                    <div class="h-7 w-7 rounded-lg">
+                       {!! file_get_contents(Vite::asset('resources/assets/elements/rwify-logo.svg')) !!}
                     </div>
-                    <h1 class="text-lg md:text-2xl">RWify</h1>
+                    <h1 class="text-lg md:text-2xl pl-2 font-semibold">RWify</h1>
                 </div>
 
                 <div
                     :class="{'right-0': sideNavOpen, '-right-full': !sideNavOpen}"
-                    class="navbar-body absolute top-[78px] z-30 h-screen w-3/4 bg-gray-50 pb-4 transition-all dark:bg-gray-800 md:static md:flex md:h-auto md:w-auto md:flex-row md:justify-end md:bg-transparent md:pb-0 md:dark:bg-transparent"
+                    class="navbar-body absolute top-[78px] z-30 h-screen w-3/4 bg-gray-50 pb-4 transition-all dark:bg-darkBg md:static md:flex md:h-auto md:w-auto md:flex-row md:justify-end md:bg-transparent md:pb-0 md:dark:bg-transparent"
                 >
                     <ul
                         class="link-container md:p- flex flex-col justify-end fill-gray-900 px-4 pt-4 transition-all dark:fill-gray-100 dark:text-gray-200 md:flex-row md:justify-end md:px-0 md:pt-0"
@@ -49,7 +49,7 @@
                                         d="m23.121 9.069-7.585-7.586a5.01 5.01 0 0 0-7.072 0L.879 9.069A2.98 2.98 0 0 0 0 11.19v9.817a3 3 0 0 0 3 3h18a3 3 0 0 0 3-3V11.19a2.98 2.98 0 0 0-.879-2.121M15 22.007H9v-3.934a3 3 0 0 1 6 0Zm7-1a1 1 0 0 1-1 1h-4v-3.934a5 5 0 0 0-10 0v3.934H3a1 1 0 0 1-1-1V11.19a1 1 0 0 1 .293-.707L9.878 2.9a3.01 3.01 0 0 1 4.244 0l7.585 7.586a1 1 0 0 1 .293.704Z"
                                     />
                                 </svg>
-                                <h1 class="">Beranda</h1>
+                                <h1 class="mr-2">Beranda</h1>
                             </a>
                         </li>
 
@@ -183,7 +183,7 @@
                         >
                             <span
                                 id="sun"
-                                class="light text-primary bg-gray flex items-center space-x-[2px] rounded-full bg-gray-300 p-2 py-2 text-sm font-medium dark:bg-gray-800 dark:fill-slate-200"
+                                class="light text-primary bg-gray flex items-center space-x-[2px] rounded-full bg-gray-300 p-2 py-2 text-sm font-medium dark:bg-darkBg dark:fill-slate-200"
                             >
                                 <svg viewBox="0 0 16 16" class="w-3 fill-inherit">
                                     <g clip-path="url(#a)">
