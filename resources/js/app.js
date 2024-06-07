@@ -29,6 +29,7 @@ window.Loading = Loading;
 window.utils = {};
 window.utils.Request = Request;
 
+
 //start alpine
 Alpine.start();
 
@@ -36,4 +37,3 @@ Alpine.start();
 register();
 
 import.meta.glob(['../assets/**/*', '../assets/elements/*']);
-
