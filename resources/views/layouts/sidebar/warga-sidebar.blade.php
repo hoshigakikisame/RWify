@@ -1,19 +1,9 @@
 @extends('layouts.sidebar.sidebar')
 @section('menu')
-    <x-sidebar.sidebar-item href="{{ route('warga.dashboard') }}" title="Dashboard" :active="request()->routeIs(['warga.dashboard'])">
-        <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve" class="w-6 fill-inherit lg:w-5">
-            <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
-            <path
-                d="M362.667 383.841v128H448c35.346 0 64-28.654 64-64V253.26a42.67 42.67 0 0 0-12.011-29.696l-181.29-195.99c-31.988-34.61-85.976-36.735-120.586-4.747a85 85 0 0 0-4.747 4.747L12.395 223.5A42.67 42.67 0 0 0 0 253.58v194.261c0 35.346 28.654 64 64 64h85.333v-128c.399-58.172 47.366-105.676 104.073-107.044 58.604-1.414 108.814 46.899 109.261 107.044" />
-            <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
-        </svg>
-    </x-sidebar.sidebar-item>
     @php
         $activeStyle = [
-            'default' =>
-                'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg px-3 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 lg:justify-normal',
-            'active' =>
-                'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg rounded-lg bg-gray-100 fill-blue-600 px-3 py-2 text-blue-600 dark:bg-darkBg dark:fill-blue-400 dark:text-blue-300 dark:hover:bg-gray-800 lg:justify-normal',
+            'default' => 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg px-3 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 lg:justify-normal',
+            'active' => 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg rounded-lg bg-gray-100 fill-ColorWhiteSidebar px-3 py-2 text-ColorWhiteSidebar dark:bg-gray-800 dark:fill-ColorButton dark:text-ColorButton dark:hover:bg-gray-800 lg:justify-normal',
         ];
 
         $activeDropIuran = request()->routeIs([
@@ -32,9 +22,21 @@
         ]);
     @endphp
 
+    <x-sidebar.sidebar-item href="{{ route('warga.dashboard') }}" title="Dashboard" :active="request()->routeIs(['warga.dashboard'])">
+        <svg xmlns=" http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve" class="w-6 fill-inherit lg:w-5">
+            <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
+            <path
+                d="M362.667 383.841v128H448c35.346 0 64-28.654 64-64V253.26a42.67 42.67 0 0 0-12.011-29.696l-181.29-195.99c-31.988-34.61-85.976-36.735-120.586-4.747a85 85 0 0 0-4.747 4.747L12.395 223.5A42.67 42.67 0 0 0 0 253.58v194.261c0 35.346 28.654 64 64 64h85.333v-128c.399-58.172 47.366-105.676 104.073-107.044 58.604-1.414 108.814 46.899 109.261 107.044" />
+            <path d="M256 319.841c-35.346 0-64 28.654-64 64v128h128v-128c0-35.346-28.654-64-64-64" />
+        </svg>
+    </x-sidebar.sidebar-item>
+    
     <div class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropIuran ? $activeStyle['active'] : $activeStyle['default'] }}"
             @click="sideDropdown = !sideDropdown"
+            x-ref="dropdown"
+            @mouseover="$($refs.dropdown).find('svg').addClass('!w-7')"
+            @mouseleave="$($refs.dropdown).find('svg').removeClass('!w-7')"
             x-effect="
                 document.location.pathname.split('/').includes('pembayaranIuran')
                     ? (sideDropdown = true)
@@ -68,7 +70,7 @@
                 :active="request()->routeIs(['warga.layanan.pembayaranIuran.iuran'])">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 32 32" style="enable-background: new 0 0 512 512" xml:space="preserve"
-                    class="w-7 fill-inherit lg:w-6">
+                    class="w-6 fill-inherit lg:w-5">
                     <g>
                         <path
                             d="M2 8.7h28v4.08H2zM30 7.2c0-1.94-1.57-3.5-3.5-3.5h-21C3.57 3.7 2 5.26 2 7.2zM2 14.28v6.38c0 1.94 1.57 3.5 3.5 3.5h13.35a6.309 6.309 0 0 1 1.816-5.193c1.198-1.198 2.792-1.858 4.487-1.858s3.289.66 4.487 1.859c.127.127.244.261.358.397V14.28zm4.308 1.287h2.757a.9.9 0 0 1 0 1.8H6.308a.9.9 0 0 1 0-1.8zm5.514 5.188H6.308a.9.9 0 0 1 0-1.8h5.514a.9.9 0 0 1 0 1.8z"
@@ -98,13 +100,13 @@
                 :active="request()->routeIs(['warga.layanan.pembayaranIuran.newIuranPage'])">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 24 24" style="enable-background: new 0 0 512 512" xml:space="preserve"
-                    class="w-7 fill-inherit lg:w-6">
+                    class="w-6 fill-inherit lg:w-5">
                     <path
                         d="M6.25 2A2.25 2.25 0 0 0 4 4.25v15.5A2.25 2.25 0 0 0 6.25 22h7.5A2.25 2.25 0 0 0 16 19.771v-1.52a.75.75 0 0 0-.75-.75c-.453 0-.739-.123-.936-.282-.208-.167-.38-.425-.511-.789-.273-.755-.302-1.75-.302-2.68a.75.75 0 0 0-.202-.512l-.165-.177a3 3 0 0 0-.17-.173c-.074-.07-.3-.285-1.183-1.168-.469-.469-.728-.865-.813-1.168a.6.6 0 0 1-.016-.325.7.7 0 0 1 .205-.323.7.7 0 0 1 .322-.204.6.6 0 0 1 .324.016c.302.085.698.346 1.167.815.54.54 1.053 1.047 1.512 1.5.76.752 1.373 1.36 1.72 1.73a.75.75 0 0 0 1.097-1.023A55 55 0 0 0 16 11.424V8.06l2.842 2.842c.421.422.659.994.659 1.59v8.758a.75.75 0 0 0 1.5 0v-8.757a3.75 3.75 0 0 0-1.099-2.652L16 5.939v-1.69A2.25 2.25 0 0 0 13.75 2zm7.124 16.388a2.7 2.7 0 0 0 1.126.534V19h-.75a.75.75 0 0 0-.75.75v.75h-1.5v-.75a2.25 2.25 0 0 1 1.276-2.028c.16.244.356.472.598.666m-1.372-4.342c.002.253.007.526.022.81a3.5 3.5 0 1 1-1.55-6.324q-.2.133-.378.312c-.292.292-.5.63-.597 1.01s-.074.754.025 1.104c.189.673.665 1.291 1.197 1.823A67 67 0 0 0 11.957 14l.004.003.037.039zM7 3.5h1.5v.75A2.25 2.25 0 0 1 6.25 6.5H5.5V5h.75A.75.75 0 0 0 7 4.25zm4.5 0H13v.75c0 .414.336.75.75.75h.75v1.5h-.75a2.25 2.25 0 0 1-2.25-2.25zm-3 17H7v-.75a.75.75 0 0 0-.75-.75H5.5v-1.5h.75a2.25 2.25 0 0 1 2.25 2.25z" />
                 </svg>
             </x-sidebar.sidebar-item>
             <x-sidebar.sidebar-item href="{{ route('informasi.iuranLeaderboard') }}" title="Leaderboard" :active="request()->routeIs(['informasi.iuranLeaderboard'])">
-                <svg viewBox="0 0 24 24" class="w-7 fill-inherit lg:w-6" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 24 24" class="w-6 fill-inherit lg:w-5" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" class="fill-inherit"
                         d="M13.436 5.783a3 3 0 0 0-2.872 0L5.769 8.397a3 3 0 0 0-1.563 2.634v4.938a3 3 0 0 0 1.563 2.634l4.795 2.614a3 3 0 0 0 2.872 0l4.794-2.614a3 3 0 0 0 1.564-2.634V11.03a3 3 0 0 0-1.564-2.634zM12 10.5c-.284 0-.474.34-.854 1.023l-.098.176c-.108.194-.162.29-.246.354-.085.064-.19.088-.4.135l-.19.044c-.738.167-1.107.25-1.195.532s.164.577.667 1.165l.13.152c.143.167.215.25.247.354s.021.215 0 .438l-.02.203c-.076.785-.114 1.178.115 1.352.23.174.576.015 1.267-.303l.178-.082c.197-.09.295-.135.399-.135s.202.045.399.135l.178.082c.691.319 1.037.477 1.267.303s.191-.567.115-1.352l-.02-.203c-.021-.223-.032-.334 0-.438s.104-.187.247-.354l.13-.152c.503-.588.755-.882.667-1.165-.088-.282-.457-.365-1.195-.532l-.19-.044c-.21-.047-.315-.07-.4-.135-.084-.064-.138-.16-.246-.354l-.098-.176c-.38-.682-.57-1.023-.854-1.023"
                         clip-rule="evenodd" />
@@ -118,6 +120,9 @@
     <div class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropPengaduan ? $activeStyle['active'] : $activeStyle['default'] }}"
             @click="sideDropdown = !sideDropdown"
+            x-ref="dropdown"
+            @mouseover="$($refs.dropdown).find('svg').addClass('!w-7')"
+            @mouseleave="$($refs.dropdown).find('svg').removeClass('!w-7')"
             x-effect="
                 document.location.pathname.split('/').includes('pengaduan')
                     ? (sideDropdown = true)
@@ -166,6 +171,9 @@
     <div class="relative" x-data="{ sideDropdown: false }">
         <button class="{{ $activeDropReservasi ? $activeStyle['active'] : $activeStyle['default'] }}"
             @click="sideDropdown = !sideDropdown"
+            x-ref="dropdown"
+            @mouseover="$($refs.dropdown).find('svg').addClass('!w-7')"
+            @mouseleave="$($refs.dropdown).find('svg').removeClass('!w-7')"
             x-effect="
                 document.location.pathname.split('/').includes('reservasi-jadwal-temu')
                     ? (sideDropdown = true)

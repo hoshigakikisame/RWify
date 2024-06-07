@@ -175,8 +175,8 @@
                             </swiper-slide>
                         @endforeach
                     @else
-                        <div class="flex justify-center items-center h-40 w-full rounded-lg border border-gray-300 mt-4 p-6 ml-6">
-                            <p class="text-gray-700 dark:text-white text-lg">Belum ada pengumuman yang dipublikasikan.</p>
+                        <div class="flex justify-center items-center h-40 w-full rounded-lg border border-gray-300 dark:border-gray-700 mt-4 p-6 ml-6">
+                            <p class="text-gray-700 dark:text-white text-lg font-Poppins">Belum ada pengumuman yang dipublikasikan.</p>
                         </div>
                     @endif
                     </swiper-container>
