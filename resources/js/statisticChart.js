@@ -48,7 +48,8 @@ export default function ageChartStatistic(lansia, dewasa, remaja, anak, balita) 
                 padding: {
                     left: 50
                 }
-            }
+            },
+            color: '#9CA3AF',
         },
         plugins: {
             beforeInit: [plugin]
