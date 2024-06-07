@@ -1,32 +1,42 @@
- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-7 h-7 dark:!fill-white " id="Layer_1" data-name="Layer 1" viewBox="0 0 1080 1080">
-                            <defs>
-                              <style>
-                                .cls-1 {
-                                  fill: url(#linear-gradient);
-                                }
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-7 h-7 dark:!fill-white "
+  id="Layer_1" data-name="Layer 1" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
 
-                                .dark\:cls-1:is(.dark *) {
-                                  fill: url(#linear-gradient-dark );
-                                }
-                          
-                                .cls-1, .cls-2 {
-                                  stroke-width: 0px;
-                                }
-                          
-                                .cls-2 {
-                                  fill: #0c3b2e;
-                                }
-                              </style>
-                              <linearGradient id="linear-gradient" x1="535.47" y1="-163.56" x2="544.41" y2="892.09" gradientUnits="userSpaceOnUse">
-                                <stop offset=".15" stop-color="#dd9d1d" stop-opacity=".3"/>
-                                <stop offset=".8" stop-color="#dd9d1d"/>
-                              </linearGradient>
-                              <linearGradient id="linear-gradient-dark" x1="535.47" y1="-163.56" x2="544.41" y2="892.09" gradientUnits="userSpaceOnUse">
-                                <stop offset=".15" stop-color="#fff" stop-opacity=".3"/>
-                                <stop offset=".8" stop-color="#fff"/>
-                              </linearGradient>
-                            </defs>
-                            <path class="cls-1 dark:cls-1" d="M1050.7,400.51l-492.9,283.05c-10.51,6.01-23.41,6.01-33.99,0L29.25,399.57c-16.3-9.35-21.96-30.22-12.54-46.52l74.28-129.42c9.35-16.3,30.22-21.96,46.52-12.54l294.64,169.13V29.71C432.15,13.33,445.41,0,461.86,0h157.97C636.21,0,649.54,13.33,649.54,29.71v350.44l292.97-168.12c16.3-9.42,37.17-3.77,46.52,12.54l74.28,129.42c9.35,16.3,3.77,37.17-12.61,46.52Z"/>
-                            <path class="cls-2 dark:!fill-inherit" d="M90.97,911.7l-74.29-129.39c-9.38-16.33-3.74-37.17,12.59-46.55l494.57-283.95c10.51-6.04,23.44-6.04,33.96,0l492.92,283c16.33,9.38,21.97,30.22,12.59,46.55l-74.29,129.39c-9.38,16.33-30.22,21.97-46.55,12.59l-384.68-220.86c-10.51-6.04-23.44-6.04-33.96,0l-386.33,221.8c-16.33,9.38-37.17,3.74-46.55-12.59Z"/>
-                            <rect class="cls-2 dark:!fill-inherit" x="432.13" y="869.59" width="217.39" height="210.41" rx="28.73" ry="28.73"/>
-                          </svg>
+      .dark\:cls-1:is(.dark *) {
+        fill: url(#linear-gradient-dark );
+      }
+
+      .cls-1,
+      .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .dark\:cls-2:is(.dark *) {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #0c3b2e;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="535.47" y1="-163.56" x2="544.41" y2="892.09"
+      gradientUnits="userSpaceOnUse">
+      <stop offset=".15" stop-color="#dd9d1d" stop-opacity=".3" />
+      <stop offset=".8" stop-color="#dd9d1d" />
+    </linearGradient>
+    <linearGradient id="linear-gradient-dark" x1="535.47" y1="-163.56" x2="544.41" y2="892.09"
+      gradientUnits="userSpaceOnUse">
+      <stop offset=".15" stop-color="#fff" stop-opacity=".3" />
+      <stop offset=".8" stop-color="#fff" />
+    </linearGradient>
+  </defs>
+  <path class="cls-1 dark:cls-1"
+    d="M1050.7,400.51l-492.9,283.05c-10.51,6.01-23.41,6.01-33.99,0L29.25,399.57c-16.3-9.35-21.96-30.22-12.54-46.52l74.28-129.42c9.35-16.3,30.22-21.96,46.52-12.54l294.64,169.13V29.71C432.15,13.33,445.41,0,461.86,0h157.97C636.21,0,649.54,13.33,649.54,29.71v350.44l292.97-168.12c16.3-9.42,37.17-3.77,46.52,12.54l74.28,129.42c9.35,16.3,3.77,37.17-12.61,46.52Z" />
+  <path class="cls-2 dark:cls-2"
+    d="M90.97,911.7l-74.29-129.39c-9.38-16.33-3.74-37.17,12.59-46.55l494.57-283.95c10.51-6.04,23.44-6.04,33.96,0l492.92,283c16.33,9.38,21.97,30.22,12.59,46.55l-74.29,129.39c-9.38,16.33-30.22,21.97-46.55,12.59l-384.68-220.86c-10.51-6.04-23.44-6.04-33.96,0l-386.33,221.8c-16.33,9.38-37.17,3.74-46.55-12.59Z" />
+  <rect class="cls-2 dark:cls-2" x="432.13" y="869.59" width="217.39" height="210.41" rx="28.73" ry="28.73" />
+</svg>
