@@ -17,11 +17,11 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Warga</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                        class="rounded-full dark:bg-gray-600/30 px-3 py-1 text-xs dark:text-gray-100 bg-gray-200/50 text-gray-400">
                         {{ $count }} Warga
                     </span>
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                     Data ini terakhir diupdate
                     {{ $users->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                     yang lalu
@@ -29,6 +29,17 @@
             </div>
 
             <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
+                <form id="exportCSVForm" method="get" action="{{ route('rw.manage.pendataan.warga.exportCSV') }}"
+                    class="flex items-center justify-center">
+                    @csrf
+                    <label for="exportCSV"
+                        class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4"/></svg>Export
+                    </label>
+                    <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
+                        onclick="document.querySelector('#exportCSVForm').submit()">
+                </form>
+
                 <form id="importCSVForm" action="{{ route('rw.manage.pendataan.warga.importCSV') }}" class="flex items-center justify-center" method="post" enctype="multipart/form-data">
                     @csrf
                     <label for="csv"
@@ -51,19 +62,8 @@
                     <input id="csv" name="csv" type="file" class="hidden" onchange="document.querySelector('#importCSVForm').submit()">
                 </form>
 
-                <form id="exportCSVForm" method="get" action="{{ route('rw.manage.pendataan.warga.exportCSV') }}"
-                    class="flex items-center justify-center">
-                    @csrf
-                    <label for="exportCSV"
-                        class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
-                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4"/></svg>Export
-                    </label>
-                    <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
-                        onclick="document.querySelector('#exportCSVForm').submit()">
-                </form>
-
                 <button id="addButton" @click="modalOpen = !modalOpen"
-                    class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
+                    class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover sm:w-auto"
                     onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pendataan.warga.new') }}', '#addModal', '#addModalForm')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="h-5 w-5">
@@ -116,13 +116,13 @@
                             <form class="mt-5" id="addModalForm">
                                 @csrf
                                 <x-form.input-form title="Email Warga" key="email" type="email"
-                                    placeholder="exemple@exemple.exemple" />
+                                    placeholder="Masukkan Email Warga" />
                                 <x-form.input-form title="Password Warga" key="password" type="password"
-                                    placeholder="Use strong password" />
+                                    placeholder="Gunakan Password yang Kuat" />
                                 <x-form.input-form title="NIK Warga" key="nik" type="number"
-                                    placeholder="1234567892322" />
+                                    placeholder="Masukkan Nomor Induk Kependudukan" />
                                 <x-form.input-form title="NKK Warga" key="nkk" type="number"
-                                    placeholder="1234567892322" />
+                                    placeholder="Masukkan Nomor Kartu Keluarga" />
                                 <div class="grid grid-cols-4 gap-4">
                                     <x-form.input-form title="Nama Depan Warga" key="nama_depan" type="text"
                                         placeholder="Nama Depan" class="col-span-2" />
@@ -140,25 +140,25 @@
                                     <h1 class="text-xs font-medium uppercase text-gray-400">Identification Status</h1>
                                 </div>
                                 <x-form.textarea-input-form title="Alamat Warga" key="alamat"
-                                    placeholder="Alamat tempat tinggal" />
+                                    placeholder="Masukkan Alamat Warga" />
                                 <x-form.select-input-form title="Jenis Kelamin" key="jenis_kelamin" :options="$genderOptions"
                                     placeholder="Pilih Jenis Kelamin Warga" />
                                 <x-form.input-form title="Pekerjaan Warga" key="pekerjaan" type="text"
-                                    placeholder="Pekerjaan saat ini" />
+                                    placeholder="Pekerjaan Saat Ini" />
                                 <x-form.select-input-form title="Agama" key="agama" :options="$agama"
                                     placeholder="Pilih Agama Warga" />
                                 <x-form.select-input-form title="Status Perkawinan Warga" key="status_perkawinan"
                                     :options="$statusPerkawinan" placeholder="Pilih Status Perkawinan Warga" />
                                 <x-form.select-input-form title="Golongan Darah Warga" key="golongan_darah"
                                     :options="$golonganDarah" placeholder="Pilih Golongan Darah Warga" />
-                                <x-form.select-input-form title="Role Warga" key="role" :options="$role"
-                                    placeholder="Pilih Role Warga" />
+                                <x-form.select-input-form title="Peran Warga" key="role" :options="$role"
+                                    placeholder="Pilih Peran" />
                                 <div class="mt-6 flex justify-between">
                                     <p class="text-xs text-gray-200 dark:text-gray-400">
                                         Note: Pastikan semua sudah terisi dengan benar
                                     </p>
                                     <button type="click"
-                                        class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                                        class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:focus:bg-green-700">
                                         Tambah Warga
                                     </button>
                                 </div>
@@ -177,8 +177,8 @@
                         let params = new URLSearchParams(window.location.search)
                         ;(params.has('filters[role]') && params.get('filters[role]') == '') ||
                         ! params.has('filters[role]')
-                            ? $('#filter-all').addClass('!text-blue-400')
-                            : $('#filter-all').removeClass('!text-blue-400')
+                            ? $('#filter-all').addClass('!text-ColorButton')
+                            : $('#filter-all').removeClass('!text-ColorButton')
                     "
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                     Semua Warga
@@ -191,7 +191,7 @@
 
                     <button id="filter-{{ $key }}"
                         onclick="window.utils.Request.filterRequest({'role': '{{ $value }}'})"
-                        x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[role]') && params.get('filters[role]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                        x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[role]') && params.get('filters[role]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-ColorButton') : $('#filter-{{ $key }}').removeClass('!text-ColorButton')"
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         {{ $value }}
                     </button>
@@ -219,7 +219,7 @@
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-darkBg">
-                                <tr>
+                                <tr class="dark:bg-gray-900">
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
@@ -268,7 +268,7 @@
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div
-                                                class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                                                class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                 {{ $user->getNKK() }}
                                             </div>
                                         </td>
@@ -280,7 +280,7 @@
                                             </div>
                                         </td>
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="-mx-1 text-xs text-blue-600">
+                                            <p class="-mx-1 text-xs text-green-600">
                                                 {{ $user->getTempatLahir() . ', ' . $user->getTanggalLahir() }}
                                             </p>
                                         </td>
@@ -390,8 +390,8 @@
                                  class="font-semibold text-rose-600 underline underline-offset-8">${nama}</span> </h1>
                          <div class="flex justify-end mt-6">
                              <button type="submit"
-                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                 Delete Warga
+                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-500 rounded-md dark:bg-red-600 dark:hover:bg-red-700 dark:focus:bg-red-700 hover:bg-red-600 focus:outline-none focus:bg-red-500 focus:ring focus:ring-red-300 focus:ring-opacity-50">
+                                 Hapus Warga
                              </button>
                          </div>
                      </form>
@@ -482,14 +482,14 @@
                              selected="${user.status_perkawinan}" />
                          <x-form.select-input-form title="Golongan Darah Warga" key="golongan_darah" :options="$golonganDarah"
                              placeholder="Pilih Golongan Darah Warga" selected="${user.golongan_darah}" />
-                         <x-form.select-input-form title="Role Warga" key="role" :options="$role" placeholder="Pilih Role Warga"
+                         <x-form.select-input-form title="Peran Warga" key="role" :options="$role" placeholder="Pilih Role Warga"
                              selected="${user.role}" />
                          <div class="flex justify-between mt-6">
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
                              </p>
                              <button type="submit"
-                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                 Save Warga
+                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-ColorButton rounded-md dark:focus:bg-green-700 hover:bg-ColorHover focus:outline-none focus:bg-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50">
+                                 Simpan Data
                              </button>
                          </div>
                      </form>

@@ -22,6 +22,9 @@ export default {
             },
             colors: {
                 darkBg: "#101820",
+                ColorButton: "#00B14F",
+                ColorHover: "#03883E",
+                ColorWhiteSidebar: "#00880D",
                 darkGreen: "#0C3B2E",
                 darkBlue: "#222831",
                 darkLightGrey: "#393E46",

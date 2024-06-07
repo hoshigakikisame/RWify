@@ -3,7 +3,7 @@
     @php
         $activeStyle = [
             'default' => 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg px-3 py-2 text-gray-800 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 lg:justify-normal',
-            'active' => 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg rounded-lg bg-gray-100 fill-blue-600 px-3 py-2 text-blue-600 dark:bg-darkBg dark:fill-blue-400 dark:text-blue-300 dark:hover:bg-gray-800 lg:justify-normal',
+            'active' => 'sidebar-item flex w-full items-center justify-center gap-3 text-nowrap rounded-lg rounded-lg bg-gray-100 fill-ColorWhiteSidebar px-3 py-2 text-ColorWhiteSidebar dark:bg-gray-800 dark:fill-ColorButton dark:text-ColorButton dark:hover:bg-gray-800 lg:justify-normal',
         ];
 
         $activeDropIuran = request()->routeIs(['rw.manage.iuran.leaderboard', 'rw.manage.iuran.index', 'rw.manage.iuran.verify']);

@@ -9,11 +9,11 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Kartu Keluarga</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                        class="rounded-full dark:bg-gray-600/30 px-3 py-1 text-xs dark:text-gray-100 bg-gray-200/50 text-gray-400">
                         {{ $count }} Kartu Keluarga
                     </span>
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                     Data ini terakhir diupdate
                     {{ $kartuKeluargaInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()?->diffForHumans(null, true) }}
                     yang lalu
@@ -22,6 +22,17 @@
 
 
             <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
+                <form id="exportCSVForm" method="get" action="{{ route('rw.manage.pendataan.kartuKeluarga.exportCSV') }}"
+                    class="flex items-center justify-center">
+                    @csrf
+                    <label for="exportCSV"
+                        class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4"/></svg>Export
+                    </label>
+                    <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
+                        onclick="document.querySelector('#exportCSVForm').submit()">
+                </form>
+                
                 <form id="importCSVForm" action="{{ route('rw.manage.pendataan.kartuKeluarga.importCSV') }}"
                     class="flex items-center justify-center" method="post" enctype="multipart/form-data">
                     @csrf
@@ -46,19 +57,8 @@
                         onchange="document.querySelector('#importCSVForm').submit()">
                 </form>
 
-                <form id="exportCSVForm" method="get" action="{{ route('rw.manage.pendataan.kartuKeluarga.exportCSV') }}"
-                    class="flex items-center justify-center">
-                    @csrf
-                    <label for="exportCSV"
-                        class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
-                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4"/></svg>Export
-                    </label>
-                    <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
-                        onclick="document.querySelector('#exportCSVForm').submit()">
-                </form>
-
                 <button id="addButton" @click="modalOpen = !modalOpen"
-                    class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
+                    class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover dark:bg-ColorButton dark:hover:bg-ColorHover sm:w-auto"
                     onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pendataan.kartuKeluarga.new') }}', '#addModal', '#addModalForm')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="h-5 w-5">
@@ -134,7 +134,7 @@
                                         Note: Pastikan semua sudah terisi dengan benar
                                     </p>
                                     <button type="click"
-                                        class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                                        class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-green-600 dark:hover:bg-ColorHover dark:focus:bg-green-700">
                                         Tambah Data Keluarga
                                     </button>
                                 </div>
@@ -158,8 +158,8 @@
                 </span>
 
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search,event)" type="text"
-                    placeholder="Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    placeholder="Cari"
+                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-greeb-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
         </div>
 
@@ -169,7 +169,7 @@
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-darkBg">
-                                <tr>
+                                <tr class="dark:bg-gray-900">
                                     <th scope="col"
                                         class="px-8 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
@@ -224,7 +224,7 @@
                                         <td class="px-6 py-4 text-sm font-medium">
                                             <div>
                                                 <h2
-                                                    class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg"">
+                                                    class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                     {{ $kk->getNkk() }}
                                                 </h2>
                                             </div>
@@ -243,26 +243,26 @@
 
                                         <td class="px-6 py-4 text-sm">
                                             <div>
-                                                <p class="mx-1 text-sm text-blue-600">Rp.
+                                                <p class="mx-1 text-sm text-gray-700 dark:text-gray-200">Rp.
                                                     {{ $kk->getTotalPenghasilanPerBulan() }}
                                                 </p>
                                             </div>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="mx-1 text-sm text-blue-600">Rp.
+                                            <p class="mx-1 text-sm text-gray-700 dark:text-gray-200">Rp.
                                                 {{ $kk->getTotalPajakPerTahun() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="mx-1 text-sm text-blue-600">Rp.
+                                            <p class="mx-1 text-sm text-gray-700 dark:text-gray-200">Rp.
                                                 {{ $kk->getTagihanListrikPerBulan() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="mx-1 text-sm text-blue-600">Rp.
+                                            <p class="mx-1 text-sm text-gray-700 dark:text-gray-200">Rp.
                                                 {{ $kk->getTagihanAirPerBulan() }}
                                             </p>
                                         </td>
@@ -366,7 +366,7 @@
                             <span class="font-semibold text-rose-600 underline underline-offset-8">${nkk}</span>
                          <div class="flex justify-end mt-6">
                              <button type="submit"
-                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-500 rounded-md dark:bg-red-600 dark:hover:bg-red-700 dark:focus:bg-red-700 hover:bg-red-600 focus:outline-none focus:bg-red-500 focus:ring focus:ring-red-300 focus:ring-opacity-50">
                                  Hapus Data Keluarga
                              </button>
                          </div>
@@ -442,7 +442,7 @@
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
                              </p>
                              <button type="submit"
-                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-ColorButton hover:bg-ColorHover rounded-md  focus:outline-none focus:bg-ColorHover focus:ring focus:ring-green-300 focus:ring-opacity-50">
                                  Simpan Data
                              </button>
                          </div>

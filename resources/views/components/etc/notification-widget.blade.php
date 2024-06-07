@@ -1,7 +1,7 @@
 <div class="notification relative" x-data="{ notifDrop: false }">
     <div class="trigger px-5">
         <button
-            class="relative hover:bg-gray-200/70 p-4 rounded-full dark:fill-gray-50 transition-all dark:hover:fill-blue-200 dark:hover:bg-gray-700/70 hover:fill-blue-900"
+            class="relative hover:bg-gray-200/70 p-4 rounded-full dark:fill-gray-50 transition-all dark:hover:fill-ColorButton dark:hover:bg-gray-700/70 hover:fill-ColorButton"
             type="button" @click="notifDrop = !notifDrop">
             <div class="relative ">
 
@@ -23,7 +23,7 @@
         </button>
     </div>
     <div id="notif-drop-container"
-        class="absolute right-10 bg-gray-50 ring ring-blue-200/40 dark:ring-blue-400/40 dark:bg-darkBg rounded-xl min-w-96 z-30 shadow-lg border border-blue-400 "
+        class="absolute right-10 bg-gray-50 ring ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30 dark:bg-darkBg rounded-xl min-w-96 z-30 shadow-lg border border-green-400 "
         x-cloak x-show="notifDrop" @click.away="notifDrop = false"
         x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"

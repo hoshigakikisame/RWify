@@ -236,7 +236,7 @@
                             <h1 class="text-xl">
                                 Leaderboard Iuran
                             </h1>
-                            <p class="text-xs text-gray-400">Berikut leaderboard warga</p>
+                            <p class="text-xs text-gray-500">Berikut leaderboard iuran warga</p>
                         </div>
                         <div class="icon fill-gray-500 ">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve"
