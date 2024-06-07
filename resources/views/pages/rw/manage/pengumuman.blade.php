@@ -7,39 +7,42 @@
 {{-- content --}}
 @section('content')
     <section class="container relative mx-auto mb-8 mt-7 px-4" x-data="{ modalOpen: false }">
-        <div class="relative sm:flex sm:items-center sm:justify-between">
-            <div class="">
-                <div class="flex items-center gap-x-3">
-                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengumuman</h2>
-                    <span class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
-                        {{ $count }} Pengumuman
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
-                        <p class="text-xs text-green-600 dark:text-green-400">{{ $published }} published</p>
-                        <span class="relative flex h-3 w-3 items-center justify-center">
-                            <span
-                                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 duration-700"></span>
-                            <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+        <div class="mb-6">
+
+            <div class="relative sm:flex sm:items-center sm:justify-between">
+                <div class="">
+                    <div class="flex items-center gap-x-3">
+                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengumuman</h2>
+                        <span
+                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                            {{ $count }} Pengumuman
                         </span>
-                    </span>
+                        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
+                            <p class="text-xs text-green-600 dark:text-green-400">{{ $published }} published</p>
+                            <span class="relative flex h-3 w-3 items-center justify-center">
+                                <span
+                                    class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 duration-700"></span>
+                                <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                            </span>
+                        </span>
+                    </div>
+                    @if ($pengumumanInstances->sortByDesc('diperbarui_pada')->first())
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                            Data ini terakhir diupdate
+                            {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            yang lalu
+                        </p>
+                    @else
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                            Masih belum ada pengumuman yang dibagikan
+                        </p>
+                    @endif
                 </div>
-                @if ($pengumumanInstances->sortByDesc('diperbarui_pada')->first())
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
-                        Data ini terakhir diupdate
-                        {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
-                        yang lalu
-                    </p>
-                @else
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
-                        Masih belum ada pengumuman yang dibagikan
-                    </p>
-                @endif
-            </div>
-            <div class="mt-4 flex w-fit items-center gap-x-3" x-data="{ modalOpen: false }">
-                <x-button.add-button routeButton="{{ route('rw.manage.pengumuman.new') }}" modalParent="#addModal"
-                    modalForm="#addModalForm" multipartReq=true title="Tambah Pengumuman">
-                </x-button.add-button>
-                {{-- <button id="addButton" @click="modalOpen = !modalOpen"
+                <div class="mt-4 flex w-fit items-center gap-x-3" x-data="{ modalOpen: false }">
+                    <x-button.add-button routeButton="{{ route('rw.manage.pengumuman.new') }}" modalParent="#addModal"
+                        modalForm="#addModalForm" multipartReq=true title="Tambah Pengumuman">
+                    </x-button.add-button>
+                    {{-- <button id="addButton" @click="modalOpen = !modalOpen"
                     class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
                     onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pengumuman.new') }}', '#addModal', '#addModalForm',true)">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -50,95 +53,101 @@
 
                     <span>Tambah Pengumuman</span>
                 </button> --}}
-                <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
-                    aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
-                    <div
-                        class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
-                        <div @click="modalOpen = false" x-show="modalOpen"
-                            x-transition:enter="transform transition duration-300 ease-out"
-                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                            x-transition:leave="transform transition duration-200 ease-in"
-                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                            class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40" aria-hidden="true">
-                        </div>
-
-                        <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
-                            x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                            x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
-                            x-transition:leave="transform transition duration-200 ease-in"
-                            x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
-                            x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                            class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
-                            <div class="flex items-center justify-between space-x-4">
-                                <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Tambah Pengumuman</h1>
-
-                                <button @click="modalOpen = false"
-                                    class="text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </button>
+                    <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
+                        aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
+                        <div
+                            class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
+                            <div @click="modalOpen = false" x-show="modalOpen"
+                                x-transition:enter="transform transition duration-300 ease-out"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transform transition duration-200 ease-in"
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
+                                aria-hidden="true">
                             </div>
 
-                            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                Tambah pengumuman ke dalam sistem
-                            </p>
+                            <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
+                                x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                x-transition:leave="transform transition duration-200 ease-in"
+                                x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
+                                <div class="flex items-center justify-between space-x-4">
+                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Tambah Pengumuman</h1>
 
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-
-                            <form class="mt-5" id="addModalForm">
-                                @csrf
-                                <x-form.input-form title="Judul Pengumuman" key="judul" type="text"
-                                    placeholder="Judul Pengumuman" class="col-span-2" />
-                                <x-form.textarea-input-form title="Deskripsi" key="konten"
-                                    placeholder="Deskripsi dari Pengumuman" />
-                                <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
-                                <div class="mt-6 flex justify-between">
-                                    <p class="text-xs text-gray-200 dark:text-gray-400">
-                                        Note: Pastikan semua sudah terisi dengan benar
-                                    </p>
-                                    <button type="submit"
-                                        class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
-                                        Tambah Pengumuman
+                                    <button @click="modalOpen = false"
+                                        class="text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
                                     </button>
                                 </div>
-                            </form>
+
+                                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                    Tambah pengumuman ke dalam sistem
+                                </p>
+
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+
+                                <form class="mt-5" id="addModalForm">
+                                    @csrf
+                                    <x-form.input-form title="Judul Pengumuman" key="judul" type="text"
+                                        placeholder="Judul Pengumuman" class="col-span-2" />
+                                    <x-form.textarea-input-form title="Deskripsi" key="konten"
+                                        placeholder="Deskripsi dari Pengumuman" />
+                                    <x-form.input-image id="imageadd" title="Gambar" key="image" placeholder="Gambar" />
+                                    <div class="mt-6 flex justify-between">
+                                        <p class="text-xs text-gray-200 dark:text-gray-400">
+                                            Note: Pastikan semua sudah terisi dengan benar
+                                        </p>
+                                        <button type="submit"
+                                            class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                                            Tambah Pengumuman
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-6 md:flex md:items-center md:justify-between">
-            <div
-                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
-                <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
-                    x-effect="
+            <div class="mt-4 md:flex md:items-center md:justify-between">
+                <div
+                    class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
+                    <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
+                        x-effect="
                         let params = new URLSearchParams(window.location.search)
                         ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                         ! params.has('filters[status]')
                             ? $('#filter-all').addClass('!text-blue-400')
                             : $('#filter-all').removeClass('!text-blue-400')
                     "
-                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
-                    semua
-                </button>
-
-                @foreach (\App\Enums\Pengumuman\PengumumanStatusEnum::getValues() as $key => $value)
-                    <button id="filter-{{ $key }}"
-                        onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                        x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
-                        {{ $value }}
+                        semua
                     </button>
-                @endforeach
-            </div>
 
-            <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
+                    @foreach (\App\Enums\Pengumuman\PengumumanStatusEnum::getValues() as $key => $value)
+                        <button id="filter-{{ $key }}"
+                            onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
+                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                            class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
+                            {{ $value }}
+                        </button>
+                    @endforeach
+                </div>
+
+                <div class="w-1/3 ml-auto">
+                    <x-form.search-input placeholder="Tekan Enter Untuk Mencari Pengumuman ...">
+
+                    </x-form.search-input>
+                </div>
+                {{-- <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
                 <span class="absolute">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
@@ -150,10 +159,11 @@
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+            </div> --}}
             </div>
         </div>
 
-        <div class="mt-6 flex flex-col">
+        <div class="flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border-t-2 border-gray-200 dark:border-gray-700">

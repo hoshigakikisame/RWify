@@ -4,67 +4,71 @@
 {{-- content --}}
 @section('content')
     <section class="container relative mx-auto mb-8 mt-7 px-4" x-data="{ modalOpen: false }">
-        <div class="sm:flex sm:items-center sm:justify-between">
-            <div>
-                <div class="flex items-center gap-x-3">
-                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Kartu Keluarga</h2>
-                    <span
-                        class="rounded-full dark:bg-gray-600/30 px-3 py-1 text-xs dark:text-gray-100 bg-gray-200/50 text-gray-400">
-                        {{ $count }} Kartu Keluarga
-                    </span>
+        <div class="mb-6">
+
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <div class="header">
+                    <div class="flex items-center gap-x-3">
+                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Kartu Keluarga</h2>
+                        <span
+                            class="rounded-full dark:bg-gray-600/30 px-3 py-1 text-xs dark:text-gray-100 bg-gray-200/50 text-gray-400">
+                            {{ $count }} Kartu Keluarga
+                        </span>
+                    </div>
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
+                        Data ini terakhir diupdate
+                        {{ $kartuKeluargaInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()?->diffForHumans(null, true) }}
+                        yang lalu
+                    </p>
                 </div>
-                <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
-                    Data ini terakhir diupdate
-                    {{ $kartuKeluargaInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()?->diffForHumans(null, true) }}
-                    yang lalu
-                </p>
-            </div>
 
 
-            <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
-                <form id="exportCSVForm" method="get" action="{{ route('rw.manage.pendataan.kartuKeluarga.exportCSV') }}"
-                    class="flex items-center justify-center">
-                    @csrf
-                    <label for="exportCSV"
-                        class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
-                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
-                        </svg>Export
-                    </label>
-                    <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
-                        onclick="document.querySelector('#exportCSVForm').submit()">
-                </form>
+                <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
+                    <div class="md:items-right md:flex gap-2">
+                        <form id="exportCSVForm" method="get"
+                            action="{{ route('rw.manage.pendataan.kartuKeluarga.exportCSV') }}"
+                            class="flex items-center justify-center">
+                            @csrf
+                            <label for="exportCSV"
+                                class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
+                                </svg>Export
+                            </label>
+                            <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
+                                onclick="document.querySelector('#exportCSVForm').submit()">
+                        </form>
 
-                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.kartuKeluarga.importCSV') }}"
-                    class="flex items-center justify-center" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <label for="csv"
-                        class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"><svg
-                            width="20" height="20" viewBox="0 0 20 20" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_3098_154395)">
-                                <path
-                                    d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832"
-                                    stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_3098_154395">
-                                    <rect width="20" height="20" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>Import
-                    </label>
-                    <input id="csv" name="csv" type="file" class="hidden"
-                        onchange="document.querySelector('#importCSVForm').submit()">
-                </form>
-
-                <x-button.add-button routeButton="{{ route('rw.manage.pendataan.kartuKeluarga.new') }}"
-                    modalParent="#addModal" modalForm="#addModalForm" multipartReq=false title="Tambah Iuran">
-                </x-button.add-button>
-                {{-- <button id="addButton" @click="modalOpen = !modalOpen"
+                        <form id="importCSVForm" action="{{ route('rw.manage.pendataan.kartuKeluarga.importCSV') }}"
+                            class="flex items-center justify-center" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <label for="csv"
+                                class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"><svg
+                                    width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_3098_154395)">
+                                        <path
+                                            d="M13.3333 13.3332L9.99997 9.9999M9.99997 9.9999L6.66663 13.3332M9.99997 9.9999V17.4999M16.9916 15.3249C17.8044 14.8818 18.4465 14.1806 18.8165 13.3321C19.1866 12.4835 19.2635 11.5359 19.0351 10.6388C18.8068 9.7417 18.2862 8.94616 17.5555 8.37778C16.8248 7.80939 15.9257 7.50052 15 7.4999H13.95C13.6977 6.52427 13.2276 5.61852 12.5749 4.85073C11.9222 4.08295 11.104 3.47311 10.1817 3.06708C9.25943 2.66104 8.25709 2.46937 7.25006 2.50647C6.24304 2.54358 5.25752 2.80849 4.36761 3.28129C3.47771 3.7541 2.70656 4.42249 2.11215 5.23622C1.51774 6.04996 1.11554 6.98785 0.935783 7.9794C0.756025 8.97095 0.803388 9.99035 1.07431 10.961C1.34523 11.9316 1.83267 12.8281 2.49997 13.5832"
+                                            stroke="currentColor" stroke-width="1.67" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_3098_154395">
+                                            <rect width="20" height="20" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>Import
+                            </label>
+                            <input id="csv" name="csv" type="file" class="hidden"
+                                onchange="document.querySelector('#importCSVForm').submit()">
+                        </form>
+                    </div>
+                    <x-button.add-button routeButton="{{ route('rw.manage.pendataan.kartuKeluarga.new') }}"
+                        modalParent="#addModal" modalForm="#addModalForm" multipartReq=false title="Tambah Iuran">
+                    </x-button.add-button>
+                    {{-- <button id="addButton" @click="modalOpen = !modalOpen"
                     class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover dark:bg-ColorButton dark:hover:bg-ColorHover sm:w-auto"
                     onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pendataan.kartuKeluarga.new') }}', '#addModal', '#addModalForm')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -75,86 +79,94 @@
 
                     <span>Tambah Kartu Keluarga</span>
                 </button> --}}
-                <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
-                    aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
-                    <div
-                        class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
-                        <div @click="modalOpen = false" x-show="modalOpen"
-                            x-transition:enter="transform transition duration-300 ease-out"
-                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                            x-transition:leave="transform transition duration-200 ease-in"
-                            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                            class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40" aria-hidden="true">
-                        </div>
-
-                        <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
-                            x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                            x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
-                            x-transition:leave="transform transition duration-200 ease-in"
-                            x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
-                            x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                            class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
-                            <div class="flex items-center justify-between space-x-4">
-                                <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Tambah Data Keluarga</h1>
-
-                                <button @click="modalOpen = false"
-                                    class="text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </button>
+                    <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
+                        aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
+                        <div
+                            class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
+                            <div @click="modalOpen = false" x-show="modalOpen"
+                                x-transition:enter="transform transition duration-300 ease-out"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transform transition duration-200 ease-in"
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
+                                aria-hidden="true">
                             </div>
 
-                            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                Tambah Data Keluarga ke dalam sistem
-                            </p>
+                            <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
+                                x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                x-transition:leave="transform transition duration-200 ease-in"
+                                x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
+                                <div class="flex items-center justify-between space-x-4">
+                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Tambah Data Keluarga
+                                    </h1>
 
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-
-                            <form class="mt-5" id="addModalForm">
-                                @csrf
-                                <x-form.input-form title="NKK" key="nkk" type="text"
-                                    placeholder="Masukkan Nomor Kartu Keluarga" />
-                                <x-form.select-input-form title="Rukun Tetangga" key="id_rukun_tetangga" :options="$rukunTetanggaOptions"
-                                    placeholder="Pilih Rukun Tetangga" />
-                                <x-form.textarea-input-form title="Alamat" key="alamat"
-                                    placeholder="Masukkan Alamat" />
-                                <x-form.input-form title="Jumlah Pekerja" key="jumlah_pekerja" type="number"
-                                    placeholder="Masukkan Jumlah Pekerja" />
-                                <x-form.input-form title="Jumlah Kendaraan Dimiliki" key="total_kendaraan_dimiliki"
-                                    type="number" placeholder="Masukkan Jumlah Kendaraan" />
-                                <x-form.input-form title="Total Penghasilan Perbulan" key="total_penghasilan_per_bulan"
-                                    type="number" placeholder="Masukkan Jumlah Total Penghasilan Tiap Bulannya" />
-                                <x-form.input-form title="Total Bayar Pajak Pertahun" key="total_pajak_per_tahun"
-                                    type="number" placeholder="Masukkan Total Bayar Pajak Pertahunnya" />
-                                <x-form.input-form title="Total Tagihan Listrik Perbulan" key="tagihan_listrik_per_bulan"
-                                    type="number" placeholder="Masukkan Total Tagihan Listrik Perbulannya" />
-                                <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan"
-                                    type="number" placeholder="Masukkan Total Tagihan Air Perbulannya" />
-
-                                <div class="mt-6 flex justify-between">
-                                    <p class="text-xs text-gray-200 dark:text-gray-400">
-                                        Note: Pastikan semua sudah terisi dengan benar
-                                    </p>
-                                    <button type="click"
-                                        class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-green-600 dark:hover:bg-ColorHover dark:focus:bg-green-700">
-                                        Tambah Data Keluarga
+                                    <button @click="modalOpen = false"
+                                        class="text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
                                     </button>
                                 </div>
-                            </form>
 
+                                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                    Tambah Data Keluarga ke dalam sistem
+                                </p>
+
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+
+                                <form class="mt-5" id="addModalForm">
+                                    @csrf
+                                    <x-form.input-form title="NKK" key="nkk" type="text"
+                                        placeholder="Masukkan Nomor Kartu Keluarga" />
+                                    <x-form.select-input-form title="Rukun Tetangga" key="id_rukun_tetangga"
+                                        :options="$rukunTetanggaOptions" placeholder="Pilih Rukun Tetangga" />
+                                    <x-form.textarea-input-form title="Alamat" key="alamat"
+                                        placeholder="Masukkan Alamat" />
+                                    <x-form.input-form title="Jumlah Pekerja" key="jumlah_pekerja" type="number"
+                                        placeholder="Masukkan Jumlah Pekerja" />
+                                    <x-form.input-form title="Jumlah Kendaraan Dimiliki" key="total_kendaraan_dimiliki"
+                                        type="number" placeholder="Masukkan Jumlah Kendaraan" />
+                                    <x-form.input-form title="Total Penghasilan Perbulan"
+                                        key="total_penghasilan_per_bulan" type="number"
+                                        placeholder="Masukkan Jumlah Total Penghasilan Tiap Bulannya" />
+                                    <x-form.input-form title="Total Bayar Pajak Pertahun" key="total_pajak_per_tahun"
+                                        type="number" placeholder="Masukkan Total Bayar Pajak Pertahunnya" />
+                                    <x-form.input-form title="Total Tagihan Listrik Perbulan"
+                                        key="tagihan_listrik_per_bulan" type="number"
+                                        placeholder="Masukkan Total Tagihan Listrik Perbulannya" />
+                                    <x-form.input-form title="Total Tagihan Air Perbulan" key="tagihan_air_per_bulan"
+                                        type="number" placeholder="Masukkan Total Tagihan Air Perbulannya" />
+
+                                    <div class="mt-6 flex justify-between">
+                                        <p class="text-xs text-gray-200 dark:text-gray-400">
+                                            Note: Pastikan semua sudah terisi dengan benar
+                                        </p>
+                                        <button type="click"
+                                            class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-green-600 dark:hover:bg-ColorHover dark:focus:bg-green-700">
+                                            Tambah Data Keluarga
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="mt-6 md:flex md:items-center justify-end">
-            <div id="search" class="relative mt-4 flex w-fit items-center justify-items-end md:mt-0"
+            <div class="mt-4 w-2/6 ml-auto">
+                <x-form.search-input placeholder="Tekan Enter Untuk Mencari Kartu Keluarga ...">
+
+                </x-form.search-input>
+
+                {{-- <div id="search" class="relative mt-4 flex w-fit items-center justify-items-end md:mt-0"
                 x-data="{ search: '' }">
                 <span class="absolute">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -166,10 +178,11 @@
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search,event)" type="text"
                     placeholder="Cari"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-green-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+            </div> --}}
             </div>
         </div>
 
-        <div class="mt-6 flex flex-col">
+        <div class=" flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">

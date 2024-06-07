@@ -6,10 +6,10 @@
 @endphp
 {{-- content --}}
 @section('content')
-    <section class="container relative mx-auto mt-7 px-4" x-data="{ modalOpen: false }">
-        <div class="flex flex-col">
+    <section class="container relative mx-auto mb-8 mt-7 px-4" x-data="{ modalOpen: false }">
+        <div class="mb-6">
             <div class="sm:flex sm:items-center sm:justify-between mb-3">
-                <div>
+                <div class="header">
                     <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Iuran Terverifikasi</h2>
                         <span
@@ -30,8 +30,8 @@
                         </p>
                     @endif
                 </div>
-                <div class="flex items-center gap-x-2">
-                    <div class="md:items-right md:flex">
+                <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
+                    <div class="md:items-right md:flex gap-2">
                         <form id="exportCSVForm" method="get" action="{{ route('rw.manage.iuran.exportCSV') }}"
                             class="flex items-center justify-center">
                             @csrf
@@ -47,13 +47,13 @@
                                 onclick="document.querySelector('#exportCSVForm').submit()">
                         </form>
                     </div>
-                    <div class="md:items-right md:flex md:justify-between">
-                        <div class="flex items-center gap-x-3" x-data="{ modalOpen: false }">
-                            <x-button.add-button routeButton="{{ route('rw.manage.iuran.new') }}" modalParent="#addModal"
-                                modalForm="#addModalForm" multipartReq=true title="Tambah Iuran">
 
-                            </x-button.add-button>
-                            {{-- <button id="addButton" @click="modalOpen = !modalOpen"
+                    <div class="md:items-right md:flex md:justify-between">
+                        <x-button.add-button routeButton="{{ route('rw.manage.iuran.new') }}" modalParent="#addModal"
+                            modalForm="#addModalForm" multipartReq=true title="Tambah Iuran">
+
+                        </x-button.add-button>
+                        {{-- <button id="addButton" @click="modalOpen = !modalOpen"
                                 class="mb-2 flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200  hover:bg-ColorHover dark:bg-ColorButton  dark:hover:bg-ColorHover sm:w-auto"
                                 onclick="window.utils.Request.actionRequest('{{ route('rw.manage.iuran.new') }}', '#addModal', '#addModalForm',true)">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -64,84 +64,85 @@
 
                                 <span>Tambah Iuran</span>
                             </button> --}}
-                            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
-                                aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
-                                <div
-                                    class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
-                                    <div @click="modalOpen = false" x-show="modalOpen"
-                                        x-transition:enter="transform transition duration-300 ease-out"
-                                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                                        x-transition:leave="transform transition duration-200 ease-in"
-                                        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                        class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
-                                        aria-hidden="true"></div>
+                        <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
+                            aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
+                            <div
+                                class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
+                                <div @click="modalOpen = false" x-show="modalOpen"
+                                    x-transition:enter="transform transition duration-300 ease-out"
+                                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                    x-transition:leave="transform transition duration-200 ease-in"
+                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                    class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
+                                    aria-hidden="true"></div>
 
-                                    <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
-                                        x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                        x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
-                                        x-transition:leave="transform transition duration-200 ease-in"
-                                        x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
-                                        x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                        class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
-                                        <div class="flex items-center justify-between space-x-4">
-                                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
-                                                Tambah Iuran
-                                            </h1>
+                                <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
+                                    x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                    x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                    x-transition:leave="transform transition duration-200 ease-in"
+                                    x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                    x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                    class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
+                                    <div class="flex items-center justify-between space-x-4">
+                                        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
+                                            Tambah Iuran
+                                        </h1>
 
-                                            <button @click="modalOpen = false"
-                                                class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
+                                        <button @click="modalOpen = false"
+                                            class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                        Tambah iuran ke dalam sistem
+                                    </p>
+
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+
+                                    <form enctype="multipart/form-data" class="mt-5" id="addModalForm"
+                                        action="{{ route('rw.manage.iuran.new') }}" method="post">
+                                        @csrf
+                                        <input type="text" name="id_pembayar" hidden />
+                                        <x-form.search-dropdown title="Nama Pembayar" key="nik_pembayar"
+                                            parent="#addModalForm" placeholder="Masukkan Nama Pembayar" :items="$nikPemilikInstances">
+                                        </x-form.search-dropdown>
+                                        <x-form.select-input-form title="Bulan Bayar" key="bulan"
+                                            placeholder="Pilih Bulan Pembayaran Warga" :options="$bulanOptions" />
+                                        <x-form.input-form title="Tahun Bayar" key="tahun" type="number"
+                                            placeholder="Masukkan Tahun Pembayaran" />
+
+                                        <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number"
+                                            placeholder="Masukkan Jumlah Pembayaran" />
+
+                                        <div class="mt-6 flex justify-between">
+                                            <p class="text-xs text-gray-200 dark:text-gray-400">
+                                                Note: Pastikan semua sudah terisi dengan benar
+                                            </p>
+                                            <button type="submit"
+                                                class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                                                Simpan Iuran
                                             </button>
                                         </div>
-
-                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                            Tambah iuran ke dalam sistem
-                                        </p>
-
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-
-                                        <form enctype="multipart/form-data" class="mt-5" id="addModalForm"
-                                            action="{{ route('rw.manage.iuran.new') }}" method="post">
-                                            @csrf
-                                            <input type="text" name="id_pembayar" hidden />
-                                            <x-form.search-dropdown title="Nama Pembayar" key="nik_pembayar"
-                                                parent="#addModalForm" placeholder="Masukkan Nama Pembayar"
-                                                :items="$nikPemilikInstances">
-                                            </x-form.search-dropdown>
-                                            <x-form.select-input-form title="Bulan Bayar" key="bulan"
-                                                placeholder="Pilih Bulan Pembayaran Warga" :options="$bulanOptions" />
-                                            <x-form.input-form title="Tahun Bayar" key="tahun" type="number"
-                                                placeholder="Masukkan Tahun Pembayaran" />
-
-                                            <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number"
-                                                placeholder="Masukkan Jumlah Pembayaran" />
-
-                                            <div class="mt-6 flex justify-between">
-                                                <p class="text-xs text-gray-200 dark:text-gray-400">
-                                                    Note: Pastikan semua sudah terisi dengan benar
-                                                </p>
-                                                <button type="submit"
-                                                    class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
-                                                    Simpan Iuran
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="mt-4 w-1/3 ml-auto">
+                <x-form.search-input placeholder="Tekan Enter Untuk Mencari Iuran Terverifikasi ...">
 
-
-            <div id="search" class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
+                </x-form.search-input>
+            </div>
+            {{-- <div id="search" class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
                 <span class="absolute">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
@@ -153,10 +154,10 @@
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-green-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
-            </div>
+            </div> --}}
         </div>
 
-        <div class="mt-6 flex flex-col">
+        <div class=" flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">

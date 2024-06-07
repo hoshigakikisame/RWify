@@ -4,9 +4,9 @@
 {{-- content --}}
 @section('content')
     <section class="container relative mx-auto mt-7 px-4" x-data="{ modalOpen: false }">
-        <div class="flex flex-col">
+        <div class="mb-6">
             <div class="sm:flex sm:items-center sm:justify-between">
-                <div>
+                <div class="header">
                     <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Tipe Properti</h2>
                         <span
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="md:items-right md:flex md:justify-between">
-                    <div class="mt-2 flex items-center gap-x-3" x-data="{ modalOpen: false }">
+                    <div class="mt-4 flex items-center gap-x-3" x-data="{ modalOpen: false }">
                         <x-button.add-button routeButton="{{ route('rw.manage.tipeProperti.new') }}" modalParent="#addModal"
                             modalForm="#addModalForm" multipartReq=false title="Tambah Tipe Properti">
 
@@ -109,8 +109,12 @@
                     </div>
                 </div>
             </div>
+            <div class="mt-4 w-1/3 ml-auto">
+                <x-form.search-input placeholder="Tekan Enter Untuk Mencari Tipe Properti ...">
 
-            <div id="search" class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
+                </x-form.search-input>
+            </div>
+            {{-- <div id="search" class="relative mt-4 flex w-fit items-center self-end md:mt-0" x-data="{ search: '' }">
                 <span class="absolute">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
@@ -122,10 +126,10 @@
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
-            </div>
+            </div> --}}
         </div>
 
-        <div class="mt-6 flex flex-col">
+        <div class="flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">

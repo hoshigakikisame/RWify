@@ -7,78 +7,87 @@
 {{-- content --}}
 @section('content')
     <section class="container relative mx-auto mb-8 mt-7 px-4" x-data="{ modalOpen: false }">
-        <div class="relative sm:flex sm:items-center sm:justify-between">
-            <div class="">
-                <div class="flex items-center gap-x-3">
-                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Jadwal Temu</h2>
-                    <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
-                        {{ $count }} Jadwal Temu
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
-                        <span class="text-xs text-green-600 dark:text-green-400">{{ $diterimaCount }} Diterima</span>
-                        <span class="relative flex h-3 w-3 items-center justify-center">
-                            <span
-                                class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400/75 duration-700"></span>
-                            <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+        <div class="mb-6">
+
+            <div class="relative sm:flex sm:items-center sm:justify-between">
+                <div class="header">
+                    <div class="flex items-center gap-x-3">
+                        <h2 class="text-lg font-medium text-gray-800 dark:text-white">Jadwal Temu</h2>
+                        <span
+                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                            {{ $count }} Jadwal Temu
                         </span>
-                    </span>
+                        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
+                            <span class="text-xs text-green-600 dark:text-green-400">{{ $diterimaCount }} Diterima</span>
+                            <span class="relative flex h-3 w-3 items-center justify-center">
+                                <span
+                                    class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400/75 duration-700"></span>
+                                <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                            </span>
+                        </span>
+                    </div>
+
+                    @if ($reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first())
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                            Data ini terakhir diupdate
+                            {{ $reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            yang lalu
+                        </p>
+                    @else
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                            Masih belum ada data reservasi untuk anda
+                        </p>
+                    @endif
                 </div>
-
-                @if ($reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first())
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
-                        Data ini terakhir diupdate
-                        {{ $reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
-                        yang lalu
-                    </p>
-                @else
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
-                        Masih belum ada data reservasi untuk anda
-                    </p>
-                @endif
             </div>
-        </div>
 
-        <div class="mt-6 md:flex md:items-center md:justify-between">
-            <div
-                class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
-                <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
-                    x-effect="
+            <div class="mt-4 md:flex md:items-center md:justify-between">
+                <div
+                    class="inline-flex divide-x overflow-hidden rounded-lg border bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-darkBg rtl:flex-row-reverse">
+                    <button id="filter-all" onclick="window.utils.Request.filterRequest({'status': ''})"
+                        x-effect="
                         let params = new URLSearchParams(window.location.search)
                         ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                         ! params.has('filters[status]')
                             ? $('#filter-all').addClass('!text-blue-400')
                             : $('#filter-all').removeClass('!text-blue-400')
                     "
-                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
-                    semua
-                </button>
-
-                @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $key => $value)
-                    <button id="filter-{{ $key }}"
-                        onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                        x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
-                        {{ $value }}
+                        semua
                     </button>
-                @endforeach
-            </div>
-            <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
-                <span class="absolute">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-                </span>
 
-                <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
-                    placeholder="Press Enter to Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $key => $value)
+                        <button id="filter-{{ $key }}"
+                            onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
+                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                            class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
+                            {{ $value }}
+                        </button>
+                    @endforeach
+                </div>
+
+                <div class="w-1/3 ml-auto">
+                    <x-form.search-input placeholder="Tekan Enter Untuk Mencari Jadwal Temu ...">
+
+                    </x-form.search-input>
+                </div>
+                {{-- <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
+                    <span class="absolute">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                    </span>
+
+                    <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
+                        placeholder="Press Enter to Search"
+                        class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                </div> --}}
             </div>
         </div>
 
-        <div class="mt-6 flex flex-col">
+        <div class="flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border-t-2 border-gray-200 dark:border-gray-700">
