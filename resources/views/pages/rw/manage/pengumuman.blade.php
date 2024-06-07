@@ -11,8 +11,7 @@
             <div class="">
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengumuman</h2>
-                    <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                    <span class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
                         {{ $count }} Pengumuman
                     </span>
                     <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
@@ -37,7 +36,10 @@
                 @endif
             </div>
             <div class="mt-4 flex w-fit items-center gap-x-3" x-data="{ modalOpen: false }">
-                <button id="addButton" @click="modalOpen = !modalOpen"
+                <x-button.add-button routeButton="{{ route('rw.manage.pengumuman.new') }}" modalParent="#addModal"
+                    modalForm="#addModalForm" multipartReq=true title="Tambah Pengumuman">
+                </x-button.add-button>
+                {{-- <button id="addButton" @click="modalOpen = !modalOpen"
                     class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
                     onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pengumuman.new') }}', '#addModal', '#addModalForm',true)">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -47,7 +49,7 @@
                     </svg>
 
                     <span>Tambah Pengumuman</span>
-                </button>
+                </button> --}}
                 <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
                     aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
                     <div

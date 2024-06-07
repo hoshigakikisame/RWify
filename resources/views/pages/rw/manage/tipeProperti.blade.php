@@ -28,7 +28,11 @@
 
                 <div class="md:items-right md:flex md:justify-between">
                     <div class="mt-2 flex items-center gap-x-3" x-data="{ modalOpen: false }">
-                        <button id="addButton" @click="modalOpen = !modalOpen"
+                        <x-button.add-button routeButton="{{ route('rw.manage.tipeProperti.new') }}" modalParent="#addModal"
+                            modalForm="#addModalForm" multipartReq=false title="Tambah Tipe Properti">
+
+                        </x-button.add-button>
+                        {{-- <button id="addButton" @click="modalOpen = !modalOpen"
                             class="mb-2 flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2.5 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
                             onclick="window.utils.Request.actionRequest('{{ route('rw.manage.tipeProperti.new') }}', '#addModal', '#addModalForm')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -38,7 +42,7 @@
                             </svg>
 
                             <span>Tambah Tipe Properti</span>
-                        </button>
+                        </button> --}}
                         <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
                             aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
                             <div

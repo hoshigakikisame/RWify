@@ -34,13 +34,18 @@
                     @csrf
                     <label for="exportCSV"
                         class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
-                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4"/></svg>Export
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
+                        </svg>Export
                     </label>
                     <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
                         onclick="document.querySelector('#exportCSVForm').submit()">
                 </form>
 
-                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.warga.importCSV') }}" class="flex items-center justify-center" method="post" enctype="multipart/form-data">
+                <form id="importCSVForm" action="{{ route('rw.manage.pendataan.warga.importCSV') }}"
+                    class="flex items-center justify-center" method="post" enctype="multipart/form-data">
                     @csrf
                     <label for="csv"
                         class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto"><svg
@@ -59,10 +64,15 @@
                             </defs>
                         </svg>Import
                     </label>
-                    <input id="csv" name="csv" type="file" class="hidden" onchange="document.querySelector('#importCSVForm').submit()">
+                    <input id="csv" name="csv" type="file" class="hidden"
+                        onchange="document.querySelector('#importCSVForm').submit()">
                 </form>
 
-                <button id="addButton" @click="modalOpen = !modalOpen"
+                <x-button.add-button routeButton="{{ route('rw.manage.pendataan.warga.new') }}" modalParent="#addModal"
+                    modalForm="#addModalForm" multipartReq=false title="Tambah Iuran">
+
+                </x-button.add-button>
+                {{-- <button id="addButton" @click="modalOpen = !modalOpen"
                     class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover sm:w-auto"
                     onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pendataan.warga.new') }}', '#addModal', '#addModalForm')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -72,7 +82,7 @@
                     </svg>
 
                     <span>Tambah warga</span>
-                </button>
+                </button> --}}
                 <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
                     aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
                     <div

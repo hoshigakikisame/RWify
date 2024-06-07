@@ -13,7 +13,7 @@
                     <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Iuran Terverifikasi</h2>
                         <span
-                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                            class="rounded-full bg-gray-200/50  px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                             {{ $count }} Iuran Terverifikasi
                         </span>
                     </div>
@@ -31,167 +31,113 @@
                     @endif
                 </div>
                 <div class="flex items-center gap-x-2">
-                <div class="md:items-right md:flex">
-                    <form id="exportCSVForm" method="get" action="{{ route('rw.manage.iuran.exportCSV') }}"
-                        class="flex items-center justify-center">
-                        @csrf
-                        <label for="exportCSV"
-                            class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
-                            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
-                            </svg>Export
-                        </label>
-                        <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
-                            onclick="document.querySelector('#exportCSVForm').submit()">
-                    </form>
-                </div>
-                <div class="md:items-right md:flex md:justify-between">
-                    <div class="mt-2 flex items-center gap-x-3" x-data="{ modalOpen: false }">
-                        <button
-                            id="addButton"
-                            @click="modalOpen = !modalOpen"
-                            class="mb-2 flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto"
-                            onclick="window.utils.Request.actionRequest('{{ route('rw.manage.iuran.new') }}', '#addModal', '#addModalForm',true)"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                class="h-5 w-5"
-                            >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-    
-                            <span>Tambah Iuran</span>
-                        </button>
-                        <div
-                            id="addModal"
-                            x-show="modalOpen"
-                            class="fixed inset-0 z-40 overflow-y-auto"
-                            aria-labelledby="modal-title"
-                            role="dialog"
-                            aria-modal="true"
-                            style="display: none"
-                        >
-                            <div
-                                class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center"
-                            >
-                                <div
-                                    @click="modalOpen = false"
-                                    x-show="modalOpen"
-                                    x-transition:enter="transform transition duration-300 ease-out"
-                                    x-transition:enter-start="opacity-0"
-                                    x-transition:enter-end="opacity-100"
-                                    x-transition:leave="transform transition duration-200 ease-in"
-                                    x-transition:leave-start="opacity-100"
-                                    x-transition:leave-end="opacity-0"
-                                    class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
-                                    aria-hidden="true"
-                                ></div>
-    
-                                <div
-                                    x-show="modalOpen"
-                                    x-transition:enter="transform transition duration-300 ease-out"
-                                    x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                    x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
-                                    x-transition:leave="transform transition duration-200 ease-in"
-                                    x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
-                                    x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                    class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl"
-                                >
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
-                                            Tambah Iuran
-                                        </h1>
-    
-                                        <button
-                                            @click="modalOpen = false"
-                                            class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500"
-                                        >
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="h-6 w-6"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                />
-                                            </svg>
-                                        </button>
-                                    </div>
-    
-                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                        Tambah iuran ke dalam sistem
-                                    </p>
-    
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-    
-                                    <form
-                                        enctype="multipart/form-data"
-                                        class="mt-5"
-                                        id="addModalForm"
-                                        action="{{ route('rw.manage.iuran.new') }}"
-                                        method="post"
-                                    >
-                                        @csrf
-                                        <input type="text" name="id_pembayar" hidden />
-                                        <x-form.search-dropdown title="Nama Pembayar" key="nik_pembayar"
-                                            parent="#addModalForm" placeholder="Masukkan Nama Pembayar"
-                                            :items="$nikPemilikInstances">
-                                        </x-form.search-dropdown>
-                                        <x-form.select-input-form 
-                                            title="Bulan Bayar" 
-                                            key="bulan" 
-                                            placeholder="Pilih Bulan Pembayaran Warga" 
-                                            :options="$bulanOptions" 
-                                        />
-                                        <x-form.input-form
-                                            title="Tahun Bayar"
-                                            key="tahun"
-                                            type="number"
-                                            placeholder="Masukkan Tahun Pembayaran"
-                                        />
+                    <div class="md:items-right md:flex">
+                        <form id="exportCSVForm" method="get" action="{{ route('rw.manage.iuran.exportCSV') }}"
+                            class="flex items-center justify-center">
+                            @csrf
+                            <label for="exportCSV"
+                                class="flex items-center justify-center gap-x-2 rounded-lg border bg-white px-5 py-2 text-sm text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-darkBg dark:text-gray-200 dark:hover:bg-gray-800 sm:w-auto">
+                                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242M12 12v9m-4-4l4 4l4-4" />
+                                </svg>Export
+                            </label>
+                            <input id="exportCSV" name="exportCSV" type="submit" class="hidden"
+                                onclick="document.querySelector('#exportCSVForm').submit()">
+                        </form>
+                    </div>
+                    <div class="md:items-right md:flex md:justify-between">
+                        <div class="flex items-center gap-x-3" x-data="{ modalOpen: false }">
+                            <x-button.add-button routeButton="{{ route('rw.manage.iuran.new') }}" modalParent="#addModal"
+                                modalForm="#addModalForm" multipartReq=true title="Tambah Iuran">
 
-                                        <x-form.input-form
-                                            title="Jumlah Bayar"
-                                            key="jumlah_bayar"
-                                            type="number"
-                                            placeholder="Masukkan Jumlah Pembayaran"
-                                        />
-    
-                                        <div class="mt-6 flex justify-between">
-                                            <p class="text-xs text-gray-200 dark:text-gray-400">
-                                                Note: Pastikan semua sudah terisi dengan benar
-                                            </p>
-                                            <button
-                                                type="submit"
-                                                class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700"
-                                            >
-                                                Simpan Iuran
+                            </x-button.add-button>
+                            {{-- <button id="addButton" @click="modalOpen = !modalOpen"
+                                class="mb-2 flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200  hover:bg-ColorHover dark:bg-ColorButton  dark:hover:bg-ColorHover sm:w-auto"
+                                onclick="window.utils.Request.actionRequest('{{ route('rw.manage.iuran.new') }}', '#addModal', '#addModalForm',true)">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+
+                                <span>Tambah Iuran</span>
+                            </button> --}}
+                            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
+                                aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
+                                <div
+                                    class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
+                                    <div @click="modalOpen = false" x-show="modalOpen"
+                                        x-transition:enter="transform transition duration-300 ease-out"
+                                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                        x-transition:leave="transform transition duration-200 ease-in"
+                                        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                        class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
+                                        aria-hidden="true"></div>
+
+                                    <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
+                                        x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                        x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                        x-transition:leave="transform transition duration-200 ease-in"
+                                        x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                        x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                        class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
+                                        <div class="flex items-center justify-between space-x-4">
+                                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
+                                                Tambah Iuran
+                                            </h1>
+
+                                            <button @click="modalOpen = false"
+                                                class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
                                             </button>
                                         </div>
-                                    </form>
+
+                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                            Tambah iuran ke dalam sistem
+                                        </p>
+
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+
+                                        <form enctype="multipart/form-data" class="mt-5" id="addModalForm"
+                                            action="{{ route('rw.manage.iuran.new') }}" method="post">
+                                            @csrf
+                                            <input type="text" name="id_pembayar" hidden />
+                                            <x-form.search-dropdown title="Nama Pembayar" key="nik_pembayar"
+                                                parent="#addModalForm" placeholder="Masukkan Nama Pembayar"
+                                                :items="$nikPemilikInstances">
+                                            </x-form.search-dropdown>
+                                            <x-form.select-input-form title="Bulan Bayar" key="bulan"
+                                                placeholder="Pilih Bulan Pembayaran Warga" :options="$bulanOptions" />
+                                            <x-form.input-form title="Tahun Bayar" key="tahun" type="number"
+                                                placeholder="Masukkan Tahun Pembayaran" />
+
+                                            <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number"
+                                                placeholder="Masukkan Jumlah Pembayaran" />
+
+                                            <div class="mt-6 flex justify-between">
+                                                <p class="text-xs text-gray-200 dark:text-gray-400">
+                                                    Note: Pastikan semua sudah terisi dengan benar
+                                                </p>
+                                                <button type="submit"
+                                                    class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                                                    Simpan Iuran
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
 
 
@@ -206,7 +152,7 @@
 
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
-                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-green-400 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-green-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
             </div>
         </div>
 
@@ -335,8 +281,8 @@
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
-                                                        class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor"
-                                                        version="1.1">
+                                                        class="h-4 w-4 fill-red-500" viewBox="0 0 24 24"
+                                                        fill="currentColor" version="1.1">
                                                         <path
                                                             d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
                                                         </path>
