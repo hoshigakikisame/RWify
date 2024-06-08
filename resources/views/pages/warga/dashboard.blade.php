@@ -1,16 +1,21 @@
 @extends(request()->user()->getSidebarView())
 @section('content')
     <section class="relative container mx-auto mb-3 mt-7 px-4 dark:text-gray-300">
-        <div class="greeting mb-2 border-b pb-3">
-            <h6 class="font-Inter text-indigo-800">Hi {{ auth()->user()->nama_depan }},</h6>
-            <h1 class="text-4xl font-semibold text-gray-900">Selamat Datang di RWify</h1>
+        <div class="greeting mb-2 border-b pb-3 flex justify-between items-center">
+            <div class="text-wrap">
+                <h6 class="font-Inter text-ColorWhiteSidebar dark:text-ColorButton">Hi {{ auth()->user()->nama_depan }},</h6>
+                <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-300">Selamat Datang di RWify</h1>
+            </div>
+            <x-etc.notification-widget :notifications="$unreadNotifications" />
         </div>
         <div class="working grid grid-cols-5 gap-4">
             <div class="left col-span-3">
                 <div class="datavisual">
                     <div class="header-wrap mb-4">
-                        <h1 class="font-Montserrat text-lg text-gray-600 font-medium">Calculation</h1>
-                        <p class="text-xs text-gray-400">berikut merupakan kalkulasi dari seluruh data yang ada</p>
+                        <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Total data</h1>
+                        <p class="text-xs text-gray-400 dark:text-gray-500">Berikut merupakan kalkulasi dari seluruh data
+                            yang
+                            ada</p>
                     </div>
                     <div class="wrap-card px-2 mb-3 grid grid-cols-3 gap-4">
                         @php
@@ -29,18 +34,18 @@
                                     'count' => '$0',
                                     'lastAddedAt' => '$10 menit',
                                     'wrapClass' =>
-                                        'ring-indigo-200/30 border-indigo-500/70 dark:border-indigo-400/70 dark:ring-indigo-600/30',
-                                    'iconColor' => 'fill-indigo-700',
-                                    'updateColor' => 'text-indigo-600',
+                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
+                                    'iconColor' => 'fill-green-700',
+                                    'updateColor' => 'text-green-600',
                                 ],
                                 [
                                     'name' => 'Properti',
                                     'count' => '$0',
                                     'lastAddedAt' => '$20 menit',
                                     'wrapClass' =>
-                                        'ring-blue-200/30 border-blue-500/70 dark:border-blue-400/70 dark:ring-blue-600/30',
-                                    'iconColor' => 'fill-blue-700',
-                                    'updateColor' => 'text-blue-600',
+                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
+                                    'iconColor' => 'fill-green-700',
+                                    'updateColor' => 'text-green-600',
                                 ],
                             ];
                         @endphp
@@ -90,7 +95,7 @@
                                     </h1>
                                     <div class="icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                                            class="w-4 h-4 drop-shadow-md fill-indigo-700">
+                                            class="w-4 h-4 drop-shadow-md fill-green-700">
                                             <path
                                                 d="M11.206 14.656c-.246 1.557-.756 3.155-1.257 4.66a1.001 1.001 0 0 1-1.897-.633c.238-.715.479-1.45.687-2.184a1.01 1.01 0 0 1-.852-.445 1 1 0 0 1 .277-1.387l1.5-1a1 1 0 0 1 1.542.988Zm6.792-4.209c0 4.144-.977 8.042-1.798 10.579a4.29 4.29 0 0 1-4.1 2.975H3.322a3.46 3.46 0 0 1-2.837-1.52c-.581-.864-.695-1.895-.314-2.825.823-2.012 2.356-5.757 2.406-9.17a1 1 0 0 1 .353-.748c.491-.408 1.237-.736 1.839-.739a2.67 2.67 0 0 1 1.724.616 1.63 1.63 0 0 0 2.087 0 2.68 2.68 0 0 1 3.418 0 1.63 1.63 0 0 0 2.087 0 2.67 2.67 0 0 1 1.735-.616c.598.006 1.281.277 1.769.682a1 1 0 0 1 .409.766m-2.004.583a.69.69 0 0 0-.631.125c-1.313 1.091-3.326 1.091-4.641 0a.68.68 0 0 0-.864 0c-1.315 1.091-3.327 1.091-4.642 0a.69.69 0 0 0-.657-.116c-.158 3.163-1.308 6.369-2.539 9.375-.17.415.005.775.124.953.262.391.713.634 1.177.634h8.778c1.007 0 1.89-.639 2.197-1.59.741-2.29 1.618-5.733 1.697-9.381ZM24 4.001v14c0 2.206-1.794 4-4 4h-1a1 1 0 1 1 0-2h1c1.103 0 2-.897 2-2V7c-.614 0-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0c-.451.386-1.016.616-1.63.616s-1.179-.23-1.63-.616a1.59 1.59 0 0 0-2.074 0l-.014.012c-.637.539-1.616.068-1.616-.767V4A4.007 4.007 0 0 1 10 0h10c2.206 0 4 1.794 4 4Zm-2 0c0-1.103-.897-2-2-2H10c-1.103 0-2 .897-2 2v.056a4 4 0 0 1 .667-.056c.856 0 1.687.307 2.338.865q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0q.157.134.328.135c.171.001.224-.045.328-.135a3.596 3.596 0 0 1 4.676 0 .5.5 0 0 0 .328.135v-1Z" />
                                         </svg>
@@ -143,7 +148,7 @@
                             </div>
                             <div class="action-event flex justify-end mt-4">
                                 <button class="flex gap-1" id="showAll" @click="eventShow = !eventShow">
-                                    <div class="icon w-4 h-4 fill-indigo-400">
+                                    <div class="icon w-4 h-4 dark:fill-green-400 fill-green-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" x-show='!eventShow' data-name="Layer 1"
                                             viewBox="0 0 24 24">
                                             <path
@@ -156,7 +161,7 @@
                                         </svg>
                                     </div>
 
-                                    <h1 class="text-xs underline text-indigo-300">Show All Event </h1>
+                                    <h1 class="text-xs underline dark:text-green-400 text-green-700">Show All Event </h1>
                                 </button>
                             </div>
                         </div>
@@ -330,7 +335,7 @@
             return /*html*/ `
         <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
          <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-             <p class="text-base text-indigo-500 dark:text-indigo-500 font-medium">${day}</p>
+             <p class="text-base text-green-500 dark:text-green-500 font-medium">${day}</p>
          </div>
         </td>
             `
@@ -342,7 +347,7 @@
          <div class="w-full h-full">
              <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
                  <a role="link" tabindex="0"
-                     class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:bg-indigo-500 hover:bg-indigo-500 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-indigo-700 rounded-full">${day}</a>
+                     class="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-green-700 focus:bg-green-500 hover:bg-green-500 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-green-700 rounded-full">${day}</a>
              </div>
          </div>
         </td>

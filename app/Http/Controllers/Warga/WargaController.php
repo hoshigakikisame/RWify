@@ -15,6 +15,7 @@ class WargaController extends Controller
 
         $data = [
             'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
+            'unreadNotifications' => request()->user()->getUnreadNotifications(),
         ];
 
         return view('pages.warga.dashboard', $data);
