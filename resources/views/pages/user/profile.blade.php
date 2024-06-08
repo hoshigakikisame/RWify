@@ -1,10 +1,7 @@
 @extends(request()->user()->getSidebarView())
 @section('content')
     @php
-        $userImage =
-            request()
-                ->user()
-                ->getImageUrl() ?? Vite::asset('resources/assets/images/avatar.jpg');
+        $userImage = request()->user()->getImageUrl() ?? Vite::asset('resources/assets/images/avatar.jpg');
         $image = Vite::asset('resources/assets/images/profileImage.jpg');
     @endphp
 
@@ -15,20 +12,13 @@
             </div>
             <div class="user relative flex h-32 gap-12" x-data="{}">
                 <div id="userImage" class="user-avatar relative -top-20 left-14">
-                    <div
-                        class="h-44 w-44 rounded-full border-4 border-white bg-white bg-cover bg-center dark:border-gray-900 dark:bg-darkBg"
-                        style="background-image: url('{{ $userImage }}')"
-                    ></div>
+                    <div class="h-44 w-44 rounded-full border-4 border-white bg-white bg-cover bg-center dark:border-gray-900 dark:bg-darkBg"
+                        style="background-image: url('{{ $userImage }}')"></div>
 
                     <form id="userImageChangeForm" action="" method="POST">
                         @csrf
                         <label for="image">
-                            <input
-                                type="file"
-                                aria-current="submitButton"
-                                class="hidden"
-                                name="image"
-                                id="image"
+                            <input type="file" aria-current="submitButton" class="hidden" name="image" id="image"
                                 accept="image/*"
                                 x-effect="
                                     window.utils.Request.actionRequest(
@@ -37,15 +27,12 @@
                                         '#userImageChangeForm',
                                         true,
                                     )
-                                "
-                            />
+                                " />
                             <div
-                                class="absolute -bottom-10 right-5 cursor-pointer rounded-full bg-gray-500/80 fill-gray-300 p-2"
-                            >
+                                class="absolute -bottom-10 right-5 cursor-pointer rounded-full bg-gray-500/80 fill-gray-300 p-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4">
                                     <path
-                                        d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z"
-                                    />
+                                        d="M22.853 1.148a3.626 3.626 0 0 0-5.124 0L1.465 17.412A4.97 4.97 0 0 0 0 20.947V23a1 1 0 0 0 1 1h2.053a4.97 4.97 0 0 0 3.535-1.464L22.853 6.271a3.626 3.626 0 0 0 0-5.123M5.174 21.122A3.02 3.02 0 0 1 3.053 22H2v-1.053a2.98 2.98 0 0 1 .879-2.121L15.222 6.483l2.3 2.3ZM21.438 4.857l-2.506 2.507-2.3-2.295 2.507-2.507a1.623 1.623 0 1 1 2.295 2.3Z" />
                                 </svg>
                             </div>
                             <ul id="error" class="z-40 space-y-1 text-sm text-red-600 dark:text-red-400"></ul>
@@ -64,14 +51,10 @@
             </div>
         </div>
         <nav class="relative mb-2 px-2 py-1 pt-0">
-            <ul
-                class="flex gap-1 text-sm dark:text-gray-100"
-                x-data="{
-                    isPanelActive: false,
-                    activeClass:
-                        'rounded-t-md text-blue-500 dark:text-blue-400 border-blue-500 border-b-2',
-                }"
-            >
+            <ul class="flex gap-1 text-sm dark:text-gray-100" x-data="{
+                isPanelActive: false,
+                activeClass: 'rounded-t-md text-emerald-500 dark:text-emerald-400 border-emerald-500 border-b-2',
+            }">
                 <li :class="isPanelActive ? '' : activeClass" class="px-4 py-2">
                     <button @click="appendProfile({{ $user }});isPanelActive= !isPanelActive" ariaLabel="Profile">
                         Profile
@@ -97,7 +80,7 @@
     <script>
         function appendPassword() {
 
-                const passwordElement = /*html*/ `
+            const passwordElement = /*html*/ `
             <div id="passwordUpdate" class="change-password">
                         <div class="panel dark:text-gray-100 w-80">
                             <div class="panel-heading mb-2">
@@ -110,8 +93,7 @@
                                     <div class="form-group mb-4">
                                         <label for="current_password" class="text-sm text-gray-500 dark:text-gray-400">Current Password</label>
                                         <div class="mt-1">
-                                            <input id="current_password" type="password" class="w-full rounded border-1 border-gray-500/50
-                                            text-gray-700 dark:text-gray-200 dark:bg-darkBg @error('current_password') is-invalid @enderror" name="current_password" required>
+                                            <input id="current_password" type="password" class="mt-2 block w-full rounded-md border border-gray-200 px-3 py-2 text-gray-600 placeholder-gray-400 focus:border-green-400 focus:outline-none focus:ring dark:bg-darkBg focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-500  dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-green-300 dark:focus:ring-green-200 @error('current_password') is-invalid @enderror" name="current_password" required>
                                             @error('current_password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -124,7 +106,7 @@
                                         <label for="new_password" class="text-sm text-gray-500 dark:text-gray-400">New Password</label>
 
                                         <div class="mt-1">
-                                            <input id="new_password" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-darkBg @error('new_password') is-invalid @enderror" name="new_password" required>
+                                            <input id="new_password" type="password" class="mt-2 block w-full rounded-md border border-gray-200 px-3 py-2 text-gray-600 placeholder-gray-400 focus:border-green-400 focus:outline-none focus:ring dark:bg-darkBg focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-500  dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-green-300 dark:focus:ring-green-200 @error('new_password') is-invalid @enderror" name="new_password" required>
 
                                             @error('new_password')
                                             <span class="invalid-feedback" role="alert">
@@ -137,7 +119,7 @@
                                     <div class="form-group mb-3">
                                         <label for="new_password_confirmation" class="text-sm text-gray-500 dark:text-gray-400">New Password Confirmation</label>
                                         <div class="mt-1">
-                                            <input id="new_password_confirmation" type="password" class="w-full rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-darkBg @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required>
+                                            <input id="new_password_confirmation" type="password" class="mt-2 block w-full rounded-md border border-gray-200 px-3 py-2 text-gray-600 placeholder-gray-400 focus:border-green-400 focus:outline-none focus:ring dark:bg-darkBg focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-500  dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-green-300 dark:focus:ring-green-200 @error('new_password_confirmation') is-invalid @enderror" name="new_password_confirmation" required>
 
                                             @error('new_password_confirmation')
                                             <span class="invalid-feedback" role="alert">
@@ -149,9 +131,8 @@
 
                                     <div class="form-group mb-4">
                                         <div class="">
-                                            <button type="submit" aria-current="directSubmitButton" @click.prevent="window.utils.Request.actionRequest('{{ route('user.profile.updatePassword') }}','#passwordUpdate','#passwordUpdateForm')" class="px-4 py-2 bg-blue-500 rounded-md text-sm text-white">
-                                                <span>Update Password</span>
-                                            </button>
+                                            <x-button.submit-button title="Perbarui Password">
+                                        </x-button.submit-button>
                                         </div>
                                     </div>
                                 </form>
@@ -159,12 +140,12 @@
                         </div>
                     </div>
             `
-                appendProfileElement(passwordElement)
-            }
+            appendProfileElement(passwordElement)
+        }
 
-            function appendProfile(user) {
+        function appendProfile(user) {
 
-                const profileElement = /*html */ `
+            const profileElement = /*html */ `
             <div id="profileUpdate" class="user-information">
                         <div class="panel panel-default dark:text-gray-100">
                             <div class="panel-heading mb-2">
@@ -191,7 +172,7 @@
                                             </span>
                                         </label>
                                         <div class="w-full flex text-nowrap gap-5 items-center mt-1">
-                                            <input id="email" type="email" class="rounded border-1 border-gray-500/50 text-gray-700 dark:text-gray-200 dark:bg-darkBg" name="email" value="${ user.email }" required>
+                                            <input id="email" type="email" class="mt-2 block w-full rounded-md border border-gray-200 px-3 py-2 text-gray-600 placeholder-gray-400 focus:border-green-400 focus:outline-none focus:ring dark:bg-darkBg focus:ring-green-300 focus:ring-opacity-40 dark:border-gray-500  dark:text-gray-300 dark:placeholder-gray-500 dark:focus:border-green-300 dark:focus:ring-green-200" name="email" value="${ user.email }" required>
                                             @if ($user->getEmailVerifiedAt() == null)
                                             <a href="{{ route('user.verification.send') }}" class="text-xs text-green-800 dark:text-green-500 px-3 py-1 bg-green-500/20 bg-green-600/20 rounded-full">Send Email
                                                 Verification</a>
@@ -226,9 +207,8 @@
 
                                     <div class="form-action mb-4">
                                         <div class="flex">
-                                            <button type="submit" class="px-4 py-2 bg-blue-500 rounded-md text-sm text-white" aria-current="directSubmitButton" @click.prevent="window.utils.Request.actionRequest('{{ route('user.profile.update') }}','#profileUpdate','#profileUpdateForm')">
-                                                <span>Save Profile</span>
-                                            </button>
+                                            <x-button.submit-button title="Simpan Profile">
+                                        </x-button.submit-button>
                                         </div>
                                     </div>
                                 </form>
@@ -236,18 +216,18 @@
                         </div>
                     </div>
             `
-                appendProfileElement(profileElement)
-            }
+            appendProfileElement(profileElement)
+        }
 
 
-            function appendProfileElement(element) {
-                $("#panel").fadeOut(500, () => {
-                    $("#panel").html(element)
-                })
+        function appendProfileElement(element) {
+            $("#panel").fadeOut(500, () => {
+                $("#panel").html(element)
+            })
 
-                $("#panel").fadeIn(500, () => {
-                    $("#panel").html(element)
-                })
-            }
+            $("#panel").fadeIn(500, () => {
+                $("#panel").html(element)
+            })
+        }
     </script>
 @endpush
