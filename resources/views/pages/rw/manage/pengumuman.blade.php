@@ -14,10 +14,10 @@
                     <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengumuman</h2>
                         <span
-                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                            class="rounded-full bg-gray-200/50 px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                             {{ $count }} Pengumuman
                         </span>
-                        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
+                        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-green-950">
                             <p class="text-xs text-green-600 dark:text-green-400">{{ $published }} published</p>
                             <span class="relative flex h-3 w-3 items-center justify-center">
                                 <span
@@ -125,8 +125,8 @@
                         let params = new URLSearchParams(window.location.search)
                         ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                         ! params.has('filters[status]')
-                            ? $('#filter-all').addClass('!text-blue-400')
-                            : $('#filter-all').removeClass('!text-blue-400')
+                            ? $('#filter-all').addClass('!text-green-400')
+                            : $('#filter-all').removeClass('!text-green-400')
                     "
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         semua
@@ -135,7 +135,7 @@
                     @foreach (\App\Enums\Pengumuman\PengumumanStatusEnum::getValues() as $key => $value)
                         <button id="filter-{{ $key }}"
                             onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-green-400') : $('#filter-{{ $key }}').removeClass('!text-green-400')"
                             class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                             {{ $value }}
                         </button>
