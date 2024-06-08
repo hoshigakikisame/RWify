@@ -1,6 +1,7 @@
 <aside class="relative z-20 h-screen">
     <nav class="flex h-full w-fit flex-col px-4 py-6 shadow-xl">
-        <div class="sidebar-header mb-5 mt-1 inline-flex items-center gap-2 rounded-xl px-3 py-1 items-center justify-center">
+        <div
+            class="sidebar-header mb-5 mt-1 inline-flex items-center gap-2 rounded-xl px-3 py-1 items-center justify-center">
             <div class="h-7 w-7">
                 {!! file_get_contents(Vite::asset('resources/assets/elements/rwify-logo.svg')) !!}
             </div>
@@ -53,7 +54,8 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-center" id="darkModeButton">
+            <x-button.dark-mode-button></x-button.dark-mode-button>
+            {{-- <div class="flex justify-center" id="darkModeButton">
                 <label for="themeSwitcherOne"
                     class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-darkBg dark:text-gray-200">
                     <span id="sun"
@@ -80,7 +82,7 @@
                         <span class="hidden lg:block">Dark</span>
                     </span>
                 </label>
-            </div>
+            </div> --}}
         </div>
     </nav>
 </aside>

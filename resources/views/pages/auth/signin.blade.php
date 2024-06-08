@@ -14,46 +14,27 @@
         <div class="relative">
             <div class="invisible hidden bg-rose-200 text-rose-700"></div>
             <div
-                class="absolute inset-y-5 right-5 z-50 h-fit w-fit rounded-full bg-gray-100/20 stroke-gray-300 p-2 transition-all hover:bg-gray-300/50 hover:stroke-darkGreen xl:inset-x-5 xl:inset-y-8"
-            >
+                class="absolute inset-y-5 right-5 z-50 h-fit w-fit rounded-full bg-gray-100/20 stroke-gray-300 p-2 transition-all hover:bg-gray-300/50 hover:stroke-darkGreen xl:inset-x-5 xl:inset-y-8">
                 <a href="{{ route('index') }}" class="fill-inherit">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-8 w-8 fill-inherit stroke-inherit xl:h-10 xl:w-10"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                        ></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-inherit stroke-inherit xl:h-10 xl:w-10"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
                 </a>
             </div>
-            <div
-                id="sign-image"
-                class="Sign-Image absolute bottom-0 left-0 right-0 top-0 bg-cover"
-                style="background-image: url('{{ $image }}')"
-            >
-                <div
-                    class="flex h-full w-full items-center text-wrap backdrop-brightness-75 dark:backdrop-brightness-90"
-                >
+            <div id="sign-image" class="Sign-Image absolute bottom-0 left-0 right-0 top-0 bg-cover"
+                style="background-image: url('{{ $image }}')">
+                <div class="flex h-full w-full items-center text-wrap backdrop-brightness-75 dark:backdrop-brightness-90">
                     <h1
-                        class="3xl:text-8xl mx-auto hidden max-w-xl px-7 font-Poppins text-xl font-bold text-white lg:block lg:text-6xl xl:ms-28"
-                    >
+                        class="3xl:text-8xl mx-auto hidden max-w-xl px-7 font-Poppins text-xl font-bold text-white lg:block lg:text-6xl xl:ms-28">
                         BUAT RW MENJADI LEBIH EFISIEN DENGAN RWIFY
                     </h1>
-                    <img
-                        src="{{ $signInElement }}"
-                        class="absolute -bottom-1 z-10 w-full bg-transparent dark:hidden lg:hidden"
-                        alt="data"
-                    />
-                    <img
-                        src="{{ $signInElementDark }}"
+                    <img src="{{ $signInElement }}"
+                        class="absolute -bottom-1 z-10 w-full bg-transparent dark:hidden lg:hidden" alt="data" />
+                    <img src="{{ $signInElementDark }}"
                         class="absolute -bottom-1 z-10 hidden w-full bg-transparent dark:block dark:lg:hidden"
-                        alt="data"
-                    />
+                        alt="data" />
                 </div>
             </div>
         </div>
@@ -61,8 +42,7 @@
         <div class="form-login lg:overflow-hidden">
             <div class="no-scrollbar h-screen overflow-scroll">
                 <div
-                    class="container-fluid flex flex-col items-center gap-5 text-darkLightGrey lg:mb-10 lg:mt-12 lg:gap-2 xl:mt-32"
-                >
+                    class="container-fluid flex flex-col items-center gap-5 text-darkLightGrey lg:mb-10 lg:mt-12 lg:gap-2 xl:mt-32">
                     <div class="signIn-header mb-4 flex flex-col gap-2 text-center md:px-10 lg:w-2/3 2xl:w-1/2">
                         <h1 class="my-1 font-Inter text-5xl font-bold dark:text-gray-100">Sign In</h1>
                         <p class="px-16 font-Inter font-light dark:text-gray-200 lg:p-2">
@@ -74,15 +54,13 @@
                         <!-- Image Sign -->
                         <button
                             class="sso order-last mx-auto mb-6 flex w-fit cursor-pointer items-center justify-center gap-3 rounded-full border p-4 text-center transition-all hover:bg-gray-100 focus:opacity-[0.85] dark:hover:bg-gray-800 sm:mx-0 sm:w-full sm:rounded-md sm:p-2 lg:order-none"
-                            onclick="window.open(`{{ route('auth.google.index') }}`, '_self');"
-                        >
+                            onclick="window.open(`{{ route('auth.google.index') }}`, '_self');">
                             <img src="{{ $googleIcon }}" alt="Google" />
                             <h1 class="hidden dark:text-gray-200 lg:block">Log In dengan Google</h1>
                         </button>
                         <!-- Devider  -->
                         <div
-                            class="devide order-2 mb-2 flex w-full items-center justify-between gap-2 sm:gap-7 lg:order-none"
-                        >
+                            class="devide order-2 mb-2 flex w-full items-center justify-between gap-2 sm:gap-7 lg:order-none">
                             <div class="line h-[0.15vh] grow bg-alum"></div>
                             <p class="shrink text-[9px] dark:text-gray-200 sm:text-xs">Atau Melanjutkan Menggunakan</p>
                             <div class="line h-[0.15vh] grow bg-alum"></div>
@@ -93,56 +71,41 @@
                         <form action="{{ route('auth.signIn') }}" method="post" class="mb-2">
                             @csrf
                             <div class="mb-3">
-                                <label
-                                    for="email"
-                                    class="font-Inter text-xs font-normal text-darkBlue opacity-70 dark:text-white"
-                                >
+                                <label for="email"
+                                    class="font-Inter text-xs font-normal text-darkBlue opacity-70 dark:text-white">
                                     Email
                                 </label>
-                                <input
-                                    type=" email"
-                                    name="email"
-                                    id="email"
+                                <input type=" email" name="email" id="email"
                                     class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none dark:bg-darkBg dark:text-gray-100"
-                                    placeholder="Email"
-                                />
+                                    placeholder="Email" />
                             </div>
                             <div class="mb-3">
-                                <label
-                                    for="password"
-                                    class="font-Inter text-xs font-normal text-darkBlue opacity-70 dark:text-white"
-                                >
+                                <label for="password"
+                                    class="font-Inter text-xs font-normal text-darkBlue opacity-70 dark:text-white">
                                     Password
                                 </label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
+                                <input type="password" name="password" id="password"
                                     class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none focus:border-gray-200 focus:ring-0 dark:bg-darkBg dark:text-gray-100"
-                                    placeholder="Password"
-                                />
+                                    placeholder="Password" />
                             </div>
                             <p class="font-Inter text-xs dark:text-gray-400">
                                 Lupa Password Anda?
-                                <a
-                                    href="{{ route('auth.forgotPassword') }}"
-                                    class="text-darkGreen dark:text-green-600"
-                                >
+                                <a href="{{ route('auth.forgotPassword') }}" class="text-darkGreen dark:text-green-600">
                                     Klik Disini
                                 </a>
                             </p>
                             <div class="submit-btn" style="margin-top: 20px">
-                                <button
-                                    type="submit"
-                                    class="middle none center w-full rounded-md bg-darkGreen px-6 py-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-darkGreen/20 transition-all hover:shadow-lg hover:shadow-darkGreen/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none dark:bg-green-700 dark:hover:shadow-green-700/40"
-                                >
+                                <button type="submit"
+                                    class="middle none center w-full rounded-md bg-darkGreen px-6 py-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-darkGreen/20 transition-all hover:shadow-lg hover:shadow-darkGreen/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none dark:bg-green-700 dark:hover:shadow-green-700/40">
                                     Sign In
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="flex justify-center xl:mb-32" id="darkModeButton">
+                <x-button.dark-mode-button class="xl:mb-32"></x-button.dark-mode-button>
+
+                {{-- <div class="flex justify-center xl:mb-32" id="darkModeButton">
                     <label
                         for="themeSwitcherOne"
                         class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-darkBg dark:text-gray-200"
@@ -181,7 +144,7 @@
                             <span class="hidden md:block">Dark</span>
                         </span>
                     </label>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -237,12 +200,12 @@
                 switchTheme('hidden');
             });
         } else {
-            checkTheme('fill-blue-500');
+            checkTheme('fill-green-500');
             moonIcon.addEventListener('click', () => {
-                switchTheme('fill-blue-500');
+                switchTheme('fill-green-500');
             });
             sunIcon.addEventListener('click', () => {
-                switchTheme('fill-blue-500');
+                switchTheme('fill-green-500');
             });
         }
     </script>

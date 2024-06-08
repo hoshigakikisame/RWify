@@ -154,12 +154,12 @@
                 switchTheme('hidden');
             });
         } else {
-            checkTheme('fill-blue-500');
+            checkTheme('fill-green-500');
             moonIcon.addEventListener('click', () => {
-                switchTheme('fill-blue-500');
+                switchTheme('fill-green-500');
             });
             sunIcon.addEventListener('click', () => {
-                switchTheme('fill-blue-500');
+                switchTheme('fill-green-500');
             });
         }
 

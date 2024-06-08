@@ -150,7 +150,9 @@
                         href="{{ route('auth.signIn') }}">
                         <h1 class="text-xs md:text-sm">{{ $login }}</h1>
                     </a>
-                    <div class="order-1 flex justify-center md:order-2" id="darkModeButton">
+                    <x-button.dark-mode-button isSimple=true class="order-1 md:order-2"></x-button.dark-mode-button>
+
+                    {{-- <div class="order-1 flex justify-center md:order-2" id="darkModeButton">
                         <label for="themeSwitcherOne"
                             class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-darkBg dark:text-gray-200">
                             <span id="sun"
@@ -175,7 +177,7 @@
                                 </svg>
                             </span>
                         </label>
-                    </div>
+                    </div> --}}
                     <div class="button-mobile order-last flex flex-col justify-center">
                         <button
                             class="focus:shadow-outline rounded-lg fill-gray-900 focus:outline-none dark:fill-gray-100 md:hidden"

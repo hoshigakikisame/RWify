@@ -9,34 +9,22 @@
         <div class="grid h-full grid-rows-4 bg-gray-50 dark:bg-darkBg md:grid-rows-3 lg:grid-cols-2 lg:grid-rows-1">
             <div class="resetPassword-image lg:relative">
                 <div
-                    class="absolute inset-y-5 right-5 z-50 h-fit w-fit rounded-full bg-gray-100/20 stroke-gray-300 p-2 transition-all hover:bg-gray-300/50 hover:stroke-darkGreen xl:inset-x-5 xl:inset-y-8"
-                >
+                    class="absolute inset-y-5 right-5 z-50 h-fit w-fit rounded-full bg-gray-100/20 stroke-gray-300 p-2 transition-all hover:bg-gray-300/50 hover:stroke-darkGreen xl:inset-x-5 xl:inset-y-8">
                     <a href="{{ route('auth.signIn') }}" class="fill-inherit">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-8 w-8 fill-inherit stroke-inherit xl:h-10 xl:w-10"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                            ></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 fill-inherit stroke-inherit xl:h-10 xl:w-10"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
                     </a>
                 </div>
-                <div
-                    id="resetPassword-image"
+                <div id="resetPassword-image"
                     class="Sign-Image absolute bottom-0 left-0 right-0 top-0 hidden bg-cover lg:block"
-                    style="background-image: url('{{ $image }}')"
-                >
+                    style="background-image: url('{{ $image }}')">
                     <div
-                        class="flex h-full w-full items-center text-wrap backdrop-brightness-75 dark:backdrop-brightness-90"
-                    >
+                        class="flex h-full w-full items-center text-wrap backdrop-brightness-75 dark:backdrop-brightness-90">
                         <h1
-                            class="3xl:text-8xl mx-auto hidden max-w-xl px-7 font-Poppins text-xl font-bold text-white lg:block lg:text-6xl xl:ms-28"
-                        >
+                            class="3xl:text-8xl mx-auto hidden max-w-xl px-7 font-Poppins text-xl font-bold text-white lg:block lg:text-6xl xl:ms-28">
                             BUAT RW MENJADI LEBIH EFISIEN DENGAN RWIFY
                         </h1>
                     </div>
@@ -49,8 +37,7 @@
                             <div class="resetPassword-header mb-8 w-fit">
                                 <div class="header-wrap mx-auto w-3/5">
                                     <h1
-                                        class="text-wrap font-Poppins text-4xl font-bold leading-tight dark:text-white sm:mb-5 sm:text-7xl lg:text-6xl xl:mb-2 xl:text-7xl"
-                                    >
+                                        class="text-wrap font-Poppins text-4xl font-bold leading-tight dark:text-white sm:mb-5 sm:text-7xl lg:text-6xl xl:mb-2 xl:text-7xl">
                                         Reset Password
                                     </h1>
                                     <p class="font-Inter text-sm font-light dark:text-gray-200 md:text-lg xl:text-xl">
@@ -71,14 +58,9 @@
                                         </label>
 
                                         <div class="col-md-6">
-                                            <input
-                                                id="email"
-                                                type="email"
+                                            <input id="email" type="email"
                                                 class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none dark:bg-darkBg dark:text-gray-100"
-                                                name="email"
-                                                value="{{ old('email') }}"
-                                                required
-                                            />
+                                                name="email" value="{{ old('email') }}" required />
                                         </div>
                                     </div>
 
@@ -86,13 +68,9 @@
                                         <label for="password" class="text-gray-600 dark:text-gray-300">Password</label>
 
                                         <div class="col-md-6">
-                                            <input
-                                                id="password"
-                                                type="password"
+                                            <input id="password" type="password"
                                                 class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none dark:bg-darkBg dark:text-gray-100"
-                                                name="password"
-                                                required
-                                            />
+                                                name="password" required />
                                         </div>
                                     </div>
 
@@ -102,22 +80,16 @@
                                         </label>
 
                                         <div class="col-md-6">
-                                            <input
-                                                id="password_confirmation"
-                                                type="password"
+                                            <input id="password_confirmation" type="password"
                                                 class="flex h-12 w-full items-center justify-center rounded-md border border-gray-200 p-3 text-sm outline-none dark:bg-darkBg dark:text-gray-100"
-                                                name="password_confirmation"
-                                                required
-                                            />
+                                                name="password_confirmation" required />
                                         </div>
                                     </div>
 
                                     <div class="form-group mt-8">
                                         <div class="col-md-6 col-md-offset-4">
-                                            <button
-                                                type="submit"
-                                                class="text-md text-nowrap rounded-lg bg-darkGreen px-5 py-3 font-Poppins text-sm font-medium text-gray-200 dark:bg-green-800"
-                                            >
+                                            <button type="submit"
+                                                class="text-md text-nowrap rounded-lg bg-darkGreen px-5 py-3 font-Poppins text-sm font-medium text-gray-200 dark:bg-green-800">
                                                 Reset Password
                                             </button>
                                         </div>
@@ -125,8 +97,9 @@
                                 </form>
                             </div>
                         </div>
+                        <x-button.dark-mode-button class="my-4 xl:mb-32"></x-button.dark-mode-button>
 
-                        <div class="my-4 flex justify-center xl:mb-32" id="darkModeButton">
+                        {{-- <div class="my-4 flex justify-center xl:mb-32" id="darkModeButton">
                             <label
                                 for="themeSwitcherOne"
                                 class="themeSwitcherTwo shadow-two relative inline-flex cursor-pointer select-none items-center justify-center gap-1 rounded-full border bg-white p-1 dark:bg-darkBg dark:text-gray-200"
@@ -165,7 +138,7 @@
                                     <span class="hidden md:block">Dark</span>
                                 </span>
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -223,12 +196,12 @@
                 switchTheme('hidden');
             });
         } else {
-            checkTheme('fill-blue-500');
+            checkTheme('fill-green-500');
             moonIcon.addEventListener('click', () => {
-                switchTheme('fill-blue-500');
+                switchTheme('fill-green-500');
             });
             sunIcon.addEventListener('click', () => {
-                switchTheme('fill-blue-500');
+                switchTheme('fill-green-500');
             });
         }
     </script>
