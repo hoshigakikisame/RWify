@@ -14,13 +14,13 @@
                     <div class="flex items-center gap-x-3">
                         <h2 class="text-lg font-medium text-gray-800 dark:text-white">Pengaduan</h2>
                         <span
-                            class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                            class="rounded-full dark:bg-gray-600/30 px-3 py-1 text-xs dark:text-gray-100 bg-gray-200/50 text-gray-400">
                             {{ $count }} Pengaduan
                         </span>
                     </div>
 
                     @if ($pengaduanInstances->sortByDesc('diperbarui_pada')->first())
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
                             {{ $pengaduanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                             yang lalu
@@ -40,8 +40,8 @@
                             let params = new URLSearchParams(window.location.search)
                             ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                             ! params.has('filters[status]')
-                                ? $('#filter-all').addClass('!text-blue-400')
-                                : $('#filter-all').removeClass('!text-blue-400')
+                                ? $('#filter-all').addClass('!text-ColorButton')
+                                : $('#filter-all').removeClass('!text-ColorButton')
                         "
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         semua
@@ -50,13 +50,18 @@
                     @foreach (\App\Enums\Pengaduan\PengaduanStatusEnum::getValues() as $key => $value)
                         <button id="filter-{{ $key }}"
                             onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-ColorButton') : $('#filter-{{ $key }}').removeClass('!text-ColorButton')"
                             class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                             {{ $value }}
                         </button>
                     @endforeach
                 </div>
-                <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
+                <div class="w-1/3 self-end">
+                    <x-form.search-input placeholder="Tekan Enter Untuk Mencari Pengaduan Anda ...">
+    
+                    </x-form.search-input>
+                </div>
+                {{-- <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
                     <span class="absolute">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
@@ -68,7 +73,7 @@
                     <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                         placeholder="Press Enter to Search"
                         class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -78,7 +83,7 @@
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-darkBg">
-                                <tr>
+                                <tr class="dark:bg-gray-900">
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
@@ -132,10 +137,9 @@
                             <tbody class="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-darkBg">
                                 @foreach ($pengaduanInstances as $pengaduan)
                                     <tr>
-                                        <td class="px-4 py-4 text-sm font-medium">
+                                        <td class="px-4 py-4 text-sm font-medium w-[200px]">
                                             <div>
-                                                <h2
-                                                    class="inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                                                <h2 class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                     {{ $pengaduan->getNamaPengadu() }}
                                                 </h2>
                                             </div>
@@ -155,7 +159,7 @@
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="-mx-1 text-nowrap text-xs text-blue-600">
+                                            <p class="-mx-1 text-nowrap text-xs text-green-700">
                                                 {{ date('D, m-y', strtotime($pengaduan->getDibuatPada())) }}
                                             </p>
                                         </td>
@@ -182,7 +186,7 @@
                                         <td class="px-4 py-4 text-sm">
                                             <span
                                                 class="@php
-$statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "diproses" => "bg-yellow-50 text-yellow-800 ring-yellow-600/20 dark:bg-yellow-950 dark:text-yellow-200", "invalid" => "bg-red-50 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "selesai" => "bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
+                                                $statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "diproses" => "bg-yellow-50 text-yellow-800 ring-yellow-600/20 dark:bg-yellow-950 dark:text-yellow-200", "invalid" => "bg-red-50 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "selesai" => "bg-green-50 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
                                                 $dotStyle = ["baru" => "bg-blue-500 dark:bg-blue-300", "diproses" => "bg-yellow-500 dark:bg-yellow-300", "invalid" => "bg-red-500 dark:bg-red-300", "selesai" => "bg-green-500 dark:bg-green-300"]; @endphp @if ($pengaduan->getStatus()) {{ $statusStyle[$pengaduan->getStatus()] }}
                                                 @else
                                                     bg-gray-50
@@ -269,106 +273,6 @@ $statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blu
                 `
             $(modalImageElement).insertAfter($(event.target).closest('#imageButton'))
 
-        }
-
-        function appendDeleteModal(id_pengaduan, judul, event) {
-            const modalDeleteElemen = /*html*/ `
-                <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                        <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                            <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
-
-                            <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
-                                <div class="flex items-center justify-between space-x-4">
-                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete Pengaduan</h1>
-
-                                    <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <p class="mt-2 text-sm text-gray-500 ">
-                                    Menghapus Pengaduan dari sistem
-                                </p>
-
-
-                                <form class="mt-5" id="deleteModalForm">
-                                    @csrf
-                                    <input type="text" name="id_pengaduan" value="${id_pengaduan}" hidden >
-                                    <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus Pengaduan <span class="font-semibold text-rose-600 underline underline-offset-8">${judul}</span> </h1>              
-                                    <div class="flex justify-end mt-6">
-                                        <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                            Delete Pengaduan
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                `
-            $(modalDeleteElemen).insertAfter($(event.target).closest('#deleteButton'))
-
-        }
-
-        function appendUpdateModal(pengaduan, event) {
-            const modalEditElemen = /*html*/ `
-                <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                        <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                            <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
-
-                            <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
-                                <div class="flex items-center justify-between space-x-4">
-                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Edit Pengaduan</h1>
-
-                                    <button @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </button>
-                                </div>
-
-                                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                    Edit Pengaduan di dalam sistem
-                                </p>
-
-
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-
-                                <form enctype="multipart/form-data" class="mt-5" id="editModalForm" action="{{ route('rw.manage.pengaduan.update') }}" method="post">
-                                    @csrf
-                                    <input type="text" name="id_pengaduan" value="${pengaduan.id_pengaduan}" hidden >
-                                    <x-form.input-form title="NIK Pengadu" key="nik_pengadu" type="text" placeholder="NIK Pengadu" value="${pengaduan.nik_pengadu}" />
-                                    <x-form.input-form title="Judul" key="judul" type="text" placeholder="Judul"  value="${pengaduan.judul}" />
-                                    <x-form.textarea-input-form title="Isi" key="isi" placeholder="Isi"  value="${pengaduan.isi}" />
-                                    <x-form.select-input-form title="Status" key="status" :options="$status" placeholder="Pilih Status Pengaduan" selected="${pengaduan.status}" />
-                                    <x-form.input-image id="imageupdate" title="Gambar" key="image" placeholder="Gambar" value="${pengaduan.image_url}" />
-
-                                    <div class="flex justify-between mt-6">
-                                        <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
-                                        <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                            Save Pengaduan
-                                        </button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-            `
-            $(modalEditElemen).insertAfter($(event.target).closest('#editButton'))
-            // $("#editModal select[aria-selected]").each(function() {
-            //     $(this).val(this.ariaSelected).change()
-            // })
-        }
-
-
-        function deleteModal(selector) {
-            $(selector).ready(() => {
-                $(selector).remove()
-            })
         }
     </script>
 @endpush

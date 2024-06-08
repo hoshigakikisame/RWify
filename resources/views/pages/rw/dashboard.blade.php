@@ -143,7 +143,7 @@
             <div class="right col-span-2">
                 <div class="header-wrap mb-4 w-fit">
                     <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Kalender</h1>
-                    <p class="text-xs text-gray-400 dark:text-gray-500 text-wrap">Check pertemuan anda di kalender ini</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-500 text-wrap">Cek pertemuan anda di kalender ini</p>
                 </div>
                 <div class="calendar w-full" x-data="{ eventShow: false }">
                     <div
@@ -487,7 +487,7 @@
             return /*html*/ `
             <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
              <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
-                 <p class="text-base text-indigo-500 dark:text-indigo-500 font-medium">${day}</p>
+                 <p class="text-base text-green-500 dark:text-green-500 font-medium">${day}</p>
              </div>
             </td>
                 `

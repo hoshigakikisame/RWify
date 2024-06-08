@@ -22,6 +22,7 @@ export default {
             },
             colors: {
                 darkBg: "#101820",
+                SecondaryBg: "#121A22",
                 ColorButton: "#00B14F",
                 ColorHover: "#03883E",
                 ColorWhiteSidebar: "#00880D",

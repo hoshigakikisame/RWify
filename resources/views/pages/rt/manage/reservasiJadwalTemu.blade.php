@@ -12,11 +12,11 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Jadwal Temu</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                        class="rounded-full dark:bg-gray-600/30 px-3 py-1 text-xs dark:text-gray-100 bg-gray-200/50 text-gray-400">
                         {{ $count }} Jadwal Temu
                     </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-darkBg">
-                        <span class="text-xs text-green-600 dark:text-green-400">{{ $diterimaCount }} Diterima</span>
+                    <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-green-800/30">
+                        <span class="text-xs text-green-600 dark:text-green-400 ">{{ $diterimaCount }} Diterima</span>
                         <span class="relative flex h-3 w-3 items-center justify-center">
                             <span
                                 class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400/75 duration-700"></span>
@@ -26,7 +26,7 @@
                 </div>
 
                 @if ($reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first())
-                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                         Data ini terakhir diupdate
                         {{ $reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                         yang lalu
@@ -47,8 +47,8 @@
                         let params = new URLSearchParams(window.location.search)
                         ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                         ! params.has('filters[status]')
-                            ? $('#filter-all').addClass('!text-blue-400')
-                            : $('#filter-all').removeClass('!text-blue-400')
+                            ? $('#filter-all').addClass('!text-ColorButton')
+                            : $('#filter-all').removeClass('!text-ColorButton')
                     "
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                     semua
@@ -57,13 +57,18 @@
                 @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $key => $value)
                     <button id="filter-{{ $key }}"
                         onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                        x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                        x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-ColorButton') : $('#filter-{{ $key }}').removeClass('!text-ColorButton')"
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         {{ $value }}
                     </button>
                 @endforeach
             </div>
-            <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
+            <div class="w-1/3 self-end">
+                <x-form.search-input placeholder="Tekan Enter Untuk Mencari Reservasi ...">
+
+                </x-form.search-input>
+            </div>
+            {{-- <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
                 <span class="absolute">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
@@ -75,7 +80,7 @@
                 <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
                     placeholder="Press Enter to Search"
                     class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
-            </div>
+            </div> --}}
         </div>
 
         <div class="mt-6 flex flex-col">
@@ -109,7 +114,7 @@
                                         <div class="status">
                                             <span
                                                 class="@php
-$statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "ditolak" => "bg-red-200 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "diterima" => "bg-green-200 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
+                                                $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "ditolak" => "bg-red-200 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "diterima" => "bg-green-200 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
                                                 $dotStyle = ["pending" => "bg-blue-500 dark:bg-blue-300", "ditolak" => "bg-red-500 dark:bg-red-300", "diterima" => "bg-green-500 dark:bg-green-300"]; @endphp @if ($reservasiJadwalTemu->getStatus()) {{ $statusStyle[$reservasiJadwalTemu->getStatus()] }}
                                                 @else
                                                     bg-gray-50
@@ -145,7 +150,7 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
                                                 <label
                                                     for="submitAction-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}"
                                                     class="me-2 text-sm text-gray-800 dark:text-gray-300">
-                                                    Change Status
+                                                    Ubah Status
                                                 </label>
                                                 <select aria-current="submitButton"
                                                     id="submitAction-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}"

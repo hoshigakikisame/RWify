@@ -10,7 +10,7 @@
                 Kirim kan pengaduan ke Ketua RW melewati form ini
             </p>
         </div>
-        <div id="addPengaduan" class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-darkBg/50"
+        <div id="addPengaduan" class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-SecondaryBg"
             x-data="{}">
             <form id="addPengaduanForm" action="{{ route('rt.layanan.pengaduan.new') }}" method="POST"
                 x-effect="window.utils.Request.actionRequest('{{ route('rt.layanan.pengaduan.new') }}','#addPengaduan','#addPengaduanForm',true);window.utils.Request.redirectToPage('{{ route('rt.layanan.pengaduan.index') }}')"
@@ -91,7 +91,7 @@
                 </div>
                 <div class="mt-5 flex justify-end">
                     <button type="submit"
-                        class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                        class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:focus:bg-green-700">
                         Kirim Pengaduan
                     </button>
                 </div>

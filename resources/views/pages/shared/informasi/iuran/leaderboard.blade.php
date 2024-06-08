@@ -21,7 +21,7 @@
                     </h2>
                 </div>
                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
-                    Informasi Mengenai Pembayaran Iuran Warga
+                    Informasi Mengenai Ranking Pembayaran Iuran Warga
                 </p>
             </div>
         </div>
@@ -32,18 +32,18 @@
                     x-effect="
                         let params = new URLSearchParams(window.location.search)
                         ;(params.has('filters[desc]') && params.get('filters[desc]') == '1')
-                            ? $('#filter-desc').addClass('!text-blue-400')
-                            : $('#filter-desc').removeClass('!text-blue-400')
+                            ? $('#filter-desc').addClass('!text-ColorButton')
+                            : $('#filter-desc').removeClass('!text-ColorButton')
                     "
-                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm !text-blue-400">
+                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm !text-ColorButton">
                     Terajin
                 </button>
                 <button id="filter-asc" onclick="window.utils.Request.filterRequest({'desc': 0})"
                     x-effect="
                     let params = new URLSearchParams(window.location.search)
                     ;(params.has('filters[desc]') && params.get('filters[desc]') == '0')
-                        ? $('#filter-asc').addClass('!text-blue-400')
-                        : $('#filter-asc').removeClass('!text-blue-400')
+                        ? $('#filter-asc').addClass('!text-ColorButton')
+                        : $('#filter-asc').removeClass('!text-ColorButton')
                 "
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                     Termalas
@@ -57,7 +57,7 @@
                     $isUserOwnedPosition = $user->getNik() == request()->user()->getNik();
                 @endphp
                 <div
-                    class="card w-52 border border-gray-300 dark:border-gray-500 rounded-xl relative {{ $isUserOwnedPosition ? 'bg-blue-50 dark:bg-blue-800' : '' }}">
+                    class="card w-52 border border-gray-300 dark:border-gray-500 rounded-xl relative {{ $isUserOwnedPosition ? 'bg-green-50 dark:bg-green-800' : '' }}">
                     <div class="medal absolute -right-6 w-16 -top-5">
                         <img class="" src="{{ $medalImage[$loop->index] }}" alt="">
                     </div>
@@ -117,7 +117,7 @@
                                     @php
                                         $isUserOwnedPosition = $user->getNik() == request()->user()->getNik();
                                     @endphp
-                                    <tr class="{{ $isUserOwnedPosition ? 'bg-blue-50 dark:bg-blue-800' : '' }}">
+                                    <tr class="{{ $isUserOwnedPosition ? 'bg-green-50 dark:bg-green-800' : '' }}">
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div>
                                                 <h2 class="text-nowrap font-medium text-gray-800 dark:text-white">

@@ -12,14 +12,14 @@
             </div>
             <div class="card-title text-center">
                 <h2 class="font-Poppins text-xl font-semibold">{{ $name }}</h2>
-                <h4 class="text-md font-Inter font-medium text-[#2D9596]">{{ $position }}</h4>
+                <h4 class="text-md font-Inter font-medium text-yellow-700 dark:text-[#2D9596]">{{ $position }}</h4>
             </div>
         </div>
         <div class="card-body flex flex-col items-center gap-2 text-center">
             <p class="text-md dark:text-gray-300">{{ $description }}</p>
         </div>
         <div class="card-footer text-center">
-            <p class="text-xs font-medium text-gray-300">{{ $date }}</p>
+            <p class="text-xs font-medium text-green-700 dark:text-gray-300">{{ $date }}</p>
         </div>
     </div>
 </div>

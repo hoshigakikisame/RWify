@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div id="addPembayaran" class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-darkBg/50"
+        <div id="addPembayaran" class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-SecondaryBg"
             x-data="{}">
             <form id="addPembayaranForm" action="{{ route('rt.layanan.pembayaranIuran.new') }}" method="POST"
                 x-effect="window.utils.Request.actionRequest('{{ route('rt.layanan.pembayaranIuran.new') }}','#addPembayaran','#addPembayaranForm',true);window.utils.Request.redirectToPage('{{ route('rt.layanan.pembayaranIuran.riwayatPembayaranIuran') }}')"
@@ -77,7 +77,7 @@
                             <x-form.input-form title="NIK" key="nik_pembayar" type="text"
                                 value="{{ request()->user()->nik }}" placeholder="" readonly="true" />
                             <x-form.textarea-input-form title="Keterangan" key="keterangan"
-                                placeholder="Tambahkan Keterangan Bulan Apa Saja yang Dibayarkan    " value=""
+                                placeholder="Tambahkan Keterangan Bulan dan Tahun yang Dibayarkan" value=""
                                 rows="7 " resize="none" />
                             <div class="mt-4">
                                 <label for="dropzone-file" class="mt-4 text-sm capitalize text-gray-700 dark:text-gray-300">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="mt-5 flex justify-end">
                                 <button type="submit"
-                                    class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
+                                    class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:focus:bg-green-700">
                                     Kirim Pembayaran
                                 </button>
                             </div>

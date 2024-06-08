@@ -70,9 +70,8 @@ class RTController extends Controller
             'pengaduanLastAddedAt' => $pengaduanLastAddedAt,
             'propertiLastAddedAt' => $propertiLastAddedAt,
             'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
-            'leaderboardUsers' => $leaderboardUsers
-
-
+            'leaderboardUsers' => $leaderboardUsers,
+            'unreadNotifications' => request()->user()->getUnreadNotifications(),
         ];
         return view('pages.rt.dashboard', $data);
     }
