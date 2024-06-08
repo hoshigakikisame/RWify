@@ -55,10 +55,10 @@
                         {{ count($users) }} warga ditemukan
                     </p>
                 </div>
-                <div class="body-search mt-5 flex flex-col gap-2">
+                <div class="body-search mt-5 flex flex-wrap gap-7 w-full">
                     @foreach ($users as $user)
                         <div
-                            class="card border border-gray-200 shadow-sm ring-4 ring-gray-200/10 dark:border-gray-800 dark:ring-gray-700/10 pt-2 rounded-lg mb-4">
+                            class="card w-5/12 border border-gray-200 shadow-sm ring-4 ring-gray-200/10 dark:border-gray-800 dark:ring-gray-700/10 pt-2 rounded-lg mb-4">
                             <div class="flex py-4 px-5 gap-3 justify-between items-start">
                                 <div class="header pb-2 grow flex gap-2">
                                     <div class="rounded-lg w-36 h-36 overflow-hidden">
@@ -94,6 +94,7 @@
                         </div>
                     @endforeach
                 </div>
+                {{ $users->links('elements.pagination') }}
 
             </div>
         </div>
