@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\RT;
 
 use App\Http\Controllers\Controller;
-use App\Decorators\SearchableDecorator;
 use App\Models\PengaduanModel;
 use App\Models\RukunTetanggaModel;
 use App\Models\UmkmModel;
@@ -11,6 +10,9 @@ use App\Models\UserModel;
 use App\Models\PropertiModel;
 use \Illuminate\Database\Eloquent\Builder;
 use App\Models\ReservasiJadwalTemuModel;
+use App\Enums\Iuran\IuranBulanEnum;
+use App\Models\IuranModel;
+
 
 class RTController extends Controller
 {
@@ -21,22 +23,16 @@ class RTController extends Controller
     {
         $ownedRT = RukunTetanggaModel::where('nik_ketua_rukun_tetangga', '=', request()->user()->getNik())->first();
 
-        $lansiaCount = UserModel::withWhereHas('kartuKeluarga', function (Builder $query) use ($ownedRT) {
-            $query->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga());
-        })->whereYear('tanggal_lahir', '<', date('Y') - 45)->count();
-
-        $dewasaCount = UserModel::withWhereHas('kartuKeluarga', function (Builder $query) use ($ownedRT) {
-            $query->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga());
-        })->whereYear('tanggal_lahir', '>=', date('Y') - 45)->whereYear('tanggal_lahir', '<', date('Y') - 25)->count();
-
-        $remajaCount = UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
-            ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 25)->whereYear('tanggal_lahir', '<', date('Y') - 11)->count();
-
-        $anakCount = UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
-            ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 11)->whereYear('tanggal_lahir', '<', date('Y') - 5)->count();
-
-        $balitaCount = UserModel::join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
-            ->where('tb_kartu_keluarga.id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->whereYear('tanggal_lahir', '>=', date('Y') - 5)->whereYear('tanggal_lahir', '<', date('Y'))->count();
+        // warga statistic dependencies
+        $usersByAge = UserModel::selectRaw(
+            '
+            SUM(CASE WHEN YEAR(tanggal_lahir) < ' . (date('Y') - 45) . ' THEN 1 ELSE 0 END) AS lansiaCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 45) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 25) . ' THEN 1 ELSE 0 END) AS dewasaCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 25) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 11) . ' THEN 1 ELSE 0 END) AS remajaCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 11) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 5) . ' THEN 1 ELSE 0 END) AS anakCount,
+            SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 5) . ' AND YEAR(tanggal_lahir) < ' . date('Y') . ' THEN 1 ELSE 0 END) AS balitaCount'
+        )->join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')
+            ->where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->first();
 
         $umkmCount = UmkmModel::count();
         $pengaduanCount = PengaduanModel::count();
@@ -56,13 +52,26 @@ class RTController extends Controller
 
         $leaderboardUsers = $leaderboardUsers->take(10);
 
+        // iuran line chart dependencies
+        $selectRaw = '';
+
+        foreach (IuranBulanEnum::getValues() as $key => $value) {
+            $suffix = $key == array_key_last(IuranBulanEnum::getValues()) ? '' : ', ';
+            $selectRaw .= 'SUM(CASE WHEN bulan = "' . $value . '" THEN jumlah_bayar ELSE 0 END)' . ' AS ' . $value . $suffix;
+        }
+
+        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->
+            join('tb_user', 'tb_user.nik', '=', 'tb_iuran.nik_pembayar')->
+            join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')->
+            where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->
+            where('tahun', date('Y'))->first()->toArray();
 
         $data = [
-            'lansiaCount' => $lansiaCount,
-            'dewasaCount' => $dewasaCount,
-            'remajaCount' => $remajaCount,
-            'anakCount' => $anakCount,
-            'balitaCount' => $balitaCount,
+            'lansiaCount' => $usersByAge->lansiaCount,
+            'dewasaCount' => $usersByAge->dewasaCount,
+            'remajaCount' => $usersByAge->remajaCount,
+            'anakCount' => $usersByAge->anakCount,
+            'balitaCount' => $usersByAge->balitaCount,
             'umkmCount' => $umkmCount,
             'pengaduanCount' => $pengaduanCount,
             'propertiCount' => $propertiCount,
@@ -72,6 +81,7 @@ class RTController extends Controller
             'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
             'leaderboardUsers' => $leaderboardUsers,
             'unreadNotifications' => request()->user()->getUnreadNotifications(),
+            'monthlyIuranCount' => $monthlyIuranCount,
         ];
         return view('pages.rt.dashboard', $data);
     }

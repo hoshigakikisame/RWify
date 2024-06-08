@@ -23,8 +23,7 @@ class RWController extends Controller
     public function dashboard()
     {
         // warga statistic dependencies
-        $usersByAge = Cache::remember('usersByAge', null, function () {
-            return UserModel::selectRaw(
+        $usersByAge = UserModel::selectRaw(
                 '
                 SUM(CASE WHEN YEAR(tanggal_lahir) < ' . (date('Y') - 45) . ' THEN 1 ELSE 0 END) AS lansiaCount,
                 SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 45) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 25) . ' THEN 1 ELSE 0 END) AS dewasaCount,
@@ -32,7 +31,6 @@ class RWController extends Controller
                 SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 11) . ' AND YEAR(tanggal_lahir) < ' . (date('Y') - 5) . ' THEN 1 ELSE 0 END) AS anakCount,
                 SUM(CASE WHEN YEAR(tanggal_lahir) >= ' . (date('Y') - 5) . ' AND YEAR(tanggal_lahir) < ' . date('Y') . ' THEN 1 ELSE 0 END) AS balitaCount'
             )->first();
-        });
 
         // information panel dependencies
         $umkmInstances = UmkmModel::pluck('dibuat_pada')->all();

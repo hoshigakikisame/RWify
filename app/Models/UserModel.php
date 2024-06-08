@@ -318,7 +318,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
     }
 
     public function getUnreadNotifications() {
-        return NotificationModel::where('target_nik', $this->getNik())->whereNull('dibaca_pada')->get();
+        return NotificationModel::where('target_nik', $this->getNik())->whereNull('dibaca_pada')->get()->sortByDesc('dibuat_pada');
     }
 
     // SETTERS
