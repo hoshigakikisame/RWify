@@ -37,8 +37,8 @@
                             let params = new URLSearchParams(window.location.search)
                             ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                             ! params.has('filters[status]')
-                                ? $('#filter-all').addClass('!text-blue-400')
-                                : $('#filter-all').removeClass('!text-blue-400')
+                                ? $('#filter-all').addClass('!text-green-400')
+                                : $('#filter-all').removeClass('!text-green-400')
                         "
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         semua
@@ -47,24 +47,16 @@
                     @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $key => $value)
                         <button id="filter-{{ $key }}"
                             onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-blue-400') : $('#filter-{{ $key }}').removeClass('!text-blue-400')"
+                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-green-400') : $('#filter-{{ $key }}').removeClass('!text-green-400')"
                             class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                             {{ $value }}
                         </button>
                     @endforeach
                 </div>
-                <div id="search" class="relative mt-4 flex items-center md:mt-0" x-data="{ search: '' }">
-                    <span class="absolute">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="mx-3 h-5 w-5 text-gray-400 dark:text-gray-600">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                        </svg>
-                    </span>
+                <div class="w-1/3 self-end">
+                    <x-form.search-input placeholder="Tekan Enter Untuk Mencari Reservasi ...">
 
-                    <input x-model="search" @keyup.enter="window.utils.Request.searchRequest(search)" type="text"
-                        placeholder="Press Enter to Search"
-                        class="block rounded-lg border border-gray-200 bg-white py-1.5 pl-11 pr-5 text-gray-700 placeholder-gray-400/70 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-darkBg dark:text-gray-300 dark:focus:border-blue-300 md:w-80 lg:w-full rtl:pl-5 rtl:pr-11" />
+                    </x-form.search-input>
                 </div>
             </div>
         </div>
@@ -124,7 +116,7 @@
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div>
                                                 <h2
-                                                    class="inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                                                    class="inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                     {{ $reservasiJadwalTemu->getNamaPemohon() }}
                                                 </h2>
                                             </div>
