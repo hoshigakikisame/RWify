@@ -42,12 +42,12 @@
             <div class="body-kriteria grid grid-cols-6 gap-3 mb-4 ">
                 @php
                     $colorRing = [
-                        'ring-blue-800/30 dark:ring-blue-100/30 border-blue-800/80 dark:border-blue-100/70',
-                        'ring-blue-700/30 dark:ring-blue-200/30 border-blue-700/80 dark:border-blue-200/70',
-                        'ring-blue-600/30 dark:ring-blue-300/30 border-blue-600/80 dark:border-blue-300/70',
-                        'ring-blue-500/30 dark:ring-blue-400/30 border-blue-500/80 dark:border-blue-400/70',
-                        'ring-blue-400/30 dark:ring-blue-500/30 border-blue-400/80 dark:border-blue-500/70',
-                        'ring-blue-300/30 dark:ring-blue-600/30 border-blue-300/80 dark:border-blue-600/70',
+                        'ring-green-800/30 dark:ring-green-100/30 border-green-800/80 dark:border-green-100/70',
+                        'ring-green-700/30 dark:ring-green-200/30 border-green-700/80 dark:border-green-200/70',
+                        'ring-green-600/30 dark:ring-green-300/30 border-green-600/80 dark:border-green-300/70',
+                        'ring-green-500/30 dark:ring-green-400/30 border-green-500/80 dark:border-green-400/70',
+                        'ring-green-400/30 dark:ring-green-500/30 border-green-400/80 dark:border-green-500/70',
+                        'ring-green-300/30 dark:ring-green-600/30 border-green-300/80 dark:border-green-600/70',
                     ];
                 @endphp
                 @foreach ($criteriaWeights as $key => $value)
@@ -70,7 +70,7 @@
         <div class="wrap-body">
             <nav class="relative mb-2 px-2 py-1 pt-0">
                 <ul x-ref="parent" class="flex gap-1 text-sm dark:text-gray-100" x-data="{
-                    activeClass: 'rounded-t-md text-blue-500 dark:text-blue-400 border-blue-500 border-b-2',
+                    activeClass: 'rounded-t-md text-green-500 dark:text-green-400 border-green-500 border-b-2',
                     setActivePanel(panel) {
                         $($refs.parent).find('li').removeClass(this.activeClass);
                         $(panel).addClass(this.activeClass);
@@ -165,7 +165,7 @@
                         <tr>
                             <td class="px-4 py-4 text-sm font-medium">
                                 <div>
-                                    <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                                    <h2 class="text-nowrap rounded-full bg-emerald-100/60 w-fit px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-emerald-950">
                                         {{ $key }}
                                     </h2>
                                 </div>
@@ -190,7 +190,7 @@
                 <tr>
                     <td class="px-4 py-4 text-sm font-medium"> 
                         <div>
-                            <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                            <h2 class="text-nowrap rounded-full bg-emerald-100/60 w-fit px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-emerald-950">
                                 {{ $key }}
                             </h2>
                         </div>
@@ -222,7 +222,7 @@
                 </td>
                         <td class="px-4 py-4 text-sm font-medium"> 
                             <div>
-                                <h2 class="text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                                <h2 class="text-nowrap rounded-full bg-emerald-100/60 w-fit px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-emerald-950">
                                     {{ $value['instance']->getNkk() }}
                                 </h2>
                             </div>
