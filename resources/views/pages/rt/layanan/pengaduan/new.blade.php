@@ -90,10 +90,8 @@
                     {{-- <x-form.input-image id="imagePengaduan" title="Evidence" key="image" placeholder="Gambar" /> --}}
                 </div>
                 <div class="mt-5 flex justify-end">
-                    <button type="submit"
-                        class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:focus:bg-green-700">
-                        Kirim Pengaduan
-                    </button>
+                    <x-button.submit-button title="Kirim Aduan">
+                    </x-button.submit-button>
                 </div>
             </form>
         </div>

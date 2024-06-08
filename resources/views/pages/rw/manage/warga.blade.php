@@ -168,10 +168,8 @@
                                         <p class="text-xs text-gray-200 dark:text-gray-400">
                                             Note: Pastikan semua sudah terisi dengan benar
                                         </p>
-                                        <button type="click"
-                                            class="transform rounded-md bg-ColorButton px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:focus:bg-green-700">
-                                            Tambah Warga
-                                        </button>
+                                        <x-button.submit-button title="Tambah Warga">
+                                        </x-button.submit-button>
                                     </div>
                                 </form>
                             </div>
@@ -406,10 +404,8 @@
                          <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span
                                  class="font-semibold text-rose-600 underline underline-offset-8">${nama}</span> </h1>
                          <div class="flex justify-end mt-6">
-                             <button type="submit"
-                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-500 rounded-md dark:bg-red-600 dark:hover:bg-red-700 dark:focus:bg-red-700 hover:bg-red-600 focus:outline-none focus:bg-red-500 focus:ring focus:ring-red-300 focus:ring-opacity-50">
-                                 Hapus Warga
-                             </button>
+                            <x-button.submit-button title="Hapus Warga">
+                            </x-button.submit-button>
                          </div>
                      </form>
                  </div>
@@ -504,10 +500,8 @@
                          <div class="flex justify-between mt-6">
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
                              </p>
-                             <button type="submit"
-                                 class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-ColorButton rounded-md dark:focus:bg-green-700 hover:bg-ColorHover focus:outline-none focus:bg-green-500 focus:ring focus:ring-green-300 focus:ring-opacity-50">
-                                 Simpan Data
-                             </button>
+                             <x-button.submit-button title="Simpan Warga">
+                                        </x-button.submit-button>
                          </div>
                      </form>
                  </div>

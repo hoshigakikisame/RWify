@@ -38,7 +38,7 @@
                     <h1 class="text-xl font-semibold tracking-wide">Notifikasi</h1>
                     @if ($notifications->count() > 0)
                         <p class="text-xs text-gray-400 dark:text-gray-500">Anda mempunyai <span
-                                class="text-blue-500">{{ $notifications->count() }} notifikasi</span> baru</p>
+                                class="text-green-500">{{ $notifications->count() }} notifikasi</span> baru</p>
                     @else
                         <p class="text-xs text-gray-400 dark:text-gray-500">Tidak ada notifikasi baru</p>
                     @endif

@@ -128,8 +128,8 @@ $statusStyle = [
                         </div>
                         <div class="mt-4 flex justify-end" x-data="{ changePopUp: false }">
                             <button type="button" @click="changePopUp = true"
-                                class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
-                                Save Pengaduan
+                                class="transform rounded-md bg-green-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-green-600 focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:bg-green-700">
+                                Simpan Pengaduan
                             </button>
 
                             <div id="changePopUp" x-show="changePopUp" class="fixed inset-0 z-40 overflow-y-auto"
@@ -176,10 +176,8 @@ $statusStyle = [
                                                 class="font-semibold text-rose-600 underline underline-offset-8">{{ $pengaduanInstance->judul }}</span>
                                         </h1>
                                         <div class="flex justify-end mt-6">
-                                            <button type="submit"
-                                                class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                                Ubah Statu Pengaduan
-                                            </button>
+                                            <x-button.submit-button title="Ubah Status Pengaduan">
+                                            </x-button.submit-button>
                                         </div>
                                     </div>
                                 </div>

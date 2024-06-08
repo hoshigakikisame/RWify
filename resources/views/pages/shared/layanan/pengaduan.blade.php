@@ -20,10 +20,8 @@
                     </div>
                 </div>
                 <div class="mt-6 flex">
-                    <button type="submit"
-                        class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
-                        Add Pengaduan
-                    </button>
+                    <x-button.submit-button title="Kirim Pengaduan">
+                    </x-button.submit-button>
                 </div>
             </form>
         </div>

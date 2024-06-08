@@ -293,9 +293,8 @@ $statusStyle = ["baru" => "bg-blue-50 text-blue-700 ring-blue-700/10 dark:bg-blu
                                     <input type="text" name="id_pengaduan" value="${id_pengaduan}" hidden >
                                     <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus Pengaduan <span class="font-semibold text-rose-600 underline underline-offset-8">${judul}</span> </h1>              
                                     <div class="flex justify-end mt-6">
-                                        <button type="submit" class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                            Delete Pengaduan
-                                        </button>
+                                        <x-button.submit-button title="Hapus Pengaduan">
+                                        </x-button.submit-button>
                                     </div>
                                 </form>
                             </div>

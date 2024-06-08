@@ -105,10 +105,8 @@
                                         <p class="text-xs text-gray-200 dark:text-gray-400">
                                             Note: Pastikan semua sudah terisi dengan benar
                                         </p>
-                                        <button type="submit"
-                                            class="transform rounded-md bg-blue-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 focus:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700">
-                                            Tambah Pengumuman
-                                        </button>
+                                        <x-button.submit-button title="Tambah Pengumuman">
+                                        </x-button.submit-button>
                                     </div>
                                 </form>
                             </div>
@@ -390,10 +388,8 @@
                             <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin ${confirmation} Pengumuman <span
                                     class="font-semibold text-green-600 underline underline-offset-8">${judul}</span> </h1>
                             <div class="flex justify-end mt-6">
-                                <button type="submit"
-                                    class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                    Publish Pengumuman
-                                </button>
+                                <x-button.submit-button title="${modalHeader}">
+                                        </x-button.submit-button>
                             </div>
                         </form>
                     </div>
@@ -445,10 +441,8 @@
                             <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span
                                     class="font-semibold text-rose-600 underline underline-offset-8">${judul}</span> </h1>
                             <div class="flex justify-end mt-6">
-                                <button type="submit"
-                                    class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                    Delete Pengumuman
-                                </button>
+                                <x-button.submit-button title="Hapus Pengumuman">
+                                        </x-button.submit-button>
                             </div>
                         </form>
                     </div>
@@ -512,10 +506,8 @@
                         <div class="flex justify-between mt-6">
                             <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
                             </p>
-                            <button type="submit"
-                                class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-500 rounded-md dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:bg-blue-700 hover:bg-blue-600 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                                Save Pengumuman
-                            </button>
+                            <x-button.submit-button title="Simpan Pengumuman">
+                                        </x-button.submit-button>
                         </div>
                     </form>
 
