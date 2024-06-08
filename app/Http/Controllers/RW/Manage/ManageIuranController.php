@@ -12,6 +12,7 @@ use App\Models\IuranModel;
 use App\Models\PembayaranIuranModel;
 use App\Models\UserModel;
 use App\Enums\Iuran\IuranBulanEnum;
+use App\Enums\User\UserRoleEnum;
 use App\Models\NotificationModel;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Notifications\Notification;
@@ -128,7 +129,21 @@ class ManageIuranController extends Controller
             session()->flash('danger', ['title' => 'Insert Failed.', 'description' => 'Insert Failed.']);
         } else {
             session()->flash('success', ['title' => 'Insert Success.', 'description' => 'Insert Success.']);
-            NotificationModel::new($nikPembayar, 'Pembayaran iuran anda pada bulan ' . $bulan . ' tahun ' . $tahun . ' berhasil diverifikasi.', route('warga.layanan.pembayaranIuran.iuran', [], false));
+
+            
+            // notification redirect route based on role
+            $relatedUserRole = UserModel::where('nik', $nikPembayar)->first()->getRole();
+            $slug = route('warga.layanan.pembayaranIuran.iuran', [], false);
+            switch ($relatedUserRole) {
+                case UserRoleEnum::KETUA_RUKUN_WARGA->value:
+                    $slug = route('rw.manage.iuran.index', [], false);
+                    break;
+                case UserRoleEnum::KETUA_RUKUN_TETANGGA->value:
+                    $slug = route('rt.layanan.pembayaranIuran.iuran', [], false);
+                    break;
+            }
+
+            NotificationModel::new($nikPembayar, 'Pembayaran iuran anda pada bulan ' . $bulan . ' tahun ' . $tahun . ' berhasil diverifikasi.', $slug);
         }
 
         // return redirect()->route('rw.manage.iuran.verify');

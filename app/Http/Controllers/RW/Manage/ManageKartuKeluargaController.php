@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\RW\Manage;
 
-// Illuminate
-use Illuminate\Support\Facades\Hash;
-
 // App
 use App\Http\Controllers\Controller;
 use App\Decorators\SearchableDecorator;
