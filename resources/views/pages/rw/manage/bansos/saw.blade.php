@@ -5,7 +5,8 @@
             <div class="header">
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Perhitungan</h2>
-                    <span class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                    <span
+                        class="rounded-full bg-gray-200/50 px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                         SAW
                     </span>
                 </div>
@@ -28,7 +29,7 @@
                     onclick="document.querySelector('#exportCSVForm').submit()">
             </form>
         </div>
-        
+
         <div class="kriteria">
             <div class="mt-4 md:flex md:items-center md:justify-between">
                 <div class="header-kriteria mb-3">
@@ -50,18 +51,20 @@
                     ];
                 @endphp
                 @foreach ($criteriaWeights as $key => $value)
-                <div class="card border-l dark:text-gray-200 dark:bg-darkBg/60 ring rounded-md px-3 py-2 h-full {{ $colorRing[$loop->index] }}">
-                    <div class="flex flex-col justify-between h-full">
-                        <h5 class="text-sm dark:text-gray-300">{{ $key }}</h5>
-                        <div class="flex justify-between mt-2 items-center">
-                            <h1 class="text-2xl dark:text-gray-50">{{ $value['weight'] }}</h1>
-                            <p class="text-xs px-3 py-1 rounded-full items-center h-fit w-fit {{ $value['type'] == 'benefit' ? 'text-green-700 dark:text-green-300 bg-green-200 dark:bg-green-800' : 'text-red-700 dark:text-red-300 bg-red-200 dark:bg-red-800/60' }}">
-                                {{ $value['type'] }}
-                            </p>
+                    <div
+                        class="card border-l dark:text-gray-200 dark:bg-darkBg/60 ring rounded-md px-3 py-2 h-full {{ $colorRing[$loop->index] }}">
+                        <div class="flex flex-col justify-between h-full">
+                            <h5 class="text-sm dark:text-gray-300">{{ $key }}</h5>
+                            <div class="flex justify-between mt-2 items-center">
+                                <h1 class="text-2xl dark:text-gray-50">{{ $value['weight'] }}</h1>
+                                <p
+                                    class="text-xs px-3 py-1 rounded-full items-center h-fit w-fit {{ $value['type'] == 'benefit' ? 'text-green-700 dark:text-green-300 bg-green-200 dark:bg-green-800' : 'text-red-700 dark:text-red-300 bg-red-200 dark:bg-red-800/60' }}">
+                                    {{ $value['type'] }}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endforeach 
+                @endforeach
             </div>
         </div>
         <div class="wrap-body">

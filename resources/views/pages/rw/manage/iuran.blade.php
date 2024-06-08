@@ -221,7 +221,7 @@
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div>
                                                 <h2
-                                                    class=" inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                                                    class=" inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                     {{ $iuran->getNamaPembayar() }}
                                                 </h2>
                                             </div>
@@ -234,26 +234,26 @@
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="mx-1 text-nowrap text-sm text-blue-600">
+                                            <p class="mx-1 text-nowrap text-sm text-gray-700 dark:text-gray-200">
                                                 {{ $iuran->getBulan() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="mx-1 text-nowrap text-sm text-blue-600">
+                                            <p class="mx-1 text-nowrap text-sm text-gray-700 dark:text-gray-200">
                                                 {{ $iuran->getTahun() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="mx-1 text-nowrap text-sm text-blue-600">
+                                            <p class="mx-1 text-nowrap text-sm text-green-600">
                                                 Rp. {{ $iuran->getJumlahBayar() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
                                             <p
-                                                class="inline gap-x-2 text-nowrap rounded-full bg-blue-100/60 px-3 py-1 text-sm font-normal text-blue-500 dark:bg-darkBg">
+                                                class="inline gap-x-2 text-nowrap rounded-full dark:bg-gray-600/30 px-3 py-1 text-sm font-normal dark:text-gray-100 bg-gray-200/50 text-gray-500/70">
                                                 {{ date('F, j-Y ', strtotime($iuran->getTanggalBayar())) }}
                                             </p>
                                         </td>
@@ -374,7 +374,6 @@
         }
 
         function appendUpdateModal(iuran, event) {
-            console.log(iuran);
             const modalEditElemen = /*html*/ `
         <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title"
              role="dialog" aria-modal="true">

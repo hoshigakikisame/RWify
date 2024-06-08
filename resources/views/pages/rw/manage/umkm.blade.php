@@ -11,7 +11,7 @@
                         <div class="flex items-center gap-x-3">
                             <h2 class="text-lg font-medium text-gray-800 dark:text-white">UMKM</h2>
                             <span
-                                class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                                class="rounded-full bg-gray-200/50 px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                                 {{ $umkmInstances->total() }} UMKM
                             </span>
                         </div>
@@ -223,7 +223,7 @@
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div
-                                                class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-darkBg">
+                                                class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-emerald-950">
                                                 {{ $umkm->getNamaPemilik() }}
                                             </div>
                                         </td>
@@ -243,7 +243,7 @@
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-6 w-6 fill-blue-700 dark:fill-blue-400"
+                                                        class="h-6 w-6 fill-ColorButton dark:fill-ColorHover"
                                                         viewBox="0 0 24 24">
                                                         <path
                                                             d="M16.25 2.75h-8.5A5.76 5.76 0 0 0 2 8.5v7a5.76 5.76 0 0 0 5.75 5.75h8.5A5.76 5.76 0 0 0 22 15.5v-7a5.76 5.76 0 0 0-5.75-5.75M8 6.1a2.41 2.41 0 1 1-.922 4.635A2.41 2.41 0 0 1 8.01 6.1zm12.5 6.68l-2.18-1.69a3.26 3.26 0 0 0-4.17.37l-2.33 2.33a3 3 0 0 1-3.72.36a1.48 1.48 0 0 0-.94-.24a1.46 1.46 0 0 0-.88.42l-2.43 2.84a4.25 4.25 0 0 1-.35-1.91l1.68-1.95a3 3 0 0 1 3.76-.41a1.43 1.43 0 0 0 1.82-.18l2.33-2.32a4.77 4.77 0 0 1 6.13-.51l1.28 1z" />
@@ -268,8 +268,9 @@
                                                 href="{{ route('informasi.umkmPage', ['#umkm-' . $umkm->getIdUmkm()]) }}">
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-blue-500"
-                                                        viewBox="0 0 28 28" fill="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-6 w-6 fill-ColorButton" viewBox="0 0 28 28"
+                                                        fill="currentColor">
                                                         <path
                                                             d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0" />
                                                     </svg>

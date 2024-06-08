@@ -15,7 +15,7 @@
                         Mengelola Iuran
                     </h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                        class="rounded-full bg-gray-200/50 px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                         {{ $count }} Iuran Belum Terkelola
                     </span>
                 </div>
@@ -55,7 +55,7 @@
                             class="border focus:outline-none dark:bg-darkBg dark:text-gray-300 focus:ring-0 col-span-2"
                             placeholder="Date" />
                         <button onclick="applyFilter()"
-                            class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto fill-white">
+                            class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover dark:bg-ColorButton  dark:hover:bg-ColorHover sm:w-auto fill-white">
                             <div class="w-4 h-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 513.749 513.749" xml:space="preserve">
                                     <path

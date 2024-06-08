@@ -105,7 +105,8 @@
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div>
-                                                <h2 class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
+                                                <h2
+                                                    class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                     {{ $iuran->getNamaPembayar() }}
                                                 </h2>
                                             </div>
@@ -128,15 +129,16 @@
                                                 {{ $iuran->getTahun() }}
                                             </p>
                                         </td>
-                                        
+
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="mx-1 text-gray-700 dark:text-gray-200">
+                                            <p class="mx-1 text-green-600">
                                                 Rp. {{ $iuran->getJumlahBayar() }}
                                             </p>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="inline gap-x-2 rounded-full dark:bg-gray-600/30 px-3 py-1 text-sm dark:text-gray-100 bg-gray-200/50 text-gray-500/70">
+                                            <p
+                                                class="inline gap-x-2 rounded-full dark:bg-gray-600/30 px-3 py-1 text-sm dark:text-gray-100 bg-gray-200/50 text-gray-500/70">
                                                 {{ date('F, j-Y ', strtotime($iuran->getTanggalBayar())) }}
                                             </p>
                                         </td>

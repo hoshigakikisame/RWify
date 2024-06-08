@@ -6,7 +6,7 @@
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Perhitungan</h2>
                     <span
-                        class="rounded-full bg-blue-100 px-3 py-1 text-xs text-blue-600 dark:bg-darkBg dark:text-blue-400">
+                        class="rounded-full bg-gray-200/50 px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                         MFEP
                     </span>
                 </div>
