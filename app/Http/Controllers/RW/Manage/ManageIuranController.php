@@ -57,20 +57,25 @@ class ManageIuranController extends Controller
         $filters = request()->filters ?? [];
         $paginate = request()->paginate;
 
+        $status = array_key_exists('status', $filters) ? $filters['status'] : null;
+
+        if (array_key_exists('status', $filters)) {
+            unset($filters['status']);
+        }
+
         $pembayaranIuranInstances = (new SearchableDecorator(PembayaranIuranModel::class))->search(
             $query,
             $paginate,
             ['user' => UserModel::class],
             $filters,
-            function (Builder $queryBuilder) use ($filters) {
+
+            function (Builder $queryBuilder) use ($status) {
                 $iuranIds = IuranModel::all()->pluck('id_pembayaran_iuran')->toArray();
-                if (array_key_exists('status', $filters)) {
-                    if (request()->filters['status'] == 'verified') {
+                    if ($status == 'verified') {
                         $queryBuilder->whereIn('id_pembayaran_iuran', $iuranIds);
-                    } else if (request()->filters['status'] == 'unverified') {
+                    } else if ($status == 'unverified') {
                         $queryBuilder->whereNotIn('id_pembayaran_iuran', $iuranIds);
                     }
-                }
             }
         );
 
