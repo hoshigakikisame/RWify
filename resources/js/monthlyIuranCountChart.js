@@ -1,7 +1,6 @@
 import ApexCharts from 'apexcharts'
 
-export default function monthlyIuranCountChart(chartSelector, keys, values) {
-
+export default function monthlyIuranCountChart(chartSelector, keys, values, theme) {
     let options = {
         chart: {
             type: 'area'
@@ -29,6 +28,9 @@ export default function monthlyIuranCountChart(chartSelector, keys, values) {
             },
         },
         colors: ['#00B14F'],
+        tooltip: {
+            theme: theme
+        }
     }
 
     let chart = new ApexCharts(document.querySelector(chartSelector), options);

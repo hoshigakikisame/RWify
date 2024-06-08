@@ -25,7 +25,8 @@
                                 'name' => 'Properti',
                                 'count' => $propertiCount,
                                 'lastAddedAt' => $propertiLastAddedAt,
-                                'wrapClass' => 'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
+                                'wrapClass' =>
+                                    'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
                                 'iconColor' => 'fill-green-700',
                                 'updateColor' => 'text-green-600',
                             ],
@@ -33,7 +34,8 @@
                                 'name' => 'Pengaduan Warga',
                                 'count' => $pengaduanCount,
                                 'lastAddedAt' => $pengaduanLastAddedAt,
-                                'wrapClass' => 'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
+                                'wrapClass' =>
+                                    'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
                                 'iconColor' => 'fill-green-700',
                                 'updateColor' => 'text-green-600',
                             ],
@@ -41,7 +43,8 @@
                                 'name' => 'UMKM',
                                 'count' => $umkmCount,
                                 'lastAddedAt' => $umkmLastAddedAt,
-                                'wrapClass' => 'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
+                                'wrapClass' =>
+                                    'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
                                 'iconColor' => 'fill-green-700',
                                 'updateColor' => 'text-green-600',
                             ],
@@ -83,7 +86,8 @@
                                 <h1 class="text-xl">
                                     Statistik Warga
                                 </h1>
-                                <p class="text-xs text-gray-400 dark:text-gray-500">Berikut visualisasi warga dalam pie chart</p>
+                                <p class="text-xs text-gray-400 dark:text-gray-500">Berikut visualisasi warga dalam pie
+                                    chart</p>
                             </div>
                             <div class="icon fill-gray-500 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xml:space="preserve"
@@ -114,7 +118,8 @@
                         <div class="graph-header flex justify-between mb-1">
                             <div class="text-wrap">
                                 <h1 class="text-xl">Grafik Iuran</h1>
-                                <p class="text-xs text-gray-400 dark:text-gray-500">Berikut visualisasi data pembayaran iuran</p>
+                                <p class="text-xs text-gray-400 dark:text-gray-500">Berikut visualisasi data pembayaran
+                                    iuran</p>
                             </div>
                             <div class="icon fill-gray-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 drop-shadow-md" viewBox="0 0 384 384"
@@ -129,7 +134,7 @@
                             </div>
                         </div>
 
-                        <div id="moneyChart" class=""></div>
+                        <div id="monthlyIuranCountChart" class=""></div>
                     </div>
                 </div>
             </div>
@@ -313,9 +318,27 @@
 @push('scripts')
     <script type="module">
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
-        import moneyChart from '{{ Vite::asset('resources/js/moneyChart.js') }}';
+        import monthlyIuranCountChart from '{{ Vite::asset('resources/js/monthlyIuranCountChart.js') }}';
 
-        let moneyChartElement = moneyChart('#moneyChart')
+        var monthlyIuranCountChartElement = monthlyIuranCountChart(
+            '#monthlyIuranCountChart',
+            {!! json_encode(array_keys($monthlyIuranCount)) !!},
+            {!! json_encode(array_values($monthlyIuranCount)) !!},
+            localStorage.getItem('theme')
+        );
+
+        document.addEventListener('themeChange', function(e) {
+            let currentTheme = localStorage.getItem('theme');
+            // destroy the old chart
+            document.getElementById('monthlyIuranCountChart').innerHTML = '';
+            // create new one
+            monthlyIuranCountChartElement = monthlyIuranCountChart(
+                '#monthlyIuranCountChart',
+                {!! json_encode(array_keys($monthlyIuranCount)) !!},
+                {!! json_encode(array_values($monthlyIuranCount)) !!},
+                currentTheme
+            );
+        })
 
         let chart = ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }},
             {{ $anakCount }},

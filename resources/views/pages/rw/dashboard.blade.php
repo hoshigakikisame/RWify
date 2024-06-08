@@ -121,8 +121,8 @@
                                     iuran</p>
                             </div>
                             <div class="icon fill-gray-500 dark:fill-gray-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 drop-shadow-md"
-                                    viewBox="0 0 384 384" xml:space="preserve">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 drop-shadow-md" viewBox="0 0 384 384"
+                                    xml:space="preserve">
                                     <path
                                         d="M10.668 234.668h42.664c5.89 0 10.668 4.773 10.668 10.664V352c0 5.89-4.777 10.668-10.668 10.668H10.668C4.778 362.668 0 357.891 0 352V245.332c0-5.89 4.777-10.664 10.668-10.664m106.664-85.336H160c5.89 0 10.668 4.777 10.668 10.668v192c0 5.89-4.777 10.668-10.668 10.668h-42.668c-5.89 0-10.664-4.777-10.664-10.668V160c0-5.89 4.773-10.668 10.664-10.668M224 192h42.668c5.89 0 10.664 4.777 10.664 10.668V352c0 5.89-4.773 10.668-10.664 10.668H224c-5.89 0-10.668-4.777-10.668-10.668V202.668c0-5.89 4.777-10.668 10.668-10.668m106.668-64h42.664c5.89 0 10.668 4.777 10.668 10.668V352c0 5.89-4.777 10.668-10.668 10.668h-42.664c-5.89 0-10.668-4.777-10.668-10.668V138.668c0-5.89 4.777-10.668 10.668-10.668m0 0"
                                         data-original="" />
@@ -168,9 +168,9 @@
                                     <button id="prev-calendar" aria-label="calendar backward"
                                         class="text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-left" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <polyline points="15 6 9 12 15 18" />
                                         </svg>
@@ -178,9 +178,9 @@
                                     <button id="next-calendar" aria-label="calendar forward"
                                         class="ml-3 text-gray-800 hover:text-gray-400 focus:text-gray-400 dark:text-gray-100">
                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="icon icon-tabler icon-tabler-chevron-right" width="24"
-                                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                            fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            class="icon icon-tabler icon-tabler-chevron-right" width="24" height="24"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                             <polyline points="9 6 15 12 9 18" />
                                         </svg>
@@ -322,11 +322,25 @@
         import ageChartStatistic from '{{ Vite::asset('resources/js/statisticChart.js') }}';
         import monthlyIuranCountChart from '{{ Vite::asset('resources/js/monthlyIuranCountChart.js') }}';
 
-        let monthlyIuranCountChartElement = monthlyIuranCountChart(
+        var monthlyIuranCountChartElement = monthlyIuranCountChart(
             '#monthlyIuranCountChart',
             {!! json_encode(array_keys($monthlyIuranCount)) !!},
             {!! json_encode(array_values($monthlyIuranCount)) !!},
+            localStorage.getItem('theme')
         );
+
+        document.addEventListener('themeChange', function(e) {
+            let currentTheme = localStorage.getItem('theme');
+            // destroy the old chart
+            document.getElementById('monthlyIuranCountChart').innerHTML = '';
+            // create new one
+            monthlyIuranCountChartElement = monthlyIuranCountChart(
+                '#monthlyIuranCountChart',
+                {!! json_encode(array_keys($monthlyIuranCount)) !!},
+                {!! json_encode(array_values($monthlyIuranCount)) !!},
+                currentTheme
+            );
+        })
 
         let chart = ageChartStatistic({{ $lansiaCount }}, {{ $dewasaCount }}, {{ $remajaCount }},
             {{ $anakCount }},

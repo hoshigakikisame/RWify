@@ -142,6 +142,9 @@
                 localStorage.setItem('theme', 'dark');
                 iconToogle(stype);
             }
+
+            // emit event
+            document.dispatchEvent(new Event('themeChange'));
         }
 
         // check if user prefers dark mode in responsive device

@@ -20,7 +20,6 @@ export default function ageChartStatistic(lansia, dewasa, remaja, anak, balita) 
     }
 
     new Chart(document.getElementById('myChart'), {
-
         type: 'doughnut',
         data: {
             labels: data.map((row) => row.label),
