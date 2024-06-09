@@ -19,7 +19,7 @@
                         {{ $count }} Iuran Belum Terkelola
                     </span>
                 </div>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                     Kelola iuran warga yang sudah membayar dengan form dibawah
                 </p>
             </div>
@@ -114,8 +114,8 @@
                                             {{ $pembayaranIuran->getUser()->getNamaLengkap() }}</h1>
                                         <h2 class="text-xs text-gray-600 dark:text-gray-400 mb-2">
                                             {{ $pembayaranIuran->getUser()->getNik() }}
-                                            <h2 class="text-xs text-gray-600 mb-2">Verified Count:
-                                                {{ $pembayaranIuran->getVerifiedCount() }}
+                                            <h2 class="text-xs text-gray-600 mb-2">Diverifikasi Sebanyak:
+                                                {{ $pembayaranIuran->getVerifiedCount() }} Kali
                                             </h2>
                                             <p class="text-sm text-gray-700 dark:text-gray-400">
                                                 {{ $pembayaranIuran->getKeterangan() }}</p>
@@ -126,7 +126,7 @@
                                         onclick="(function(){appendFormVerifiedModal(event,{{ $pembayaranIuran }},{{ $pembayaranIuran->getUser()->getTagihanIuranPerBulan() }});zoomInit();window.utils.Request.actionRequest(`{{ route('rw.manage.iuran.new') }}`, '#verifiedModal', '#verifiedModalForm')})()">
                                         <div class="icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                class="w-5 h-5 dark:fill-gray-100 fill-gray-950">
+                                                class="w-5 h-5 fill-ColorButton hover:fill-ColorHover">
                                                 <path
                                                     d="M18 12a6 6 0 1 0 0 12 6 6 0 0 0 0-12m3.192 6.202-2.213 2.124c-.452.446-1.052.671-1.653.671s-1.203-.225-1.663-.674l-1.132-1.109a1 1 0 1 1 1.4-1.428l1.131 1.108a.374.374 0 0 0 .522-.002l2.223-2.134a1 1 0 1 1 1.385 1.443ZM10 18a7.98 7.98 0 0 1 2.709-6H5a1 1 0 1 1 0-2h8a1 1 0 0 1 .997 1.072A7.96 7.96 0 0 1 18 10V5c0-2.757-2.243-5-5-5H5C2.243 0 0 2.243 0 5v14c0 2.757 2.243 5 5 5h7.709A7.98 7.98 0 0 1 10 18M5 5h8a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2m2 12H5a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2" />
                                             </svg>
@@ -136,21 +136,9 @@
                                 </div>
                             </div>
                             <div class="body px-5 py-2 bg-gray-50 dark:bg-darkBg/80  " x-data="{ isDetailOpen: false }">
-                                <div x-show="isDetailOpen" class="detailBody pt-3 pb-2 border-b-2 dark:border-gray-700">
-                                    <p class="text-sm mb-1 text-gray-800 dark:text-gray-400">Tanggal Bayar Pada
-                                        {{ date('F, j-Y ', strtotime($pembayaranIuran->getTanggalBayar())) }}</p>
-                                    <p class="text-xs text-gray-700 dark:text-gray-500">Last Updated
-                                        {{ date('d/m/y H:i', strtotime($pembayaranIuran->getDiperbaruiPada())) }}</p>
-                                </div>
                                 <div class="trigger flex justify-between items-center py-2 ">
-                                    <button @click="isDetailOpen = !isDetailOpen" class="">
-                                        <h6
-                                            class="text-xs hover:!text-blue-600 transition-all duration-300 dark:hover:!text-blue-500 text-gray-600 dark:text-gray-300  ">
-                                            Detail
-                                            Pembayaran</h6>
-                                    </button>
                                     <div class="information">
-                                        <h6 class="text-xs text-gray-400 dark:text-gray-500">
+                                        <h6 class="text-xs text-gray-400 dark:text-gray-500 self-end"> Dibuat Pada:
                                             {{ date('d/m/y H:i', strtotime($pembayaranIuran->getDibuatPada())) }}</h6>
                                     </div>
                                 </div>
@@ -212,7 +200,7 @@
             x-transition:enter="transform transition duration-300 ease-out" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transform transition duration-200 ease-in"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-            class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40" aria-hidden="true">
+            class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-SecondaryBg/70" aria-hidden="true">
         </div>
 
         <div x-show="isFromOpen" x-cloak x-transition:enter="transform transition duration-300 ease-out"
@@ -221,7 +209,7 @@
             x-transition:leave="transform transition duration-200 ease-in"
             x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
             x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-            class="my-20 inline-block w-full max-w-5xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
+            class="my-20 inline-block w-full max-w-5xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-SecondaryBg 2xl:max-w-2xl">
             <div class="flex items-center justify-between space-x-4">
                 <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
                     Verifikasi Pembayaran</h1>
@@ -248,7 +236,7 @@
                     <div class="image-container rounded-md overflow-hidden">
                         <img id="imageZoom" src="${data.image_url}" alt="image">
                     </div>
-                    <p class="my-2 text-gray-700">
+                    <p class="my-2 pt-4 text-white">
                         ${data.keterangan}
                     </p>
                 </div>
@@ -262,19 +250,19 @@
                     <x-form.input-form title="" key="nik_pembayar" type="hidden" value="${data.user.nik}"
                         placeholder="" />
 
-                    <x-form.select-input-form title="Bulan Terbayar" key="bulan"
-                        placeholder="Pilih Bulan Terbayar Warga" :options="$bulanOptions" />
+                    <x-form.select-input-form title="Bulan Bayar" key="bulan"
+                        placeholder="Pilih Bulan Bayar Warga" :options="$bulanOptions" />
 
-                    <x-form.input-form title="Tahun Terbayar" key="tahun" type="number" placeholder="2024" />
+                    <x-form.input-form title="Tahun Terbayar" key="tahun" type="number" placeholder="Masukkan Tahun Bayar" />
 
                     <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number" placeholder="100000"
                         value='${tagihan }' readonly="true" />
 
                     <div class="mt-6 flex justify-between">
-                        <p class="text-xs text-gray-200 dark:text-gray-400">
+                        <p class="text-xs text-gray-200 dark:text-gray-400 pr-4">
                             Note: Pastikan semua sudah terisi dengan benar
                         </p>
-                        <x-button.submit-button title="Verified">
+                        <x-button.submit-button title="Simpan">
                         </x-button.submit-button>
                     </div>
                 </form>
@@ -294,7 +282,7 @@
         x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-        class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+        class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
     <div x-cloak x-show="showImage" x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"

@@ -44,7 +44,7 @@ class ManageKartuKeluargaController extends Controller
     public function addNewKartuKeluarga()
     {
         request()->validate([
-            'nkk' => 'required',
+            'nkk' => 'required|max:16',
             'alamat' => 'required',
             'id_rukun_tetangga' => 'required',
             'tagihan_listrik_per_bulan' => 'required',
@@ -109,7 +109,7 @@ class ManageKartuKeluargaController extends Controller
         $i = 1;
         foreach ($data as $row) {
             $validate = Validator::make($row, [
-                'nkk' => 'required',
+                'nkk' => 'required|max:16',
                 'alamat' => 'required',
                 'rt' => 'required',
                 'tagihan_listrik_per_bulan' => 'required',

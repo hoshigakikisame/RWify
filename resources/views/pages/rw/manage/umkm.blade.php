@@ -17,7 +17,7 @@
                         </div>
 
                         @if ($umkmInstances->sortByDesc('diperbarui_pada')->first())
-                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                                 Data ini terakhir diupdate
                                 {{ $umkmInstances->sortByDesc('diperbarui_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true) }}
                                 yang lalu
@@ -66,7 +66,7 @@
                                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                                         x-transition:leave="transform transition duration-200 ease-in"
                                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                        class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
+                                        class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-SecondaryBg/70"
                                         aria-hidden="true"></div>
 
                                     <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
@@ -75,7 +75,7 @@
                                         x-transition:leave="transform transition duration-200 ease-in"
                                         x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
                                         x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                        class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
+                                        class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-SecondaryBg 2xl:max-w-2xl">
                                         <div class="flex items-center justify-between space-x-4">
                                             <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
                                                 Tambah UMKM
@@ -113,8 +113,8 @@
                                                 placeholder="Alamat UMKM" />
                                             <x-form.input-form title="Maps URL" key="map_url" type="text"
                                                 placeholder="Maps URL UMKM" />
-                                            <x-form.input-form title="Instagram URL" key="instagram_url" type="text"
-                                                placeholder="Instagram URL UMKM" />
+                                            <x-form.input-form title="Instagram Username" key="instagram_url" type="text"
+                                                placeholder="Username Instagram" />
                                             <x-form.textarea-input-form title="Deskripsi" key="deskripsi"
                                                 placeholder="Deskripsi tentang UMKM" />
                                             <x-form.input-image id="imageadd" title="Gambar UMKM" key="image"
@@ -164,7 +164,7 @@
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-darkBg">
-                                <tr>
+                                <tr class="dark:bg-gray-900">
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
@@ -221,7 +221,7 @@
                                         </td>
                                         <td class="px-4 py-4 text-sm font-medium">
                                             <div
-                                                class="inline gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-emerald-950">
+                                                class=" inline gap-x-2 text-nowrap rounded-full bg-emerald-100/60 px-3 py-1 text-sm font-normal text-emerald-500 dark:bg-gray-800">
                                                 {{ $umkm->getNamaPemilik() }}
                                             </div>
                                         </td>
@@ -267,7 +267,7 @@
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-6 w-6 fill-ColorButton" viewBox="0 0 28 28"
+                                                        class="h-6 w-6 fill-blue-700 dark:fill-blue-500" viewBox="0 0 28 28"
                                                         fill="currentColor">
                                                         <path
                                                             d="M25.257 16h.005h-.01zm-.705-.52c.1.318.387.518.704.52c.07 0 .148-.02.226-.04c.39-.12.61-.55.48-.94C25.932 14.93 22.932 6 14 6S2.067 14.93 2.037 15.02c-.13.39.09.81.48.94c.4.13.82-.09.95-.48l.003-.005c.133-.39 2.737-7.975 10.54-7.975c7.842 0 10.432 7.65 10.542 7.98M9 16a5 5 0 1 1 10 0a5 5 0 0 1-10 0" />
@@ -334,9 +334,9 @@
             const modalImageElement = /*html*/ `
                 <div id="imageModal" x-show="showImage" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                                 <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                                                    <div x-cloak @click="()=>{showImage = false;deleteModal('#imageModal')}" x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+                                                    <div x-cloak @click="()=>{showImage = false;deleteModal('#imageModal')}" x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
-                                                    <div x-cloak x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
+                                                    <div x-cloak x-show="showImage" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-SecondaryBg rounded-lg shadow-xl 2xl:max-w-2xl">
                                                         <div class="flex items-center justify-between space-x-4">
                                                             <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Gambar UMKM</h1>
 
@@ -366,9 +366,9 @@
             const modalDeleteElemen = /*html*/ `
                 <div id="deleteModal" x-show="modalDeleteOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                            <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+                            <div x-cloak @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
-                            <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
+                            <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-SecondaryBg rounded-lg shadow-xl 2xl:max-w-2xl">
                                 <div class="flex items-center justify-between space-x-4">
                                     <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete UMKM</h1>
 
@@ -387,10 +387,10 @@
                                 <form class="mt-5" id="deleteModalForm">
                                     @csrf
                                     <input type="text" name="id_umkm" value="${id_umkm}" hidden >
-                                    <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span class="font-semibold text-rose-600 underline underline-offset-8">${nama}</span> </h1>              
+                                    <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus UMKM <span class="font-semibold text-rose-600 underline underline-offset-8">${nama}</span> </h1>              
                                     <div class="flex justify-end mt-6">
-                                        <x-button.submit-button title="Hapus UMKM">
-                                        </x-button.submit-button>
+                                        <x-button.delete-button title="Hapus UMKM">
+                                        </x-button.delete-button>
                                     </div>
                                 </form>
                             </div>
@@ -405,9 +405,9 @@
             const modalEditElemen = /*html*/ `
                 <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-                            <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+                            <div x-cloak @click="()=>{modalEditOpen = false;deleteModal('#editModal')}" x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
-                            <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
+                            <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-SecondaryBg rounded-lg shadow-xl 2xl:max-w-2xl">
                                 <div class="flex items-center justify-between space-x-4">
                                     <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Edit UMKM User</h1>
 

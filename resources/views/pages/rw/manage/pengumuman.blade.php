@@ -17,7 +17,7 @@
                             class="rounded-full bg-gray-200/50 px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                             {{ $count }} Pengumuman
                         </span>
-                        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-green-950">
+                        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-green-800/30">
                             <p class="text-xs text-green-600 dark:text-green-400">{{ $published }} published</p>
                             <span class="relative flex h-3 w-3 items-center justify-center">
                                 <span
@@ -27,7 +27,7 @@
                         </span>
                     </div>
                     @if ($pengumumanInstances->sortByDesc('diperbarui_pada')->first())
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
                             {{ $pengumumanInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                             yang lalu
@@ -62,7 +62,7 @@
                                 x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                                 x-transition:leave="transform transition duration-200 ease-in"
                                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-darkBg/40"
+                                class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-SecondaryBg/70"
                                 aria-hidden="true">
                             </div>
 
@@ -123,8 +123,8 @@
                         let params = new URLSearchParams(window.location.search)
                         ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                         ! params.has('filters[status]')
-                            ? $('#filter-all').addClass('!text-green-400')
-                            : $('#filter-all').removeClass('!text-green-400')
+                            ? $('#filter-all').addClass('!text-ColorButton')
+                            : $('#filter-all').removeClass('!text-ColorButton')
                     "
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         semua
@@ -133,7 +133,7 @@
                     @foreach (\App\Enums\Pengumuman\PengumumanStatusEnum::getValues() as $key => $value)
                         <button id="filter-{{ $key }}"
                             onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-green-400') : $('#filter-{{ $key }}').removeClass('!text-green-400')"
+                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-ColorButton') : $('#filter-{{ $key }}').removeClass('!text-ColorButton')"
                             class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                             {{ $value }}
                         </button>
@@ -174,14 +174,14 @@
                                         <div class="status">
                                             @if ($pengumuman->getStatus() == App\Enums\Pengumuman\PengumumanStatusEnum::DRAFT->value)
                                                 <span
-                                                    class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 dark:bg-darkBg">
+                                                    class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 dark:bg-blue-950">
                                                     <span
                                                         class="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
                                                     <p class="text-[9px] text-blue-600 dark:text-blue-400">draft</p>
                                                 </span>
                                             @else
                                                 <span
-                                                    class="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 dark:bg-darkBg">
+                                                    class="inline-flex items-center gap-1 rounded-full px-2 py-1 bg-green-100 dark:bg-green-950">
                                                     <span class="relative flex h-2 w-2 items-center justify-center">
                                                         <span
                                                             class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75 duration-700"></span>
@@ -304,12 +304,12 @@
                                     <div
                                         class="card-footer flex justify-between border-t bg-gray-50 px-8 py-2 dark:border-gray-800 dark:bg-darkBg">
                                         <p class="text-xs text-gray-300 dark:text-gray-600">
-                                            Created at
+                                            Dibuat Pada
                                             {{ date('d/m/y', strtotime($pengumuman->getDibuatPada())) }}
                                         </p>
                                         <p class="text-xs text-gray-400 dark:text-gray-500">
-                                            Last Updated at
-                                            {{ date('d/m/y H:i', strtotime($pengumuman->getDiperbaruiPada())) }}
+                                            Terakhir Diperbarui Pada
+                                            {{ date('d/m/y', strtotime($pengumuman->getDiperbaruiPada())) }}
                                         </p>
                                     </div>
                                 </div>
@@ -356,7 +356,7 @@
                         x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
                     <div x-cloak x-show="modalShareOpen" x-transition:enter="transition ease-out duration-300 transform"
                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -409,7 +409,7 @@
                         x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
                     <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform"
                         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -438,11 +438,11 @@
                         <form class="mt-5" id="deleteModalForm">
                             @csrf
                             <input type="text" name="id_pengumuman" value="${id_pengumuman}" hidden>
-                            <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus <span
+                            <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Menghapus Pengumuman <span
                                     class="font-semibold text-rose-600 underline underline-offset-8">${judul}</span> </h1>
                             <div class="flex justify-end mt-6">
-                                <x-button.submit-button title="Hapus Pengumuman">
-                                        </x-button.submit-button>
+                                <x-button.delete-button title="Hapus Pengumuman">
+                                        </x-button.delete-button>
                             </div>
                         </form>
                     </div>
@@ -462,7 +462,7 @@
                     x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                    class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+                    class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
                 <div x-cloak x-show="modalEditOpen" x-transition:enter="transition ease-out duration-300 transform"
                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
