@@ -26,7 +26,7 @@
      <input type="hidden" name="{{ $key }}" x-bind:value="data"
          x-effect="if($('{{ $parent }}').find('#display-{{ $key }}').length != 0){console.log(data);$('{{ $parent }}').find('#display-{{ $key }}').val(data)}">
 
-     <div class="absolute top-20 z-30 border rounded-md border-gray-200 dark:border-gray-500 max-h-96 overflow-auto w-full bg-white p-2"
+     <div class="absolute top-20 z-30 border rounded-md border-gray-200 dark:border-gray-500 max-h-96 overflow-auto w-full bg-white dark:bg-darkBg p-2"
          :class="open ? 'ring border-green-400 ring-green-300 ring-opacity-40' : ''" x-show="open"
          x-on:click.outside="open = !open" x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0 translate" x-transition:enter-end="opacity-100 translate"
@@ -35,7 +35,7 @@
          <ul class="">
              <template x-for="item in filteredItems" class="flex flex-col">
                  <li><button
-                         class="w-full px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-green-100/80 hover:text-green-900 text-start rounded-md"
+                         class="w-full px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-green-100/80 hover:text-green-900 dark:hover:text-green-900 text-start rounded-md"
                          x-text="item" type="button"
                          x-effect="if(search){Object.keys(items).forEach((key)=> {if(items[key]==item) data = key});search = item;}"
                          @click="Object.keys(items).forEach((key)=> {if(items[key]==item) data = key});search = item;open = false;"></button>

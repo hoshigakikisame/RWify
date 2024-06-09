@@ -335,7 +335,7 @@
                                     @csrf
                                     <input type="text" name="id_tipe_properti" value="${tipeProperti.id_tipe_properti}" hidden>
                                     <x-form.input-form title="Nama Properti" key="nama_tipe" type="text" placeholder="Properti" value="${tipeProperti.nama_tipe}" />
-                                    <x-form.input-form title="Nama Pemilik" key="iuran_per_bulan" type="text" placeholder="Pemilik"  value="${tipeProperti.iuran_per_bulan}" />
+                                    <x-form.input-form title="Iuran Per Bulan" key="iuran_per_bulan" type="text" placeholder="Pemilik"  value="${tipeProperti.iuran_per_bulan}" />
                                     <div class="flex justify-between mt-6">
                                         <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar</p>
                                         <x-button.submit-button title="Simpan Tipe Properti">
