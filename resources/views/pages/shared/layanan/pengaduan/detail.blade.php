@@ -106,6 +106,7 @@ $statusStyle = [
                         <h1 class="ml-3 font-Poppins font-medium leading-8 text-gray-900 dark:text-gray-100">
                             Rubah Status Pengaduan
                         </h1>
+
                     </div>
                 </div>
                 <div id="updateStatus" class="sidebar-action mb-8 me-5 ms-6 w-72 px-4 transition-all" x-show="sideAction"
@@ -115,20 +116,23 @@ $statusStyle = [
                     x-transition:enter-end="opacity-100" x-transition:leave="transform transition duration-200 ease-in"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 ">
                     <form id="updateForm"
-                        onclick="window.utils.Request.actionRequest(`{{ route('rw.manage.pengaduan.update') }}`, '#updateStatus', '#updateForm')">
+                        onclick="window.utils.Request.actionRequest(`{{ route('rw.manage.pengaduan.update') }}`, '#updateStatus', '#updateForm',false)">
                         @csrf
                         <input type="text" name="id_pengaduan" key="id_pengaduan"
                             value="{{ $pengaduanInstance->id_pengaduan }}" hidden />
                         <x-form.select-input-form title="Status" key="status" :options="$status"
-                            placeholder="Pilih Status Pengaduan" selected="{{ $pengaduanInstance->getStatus() }}" />
+                            placeholder="Pilih Status Pengaduan" selected="{{ $pengaduanInstance->getStatus() }}"
+                            disabled="{{ $pengaduanInstance->getStatus() == 'selesai' || $pengaduanInstance->getStatus() == 'invalid' ? true : false }}" />
                         <div class="heading">
                             <p class="mt-3 max-w-60 text-wrap text-xs text-gray-950 dark:text-gray-500">
                                 Note: Pastikan pengaduan sudah benar benar tervalidasi sebelum merubah status pengaduan
                             </p>
                         </div>
-                        <div class="mt-4 flex justify-end" x-data="{ changePopUp: false }">
-                            <button type="button" @click="changePopUp = true"
-                                class="transform rounded-md bg-green-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-green-600 focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:bg-green-700">
+                        <div class="mt-4 flex justify-end" x-data="{ changePopUp: false, status: '' }">
+                            <button type="button"
+                                {{ $pengaduanInstance->getStatus() == 'selesai' || $pengaduanInstance->getStatus() == 'invalid' ? 'disabled=1' : '' }}
+                                @click="if($('select#status').val() != 'invalid' && $('select#status').val() != 'selesai'){ $(event.target).attr('type','submit') }else{ $(event.target).attr('type','button') ; status = $('select#status').val() ;changePopUp = true;}"
+                                class="transform rounded-md bg-green-500 px-3 py-2 text-sm capitalize tracking-wide text-white transition-colors duration-200 hover:bg-green-600 focus:bg-green-500 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:bg-green-700 {{ $pengaduanInstance->getStatus() == 'selesai' || $pengaduanInstance->getStatus() == 'invalid' ? 'cursor-not-allowed' : '' }} ">
                                 Simpan Pengaduan
                             </button>
 
@@ -174,6 +178,8 @@ $statusStyle = [
                                         <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda
                                             Yakin Merubah Pengaduan Status <span
                                                 class="font-semibold text-rose-600 underline underline-offset-8">{{ $pengaduanInstance->judul }}</span>
+                                            Menjadi <span x-text="status"
+                                                :class="[status == 'selesai' ? 'text-green-500' : 'text-red-500']"></span>
                                         </h1>
                                         <div class="flex justify-end mt-6">
                                             <x-button.submit-button title="Ubah Status Pengaduan">

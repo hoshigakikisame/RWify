@@ -89,7 +89,7 @@ class ManagePengaduanController extends Controller
             $pengaduan->save();
 
             session()->flash('success', ['title' => 'Update Success.', 'description' => 'Update Success.']);
-            NotificationModel::new($pengaduan->getNikPengadu(), 'Pengaduan anda dengan judul ' . $pengaduan->getJudul() . ' saat ini berstatus ' . $pengaduan->getStatus(), route('warga.layanan.pengaduan.detail', ['id_pengaduan' => $pengaduan->getId()], false));
+            NotificationModel::new($pengaduan->getNikPengadu(), 'Pengaduan anda dengan judul ' . $pengaduan->getJudul() . ' saat ini berstatus ' . $pengaduan->getStatus(), route('layanan.pengaduan.detail', ['idPengaduan' => $pengaduan->getIdPengaduan()], false));
         }
 
         return 'update success';
