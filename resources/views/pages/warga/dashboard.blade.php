@@ -21,9 +21,9 @@
                         @php
                             $list = [
                                 [
-                                    'name' => 'Pengaduan',
-                                    'count' => '$0',
-                                    'lastAddedAt' => '$20 jam',
+                                    'name' => 'Total Pengaduan',
+                                    'count' => $pengaduanCount,
+                                    'lastAddedAt' => $lastUpdatedPengaduan,
                                     'wrapClass' =>
                                         'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
                                     'iconColor' => 'fill-green-700',
@@ -31,17 +31,17 @@
                                 ],
                                 [
                                     'name' => 'Iuran',
-                                    'count' => '$0',
-                                    'lastAddedAt' => '$10 menit',
+                                    'count' => "Rp. $iuranSum",
+                                    'lastAddedAt' => $lastUpdatedIuran,
                                     'wrapClass' =>
                                         'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
                                     'iconColor' => 'fill-green-700',
                                     'updateColor' => 'text-green-600',
                                 ],
                                 [
-                                    'name' => 'Properti',
-                                    'count' => '$0',
-                                    'lastAddedAt' => '$20 menit',
+                                    'name' => 'Jumlah Properti',
+                                    'count' => $ownedPropertiCount,
+                                    'lastAddedAt' => $lastUpdatedProperti,
                                     'wrapClass' =>
                                         'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
                                     'iconColor' => 'fill-green-700',
