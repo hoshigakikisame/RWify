@@ -17,7 +17,7 @@
                     </div>
 
                     @if ($reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first())
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
                             {{ $reservasiJadwalTemuInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                             yang lalu
@@ -37,8 +37,8 @@
                             let params = new URLSearchParams(window.location.search)
                             ;(params.has('filters[status]') && params.get('filters[status]') == '') ||
                             ! params.has('filters[status]')
-                                ? $('#filter-all').addClass('!text-green-400')
-                                : $('#filter-all').removeClass('!text-green-400')
+                                ? $('#filter-all').addClass('!text-ColorButton')
+                                : $('#filter-all').removeClass('!text-ColorButton')
                         "
                         class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                         semua
@@ -47,7 +47,7 @@
                     @foreach (\App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum::getValues() as $key => $value)
                         <button id="filter-{{ $key }}"
                             onclick="window.utils.Request.filterRequest({'status': '{{ $value }}'})"
-                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-green-400') : $('#filter-{{ $key }}').removeClass('!text-green-400')"
+                            x-effect="let params = new URLSearchParams(window.location.search); params.has('filters[status]') && params.get('filters[status]') == '{{ $value }}' ? $('#filter-{{ $key }}').addClass('!text-ColorButton') : $('#filter-{{ $key }}').removeClass('!text-ColorButton')"
                             class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 sm:text-sm">
                             {{ $value }}
                         </button>
@@ -67,7 +67,7 @@
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-darkBg">
-                                <tr>
+                                <tr class="dark:bg-gray-900">
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
@@ -129,13 +129,14 @@
                                         </td>
 
                                         <td class="px-4 py-4 align-middle text-sm">
-                                            <h4 class="max-w-[400px] text-gray-700 dark:text-gray-200 truncate ..">
-                                                {{ $reservasiJadwalTemu->getPesan() }}
+                                            <h4 class="max-w-[300px] text-gray-700 dark:text-gray-200 truncate ..">
+                                                {{ implode(' ', array_slice(str_word_count($reservasiJadwalTemu->getPesan(), 1), 0, 13)) }}
+                                                {{ str_word_count($reservasiJadwalTemu->getPesan()) > 10 ? '.....' : '' }}
                                             </h4>
                                         </td>
 
                                         <td class="px-4 py-4 text-sm">
-                                            <p class="-mx-1 text-nowrap text-xs text-blue-600">
+                                            <p class="mx-1 text-nowrap text-xs text-green-700">
                                                 {{ date('F, j-Y', strtotime($reservasiJadwalTemu->getDibuatPada())) }}
                                             </p>
                                         </td>

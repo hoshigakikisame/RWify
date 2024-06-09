@@ -19,7 +19,7 @@
                     </div>
 
                     @if ($iuranInstances->sortByDesc('diperbarui_pada')->first())
-                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
                             {{ $iuranInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
                             yang lalu
@@ -44,7 +44,7 @@
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="w-full min-w-full table-auto divide-y divide-gray-200 px-2 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-darkBg">
-                                <tr>
+                                <tr class="dark:bg-gray-900">
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">

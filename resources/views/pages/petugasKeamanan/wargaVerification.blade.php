@@ -34,8 +34,8 @@
                             class="border-t border-b border-e-0 border-s border-gray-300 dark:border-gray-500 dark:bg-darkBg rounded-s-md focus:outline-none focus:ring-0 col-span-8 dark:text-gray-300 dark:placeholder-gray-300"
                             placeholder="Search" />
                         <button onclick="window.utils.Request.searchRequest(document.querySelector('#search').value)"
-                            class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap bg-blue-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 sm:w-auto fill-white">
-                            <div class="w-4 h-4">
+                        class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 rounded-r-lg hover:bg-ColorHover dark:bg-ColorButton  dark:hover:bg-ColorHover sm:w-auto fill-white">
+                        <div class="w-4 h-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 513.749 513.749" xml:space="preserve">
                                     <path
                                         d="m504.352 459.061-99.435-99.477c74.402-99.427 54.115-240.344-45.312-314.746S119.261-9.277 44.859 90.15-9.256 330.494 90.171 404.896c79.868 59.766 189.565 59.766 269.434 0l99.477 99.477c12.501 12.501 32.769 12.501 45.269 0s12.501-32.769 0-45.269zm-278.635-73.365c-88.366 0-160-71.634-160-160s71.634-160 160-160 160 71.634 160 160c-.094 88.326-71.673 159.906-160 160" />
@@ -59,7 +59,7 @@
                 <div class="body-search mt-5 flex flex-wrap gap-4">
                     @foreach ($users as $user)
                         <div
-                            class="card w-[45%] border border-gray-200 shadow-sm ring-4 ring-gray-200/10 dark:border-gray-800 dark:ring-gray-700/10 pt-2 rounded-lg mb-4">
+                            class="card w-[49%] border border-gray-200 shadow-sm ring-4 ring-gray-200/10 dark:border-gray-800 dark:ring-gray-700/10 pt-2 rounded-lg mb-4">
                             <div class="flex py-4 px-5 gap-3 justify-between items-start">
                                 <div class="header pb-2 grow flex gap-2">
                                     <div class="rounded-lg w-36 h-36 overflow-hidden">
@@ -122,7 +122,7 @@
         x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200 transform"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-        class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-darkBg/40" aria-hidden="true"></div>
+        class="fixed inset-0 transition-opacity  bg-gray-500/40 dark:bg-SecondaryBg/70" aria-hidden="true"></div>
 
     <div x-cloak x-show="showImage" x-transition:enter="transition ease-out duration-300 transform"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -130,7 +130,7 @@
         x-transition:leave="transition ease-in duration-200 transform"
         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        class="inline-block w-full max-w-3xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-darkBg rounded-lg shadow-xl 2xl:max-w-2xl">
+        class="inline-block w-full max-w-3xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-SecondaryBg rounded-lg shadow-xl 2xl:max-w-2xl">
         <div class="flex items-center justify-between space-x-4">
             <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100  ">Gambar Pembayaran</h1>
 

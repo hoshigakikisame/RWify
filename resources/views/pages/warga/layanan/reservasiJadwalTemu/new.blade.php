@@ -14,7 +14,7 @@
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Buat reservasi menggunakan form ini</p>
         </div>
         <div class="flex flex-col flex-col-reverse lg:flex-row gap-8 ">
-            <div id="addReservasi" class="form w-full rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-darkBg/50"
+            <div id="addReservasi" class="form w-full rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-SecondaryBg"
                 x-data="{}">
                 <form id="addReservasiForm" action="{{ route('warga.layanan.reservasiJadwalTemu.new') }}" method="POST"
                     enctype=""
@@ -63,7 +63,7 @@
                         <div class="swiper-slide">
                             <div class="flex flex-col rounded-lg border p-7 dark:border-gray-700 w-full">
                                 <div class="profile flex gap-2">
-                                    <div class="p-12 mr-4 h-20 w-20 rounded-full bg-white bg-cover bg-center dark:bg-darkBg"
+                                    <div class="p-12 mr-4 h-20 w-20 rounded-full bg-white bg-cover bg-center dark:bg-SecondaryBg"
                                         style="background-image: url('{{ $user->image_url }}')"></div>
                                     <div class="flex flex-col justify-center">
                                         <p

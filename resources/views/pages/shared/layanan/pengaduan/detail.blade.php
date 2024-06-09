@@ -141,7 +141,7 @@ $statusStyle = [
                                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                                         x-transition:leave="transition ease-in duration-200 transform"
                                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-darkBg/40"
+                                        class="fixed inset-0 transition-opacity bg-gray-500/40 dark:bg-SecondaryBg/70"
                                         aria-hidden="true"></div>
 
                                     <div x-cloak x-show="changePopUp"
