@@ -51,29 +51,32 @@
                 </button>
             </div>
 
-            <ul class="body-wrap">
-                @foreach ($notifications as $notification)
-                    <li id="notification-item-{{ $notification->id_notification }}" class="cursor-pointer">
-                        <a type="button"
-                            onclick="markAsRead({{ $notification->id_notification }});visitNotificationUrl('{{ $notification->slug }}')"
-                            class="hover:bg-gray-100 dark:hover:bg-gray-800 flex justify-between items-center py-2 pb-3 px-1 rounded-t-md">
-                            <div class="wrap-text">
-                                <p class="text-xs text-gray-900 dark:text-gray-300">{{ $notification->pesan }}</p>
-                            </div>
-                            <div class="action flex gap-2">
-                                <button id="close-{{ $notification->id_notification }}" type="button"
-                                    onclick="markAsRead({{ $notification->id_notification }})"
-                                    class="bg-gray-100 dark:hover:bg-gray-700 hover:bg-gray-200 dark:bg-darkBg p-2 fill-red-500 rounded-full">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
-                                        <path
-                                            d="M18 6a1 1 0 0 0-1.414 0L12 10.586 7.414 6A1 1 0 0 0 6 6a1 1 0 0 0 0 1.414L10.586 12 6 16.586A1 1 0 0 0 6 18a1 1 0 0 0 1.414 0L12 13.414 16.586 18A1 1 0 0 0 18 18a1 1 0 0 0 0-1.414L13.414 12 18 7.414A1 1 0 0 0 18 6" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+            <div class="overflow-hidden h-96 mt-4">
+                <ul class="body-wrap overflow-auto h-full no-scrollbar">
+                    @foreach ($notifications as $notification)
+                        <li id="notification-item-{{ $notification->id_notification }}"
+                            class="cursor-pointer border-b mb-3">
+                            <a type="button"
+                                onclick="markAsRead({{ $notification->id_notification }});visitNotificationUrl('{{ $notification->slug }}')"
+                                class="hover:bg-gray-100 dark:hover:bg-gray-800 flex justify-between items-center py-2 pb-3 px-1 rounded-t-md">
+                                <div class="wrap-text">
+                                    <p class="text-xs text-gray-900 dark:text-gray-300">{{ $notification->pesan }}</p>
+                                </div>
+                                <div class="action flex gap-2">
+                                    <button id="close-{{ $notification->id_notification }}" type="button"
+                                        onclick="markAsRead({{ $notification->id_notification }})"
+                                        class="bg-gray-100 dark:hover:bg-gray-700 hover:bg-gray-200 dark:bg-darkBg p-2 fill-red-500 rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
+                                            <path
+                                                d="M18 6a1 1 0 0 0-1.414 0L12 10.586 7.414 6A1 1 0 0 0 6 6a1 1 0 0 0 0 1.414L10.586 12 6 16.586A1 1 0 0 0 6 18a1 1 0 0 0 1.414 0L12 13.414 16.586 18A1 1 0 0 0 18 18a1 1 0 0 0 0-1.414L13.414 12 18 7.414A1 1 0 0 0 18 6" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
 
 
         </div>
