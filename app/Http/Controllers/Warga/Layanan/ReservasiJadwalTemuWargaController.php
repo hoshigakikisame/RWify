@@ -73,7 +73,7 @@ class ReservasiJadwalTemuWargaController extends Controller
             NotificationModel::new(
                 $penerima->getNik(),
                 'Reservasi jadwal temu baru dari ' . request()->user()->getNamaLengkap() . ' telah dibuat',
-                $penerima->getRole() == UserRoleEnum::KETUA_RUKUN_WARGA ? 'rw.manage.reservasiJadwalTemu.index' : 'rt.manage.reservasiJadwalTemu.index'
+                $penerima->getRole() == UserRoleEnum::KETUA_RUKUN_WARGA ? route('rw.manage.reservasiJadwalTemu.index') : route('rt.manage.reservasiJadwalTemu.index')
             );
         }
 

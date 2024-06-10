@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('tb_pengaduan', function (Blueprint $table) {
             $table->id('id_pengaduan');
             $table->string('nik_pengadu', 16);
+            $table->foreign('nik_pengadu')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
             $table->text('judul');
             $table->text('isi');
             $table->text('image_url');
