@@ -27,8 +27,5 @@ export default defineConfig({
         rollupOptions: {
             preserveEntrySignatures: 'strict',
         }
-    },
-    server: {
-        host: true
     }
 });
