@@ -4,7 +4,7 @@
 
 <div class="card-container px-3 py-4">
     <div
-        class="card-wrap flex flex-col gap-12 overflow-hidden rounded-xl border bg-white p-10 dark:border-gray-700 dark:bg-[#141D25]"
+        class="card-wrap flex flex-col gap-12 overflow-hidden rounded-xl border bg-white p-10 dark:border-gray-700 dark:bg-SecondaryBg"
     >
         <div class="card-header flex w-full flex-col items-center gap-4 bg-cover bg-center">
             <div class="card-avatar">

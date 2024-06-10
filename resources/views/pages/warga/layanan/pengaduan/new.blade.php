@@ -90,7 +90,7 @@
                     {{-- <x-form.input-image id="imagePengaduan" title="Evidence" key="image" placeholder="Gambar" /> --}}
                 </div>
                 <div class="mt-5 flex justify-end">
-                    <x-button.submit-button title="Kirim Pengaduan">
+                    <x-button.submit-button title="Kirim Aduan">
                     </x-button.submit-button>
                 </div>
             </form>
