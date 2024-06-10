@@ -9,7 +9,7 @@ class LayananController extends Controller
 {
     public function pengaduanDetail(int $idPengaduan)
     {
-        $pengaduanInstance = PengaduanModel::where('id_pengaduan', $idPengaduan);
+        $pengaduanInstance = PengaduanModel::where('id_pengaduan', $idPengaduan)->first();
 
         return view('pages.shared.layanan.pengaduan.detail', compact('pengaduanInstance'));
     }
