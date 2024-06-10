@@ -33,7 +33,7 @@
                     Cari iuran yang belum terverifikasi
                 </p>
             </div>
-            <div class="search mt-4 mb-4">
+            <div id="search-filter" class="search mt-4 mb-4">
                 <div class="">
                     <div class="grid grid-cols-9 gap-2 text-gray-400">
                         <label for="search" class="text-xs font-Poppins font-medium col-span-3">Search</label>
@@ -64,7 +64,7 @@
                             </div>
                             <h1>Search</h1>
                         </button>
-                        <button
+                        <button @click="$('#search-filter input').val(''); $('#search-filter select').val('').change()"
                             class="w-1/2 flex shrink-0 items-center gap-x-2 text-nowrap justify-center bg-rose-500 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-rose-600 dark:bg-rose-600 dark:hover:bg-rose-500 sm:w-auto fill-white rounded-e-md">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.021 512.021" xml:space="preserve"
                                 class="w-4 h-4">
