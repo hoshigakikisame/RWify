@@ -17,7 +17,8 @@
                             class="rounded-full bg-gray-200/50 px-3 py-1 text-xs text-gray-400 dark:bg-gray-600/30 dark:text-gray-100">
                             {{ $count }} Jadwal Temu
                         </span>
-                        <span class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-green-800/30">
+                        <span
+                            class="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 dark:bg-green-800/30">
                             <span class="text-xs text-green-600 dark:text-green-400">{{ $diterimaCount }} Diterima</span>
                             <span class="relative flex h-3 w-3 items-center justify-center">
                                 <span
@@ -118,7 +119,7 @@
                                         <div class="status">
                                             <span
                                                 class="@php
-                                                $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "ditolak" => "bg-red-200 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "diterima" => "bg-green-200 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
+$statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg-blue-950 dark:text-blue-200", "ditolak" => "bg-red-200 text-red-700 ring-red-600/10 dark:bg-red-950 dark:text-red-300", "diterima" => "bg-green-200 text-green-700 ring-green-600/20 dark:bg-green-950 dark:text-green-300"];
                                                 $dotStyle = ["pending" => "bg-blue-500 dark:bg-blue-300", "ditolak" => "bg-red-500 dark:bg-red-300", "diterima" => "bg-green-500 dark:bg-green-300"]; @endphp @if ($reservasiJadwalTemu->getStatus()) {{ $statusStyle[$reservasiJadwalTemu->getStatus()] }}
                                                 @else
                                                     bg-gray-50
@@ -218,7 +219,7 @@
 
 
                                 
-                                    <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Merubah Status Reservasi <span class="font-semibold text-green-600 underline underline-offset-8">${judul}</span> Menjadi  ${status} </h1>              
+                                    <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Merubah Status Reservasi <span class="font-semibold text-green-600 underline underline-offset-8">${judul}</span> Menjadi  <span class="${(status == 'diterima') ? 'text-green-500' : 'text-red-500'}"> ${status}</span> </h1>              
                                     <div class="flex justify-end mt-6">
                                         <x-button.submit-button title="Rubah Status Reservasi">
                                         </x-button.submit-button>
