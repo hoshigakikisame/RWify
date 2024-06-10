@@ -68,7 +68,7 @@
                                 <h1 class="mr-2">Beranda</h1>
                             </a>
                         </li>
-                        @if (request()->user()->getRole() != \App\Enums\User\UserRoleEnum::KETUA_RUKUN_WARGA->value)
+                        @if (request()->user()?->getRole() != \App\Enums\User\UserRoleEnum::KETUA_RUKUN_WARGA->value)
                             <li class="link-item relative" x-data="{ dropdownIsOpen: false }">
                                 <button
                                     class="inline-flex w-full justify-end rounded-md px-2 py-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 md:py-1 md:hover:bg-transparent md:hover:text-gray-600 md:dark:hover:bg-transparent md:dark:hover:text-gray-400"
