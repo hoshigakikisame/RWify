@@ -172,7 +172,7 @@ class KartuKeluargaModel extends Model implements SearchCompatible
 
     public function getRukunTetangga(): RukunTetanggaModel
     {
-        return RukunTetanggaModel::find($this->id_rukun_tetangga)->first();
+        return RukunTetanggaModel::where('id_rukun_tetangga', $this->id_rukun_tetangga)->first();
     }
 
     // GETTERS

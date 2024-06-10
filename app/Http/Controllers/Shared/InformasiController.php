@@ -27,7 +27,7 @@ class InformasiController extends Controller
 
     public function pengumumanDetailPage(int $idPengumuman)
     {
-        $pengumumanInstance = PengumumanModel::find($idPengumuman);
+        $pengumumanInstance = PengumumanModel::where('id_pengumuman', $idPengumuman);
 
         return view('pages.shared.informasi.pengumuman.detail', compact('pengumumanInstance'));
     }

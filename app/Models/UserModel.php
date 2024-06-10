@@ -292,7 +292,7 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
 
     public function getKartuKeluarga(): KartuKeluargaModel
     {
-        return KartuKeluargaModel::find($this->nkk)->first();
+        return KartuKeluargaModel::where('nkk', $this->nkk)->first();
     }
 
     public function getKetuaRukunWarga(): UserModel {

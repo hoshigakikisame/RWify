@@ -60,11 +60,11 @@ class ReservasiJadwalTemuModel extends Model implements SearchCompatible
     }
 
     public function getPemohon(): UserModel {
-        return UserModel::find($this->nik_pemohon)->first();
+        return UserModel::where('nik', $this->nik_pemohon)->first();
     }
 
     public function getPenerima(): UserModel {
-        return UserModel::find($this->nik_penerima)->first();
+        return UserModel::where('nik', $this->nik_penerima)->first();
     }
 
     public function getNamaPemohon(): string

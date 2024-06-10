@@ -65,7 +65,7 @@ class RukunTetanggaModel extends Model implements SearchCompatible
     }
 
     public function getRukunWarga(): RukunWargaModel {
-        return RukunWargaModel::find($this->id_rukun_warga)->first();
+        return RukunWargaModel::where('id_rukun_warga', $this->id_rukun_warga)->first();
     }
 
     // SETTERS
