@@ -138,7 +138,7 @@ class ManageIuranController extends Controller
 
 
             // notification redirect route based on role
-            $relatedUserRole = UserModel::where('nik', $nikPembayar)->first()->getRole();
+            $relatedUserRole = UserModel::where('nik', $nikPembayar)->first()?->getRole();
             $slug = route('warga.layanan.pembayaranIuran.iuran', [], false);
             switch ($relatedUserRole) {
                 case UserRoleEnum::KETUA_RUKUN_WARGA->value:

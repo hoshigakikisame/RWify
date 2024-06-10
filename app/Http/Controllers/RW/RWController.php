@@ -64,7 +64,7 @@ class RWController extends Controller
             $selectRaw .= 'SUM(CASE WHEN bulan = "' . $value . '" THEN jumlah_bayar ELSE 0 END)' . ' AS ' . $value . $suffix;
         }
 
-        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->where('tahun', date('Y'))->first()->toArray();
+        $monthlyIuranCount = IuranModel::selectRaw($selectRaw)->where('tahun', date('Y'))->first()?->toArray();
 
         $data = [
             'lansiaCount' => $usersByAge->lansiaCount,

@@ -16,16 +16,16 @@ class WargaController extends Controller
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->orWhere('nik_pemohon', request()->user()->getNik())->get();
 
-        $pengduanInstances = PengaduanModel::where('nik_pengadu', request()->user()->getNik()); 
-        $lastUpdatedPengaduan = $pengduanInstances->orderBy('dibuat_pada', 'desc')->first()->getDibuatPada()->diffForHumans(null, true);
-        $pengaduanCount = $pengduanInstances->count();
+        $pengaduanInstances = PengaduanModel::where('nik_pengadu', request()->user()->getNik()); 
+        $lastUpdatedPengaduan = $pengaduanInstances->orderBy('dibuat_pada', 'desc')->first()?->getDibuatPada()->diffForHumans(null, true);
+        $pengaduanCount = $pengaduanInstances->count();
 
         $iuranInstances = IuranModel::where('nik_pembayar', request()->user()->getNik());
-        $lastUpdatedIuran = $iuranInstances->orderBy('dibuat_pada', 'desc')->first()->getDibuatPada()->diffForHumans(null, true); 
+        $lastUpdatedIuran = $iuranInstances->orderBy('dibuat_pada', 'desc')->first()?->getDibuatPada()->diffForHumans(null, true); 
         $iuranSum = $iuranInstances->sum('jumlah_bayar');
 
         $ownedPropertiInstances = PropertiModel::where('nik_pemilik', request()->user()->getNik());
-        $lastUpdatedProperti = $ownedPropertiInstances->orderBy('dibuat_pada', 'desc')->first()->getDibuatPada()->diffForHumans(null, true);
+        $lastUpdatedProperti = $ownedPropertiInstances->orderBy('dibuat_pada', 'desc')->first()?->getDibuatPada()->diffForHumans(null, true);
         $ownedPropertiCount = $ownedPropertiInstances->count();
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_pemohon', request()->user()->getNik())->where('status', ReservasiJadwalTemuStatusEnum::DITERIMA)->get();

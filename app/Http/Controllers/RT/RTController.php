@@ -40,9 +40,9 @@ class RTController extends Controller
             $query->where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga());
         })->count();
 
-        $umkmLastAddedAt = UmkmModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
-        $pengaduanLastAddedAt = PengaduanModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
-        $propertiLastAddedAt = PropertiModel::orderBy('dibuat_pada')->first()->getDiperbaruiPada()->diffForHumans(null, true);
+        $umkmLastAddedAt = UmkmModel::orderBy('dibuat_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true);
+        $pengaduanLastAddedAt = PengaduanModel::orderBy('dibuat_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true);
+        $propertiLastAddedAt = PropertiModel::orderBy('dibuat_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true);
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
 
@@ -64,7 +64,7 @@ class RTController extends Controller
             join('tb_user', 'tb_user.nik', '=', 'tb_iuran.nik_pembayar')->
             join('tb_kartu_keluarga', 'tb_kartu_keluarga.nkk', '=', 'tb_user.nkk')->
             where('id_rukun_tetangga', '=', $ownedRT->getIdRukunTetangga())->
-            where('tahun', date('Y'))->first()->toArray();
+            where('tahun', date('Y'))->first()?->toArray();
 
         $data = [
             'lansiaCount' => $usersByAge->lansiaCount,
