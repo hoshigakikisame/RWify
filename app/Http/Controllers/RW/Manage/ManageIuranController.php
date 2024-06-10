@@ -30,7 +30,10 @@ class ManageIuranController extends Controller
         $iuranInstances = (new SearchableDecorator(IuranModel::class))->search(
             $query,
             $paginate,
-            ['pembayaranIuran' => PembayaranIuranModel::class],
+            [
+                'pembayaranIuran' => PembayaranIuranModel::class,
+                'user' => UserModel::class
+            ],
             $filters
         );
         $count = IuranModel::count();
@@ -69,11 +72,11 @@ class ManageIuranController extends Controller
 
             function (Builder $queryBuilder) use ($status) {
                 $iuranIds = IuranModel::all()->pluck('id_pembayaran_iuran')->toArray();
-                    if ($status == 'verified') {
-                        $queryBuilder->whereIn('id_pembayaran_iuran', $iuranIds);
-                    } else if ($status == 'unverified') {
-                        $queryBuilder->whereNotIn('id_pembayaran_iuran', $iuranIds);
-                    }
+                if ($status == 'verified') {
+                    $queryBuilder->whereIn('id_pembayaran_iuran', $iuranIds);
+                } else if ($status == 'unverified') {
+                    $queryBuilder->whereNotIn('id_pembayaran_iuran', $iuranIds);
+                }
             }
         );
 
@@ -133,7 +136,7 @@ class ManageIuranController extends Controller
         } else {
             session()->flash('success', ['title' => 'Insert Success.', 'description' => 'Insert Success.']);
 
-            
+
             // notification redirect route based on role
             $relatedUserRole = UserModel::where('nik', $nikPembayar)->first()->getRole();
             $slug = route('warga.layanan.pembayaranIuran.iuran', [], false);

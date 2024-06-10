@@ -48,6 +48,11 @@ class IuranModel extends Model implements SearchCompatible {
         return $this->belongsTo(PembayaranIuranModel::class, 'id_pembayaran_iuran', 'id_pembayaran_iuran');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(UserModel::class, 'nik_pembayar', 'nik');
+    }
+
     // GETTERS
     public function getIdIuran(): int
     {
