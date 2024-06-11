@@ -42,7 +42,7 @@ class UserController extends Controller
         $user->save();
         session()->flash('success',['title' => 'Update Image Profile Success', 'description' => 'Update Image Profile Success']);
 
-        return "Update Image Profile";
+        return redirect()->route('user.profile.index');
     }
 
     public function updateProfile()
@@ -77,7 +77,7 @@ class UserController extends Controller
             session()->flash('success',['title' => 'Update Success.', 'description' => 'Update Success.']);
         }
 
-        return  'Update User Profile';
+        return redirect()->route('user.profile.index');
     }
 
     public function updatePassword()
@@ -107,7 +107,7 @@ class UserController extends Controller
             }
         }
 
-        return 'Update Password';
+        return redirect()->route('user.profile.index');
     }
 
     public function sendVerificationEmail()

@@ -15,7 +15,7 @@
                     <div class="h-44 w-44 rounded-full border-4 border-white bg-white bg-cover bg-center dark:border-gray-900 dark:bg-darkBg"
                         style="background-image: url('{{ $userImage }}')"></div>
 
-                    <form id="userImageChangeForm" action="" method="POST">
+                    <form id="userImageChangeForm" action="{{ route('user.profile.updateImage') }}"  method="POST">
                         @csrf
                         <label for="image">
                             <input type="file" aria-current="submitButton" class="hidden" name="image" id="image"
@@ -88,7 +88,7 @@
                                 <p class="text-[10px] dark:text-gray-400">Change your password for {{ $user->getNamaDepan() . ' ' . $user->getNamaBelakang() }} in the system</p>
                             </div>
                             <div id="panel-body">
-                                <form id="passwordUpdateForm" class="form-horizontal " method="POST" action="">
+                                <form id="passwordUpdateForm" class="form-horizontal" method="POST" action="{{ route('user.profile.updatePassword') }}">
                                     @csrf
                                     <div class="form-group mb-4">
                                         <label for="current_password" class="text-sm text-gray-500 dark:text-gray-400">Current Password</label>
@@ -153,7 +153,7 @@
                                 <p class="text-[10px] dark:text-gray-400">All information for ${user.nama_depan +' '+ user.nama_belakang} in the system</p>
                             </div>
                             <div id="panel-body" class="w-fit">
-                                <form id="profileUpdateForm" class="mb-5" method="POST" action="">
+                                <form id="profileUpdateForm" class="mb-5" method="POST" action="{{ route('user.profile.update') }}">
                                     @csrf
                                     <div class="flex gap-5 mb-3">
                                         <x-form.input-profile title="Nama Depan" key="nama_depan" type="text" value="${user.nama_depan}" disabled="true"/>

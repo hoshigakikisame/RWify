@@ -55,7 +55,8 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
             'pekerjaan',
             'role',
             'jenis_kelamin',
-            'golongan_darah'
+            'golongan_darah',
+            'alamat'
         ];
     }
 
