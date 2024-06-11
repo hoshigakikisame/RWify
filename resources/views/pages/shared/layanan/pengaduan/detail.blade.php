@@ -85,7 +85,8 @@ $statusStyle = [
                 <div class="inline-flex gap-2">
                     <button id="actionButton"
                         class="fill-gray-900 transition-all duration-300 ease-in-out dark:fill-gray-100"
-                        @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-darkBg shadow-md')">
+                        @click="sideAction= !sideAction; $($refs.sideContainer).toggleClass('bg-gray-50 dark:bg-darkBg shadow-md')"
+                        onclick="window.utils.Request.actionRequest(`{{ route('rw.manage.pengaduan.update') }}`, '#updateStatus', '#updateForm',false)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4" x-show="!sideAction">
                             <path
                                 d="M12 24a1 1 0 0 1-.71-.29l-8.17-8.17a5 5 0 0 1 0-7.08L11.29.29a1 1 0 1 1 1.42 1.42L4.54 9.88a3 3 0 0 0 0 4.24l8.17 8.17a1 1 0 0 1 0 1.42A1 1 0 0 1 12 24" />
@@ -115,8 +116,7 @@ $statusStyle = [
                     x-transition:enter="duration-300 ease-out" x-transition:enter-start="opacity-0"
                     x-transition:enter-end="opacity-100" x-transition:leave="transform transition duration-200 ease-in"
                     x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 ">
-                    <form id="updateForm"
-                        onclick="window.utils.Request.actionRequest(`{{ route('rw.manage.pengaduan.update') }}`, '#updateStatus', '#updateForm',false)">
+                    <form id="updateForm">
                         @csrf
                         <input type="text" name="id_pengaduan" key="id_pengaduan"
                             value="{{ $pengaduanInstance->id_pengaduan }}" hidden />
