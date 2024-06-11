@@ -46,12 +46,13 @@
         x-data="{ sideNavOpen: false }">
         <div class="nav-container w-full py-5">
             <nav class="flex items-center justify-between md:gap-10">
-                <div class="navbar-brand flex gap-1 dark:text-gray-200">
+                <a href="{{ route('index') }}" class="navbar-brand flex gap-1 dark:text-gray-200">
+
                     <div class="h-7 w-7 rounded-lg">
                         {!! file_get_contents(Vite::asset('resources/assets/elements/rwify-logo.svg')) !!}
                     </div>
                     <h1 class="text-lg md:text-2xl pl-2 font-semibold">RWify</h1>
-                </div>
+                </a>
 
                 <div :class="{ 'right-0': sideNavOpen, '-right-full': !sideNavOpen }"
                     class="navbar-body absolute top-[78px] z-30 h-screen w-3/4 bg-gray-50 pb-4 transition-all dark:bg-darkBg md:static md:flex md:h-auto md:w-auto md:flex-row md:justify-end md:bg-transparent md:pb-0 md:dark:bg-transparent">
@@ -68,37 +69,41 @@
                                 <h1 class="mr-2">Beranda</h1>
                             </a>
                         </li>
-                        @if (request()->user()?->getRole() != \App\Enums\User\UserRoleEnum::KETUA_RUKUN_WARGA->value)
-                            <li class="link-item relative" x-data="{ dropdownIsOpen: false }">
-                                <button
-                                    class="inline-flex w-full justify-end rounded-md px-2 py-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 md:py-1 md:hover:bg-transparent md:hover:text-gray-600 md:dark:hover:bg-transparent md:dark:hover:text-gray-400"
-                                    x-on:click="dropdownIsOpen = !dropdownIsOpen" @keydown.escape="isOpen = false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                        class="mr-3 w-4 md:hidden">
-                                        <path
-                                            d="M11 2a2 2 0 1 1 3.999-.001A2 2 0 0 1 11 2m.942 3A3.5 3.5 0 0 1 13 7.5V8h2.407c.37 0 .665-.344.578-.704A3 3 0 0 0 13.068 5zM8 5a2 2 0 1 0 .001-3.999A2 2 0 0 0 8 5M.593 8H3v-.5c0-.98.407-1.864 1.058-2.5H2.932c-1.414 0-2.6.979-2.917 2.296-.087.36.208.704.578.704m22.642 5.015-6.804 7.637A10 10 0 0 1 8.964 24H3.999c-2.206 0-4-1.794-4-4v-5c0-2.206 1.794-4 4-4h8.857a3.14 3.14 0 0 1 2.689 1.519l3.217-3.534a2.98 2.98 0 0 1 2.085-.981 2.97 2.97 0 0 1 2.169.782 3.02 3.02 0 0 1 .218 4.23Zm-1.565-2.752a1.03 1.03 0 0 0-.728-.262 1 1 0 0 0-.699.329l-4.427 4.865a3.16 3.16 0 0 1-2.514 2.058l-5.161.737a1 1 0 1 1-.283-1.979l5.161-.737c.559-.08.98-.566.98-1.131 0-.63-.513-1.142-1.143-1.142H4c-1.103 0-2 .897-2 2v5c0 1.103.897 2 2 2h4.965a8 8 0 0 0 5.973-2.678l6.805-7.638a1.015 1.015 0 0 0-.072-1.421ZM5.607 9h4.786c.379 0 .68-.344.591-.704C10.66 6.979 9.447 6 8 6s-2.66.979-2.984 2.296c-.089.36.213.704.591.704M3 4A2 2 0 1 0 3.001.001 2 2 0 0 0 3 4" />
-                                    </svg>
-                                    <h1 class="mr-1">Layanan</h1>
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        :class="{ 'rotate-180': dropdownIsOpen, 'rotate-0': !dropdownIsOpen }"
-                                        class="h-5 w-5 transition-transform duration-200" viewBox="0 0 20 20"
-                                        fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd"
-                                            d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                                <div class="left-1 flex flex-col space-y-1 rounded-md p-1 md:absolute md:mt-2 md:bg-white md:shadow-lg md:ring-1 md:ring-black md:ring-opacity-5 md:dark:bg-darkBg"
-                                    style="display: none" x-show="dropdownIsOpen" @click.away="dropdownIsOpen = false"
-                                    x-transition.opacity x-transition.duration.300ms>
-                                    <!-- Dropdown content goes here -->
-                                    @foreach ($layanan as $item)
-                                        <x-dropdown.dropdown-element-navbar :title="$item['title']" :href="$item['href']"
-                                            :desc="$item['desc']" :icon="$item['icon']" />
-                                    @endforeach
-                                </div>
-                            </li>
-                        @endif
+                        <li class="link-item relative" x-data="{ dropdownIsOpen: false }">
+                            <button
+                                class="inline-flex w-full justify-end rounded-md px-2 py-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 md:py-1 md:hover:bg-transparent md:hover:text-gray-600 md:dark:hover:bg-transparent md:dark:hover:text-gray-400"
+                                x-on:click="dropdownIsOpen = !dropdownIsOpen" @keydown.escape="isOpen = false">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="mr-3 w-4 md:hidden">
+                                    <path
+                                        d="M11 2a2 2 0 1 1 3.999-.001A2 2 0 0 1 11 2m.942 3A3.5 3.5 0 0 1 13 7.5V8h2.407c.37 0 .665-.344.578-.704A3 3 0 0 0 13.068 5zM8 5a2 2 0 1 0 .001-3.999A2 2 0 0 0 8 5M.593 8H3v-.5c0-.98.407-1.864 1.058-2.5H2.932c-1.414 0-2.6.979-2.917 2.296-.087.36.208.704.578.704m22.642 5.015-6.804 7.637A10 10 0 0 1 8.964 24H3.999c-2.206 0-4-1.794-4-4v-5c0-2.206 1.794-4 4-4h8.857a3.14 3.14 0 0 1 2.689 1.519l3.217-3.534a2.98 2.98 0 0 1 2.085-.981 2.97 2.97 0 0 1 2.169.782 3.02 3.02 0 0 1 .218 4.23Zm-1.565-2.752a1.03 1.03 0 0 0-.728-.262 1 1 0 0 0-.699.329l-4.427 4.865a3.16 3.16 0 0 1-2.514 2.058l-5.161.737a1 1 0 1 1-.283-1.979l5.161-.737c.559-.08.98-.566.98-1.131 0-.63-.513-1.142-1.143-1.142H4c-1.103 0-2 .897-2 2v5c0 1.103.897 2 2 2h4.965a8 8 0 0 0 5.973-2.678l6.805-7.638a1.015 1.015 0 0 0-.072-1.421ZM5.607 9h4.786c.379 0 .68-.344.591-.704C10.66 6.979 9.447 6 8 6s-2.66.979-2.984 2.296c-.089.36.213.704.591.704M3 4A2 2 0 1 0 3.001.001 2 2 0 0 0 3 4" />
+                                </svg>
+                                <h1 class="mr-1">Layanan</h1>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    :class="{ 'rotate-180': dropdownIsOpen, 'rotate-0': !dropdownIsOpen }"
+                                    class="h-5 w-5 transition-transform duration-200" viewBox="0 0 20 20"
+                                    fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            @php
+                                $cursor =
+                                    request()->user()?->getRole() !=
+                                    \App\Enums\User\UserRoleEnum::KETUA_RUKUN_WARGA->value
+                                        ? 'cursor-pointer'
+                                        : 'cursor-not-allowed active:pointer-events-none';
+                            @endphp
+                            <div class="left-1 flex flex-col space-y-1 rounded-md p-1 md:absolute md:mt-2 md:bg-white md:shadow-lg md:ring-1 md:ring-black md:ring-opacity-5 md:dark:bg-darkBg"
+                                style="display: none" x-show="dropdownIsOpen" @click.away="dropdownIsOpen = false"
+                                x-transition.opacity x-transition.duration.300ms>
+                                <!-- Dropdown content goes here -->
+                                @foreach ($layanan as $item)
+                                    <x-dropdown.dropdown-element-navbar :title="$item['title']" :href="$item['href']"
+                                        :desc="$item['desc']" :icon="$item['icon']" :class="$cursor" />
+                                @endforeach
+                            </div>
+                        </li>
                         <li class="link-item relative" x-data="{ dropdownIsOpen: false }">
                             <button
                                 class="inline-flex w-full justify-end rounded-md px-2 py-2 transition-all hover:bg-gray-100 dark:hover:bg-gray-700 md:py-1 md:hover:bg-transparent md:hover:text-gray-600 md:dark:hover:bg-transparent md:dark:hover:text-gray-400"

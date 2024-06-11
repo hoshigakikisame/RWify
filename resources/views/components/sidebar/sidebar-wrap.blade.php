@@ -1,12 +1,12 @@
 <aside class="relative z-20 h-screen">
     <nav class="flex h-full w-fit flex-col px-4 py-6 shadow-xl">
-        <div
+        <a href="{{ route('index') }}"
             class="sidebar-header mb-5 mt-1 inline-flex items-center gap-2 rounded-xl px-3 py-1 items-center justify-center">
             <div class="h-7 w-7">
                 {!! file_get_contents(Vite::asset('resources/assets/elements/rwify-logo.svg')) !!}
             </div>
             <h1 class="hidden text-center text-2xl font-semibold font-Poppins dark:text-gray-200 lg:block">RWify</h1>
-        </div>
+        </a>
         <div class="overflow-y-hidden h-full grow">
             <ul
                 class="flex w-full overflow-scroll no-scrollbar overscroll-contain h-full flex-col gap-1 fill-gray-500 py-5 dark:fill-gray-200">

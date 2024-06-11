@@ -18,31 +18,36 @@
             [
                 'title' => 'Reservasi Temu',
                 'href' => route('warga.layanan.reservasiJadwalTemu.newReservasiJadwalTemuPage'),
-                'desc' => 'Buat janji atau reservasi bertemu dengan ketua RW atau ketua RT untuk mengurus dokumen maupun pertemuan penting lainnya dengan lebih mudah.',
+                'desc' =>
+                    'Buat janji atau reservasi bertemu dengan ketua RW atau ketua RT untuk mengurus dokumen maupun pertemuan penting lainnya dengan lebih mudah.',
                 'icon' => $reservation,
             ],
             [
                 'title' => 'Pengaduan',
                 'href' => route('warga.layanan.pengaduan.newPengaduanPage'),
-                'desc' => 'Laporkan masalah terkait infrastruktur, kebersihan, keamanan, atau masalah lainnya dengan detail dan kami akan segera menanganinya.',
+                'desc' =>
+                    'Laporkan masalah terkait infrastruktur, kebersihan, keamanan, atau masalah lainnya dengan detail dan kami akan segera menanganinya.',
                 'icon' => $report,
             ],
             [
                 'title' => 'Pembayaran Iuran',
                 'href' => route('warga.layanan.pembayaranIuran.newIuranPage'),
-                'desc' => 'Pembayaran iuran RW secara online, mengelola keuangan pribadi dengan lebih baik, dan menghindari keterlambatan pembayaran.',
+                'desc' =>
+                    'Pembayaran iuran RW secara online, mengelola keuangan pribadi dengan lebih baik, dan menghindari keterlambatan pembayaran.',
                 'icon' => $payment,
             ],
             [
                 'title' => 'Informasi UMKM',
-                'href' =>  route('informasi.umkmPage'),
-                'desc' => 'Temukan informasi kontak, lokasi, dan produk atau layanan yang ditawarkan oleh setiap UMKM di sekitar lingkungan RW.',
+                'href' => route('informasi.umkmPage'),
+                'desc' =>
+                    'Temukan informasi kontak, lokasi, dan produk atau layanan yang ditawarkan oleh setiap UMKM di sekitar lingkungan RW.',
                 'icon' => $umkm,
             ],
             [
                 'title' => 'Informasi dan Berita',
                 'href' => route('informasi.pengumuman.index'),
-                'desc' => 'Dapatkan akses cepat dan terpercaya untuk informasi serta berita penting seputar kegiatan terkini di lingkungan RW.',
+                'desc' =>
+                    'Dapatkan akses cepat dan terpercaya untuk informasi serta berita penting seputar kegiatan terkini di lingkungan RW.',
                 'icon' => $information,
             ],
         ];
@@ -101,23 +106,12 @@
         <div class="h-screen overflow-scroll dark:fill-gray-200 dark:text-gray-200">
             <section class="mb-10">
                 <!-- Slider main container -->
-                <swiper-container
-                    id="swiper-container-hero"
-                    class="mySwiper h-[500px] w-full lg:h-[650px]"
-                    pagination-clickable="true"
-                    slides-per-view="1"
-                    speed="500"
-                    loop="true"
-                    pagination="true"
-                    init="false"
-                    effect="fade"
-                    autoplay
-                    autoplay-delay="7000"
-                >
+                <swiper-container id="swiper-container-hero" class="mySwiper h-[500px] w-full lg:h-[650px]"
+                    pagination-clickable="true" slides-per-view="1" speed="500" loop="true" pagination="true"
+                    init="false" effect="fade" autoplay autoplay-delay="7000">
                     <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image1 }}')">
                         <div
-                            class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
-                        >
+                            class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75">
                             <div class="w-3/4 text-wrap xl:max-w-4xl">
                                 <h1 class="text-center font-Poppins text-5xl font-bold text-gray-100">
                                     RW 01 : Berwibawa, Peduli, Resik, Aman dan Serasi.
@@ -131,30 +125,32 @@
                     </swiper-slide>
                     <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image4 }}')">
                         <div
-                            class="text-container flex h-full w-full flex-col justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
-                        >
+                            class="text-container flex h-full w-full flex-col justify-center backdrop-brightness-50 dark:backdrop-brightness-75">
                             <div class="w-full text-wrap xl:max-w-full px-48">
                                 <h1 class="font-Poppins text-5xl font-bold text-gray-100">
                                     RWify.
                                 </h1>
                                 <h2 class="font-Inter text-xl font-light text-gray-100">
-                                    RWify adalah sebuah platform web yang dirancang khusus untuk membantu dalam administrasi dan manajemen lingkungan RW (Rukun Warga). 
-                                    Platform ini menyediakan berbagai fitur dan alat yang memudahkan pengurus RW dalam mengelola data penduduk, mengatur kegiatan komunitas, 
-                                    menyebarkan informasi penting, serta memfasilitasi komunikasi dan interaksi antara warga dalam lingkungan RW tersebut.
+                                    RWify adalah sebuah platform web yang dirancang khusus untuk membantu dalam administrasi
+                                    dan manajemen lingkungan RW (Rukun Warga).
+                                    Platform ini menyediakan berbagai fitur dan alat yang memudahkan pengurus RW dalam
+                                    mengelola data penduduk, mengatur kegiatan komunitas,
+                                    menyebarkan informasi penting, serta memfasilitasi komunikasi dan interaksi antara warga
+                                    dalam lingkungan RW tersebut.
                                 </h2>
                             </div>
                         </div>
                     </swiper-slide>
                     <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image3 }}')">
                         <div
-                            class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75"
-                        >
+                            class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75">
                             <div class="w-3/4 text-wrap xl:max-w-4xl">
                                 <h1 class="text-center font-Poppins text-5xl font-bold text-gray-100">
                                     RWify: RW 01 Landungsari, Landungsari Asri.
                                 </h1>
                                 <h2 class="text-center font-Inter text-xl font-light text-gray-100">
-                                    Menghubungkan Hati, Menyatukan Langkah: RWify, Aplikasi Terdepan untuk Manajemen RW yang Terintegrasi!
+                                    Menghubungkan Hati, Menyatukan Langkah: RWify, Aplikasi Terdepan untuk Manajemen RW yang
+                                    Terintegrasi!
                                 </h2>
                             </div>
                         </div>
@@ -168,17 +164,19 @@
                 </div>
                 <div class="body-section">
                     <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
-                        @if(count($latest_pengumuman) > 0)
-                        @foreach ($latest_pengumuman as $pengumuman)
-                            <swiper-slide>
-                                <x-card.card-item :pengumuman="$pengumuman" />
-                            </swiper-slide>
-                        @endforeach
-                    @else
-                        <div class="flex justify-center items-center h-40 w-full rounded-lg border border-gray-300 dark:border-gray-700 mt-4 p-6 ml-6">
-                            <p class="text-gray-700 dark:text-white text-lg font-Poppins">Belum ada pengumuman yang dipublikasikan.</p>
-                        </div>
-                    @endif
+                        @if (count($latest_pengumuman) > 0)
+                            @foreach ($latest_pengumuman as $pengumuman)
+                                <swiper-slide>
+                                    <x-card.card-item :pengumuman="$pengumuman" />
+                                </swiper-slide>
+                            @endforeach
+                        @else
+                            <div
+                                class="flex justify-center items-center h-40 w-full rounded-lg border border-gray-300 dark:border-gray-700 mt-4 p-6 ml-6">
+                                <p class="text-gray-700 dark:text-white text-lg font-Poppins">Belum ada pengumuman yang
+                                    dipublikasikan.</p>
+                            </div>
+                        @endif
                     </swiper-container>
                 </div>
             </section>
@@ -188,13 +186,15 @@
                     <h5 class="font-Inter dark:text-gray-500">Layanan Pada Website yang Perlu Anda Ketahui</h5>
                 </div>
                 <div class="layanan-emblem flex flex-wrap justify-center">
+                    @php
+                        $cursor =
+                            request()->user()?->getRole() != \App\Enums\User\UserRoleEnum::KETUA_RUKUN_WARGA->value
+                                ? 'cursor-pointer'
+                                : 'cursor-not-allowed active:pointer-events-none';
+                    @endphp
                     @foreach ($layanan as $item)
-                        <x-card.card-item-emblem
-                            :title="$item['title']"
-                            :href="$item['href']"
-                            :desc="$item['desc']"
-                            :icon="$item['icon']"
-                        />
+                        <x-card.card-item-emblem :title="$item['title']" :href="$item['href']" :desc="$item['desc']" :icon="$item['icon']"
+                            class="{{ !str_contains($item['title'], 'Informasi') ? $cursor : 'cursor-pointer' }}" />
                     @endforeach
                 </div>
             </section>
@@ -207,13 +207,8 @@
                     <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
                         @foreach ($ucapan as $item)
                             <swiper-slide>
-                                <x-card.card-item-message
-                                    :name="$item['name']"
-                                    :position="$item['position']"
-                                    :desc="$item['desc']"
-                                    :date="$item['date']"
-                                    :image="$item['image']"
-                                />
+                                <x-card.card-item-message :name="$item['name']" :position="$item['position']" :desc="$item['desc']"
+                                    :date="$item['date']" :image="$item['image']" />
                             </swiper-slide>
                         @endforeach
                     </swiper-container>
