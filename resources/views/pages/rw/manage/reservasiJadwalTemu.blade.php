@@ -214,7 +214,7 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
                                 </div>
 
                                 <p class="mt-2 text-sm text-gray-500 ">
-                                    Mengubag status reservasi dari sistem
+                                    Mengubah status reservasi dari sistem
                                 </p>
 
 

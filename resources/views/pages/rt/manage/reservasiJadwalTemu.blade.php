@@ -83,7 +83,7 @@
             </div> --}}
         </div>
 
-        <div class="mt-6 flex flex-col">
+        <div class="flex flex-col">
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border-t-2 border-gray-200 dark:border-gray-700">
@@ -138,7 +138,7 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
                                             {{ $reservasiJadwalTemu->getPesan() }}
                                         </p>
                                         <div id="actionStatus-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}">
-                                            <form
+                                            <form x-data="{ modalUpdateOpen: false }"
                                                 id="actionStatusForm-{{ $reservasiJadwalTemu->getIdReservasiJadwalTemu() }}"
                                                 action="" method="post" autocomplete="off">
                                                 @csrf
@@ -209,12 +209,12 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
                                 </div>
 
                                 <p class="mt-2 text-sm text-gray-500 ">
-                                    Mengubag status reservasi dari sistem
+                                    Mengubah status reservasi dari sistem
                                 </p>
 
 
                                 
-                                    <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Merubah Status Reservasi <span class="font-semibold text-green-600 underline underline-offset-8">${judul}</span> Menjadi  ${status} </h1>              
+                                    <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Merubah Status Reservasi <span class="font-semibold text-green-600 underline underline-offset-8">${judul}</span> Menjadi  <span class="${(status == 'diterima') ? 'text-green-500' : 'text-red-500'}"> ${status}</span> </h1>              
                                     <div class="flex justify-end mt-6">
                                         <x-button.submit-button title="Rubah Status Reservasi">
                                         </x-button.submit-button>
