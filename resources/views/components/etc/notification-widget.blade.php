@@ -60,7 +60,7 @@
                             <div
                                 class="hover:bg-gray-100 dark:hover:bg-gray-800 flex justify-between items-center py-2 pb-3 px-1 rounded-t-md">
                                 <div class="wrap-text"
-                                    onclick="markAsRead({{ $notification->id_notification }});visitNotificationUrl('{{ $notification->slug }}')">
+                                    @click="notifcount -= 1;markAsRead({{ $notification->id_notification }});visitNotificationUrl('{{ $notification->slug }}')">
                                     <p class="text-xs text-gray-900 dark:text-gray-300">{{ $notification->pesan }}</p>
                                 </div>
                                 <div class="action flex gap-2">
