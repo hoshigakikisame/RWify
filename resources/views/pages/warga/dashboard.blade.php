@@ -245,18 +245,18 @@
             let element = ''
 
             arrayOfEvent = events.concat(holiday);
-            console.log(arrayOfEvent)
+             
 
             for (let i = 0; i < arrayOfEvent.length; i++) {
                 let event = arrayOfEvent[i];
-                console.log(day, month, year, event.date)
+                 
                 let eventDate = new Date(event.date);
                 if (hasEventDay(day, month, year, arrayOfEvent) && eventDate.getDate() === day && eventDate
                     .getMonth() ===
                     month &&
                     eventDate.getFullYear() === year) {
                     element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate
-                        .getFullYear(), arrayOfEvent);
+                        .getFullYear(), event);
                 }
             }
             $(bodyDesc).html(element);
@@ -266,14 +266,14 @@
             let bodyDesc = document.getElementById('body-event-desc');
             let element = ''
 
-            console.log(args)
+             
             args.forEach(array => {
                 for (let i = 0; i < array.length; i++) {
                     let event = array[i];
                     let eventDate = new Date(event.date);
                     if (eventDate.getMonth() === currentMonth && eventDate.getFullYear() === currentYear) {
                         element += elementEventDesc(eventDate.getDate(), eventDate.getMonth(), eventDate
-                            .getFullYear(), array);
+                            .getFullYear(), event);
                     }
                 }
             });
@@ -331,7 +331,7 @@
         }
 
         function elementEventDay(day, month, year) {
-            console.log(day, month, year)
+             
             return /*html*/ `
         <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
          <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
@@ -364,23 +364,18 @@
         `;
         }
 
-        function elementEventDesc(date, month, year, arrayOfEvent) {
+        function elementEventDesc(date, month, year, event) {
             let element = '';
-            let eventsOnDate = getEventDayOnDate(date, month, year, arrayOfEvent);
-            for (let i = 0; i < eventsOnDate.length; i++) {
-                let event = eventsOnDate[i]
-                let eventDate = new Date(event.date);
-                element += /*html*/ ` 
+            element += /*html*/ ` 
 <div class="border-b border-dashed border-gray-400 pb-4" x-effect="eventShow">
-<p class="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">${event.date}</p>
-<a tabindex="0" class="mt-2 text-lg font-medium leading-5 text-gray-800 focus:outline-none dark:text-gray-100">
-    ${event.title}
-</a>
-<p class="pt-2 text-sm leading-4 leading-none text-gray-600 dark:text-gray-300">
-    ${event.description}
-</p>
+    <p class="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">${event.date}</p>
+    <a tabindex="0" class="mt-2 text-lg font-medium leading-5 text-gray-800 focus:outline-none dark:text-gray-100">
+        ${event.title}
+    </a>
+    <p class="pt-2 text-sm leading-4 leading-none text-gray-600 dark:text-gray-300">
+        ${event.description}
+    </p>
 </div>`
-            }
             return element;
         }
 
