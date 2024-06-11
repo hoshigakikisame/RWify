@@ -1,4 +1,4 @@
-<div class="notification relative" x-data="{ notifDrop: false }">
+<div class="notification relative" x-data="{ notifDrop: false, notifcount: {{ $notifications->count() }} }">
     <div class="trigger px-5">
         <button
             class="relative hover:bg-gray-200/70 p-4 rounded-full dark:fill-gray-50 transition-all dark:hover:fill-ColorButton dark:hover:bg-gray-700/70 hover:fill-ColorButton"
@@ -38,10 +38,11 @@
                     <h1 class="text-xl font-semibold tracking-wide">Notifikasi</h1>
                     @if ($notifications->count() > 0)
                         <p class="text-xs text-gray-400 dark:text-gray-500">Anda mempunyai <span
-                                class="text-green-500">{{ $notifications->count() }} notifikasi</span> baru</p>
+                                class="text-green-500"><span x-text="notifcount"></span> notifikasi</span> baru</p>
                     @else
                         <p class="text-xs text-gray-400 dark:text-gray-500">Tidak ada notifikasi baru</p>
                     @endif
+
                 </div>
                 <button type="button" class="fill-gray-500 dark:fill-gray-400 self-start" @click="notifDrop = false">
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" class="w-5 h-5">
@@ -56,15 +57,15 @@
                     @foreach ($notifications as $notification)
                         <li id="notification-item-{{ $notification->id_notification }}"
                             class="cursor-pointer border-b mb-3">
-                            <a type="button"
-                                onclick="markAsRead({{ $notification->id_notification }});visitNotificationUrl('{{ $notification->slug }}')"
+                            <div
                                 class="hover:bg-gray-100 dark:hover:bg-gray-800 flex justify-between items-center py-2 pb-3 px-1 rounded-t-md">
-                                <div class="wrap-text">
+                                <div class="wrap-text"
+                                    onclick="markAsRead({{ $notification->id_notification }});visitNotificationUrl('{{ $notification->slug }}')">
                                     <p class="text-xs text-gray-900 dark:text-gray-300">{{ $notification->pesan }}</p>
                                 </div>
                                 <div class="action flex gap-2">
                                     <button id="close-{{ $notification->id_notification }}" type="button"
-                                        onclick="markAsRead({{ $notification->id_notification }})"
+                                        @click="notifcount -= 1;markAsRead({{ $notification->id_notification }})"
                                         class="bg-gray-100 dark:hover:bg-gray-700 hover:bg-gray-200 dark:bg-darkBg p-2 fill-red-500 rounded-full">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-4 h-4">
                                             <path
@@ -72,7 +73,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                            </a>
+                            </div>
                         </li>
                     @endforeach
                 </ul>
