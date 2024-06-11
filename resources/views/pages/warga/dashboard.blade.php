@@ -25,8 +25,8 @@
                                     'count' => $pengaduanCount,
                                     'lastAddedAt' => $lastUpdatedPengaduan,
                                     'wrapClass' =>
-                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
-                                    'iconColor' => 'fill-green-700',
+                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-800/30',
+                                    'iconColor' => 'fill-green-700 dark:fill-green-400',
                                     'updateColor' => 'text-green-600',
                                 ],
                                 [
@@ -34,8 +34,8 @@
                                     'count' => "Rp. $iuranSum",
                                     'lastAddedAt' => $lastUpdatedIuran,
                                     'wrapClass' =>
-                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
-                                    'iconColor' => 'fill-green-700',
+                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-800/30',
+                                    'iconColor' => 'fill-green-700 dark:fill-green-400',
                                     'updateColor' => 'text-green-600',
                                 ],
                                 [
@@ -43,8 +43,8 @@
                                     'count' => $ownedPropertiCount,
                                     'lastAddedAt' => $lastUpdatedProperti,
                                     'wrapClass' =>
-                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-600/30',
-                                    'iconColor' => 'fill-green-700',
+                                        'ring-green-200/30 border-green-500/70 dark:border-green-400/70 dark:ring-green-800/30',
+                                    'iconColor' => 'fill-green-700 dark:fill-green-400',
                                     'updateColor' => 'text-green-600',
                                 ],
                             ];
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="card-body mb-2">
                                     <h3
-                                        class="text-3xl font-Montserrat font-semibold tracking-wider text-gray-950 dark:text-gray-50">
+                                        class="text-xl font-Montserrat font-semibold tracking-wider text-gray-950 dark:text-gray-50">
                                         {{ $item['count'] }}
                                     </h3>
                                 </div>
@@ -76,12 +76,50 @@
                         @endforeach
                     </div>
                 </div>
+                <div class="lastPembayaran">
+                    <div class="header-wrap mb-4">
+                        <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Pembayaran Iuran
+                            Terakhir</h1>
+                        <p class="text-xs text-gray-400 dark:text-gray-500">Berikut merupakan pembayaran iuran terakhir yang
+                            dilakukan
+                        </p>
+                    </div>
+                    <div
+                        class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300  rounded-lg border dark:border-gray-400 overflow-hidden">
+                        <div class="warp-riwayat py-5 px-6">
+                            <div class="header flex justify-between items-center">
+                                <p class="text-xs">Terdapat <span class="text-green-500">10</span> pembayaran terakhir</p>
+                                <div class="icon fill-green-800 dark:fill-green-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M19 0H5C2.24 0 0 2.24 0 5v10c0 2.76 2.24 5 5 5h1.92l3.75 3.16c.38.34.86.51 1.34.51s.93-.16 1.29-.48l3.85-3.18H19c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5m-5.62 15H13c0 .55-.45 1-1 1s-1-.45-1-1h-.27c-1.07 0-2.06-.57-2.6-1.5-.28-.48-.11-1.09.36-1.37.48-.28 1.09-.11 1.37.36.18.31.51.5.87.5h2.64a.623.623 0 0 0 .1-1.24l-3.29-.55a2.61 2.61 0 0 1-2.19-2.59c0-1.45 1.18-2.62 2.62-2.62h.38c0-.55.45-1 1-1s1 .45 1 1h.27c1.07 0 2.06.57 2.6 1.5.28.48.11 1.09-.36 1.37-.48.28-1.09.11-1.37-.36-.18-.31-.51-.5-.87-.5h-2.64a.623.623 0 0 0-.1 1.24l3.28.55c1.27.21 2.19 1.3 2.19 2.59 0 1.45-1.18 2.62-2.62 2.62Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div
+                                class="wrap-card mt-5 border-l-8 rounded-lg overflow-hidden border-green-600/80 dark:border-green-500/80 bg-green-200/50 dark:bg-green-900/50 mb-5">
+                                <div class="wrap px-4 py-3 ">
+                                    <div class="wrap-body grow text-green-950 dark:text-green-50">
+                                        <p class="text-sm">pembayaran bulan maret, 2024</p>
+                                        <div class="footer flex justify-between">
+                                            <a href="" class="text-xs">cek selengkapnya</a>
+                                            <p class="text-xs">tanggal</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="right col-span-2">
                 <div class="header-wrap mb-4 w-fit">
                     <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Kalender</h1>
                     <p class="text-xs text-gray-400 dark:text-gray-600 text-wrap">Check pertemuan anda di kalender ini</p>
                 </div>
+
                 <div class="calendar w-full" x-data="{ eventShow: false }">
                     <div
                         class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300 dark:bg-darkBg/30 rounded-lg border dark:border-gray-400 overflow-hidden">
@@ -245,11 +283,11 @@
             let element = ''
 
             arrayOfEvent = events.concat(holiday);
-             
+
 
             for (let i = 0; i < arrayOfEvent.length; i++) {
                 let event = arrayOfEvent[i];
-                 
+
                 let eventDate = new Date(event.date);
                 if (hasEventDay(day, month, year, arrayOfEvent) && eventDate.getDate() === day && eventDate
                     .getMonth() ===
@@ -266,7 +304,7 @@
             let bodyDesc = document.getElementById('body-event-desc');
             let element = ''
 
-             
+
             args.forEach(array => {
                 for (let i = 0; i < array.length; i++) {
                     let event = array[i];
@@ -331,7 +369,7 @@
         }
 
         function elementEventDay(day, month, year) {
-             
+
             return /*html*/ `
         <td class="" @click='(function(){displayRemindersByDay(${day},${month},${year});if(!eventShow == true){ eventShow = !eventShow } })()'>
          <div class="px-2 py-2 cursor-pointer flex w-full justify-center">
