@@ -43,5 +43,6 @@
             @endforeach
         </div>
     </section>
+    @include('pages.shared.includes.footer')
 </div>
 @endsection
