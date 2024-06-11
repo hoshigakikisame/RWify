@@ -12,6 +12,7 @@ use \Illuminate\Database\Eloquent\Builder;
 use App\Models\ReservasiJadwalTemuModel;
 use App\Enums\Iuran\IuranBulanEnum;
 use App\Models\IuranModel;
+use App\Enums\ReservasiJadwalTemu\ReservasiJadwalTemuStatusEnum;
 
 
 class RTController extends Controller
@@ -44,7 +45,7 @@ class RTController extends Controller
         $pengaduanLastAddedAt = PengaduanModel::orderBy('dibuat_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true);
         $propertiLastAddedAt = PropertiModel::orderBy('dibuat_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true);
 
-        $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->get();
+        $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->where('status', ReservasiJadwalTemuStatusEnum::DITERIMA)->get();
 
         $leaderboardUsers = UserModel::withCount('iuran')->get()->sortBy(function ($user) {
             return $user->iuran_count;
