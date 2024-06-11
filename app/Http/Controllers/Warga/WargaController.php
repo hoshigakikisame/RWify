@@ -23,12 +23,14 @@ class WargaController extends Controller
         $iuranInstances = IuranModel::where('nik_pembayar', request()->user()->getNik());
         $lastUpdatedIuran = $iuranInstances->orderBy('dibuat_pada', 'desc')->first()?->getDibuatPada()->diffForHumans(null, true); 
         $iuranSum = $iuranInstances->sum('jumlah_bayar');
+        $lastIuranPaidInstances = $iuranInstances->orderBy('dibuat_pada', 'desc')->limit(3)->get();
 
         $ownedPropertiInstances = PropertiModel::where('nik_pemilik', request()->user()->getNik());
         $lastUpdatedProperti = $ownedPropertiInstances->orderBy('dibuat_pada', 'desc')->first()?->getDibuatPada()->diffForHumans(null, true);
         $ownedPropertiCount = $ownedPropertiInstances->count();
 
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_pemohon', request()->user()->getNik())->where('status', ReservasiJadwalTemuStatusEnum::DITERIMA)->get();
+
 
         $data = [
             'reservasiJadwalTemuInstances' => $reservasiJadwalTemuInstances,
@@ -38,6 +40,7 @@ class WargaController extends Controller
 
             'iuranSum' => $iuranSum,
             'lastUpdatedIuran' => $lastUpdatedIuran,
+            'lastIuranPaidInstances' => $lastIuranPaidInstances,
 
             'ownedPropertiCount' => $ownedPropertiCount,
             'lastUpdatedProperti' => $lastUpdatedProperti,

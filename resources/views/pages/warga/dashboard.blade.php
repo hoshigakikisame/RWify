@@ -78,9 +78,9 @@
                 </div>
                 <div class="lastPembayaran">
                     <div class="header-wrap mb-4">
-                        <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Pembayaran Iuran
+                        <h1 class="font-Montserrat text-lg text-gray-600 dark:text-gray-300 font-medium">Data Iuran
                             Terakhir</h1>
-                        <p class="text-xs text-gray-400 dark:text-gray-500">Berikut merupakan pembayaran iuran terakhir yang
+                        <p class="text-xs text-gray-400 dark:text-gray-500">Berikut merupakan data iuran terakhir yang
                             dilakukan
                         </p>
                     </div>
@@ -88,7 +88,7 @@
                         class="w-full ring ring-gray-200/30 dark:ring-gray-700/30 border-gray-300  rounded-lg border dark:border-gray-400 overflow-hidden">
                         <div class="warp-riwayat py-5 px-6">
                             <div class="header flex justify-between items-center">
-                                <p class="text-xs">Terdapat <span class="text-green-500">10</span> pembayaran terakhir</p>
+                                <p class="text-xs"><span class="text-green-500">3</span> data iuran terakhir anda</p>
                                 <div class="icon fill-green-800 dark:fill-green-400">
                                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                                         class="w-5 h-5">
@@ -97,19 +97,21 @@
                                     </svg>
                                 </div>
                             </div>
+                            @foreach ($lastIuranPaidInstances as $iuran)
                             <div
                                 class="wrap-card mt-5 border-l-8 rounded-lg overflow-hidden border-green-600/80 dark:border-green-500/80 bg-green-200/50 dark:bg-green-900/50 mb-5">
                                 <div class="wrap px-4 py-3 ">
                                     <div class="wrap-body grow text-green-950 dark:text-green-50">
-                                        <p class="text-sm">pembayaran bulan maret, 2024</p>
+                                        <p class="text-sm">Pembayaran bulan {{ $iuran->getBulan() }}, {{ $iuran->getTahun() }}</p>
                                         <div class="footer flex justify-between">
-                                            <a href="" class="text-xs">cek selengkapnya</a>
-                                            <p class="text-xs">tanggal</p>
+                                            <a href="{{ route('warga.layanan.pembayaranIuran.iuran') }}" class="text-xs">Detail</a>
+                                            <p class="text-xs">{{ $iuran->getDibuatPada()->diffForHumans() }}</p>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
