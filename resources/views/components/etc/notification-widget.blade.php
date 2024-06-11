@@ -51,8 +51,8 @@
                 </button>
             </div>
 
-            <div class="overflow-hidden max-h-96 mt-4">
-                <ul class="body-wrap overflow-auto h-full no-scrollbar">
+            <div class="overflow-hidden max-h-96 h-80 mt-4">
+                <ul class="body-wrap overflow-scroll h-full no-scrollbar">
                     @foreach ($notifications as $notification)
                         <li id="notification-item-{{ $notification->id_notification }}"
                             class="cursor-pointer border-b mb-3">
@@ -77,8 +77,6 @@
                     @endforeach
                 </ul>
             </div>
-
-
         </div>
     </div>
 

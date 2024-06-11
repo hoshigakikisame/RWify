@@ -82,22 +82,23 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
             },
         });
     }
-
-    if ($(selectorForm).find('[aria-current="submitButton"]').length == 1) {
-        $(selectorForm).on('change', function (element) {
+    $(document).ready(() => {
+        if ($(selectorForm).find('[aria-current="submitButton"]').length == 1) {
+            $(selectorForm).on('change', function (element) {
+                console.log(data++);
+                isMultipart ? multipartRequest(this) : defaultRequest();
+            });
+        } else if ($(selectorForm).find('[aria-current="directSubmitButton"]').length == 1) {
             console.log(data++);
             isMultipart ? multipartRequest(this) : defaultRequest();
-        });
-    } else if ($(selectorForm).find('[aria-current="directSubmitButton"]').length == 1) {
-        console.log(data++);
-        isMultipart ? multipartRequest(this) : defaultRequest();
-    } else {
-        console.log('call');
-        $(selectorForm).on('submit', function (e) {
-            e.preventDefault();
-            isMultipart ? multipartRequest(this) : defaultRequest();
-        });
-    }
+        } else {
+            console.log('call');
+            $(selectorForm).on('submit', function (e) {
+                e.preventDefault();
+                isMultipart ? multipartRequest(this) : defaultRequest();
+            });
+        }
+    })
 }
 
 export function searchRequest(query) {
