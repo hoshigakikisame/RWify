@@ -12,7 +12,7 @@
         href="{{ Vite::asset('resources/assets/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16"
         href="{{ Vite::asset('resources/assets/favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ Vite::asset('resources/assets/favicon/site.webmanifes') }}">
+    <link rel="manifest" href="{{ Vite::asset('resources/assets/favicon/site.webmanifest') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

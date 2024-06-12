@@ -41,7 +41,7 @@
                                         Reset Password
                                     </h1>
                                     <p class="font-Inter text-sm font-light dark:text-gray-200 md:text-lg xl:text-xl">
-                                        Enter current password and new password for assocoated with your account.
+                                        Masukkan kata sandi saat ini dan kata sandi baru untuk terkait dengan akun Anda.
                                     </p>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                     <input type="hidden" name="token" value="{{ $token }}" />
                                     <div class="form-group mb-5">
                                         <label for="email" class="text-gray-600 dark:text-gray-300">
-                                            E-Mail Address
+                                            Alamat E-Mail
                                         </label>
 
                                         <div class="col-md-6">
@@ -76,7 +76,7 @@
 
                                     <div class="form-group mb-3 md:mb-4 lg:mb-3">
                                         <label for="password_confirmation" class="text-gray-600 dark:text-gray-300">
-                                            Confirm Password
+                                            Konfirmasi Password
                                         </label>
 
                                         <div class="col-md-6">

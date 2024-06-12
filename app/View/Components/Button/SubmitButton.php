@@ -23,6 +23,6 @@ class SubmitButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.Button.submit-button');
+        return view('components.button.submit-button');
     }
 }
