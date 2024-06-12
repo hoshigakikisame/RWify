@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Pengaduan\PengaduanStatusEnum;
 use App\Models\PengaduanModel;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +16,23 @@ class PengaduanSeeder extends Seeder
     public function run(): void
     {
         PengaduanModel::truncate();
-        $pengaduanInstances = PengaduanModel::factory()->count(30)->create()->all();
+        $file = fopen('database/datasources/pengaduan.csv', 'r');
+
+        $usersNik = UserModel::all()->pluck('nik')->toArray();
+        $statuses = PengaduanStatusEnum::getValues();
+        $data = [];
+
+        while ($row = fgetcsv($file)) {
+            array_push($data, [
+                'nik_pengadu' => $usersNik[array_rand($usersNik)],
+                'judul' => $row[0],
+                'isi' => $row[1],
+                'image_url' => "https://via.placeholder.com/640x480.png/00ddcc?text=pengaduan",
+                'status' => $statuses[array_rand($statuses)],
+                'dibuat_pada' => now()->toDateTime()
+            ]);
+        }
+
+        PengaduanModel::insert($data);
     }
 }
