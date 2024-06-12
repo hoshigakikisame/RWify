@@ -57,80 +57,7 @@
 
                             <span>Tambah UMKM</span>
                         </button> --}}
-                            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
-                                aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
-                                <div
-                                    class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
-                                    <div @click="modalOpen = false" x-show="modalOpen"
-                                        x-transition:enter="transform transition duration-300 ease-out"
-                                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                                        x-transition:leave="transform transition duration-200 ease-in"
-                                        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                        class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-SecondaryBg/70"
-                                        aria-hidden="true"></div>
 
-                                    <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
-                                        x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                        x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
-                                        x-transition:leave="transform transition duration-200 ease-in"
-                                        x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
-                                        x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                        class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-SecondaryBg 2xl:max-w-2xl">
-                                        <div class="flex items-center justify-between space-x-4">
-                                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
-                                                Tambah UMKM
-                                            </h1>
-
-                                            <button @click="modalOpen = false"
-                                                class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-
-                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                            Tambah UMKM ke dalam sistem
-                                        </p>
-
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-
-                                        <form enctype="multipart/form-data" class="mt-5" id="addModalForm"
-                                            action="{{ route('rw.manage.umkm.new') }}" method="post">
-                                            @csrf
-                                            <input type="text" name="id_umkm" hidden />
-                                            <x-form.input-form title="Nama UMKM" key="nama" type="text"
-                                                placeholder="UMKM" />
-                                            <x-form.input-form title="Nama Pemilik" key="nama_pemilik" type="text"
-                                                placeholder="Nama Pemilik UMKM" />
-                                            <x-form.input-form title="No. Telepon" key="telepon" type="text"
-                                                placeholder="08138237822" />
-                                            <x-form.textarea-input-form title="Alamat" key="alamat"
-                                                placeholder="Alamat UMKM" />
-                                            <x-form.input-form title="Maps URL" key="map_url" type="text"
-                                                placeholder="Maps URL UMKM" />
-                                            <x-form.input-form title="Instagram Username" key="instagram_url" type="text"
-                                                placeholder="Username Instagram" />
-                                            <x-form.textarea-input-form title="Deskripsi" key="deskripsi"
-                                                placeholder="Deskripsi tentang UMKM" />
-                                            <x-form.input-image id="imageadd" title="Gambar UMKM" key="image"
-                                                placeholder="Gambar UMKM" />
-
-                                            <div class="mt-6 flex justify-between">
-                                                <p class="text-xs text-gray-200 dark:text-gray-400">
-                                                    Note: Pastikan semua sudah terisi dengan benar
-                                                </p>
-                                                <x-button.submit-button title="Tambah UMKM">
-                                                </x-button.submit-button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -258,8 +185,7 @@
                                             </p>
                                         </td>
 
-                                        <td class="flex px-4 py-4 pe-0 ps-6 text-sm" id="action"
-                                            x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
+                                        <td class="flex px-4 py-4 pe-0 ps-6 text-sm" id="action" x-data="{ modalEditOpen: false, modalDeleteOpen: false }">
                                             <a id="detailButton"
                                                 class="text-blue-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                                 target="_blank"
@@ -458,6 +384,86 @@
             $(selector).ready(() => {
                 $(selector).remove()
             })
+        }
+
+        function appendAddModal(event) {
+            const modalAddElemen = /*html*/ `
+            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
+                                aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
+                                <div
+                                    class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
+                                    <div @click="modalOpen = false;deleteModal('#addModal')" x-show="modalOpen"
+                                        x-transition:enter="transform transition duration-300 ease-out"
+                                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                        x-transition:leave="transform transition duration-200 ease-in"
+                                        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                        class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-SecondaryBg/70"
+                                        aria-hidden="true"></div>
+
+                                    <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
+                                        x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                        x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                        x-transition:leave="transform transition duration-200 ease-in"
+                                        x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                        x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                        class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-SecondaryBg 2xl:max-w-2xl">
+                                        <div class="flex items-center justify-between space-x-4">
+                                            <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
+                                                Tambah UMKM
+                                            </h1>
+
+                                            <button @click="modalOpen = false;deleteModal('#addModal')"
+                                                class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+
+                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                            Tambah UMKM ke dalam sistem
+                                        </p>
+
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+
+                                        <form enctype="multipart/form-data" class="mt-5" id="addModalForm"
+                                            action="{{ route('rw.manage.umkm.new') }}" method="post">
+                                            @csrf
+                                            <input type="text" name="id_umkm" hidden />
+                                            <x-form.input-form title="Nama UMKM" key="nama" type="text"
+                                                placeholder="UMKM" />
+                                            <x-form.input-form title="Nama Pemilik" key="nama_pemilik" type="text"
+                                                placeholder="Nama Pemilik UMKM" />
+                                            <x-form.input-form title="No. Telepon" key="telepon" type="text"
+                                                placeholder="08138237822" />
+                                            <x-form.textarea-input-form title="Alamat" key="alamat"
+                                                placeholder="Alamat UMKM" />
+                                            <x-form.input-form title="Maps URL" key="map_url" type="text"
+                                                placeholder="Maps URL UMKM" />
+                                            <x-form.input-form title="Instagram Username" key="instagram_url" type="text"
+                                                placeholder="Username Instagram" />
+                                            <x-form.textarea-input-form title="Deskripsi" key="deskripsi"
+                                                placeholder="Deskripsi tentang UMKM" />
+                                            <x-form.input-image id="imageadd" title="Gambar UMKM" key="image"
+                                                placeholder="Gambar UMKM" />
+
+                                            <div class="mt-6 flex justify-between">
+                                                <p class="text-xs text-gray-200 dark:text-gray-400">
+                                                    Note: Pastikan semua sudah terisi dengan benar
+                                                </p>
+                                                <x-button.submit-button title="Tambah UMKM">
+                                                </x-button.submit-button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+            `
+            $(modalAddElemen).insertAfter($(event.target).closest('#addButton'))
         }
     </script>
 @endpush

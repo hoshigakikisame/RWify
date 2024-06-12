@@ -43,67 +43,7 @@
 
                             <span>Tambah Tipe Properti</span>
                         </button> --}}
-                        <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
-                            aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
-                            <div
-                                class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
-                                <div @click="modalOpen = false" x-show="modalOpen"
-                                    x-transition:enter="transform transition duration-300 ease-out"
-                                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                                    x-transition:leave="transform transition duration-200 ease-in"
-                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                                    class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-SecondaryBg/70"
-                                    aria-hidden="true"></div>
 
-                                <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
-                                    x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                    x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
-                                    x-transition:leave="transform transition duration-200 ease-in"
-                                    x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
-                                    x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
-                                    class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
-                                            Tambah Tipe Properti
-                                        </h1>
-
-                                        <button @click="modalOpen = false"
-                                            class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                        Tambah tipe properti ke dalam sistem
-                                    </p>
-
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-
-                                    <form class="mt-5" id="addModalForm"
-                                        action="{{ route('rw.manage.tipeProperti.new') }}" method="post">
-                                        @csrf
-                                        <x-form.input-form title="Nama Tipe Properti" key="nama_tipe" type="text"
-                                            placeholder="Nama Tipe Properti" />
-                                        <x-form.input-form title="Iuran Per Bulan" key="iuran_per_bulan" type="int"
-                                            placeholder="Iuran Perbulan" />
-
-                                        <div class="mt-6 flex justify-between">
-                                            <p class="text-xs text-gray-200 dark:text-gray-400">
-                                                Note: Pastikan semua sudah terisi dengan benar
-                                            </p>
-                                            <x-button.submit-button title="Tambah Tipe Properti">
-                                            </x-button.submit-button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -199,8 +139,8 @@
                                                 <span
                                                     class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
-                                                        class="h-4 w-4 fill-red-500" viewBox="0 0 24 24"
-                                                        fill="currentColor" version="1.1">
+                                                        class="h-4 w-4 fill-red-500" viewBox="0 0 24 24" fill="currentColor"
+                                                        version="1.1">
                                                         <path
                                                             d="M21 4h-3.1C17.422 1.674 15.375 0.003 13 0h-2c-2.375 0.003 -4.422 1.674 -4.9 4H3c-0.552 0 -1 0.448 -1 1S2.448 6 3 6h1v13C4.003 21.76 6.24 23.997 9 24h6c2.76 -0.003 4.997 -2.24 5 -5V6H21c0.552 0 1 -0.448 1 -1S21.552 4 21 4M11 17c0 0.552 -0.448 1 -1 1 -0.552 0 -1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1s1 0.448 1 1v6zm4 0c0 0.552 -0.448 1 -1 1s-1 -0.448 -1 -1v-6c0 -0.552 0.448 -1 1 -1S15 10.448 15 11zM8.171 4c0.425 -1.198 1.558 -1.998 2.829 -2h2c1.271 0.002 2.404 0.802 2.829 2z">
                                                         </path>
@@ -354,6 +294,73 @@
             $(selector).ready(() => {
                 $(selector).remove()
             })
+        }
+
+        function appendAddModal(event) {
+            const modalAddElemen = /*html*/ `
+            <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
+                            aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
+                            <div
+                                class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
+                                <div @click="modalOpen = false;deleteModal('#addModal')" x-show="modalOpen"
+                                    x-transition:enter="transform transition duration-300 ease-out"
+                                    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                    x-transition:leave="transform transition duration-200 ease-in"
+                                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                                    class="fixed inset-0 bg-gray-500/40 transition-opacity dark:bg-SecondaryBg/70"
+                                    aria-hidden="true"></div>
+
+                                <div x-show="modalOpen" x-transition:enter="transform transition duration-300 ease-out"
+                                    x-transition:enter-start="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                    x-transition:enter-end="translate-y-0 opacity-100 sm:scale-100"
+                                    x-transition:leave="transform transition duration-200 ease-in"
+                                    x-transition:leave-start="translate-y-0 opacity-100 sm:scale-100"
+                                    x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
+                                    class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-darkBg 2xl:max-w-2xl">
+                                    <div class="flex items-center justify-between space-x-4">
+                                        <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">
+                                            Tambah Tipe Properti
+                                        </h1>
+
+                                        <button @click="modalOpen = false;deleteModal('#addModal')"
+                                            class="mt- text-gray-600 hover:text-gray-700 focus:outline-none dark:text-gray-400 dark:hover:text-gray-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                        Tambah tipe properti ke dalam sistem
+                                    </p>
+
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+
+                                    <form class="mt-5" id="addModalForm"
+                                        action="{{ route('rw.manage.tipeProperti.new') }}" method="post">
+                                        @csrf
+                                        <x-form.input-form title="Nama Tipe Properti" key="nama_tipe" type="text"
+                                            placeholder="Nama Tipe Properti" />
+                                        <x-form.input-form title="Iuran Per Bulan" key="iuran_per_bulan" type="int"
+                                            placeholder="Iuran Perbulan" />
+
+                                        <div class="mt-6 flex justify-between">
+                                            <p class="text-xs text-gray-200 dark:text-gray-400">
+                                                Note: Pastikan semua sudah terisi dengan benar
+                                            </p>
+                                            <x-button.submit-button title="Tambah Tipe Properti">
+                                            </x-button.submit-button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+            `
+            $(modalAddElemen).insertAfter($(event.target).closest('#addButton'))
         }
     </script>
 @endpush
