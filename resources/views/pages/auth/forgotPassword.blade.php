@@ -36,10 +36,10 @@
                         <div class="header-wrap mx-auto w-3/5">
                             <h1
                                 class="text-wrap font-Poppins text-4xl font-bold leading-tight dark:text-white sm:mb-5 sm:text-7xl lg:text-6xl xl:mb-2 xl:text-7xl">
-                                Forgot Password?
+                                Lupa Password?
                             </h1>
                             <p class="text-wrap font-Inter text-sm font-light dark:text-gray-200 md:text-lg xl:text-xl">
-                                Enter the email address assocoated with your account.
+                                Masukkan alamat email yang terkait dengan akun Anda.
                             </p>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit"
                                         class="text-md text-nowrap rounded-lg bg-darkGreen px-5 py-3 font-Poppins text-xs font-medium text-gray-200 dark:bg-green-800">
-                                        Send Password Reset Link
+                                        Kirim Reset Password Link
                                     </button>
                                 </div>
                             </div>

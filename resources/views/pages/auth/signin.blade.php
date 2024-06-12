@@ -44,9 +44,9 @@
                 <div
                     class="container-fluid flex flex-col items-center gap-5 text-darkLightGrey lg:mb-10 lg:mt-12 lg:gap-2 xl:mt-32">
                     <div class="signIn-header mb-4 flex flex-col gap-2 text-center md:px-10 lg:w-2/3 2xl:w-1/2">
-                        <h1 class="my-1 font-Inter text-5xl font-bold dark:text-gray-100">Sign In</h1>
+                        <h1 class="my-1 font-Inter text-5xl font-bold dark:text-gray-100">Masuk</h1>
                         <p class="px-16 font-Inter font-light dark:text-gray-200 lg:p-2">
-                            Silahkan Sign In Untuk Pengalaman Terhubung yang Lebih Baik
+                            Silahkan Masuk Untuk Pengalaman Terhubung yang Lebih Baik
                         </p>
                     </div>
                     @csrf
@@ -56,7 +56,7 @@
                             class="sso order-last mx-auto mb-6 flex w-fit cursor-pointer items-center justify-center gap-3 rounded-full border p-4 text-center transition-all hover:bg-gray-100 focus:opacity-[0.85] dark:hover:bg-gray-800 sm:mx-0 sm:w-full sm:rounded-md sm:p-2 lg:order-none"
                             onclick="window.open(`{{ route('auth.google.index') }}`, '_self');">
                             <img src="{{ $googleIcon }}" alt="Google" />
-                            <h1 class="hidden dark:text-gray-200 lg:block">Log In dengan Google</h1>
+                            <h1 class="hidden dark:text-gray-200 lg:block">Masuk dengan Google</h1>
                         </button>
                         <!-- Devider  -->
                         <div
@@ -97,7 +97,7 @@
                             <div class="submit-btn" style="margin-top: 20px">
                                 <button type="submit"
                                     class="middle none center w-full rounded-md bg-darkGreen px-6 py-3 font-sans text-xs font-bold uppercase text-white shadow-md shadow-darkGreen/20 transition-all hover:shadow-lg hover:shadow-darkGreen/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none dark:bg-green-700 dark:hover:shadow-green-700/40">
-                                    Sign In
+                                    Masuk
                                 </button>
                             </div>
                         </form>

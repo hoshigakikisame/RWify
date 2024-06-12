@@ -70,8 +70,8 @@
                     </div>
                     <x-button.add-button routeButton="{{ route('rw.manage.pendataan.warga.new') }}" modalParent="#addModal"
                         modalForm="#addModalForm" multipartReq=false title="Tambah Warga">
-
                     </x-button.add-button>
+
                     {{-- <button id="addButton" @click="modalOpen = !modalOpen"
                     class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap rounded-lg bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 hover:bg-ColorHover sm:w-auto"
                     onclick="window.utils.Request.actionRequest('{{ route('rw.manage.pendataan.warga.new') }}', '#addModal', '#addModalForm')">

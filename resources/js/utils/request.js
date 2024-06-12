@@ -82,23 +82,32 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
             },
         });
     }
+
     $(document).ready(() => {
         if ($(selectorForm).find('[aria-current="submitButton"]').length == 1) {
             $(selectorForm).on('change', function (element) {
                 console.log(data++);
                 isMultipart ? multipartRequest(this) : defaultRequest();
+                $(selectorForm).off();
+
             });
         } else if ($(selectorForm).find('[aria-current="directSubmitButton"]').length == 1) {
             console.log(data++);
             isMultipart ? multipartRequest(this) : defaultRequest();
+            $(selectorForm).off();
+
         } else {
             console.log('call');
             $(selectorForm).on('submit', function (e) {
                 e.preventDefault();
                 isMultipart ? multipartRequest(this) : defaultRequest();
+                $(selectorForm).off();
+
             });
+
         }
     })
+
 }
 
 export function searchRequest(query) {

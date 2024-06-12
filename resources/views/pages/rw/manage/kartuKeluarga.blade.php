@@ -79,6 +79,7 @@
 
                     <span>Tambah Kartu Keluarga</span>
                 </button> --}}
+
                     <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
                         aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
                         <div
@@ -401,7 +402,6 @@
         }
 
         function appendUpdateModal(kk, event) {
-            console.log(kk);
             const modalEditElemen = /*html*/ `
         <div id="editModal" x-show="modalEditOpen" class="fixed inset-0 z-40 overflow-y-auto" aria-labelledby="modal-title"
              role="dialog" aria-modal="true">
