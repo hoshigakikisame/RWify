@@ -41,6 +41,7 @@ class UserModelFactory extends Factory
             'jenis_kelamin' => $this->faker->randomElement(UserJenisKelaminEnum::getValues()),
             'golongan_darah' => $this->faker->randomElement(UserGolonganDarahEnum::getValues()),
             'alamat' => $this->faker->address(),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

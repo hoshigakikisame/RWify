@@ -23,7 +23,8 @@ class PengumumanModelFactory extends Factory
         return [
             'judul' => $this->faker->sentence(),
             'image_url' => $this->faker->imageUrl(),
-            'konten' => $this->faker->paragraph()
+            'konten' => $this->faker->paragraph(),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

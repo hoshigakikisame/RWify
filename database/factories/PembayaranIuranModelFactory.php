@@ -27,7 +27,8 @@ class PembayaranIuranModelFactory extends Factory
             'tanggal_bayar' => $this->faker->date(),
             'image_url' => $this->faker->imageUrl(),
             'keterangan' => 'Pembayaran iuran bulan ' . $this->faker->monthName() . ' 2024',
-            'nik_pembayar' => $this->faker->randomElement($nikCollections)
+            'nik_pembayar' => $this->faker->randomElement($nikCollections),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

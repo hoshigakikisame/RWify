@@ -27,6 +27,7 @@ class TipePropertiModelFactory extends Factory
         return [
             'nama_tipe' => $this->faker->sentence(),
             'iuran_per_bulan' => $this->faker->randomNumber(6),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }
