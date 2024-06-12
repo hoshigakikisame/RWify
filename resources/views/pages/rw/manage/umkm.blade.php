@@ -124,7 +124,7 @@
                                                 <p class="text-xs text-gray-200 dark:text-gray-400">
                                                     Note: Pastikan semua sudah terisi dengan benar
                                                 </p>
-                                                <x-button.submit-button title="Simpan UMKM">
+                                                <x-button.submit-button title="Tambah UMKM">
                                                 </x-button.submit-button>
                                             </div>
                                         </form>
@@ -370,7 +370,7 @@
 
                             <div x-cloak x-show="modalDeleteOpen" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="transition ease-in duration-200 transform" x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white dark:bg-SecondaryBg rounded-lg shadow-xl 2xl:max-w-2xl">
                                 <div class="flex items-center justify-between space-x-4">
-                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Delete UMKM</h1>
+                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Hapus UMKM</h1>
 
                                     <button @click="()=>{modalDeleteOpen = false;deleteModal('#deleteModal')}" class="text-gray-600 dark:text-gray-400 focus:outline-none hover:text-gray-700 dark:hover:text-gray-500">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

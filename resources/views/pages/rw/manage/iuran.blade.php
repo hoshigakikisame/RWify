@@ -125,7 +125,7 @@
                                             <p class="text-xs text-gray-200 dark:text-gray-400">
                                                 Note: Pastikan semua sudah terisi dengan benar
                                             </p>
-                                            <x-button.submit-button title="Simpan Iuran">
+                                            <x-button.submit-button title="Tambah Iuran">
                                             </x-button.submit-button>
                                         </div>
                                     </form>

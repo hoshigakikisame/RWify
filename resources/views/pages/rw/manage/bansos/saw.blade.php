@@ -90,7 +90,7 @@
                     </li>
                     <li x-ref="rank" class="px-4 py-2">
                         <button @click="(function(){appendRankData();setActivePanel($refs.rank)})()" ariaLabel="Konversi">
-                            Rangking
+                            Ranking
                         </button>
                     </li>
                 </ul>

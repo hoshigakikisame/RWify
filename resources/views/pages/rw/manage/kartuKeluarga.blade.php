@@ -100,7 +100,7 @@
                                 x-transition:leave-end="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
                                 class="my-20 inline-block w-full max-w-xl transform overflow-hidden rounded-lg bg-white p-8 text-left shadow-xl transition-all dark:bg-SecondaryBg 2xl:max-w-2xl">
                                 <div class="flex items-center justify-between space-x-4">
-                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Tambah Data Keluarga
+                                    <h1 class="text-xl font-medium text-gray-800 dark:text-gray-100">Tambah Kartu Keluarga
                                     </h1>
 
                                     <button @click="modalOpen = false"
@@ -114,7 +114,7 @@
                                 </div>
 
                                 <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                    Tambah Data Keluarga ke dalam sistem
+                                    Tambah Kartu Keluarga ke dalam sistem
                                 </p>
 
                                 @foreach ($errors->all() as $error)
@@ -148,7 +148,7 @@
                                         <p class="text-xs text-gray-200 dark:text-gray-400">
                                             Note: Pastikan semua sudah terisi dengan benar
                                         </p>
-                                        <x-button.submit-button title="Tambah Data Keluarga">
+                                        <x-button.submit-button title="Tambah Kartu Keluarga">
                                         </x-button.submit-button>
                                     </div>
                                 </form>
@@ -456,7 +456,7 @@
                          <div class="flex justify-between mt-6">
                              <p class="text-xs text-gray-200 dark:text-gray-400">Note: Pastikan semua sudah terisi dengan benar
                              </p>
-                             <x-button.submit-button title="Simpan Data Keluarga">
+                             <x-button.submit-button title="Simpan Kartu Keluarga">
                             </x-button.submit-button>
                          </div>
                      </form>

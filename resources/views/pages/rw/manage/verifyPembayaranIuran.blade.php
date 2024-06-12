@@ -254,7 +254,7 @@
                     <x-form.select-input-form title="Bulan Bayar" key="bulan"
                         placeholder="Pilih Bulan Bayar Warga" :options="$bulanOptions" />
 
-                    <x-form.input-form title="Tahun Terbayar" key="tahun" type="number" placeholder="Masukkan Tahun Bayar" />
+                    <x-form.input-form title="Tahun Bayar" key="tahun" type="number" placeholder="Masukkan Tahun Bayar" />
 
                     <x-form.input-form title="Jumlah Bayar" key="jumlah_bayar" type="number" placeholder="100000"
                         value='${tagihan }' readonly="true" />
