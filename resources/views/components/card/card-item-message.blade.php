@@ -4,8 +4,7 @@
 
 <div class="card-container px-3 py-4">
     <div
-        class="card-wrap flex flex-col gap-12 overflow-hidden rounded-xl border bg-white p-10 dark:border-gray-700 dark:bg-SecondaryBg"
-    >
+        class="card-wrap flex flex-col gap-12 overflow-hidden rounded-xl border bg-white p-10 dark:border-gray-700 dark:bg-SecondaryBg">
         <div class="card-header flex w-full flex-col items-center gap-4 bg-cover bg-center">
             <div class="card-avatar">
                 <img src="{{ $image }}" alt="" class="h-16 w-16 rounded-full" />
@@ -16,7 +15,7 @@
             </div>
         </div>
         <div class="card-body flex flex-col items-center gap-2 text-center">
-            <p class="text-md dark:text-gray-300">{{ $description }}</p>
+            <p class="text-sm md:text-md dark:text-gray-300">{{ $description }}</p>
         </div>
         <div class="card-footer text-center">
             <p class="text-xs font-medium text-green-700 dark:text-gray-300">{{ $date }}</p>
