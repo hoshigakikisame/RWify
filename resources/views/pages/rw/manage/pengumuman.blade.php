@@ -242,7 +242,10 @@
                                     </div>
                                     <div class="card-body mb-8 w-3/4 px-8">
                                         <h1 class="text-xl dark:text-gray-100">{{ $pengumuman->getJudul() }}</h1>
-                                        <p class="text-sm dark:text-gray-400">{{ $pengumuman->getKonten() }}</p>
+                                        <p class="text-sm dark:text-gray-400 text-wrap">
+
+                                            {{ strlen($pengumuman->getKonten()) > 300 ? substr($pengumuman->getKonten(), 0, 300) . '...' : $pengumuman->getKonten() }}
+                                        </p>
                                     </div>
                                     <div
                                         class="card-footer flex justify-between border-t bg-gray-50 px-8 py-2 dark:border-gray-800 dark:bg-darkBg">
