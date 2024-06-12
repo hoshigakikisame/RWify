@@ -113,10 +113,10 @@
                         <div
                             class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75">
                             <div class="w-3/4 text-wrap xl:max-w-4xl">
-                                <h1 class="text-center font-Poppins text-5xl font-bold text-gray-100">
+                                <h1 class="text-center font-Poppins text-3xl md:text-5xl font-bold text-gray-100">
                                     RW 01 : Berwibawa, Peduli, Resik, Aman dan Serasi.
                                 </h1>
-                                <h2 class="text-center font-Inter text-xl font-light text-gray-100">
+                                <h2 class="text-center font-Inter text-sm md:text-xl font-light text-gray-100">
                                     Selamat Datang di Situs Resmi RW 01 Desa Landungsari, Kecamatan Dau, Kabupaten
                                     Malang, 65151
                                 </h2>
@@ -126,11 +126,11 @@
                     <swiper-slide class="bg-cover bg-left" style="background-image: url('{{ $image4 }}')">
                         <div
                             class="text-container flex h-full w-full flex-col justify-center backdrop-brightness-50 dark:backdrop-brightness-75">
-                            <div class="w-full text-wrap xl:max-w-full px-48">
+                            <div class="w-full text-wrap xl:max-w-full px-4 md:px-48">
                                 <h1 class="font-Poppins text-5xl font-bold text-gray-100">
                                     RWify.
                                 </h1>
-                                <h2 class="font-Inter text-xl font-light text-gray-100">
+                                <h2 class="font-Inter text-sm md:text-xl font-light text-gray-100">
                                     RWify adalah sebuah platform web yang dirancang khusus untuk membantu dalam administrasi
                                     dan manajemen lingkungan RW (Rukun Warga).
                                     Platform ini menyediakan berbagai fitur dan alat yang memudahkan pengurus RW dalam
@@ -145,10 +145,10 @@
                         <div
                             class="text-container flex h-full w-full flex-col items-center justify-center backdrop-brightness-50 dark:backdrop-brightness-75">
                             <div class="w-3/4 text-wrap xl:max-w-4xl">
-                                <h1 class="text-center font-Poppins text-5xl font-bold text-gray-100">
+                                <h1 class="text-center font-Poppins text-3xl md:text-5xl font-bold text-gray-100">
                                     RWify: RW 01 Landungsari, Landungsari Asri.
                                 </h1>
-                                <h2 class="text-center font-Inter text-xl font-light text-gray-100">
+                                <h2 class="text-center font-Inter text-sm md:text-xl font-light text-gray-100">
                                     Menghubungkan Hati, Menyatukan Langkah: RWify, Aplikasi Terdepan untuk Manajemen RW yang
                                     Terintegrasi!
                                 </h2>
@@ -158,12 +158,13 @@
                 </swiper-container>
             </section>
             <section class="mb-28 px-8 lg:px-16">
-                <div class="header-section mx-6 mb-9">
+                <div class="header-section md:mx-6 md:mb-9">
                     <h1 class="font-Poppins text-4xl font-semibold">Berita dan Informasi</h1>
                     <h5 class="font-Inter font-normal dark:text-gray-500">Lihat berita dan pengumuman yang terbaru</h5>
                 </div>
                 <div class="body-section">
-                    <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                    <swiper-container id="swiper-container-news" slides-per-view="1" init=false scrollbar-hide="false"
+                        draggable="true">
                         @if (count($latest_pengumuman) > 0)
                             @foreach ($latest_pengumuman as $pengumuman)
                                 <swiper-slide>
@@ -200,11 +201,11 @@
             </section>
 
             <section class="mb-56 px-8 lg:px-16">
-                <div class="header-section mb-11 ms-10">
+                <div class="header-section mb-11 md:ms-10">
                     <h1 class="font-Poppins text-4xl font-semibold">Apa Kata Mereka?</h1>
                 </div>
                 <div class="body-section">
-                    <swiper-container slides-per-view="3" scrollbar-hide="false" draggable="true">
+                    <swiper-container id="swiper-container-testi" scrollbar-hide="false" draggable="true" init=false>
                         @foreach ($ucapan as $item)
                             <swiper-slide>
                                 <x-card.card-item-message :name="$item['name']" :position="$item['position']" :desc="$item['desc']"
@@ -221,7 +222,9 @@
 
 @push('scripts')
     <script type="module">
-        const swiperEl = document.querySelector('#swiper-container-hero');
+        const swiperElHero = document.querySelector('#swiper-container-hero');
+        const swiperElTesti = document.querySelector('#swiper-container-testi');
+        const swiperElNews = document.querySelector('#swiper-container-news');
 
         const params = {
             injectStyles: [
@@ -240,7 +243,36 @@
             ],
         };
 
-        Object.assign(swiperEl, params);
-        swiperEl.initialize();
+        const paramsTesti = {
+            // Default parameters
+            slidesPerView: 1,
+            spaceBetween: 10,
+            // Responsive breakpoints
+            breakpoints: {
+                // when window width is >= 320px
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                // when window width is >= 480px
+                480: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+                // when window width is >= 640px
+                640: {
+                    slidesPerView: 3,
+                    spaceBetween: 40
+                }
+            }
+        }
+
+
+        Object.assign(swiperElHero, params);
+        swiperElHero.initialize();
+        Object.assign(swiperElTesti, paramsTesti);
+        swiperElTesti.initialize();
+        Object.assign(swiperElNews, paramsTesti);
+        swiperElNews.initialize();
     </script>
 @endpush
