@@ -57,7 +57,6 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
                 showError(res.responseJSON.errors);
             },
         });
-        $(selectorForm).off();
     }
 
     function multipartRequest(target) {
@@ -83,7 +82,6 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
                 showError(res.responseJSON.errors);
             },
         });
-        $(selectorForm).off();
     }
 
     $(document).ready(() => {
