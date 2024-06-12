@@ -8,7 +8,7 @@ use App\Decorators\SearchableDecorator;
 use App\Models\PropertiModel;
 use App\Models\TipePropertiModel;
 use App\Models\UserModel;
-use App\Models\NotificationModel;
+use Illuminate\Support\Carbon;
 
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Date;
@@ -79,7 +79,7 @@ class ManagePropertiController extends Controller
             'luas_tanah' => request()->luas_tanah,
             'luas_bangunan' => request()->luas_bangunan,
             'jumlah_kamar' => request()->jumlah_kamar,
-            'mulai_dimiliki_pada' => request()->mulai_dimiliki_pada,
+            'mulai_dimiliki_pada' => request()->mulai_dimiliki_pada
         ];
 
         $newProperti = PropertiModel::create($data);

@@ -26,6 +26,7 @@ class PropertiModel extends Model implements SearchCompatible
         'luas_tanah',
         'luas_bangunan',
         'jumlah_kamar',
+        'mulai_dimiliki_pada',
     ];
 
     public static function searchable(): array

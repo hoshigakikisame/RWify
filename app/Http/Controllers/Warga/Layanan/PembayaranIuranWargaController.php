@@ -79,10 +79,11 @@ class PembayaranIuranWargaController extends Controller
 
         foreach ($ownedPropertiInstances as $properti) {
             $monthlyTotal += $properti->getTipeProperti()->getIuranPerBulan();
-            $monthDiff = $properti->getMulaiDimilikiPada()->diffInMonths(now(), false);
+            $monthDiff = round($properti->getMulaiDimilikiPada()->diffInMonths(now(), false)) - request()->user()->getVerifiedIuranCount();
             $oldestMonthDiff = floor($monthDiff > $oldestMonthDiff ? $monthDiff : $oldestMonthDiff);
             $totalUnpaidDueMonths += $monthDiff * $properti->getTipeProperti()->getIuranPerBulan();
         }
+
 
         $data = [
             'ownedPropertiInstances' => $ownedPropertiInstances,
