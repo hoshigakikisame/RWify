@@ -23,6 +23,6 @@ class DarkModeButton extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.Button.dark-mode-button');
+        return view('components.button.dark-mode-button');
     }
 }
