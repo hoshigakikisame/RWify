@@ -44,7 +44,7 @@ class ManageWargaController extends Controller
     public function addNewWarga()
     {
         request()->validate([
-            'nik' => 'required',
+            'nik' => 'required|min:16|max:16',
             'nkk' => 'required',
             'email' => 'required',
             'password' => 'required',
@@ -116,7 +116,7 @@ class ManageWargaController extends Controller
         $i = 1;
         foreach ($data as $row) {
             $validate = Validator::make($row, [
-                'nik' => 'required',
+                'nik' => 'required|min:16|max:16',
                 'nkk' => 'required',
                 'email' => 'required',
                 'password' => 'required',
