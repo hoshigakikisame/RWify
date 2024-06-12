@@ -57,9 +57,11 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
                 showError(res.responseJSON.errors);
             },
         });
+        $(selectorForm).off();
     }
 
     function multipartRequest(target) {
+        console.log('hello multipart');
         $.ajax({
             url: url,
             beforeSend: window.Loading.showLoading,
@@ -81,27 +83,25 @@ export function actionRequest(url, selectorParent, selectorForm, isMultipart = f
                 showError(res.responseJSON.errors);
             },
         });
+        $(selectorForm).off();
     }
 
     $(document).ready(() => {
         if ($(selectorForm).find('[aria-current="submitButton"]').length == 1) {
             $(selectorForm).on('change', function (element) {
-                console.log(data++);
+                console.log('call 2');
                 isMultipart ? multipartRequest(this) : defaultRequest();
-                $(selectorForm).off();
 
             });
         } else if ($(selectorForm).find('[aria-current="directSubmitButton"]').length == 1) {
-            console.log(data++);
+            console.log('call 1');
             isMultipart ? multipartRequest(this) : defaultRequest();
-            $(selectorForm).off();
 
         } else {
             console.log('call');
             $(selectorForm).on('submit', function (e) {
                 e.preventDefault();
                 isMultipart ? multipartRequest(this) : defaultRequest();
-                $(selectorForm).off();
 
             });
 
