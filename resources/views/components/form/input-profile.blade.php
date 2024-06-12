@@ -4,7 +4,8 @@
 @endphp
 
 <div {{ $attributes->merge(['class' => 'form-group']) }}>
-    <label for="{{ $key }}" class="text-sm text-gray-500 dark:text-gray-400">{{ $title }}</label>
+    <label for="{{ $key }}"
+        class="text-sm text-gray-500 dark:text-gray-400 text-nowrap">{{ $title }}</label>
     <div class="mt-1">
         @if ($disabled)
             <input id="{{ $key }}" type="{{ $type }}" name="{{ $key }}"

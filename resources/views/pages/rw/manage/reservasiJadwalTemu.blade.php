@@ -221,7 +221,7 @@ $statusStyle = ["pending" => "bg-blue-200 text-blue-700 ring-blue-700/10 dark:bg
                                 
                                     <h1 class="text-xl text-wrap dark:text-gray-100 tracking-wide">Apakah Anda Yakin Merubah Status Reservasi <span class="font-semibold text-green-600 underline underline-offset-8">${judul}</span> Menjadi  <span class="${(status == 'diterima') ? 'text-green-500' : 'text-red-500'}"> ${status}</span> </h1>              
                                     <div class="flex justify-end mt-6">
-                                        <x-button.submit-button title="Rubah Status Reservasi">
+                                        <x-button.submit-button title="Ubah Status Reservasi">
                                         </x-button.submit-button>
                                     </div>
                             </div>
