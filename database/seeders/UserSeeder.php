@@ -37,14 +37,14 @@ class UserSeeder extends Seeder
                     ,
                     'nomor_rukun_tetangga' => 1
                 ]
-            )->create()->first(),
+            )->create(),
             RukunTetanggaModel::factory()->state(
                 [
                     'id_rukun_warga' => $rukunWargaInstance->getIdRukunWarga()
                     ,
                     'nomor_rukun_tetangga' => 2
                 ]
-            )->create()->first()
+            )->create()
         ];
 
 
@@ -92,10 +92,10 @@ class UserSeeder extends Seeder
         // )->create()->first();
 
         // temporary ketua rt test account instances
-        $tempKetuaRT = UserModel::factory()->state(
+        UserModel::factory()->count(1)->state(
             [
                 'email' => 'niaoktav119+rt@gmail.com',
-                'role' => 'Ketua Rukun Tetangga',
+                'role' => UserRoleEnum::KETUA_RUKUN_TETANGGA->value,
                 'nkk' => $kartuKeluargaInstances[1]->getNkk()
             ]
         )->create()->first();
@@ -121,10 +121,11 @@ class UserSeeder extends Seeder
             ]
         )->create();
 
+        $ketuaRukunTetanggaInstances = UserModel::where('role', UserRoleEnum::KETUA_RUKUN_TETANGGA->value)->get();
+
         // attach ketua rukun tetangga to rukun tetangga
         for ($i = 0; $i < count($rukunTetanggaInstances); $i++) {
-            $ketuaRukunTetanggaInstance = UserModel::where('role', UserRoleEnum::KETUA_RUKUN_TETANGGA->value)->get()[$i];
-            $rukunTetanggaInstances[$i]->nik_ketua_rukun_tetangga = $ketuaRukunTetanggaInstance->getNik();
+            $rukunTetanggaInstances[$i]->nik_ketua_rukun_tetangga = $ketuaRukunTetanggaInstances[$i]->getNik();
             $rukunTetanggaInstances[$i]->save();
         }
 
