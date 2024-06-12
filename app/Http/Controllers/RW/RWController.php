@@ -33,17 +33,17 @@ class RWController extends Controller
             )->first();
 
         // information panel dependencies
-        $umkmInstances = UmkmModel::pluck('dibuat_pada')->all();
+        $umkmInstances = UmkmModel::pluck('dibuat_pada')->sortByDesc('dibuat_pada')->all();
         $umkmCount = count($umkmInstances);
-        $umkmLastAddedAt = Carbon::parse(array_key_last($umkmInstances))->diffForHumans(null, true);
-
-        $pengaduanInstances = PengaduanModel::pluck('dibuat_pada')->all();
+        $umkmLastAddedAt = $umkmCount > 0 ? $umkmInstances[0]->diffForHumans(null, true) : "Belum ada data.";
+        
+        $pengaduanInstances = PengaduanModel::pluck('dibuat_pada')->sortByDesc('dibuat_pada')->all();
         $pengaduanCount = count($pengaduanInstances);
-        $pengaduanLastAddedAt = Carbon::parse(array_key_last($pengaduanInstances))->diffForHumans(null, true);
+        $pengaduanLastAddedAt = $pengaduanCount > 0 ? $pengaduanInstances[0]->diffForHumans(null, true) : "Belum ada data.";
 
-        $propertiInstances = PropertiModel::pluck('dibuat_pada')->all();
+        $propertiInstances = PropertiModel::pluck('dibuat_pada')->sortByDesc('dibuat_pada')->all();
         $propertiCount = count($propertiInstances);
-        $propertiLastAddedAt = Carbon::parse(array_key_last($propertiInstances))->diffForHumans(null, true);
+        $propertiLastAddedAt = $propertiCount > 0 ? $propertiInstances[0]->diffForHumans(null, true) : "Belum ada data.";
 
         // calendar dependencies
         $reservasiJadwalTemuInstances = ReservasiJadwalTemuModel::where('nik_penerima', request()->user()->getNik())->where('status', ReservasiJadwalTemuStatusEnum::DITERIMA)->get();
