@@ -80,14 +80,15 @@
                                 placeholder="Tambahkan Keterangan Bulan Apa Saja yang Dibayarkan    " value=""
                                 rows="7 " resize="none" />
                             <div class="mt-4">
-                                <label for="dropzone-file" class="mt-4 text-sm capitalize text-gray-700 dark:text-gray-300">
+                                <label for="image" class="mt-4 text-sm capitalize text-gray-700 dark:text-gray-300">
                                     Bukti Pembayaran
                                 </label>
+
                                 <div
                                     class="dark:hover:bg-bray-800 relative mt-2 flex h-[300px] h-full w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                     <div x-ref="dnd" class="flex h-full w-full flex-col">
-                                        <input id="dropzone-file" accept="*" type="file" name="image"
-                                            title="" x-ref="file" @change="fileName = $refs.file.files[0]"
+                                        <input id="image" accept="*" type="file" name="image" title=""
+                                            x-ref="file" @change="fileName = $refs.file.files[0]"
                                             class="absolute inset-0 z-40 h-full w-full cursor-pointer opacity-0 outline-none"
                                             @dragover="$refs.dnd.classList.add('bg-indigo-50')"
                                             @dragleave="$refs.dnd.classList.remove('bg-indigo-50')"
@@ -128,6 +129,8 @@
                                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF</p>
                                             <p class="mt-2 text-gray-900" x-text="fileName.name"></p>
                                         </div>
+                                        <ul id="error"
+                                            class="'text-sm text-center space-y-1' text-red-600 dark:text-red-400"></ul>
                                     </div>
                                 </div>
                             </div>
