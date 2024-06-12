@@ -193,7 +193,8 @@
                                         <div class="container">
                                             <div class="mt-2 grid grid-cols-3 grid-rows-2">
                                                 <div class="col-span-2 row-span-2">
-                                                    <p class="font-semi-bold mb-2 text-md text-gray-500">
+                                                    <p class="text-md mb-2 dark:text-white">{{ $properti->getNamaProperti() }}</p>
+                                                    <p class="font-semi-bold mb-2 text-sm text-gray-500">
                                                         {{ $properti->getUnpaidDueMonths() }} Bulan
                                                     </p>
                                                 </div>

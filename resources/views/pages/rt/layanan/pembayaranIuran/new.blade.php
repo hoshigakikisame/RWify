@@ -182,12 +182,21 @@
 
                                 <div class="container mt-10">
                                     <h1 class="font-bold text-md dark:text-gray-100">Total Tunggak Iuran</h1>
-                                    <div class="mt-4">
+                                    <div class="border-b-2 mt-4">
+                                        @php
+                                            $sumTotalUnpaidDueMonths = 0;
+                                        @endphp
+                                        @foreach ($ownedPropertiInstances as $properti)
+                                        @php
+                                            $totalUnpaidDueMonths = $properti->getTotalUnpaidDueMonths();
+                                            $sumTotalUnpaidDueMonths += $totalUnpaidDueMonths;
+                                        @endphp
                                         <div class="container">
                                             <div class="mt-2 grid grid-cols-3 grid-rows-2">
                                                 <div class="col-span-2 row-span-2">
-                                                    <p class="font-semi-bold mb-2 text-md text-gray-500">
-                                                        {{ $oldestMonthDiff }} Bulan
+                                                    <p class="text-md mb-2 dark:text-white">{{ $properti->getNamaProperti() }}</p>
+                                                    <p class="font-semi-bold mb-2 text-sm text-gray-500">
+                                                        {{ $properti->getUnpaidDueMonths() }} Bulan
                                                     </p>
                                                 </div>
                                                 <div
@@ -198,8 +207,20 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="mt-2 grid grid-cols-3 grid-rows-1 dark:text-gray-100">
+                                        <div class="col-span-2 row-span-1">
+                                            <p class="mb-2 font-poppins text-lg">Total</p>
+                                        </div>
+                                        <div class="col-span-1 row-span-1 inline-flex items-center justify-end text-right">
+                                            <p class="font-semi-bold mb-2 align-middle text-md ">
+                                                {{ \Illuminate\Support\Number::currency($sumTotalUnpaidDueMonths, 'IDR') }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
