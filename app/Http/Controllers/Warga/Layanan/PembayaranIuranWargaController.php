@@ -84,7 +84,6 @@ class PembayaranIuranWargaController extends Controller
             $totalUnpaidDueMonths += $monthDiff * $properti->getTipeProperti()->getIuranPerBulan();
         }
 
-
         $data = [
             'ownedPropertiInstances' => $ownedPropertiInstances,
             'oldestMonthDiff' => $oldestMonthDiff,

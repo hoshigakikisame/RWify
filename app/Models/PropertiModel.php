@@ -114,6 +114,17 @@ class PropertiModel extends Model implements SearchCompatible
         return $this->tipeProperti;
     }
 
+    public function getUnpaidDueMonths(): int
+    {
+        $monthDiff = round($this->getMulaiDimilikiPada()->diffInMonths(now(), false)) - $this->getPemilik()->getVerifiedIuranCount();
+        return $monthDiff > 0 ? $monthDiff : 0;
+    }
+
+    public function getTotalUnpaidDueMonths(): int
+    {
+        return $this->getUnpaidDueMonths() * $this->getTipeProperti()->getIuranPerBulan();
+    }
+
     // SETTERS
     public function setIdProperti(int $id_properti): void
     {
