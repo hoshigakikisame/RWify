@@ -16,10 +16,10 @@
                         </span>
                     </div>
 
-                    @if ($propertiInstances->sortByDesc('diperbarui_pada')->first())
+                    @if ($propertiInstances->sortByDesc('dibuat_pada')->first())
                         <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
-                            {{ $propertiInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            {{ $propertiInstances->sortByDesc('dibuat_pada')->first()?->getDibuatPada()->diffForHumans(null, true) }}
                             yang lalu
                         </p>
                     @else

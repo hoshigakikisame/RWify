@@ -22,7 +22,7 @@
                     </div>
                     <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                         Data ini terakhir diupdate
-                        {{ $users->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                        {{ $users->sortByDesc('dibuat_pada')->first()?->getDibuatPada()->diffForHumans(null, true) }}
                         yang lalu
                     </p>
                 </div>

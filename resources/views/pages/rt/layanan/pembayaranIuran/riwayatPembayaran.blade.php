@@ -12,10 +12,10 @@
                         </span>
                     </div>
                     <div class="flex items-center gap-x-3"></div>
-                    @if ($pembayaranIuranInstances->sortByDesc('diperbarui_pada')->first())
+                    @if ($pembayaranIuranInstances->sortByDesc('dibuat_pada')->first())
                         <p class="mt-1 text-xs text-gray-500 dark:text-gray-300">
                             Data ini terakhir diupdate
-                            {{ $pembayaranIuranInstances->sortByDesc('diperbarui_pada')->first()?->getDiperbaruiPada()->diffForHumans(null, true) }}
+                            {{ $pembayaranIuranInstances->sortByDesc('dibuat_pada')->first()?->getDibuatPada()->diffForHumans(null, true) }}
                             yang lalu
                         </p>
                     @else
