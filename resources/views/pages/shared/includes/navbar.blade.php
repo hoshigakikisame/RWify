@@ -147,7 +147,7 @@
                 </div>
                 <div class="navbar-action ms-2 flex items-center gap-3">
                     @php
-                        $login = 'Sign In';
+                        $login = 'Masuk';
                         if (Auth::user()) {
                             $login = 'Dashboard';
                         }
