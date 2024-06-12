@@ -32,7 +32,8 @@ class PengaduanSeeder extends Seeder
                 'isi' => $row[1],
                 'image_url' => "https://via.placeholder.com/640x480.png/00ddcc?text=pengaduan",
                 'status' => $statuses[array_rand($statuses)],
-                'dibuat_pada' => now()->toDateTime()
+                'dibuat_pada' => now()->toDateTime(),
+                'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
             ]);
         }
 
