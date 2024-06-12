@@ -313,9 +313,16 @@ class UserModel extends Authenticatable implements MustVerifyEmail, SearchCompat
 
     public function getTagihanIuranPerBulan(): int
     {
+        $ownedPropertiInstances = $this->properti()->get();
+
+        $totalTunggakan = 0;
+        foreach ($ownedPropertiInstances as $properti) {
+            $totalTunggakan += $properti->getTotalUnpaidDueMonths();
+        }
+
         $monthlyTotal = $this->properti()->join('tb_tipe_properti', 'tb_tipe_properti.id_tipe_properti', '=', 'tb_properti.id_tipe_properti')->sum('iuran_per_bulan');
 
-        return $monthlyTotal;
+        return $totalTunggakan < $monthlyTotal ? $totalTunggakan : $monthlyTotal;
     }
 
     public function getUnreadNotifications() {
