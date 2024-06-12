@@ -159,8 +159,9 @@
             </section>
             <section class="mb-28 px-8 lg:px-16">
                 <div class="header-section md:mx-6 md:mb-9">
-                    <h1 class="font-Poppins text-4xl font-semibold">Berita dan Informasi</h1>
-                    <h5 class="font-Inter font-normal dark:text-gray-500">Lihat berita dan pengumuman yang terbaru</h5>
+                    <h1 class="font-Poppins text-2xl md:text-4xl font-semibold">Berita dan Informasi</h1>
+                    <h5 class="font-Inter font-normal text-xs md:text-base dark:text-gray-500">Lihat berita dan pengumuman
+                        yang terbaru</h5>
                 </div>
                 <div class="body-section">
                     <swiper-container id="swiper-container-news" slides-per-view="1" init=false scrollbar-hide="false"
@@ -183,8 +184,9 @@
             </section>
             <section class="mb-28 mt-10 px-8 lg:px-16">
                 <div class="header-section mb-12 text-center">
-                    <h1 class="mb-3 font-Poppins text-4xl font-semibold">Layanan Kami</h1>
-                    <h5 class="font-Inter dark:text-gray-500">Layanan Pada Website yang Perlu Anda Ketahui</h5>
+                    <h1 class="mb-2 font-Poppins text-2xl md:text-4xl font-semibold">Layanan Kami</h1>
+                    <h5 class="font-Inter text-xs md:text-base dark:text-gray-500">Layanan Pada Website yang Perlu Anda
+                        Ketahui</h5>
                 </div>
                 <div class="layanan-emblem flex flex-wrap justify-center">
                     @php
@@ -202,7 +204,7 @@
 
             <section class="mb-56 px-8 lg:px-16">
                 <div class="header-section mb-11 md:ms-10">
-                    <h1 class="font-Poppins text-4xl font-semibold">Apa Kata Mereka?</h1>
+                    <h1 class="font-Poppins text-2xl md:text-4xl font-semibold">Apa Kata Mereka?</h1>
                 </div>
                 <div class="body-section">
                     <swiper-container id="swiper-container-testi" scrollbar-hide="false" draggable="true" init=false>
@@ -255,12 +257,12 @@
                     spaceBetween: 20
                 },
                 // when window width is >= 480px
-                480: {
-                    slidesPerView: 3,
+                640: {
+                    slidesPerView: 2,
                     spaceBetween: 30
                 },
                 // when window width is >= 640px
-                640: {
+                1024: {
                     slidesPerView: 3,
                     spaceBetween: 40
                 }
