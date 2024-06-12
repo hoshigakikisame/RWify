@@ -4,7 +4,7 @@
             <div class="h-full w-full backdrop-brightness-50 dark:backdrop-brightness-75"></div>
         </div>
         <div class="card-body mx-6 my-5 flex flex-col gap-2 h-48 mb-4">
-            <h5 class="text-xs dark:text-gray-600">{{ $pengumuman->diperbarui_pada->diffForHumans() }}</h5>
+            <h5 class="text-xs dark:text-gray-600">{{ $pengumuman->dibuat_pada->diffForHumans() }}</h5>
             <h2 class="text-lg font-medium leading-6 line-clamp-2 h-12">{{ $pengumuman->getJudul() }}</h2>
             <p class="dark:text-gray-500 line-clamp-3">{{ $pengumuman->getKonten() }}</p>
             <div class="action-button mt-auto text-green-700">
