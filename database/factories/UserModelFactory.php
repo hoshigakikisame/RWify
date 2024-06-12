@@ -29,7 +29,7 @@ class UserModelFactory extends Factory
             'nik' => $this->faker->nik(),
             'image_url' => $this->faker->imageUrl(),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt(env('SEED_DEFAULT_USER_PASSWORD')),
+            'password' => bcrypt(env('SEED_DEFAULT_USER_PASSWORD', 'secret')),
             'nama_depan' => $this->faker->firstName(),
             'nama_belakang' => $this->faker->lastName(),
             'tempat_lahir' => $this->faker->city(),
