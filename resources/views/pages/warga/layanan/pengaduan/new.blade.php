@@ -83,7 +83,6 @@
                                         </div>
                                         <ul id="error"
                                             class="'text-sm text-center space-y-1' text-red-600 dark:text-red-400"></ul>
-
                                     </div>
                                 </div>
                             </div>

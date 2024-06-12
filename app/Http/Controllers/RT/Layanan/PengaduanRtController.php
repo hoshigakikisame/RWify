@@ -47,7 +47,7 @@ class PengaduanRtController extends Controller
         request()->validate([
             'judul' => 'required',
             'isi' => 'required',
-            'image' => "image|mimes:" . config('cloudinary.allowed_mimes'),
+            'image' => "required|image|mimes:" . config('cloudinary.allowed_mimes'),
         ]);
 
         $imageUrl = '';
