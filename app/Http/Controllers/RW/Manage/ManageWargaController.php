@@ -44,8 +44,8 @@ class ManageWargaController extends Controller
     public function addNewWarga()
     {
         request()->validate([
-            'nik' => 'required|min:16|max:16',
-            'nkk' => 'required',
+            'nik' => 'required|min:16|max:16|unique:App\Models\UserModel,nik',
+            'nkk' => 'required|min:16|max:16|exists:App\Models\KartuKeluargaModel,nkk',
             'email' => 'required',
             'password' => 'required',
             'nama_depan' => 'required',
@@ -238,8 +238,8 @@ class ManageWargaController extends Controller
     public function updateWarga()
     {
         request()->validate([
-            'nik' => 'required',
-            'nkk' => 'required',
+            'nik' => 'required|min:16|max:16|exists:App\Models\UserModel,nik',
+            'nkk' => 'required|min:16|max:16|exists:App\Models\KartuKeluargaModel,nkk',
             'email' => 'required',
             'nama_depan' => 'required',
             'nama_belakang' => 'required',
