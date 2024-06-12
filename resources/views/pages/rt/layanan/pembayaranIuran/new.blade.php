@@ -68,7 +68,7 @@
                     <div class="form-header col-span-3 mb-6 mt-2">
                         <h1 class="font-medium dark:text-gray-100">Form Pembayaran Iuran</h1>
                         <p class="text-sm mt-1 text-gray-500 dark:text-gray-400">
-                            Berikan pengaduan yang lengkap dengan deskripsi yang jelas
+                            Berikan informasi pembayaran iuran yang lengkap dengan keterangan yang jelas
                         </p>
                     </div>
 

@@ -7,7 +7,7 @@
         <div class="header mb-5 border-b pb-5">
             <h1 class="text-lg font-medium text-gray-950 dark:text-gray-100">Pengaduan</h1>
             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                Kirim kan pengaduan ke Ketua RW melewati form ini
+                Kirimkan pengaduan ke Ketua RW melewati form ini
             </p>
         </div>
         <div id="addPengaduan" class="form rounded-lg bg-gray-50 px-8 py-4 pb-8 shadow-sm dark:bg-SecondaryBg"

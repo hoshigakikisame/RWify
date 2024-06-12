@@ -68,7 +68,7 @@
                                     <th scope="col"
                                         class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right">
                                         <button class="flex items-center gap-x-2 dark:fill-gray-400">
-                                            <span class="text-nowrap">Image</span>
+                                            <span class="text-nowrap">Gambar</span>
                                         </button>
                                     </th>
                                     <th scope="col"

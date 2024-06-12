@@ -96,7 +96,7 @@
                                     </div>
 
                                     <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                        Tambah Properti ke dalam sistem
+                                        Tambah properti ke dalam sistem
                                     </p>
 
                                     @foreach ($errors->all() as $error)
@@ -353,7 +353,7 @@
                                 </div>
 
                                 <p class="mt-2 text-sm text-gray-500 ">
-                                    Menghapus Properti dari sistem
+                                    Menghapus properti dari sistem
                                 </p>
 
 
@@ -393,7 +393,7 @@
                                 </div>
 
                                 <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                    Edit Properti di dalam sistem
+                                    Edit properti di dalam sistem
                                 </p>
 
 

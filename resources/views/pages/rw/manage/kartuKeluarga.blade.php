@@ -114,7 +114,7 @@
                                 </div>
 
                                 <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                    Tambah Kartu Keluarga ke dalam sistem
+                                    Tambah kartu keluarga ke dalam sistem
                                 </p>
 
                                 @foreach ($errors->all() as $error)

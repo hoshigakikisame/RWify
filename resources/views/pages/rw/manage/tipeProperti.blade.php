@@ -323,7 +323,7 @@
                                 </div>
 
                                 <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                                    Edit Tipe Properti di dalam sistem
+                                    Edit tipe properti di dalam sistem
                                 </p>
 
 
