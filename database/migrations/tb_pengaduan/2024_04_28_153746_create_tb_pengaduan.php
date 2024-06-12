@@ -25,7 +25,7 @@ return new class extends Migration
             $table->timestamp('diperbarui_pada')->useCurrentOnUpdate()->nullable();
 
             // Foreign key
-            $table->foreign('nik_pengadu')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
+            // $table->foreign('nik_pengadu')->references('nik')->on('tb_user')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
