@@ -63,7 +63,7 @@
 
                                 <span>Tambah Iuran</span>
                             </button> --}}
-                        <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
+                        {{-- <div id="addModal" x-show="modalOpen" class="fixed inset-0 z-40 overflow-y-auto"
                             aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display: none">
                             <div
                                 class="flex min-h-screen items-end justify-center px-4 text-center sm:block sm:p-0 md:items-center">
@@ -126,7 +126,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
