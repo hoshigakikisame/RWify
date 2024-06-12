@@ -31,11 +31,11 @@
                     </div>
                     <div class="grid grid-cols-9 divide-x mt-2 divide-gray-300 dark:divide-gray-500">
                         <input id="search" type="text"
-                            class="border-t border-b border-e-0 border-s border-gray-300 dark:border-gray-500 dark:bg-darkBg rounded-s-md focus:outline-none focus:ring-0 col-span-8 dark:text-gray-300 dark:placeholder-gray-300"
+                            class="border-t border-b border-e-0 border-s border-gray-300 dark:border-gray-500 dark:bg-darkBg rounded-s-md focus:outline-none focus:ring-0 col-span-8 dark:text-gray-300 dark:placeholder-gray-300 focus:border-green-500"
                             placeholder="Masukkan Nama / NIK / Alamat" />
                         <button onclick="window.utils.Request.searchRequest(document.querySelector('#search').value)"
-                        class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 rounded-r-lg hover:bg-ColorHover dark:bg-ColorButton  dark:hover:bg-ColorHover sm:w-auto fill-white">
-                        <div class="w-4 h-4">
+                            class="flex shrink-0 items-center justify-center gap-x-2 text-nowrap bg-ColorButton px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 rounded-r-lg hover:bg-ColorHover dark:bg-ColorButton  dark:hover:bg-ColorHover sm:w-auto fill-white">
+                            <div class="w-4 h-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 513.749 513.749" xml:space="preserve">
                                     <path
                                         d="m504.352 459.061-99.435-99.477c74.402-99.427 54.115-240.344-45.312-314.746S119.261-9.277 44.859 90.15-9.256 330.494 90.171 404.896c79.868 59.766 189.565 59.766 269.434 0l99.477 99.477c12.501 12.501 32.769 12.501 45.269 0s12.501-32.769 0-45.269zm-278.635-73.365c-88.366 0-160-71.634-160-160s71.634-160 160-160 160 71.634 160 160c-.094 88.326-71.673 159.906-160 160" />

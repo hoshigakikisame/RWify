@@ -42,7 +42,7 @@
                     </div>
                     <div class="grid grid-cols-9 divide-x mt-2 divide-gray-300 dark:divide-gray-500">
                         <input id="search" type="text"
-                            class="border-t border-b border-e-0 border-s border-gray-300 dark:border-gray-500 dark:bg-darkBg rounded-s-md focus:outline-none focus:ring-0 col-span-3 dark:text-gray-300 dark:placeholder-gray-300"
+                            class="border-t border-b border-e-0 border-s border-gray-300 dark:border-gray-500 dark:bg-darkBg rounded-s-md focus:outline-none focus:border-green-500 focus:ring-0 col-span-3 dark:text-gray-300 dark:placeholder-gray-300"
                             placeholder="Search" />
                         <select name="status" id="status"
                             class="border focus:outline-none dark:bg-darkBg dark:text-gray-300 focus:ring-0 col-span-2"
