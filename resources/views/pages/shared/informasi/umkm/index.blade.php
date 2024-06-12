@@ -3,9 +3,9 @@
 
 {{-- content --}}
 @section('content')
-    <div class="overflow-hidden">
+    <div class="">
         @include('pages.shared.includes.navbar')
-        <div class="h-screen overflow-scroll dark:fill-gray-200 dark:text-gray-200">
+        <div class="pt-24 h-screen overflow-scroll dark:fill-gray-200 dark:text-gray-200">
             <section class="pt-18 mb-36 px-8 lg:px-24">
                 <div class="mb-5 pt-12">
                     <h1 class="font-Poppins text-2xl font-semibold">Informasi Usaha Mikro Kecil dan Menengah (UMKM)</h1>
@@ -88,3 +88,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script></script>
+@endpush
