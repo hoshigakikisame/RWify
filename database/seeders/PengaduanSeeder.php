@@ -22,6 +22,9 @@ class PengaduanSeeder extends Seeder
         $statuses = PengaduanStatusEnum::getValues();
         $data = [];
 
+        // skip header
+        fgetcsv($file);
+
         while ($row = fgetcsv($file)) {
             array_push($data, [
                 'nik_pengadu' => $usersNik[array_rand($usersNik)],
