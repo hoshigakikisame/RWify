@@ -58,6 +58,6 @@ class SearchableDecorator extends Decorator
             if ($queryBuilderCb != null) {
                 $queryBuilderCb($queryBuilder);
             }
-        })->orderBy($this->model::UPDATED_AT, 'DESC')->paginate($paginate);
+        })->orderBy($this->model::CREATED_AT, 'DESC')->paginate($paginate);
     }
 }

@@ -150,6 +150,8 @@
 
             </div>
         </div>
+
+        {{ $pembayaranIuranInstances->links('elements.pagination') }}
     </section>
 @endsection
 @push('scripts')
