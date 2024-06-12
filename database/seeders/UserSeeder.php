@@ -138,22 +138,22 @@ class UserSeeder extends Seeder
         // }
 
         // petugas keamanan
-        UserModel::factory()->count(3)->state(
-            [
-                'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
-                'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk(),
-                'pekerjaan' => 'Petugas Keamanan'
-            ]
-        )->create()->all();
-
-        // preserved petugas keamanan instance
-        // UserModel::factory()->state(
+        // UserModel::factory()->count(3)->state(
         //     [
-        //         'email' => 'niaoktav119+satpam@gmail.com',
         //         'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
-        //         'nkk' => $kartuKeluargaInstances[0]->getNkk(),
+        //         'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk(),
         //         'pekerjaan' => 'Petugas Keamanan'
         //     ]
-        // )->create();
+        // )->create()->all();
+
+        // preserved petugas keamanan instance
+        UserModel::factory()->state(
+            [
+                'email' => 'niaoktav119+satpam@gmail.com',
+                'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
+                'nkk' => $kartuKeluargaInstances[0]->getNkk(),
+                'pekerjaan' => 'Petugas Keamanan'
+            ]
+        )->create();
     }
 }
