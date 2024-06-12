@@ -32,6 +32,7 @@ class PropertiModelFactory extends Factory
             'luas_tanah' => $this->faker->randomNumber(2),
             'luas_bangunan' => $this->faker->randomNumber(2),
             'jumlah_kamar' => $this->faker->randomNumber(1),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

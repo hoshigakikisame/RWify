@@ -31,7 +31,8 @@ class ReservasiJadwalTemuModelFactory extends Factory
             'subjek' => $this->faker->sentence(),
             'pesan' => $this->faker->paragraph(),
             'jadwal_temu' => $this->faker->dateTime(),
-            'status' => $this->faker->randomElement(ReservasiJadwalTemuStatusEnum::getValues())
+            'status' => $this->faker->randomElement(ReservasiJadwalTemuStatusEnum::getValues()),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

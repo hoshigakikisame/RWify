@@ -23,7 +23,8 @@ class RukunWargaModelFactory extends Factory
 
         return [
             'nomor_rukun_warga' => 1,
-            'alamat' => $this->faker->address()
+            'alamat' => $this->faker->address(),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

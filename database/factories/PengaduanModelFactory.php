@@ -29,7 +29,9 @@ class PengaduanModelFactory extends Factory
             'nik_pengadu' => UserModel::get()->random()->getNik(),
             'isi' => $this->faker->paragraph(),
             'image_url' => $this->faker->imageUrl(),
-            'status' => $this->faker->randomElement(PengaduanStatusEnum::getValues())
+            'status' => $this->faker->randomElement(PengaduanStatusEnum::getValues()),
+            'dibuat_pada' => now()->toDateTime(),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

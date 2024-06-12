@@ -29,7 +29,8 @@ class IuranModelFactory extends Factory
             'jumlah_bayar' => $this->faker->numberBetween(100000, 1000000),
             'tahun' => 2024,
             'bulan' => $this->faker->randomElement(IuranBulanEnum::getValues()),
-            'nik_pembayar' => $this->faker->randomElement($pembayaranIuranInstances)->getNikPembayar()
+            'nik_pembayar' => $this->faker->randomElement($pembayaranIuranInstances)->getNikPembayar(),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

@@ -32,7 +32,8 @@ class UmkmModelFactory extends Factory
             'map_url' => $this->faker->url(),
             'telepon' => $this->faker->phoneNumber(),
             'instagram_url' => $this->faker->url(),
-            'deskripsi' => $this->faker->paragraph()
+            'deskripsi' => $this->faker->paragraph(),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }

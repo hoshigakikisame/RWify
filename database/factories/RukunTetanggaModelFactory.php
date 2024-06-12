@@ -22,7 +22,8 @@ class RukunTetanggaModelFactory extends Factory
 
         return [
             'nomor_rukun_tetangga' => $this->faker->unique()->randomDigit(),
-            'alamat' => $this->faker->address()
+            'alamat' => $this->faker->address(),
+            'diperbarui_pada' => now()->addHours(rand(1, 100))->toDateTime(),
         ];
     }
 }
