@@ -21,20 +21,40 @@ class UserSeeder extends Seeder
     {
         // CAUTION: This will delete all data in the database. This script meant to be used one time only.
 
-        DB::statement('DELETE FROM tb_user');
-        DB::statement('DELETE FROM tb_rukun_warga');
-        DB::statement('DELETE FROM tb_rukun_tetangga');
+        // disable foreign key
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('tb_kartu_keluarga')->delete();
+        DB::table('tb_user')->delete();
+        DB::table('tb_rukun_warga')->delete();
+        DB::table('tb_rukun_tetangga')->delete();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
         $rukunWargaInstance = RukunWargaModel::factory()->count(1)->create()->first();
-        $rukunTetanggaInstances = RukunTetanggaModel::factory()->state(
-            ['id_rukun_warga' => $rukunWargaInstance->getIdRukunWarga()]
-        )->count(3)->create()->all();
+        $rukunTetanggaInstances = [
+            RukunTetanggaModel::factory()->state(
+                [
+                    'id_rukun_warga' => $rukunWargaInstance->getIdRukunWarga()
+                    ,
+                    'nomor_rukun_tetangga' => 1
+                ]
+            )->create()->first(),
+            RukunTetanggaModel::factory()->state(
+                [
+                    'id_rukun_warga' => $rukunWargaInstance->getIdRukunWarga()
+                    ,
+                    'nomor_rukun_tetangga' => 2
+                ]
+            )->create()->first()
+        ];
+
+
+
         // spliting the process to avoid '0' nkk bug
-        KartuKeluargaModel::factory()->count(20)->create()->all();
-        
+        KartuKeluargaModel::factory()->count(2)->create()->all();
+
         $kartuKeluargaInstances = KartuKeluargaModel::all();
 
-        for ($i=0; $i < count($kartuKeluargaInstances); $i++) { 
+        for ($i = 0; $i < count($kartuKeluargaInstances); $i++) {
             $kartuKeluargaInstances[$i]->setIdRukunTetangga($rukunTetanggaInstances[$i % count($rukunTetanggaInstances)]->id_rukun_tetangga);
             $kartuKeluargaInstances[$i]->save();
         }
@@ -45,39 +65,38 @@ class UserSeeder extends Seeder
             [
                 'email' => 'niaoktav119@gmail.com',
                 'role' => 'Ketua Rukun Warga',
-                'nama_depan' => 'Egar',
-                'nama_belakang' => 'Sayogo 🤙',
-                'image_url' => 'https://res.cloudinary.com/deg2r9cnr/image/upload/v1716194703/ky4wz6pvpjfvxetqhne1.jpg',
+                'nama_depan' => 'Husni',
+                'nama_belakang' => 'Mubarok',
+                'image_url' => 'https://static01.nyt.com/images/2022/04/10/obituaries/00traub-image1/00traub-image1-mediumSquareAt3X.jpg',
                 'nkk' => $kartuKeluargaInstances[0]->getNkk()
             ]
         )->create()->first();
 
         // temporary ketua rw test account instances
-        UserModel::factory()->state(
-            [
-                'email' => 'daffayudisa09@gmail.com',
-                'role' => 'Ketua Rukun Warga',
-                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
-                'nkk' => $kartuKeluargaInstances[0]->getNkk()
-            ]
-        )->create()->first();
+        // UserModel::factory()->state(
+        //     [
+        //         'email' => 'daffayudisa09@gmail.com',
+        //         'role' => 'Ketua Rukun Warga',
+        //         // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
+        //         'nkk' => $kartuKeluargaInstances[0]->getNkk()
+        //     ]
+        // )->create()->first();
 
-        UserModel::factory()->state(
-            [
-                'email' => 'thoriqfathurrozi@gmail.com',
-                'role' => 'Ketua Rukun Warga',
-                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
-                'nkk' => $kartuKeluargaInstances[1]->getNkk()
-            ]
-        )->create()->first();
+        // UserModel::factory()->state(
+        //     [
+        //         'email' => 'thoriqfathurrozi@gmail.com',
+        //         'role' => 'Ketua Rukun Warga',
+        //         // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
+        //         'nkk' => $kartuKeluargaInstances[1]->getNkk()
+        //     ]
+        // )->create()->first();
 
         // temporary ketua rt test account instances
         $tempKetuaRT = UserModel::factory()->state(
             [
                 'email' => 'niaoktav119+rt@gmail.com',
                 'role' => 'Ketua Rukun Tetangga',
-                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
-                'nkk' => $kartuKeluargaInstances[2]->getNkk()
+                'nkk' => $kartuKeluargaInstances[1]->getNkk()
             ]
         )->create()->first();
 
@@ -86,17 +105,16 @@ class UserSeeder extends Seeder
             [
                 'email' => 'niaoktav119+warga@gmail.com',
                 'role' => 'Warga',
-                // 'id_rukun_tetangga' => $rukunTetanggaInstances[0]->getIdRukunTetangga(),
-                'nkk' => $kartuKeluargaInstances[2]->getNkk()
+                'nkk' => $kartuKeluargaInstances[1]->getNkk()
             ]
         )->create();
 
         // attach ketua rukun warga to rukun warga
         $rukunWargaInstance->setNikKetuaRukunWarga($ketuaRukunWargaInstance->getNik());
-        $rukunWargaInstance->save(); 
+        $rukunWargaInstance->save();
 
         // ketua rukun tetangga instances
-        UserModel::factory()->count(2)->state(
+        UserModel::factory()->count(1)->state(
             [
                 'role' => UserRoleEnum::KETUA_RUKUN_TETANGGA->value,
                 'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk()
@@ -109,33 +127,33 @@ class UserSeeder extends Seeder
             $rukunTetanggaInstances[$i]->nik_ketua_rukun_tetangga = $ketuaRukunTetanggaInstance->getNik();
             $rukunTetanggaInstances[$i]->save();
         }
-        
+
         // warga
-        UserModel::factory()->count(30)->create();
-        $wargaInstances = UserModel::where('role', 'Warga')->get();
+        // UserModel::factory()->count(30)->create();
+        // $wargaInstances = UserModel::where('role', 'Warga')->get();
         // attach warga to rukun tetangga
-        for ($i = 0; $i < count($wargaInstances); $i++) {
-            $wargaInstances[$i]->setNkk($kartuKeluargaInstances[$i % 3]->getNkk());
-            $wargaInstances[$i]->save();
-        }
+        // for ($i = 0; $i < count($wargaInstances); $i++) {
+        //     $wargaInstances[$i]->setNkk($kartuKeluargaInstances[$i % 3]->getNkk());
+        //     $wargaInstances[$i]->save();
+        // }
 
         // petugas keamanan
         UserModel::factory()->count(3)->state(
             [
                 'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
-                'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk(),    
+                'nkk' => $kartuKeluargaInstances[rand(0, count($kartuKeluargaInstances) - 1)]->getNkk(),
                 'pekerjaan' => 'Petugas Keamanan'
             ]
         )->create()->all();
 
         // preserved petugas keamanan instance
-        UserModel::factory()->state(
-            [
-                'email' => 'niaoktav119+satpam@gmail.com',
-                'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
-                'nkk' => $kartuKeluargaInstances[0]->getNkk(),
-                'pekerjaan' => 'Petugas Keamanan'
-            ]
-        )->create();
+        // UserModel::factory()->state(
+        //     [
+        //         'email' => 'niaoktav119+satpam@gmail.com',
+        //         'role' => UserRoleEnum::PETUGAS_KEAMANAN->value,
+        //         'nkk' => $kartuKeluargaInstances[0]->getNkk(),
+        //         'pekerjaan' => 'Petugas Keamanan'
+        //     ]
+        // )->create();
     }
 }
