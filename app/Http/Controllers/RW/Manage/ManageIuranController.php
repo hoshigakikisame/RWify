@@ -118,7 +118,7 @@ class ManageIuranController extends Controller
                 'title' => 'Insert Failed.',
                 'description' => "Tagihan $nikPembayar pada bulan $bulan tahun $tahun sudah diverifikasi sebelumnya."
             ]);
-            return redirect()->route('rw.manage.iuran.verify');
+            return "Data already exists.";
         }
 
         $data = [
