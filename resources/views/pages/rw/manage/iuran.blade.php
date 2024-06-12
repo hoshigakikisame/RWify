@@ -102,10 +102,6 @@
                                         Tambah iuran ke dalam sistem
                                     </p>
 
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-
                                     <form enctype="multipart/form-data" class="mt-5" id="addModalForm"
                                         action="{{ route('rw.manage.iuran.new') }}" method="post">
                                         @csrf
