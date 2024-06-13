@@ -12,7 +12,7 @@ class SharedController extends Controller
      */
     public function index()
     {
-        
+
         $latest_pengumuman = PengumumanModel::where('status', 'publish')->latest('diperbarui_pada')->take(5)->get();
 
         return view('pages.shared.index', ['latest_pengumuman' => $latest_pengumuman]);
@@ -20,6 +20,6 @@ class SharedController extends Controller
 
     public function hubungiKami()
     {
-        return view('pages.shared.hubungiKami');
+        return view('pages.shared.HubungiKami');
     }
 }

@@ -18,12 +18,12 @@
             </p>
         </div>
 
-        <div class="flex flex-col lg:flex-row pb-4 pt-2 w-full justify-between">
-            <div class="mr-0 lg:mr-4 mb-4">
+        <div class="flex flex-col lg:flex-row pb-4 pt-2 w-full h-full justify-between">
+            <div class="mr-0 lg:mr-4 mb-4 h-full">
                 <div
-                    class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
-                    <div class="col-span-1">
-                        <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
+                    class="grid grid-flow-row-dense h-full grid-cols-2 items-center gap-6 rounded-lg border p-7 dark:border-gray-700 w-full ">
+                    <div class="col-span-1 h-28 flex items-center">
+                        <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-96" />
                     </div>
                     <div class="col-span-1">
                         <p class="font-medium dark:text-gray-100">RW Satu Landungsari</p>
@@ -34,24 +34,26 @@
             <div class="mr-0 lg:mr-4 mb-4">
                 <div
                     class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
-                    <div class="col-span-1">
-                        <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
+                    <div class="col-span-1 h-28 flex items-center">
+                        <img src="{{ Vite::asset('resources/assets/images/logo-mandiri.png') }}" alt="dana"
+                            class="w-96" />
                     </div>
                     <div class="col-span-1">
                         <p class="font-medium dark:text-gray-100">RW Satu Landungsari</p>
-                        <p class="font-bold dark:text-gray-100">081234567812</p>
+                        <p class="font-bold dark:text-gray-100">3472629292213</p>
                     </div>
                 </div>
             </div>
             <div class="">
                 <div
                     class="grid grid-flow-row-dense grid-cols-2 items-center gap-6 rounded-lg border p-4 p-7 dark:border-gray-700 w-full max-h-screen">
-                    <div class="col-span-1">
-                        <img src="{{ Vite::asset('resources/assets/images/dana.png') }}" alt="dana" class="w-full" />
+                    <div class="col-span-1 flex items-center h-28">
+                        <img src="{{ Vite::asset('resources/assets/images/logo-bca.png') }}" alt="bca"
+                            class="w-96 " />
                     </div>
                     <div class="col-span-1">
                         <p class="font-medium dark:text-gray-100">RW Satu Landungsari</p>
-                        <p class="font-bold dark:text-gray-100">081234567812</p>
+                        <p class="font-bold dark:text-gray-100">3472629292</p>
                     </div>
                 </div>
             </div>
@@ -186,26 +188,28 @@
                                             $sumTotalUnpaidDueMonths = 0;
                                         @endphp
                                         @foreach ($ownedPropertiInstances as $properti)
-                                        @php
-                                            $totalUnpaidDueMonths = $properti->getTotalUnpaidDueMonths();
-                                            $sumTotalUnpaidDueMonths += $totalUnpaidDueMonths;
-                                        @endphp
-                                        <div class="container">
-                                            <div class="mt-2 grid grid-cols-3 grid-rows-2">
-                                                <div class="col-span-2 row-span-2">
-                                                    <p class="text-md mb-2 dark:text-white">{{ $properti->getNamaProperti() }}</p>
-                                                    <p class="font-semi-bold mb-2 text-sm text-gray-500">
-                                                        {{ $properti->getUnpaidDueMonths() }} Bulan
-                                                    </p>
-                                                </div>
-                                                <div
-                                                    class="col-span-1 row-span-2 inline-flex items-center justify-end text-right">
-                                                    <p class="font-semi-bold mb-2 align-middle text-md dark:text-gray-100">
-                                                        {{ \Illuminate\Support\Number::currency($totalUnpaidDueMonths, 'IDR') }}
-                                                    </p>
+                                            @php
+                                                $totalUnpaidDueMonths = $properti->getTotalUnpaidDueMonths();
+                                                $sumTotalUnpaidDueMonths += $totalUnpaidDueMonths;
+                                            @endphp
+                                            <div class="container">
+                                                <div class="mt-2 grid grid-cols-3 grid-rows-2">
+                                                    <div class="col-span-2 row-span-2">
+                                                        <p class="text-md mb-2 dark:text-white">
+                                                            {{ $properti->getNamaProperti() }}</p>
+                                                        <p class="font-semi-bold mb-2 text-sm text-gray-500">
+                                                            {{ $properti->getUnpaidDueMonths() }} Bulan
+                                                        </p>
+                                                    </div>
+                                                    <div
+                                                        class="col-span-1 row-span-2 inline-flex items-center justify-end text-right">
+                                                        <p
+                                                            class="font-semi-bold mb-2 align-middle text-md dark:text-gray-100">
+                                                            {{ \Illuminate\Support\Number::currency($totalUnpaidDueMonths, 'IDR') }}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                     <div class="mt-2 grid grid-cols-3 grid-rows-1 dark:text-gray-100">
