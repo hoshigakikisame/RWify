@@ -19,22 +19,22 @@
                     </a>
                 </div>
                 <div class="grow text-nowrap">
-                    <h4 class="mb-2 font-Poppins text-xl font-semibold text-gray-200">Featured Link</h4>
+                    <h4 class="mb-2 font-Poppins text-xl font-semibold text-gray-200">Tim Pengembang</h4>
                     <ul class="flex flex-col gap-1">
-                        <a href="http://landungsari-malangkab.desa.id/" target="_blank" class="hover:text-white">
-                            <li>Desa Landungsari</li>
+                        <a href="" target="_blank" class="hover:text-white">
+                            <li>Daffa Yudisa A.</li>
                         </a>
-                        <a href="https://dau.malangkab.go.id/pd/" target="_blank" class="hover:text-white">
-                            <li>Kecamatan Dau</li>
+                        <a href="" target="_blank" class="hover:text-white">
+                            <li>Fanesabihrawaning S.</li>
                         </a>
-                        <a href="https://www.malangkab.go.id/" target="_blank" class="hover:text-white">
-                            <li>Kabupaten Malang</li>
+                        <a href="" target="_blank" class="hover:text-white">
+                            <li>Ferdiriansyah R. K.</li>
                         </a>
-                        <a href="https://dispendukcapil.malangkab.go.id/pd/" target="_blank" class="hover:text-white">
-                            <li>Dispendukcapil Kab. Malang</li>
+                        <a href="" target="_blank" class="hover:text-white">
+                            <li>Jihan Karunia Putri</li>
                         </a>
-                        <a href="https://humaspolresmalang.com/" target="_blank" class="hover:text-white">
-                            <li>Humas Polri Malang</li>
+                        <a href="" target="_blank" class="hover:text-white">
+                            <li>Thoriq Fathurrozi</li>
                         </a>
                     </ul>
                 </div>

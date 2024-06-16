@@ -31,6 +31,10 @@
                                 <div class="card-content px-10 py-5">
                                     <div class="card-header h-16">
                                         <h5 class="text-lg font-semibold">{{ $umkm->getNama() }}</h5>
+                                        <h6 class="text-xs  font-Poppins text-gray-500">
+                                            Dikelola oleh <span
+                                                class="text-green-900 dark:text-green-300 font-medium">{{ $umkm->getNamaPemilik() }}</span>
+                                        </h6>
                                     </div>
                                     <div class="card-body mb-9 pt-2 h-36">
                                         <p class="... w-full line-clamp-5">

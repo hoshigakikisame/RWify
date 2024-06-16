@@ -296,7 +296,7 @@
         }
 
         function appendRankData() {
-            appendDataToTable(customHeader(['Rangking', 'Alternatif', 'Nilai']), elementRank())
+            appendDataToTable(customHeader(['Ranking', 'Alternatif', 'Nilai']), elementRank())
         }
     </script>
 @endpush
